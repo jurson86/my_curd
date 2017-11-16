@@ -1,0 +1,12 @@
+*.log
+/.settings
+.classpath
+.project
+jfinalide.properties
+/WebRoot/META-INF
+/WebRoot/WEB-INF/classes
+/.idea
+/out
+*.iml
+/target
+/admin.iml

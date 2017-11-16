@@ -1,0 +1,77 @@
+<#include "/WEB-INF/views/common/common.html"/>
+<@layout>
+<style>
+    .systemTitle{
+        font-size:24px;
+    }
+</style>
+</head>
+<body>
+<div class="easyui-layout"  fit="true">
+    <div data-options="region:'north'" style="height:50px">
+        <span class="systemTitle">Admin</span>
+    </div>
+    <div data-options="region:'west',split:true" title="权限菜单" style="width:200px;">
+        <ul id="permissionTree">
+        </ul>
+    </div>
+    <div data-options="region:'center'">
+        <div id="tabsControl" ></div>
+        <div id="tabsMenu" class="easyui-menu">
+            <div data-options="name:1">关闭</div>
+            <div data-options="name:2">关闭其他</div>
+            <div data-options="name:3">关闭所有</div>
+        </div>
+    </div>
+</div>
+<script src="${ctx!}/res/js/easyui-tree-tools.js"></script>
+<script src="${ctx!}/res/js/tab-tools.js"></script>
+<script>
+    ;(function () {
+
+        var MainPage = {
+            init:function(){
+                var that = this;
+                that.initData();
+                that.bind();
+
+            },
+            initData:function(){
+                var easyTree = new EasyTree();
+                $.ajax({
+                    url:"${ctx!}/main/permissionTree",
+                    type:"GET",
+                    dataType:"json",
+                    success:function(data){
+                       //console.log(JSON.stringify(data));
+
+                       var treeData = easyTree.treeDataBuild(data,"id","pid","text,iconCls,url");
+
+                       //console.log("----easyui tree data----")
+                       //console.log(JSON.stringify(treeData));
+
+                       $('#permissionTree').tree({
+                            data: treeData,
+                            onSelect: function(node) {
+                                // 只能打开 叶子node
+                                if ($("#tree").tree("isLeaf", node.target)) {
+                                    //alert("open:" + node.url);
+                                    TabTools.control(node.url,"",node.text);
+                                }
+                            }
+                        });
+                    },
+                    error:function(x,m){
+                        console.log("权限数据请求错误: "+m);
+                    }
+                });
+            },
+            bind:function(){
+
+            }
+        }
+
+        MainPage.init();
+    })();
+</script>
+</@layout>
