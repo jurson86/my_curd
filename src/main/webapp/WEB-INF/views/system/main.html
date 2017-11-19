@@ -1,22 +1,31 @@
 <#include "/WEB-INF/views/common/common.html"/>
 <@layout>
-<style>
-    .systemTitle{
-        font-size:24px;
-    }
-</style>
+<link rel="stylesheet" href="${ctx!}/res/css/custom.css">
 </head>
 <body>
-<div class="easyui-layout"  fit="true">
-    <div data-options="region:'north'" style="height:50px">
-        <span class="systemTitle">Admin</span>
+<div class="easyui-layout" fit="true" border="none">
+    <div class="head" data-options="region:'north'" style="height: 50px"
+         border="false">
+        <span class="head-text">Admin ERP</span>
+        <span class="head-menu">
+				<a href="#" class="easyui-menubutton"
+                   data-options="menu:'#userMenu'">管理员</a>
+                    <div id="userMenu" class="menu-content" style=" padding:10px;text-align:left">
+                        	<div>退出</div>
+					        <div>修改密码</div>
+                            <img src="http://www.jeasyui.com/images/logo1.png" style="width:150px;height:50px">
+                    </div>
+			</span>
     </div>
     <div data-options="region:'west',split:true" title="权限菜单" style="width:200px;">
+        <div class="input-control">
+            <input type="text" id="filterInput" placeholder="输入关键字、Enter过滤">
+        </div>
         <ul id="permissionTree">
         </ul>
     </div>
     <div data-options="region:'center'">
-        <div id="tabsControl" ></div>
+        <div id="tabsControl"></div>
         <div id="tabsMenu" class="easyui-menu">
             <div data-options="name:1">关闭</div>
             <div data-options="name:2">关闭其他</div>
@@ -30,44 +39,60 @@
     ;(function () {
 
         var MainPage = {
-            init:function(){
+            init: function () {
                 var that = this;
                 that.initData();
                 that.bind();
 
             },
-            initData:function(){
+            initData: function () {
                 var easyTree = new EasyTree();
                 $.ajax({
-                    url:"${ctx!}/main/permissionTree",
-                    type:"GET",
-                    dataType:"json",
-                    success:function(data){
-                       //console.log(JSON.stringify(data));
+                    url: "${ctx!}/main/permissionTree",
+                    type: "GET",
+                    dataType: "json",
+                    success: function (data) {
+                        //console.log(JSON.stringify(data));
 
-                       var treeData = easyTree.treeDataBuild(data,"id","pid","text,iconCls,url");
+                        var treeData = easyTree.treeDataBuild(data, "id", "pid", "text,iconCls,url");
 
-                       //console.log("----easyui tree data----")
-                       //console.log(JSON.stringify(treeData));
+                        //console.log("----easyui tree data----")
+                        //console.log(JSON.stringify(treeData));
 
-                       $('#permissionTree').tree({
+                        $('#permissionTree').tree({
                             data: treeData,
-                            onSelect: function(node) {
+                            onSelect: function (node) {
                                 // 只能打开 叶子node
                                 if ($("#tree").tree("isLeaf", node.target)) {
                                     //alert("open:" + node.url);
-                                    TabTools.control(node.url,"",node.text);
+                                    TabTools.control(node.url, "", node.text);
                                 }
                             }
                         });
                     },
-                    error:function(x,m){
-                        console.log("权限数据请求错误: "+m);
+                    error: function (x, m) {
+                        console.log("权限数据请求错误: " + m);
                     }
                 });
             },
-            bind:function(){
-
+            bind: function () {
+                // 权限树过滤
+                $("#filterInput").on("keydown", function () {
+                    if (event.keyCode == "13") {
+                        var inputVal = $(this).val();
+                        console.log(inputVal);
+                        $('#permissionTree').tree({
+                            filter: function (q, node) {
+                                return node.text.indexOf(inputVal) >= 0;
+                            }
+                        });
+                        if (inputVal == null || inputVal == undefined || $.trim(inputVal) == "") {
+                            $('#tt').tree('doFilter', '');
+                        } else {
+                            $('#permissionTree').tree('doFilter', inputVal);
+                        }
+                    }
+                })
             }
         }
 
