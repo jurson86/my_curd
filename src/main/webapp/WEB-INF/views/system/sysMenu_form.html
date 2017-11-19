@@ -1,0 +1,69 @@
+<#include "/WEB-INF/views/common/common.html"/>
+<@layout>
+<link rel="stylesheet" href="${ctx!}/res/css/custom.css">
+<link rel="stylesheet" href="${ctx!}/res/pure/tables-min.css">
+<script>
+    function saveAction() {
+        var url = '${ctx!}/sysMenu/save';
+        $('#modelForm').form('submit', {
+            url: url,
+            onSubmit: function () {
+                return $(this).form('validate');
+            },
+            success: function (data) {
+                parent.$layer.msg(data, function () {
+                    parent.window.location.reload();
+                });
+            }
+        });
+    }
+</script>
+</head>
+<body style="padding: 10px 30px; ">
+<form id="modelForm" method="POST" >
+    <table class=" pure-table pure-table-horizontal">
+        <input name="id" type="hidden"  value="${(sysMenu.id)!}">
+        <tbody>
+        <tr>
+            <td>菜单名：</td>
+            <td>
+                <input name="name" value="${(sysMenu.name)!}" type="text" class="easyui-textbox" data-options="required:true">
+            </td>
+        </tr>
+
+        <tr>
+            <td>菜单地址：</td>
+            <td>
+                <input name="url" value="${(sysMenu.url)!}" type="text" class="easyui-textbox" data-options="required:true">
+            </td>
+        </tr>
+
+        <tr>
+            <td>排序：</td>
+            <td>
+                <input name="sort" value="${(sysMenu.sort)!}" type="text" class="easyui-textbox" data-options="required:true">
+            </td>
+        </tr>
+
+        <tr>
+            <td>图标：</td>
+            <td>
+                <input name="icon" value="${(sysMenu.icon)!}" type="text" class="easyui-textbox"  >
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</form>
+<div id="toolbars" style="text-align:center; margin-top: 20px;">
+    <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-save'" onclick="">确定(F5)</a>
+    <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-cancel'"
+       onclick="parent.layer.close(parent.layer.getFrameIndex(window.name));">取消</a>
+</div>
+<script src="${ctx!}/res/js/easyui-tree-tools.js"></script>
+<script src="${ctx!}/res/layer/layer.js"></script>
+<script type="text/javascript" charset="utf-8">
+    ;(function () {
+        var easyTree = new EasyTree();
+    })();
+</script>
+</@layout>

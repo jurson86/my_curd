@@ -1,222 +1,76 @@
 <#include "/WEB-INF/views/common/common.html"/>
 <@layout>
-<link rel="stylesheet" href="${ctx!}/res/ztree/css/zTreeStyle/zTreeStyle.css">
-<script src="${ctx!}/res/ztree/js/jquery.ztree.all.min.js"></script>
-<!-- 此处定义 页面单独的样式和 js -->
+<link rel="stylesheet" href="${ctx!}/res/css/custom.css">
+<link rel="stylesheet" href="${ctx!}/res/layer/theme/default/layer.css">
+<script>
+    function newModel(){
+        layerTools.layerIframe('新建','${ctx!}/sysMenu/newModel','600px','400px')
+    }
+
+    function editModel(){
+        var node  = $("#tt").treegrid("getSelected");
+        if(node!=null){
+            layerTools.layerIframe('编辑','${ctx!}/sysMenu/newModel?id='+node.id,'600px','400px')
+        }else{
+            layerTools.layerMsg('请选择一行数据进行编辑');
+        }
+    }
+
+    function deleteModel(){
+
+    }
+
+    function queryModel(){
+        var queryParams = {
+            search_LIKE_name : $("#menuName").textbox("getValue")
+        };
+        //alert(JSON.stringify(queryParams));
+        $('#tt').treegrid('load', queryParams) ;
+    }
+</script>
 </head>
 <body>
-	<script type="text/javascript">
-		var url;
-		function newSysMenu() {
-
-			$('#dlg').dialog('open').dialog('setTitle', '新建菜单');
-			
-			// 清理表单
-			$('#fm').form('clear');
-			
-			// 清理 combotree filter
-            $("#pidSelect").combotree('tree').tree("doFilter",'');
-            
-			url = '${ctx!}/sysMenu/add';
-		}
-
-		function editSysMenu() {
-			var row = $('#dg').datagrid('getSelected');
-			if (row) {
-				$('#dlg').dialog('open').dialog('setTitle', '编辑菜单');
-				
-				$('#fm').form('clear');
-				
-				$('#fm').form('load', row);
-				
-				console.log(row.pid);
-			 
-				// 显示值，过滤自身
-				$("#pidSelect").combotree({
-					value:row.pid == undefined ? null:row.pid,
-					filter : function(q, node) {
-						if(node.id == q || node.pid == q){
-							console.log("false");
-							return false;
-						}else{
-							return true;
-						}	 
-					}
-				}) 
-               $("#pidSelect").combotree('tree').tree("doFilter",row.id);
-               
-				url = '${ctx!}/sysMenu/update?id=' + row.id;
-			} else {
-				$.messager.alert('警告', '修改之前请先选择一条记录!', 'warning');
-			}
-		}
-
-		function saveSysMenu() {
-			$('#fm').form('submit', {
-				url : url,
-				onSubmit : function() {
-					return $(this).form('validate');
-				},
-				success : function(result) {
-					if (result.indexOf("成功") >= 0) {
-						successMsgPretty(null, result);
-						$('#dlg').dialog('close');
-						$('#dg').datagrid('reload');
-						combotreeLoadData();
-					} else {
-						errMsgPretty(null, result);
-					}
-				}
-			});
-		}
-
-		function deleteSysMenu() {
-			var row = $('#dg').datagrid('getSelected');
-			if (row) {
-				$.messager.confirm('删除确认', '你确定要删除这条记录吗?', function(r) {
-					if (r) {
-						$.post('${ctx!}/sysMenu/delete', {
-							id : row.id
-						}, function(result) {
-							if (result.indexOf("成功") >= 0) {
-								successMsgPretty(null, result);
-								$('#dg').datagrid('reload');
-								$('#dg').datagrid('clearSelections');
-								combotreeLoadData();
-							} else {
-								errMsgPretty(null, result);
-							}
-
-						}, 'text');
-					}
-				});
-			}
-		}
-
-		//条件查询
-		function queryModel() {
-			var queryParams = {
-				search_LIKE_name : $("#name").textbox("getValue"),
-				search_EQ_pid : $("#pidHid").val()
-			};
-			//alert(JSON.stringify(getQueryParam('searchBoxSpan')))
-			$('#dg').datagrid('load', queryParams);
-		}
-
-	</script>
-
-	<table id="dg" class="easyui-datagrid" url="${ctx!}/sysMenu/query"
-	toolbar="#tb" 
-	rownumbers="true"
-	 border="false"
-	 fit="true"
-	singleSelect="true"
-	pagination="true"  >
-		<thead>
-			<tr>
-				<th data-options="field:'ck',checkbox:true"></th>
-				<th field="id" width="50">菜单id</th>
-				<th field="name" width="150">菜单名</th>
-				<th field="url" width="150">菜单地址</th>
-				<th field="icon" width="150">图标</th>
-				<th field="sort" width="50">排序</th>
-				<th field="pid" width="50">父菜单id</th>
-			</tr>
-		</thead>
-	</table>
-
-	<div id="dlg" class="easyui-dialog" style="width: 400px; top:30px " closed="true"
-	buttons="#dlg-buttons">
-		<form id="fm" method="post" novalidate
-		style="margin: 0; padding: 20px 50px">
-			<input type="hidden" name="id" />
-
-			<div style="margin-bottom: 20px">
-				<input type="hidden" id="pidFormHid" name="pid" />
-				<label class="label-top">父菜单:</label>
-				<input id="pidSelect"    class="easyui-combotree" style="width: 100%" >
-			</div>
-
-			<div style="margin-bottom: 20px">
-				<label class="label-top">菜单名:</label>
-				<input name="name" class="easyui-textbox" required="true"
-				  style="width: 100%">
-			</div>
-			<div style="margin-bottom: 20px">
-				<label class="label-top">菜单地址:</label>
-				<input name="url" class="easyui-textbox"  
-				style="width: 100%">
-			</div>
-			<div style="margin-bottom: 20px">
-				<label class="label-top">图标:</label>
-				<input name="icon" class="easyui-textbox"  
-				style="width: 100%">
-			</div>
-			<div style="margin-bottom:20px">
-				<label class="label-top">排序:</label>
-				<input name="sort" class="easyui-numberbox" 
-				style="width: 100%">
-			</div>
-		</form>
-	</div>
-
-	<div id="dlg-buttons">
-		<a href="javascript:void(0)" class="easyui-linkbutton c6"
-		iconCls="icon-ok" onclick="saveSysMenu()" style="width: 90px">保存</a>
-		<a href="javascript:void(0)" class="easyui-linkbutton"
-		iconCls="icon-cancel" onclick="javascript:$('#dlg').dialog('close')"
-		style="width: 90px">取消</a>
-	</div>
-
-	<div id="tb">
-		<a href="#" class="easyui-linkbutton" iconCls="icon-add" plain="true"
-		onclick="newSysMenu()">新增</a>
-		<a href="#" class="easyui-linkbutton"
-		iconCls="icon-edit" plain="true" onclick="editSysMenu()">编辑</a>
-		<a href="#" class="easyui-linkbutton  " iconCls="icon-remove"
-		plain="true" onclick="deleteSysMenu()">删除</a>
-		<a href="#"
-		class="easyui-linkbutton  " iconCls="icon-cancel" plain="true"
-		onclick="unSelect()">取选</a>
-		<span id="searchBoxSpan"  class="left">
-			<input id="name" prompt="菜单名"  class="easyui-textbox" style="width:150px"  >
-			<input id="pidHid"  type="hidden" />
-			<input id="pid" prompt="父菜单"  class="easyui-combotree" style="width:150px"  >
-			<a href="#" class="easyui-linkbutton" iconCls="icon-search"  onclick="queryModel()" >Search</a>
-		</span>
-	</div>
-	<script type="text/javascript" charset="utf-8">
-		// 数据
-		function getMenuTreeData() {
-			var data;
-			$.ajaxSettings.async = false;
-			$.getJSON("${ctx!}/sysMenu/allMenu", function(d) {
-				var easytree = new EasyTree();
-				data = easytree.build(d, "id", "pid", "text,icon,pid");
-			})
-			return data;
-		}
-
-		// 替换数据
-		function combotreeLoadData() {
-			var data = getMenuTreeData();
-			$("#pid").combotree({
-				data : data,
-				onSelect : function(node) {
-					$("#pidHid").val(node.id);
-				}
-			})
-			$("#pidSelect").combotree({
-				data : data,
-				onSelect : function(node) {
-					$("#pidFormHid").val(node.id);
-				}
-			})
-		}
-
-		// 初始化
-		$(function() {
-			combotreeLoadData();
-		});
-	</script>
-	</@layout>
+<table id="tt"    ></table>
+<div id="tt-tb">
+    <a onclick="newModel()"    class="easyui-linkbutton" data-options="iconCls:'icon-add',plain:true" > 新增</a>
+    <a onclick="editModel()"   class="easyui-linkbutton" data-options="iconCls:'icon-edit',plain:true" >编辑</a>
+    <a onclick="deleteModel()"   class="easyui-linkbutton" data-options="iconCls:'icon-remove',plain:true" >删除</a>
+    <span class="searchInputArea">
+      	<input id="menuName" prompt="菜单名"  class="easyui-textbox" style="width:150px"  >
+	    <a onclick="queryModel()"  class="easyui-linkbutton" iconCls="icon-search"    >搜索</a>
+    </span>
+</div>
+<script src="${ctx!}/res/js/easyui-tree-tools.js"></script>
+<script src="${ctx!}/res/layer/layer.js"></script>
+<script src="${ctx!}/res/js/layer-tools.js"></script>
+<script type="text/javascript" charset="utf-8">
+  ;(function(){
+      var easyTree = new  EasyTree();
+      $("#tt").treegrid({
+          url:'${ctx!}/sysMenu/query',
+          method:'POST',
+          idField:'id',
+          treeField:'name',
+          pagination:true,
+          pageSize:50,
+          pageList: [50,100],
+          fit:true,
+          rownumbers: true,
+          toolbar: '#tt-tb',
+          loadFilter:function(data){
+              var rows = data.rows;
+              rows  = easyTree.treeDataBuild(rows,'id','pid','name,url,icon,sort');
+              data.rows = rows;
+              // console.log(JSON.stringify(data));
+              return rows;
+          },
+          columns:[[
+              {field:'name',title:'菜单名',width:200 },
+              {field:'url',title:'菜单地址',width:200 },
+              {field:'icon',title:'图标',width:150 },
+              {field:'sort',title:'排序',width:80 }
+          ]]
+      });
+  })();
+</script>
+</@layout>

@@ -9,7 +9,7 @@
         <span class="head-text">Admin ERP</span>
         <span class="head-menu">
 				<a href="#" class="easyui-menubutton"
-                   data-options="menu:'#userMenu'">管理员</a>
+                   data-options="menu:'#userMenu'">${(session.system_user.name)!}</a>
                     <div id="userMenu" class="menu-content" style=" padding:10px;text-align:left">
                         	<div>退出</div>
 					        <div>修改密码</div>

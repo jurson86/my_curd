@@ -26,20 +26,22 @@ import com.hxkj.common.util.SearchSql;
  *
  */
 public class SysMenuController  extends BaseController {
-	
+
+
+
 	public  void index(){
-		 render( "system/sysMenu.html");  // 不可以斜杠开头，会认为 绝对路径
+		 render( "system/sysMenu.html");
 	}
-	
-	
-	
-	
+
+
+	/**
+	 * grid 列表 数据
+	 */
 	@Before(SearchSql.class)
 	public void query() {
 		int pageNumber = getAttr("pageNumber");
 		int pageSize = getAttr("pageSize");
-		
-		// TODO  pid 只能查出子，不能查出孙，需要修改
+
 		String where = getAttr(Constant.SEARCH_SQL);
 
 		String sqlSelect = " select * ";
@@ -52,6 +54,20 @@ public class SysMenuController  extends BaseController {
 
 		renderDatagrid(sysMenus);
 	}
+
+
+	/**
+	 * 新增 或者 编辑  form
+	 */
+	public  void newModel(){
+         Integer id = getParaToInt("id");
+         if(id!=null){
+         	SysMenu sysMenu = SysMenu.dao.findById(id);
+         	setAttr("sysMenu",sysMenu);
+		 }
+		 render("system/sysMenu_form.html");
+	}
+
 
 
 
@@ -68,26 +84,7 @@ public class SysMenuController  extends BaseController {
 		 
 	}
 	
-	@Before(Tx.class)
-	public  void delete(){
-		Integer id =getParaToInt("id");
-	 
-		Record record = Db.findFirst("select getChildLst(?,'sys_menu') as childrenIds ",id);
-		String childrenIds = record.getStr("childrenIds");  // 子、孙 id
-	 
-		
-		//TODO 级联删除
-		String deleteSql = "delete from sys_menu where id in ("+childrenIds+")";
-		Db.update(deleteSql);
-		
-		
-		// 删除相应 的 角色权限关联
-		deleteSql ="delete from sys_role_menu where menu_id in ("+childrenIds+") ";
-		Db.update(deleteSql);
-		
-		renderText(Constant.DELETE_SUCCESS);
-		 
-	}
+
 	
 	
 	public void update(){
@@ -100,7 +97,25 @@ public class SysMenuController  extends BaseController {
 		}
 		
 	}
-	
+
+
+	@Before(Tx.class)
+	public  void delete(){
+		Integer id =getParaToInt("id");
+
+		Record record = Db.findFirst("select getChildLst(?,'sys_menu') as childrenIds ",id);
+		String childrenIds = record.getStr("childrenIds");  // 子、孙 id
+
+		String deleteSql = "delete from sys_menu where id in ("+childrenIds+")";
+		Db.update(deleteSql);
+
+		// 删除相应 的 角色权限关联
+		deleteSql ="delete from sys_role_menu where menu_id in ("+childrenIds+") ";
+		Db.update(deleteSql);
+
+		renderText(Constant.DELETE_SUCCESS);
+
+	}
 	
 	/**
 	 * 全部菜单

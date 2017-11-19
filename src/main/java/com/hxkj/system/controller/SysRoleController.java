@@ -26,33 +26,6 @@ public class SysRoleController extends BaseController {
 
 	}
 
-	/**
-	 * 全部菜单树，并根据角色选中
-	 */
-	public void menuTreePermissionChecked(){
-		Integer id= getParaToInt(0);
-		List<SysRoleMenu> sysRoleMenus =
-				SysRoleMenu.dao.find("select * from sys_role_menu where role_id = ? ", id);
-
-		List<SysMenu> sysMenus = SysMenu.dao.findAll();
-		List<Map<String,Object>> maps = new ArrayList<Map<String,Object>>();
-
-		for(SysMenu sysMenu : sysMenus){
-			Map<String,Object> map = new HashMap<String,Object>();
-			map.put("id",sysMenu.getId());
-			map.put("pid",sysMenu.getPid());
-			map.put("name",sysMenu.getName());
-			map.put("open",true);
-			for(SysRoleMenu sysRoleMenu : sysRoleMenus){
-				if(sysRoleMenu.getMenuId()==sysMenu.getId()){
-					map.put("checked",true);
-					break;
-				}
-			}
-			maps.add(map);
-		}
-		renderJson(maps);
-	}
 
 
 
@@ -140,5 +113,35 @@ public class SysRoleController extends BaseController {
 
 		renderText("赋权成功");
 	}
+
+
+	/**
+	 * 全部菜单树，并根据角色选中
+	 */
+	public void menuTreePermissionChecked(){
+		Integer id= getParaToInt(0);
+		List<SysRoleMenu> sysRoleMenus =
+				SysRoleMenu.dao.find("select * from sys_role_menu where role_id = ? ", id);
+
+		List<SysMenu> sysMenus = SysMenu.dao.findAll();
+		List<Map<String,Object>> maps = new ArrayList<Map<String,Object>>();
+
+		for(SysMenu sysMenu : sysMenus){
+			Map<String,Object> map = new HashMap<String,Object>();
+			map.put("id",sysMenu.getId());
+			map.put("pid",sysMenu.getPid());
+			map.put("name",sysMenu.getName());
+			map.put("open",true);
+			for(SysRoleMenu sysRoleMenu : sysRoleMenus){
+				if(sysRoleMenu.getMenuId()==sysMenu.getId()){
+					map.put("checked",true);
+					break;
+				}
+			}
+			maps.add(map);
+		}
+		renderJson(maps);
+	}
+
 
 }
