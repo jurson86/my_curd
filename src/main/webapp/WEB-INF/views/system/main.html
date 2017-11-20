@@ -1,20 +1,19 @@
 <#include "/WEB-INF/views/common/common.html"/>
 <@layout>
 <link rel="stylesheet" href="${ctx!}/res/css/custom.css">
+<link rel="stylesheet" href="${ctx!}/res/pure/buttons-min.css">
 </head>
 <body>
 <div class="easyui-layout" fit="true" border="none">
     <div class="head" data-options="region:'north'" style="height: 50px"
          border="false">
-        <span class="head-text">Admin ERP</span>
-        <span class="head-menu">
-				<a href="#" class="easyui-menubutton"
-                   data-options="menu:'#userMenu'">${(session.system_user.name)!}</a>
-                    <div id="userMenu" class="menu-content" style=" padding:10px;text-align:left">
-                        	<div>退出</div>
-					        <div>修改密码</div>
-                            <img src="http://www.jeasyui.com/images/logo1.png" style="width:150px;height:50px">
-                    </div>
+        <span class="head-text">C_CURD</span>
+            <span class="head-menu">
+                你好，${(session.system_user.name)!} &nbsp;
+                &nbsp;
+                &nbsp;
+                &nbsp;
+                <a class="pure-button pure-button-primary" href="${ctx!}/logout">退出</a>
 			</span>
     </div>
     <div data-options="region:'west',split:true" title="权限菜单" style="width:200px;">

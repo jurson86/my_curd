@@ -1,228 +1,143 @@
-<#include "/WEB-INF/views/common/common.html"/> <@layout> <!-- 此处定义 页面单独的样式和 js -->
-<link rel="stylesheet" href="${ctx!}/res/ztree/css/bootstrapStyle/bootstrapStyle.css">
-<script src="${ctx!}/res/ztree/js/jquery.ztree.all.min.js"></script>
+<#include "/WEB-INF/views/common/common.html"/> <@layout>
+<link rel="stylesheet" href="${ctx!}/res/css/custom.css">
+<link rel="stylesheet" href="${ctx!}/res/layer/theme/default/layer.css">
 </head>
 <body>
-	<script type="text/javascript">
-		var url;
+<script type="text/javascript">
+    function newModel() {
 
-		/*新增*/
-		function newSysRole() {
-			/* .dialog('center')  横向纵向正中央*/
-			$('#dlg').dialog('open').dialog('setTitle', '新建角色');
-			$('#fm').form('clear');
-			url = '${ctx!}/sysRole/add';
-		}
+    }
 
-		/*编辑*/
-		function editSysRole() {
-			var row = $('#dg').datagrid('getSelected');
-			if (row) {
-				$('#dlg').dialog('open').dialog('setTitle', '编辑角色');
-				$('#fm').form('clear');
-				$('#fm').form('load', row);
-				$("#pidName").textbox("setValue", row.name);
-				url = '${ctx!}/sysRole/update?id=' + row.id;
-			} else {
-				$.messager.alert('警告', '修改之前请先选择一条记录!', 'warning');
-			}
-		}
-        /*保存*/
-		function saveSysRole() {
-			$('#fm').form('submit', {
-				url : url,
-				onSubmit : function() {
-					return $(this).form('validate');
-				},
-				success : function(result) {
+    function editModel() {
 
-					if (result.indexOf("成功") >= 0) {
-						successMsgPretty(null, result);
-						$('#dlg').dialog('close');
-						$('#dg').datagrid('reload');
-                        $('#fm').form('clear');
-					} else {
-						errMsgPretty(null, result);
-					}
-				}
-			});
-		}
+    }
+
+    function deleteModel() {
+
+    }
 
 
-		/*角色删除*/
-		function deleteSysRole() {
-			var row = $('#dg').datagrid('getSelected');
-			if (row) {
-				$.messager.confirm('删除确认', '你确定要删除这条记录吗?', function(r) {
-					if (r) {
-						$.post('${ctx!}/sysRole/delete', {
-							id : row.id
-						}, function(result) {
-							if (result.indexOf("成功") >= 0) {
-								successMsgPretty(null, result);
-								$('#dg').datagrid('reload');
-								// reload the user data
-							} else {
-								errMsgPretty(null, result);
-							}
-
-						}, 'text');
-					}
-				});
-			}
-		}
+    //条件查询
+    function queryModel() {
+        var queryParams = {
+            search_LIKE_role_name: $("#roleName").textbox("getValue"),
+        };
+        $('#dg').datagrid('load', queryParams);
+    }
 
 
-        /**
-		 *  角色 分配权限
-         */
-		function givePermission(){
+    /*数组去重*/
+    Array.prototype.unique = function(){
+        var res = [];
+        var json = {};
+        for(var i = 0; i < this.length; i++){
+            if(!json[this[i]]){
+                res.push(this[i]);
+                json[this[i]] = 1;
+            }
+        }
+        return res;
+    }
 
-		     var treeObj = $.fn.zTree.getZTreeObj("allMenuTree");
-		     if(treeObj==null ||treeObj == undefined){
-                 $.messager.alert('警告', '请选择要分配权限的角色!', 'warning');
-                 return;
-			 }
-		     var checkNodes = treeObj.getCheckedNodes(true);
+    /**
+     *  角色 分配权限
+     */
+    function givePermission() {
+        var checkedNodes = $("#allMenuTree").tree("getChecked");
 
-            if(checkNodes.length==0){
-                $.messager.alert('警告', '请选择要分配的权限菜单!', 'warning');
-                return;
-			}
-
-			var roleRow = $("#dg").datagrid("getSelected");
-            if(roleRow==null){
-                $.messager.alert('警告', '请选择要分配权限的角色!', 'warning');
-                return;
-			}
-
-            var permissIds = [];
-            for(var i = 0;i<checkNodes.length;i++){
-                permissIds.push(checkNodes[i].id);
-                permissIds.push(checkNodes[i].pid);
-			}
-
-			// 去重
-			permissIds = removeDuplicatedItem(permissIds);
-
-            //console.table([{be:permissIds.toString(),af:permissIds2.toString()}]);
-
-            $.post('${ctx!}/sysRole/givePermission', {
-                roleId : roleRow.id,
-				permissIds : permissIds.join(";")
-            }, function(result) {
-                if (result.indexOf("成功") >= 0) {
-                    successMsgPretty(null, result);
-                } else {
-                    errMsgPretty(null, result);
-                }
-
-            }, 'text');
-
-		}
-
-        //条件查询
-        function queryModel() {
-            var queryParams = {
-                search_LIKE_role_name : $("#roleName").textbox("getValue"),
-            };
-            //alert(JSON.stringify(getQueryParam('searchBoxSpan')))
-            $('#dg').datagrid('load', queryParams);
+        if (checkedNodes.length == 0) {
+            layerTools.layerMsg('请选择要分配的权限菜单!');
+            return;
         }
 
-	</script>
+        var roleRow = $("#dg").datagrid("getSelected");
+        if (roleRow == null) {
+            layerTools.layerMsg('请选择要分配权限的角色!');
+            return;
+        }
 
-	<div id="nestLayout" class="easyui-layout" fit="true" >
-		<div  data-options="region:'east' " title="权限树"
-		split="true" border="false" collapsed="true" tools="#treeTB"
-		style="width: 300px;">
-			<ul id="allMenuTree" class="ztree"></ul>
-		</div>
-		<div data-options="region:'center' "  border="false"   split="true">
+        var permissIds = [];
+        for (var i = 0; i < checkedNodes.length; i++) {
+            permissIds.push(checkedNodes[i].id);
+            if(checkedNodes[i].pid!=undefined && checkedNodes[i].pid !=null){
+                permissIds.push(checkedNodes[i].pid);
+            }
+        }
 
-			<table id="dg" class="easyui-datagrid  " url="${ctx!}/sysRole/query"
-			toolbar="#tb" rownumbers="true" border="false" singleSelect="true"
-			fit="true" pagination="true"
-		     >
-				<thead>
-					<tr>
-						<th data-options="field:'ck',checkbox:true"></th>
-						<th field="roleName" width="150">角色名</th>
-						<th field="roleDesc" width="150">角色描述</th>
-						<th field="createTime" width="150">创建时间</th>
-						<th field="sort" width="50">排序</th>
+        // 去重
+        //alert(JSON.stringify(permissIds));
+        permissIds = permissIds.unique();
+        // alert(JSON.stringify(permissIds));
+        $.post('${ctx!}/sysRole/givePermission', {
+            roleId: roleRow.id,
+            permissIds: permissIds.join(";")
+        }, function (result) {
+            layerTools.layerMsg(result);
+        }, 'text');
 
-					</tr>
-				</thead>
-			</table>
+    }
 
-			<div id="dlg" class="easyui-dialog" style="width: 400px; top: 30px"
-			closed="true" buttons="#dlg-buttons">
-				<form id="fm" method="post" novalidate
-				style="margin: 0; padding: 20px 50px">
-					<input type="hidden" name="id" />
-					<div style="margin-bottom: 20px">
-						<label class="label-top">角色名:</label>
-						<input name="roleName" class="easyui-textbox" required="true"
-						  style="width: 100%">
-					</div>
-					<div style="margin-bottom: 20px">
-						<label class="label-top">角色备注:</label>
-						<input name="roleDesc" class="easyui-textbox"  
-						style="width: 100%">
-					</div>
-					<div style="margin-bottom: 20px">
-						<label class="label-top">排序:</label>
-						<input name="sort" class="easyui-numberbox"  
-						style="width: 100%">
-					</div>
-				</form>
-			</div>
+</script>
 
-			<div id="dlg-buttons">
-				<a href="javascript:void(0)" class="easyui-linkbutton c6"
-				iconCls="icon-ok" onclick="saveSysRole()" style="width: 90px">保存</a>
-				<a href="javascript:void(0)" class="easyui-linkbutton"
-				iconCls="icon-cancel"
-				onclick="javascript:$('#dlg').dialog('close')" style="width: 90px">取消</a>
-			</div>
+<div id="nestLayout" class="easyui-layout" fit="true">
+    <div data-options="region:'east' " title="权限树"
+         split="true" border="false" collapsed="true" tools="#treeTB"
+         style="width: 300px;">
+        <ul id="allMenuTree" class="easyui-tree" ></ul>
+    </div>
+    <div data-options="region:'center' " border="false" split="true">
 
-			<div id="tb">
-				<a href="#" class="easyui-linkbutton" iconCls="icon-add"
-				plain="true" onclick="newSysRole()">新增</a><a href="#"
-				class="easyui-linkbutton" iconCls="icon-edit" plain="true"
-				onclick="editSysRole()">编辑</a><a href="#"
-				class="easyui-linkbutton  " iconCls="icon-remove" plain="true"
-				onclick="deleteSysRole()">删除</a>
-				<a href="#"
-				   class="easyui-linkbutton  " iconCls="icon-cancel" plain="true"
-				   onclick="unSelect()">取选</a>
-				<span id="searchBoxSpan"  class="left">
-				<input id="roleName" prompt="角色名"  class="easyui-textbox" style="width:150px"  >
-				<a href="#" class="easyui-linkbutton" iconCls="icon-search"  onclick="queryModel()" >Search</a>
-		       </span>
-			</div>
-			<div id="treeTB"   >
-				<a href="#" iconCls="icon-save"   onclick="givePermission()" title="授权"></a>
-			</div>
-		</div>
-	</div>
+        <table id="dg" class="easyui-datagrid  " url="${ctx!}/sysRole/query"
+               toolbar="#tb" rownumbers="true" border="false" singleSelect="true"
+               fit="true" pagination="true" >
+            <thead>
+            <tr>
+                <th data-options="field:'ck',checkbox:true"></th>
+                <th field="roleName" width="150">角色名</th>
+                <th field="roleDesc" width="300">角色描述</th>
+                <th field="createTime" width="150">创建时间</th>
+                <th field="sort" width="50">排序</th>
+            </tr>
+            </thead>
+        </table>
 
-	<script>
-		$(function() {
-			$("#dg").datagrid({
-				onSelect : function(index, row) {
-					var url = "${ctx!}/sysRole/menuTreePermissionChecked/" + row.id;
-					$.getJSON(url, function(data) {
-                        menuTree($("#allMenuTree"),data,true);
-                        $("#nestLayout").layout("expand","east");
-					});
-				},
-                onUnselect:function(index,row){
-                    $("#nestLayout").layout("collapse","east");
-                    $.fn.zTree.destroy("allMenuTree");
-				}
-			})
-		});
-	</script>
-	</@layout>
+        <div id="tb">
+            <a onclick="newModel()" href="#"  class="easyui-linkbutton" iconCls="icon-add" plain="true" >新增</a>
+            <a onclick="editModel()" href="#"  class="easyui-linkbutton" iconCls="icon-edit" plain="true"  >编辑</a>
+            <a onclick="deleteModel()" href="#"  class="easyui-linkbutton  " iconCls="icon-remove" plain="true"  >删除</a>
+            <span class="searchInputArea">
+					<input id="roleName" prompt="角色名" class="easyui-textbox" style="width:150px">
+					<a href="#" class="easyui-linkbutton" iconCls="icon-search" onclick="queryModel()">搜索</a>
+            </span>
+        </div>
+        <div id="treeTB">
+            <a href="#" iconCls="icon-save" onclick="givePermission()" title="授权"></a>
+        </div>
+    </div>
+</div>
+<script src="${ctx!}/res/js/easyui-tree-tools.js"></script>
+<script src="${ctx!}/res/layer/layer.js"></script>
+<script src="${ctx!}/res/js/layer-tools.js"></script>
+<script>
+
+    $(function () {
+        var easyTree = new  EasyTree();
+        $("#dg").datagrid({
+            onSelect: function (index, row) {
+                var url = "${ctx!}/sysRole/menuTreePermissionChecked/" + row.id;
+                $.getJSON(url, function (data) {
+                    data = easyTree.treeDataBuild(data,'id','pid','text,state,checked,pid');
+                    $("#allMenuTree").tree({
+                        data:data,
+                        checkbox:true
+                    })
+                    $("#nestLayout").layout("expand", "east");
+                });
+            },
+            onUnselect: function (index, row) {
+                $("#nestLayout").layout("collapse", "east");
+            }
+        })
+    });
+</script>
+</@layout>

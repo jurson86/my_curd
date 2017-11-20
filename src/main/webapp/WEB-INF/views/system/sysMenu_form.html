@@ -1,17 +1,25 @@
 <#include "/WEB-INF/views/common/common.html"/>
 <@layout>
+<link rel="stylesheet" href="${ctx!}/res/layer/theme/default/layer.css">
 <link rel="stylesheet" href="${ctx!}/res/css/custom.css">
 <link rel="stylesheet" href="${ctx!}/res/pure/tables-min.css">
 <script>
     function saveAction() {
-        var url = '${ctx!}/sysMenu/save';
+        var url;
+        var idVal = $("#id").val();
+        if($.trim(idVal)=="" || idVal == undefined || idVal == null){
+            url   = '${ctx!}/sysMenu/addAction';
+        }else{
+            url  = '${ctx!}/sysMenu/updateAction';
+        }
+
         $('#modelForm').form('submit', {
             url: url,
             onSubmit: function () {
                 return $(this).form('validate');
             },
             success: function (data) {
-                parent.$layer.msg(data, function () {
+                parent.layerTools.layerMsg(data, function () {
                     parent.window.location.reload();
                 });
             }
@@ -22,8 +30,14 @@
 <body style="padding: 10px 30px; ">
 <form id="modelForm" method="POST" >
     <table class=" pure-table pure-table-horizontal">
-        <input name="id" type="hidden"  value="${(sysMenu.id)!}">
+        <input id="id" name="id" type="hidden"  value="${(sysMenu.id)!}">
         <tbody>
+        <tr>
+            <td>父菜单</td>
+            <td>
+                <input name="pid"  id="pid"  >
+            </td>
+        </tr>
         <tr>
             <td>菜单名：</td>
             <td>
@@ -55,7 +69,7 @@
     </table>
 </form>
 <div id="toolbars" style="text-align:center; margin-top: 20px;">
-    <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-save'" onclick="">确定(F5)</a>
+    <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-save'" onclick="saveAction()">确定</a>
     <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-cancel'"
        onclick="parent.layer.close(parent.layer.getFrameIndex(window.name));">取消</a>
 </div>
@@ -64,6 +78,17 @@
 <script type="text/javascript" charset="utf-8">
     ;(function () {
         var easyTree = new EasyTree();
+        $("#pid").combotree({
+            url:'${ctx!}/sysMenu/allMenu',
+            value:'${(sysMenu.pid)!}',
+            loadFilter:function(data,parent){
+                  // 数据处理
+                  //console.log(JSON.stringify(data));
+                  data = easyTree.treeDataBuild(data,"id","pid","text,open,icon");
+                 // console.log(data);
+                  return data;
+            }
+        });
     })();
 </script>
 </@layout>

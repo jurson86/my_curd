@@ -17,7 +17,20 @@
     }
 
     function deleteModel(){
-
+        var node  = $("#tt").treegrid("getSelected");
+        if(node!=null){
+            $.messager.confirm('删除', '您确定要删除选中的记录吗?', function(r) {
+                if (r) {
+                    $.post('${ctx}/sysMenu/deleteAction?id=' + node.id, function(data) {
+                        layerTools.layerMsg(data,function(){
+                            $('#tt').treegrid('reload');
+                        });
+                    },"text");
+                }
+            });
+        }else{
+            layerTools.layerMsg('请选择一行进行删除');
+        }
     }
 
     function queryModel(){
@@ -35,6 +48,7 @@
     <a onclick="newModel()"    class="easyui-linkbutton" data-options="iconCls:'icon-add',plain:true" > 新增</a>
     <a onclick="editModel()"   class="easyui-linkbutton" data-options="iconCls:'icon-edit',plain:true" >编辑</a>
     <a onclick="deleteModel()"   class="easyui-linkbutton" data-options="iconCls:'icon-remove',plain:true" >删除</a>
+
     <span class="searchInputArea">
       	<input id="menuName" prompt="菜单名"  class="easyui-textbox" style="width:150px"  >
 	    <a onclick="queryModel()"  class="easyui-linkbutton" iconCls="icon-search"    >搜索</a>
@@ -55,6 +69,7 @@
           pageSize:50,
           pageList: [50,100],
           fit:true,
+          //fitColumns:true,
           rownumbers: true,
           toolbar: '#tt-tb',
           loadFilter:function(data){
@@ -62,7 +77,7 @@
               rows  = easyTree.treeDataBuild(rows,'id','pid','name,url,icon,sort');
               data.rows = rows;
               // console.log(JSON.stringify(data));
-              return rows;
+              return data;
           },
           columns:[[
               {field:'name',title:'菜单名',width:200 },

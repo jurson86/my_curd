@@ -1,10 +1,6 @@
 package com.hxkj.system.controller;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import com.jfinal.aop.Before;
 import com.jfinal.kit.StrKit;import com.jfinal.plugin.activerecord.Db;
@@ -120,26 +116,37 @@ public class SysRoleController extends BaseController {
 	 */
 	public void menuTreePermissionChecked(){
 		Integer id= getParaToInt(0);
+
+		// 联合主键保证不重复
 		List<SysRoleMenu> sysRoleMenus =
 				SysRoleMenu.dao.find("select * from sys_role_menu where role_id = ? ", id);
 
 		List<SysMenu> sysMenus = SysMenu.dao.findAll();
-		List<Map<String,Object>> maps = new ArrayList<Map<String,Object>>();
 
+		// 非叶子 id 集合
+		Set<Integer> pids = new HashSet<Integer>();
+		for(SysMenu sysMenu: sysMenus){
+			pids.add(sysMenu.getPid());
+		}
+
+
+		List<Map<String,Object>> maps = new ArrayList<Map<String,Object>>();
 		for(SysMenu sysMenu : sysMenus){
 			Map<String,Object> map = new HashMap<String,Object>();
 			map.put("id",sysMenu.getId());
 			map.put("pid",sysMenu.getPid());
-			map.put("name",sysMenu.getName());
-			map.put("open",true);
+			map.put("text",sysMenu.getName());
+			map.put("state","open");
 			for(SysRoleMenu sysRoleMenu : sysRoleMenus){
-				if(sysRoleMenu.getMenuId()==sysMenu.getId()){
+				// 中间表 有记录，且是 叶子
+				if(sysRoleMenu.getMenuId()==sysMenu.getId() && !pids.contains(sysMenu.getId())){
 					map.put("checked",true);
 					break;
 				}
 			}
 			maps.add(map);
 		}
+
 		renderJson(maps);
 	}
 

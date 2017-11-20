@@ -10,7 +10,7 @@ var layerTools = layerTools ||{};
 
     //配置layer初始化配置
     layer.config({
-        shift: 0,    // 0-6的动画形式，-1不开启
+        shift: -1,    // 0-6的动画形式，-1不开启
         shade: 0.05  //遮罩透明度
     });
 
@@ -81,8 +81,9 @@ var layerTools = layerTools ||{};
 
     /*1 layer 弹出层 */
     // 自动消失的 弹出信息
-    layerTools.layerMsg = function(msg){
-        layer.msg(msg);
+    layerTools.layerMsg = function(msg,fun){
+        layer.msg(msg,{time:1000},fun);
+
     }
 
     /**

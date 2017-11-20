@@ -52,6 +52,7 @@ a:hover {color:#CC3300;text-decoration:underline;}
 }
 
 
+/*form 中 table 居中*/
 form>table{
     margin: 0 auto;
 }
