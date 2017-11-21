@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50719
 File Encoding         : 65001
 
-Date: 2017-11-21 18:51:15
+Date: 2017-11-21 18:56:06
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -149,7 +149,6 @@ CREATE TABLE `sys_user` (
 -- Records of sys_user
 -- ----------------------------
 INSERT INTO `sys_user` VALUES ('916654989969981440', 'admin', '7c4a8d09ca3762af61e59520943dc26494f8941b', '张闯', '18', '916432779@qq.com', '15238002477', '0', '2017-10-07 21:22:34');
-INSERT INTO `sys_user` VALUES ('932898139097006080', 'zhangguolong', '7c4a8d09ca3762af61e59520943dc26494f8941b', '张国龙', '11', 'zgl@qq.com', '15238002478', '0', '2017-11-21 17:13:44');
 
 -- ----------------------------
 -- Table structure for `sys_user_role`
@@ -165,8 +164,6 @@ CREATE TABLE `sys_user_role` (
 -- Records of sys_user_role
 -- ----------------------------
 INSERT INTO `sys_user_role` VALUES ('916654989969981440', '3');
-INSERT INTO `sys_user_role` VALUES ('932898139097006080', '3');
-INSERT INTO `sys_user_role` VALUES ('932898139097006080', '18');
 
 -- ----------------------------
 -- Function structure for `getChildLst`
