@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50719
 File Encoding         : 65001
 
-Date: 2017-11-21 11:38:39
+Date: 2017-11-21 18:51:15
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -27,7 +27,7 @@ CREATE TABLE `sys_menu` (
   `sort` int(11) DEFAULT NULL,
   `pid` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=60 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=62 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of sys_menu
@@ -35,8 +35,10 @@ CREATE TABLE `sys_menu` (
 INSERT INTO `sys_menu` VALUES ('5', '系统管理', null, null, '0', null);
 INSERT INTO `sys_menu` VALUES ('6', '菜单管理', '/sysMenu', null, '0', '5');
 INSERT INTO `sys_menu` VALUES ('23', '角色管理', '/sysRole', null, '2', '5');
-INSERT INTO `sys_menu` VALUES ('58', '组织机构', '/sysOrg', null, '3', '5');
-INSERT INTO `sys_menu` VALUES ('59', '员工管理', '/sysUser', null, '4', '5');
+INSERT INTO `sys_menu` VALUES ('58', '组织机构', '/sysOrg', null, '4', '5');
+INSERT INTO `sys_menu` VALUES ('59', '用户管理', '/sysUser', null, '3', '5');
+INSERT INTO `sys_menu` VALUES ('60', '修改密码', '/sysChangePassword', null, '5', '5');
+INSERT INTO `sys_menu` VALUES ('61', 'druid监控', '/druid', null, '6', '5');
 
 -- ----------------------------
 -- Table structure for `sys_oplog`
@@ -82,7 +84,6 @@ INSERT INTO `sys_org` VALUES ('12', '物流公司', null, null, '1', null);
 INSERT INTO `sys_org` VALUES ('14', '生产部', '河南省郑州巩义市康店镇', '啥地方地方第三方', '0', '11');
 INSERT INTO `sys_org` VALUES ('16', '货运部', null, null, '0', '12');
 INSERT INTO `sys_org` VALUES ('18', '营业部', null, null, '1', '12');
-INSERT INTO `sys_org` VALUES ('19', '史蒂夫史蒂夫', '史蒂夫史蒂夫', '啥地方收到', '1', '11');
 
 -- ----------------------------
 -- Table structure for `sys_role`
@@ -95,13 +96,13 @@ CREATE TABLE `sys_role` (
   `create_time` datetime DEFAULT NULL,
   `sort` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of sys_role
 -- ----------------------------
 INSERT INTO `sys_role` VALUES ('3', '管理员', '分配所有权限', '2017-10-07 21:22:34', '0');
-INSERT INTO `sys_role` VALUES ('16', '3', '1', '2017-11-21 08:56:00', '4');
+INSERT INTO `sys_role` VALUES ('18', '员工', '普通员工测试', '2017-11-21 17:07:25', '1');
 
 -- ----------------------------
 -- Table structure for `sys_role_menu`
@@ -121,6 +122,10 @@ INSERT INTO `sys_role_menu` VALUES ('3', '6');
 INSERT INTO `sys_role_menu` VALUES ('3', '23');
 INSERT INTO `sys_role_menu` VALUES ('3', '58');
 INSERT INTO `sys_role_menu` VALUES ('3', '59');
+INSERT INTO `sys_role_menu` VALUES ('3', '60');
+INSERT INTO `sys_role_menu` VALUES ('3', '61');
+INSERT INTO `sys_role_menu` VALUES ('18', '5');
+INSERT INTO `sys_role_menu` VALUES ('18', '60');
 
 -- ----------------------------
 -- Table structure for `sys_user`
@@ -144,6 +149,7 @@ CREATE TABLE `sys_user` (
 -- Records of sys_user
 -- ----------------------------
 INSERT INTO `sys_user` VALUES ('916654989969981440', 'admin', '7c4a8d09ca3762af61e59520943dc26494f8941b', '张闯', '18', '916432779@qq.com', '15238002477', '0', '2017-10-07 21:22:34');
+INSERT INTO `sys_user` VALUES ('932898139097006080', 'zhangguolong', '7c4a8d09ca3762af61e59520943dc26494f8941b', '张国龙', '11', 'zgl@qq.com', '15238002478', '0', '2017-11-21 17:13:44');
 
 -- ----------------------------
 -- Table structure for `sys_user_role`
@@ -159,6 +165,8 @@ CREATE TABLE `sys_user_role` (
 -- Records of sys_user_role
 -- ----------------------------
 INSERT INTO `sys_user_role` VALUES ('916654989969981440', '3');
+INSERT INTO `sys_user_role` VALUES ('932898139097006080', '3');
+INSERT INTO `sys_user_role` VALUES ('932898139097006080', '18');
 
 -- ----------------------------
 -- Function structure for `getChildLst`

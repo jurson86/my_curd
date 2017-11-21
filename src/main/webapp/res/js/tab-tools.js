@@ -82,7 +82,7 @@ var TabTools = {
         } else {
 
             if (url) {
-                var content = '<iframe scrolling="no" frameborder="0"  src="' + url + '" style="width:100%;height:100%;"></iframe>';
+                var content = '<iframe   frameborder="0"  src="' + url + '" style="width:100%;height:100%;"></iframe>';
             } else {
                 var content = '未实现';
             }
