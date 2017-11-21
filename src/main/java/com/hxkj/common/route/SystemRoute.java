@@ -28,7 +28,7 @@ public class SystemRoute extends Routes {
 		//用户管理
 	    add("/sysUser", SysUserController.class,Constant.VIEW_PATH);
 	    
-
+        add("/sysChangePassword",SysChangePasswordController.class,Constant.VIEW_PATH);
 	 
 	}
 

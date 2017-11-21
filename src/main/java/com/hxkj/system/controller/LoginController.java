@@ -4,8 +4,6 @@ package com.hxkj.system.controller;
 import java.util.List;
 
 import org.apache.log4j.Logger;
-
-import com.alibaba.fastjson.JSON;
 import com.jfinal.aop.Clear;
 import com.jfinal.core.ActionKey;
 import com.jfinal.kit.HashKit;
@@ -89,19 +87,23 @@ public class LoginController extends BaseController {
                 + " GROUP BY sur.user_id";
         SysUserRole sysUserRole = SysUserRole.dao.findFirst(roleSql, sysUser.getId());
 
+        if(sysUserRole!=null){
             // 角色名称
-        setSessionAttr(Constant.SYSTEM_USER_ROLES, sysUserRole.get("roleNames"));
+            setSessionAttr(Constant.SYSTEM_USER_ROLES, sysUserRole.get("roleNames"));
+            // 查询权限
+            String ownMenuSql = "SELECT"
+                    + " DISTINCT sm.*"
+                    + " FROM sys_role_menu srm"
+                    + " LEFT JOIN sys_menu sm ON srm.menu_id = sm.id"
+                    + " WHERE role_id IN (?)"
+                    + " order by sm.sort";
+            List<SysMenu> ownSysMenus = SysMenu.dao.find(ownMenuSql, sysUserRole.getStr("roleIds"));
+            setSessionAttr(Constant.OWN_MENU, ownSysMenus);
+        }else{
+            setSessionAttr(Constant.SYSTEM_USER_ROLES, null);
+            setSessionAttr(Constant.OWN_MENU, null);
+        }
 
-
-        // 查询权限
-        String ownMenuSql = "SELECT"
-                + " DISTINCT sm.*"
-                + " FROM sys_role_menu srm"
-                + " LEFT JOIN sys_menu sm ON srm.menu_id = sm.id"
-                + " WHERE role_id IN (?)"
-                + " order by 'sm.sort'";
-        List<SysMenu> ownSysMenus = SysMenu.dao.find(ownMenuSql, sysUserRole.getStr("roleIds"));
-        setSessionAttr(Constant.OWN_MENU, ownSysMenus);
 
         redirect("/main");
     }
@@ -118,6 +120,7 @@ public class LoginController extends BaseController {
         removeSessionAttr(Constant.OWN_MENU);
         redirect("/login");
     }
+
 
 
 }

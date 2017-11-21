@@ -1,8 +1,10 @@
 package com.hxkj.system.controller;
 
-import com.hxkj.system.model.SysMenu;
-import com.hxkj.system.model.SysRole;
-import com.hxkj.system.model.SysUser;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import com.jfinal.aop.Before;
 import com.jfinal.kit.StrKit;
 import com.jfinal.plugin.activerecord.Db;
@@ -14,11 +16,7 @@ import com.hxkj.common.util.SearchSql;
 import com.hxkj.common.constant.Constant;
 import com.hxkj.system.model.SysOrg;
 import com.hxkj.common.util.BaseController;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import com.hxkj.system.model.SysUser;
 
 
 public class SysOrgController  extends BaseController{
@@ -38,7 +36,7 @@ public class SysOrgController  extends BaseController{
 		if (StrKit.notBlank(where)) {
 			sqlExceptSelect += " where " + where;
 		}
-		sqlExceptSelect += " order by id asc , sort asc ";
+		sqlExceptSelect += " order by   sort asc ";
 		Page<SysOrg> sysOrgs = SysOrg.dao.paginate(pageNumber, pageSize, sqlSelect, sqlExceptSelect);
 
 		renderDatagrid(sysOrgs);

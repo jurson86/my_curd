@@ -97,18 +97,18 @@
 
 <div id="nestLayout" class="easyui-layout" fit="true">
     <div data-options="region:'east' " title="权限树"
-         split="true" border="false" collapsed="true" tools="#treeTB"
+         split="true"   collapsed="true" tools="#treeTB"
          style="width: 300px;">
         <ul id="allMenuTree" class="easyui-tree" ></ul>
     </div>
     <div data-options="region:'center' " border="false" split="true">
 
         <table id="dg" class="easyui-datagrid  " url="${ctx!}/sysRole/query"
-               toolbar="#tb" rownumbers="true" border="false" singleSelect="true"
+               toolbar="#tb" rownumbers="true"   singleSelect="true" border="false"
                fit="true" pagination="true" >
             <thead>
             <tr>
-                <th data-options="field:'ck',checkbox:true"></th>
+                <th data-options="field:'id',checkbox:true"></th>
                 <th field="roleName" width="150">角色名</th>
                 <th field="roleDesc" width="300">角色描述</th>
                 <th field="createTime" width="150">创建/更新 时间</th>

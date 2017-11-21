@@ -1,0 +1,166 @@
+<#include "/WEB-INF/views/common/common.html"/> <@layout>
+<link rel="stylesheet" href="${ctx!}/res/layer/theme/default/layer.css">
+</head>
+<body>
+<script type="text/javascript">
+    function newModel() {
+        layerTools.layerIframe('新建','${ctx!}/sysUser/newModel','800px','500px')
+    }
+
+    function editModel() {
+        var row  = $("#dg").treegrid("getSelected");
+        if(row!=null){
+            layerTools.layerIframe('编辑','${ctx!}/sysUser/newModel?id='+row.id,'800px','500px')
+        }else{
+            layerTools.layerMsg('请选择一行数据进行编辑');
+        }
+    }
+
+    function deleteModel() {
+        var row  = $("#dg").datagrid("getSelected");
+        if(row!=null){
+            layerTools.confirm(3,'删除', '您确定要删除选中的记录吗?',function(){
+                $.post('${ctx}/sysUser/deleteAction?id=' + row.id, function(data) {
+                    layerTools.layerMsg(data,function(){
+                        $('#dg').datagrid('reload');
+                    });
+                },"text");
+            });
+
+        }else{
+            layerTools.layerMsg('请选择一行进行删除');
+        }
+    }
+
+
+    //条件查询
+    function queryModel() {
+        var queryParams = {};
+        queryParams['search_LIKE_su.username']=$("#username").textbox("getValue");
+        queryParams['search_LIKE_su.name']=$("#name").textbox("getValue");
+        //queryParams['search_LIKE_su.phone']=$("#phone").textbox("getValue");
+        //queryParams['search_LIKE_su.email']=$("#email").textbox("getValue");
+        queryParams['search_LIKE_so.org_name']=$("#orgName").textbox("getValue");
+        queryParams['search_EQ_su.disabled'] = $("#disabled").combobox('getValue');
+        $('#dg').datagrid('load', queryParams);
+    }
+
+    /**
+     *  角色 分配权限
+     */
+    function giveRoles() {
+        var checkedNodes = $("#allRoleTree").tree("getChecked");
+
+        if (checkedNodes.length == 0) {
+            layerTools.layerMsg('请选择要分配的角色!');
+            return;
+        }
+
+        var userRow = $("#dg").datagrid("getSelected");
+        if (userRow == null) {
+            layerTools.layerMsg('请选择要分配角色的员工!');
+            return;
+        }
+
+
+        var roleIds = [];
+        for (var i = 0; i < checkedNodes.length; i++) {
+            roleIds.push(checkedNodes[i].id);
+        }
+
+        //alert(JSON.stringify(roleIds));
+
+        $.post('${ctx!}/sysUser/giveRole', {
+            userId: userRow.id,
+            roleIds: roleIds.join(";")
+        }, function (result) {
+            layerTools.layerMsg(result);
+        }, 'text');
+
+    }
+
+</script>
+
+<div id="nestLayout" class="easyui-layout" fit="true">
+    <div data-options="region:'east' " title="角色列表"
+         split="true"   collapsed="true" tools="#treeTB"
+         style="width: 300px;">
+        <ul id="allRoleTree" class="easyui-tree" ></ul>
+    </div>
+    <div data-options="region:'center' " border="false" split="true">
+
+        <table id="dg" class="easyui-datagrid  " url="${ctx!}/sysUser/query"
+               toolbar="#tb" rownumbers="true"   singleSelect="true"  border="false"
+               fit="true" pagination="true" >
+            <thead>
+            <tr>
+                <th data-options="field:'id',checkbox:true"></th>
+                <th field="username" width="150">登录名</th>
+                <th field="name" width="150">姓名</th>
+                <th field="orgName" width="150">部门</th>
+                <th field="phone" width="150">电话</th>
+                <th field="email" width="150">邮箱</th>
+                <th field="createTime" width="150">创建/更新 时间</th>
+                <th field="disabled" width="50" formatter="formatDisabled">状态</th>
+            </tr>
+            </thead>
+        </table>
+
+        <div id="tb">
+            <a onclick="newModel()" href="#"  class="easyui-linkbutton" iconCls="icon-add" plain="true" >新增</a>
+            <a onclick="editModel()" href="#"  class="easyui-linkbutton" iconCls="icon-edit" plain="true"  >编辑</a>
+            <a onclick="deleteModel()" href="#"  class="easyui-linkbutton  " iconCls="icon-remove" plain="true"  >删除</a>
+            <span class="searchInputArea">
+					<input id="username" prompt="登录名" class="easyui-textbox" style="width:120px">
+                    <input id="name" prompt="姓名" class="easyui-textbox" style="width:120px">
+                 <!--   <input id="phone" prompt="电话" class="easyui-textbox" style="width:80px">
+                    <input id="email" prompt="邮箱" class="easyui-textbox" style="width:80px">-->
+                    <input id="orgName" prompt="部门" class="easyui-textbox" style="width:120px">
+                    <span style="margin-left: 20px;">  状态：</span>
+                    <select class="easyui-combobox" id="disabled"  label="" style="width:80px;">
+                             <option value="" selected>所有状态</option>
+                             <option value="0">正常</option>
+                             <option value="1">无效</option>
+                    </select>
+					<a href="#" class="easyui-linkbutton" iconCls="icon-search" onclick="queryModel()">搜索</a>
+            </span>
+        </div>
+        <div id="treeTB">
+            <a href="#" iconCls="icon-save" onclick="giveRoles()" title="赋予角色"></a>
+        </div>
+    </div>
+</div>
+<script src="${ctx!}/res/js/easyui-tree-tools.js"></script>
+<script src="${ctx!}/res/layer/layer.js"></script>
+<script src="${ctx!}/res/js/layer-tools.js"></script>
+<script>
+
+    function formatDisabled(val,row){
+        if(val==0){
+            val = '正常';
+        }else{
+            val = '<span style="color:red">无效</span>';
+        }
+        return val;
+    };
+
+    $(function () {
+        var easyTree = new  EasyTree();
+        $("#dg").datagrid({
+            onSelect: function (index, row) {
+                var url = "${ctx!}/sysUser/roleListChecked/" + row.id;
+                $.getJSON(url, function (data) {
+                    $("#allRoleTree").tree({
+                        data:data,
+                        checkbox:true
+                    })
+                    $("#nestLayout").layout("expand", "east");
+                });
+            },
+            onUnselect: function (index, row) {
+                $("#nestLayout").layout("collapse", "east");
+            }
+        })
+    });
+</script>
+</@layout>

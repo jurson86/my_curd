@@ -38,16 +38,18 @@ public class MainController extends BaseController
         List<Map<String,Object>> maps = new ArrayList<Map<String,Object>>();
 
         // 简单的json格式数据，树形结构由前端 js算法处理
-        for(SysMenu sysMenu : ownSysMenus){
-            Map<String,Object> map = new HashMap<>();
-            map.put("id",sysMenu.getId());
-            map.put("pid",sysMenu.getPid());
-            map.put("iconCls",sysMenu.getIcon());
-            map.put("url",sysMenu.getUrl());
-            map.put("text",sysMenu.getName());
-            maps.add(map);
-        }
+        if(ownSysMenus!=null){
+            for(SysMenu sysMenu : ownSysMenus){
+                Map<String,Object> map = new HashMap<>();
+                map.put("id",sysMenu.getId());
+                map.put("pid",sysMenu.getPid());
+                map.put("iconCls",sysMenu.getIcon());
+                map.put("url",sysMenu.getUrl());
+                map.put("text",sysMenu.getName());
+                maps.add(map);
+            }
 
+        }
         renderJson(maps);
     }
 }

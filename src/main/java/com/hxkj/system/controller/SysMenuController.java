@@ -15,7 +15,6 @@ import com.jfinal.plugin.activerecord.tx.Tx;
 
 import com.hxkj.common.constant.Constant;
 import com.hxkj.system.model.SysMenu;
-import com.hxkj.system.model.SysRole;
 import com.hxkj.common.util.BaseController;
 import com.hxkj.common.util.SearchSql;
 
@@ -49,7 +48,7 @@ public class SysMenuController  extends BaseController {
 		if (StrKit.notBlank(where)) {
 			sqlExceptSelect += " where " + where;
 		}
-		sqlExceptSelect += " order by id asc , sort asc ";
+		sqlExceptSelect += " order by   sort asc ";
 		Page<SysMenu> sysMenus = SysMenu.dao.paginate(pageNumber, pageSize, sqlSelect, sqlExceptSelect);
 
 		renderDatagrid(sysMenus);
