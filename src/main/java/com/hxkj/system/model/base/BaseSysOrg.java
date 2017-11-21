@@ -28,6 +28,22 @@ public abstract class BaseSysOrg<M extends BaseSysOrg<M>> extends Model<M> imple
 		return get("org_name");
 	}
 
+	public void setOrgAddress(String orgName) {
+		set("org_address", orgName);
+	}
+
+	public String getOrgAddress() {
+		return get("org_address");
+	}
+
+	public void setOrgRemark(String orgName) {
+		set("org_remark", orgName);
+	}
+
+	public String getOrgRemark() {
+		return get("org_remark");
+	}
+
 	public void setSort(Integer sort) {
 		set("sort", sort);
 	}

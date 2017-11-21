@@ -11,7 +11,11 @@ import com.hxkj.system.model.base.BaseSysOrg;
 @SuppressWarnings("serial")
 public class SysOrg extends BaseSysOrg<SysOrg> {
 	public static final SysOrg dao = new SysOrg().dao();
-	
+
+	public List<SysOrg> findAll(){
+		String sql = "select * from sys_org order by  sort asc";
+		return find(sql);
+	}
 
 	public  List<SysOrg> getChildren(){
 		return get("children");

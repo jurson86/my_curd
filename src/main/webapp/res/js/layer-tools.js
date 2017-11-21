@@ -95,4 +95,25 @@ var layerTools = layerTools ||{};
         cbk();
         layer.close(li);
     }
+
+
+
+    // 询问框
+    layerTools.confirm = function(icon,title,msg,yesFun,noFun){
+        layer.confirm(msg, {
+           /* skin: 'layui-layer-molv',*/
+            icon: icon,
+            title:title,
+            btn: ['确定','取消']
+        }, function(){
+            if(yesFun!=null){
+                yesFun();
+            }
+        }, function(index){
+            if(noFun!=null){
+                noFun();
+            }
+            layer.close(index);
+        });
+    }
 })();

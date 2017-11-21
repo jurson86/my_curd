@@ -1,19 +1,35 @@
 <#include "/WEB-INF/views/common/common.html"/> <@layout>
-<link rel="stylesheet" href="${ctx!}/res/css/custom.css">
 <link rel="stylesheet" href="${ctx!}/res/layer/theme/default/layer.css">
 </head>
 <body>
 <script type="text/javascript">
     function newModel() {
-
+        layerTools.layerIframe('新建','${ctx!}/sysRole/newModel','600px','400px')
     }
 
     function editModel() {
-
+        var row  = $("#dg").treegrid("getSelected");
+        if(row!=null){
+            layerTools.layerIframe('编辑','${ctx!}/sysRole/newModel?id='+row.id,'600px','400px')
+        }else{
+            layerTools.layerMsg('请选择一行数据进行编辑');
+        }
     }
 
     function deleteModel() {
+        var row  = $("#dg").datagrid("getSelected");
+        if(row!=null){
+            layerTools.confirm(3,'删除', '您确定要删除选中的记录吗?',function(){
+                $.post('${ctx}/sysRole/deleteAction?id=' + row.id, function(data) {
+                    layerTools.layerMsg(data,function(){
+                        $('#dg').datagrid('reload');
+                    });
+                },"text");
+            });
 
+        }else{
+            layerTools.layerMsg('请选择一行进行删除');
+        }
     }
 
 
@@ -95,7 +111,7 @@
                 <th data-options="field:'ck',checkbox:true"></th>
                 <th field="roleName" width="150">角色名</th>
                 <th field="roleDesc" width="300">角色描述</th>
-                <th field="createTime" width="150">创建时间</th>
+                <th field="createTime" width="150">创建/更新 时间</th>
                 <th field="sort" width="50">排序</th>
             </tr>
             </thead>

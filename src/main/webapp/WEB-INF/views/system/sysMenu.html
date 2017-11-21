@@ -1,6 +1,5 @@
 <#include "/WEB-INF/views/common/common.html"/>
 <@layout>
-<link rel="stylesheet" href="${ctx!}/res/css/custom.css">
 <link rel="stylesheet" href="${ctx!}/res/layer/theme/default/layer.css">
 <script>
     function newModel(){
@@ -19,15 +18,15 @@
     function deleteModel(){
         var node  = $("#tt").treegrid("getSelected");
         if(node!=null){
-            $.messager.confirm('删除', '您确定要删除选中的记录吗?', function(r) {
-                if (r) {
-                    $.post('${ctx}/sysMenu/deleteAction?id=' + node.id, function(data) {
-                        layerTools.layerMsg(data,function(){
-                            $('#tt').treegrid('reload');
-                        });
-                    },"text");
-                }
+
+            layerTools.confirm(3,'删除', '您确定要删除选中的记录吗?',function(){
+                $.post('${ctx}/sysMenu/deleteAction?id=' + node.id, function(data) {
+                    layerTools.layerMsg(data,function(){
+                        $('#tt').treegrid('reload');
+                    });
+                },"text");
             });
+
         }else{
             layerTools.layerMsg('请选择一行进行删除');
         }
@@ -43,7 +42,7 @@
 </script>
 </head>
 <body>
-<table id="tt"    ></table>
+<table id="tt"    border="false"  ></table>
 <div id="tt-tb">
     <a onclick="newModel()"    class="easyui-linkbutton" data-options="iconCls:'icon-add',plain:true" > 新增</a>
     <a onclick="editModel()"   class="easyui-linkbutton" data-options="iconCls:'icon-edit',plain:true" >编辑</a>

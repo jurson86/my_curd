@@ -21,11 +21,14 @@ public class SystemRoute extends Routes {
 		
 		// 角色管理
 		add("/sysRole", SysRoleController.class,Constant.VIEW_PATH);
+
+		// 组织机构管理
+		add("/sysOrg",SysOrgController.class,Constant.VIEW_PATH);
 		
 		//用户管理
 	    add("/sysUser", SysUserController.class,Constant.VIEW_PATH);
 	    
-	    add("/sysOrg",SysOrgController.class,Constant.VIEW_PATH);
+
 	 
 	}
 

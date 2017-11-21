@@ -44,8 +44,21 @@ public class SysRoleController extends BaseController {
 		renderDatagrid(sysMenus);
 	}
 
+
+	/**
+	 * 新增 或者 编辑  form
+	 */
+	public  void newModel(){
+		Integer id = getParaToInt("id");
+		if(id!=null){
+			SysRole sysRole = SysRole.dao.findById(id);
+			setAttr("sysRole",sysRole);
+		}
+		render("system/sysRole_form.html");
+	}
+
 	
-	public void add() {
+	public void addAction() {
 		SysRole sysRole = getBean(SysRole.class, "");
 		sysRole.setCreateTime(new Date());
 		boolean saveFlag = sysRole.save();
@@ -57,8 +70,9 @@ public class SysRoleController extends BaseController {
 
 	}
 
-	public void update() {
+	public void updateAction() {
 		SysRole sysRole = getBean(SysRole.class,"");
+		sysRole.setCreateTime(new Date());
 		boolean updateFlag = sysRole.update();
 		if (updateFlag) {
 			renderText(Constant.UPDATE_SUCCESS);
@@ -70,15 +84,19 @@ public class SysRoleController extends BaseController {
 
 	
 	@Before(Tx.class)
-	public void delete() {
+	public void deleteAction() {
 		
 		Integer id = getParaToInt("id");
+
+		// 角色表
 		String deleteSql = "delete from sys_role where id = ?";
 		Db.update(deleteSql,id);
-		
+
+		// 角色 菜单中间表
 		deleteSql = "delete from sys_role_menu where role_id = ?";
 		Db.update(deleteSql,id);
-		
+
+		//用户角色表
 		deleteSql = "delete from sys_user_role where role_id = ?";
 		Db.update(deleteSql,id);
 		
@@ -90,7 +108,7 @@ public class SysRoleController extends BaseController {
 
 
 	/**
-	 * 用户赋予权限
+	 * 用户赋权限
 	 */
 	@Before(Tx.class)
 	public void givePermission(){

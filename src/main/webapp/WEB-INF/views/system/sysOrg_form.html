@@ -6,9 +6,9 @@
         var url;
         var idVal = $("#id").val();
         if($.trim(idVal)=="" || idVal == undefined || idVal == null){
-            url   = '${ctx!}/sysMenu/addAction';
+            url   = '${ctx!}/sysOrg/addAction';
         }else{
-            url  = '${ctx!}/sysMenu/updateAction';
+            url  = '${ctx!}/sysOrg/updateAction';
         }
 
         $('#modelForm').form('submit', {
@@ -28,41 +28,40 @@
 <body style="padding: 10px 30px; ">
 <form id="modelForm" method="POST" >
     <table class=" pure-table pure-table-horizontal">
-        <input id="id" name="id" type="hidden"  value="${(sysMenu.id)!}">
+        <input id="id" name="id" type="hidden"  value="${(sysOrg.id)!}">
         <tbody>
         <tr>
-            <td>父菜单</td>
+            <td>父机构</td>
             <td>
                 <input name="pid"  id="pid"  >
             </td>
         </tr>
         <tr>
-            <td>菜单名：</td>
+            <td>机构名：</td>
             <td>
-                <input name="name" value="${(sysMenu.name)!}" type="text" class="easyui-textbox" data-options="required:true">
+                <input name="orgName" value="${(sysOrg.orgName)!}" type="text" class="easyui-textbox" data-options="required:true">
             </td>
         </tr>
-
         <tr>
-            <td>菜单地址：</td>
+            <td>机构地址：</td>
             <td>
-                <input name="url" value="${(sysMenu.url)!}" type="text" class="easyui-textbox" data-options="required:true">
+                <input style="height: 80px" name="orgAddress" value="${(sysOrg.orgAddress)!}" type="text" class="easyui-textbox" data-options="multiline:true" >
+            </td>
+        </tr>
+        <tr>
+            <td>机构备注：</td>
+            <td>
+                <input style="height: 80px" name="orgRemark" value="${(sysOrg.orgRemark)!}" type="text" class="easyui-textbox" data-options="multiline:true" >
             </td>
         </tr>
 
         <tr>
             <td>排序：</td>
             <td>
-                <input name="sort" value="${(sysMenu.sort)!}" type="text" class="easyui-numberbox" data-options="required:true,precision:0">
+                <input name="sort" value="${(sysOrg.sort)!}" type="text" class="easyui-numberbox" data-options="required:true,precision:0">
             </td>
         </tr>
 
-        <tr>
-            <td>图标：</td>
-            <td>
-                <input name="icon" value="${(sysMenu.icon)!}" type="text" class="easyui-textbox"  >
-            </td>
-        </tr>
         </tbody>
     </table>
 </form>
@@ -76,14 +75,14 @@
     ;(function () {
         var easyTree = new EasyTree();
         $("#pid").combotree({
-            url:'${ctx!}/sysMenu/allMenu',
-            value:'${(sysMenu.pid)!}',
+            url:'${ctx!}/sysOrg/allOrg',
+            value:'${(sysOrg.pid)!}',
             loadFilter:function(data,parent){
-                  // 数据处理
-                  //console.log(JSON.stringify(data));
-                  data = easyTree.treeDataBuild(data,"id","pid","text,open,icon");
-                 // console.log(data);
-                  return data;
+                // 数据处理
+                //console.log(JSON.stringify(data));
+                data = easyTree.treeDataBuild(data,"id","pid","text,open");
+                // console.log(data);
+                return data;
             }
         });
     })();
