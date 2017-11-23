@@ -76,6 +76,8 @@ public class LoginController extends BaseController {
         //登录用户信息
         SysUser sysUser = sysUsers.get(0);
         setSessionAttr(Constant.SYSTEM_USER, sysUser);
+        //为了 druid session 监控
+        setSessionAttr(Constant.SYSTEM_USER_NAME, sysUser.getName());
 
         // 查询角色
         String roleSql = "SELECT"

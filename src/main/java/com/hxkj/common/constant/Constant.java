@@ -5,6 +5,7 @@ public class Constant {
   
   // 当前系统登陆的 用户
   public final static String SYSTEM_USER = "system_user";
+  public final static String SYSTEM_USER_NAME = "system_user_name";
   
   // 当前登录用户的角色
   public final static String SYSTEM_USER_ROLES = "system_user_roles";

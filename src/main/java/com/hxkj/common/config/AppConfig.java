@@ -1,6 +1,7 @@
 package com.hxkj.common.config;
 
 import com.alibaba.druid.filter.stat.StatFilter;
+import com.alibaba.druid.support.http.WebStatFilter;
 import com.alibaba.druid.wall.WallFilter;
 import com.hxkj.common.constant.Constant;
 import com.hxkj.system.model.SysUser;
