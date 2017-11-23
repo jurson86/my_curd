@@ -40,7 +40,7 @@ public class MainController extends BaseController
         // 简单的json格式数据，树形结构由前端 js算法处理
         if(ownSysMenus!=null){
             for(SysMenu sysMenu : ownSysMenus){
-                Map<String,Object> map = new HashMap<>();
+                Map<String,Object> map = new HashMap<String,Object>();
                 map.put("id",sysMenu.getId());
                 map.put("pid",sysMenu.getPid());
                 map.put("iconCls",sysMenu.getIcon());
