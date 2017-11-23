@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50719
 File Encoding         : 65001
 
-Date: 2017-11-23 10:34:31
+Date: 2017-11-23 18:37:04
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -27,18 +27,26 @@ CREATE TABLE `sys_menu` (
   `sort` int(11) DEFAULT NULL,
   `pid` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=62 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=70 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of sys_menu
 -- ----------------------------
-INSERT INTO `sys_menu` VALUES ('5', '系统管理', null, null, '0', null);
+INSERT INTO `sys_menu` VALUES ('5', '系统管理', '/', null, '3', null);
 INSERT INTO `sys_menu` VALUES ('6', '菜单管理', '/sysMenu', null, '0', '5');
 INSERT INTO `sys_menu` VALUES ('23', '角色管理', '/sysRole', null, '2', '5');
 INSERT INTO `sys_menu` VALUES ('58', '组织机构', '/sysOrg', null, '4', '5');
 INSERT INTO `sys_menu` VALUES ('59', '用户管理', '/sysUser', null, '3', '5');
 INSERT INTO `sys_menu` VALUES ('60', '修改密码', '/sysChangePassword', null, '5', '5');
 INSERT INTO `sys_menu` VALUES ('61', 'druid监控', '/druid', null, '6', '5');
+INSERT INTO `sys_menu` VALUES ('62', '供应链', ' /', null, '2', null);
+INSERT INTO `sys_menu` VALUES ('63', '采购申请', '/scmPurchase', null, '3', '66');
+INSERT INTO `sys_menu` VALUES ('64', '仓库入库', '/scmDepotIn', null, '2', '62');
+INSERT INTO `sys_menu` VALUES ('65', '仓库出库', '/scmDepotOut', null, '3', '62');
+INSERT INTO `sys_menu` VALUES ('66', '网上办公', '/', null, '1', null);
+INSERT INTO `sys_menu` VALUES ('67', '请假申请', '/ooLeaveRequest', null, '1', '66');
+INSERT INTO `sys_menu` VALUES ('68', '请假审批', '/ooLeaveAudit', null, '2', '66');
+INSERT INTO `sys_menu` VALUES ('69', '采购审批', '/scmPurchaseAudit', null, '4', '66');
 
 -- ----------------------------
 -- Table structure for `sys_oplog`
@@ -74,66 +82,17 @@ CREATE TABLE `sys_org` (
   `sort` int(11) DEFAULT NULL,
   `pid` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=74 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=80 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of sys_org
 -- ----------------------------
-INSERT INTO `sys_org` VALUES ('19', '董事会', '河南省巩义市', null, '1', null);
-INSERT INTO `sys_org` VALUES ('20', '总裁办', null, null, '1', '19');
-INSERT INTO `sys_org` VALUES ('21', '车辆管理', null, null, '1', '20');
-INSERT INTO `sys_org` VALUES ('22', '企管中心', null, null, '2', null);
-INSERT INTO `sys_org` VALUES ('23', '行政部', null, null, '1', '22');
-INSERT INTO `sys_org` VALUES ('24', '人力部', null, null, '2', '22');
-INSERT INTO `sys_org` VALUES ('25', '经营管理部', null, null, '3', '22');
-INSERT INTO `sys_org` VALUES ('26', '信息办', null, null, '1', '25');
-INSERT INTO `sys_org` VALUES ('27', '服务部', null, null, '4', '22');
-INSERT INTO `sys_org` VALUES ('28', '财务中心', null, null, '3', null);
-INSERT INTO `sys_org` VALUES ('29', '内审部', null, null, '1', '28');
-INSERT INTO `sys_org` VALUES ('30', '实物库', null, null, '2', '28');
-INSERT INTO `sys_org` VALUES ('31', '现金出纳', null, null, '3', '28');
-INSERT INTO `sys_org` VALUES ('32', '财务管理', null, null, '4', '28');
-INSERT INTO `sys_org` VALUES ('33', '钢缆实物库', null, null, '1', '30');
-INSERT INTO `sys_org` VALUES ('34', '金属实物库', null, null, '2', '30');
-INSERT INTO `sys_org` VALUES ('35', '科技实物库', null, null, '3', '30');
-INSERT INTO `sys_org` VALUES ('36', '机械园区实物库', null, null, '4', '30');
-INSERT INTO `sys_org` VALUES ('37', '万年硅业实物库', null, null, '5', '30');
-INSERT INTO `sys_org` VALUES ('38', '博宇实物库', null, null, '6', '30');
-INSERT INTO `sys_org` VALUES ('39', '机械厂实物库', null, null, '7', '30');
-INSERT INTO `sys_org` VALUES ('40', '资本中心', null, null, '4', null);
-INSERT INTO `sys_org` VALUES ('41', '融资部', null, null, '1', '40');
-INSERT INTO `sys_org` VALUES ('42', '证券部', null, null, '2', '40');
-INSERT INTO `sys_org` VALUES ('43', '供应中心', null, null, '5', null);
-INSERT INTO `sys_org` VALUES ('44', '供应商管理', null, null, '1', '43');
-INSERT INTO `sys_org` VALUES ('45', '业务部', null, null, '2', '43');
-INSERT INTO `sys_org` VALUES ('46', '超精细公司', null, null, '6', null);
-INSERT INTO `sys_org` VALUES ('47', '超精细销售部', null, null, '1', '46');
-INSERT INTO `sys_org` VALUES ('48', '金属公司', null, null, '7', null);
-INSERT INTO `sys_org` VALUES ('49', '钢缆公司', null, null, '8', null);
-INSERT INTO `sys_org` VALUES ('50', '科技公司', null, null, '9', null);
-INSERT INTO `sys_org` VALUES ('51', '恒星机械公司', null, null, '10', null);
-INSERT INTO `sys_org` VALUES ('52', '煤机公司', null, null, '11', null);
-INSERT INTO `sys_org` VALUES ('53', '基建处', null, null, '12', null);
-INSERT INTO `sys_org` VALUES ('54', '研发中心', null, null, '13', null);
-INSERT INTO `sys_org` VALUES ('55', '物流部', null, null, '14', null);
-INSERT INTO `sys_org` VALUES ('56', '机械园区', null, null, '15', null);
-INSERT INTO `sys_org` VALUES ('57', '博宇新能源', null, null, '16', null);
-INSERT INTO `sys_org` VALUES ('58', '科技帘线', null, null, '17', null);
-INSERT INTO `sys_org` VALUES ('59', '科技金刚线', null, null, '18', null);
-INSERT INTO `sys_org` VALUES ('60', '恒星新材料', null, null, '19', null);
-INSERT INTO `sys_org` VALUES ('61', '生产部', null, null, '1', '60');
-INSERT INTO `sys_org` VALUES ('62', '财务部', null, null, '2', '60');
-INSERT INTO `sys_org` VALUES ('63', '人力资源行政部', null, null, '3', '60');
-INSERT INTO `sys_org` VALUES ('64', '供销部', null, null, '4', '60');
-INSERT INTO `sys_org` VALUES ('65', '质量部', null, null, '5', '60');
-INSERT INTO `sys_org` VALUES ('66', '技术部', null, null, '6', '60');
-INSERT INTO `sys_org` VALUES ('67', '安环部', null, null, '7', '60');
-INSERT INTO `sys_org` VALUES ('68', '设备部', null, null, '8', '60');
-INSERT INTO `sys_org` VALUES ('69', '氢化车间', null, null, '1', '61');
-INSERT INTO `sys_org` VALUES ('70', '精馏车间', null, null, '2', '61');
-INSERT INTO `sys_org` VALUES ('71', '还原车间', null, null, '3', '61');
-INSERT INTO `sys_org` VALUES ('72', '公用工程', null, null, '4', '61');
-INSERT INTO `sys_org` VALUES ('73', '生产办公室', null, null, '5', '61');
+INSERT INTO `sys_org` VALUES ('74', '河南恒星科技股份有限公司', '河南省巩义市康店镇伊洛河北路121号', '上市企业，主营业务有各种钢线... 董事长 谢晓博', '1', null);
+INSERT INTO `sys_org` VALUES ('75', '信息办', '办公楼607、504', '607负责企业erp、oa办公系统的开发，504负责系统运维', '1', '74');
+INSERT INTO `sys_org` VALUES ('76', '人力资源部', '办公楼 307', '负责企业内人力方面工作', '2', '74');
+INSERT INTO `sys_org` VALUES ('77', '采购部', '办公楼104', '负责企业内部的商品采购工作', '3', '74');
+INSERT INTO `sys_org` VALUES ('78', '销售部', null, null, '4', '74');
+INSERT INTO `sys_org` VALUES ('79', '财务部', null, null, '5', '74');
 
 -- ----------------------------
 -- Table structure for `sys_role`
@@ -146,13 +105,18 @@ CREATE TABLE `sys_role` (
   `create_time` datetime DEFAULT NULL,
   `sort` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of sys_role
 -- ----------------------------
 INSERT INTO `sys_role` VALUES ('3', '管理员', '分配所有权限', '2017-10-07 21:22:34', '0');
-INSERT INTO `sys_role` VALUES ('18', '员工', '普通员工测试', '2017-11-21 17:07:25', '1');
+INSERT INTO `sys_role` VALUES ('18', '信息办员工', '信息办员工', '2017-11-23 18:20:36', '1');
+INSERT INTO `sys_role` VALUES ('19', '信息办领导', '信息办领导', '2017-11-23 18:20:44', '2');
+INSERT INTO `sys_role` VALUES ('20', '人力部员工', '人力部员工', '2017-11-23 18:19:28', '3');
+INSERT INTO `sys_role` VALUES ('21', '人力部领导', '人力部领导', '2017-11-23 18:19:48', '4');
+INSERT INTO `sys_role` VALUES ('22', '采购部员工', '采购部员工', '2017-11-23 18:21:26', '5');
+INSERT INTO `sys_role` VALUES ('23', '采购部领导', '采购部领导', '2017-11-23 18:21:48', '6');
 
 -- ----------------------------
 -- Table structure for `sys_role_menu`
@@ -174,8 +138,56 @@ INSERT INTO `sys_role_menu` VALUES ('3', '58');
 INSERT INTO `sys_role_menu` VALUES ('3', '59');
 INSERT INTO `sys_role_menu` VALUES ('3', '60');
 INSERT INTO `sys_role_menu` VALUES ('3', '61');
+INSERT INTO `sys_role_menu` VALUES ('3', '62');
+INSERT INTO `sys_role_menu` VALUES ('3', '63');
+INSERT INTO `sys_role_menu` VALUES ('3', '64');
+INSERT INTO `sys_role_menu` VALUES ('3', '65');
+INSERT INTO `sys_role_menu` VALUES ('3', '66');
+INSERT INTO `sys_role_menu` VALUES ('3', '67');
+INSERT INTO `sys_role_menu` VALUES ('3', '68');
+INSERT INTO `sys_role_menu` VALUES ('3', '69');
 INSERT INTO `sys_role_menu` VALUES ('18', '5');
+INSERT INTO `sys_role_menu` VALUES ('18', '58');
+INSERT INTO `sys_role_menu` VALUES ('18', '59');
 INSERT INTO `sys_role_menu` VALUES ('18', '60');
+INSERT INTO `sys_role_menu` VALUES ('18', '63');
+INSERT INTO `sys_role_menu` VALUES ('18', '66');
+INSERT INTO `sys_role_menu` VALUES ('18', '67');
+INSERT INTO `sys_role_menu` VALUES ('19', '5');
+INSERT INTO `sys_role_menu` VALUES ('19', '58');
+INSERT INTO `sys_role_menu` VALUES ('19', '59');
+INSERT INTO `sys_role_menu` VALUES ('19', '60');
+INSERT INTO `sys_role_menu` VALUES ('19', '63');
+INSERT INTO `sys_role_menu` VALUES ('19', '66');
+INSERT INTO `sys_role_menu` VALUES ('19', '67');
+INSERT INTO `sys_role_menu` VALUES ('19', '68');
+INSERT INTO `sys_role_menu` VALUES ('19', '69');
+INSERT INTO `sys_role_menu` VALUES ('20', '5');
+INSERT INTO `sys_role_menu` VALUES ('20', '60');
+INSERT INTO `sys_role_menu` VALUES ('20', '63');
+INSERT INTO `sys_role_menu` VALUES ('20', '66');
+INSERT INTO `sys_role_menu` VALUES ('20', '67');
+INSERT INTO `sys_role_menu` VALUES ('20', '68');
+INSERT INTO `sys_role_menu` VALUES ('21', '5');
+INSERT INTO `sys_role_menu` VALUES ('21', '60');
+INSERT INTO `sys_role_menu` VALUES ('21', '63');
+INSERT INTO `sys_role_menu` VALUES ('21', '66');
+INSERT INTO `sys_role_menu` VALUES ('21', '67');
+INSERT INTO `sys_role_menu` VALUES ('21', '68');
+INSERT INTO `sys_role_menu` VALUES ('21', '69');
+INSERT INTO `sys_role_menu` VALUES ('22', '5');
+INSERT INTO `sys_role_menu` VALUES ('22', '60');
+INSERT INTO `sys_role_menu` VALUES ('22', '63');
+INSERT INTO `sys_role_menu` VALUES ('22', '66');
+INSERT INTO `sys_role_menu` VALUES ('22', '67');
+INSERT INTO `sys_role_menu` VALUES ('22', '69');
+INSERT INTO `sys_role_menu` VALUES ('23', '5');
+INSERT INTO `sys_role_menu` VALUES ('23', '60');
+INSERT INTO `sys_role_menu` VALUES ('23', '63');
+INSERT INTO `sys_role_menu` VALUES ('23', '66');
+INSERT INTO `sys_role_menu` VALUES ('23', '67');
+INSERT INTO `sys_role_menu` VALUES ('23', '68');
+INSERT INTO `sys_role_menu` VALUES ('23', '69');
 
 -- ----------------------------
 -- Table structure for `sys_user`
@@ -198,7 +210,7 @@ CREATE TABLE `sys_user` (
 -- ----------------------------
 -- Records of sys_user
 -- ----------------------------
-INSERT INTO `sys_user` VALUES ('916654989969981440', 'admin', '7c4a8d09ca3762af61e59520943dc26494f8941b', '张闯', '21', '916432779@qq.com', '15238002477', '0', '2017-11-22 13:35:48');
+INSERT INTO `sys_user` VALUES ('916654989969981440', 'admin', '7c4a8d09ca3762af61e59520943dc26494f8941b', '管理员', '75', '916432779@qq.com', '15238002477', '0', '2017-11-23 18:32:29');
 
 -- ----------------------------
 -- Table structure for `sys_user_role`
