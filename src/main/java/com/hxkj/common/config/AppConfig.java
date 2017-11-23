@@ -75,6 +75,7 @@ public class AppConfig extends JFinalConfig {
         wall.setDbType("mysql");
         dbPlugin.addFilter(wall);
 
+
         ActiveRecordPlugin arp = new ActiveRecordPlugin(dbPlugin);
         arp.setShowSql(PropKit.getBoolean("devMode"));
         arp.setDialect(new MysqlDialect());

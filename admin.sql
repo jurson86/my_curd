@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50719
 File Encoding         : 65001
 
-Date: 2017-11-21 18:56:06
+Date: 2017-11-23 10:34:31
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -74,16 +74,66 @@ CREATE TABLE `sys_org` (
   `sort` int(11) DEFAULT NULL,
   `pid` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=74 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of sys_org
 -- ----------------------------
-INSERT INTO `sys_org` VALUES ('11', '金属公司', null, null, '0', null);
-INSERT INTO `sys_org` VALUES ('12', '物流公司', null, null, '1', null);
-INSERT INTO `sys_org` VALUES ('14', '生产部', '河南省郑州巩义市康店镇', '啥地方地方第三方', '0', '11');
-INSERT INTO `sys_org` VALUES ('16', '货运部', null, null, '0', '12');
-INSERT INTO `sys_org` VALUES ('18', '营业部', null, null, '1', '12');
+INSERT INTO `sys_org` VALUES ('19', '董事会', '河南省巩义市', null, '1', null);
+INSERT INTO `sys_org` VALUES ('20', '总裁办', null, null, '1', '19');
+INSERT INTO `sys_org` VALUES ('21', '车辆管理', null, null, '1', '20');
+INSERT INTO `sys_org` VALUES ('22', '企管中心', null, null, '2', null);
+INSERT INTO `sys_org` VALUES ('23', '行政部', null, null, '1', '22');
+INSERT INTO `sys_org` VALUES ('24', '人力部', null, null, '2', '22');
+INSERT INTO `sys_org` VALUES ('25', '经营管理部', null, null, '3', '22');
+INSERT INTO `sys_org` VALUES ('26', '信息办', null, null, '1', '25');
+INSERT INTO `sys_org` VALUES ('27', '服务部', null, null, '4', '22');
+INSERT INTO `sys_org` VALUES ('28', '财务中心', null, null, '3', null);
+INSERT INTO `sys_org` VALUES ('29', '内审部', null, null, '1', '28');
+INSERT INTO `sys_org` VALUES ('30', '实物库', null, null, '2', '28');
+INSERT INTO `sys_org` VALUES ('31', '现金出纳', null, null, '3', '28');
+INSERT INTO `sys_org` VALUES ('32', '财务管理', null, null, '4', '28');
+INSERT INTO `sys_org` VALUES ('33', '钢缆实物库', null, null, '1', '30');
+INSERT INTO `sys_org` VALUES ('34', '金属实物库', null, null, '2', '30');
+INSERT INTO `sys_org` VALUES ('35', '科技实物库', null, null, '3', '30');
+INSERT INTO `sys_org` VALUES ('36', '机械园区实物库', null, null, '4', '30');
+INSERT INTO `sys_org` VALUES ('37', '万年硅业实物库', null, null, '5', '30');
+INSERT INTO `sys_org` VALUES ('38', '博宇实物库', null, null, '6', '30');
+INSERT INTO `sys_org` VALUES ('39', '机械厂实物库', null, null, '7', '30');
+INSERT INTO `sys_org` VALUES ('40', '资本中心', null, null, '4', null);
+INSERT INTO `sys_org` VALUES ('41', '融资部', null, null, '1', '40');
+INSERT INTO `sys_org` VALUES ('42', '证券部', null, null, '2', '40');
+INSERT INTO `sys_org` VALUES ('43', '供应中心', null, null, '5', null);
+INSERT INTO `sys_org` VALUES ('44', '供应商管理', null, null, '1', '43');
+INSERT INTO `sys_org` VALUES ('45', '业务部', null, null, '2', '43');
+INSERT INTO `sys_org` VALUES ('46', '超精细公司', null, null, '6', null);
+INSERT INTO `sys_org` VALUES ('47', '超精细销售部', null, null, '1', '46');
+INSERT INTO `sys_org` VALUES ('48', '金属公司', null, null, '7', null);
+INSERT INTO `sys_org` VALUES ('49', '钢缆公司', null, null, '8', null);
+INSERT INTO `sys_org` VALUES ('50', '科技公司', null, null, '9', null);
+INSERT INTO `sys_org` VALUES ('51', '恒星机械公司', null, null, '10', null);
+INSERT INTO `sys_org` VALUES ('52', '煤机公司', null, null, '11', null);
+INSERT INTO `sys_org` VALUES ('53', '基建处', null, null, '12', null);
+INSERT INTO `sys_org` VALUES ('54', '研发中心', null, null, '13', null);
+INSERT INTO `sys_org` VALUES ('55', '物流部', null, null, '14', null);
+INSERT INTO `sys_org` VALUES ('56', '机械园区', null, null, '15', null);
+INSERT INTO `sys_org` VALUES ('57', '博宇新能源', null, null, '16', null);
+INSERT INTO `sys_org` VALUES ('58', '科技帘线', null, null, '17', null);
+INSERT INTO `sys_org` VALUES ('59', '科技金刚线', null, null, '18', null);
+INSERT INTO `sys_org` VALUES ('60', '恒星新材料', null, null, '19', null);
+INSERT INTO `sys_org` VALUES ('61', '生产部', null, null, '1', '60');
+INSERT INTO `sys_org` VALUES ('62', '财务部', null, null, '2', '60');
+INSERT INTO `sys_org` VALUES ('63', '人力资源行政部', null, null, '3', '60');
+INSERT INTO `sys_org` VALUES ('64', '供销部', null, null, '4', '60');
+INSERT INTO `sys_org` VALUES ('65', '质量部', null, null, '5', '60');
+INSERT INTO `sys_org` VALUES ('66', '技术部', null, null, '6', '60');
+INSERT INTO `sys_org` VALUES ('67', '安环部', null, null, '7', '60');
+INSERT INTO `sys_org` VALUES ('68', '设备部', null, null, '8', '60');
+INSERT INTO `sys_org` VALUES ('69', '氢化车间', null, null, '1', '61');
+INSERT INTO `sys_org` VALUES ('70', '精馏车间', null, null, '2', '61');
+INSERT INTO `sys_org` VALUES ('71', '还原车间', null, null, '3', '61');
+INSERT INTO `sys_org` VALUES ('72', '公用工程', null, null, '4', '61');
+INSERT INTO `sys_org` VALUES ('73', '生产办公室', null, null, '5', '61');
 
 -- ----------------------------
 -- Table structure for `sys_role`
@@ -148,7 +198,7 @@ CREATE TABLE `sys_user` (
 -- ----------------------------
 -- Records of sys_user
 -- ----------------------------
-INSERT INTO `sys_user` VALUES ('916654989969981440', 'admin', '7c4a8d09ca3762af61e59520943dc26494f8941b', '张闯', '18', '916432779@qq.com', '15238002477', '0', '2017-10-07 21:22:34');
+INSERT INTO `sys_user` VALUES ('916654989969981440', 'admin', '7c4a8d09ca3762af61e59520943dc26494f8941b', '张闯', '21', '916432779@qq.com', '15238002477', '0', '2017-11-22 13:35:48');
 
 -- ----------------------------
 -- Table structure for `sys_user_role`

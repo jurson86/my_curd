@@ -32,14 +32,8 @@ public class SysMenuController  extends BaseController {
 		 render( "system/sysMenu.html");
 	}
 
-
-	/**
-	 * grid 列表 数据
-	 */
 	@Before(SearchSql.class)
 	public void query() {
-		int pageNumber = getAttr("pageNumber");
-		int pageSize = getAttr("pageSize");
 
 		String where = getAttr(Constant.SEARCH_SQL);
 
@@ -49,9 +43,9 @@ public class SysMenuController  extends BaseController {
 			sqlExceptSelect += " where " + where;
 		}
 		sqlExceptSelect += " order by   sort asc ";
-		Page<SysMenu> sysMenus = SysMenu.dao.paginate(pageNumber, pageSize, sqlSelect, sqlExceptSelect);
+		List<SysMenu> sysMenus = SysMenu.dao.find(sqlSelect+sqlExceptSelect);
 
-		renderDatagrid(sysMenus);
+		renderJson(sysMenus);
 	}
 
 

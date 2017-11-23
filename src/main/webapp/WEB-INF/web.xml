@@ -4,7 +4,7 @@
          id="WebApp_ID" version="3.0">
     <display-name>admin</display-name>
 
-    <!--druid 引用监控-->
+    <!--druid web 监控-->
     <filter>
         <filter-name>DruidWebStatFilter</filter-name>
         <filter-class>com.alibaba.druid.support.http.WebStatFilter</filter-class>

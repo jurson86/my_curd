@@ -28,18 +28,15 @@ public class SysOrgController  extends BaseController{
 
 	@Before(SearchSql.class)
 	public void query(){
-		int pageNumber = getAttr("pageNumber");
-		int pageSize = getAttr("pageSize");
 		String where = getAttr(Constant.SEARCH_SQL);
 		String sqlSelect = " select * ";
 		String sqlExceptSelect = " from sys_org  ";
 		if (StrKit.notBlank(where)) {
 			sqlExceptSelect += " where " + where;
 		}
-		sqlExceptSelect += " order by   sort asc ";
-		Page<SysOrg> sysOrgs = SysOrg.dao.paginate(pageNumber, pageSize, sqlSelect, sqlExceptSelect);
-
-		renderDatagrid(sysOrgs);
+		sqlExceptSelect += " order by id asc , sort asc ";
+		List<SysOrg> sysOrgs = SysOrg.dao.find(sqlSelect+sqlExceptSelect);
+		renderJson(sysOrgs);
 	}
 
 

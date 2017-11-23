@@ -64,18 +64,11 @@
           method:'POST',
           idField:'id',
           treeField:'name',
-          pagination:true,
-          pageSize:50,
-          pageList: [50,100],
           fit:true,
-          //fitColumns:true,
           rownumbers: true,
           toolbar: '#tt-tb',
           loadFilter:function(data){
-              var rows = data.rows;
-              rows  = easyTree.treeDataBuild(rows,'id','pid','name,url,icon,sort');
-              data.rows = rows;
-              // console.log(JSON.stringify(data));
+              data  = easyTree.treeDataBuild(data,'id','pid','name,url,icon,sort');
               return data;
           },
           columns:[[
