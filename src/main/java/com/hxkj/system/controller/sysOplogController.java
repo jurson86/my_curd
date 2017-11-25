@@ -86,7 +86,7 @@ public class sysOplogController extends BaseController {
         List<String> headers = Arrays.asList("操作人员", "日志内容", "IP地址", "操作时间");
         List<String> columns = Arrays.asList("user_name", "op_content", "ip", "create_time");
         CsvRender csvRender = new CsvRender(headers, sysOplogs);
-        csvRender.fileName("操作日志.csv");
+        csvRender.fileName("oplog.csv");
         csvRender.clomuns(columns);
         render(csvRender);
 

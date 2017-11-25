@@ -25,7 +25,7 @@ public class AuthorityInterceptor implements Interceptor {
     public void intercept(Invocation inv) {
         String actionKey = inv.getActionKey();
         List<SysMenu> ownSysMenus = inv.getController().getSessionAttr(Constant.OWN_MENU);
-        System.err.println(JsonKit.toJson(ownSysMenus));
+        //System.err.println(JsonKit.toJson(ownSysMenus));
         for (SysMenu sysMenu : ownSysMenus) {
             // 拥有权限
             if (StrKit.notBlank(sysMenu.getUrl()) && !sysMenu.getUrl().equals("/") && actionKey.startsWith(sysMenu.getUrl())) {
