@@ -2,6 +2,7 @@ package com.hxkj.common.interceptor;
 
 import java.util.List;
 
+import com.jfinal.kit.JsonKit;
 import org.apache.log4j.Logger;
 
 import com.jfinal.aop.Interceptor;
@@ -26,9 +27,11 @@ public class AuthorityInterceptor implements Interceptor {
 	public void intercept(Invocation inv) {
 		String actionKey = inv.getActionKey();
 		List<SysMenu> ownSysMenus = inv.getController().getSessionAttr(Constant.OWN_MENU);
+		System.err.println(JsonKit.toJson(ownSysMenus));
 		for(SysMenu sysMenu : ownSysMenus){
 			// 拥有权限
-			if(StrKit.notBlank(sysMenu.getUrl()) && actionKey.startsWith(sysMenu.getUrl())){
+			if(StrKit.notBlank(sysMenu.getUrl()) && !sysMenu.getUrl().equals("/") && actionKey.startsWith(sysMenu.getUrl())){
+				System.err.println(actionKey+" == "+sysMenu.getUrl());
 				System.err.println("权限拦截器   通过");
 				inv.invoke();
 				return ;

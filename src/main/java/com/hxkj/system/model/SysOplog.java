@@ -9,4 +9,10 @@ import com.hxkj.system.model.base.BaseSysOplog;
 @SuppressWarnings("serial")
 public class SysOplog extends BaseSysOplog<SysOplog> {
 	public static final SysOplog dao = new SysOplog().dao();
+
+
+	// 日志操作人名字
+	public String getUsername(){
+		return  get("user_name");
+	}
 }

@@ -1,0 +1,78 @@
+<#include "/WEB-INF/views/common/common.html"/> <@layout>
+<link rel="stylesheet" href="${ctx!}/res/layer/theme/default/layer.css">
+</head>
+<body>
+<script type="text/javascript">
+    
+    function  exportToCsv() {
+        var queryParams = {};
+        queryParams['search_LIKE_su.name']=$("#username").textbox("getValue");
+        queryParams['search_LIKE_so.op_content'] = $("#opContent").textbox('getValue');
+        queryParams['search_LIKE_so.ip'] = $("#ip").textbox('getValue');
+        var params = $.param(queryParams);
+        var url = "${ctx!}/sysOplog/exportToCvs?"+params;
+        window.open(url,'导出csv');
+
+    }
+
+    function deleteModel(){
+        var rows  = $("#dg").datagrid("getSelections");
+        if(rows!=null){
+            layerTools.confirm(3,'删除', '您确定要删除选中的记录吗?',function(){
+                var ids = [];
+                for(x in rows){
+                    ids.push(rows[x].id);
+                }
+                ids = ids.join(',');
+                $.post('${ctx}/sysOplog/deleteAction?ids=' + ids, function(data) {
+                    layerTools.layerMsg(data,function(){
+                        $('#dg').datagrid('reload');
+                    });
+                },"text");
+            });
+        }else{
+            layerTools.layerMsg('请选择记录进行删除');
+        }
+    }
+
+    //条件查询
+    function queryModel() {
+        var queryParams = {};
+        queryParams['search_LIKE_su.name']=$("#username").textbox("getValue");
+        queryParams['search_LIKE_so.op_content'] = $("#opContent").textbox('getValue');
+        queryParams['search_LIKE_so.ip'] = $("#ip").textbox('getValue');
+        $('#dg').datagrid('load', queryParams);
+    }
+</script>
+<table id="dg" class="easyui-datagrid  " url="${ctx!}/sysOplog/query"
+       toolbar="#tb" rownumbers="true"     border="false"
+       fit="true" pagination="true"
+       pageSize="40"  pageList="[20,40]"
+       >
+    <thead>
+    <tr>
+        <th data-options="field:'id',checkbox:true"></th>
+        <th field="username" width="150">姓名</th>
+        <th field="opContent" width="350">日志内容</th>
+        <th field="ip" width="150">ip地址</th>
+        <th field="createTime" width="150">创建时间</th>
+    </tr>
+    </thead>
+</table>
+
+<div id="tb">
+    <a onclick="deleteModel()"   class="easyui-linkbutton" data-options="iconCls:'icon-remove',plain:true" >删除</a>
+    <a onclick="newModel()" href="#"  class="easyui-linkbutton" >导出excel</a>
+    <a onclick="exportToCsv()" href="#"  class="easyui-linkbutton"    >导出csv</a>
+    <span style="margin-left: 20px;">
+          <input id="username" prompt="操作人" class="easyui-textbox" style="width:120px; ">
+          <input id="opContent" prompt="内容" class="easyui-textbox" style="width:120px">
+          <input id="ip" prompt="ip地址" class="easyui-textbox" style="width:120px">
+          <a href="#" class="easyui-linkbutton" iconCls="icon-search" onclick="queryModel()">搜索</a>
+    </span>
+</div>
+<script src="${ctx!}/res/layer/layer.js"></script>
+<script src="${ctx!}/res/js/layer-tools.js"></script>
+<script>
+</script>
+</@layout>
