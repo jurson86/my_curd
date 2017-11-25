@@ -3,34 +3,43 @@
 </head>
 <body>
 <script type="text/javascript">
-    
-    function  exportToCsv() {
+    function exportToCsv() {
         var queryParams = {};
-        queryParams['search_LIKE_su.name']=$("#username").textbox("getValue");
+        queryParams['search_LIKE_su.name'] = $("#username").textbox("getValue");
         queryParams['search_LIKE_so.op_content'] = $("#opContent").textbox('getValue');
         queryParams['search_LIKE_so.ip'] = $("#ip").textbox('getValue');
         var params = $.param(queryParams);
-        var url = "${ctx!}/sysOplog/exportToCvs?"+params;
-        window.open(url,'导出csv');
-
+        var url = "${ctx!}/sysOplog/exportToCvs?" + params;
+        window.open(url, '导出csv');
     }
 
-    function deleteModel(){
-        var rows  = $("#dg").datagrid("getSelections");
-        if(rows!=null){
-            layerTools.confirm(3,'删除', '您确定要删除选中的记录吗?',function(){
+    function exportToExcel() {
+        var queryParams = {};
+        queryParams['search_LIKE_su.name'] = $("#username").textbox("getValue");
+        queryParams['search_LIKE_so.op_content'] = $("#opContent").textbox('getValue');
+        queryParams['search_LIKE_so.ip'] = $("#ip").textbox('getValue');
+        var params = $.param(queryParams);
+        var url = "${ctx!}/sysOplog/exportToExcel?" + params;
+        window.open(url, '导出excel');
+    }
+
+
+    function deleteModel() {
+        var rows = $("#dg").datagrid("getSelections");
+        if (rows != null) {
+            layerTools.confirm(3, '删除', '您确定要删除选中的记录吗?', function () {
                 var ids = [];
-                for(x in rows){
+                for (x in rows) {
                     ids.push(rows[x].id);
                 }
                 ids = ids.join(',');
-                $.post('${ctx}/sysOplog/deleteAction?ids=' + ids, function(data) {
-                    layerTools.layerMsg(data,function(){
+                $.post('${ctx}/sysOplog/deleteAction?ids=' + ids, function (data) {
+                    layerTools.layerMsg(data, function () {
                         $('#dg').datagrid('reload');
                     });
-                },"text");
+                }, "text");
             });
-        }else{
+        } else {
             layerTools.layerMsg('请选择记录进行删除');
         }
     }
@@ -38,17 +47,18 @@
     //条件查询
     function queryModel() {
         var queryParams = {};
-        queryParams['search_LIKE_su.name']=$("#username").textbox("getValue");
+        queryParams['search_LIKE_su.name'] = $("#username").textbox("getValue");
         queryParams['search_LIKE_so.op_content'] = $("#opContent").textbox('getValue');
         queryParams['search_LIKE_so.ip'] = $("#ip").textbox('getValue');
         $('#dg').datagrid('load', queryParams);
     }
 </script>
-<table id="dg" class="easyui-datagrid  " url="${ctx!}/sysOplog/query"
-       toolbar="#tb" rownumbers="true"     border="false"
+<table id="dg" class="easyui-datagrid"
+       url="${ctx!}/sysOplog/query"
+       toolbar="#tb" rownumbers="true" border="false"
        fit="true" pagination="true"
-       pageSize="40"  pageList="[20,40]"
-       >
+       pageSize="40" pageList="[20,40]"
+>
     <thead>
     <tr>
         <th data-options="field:'id',checkbox:true"></th>
@@ -61,9 +71,9 @@
 </table>
 
 <div id="tb">
-    <a onclick="deleteModel()"   class="easyui-linkbutton" data-options="iconCls:'icon-remove',plain:true" >删除</a>
-    <a onclick="newModel()" href="#"  class="easyui-linkbutton" >导出excel</a>
-    <a onclick="exportToCsv()" href="#"  class="easyui-linkbutton"    >导出csv</a>
+    <a onclick="deleteModel()" class="easyui-linkbutton" data-options="iconCls:'icon-remove',plain:true">删除</a>
+    <a onclick="exportToExcel()" class="easyui-linkbutton" data-options="iconCls:'icon-excel',plain:true">导出excel</a>
+    <a onclick="exportToCsv()" class="easyui-linkbutton" data-options="iconCls:'icon-csv',plain:true">导出csv</a>
     <span style="margin-left: 20px;">
           <input id="username" prompt="操作人" class="easyui-textbox" style="width:120px; ">
           <input id="opContent" prompt="内容" class="easyui-textbox" style="width:120px">

@@ -4,30 +4,30 @@
 <body>
 <script type="text/javascript">
     function newModel() {
-        layerTools.layerIframe('新建','${ctx!}/sysRole/newModel','600px','400px')
+        layerTools.layerIframe('新建', '${ctx!}/sysRole/newModel', '600px', '400px')
     }
 
     function editModel() {
-        var row  = $("#dg").treegrid("getSelected");
-        if(row!=null){
-            layerTools.layerIframe('编辑','${ctx!}/sysRole/newModel?id='+row.id,'600px','400px')
-        }else{
+        var row = $("#dg").treegrid("getSelected");
+        if (row != null) {
+            layerTools.layerIframe('编辑', '${ctx!}/sysRole/newModel?id=' + row.id, '600px', '400px')
+        } else {
             layerTools.layerMsg('请选择一行数据进行编辑');
         }
     }
 
     function deleteModel() {
-        var row  = $("#dg").datagrid("getSelected");
-        if(row!=null){
-            layerTools.confirm(3,'删除', '您确定要删除选中的记录吗?',function(){
-                $.post('${ctx}/sysRole/deleteAction?id=' + row.id, function(data) {
-                    layerTools.layerMsg(data,function(){
+        var row = $("#dg").datagrid("getSelected");
+        if (row != null) {
+            layerTools.confirm(3, '删除', '您确定要删除选中的记录吗?', function () {
+                $.post('${ctx}/sysRole/deleteAction?id=' + row.id, function (data) {
+                    layerTools.layerMsg(data, function () {
                         $('#dg').datagrid('reload');
                     });
-                },"text");
+                }, "text");
             });
 
-        }else{
+        } else {
             layerTools.layerMsg('请选择一行进行删除');
         }
     }
@@ -43,11 +43,11 @@
 
 
     /*数组去重*/
-    Array.prototype.unique = function(){
+    Array.prototype.unique = function () {
         var res = [];
         var json = {};
-        for(var i = 0; i < this.length; i++){
-            if(!json[this[i]]){
+        for (var i = 0; i < this.length; i++) {
+            if (!json[this[i]]) {
                 res.push(this[i]);
                 json[this[i]] = 1;
             }
@@ -75,7 +75,7 @@
         var permissIds = [];
         for (var i = 0; i < checkedNodes.length; i++) {
             permissIds.push(checkedNodes[i].id);
-            if(checkedNodes[i].pid!=undefined && checkedNodes[i].pid !=null){
+            if (checkedNodes[i].pid != undefined && checkedNodes[i].pid != null) {
                 permissIds.push(checkedNodes[i].pid);
             }
         }
@@ -97,15 +97,15 @@
 
 <div id="nestLayout" class="easyui-layout" fit="true">
     <div data-options="region:'east' " title="权限树"
-         split="true"   collapsed="true" tools="#treeTB"
+         split="true" collapsed="true" tools="#treeTB"
          style="width: 300px;">
-        <ul id="allMenuTree" class="easyui-tree" ></ul>
+        <ul id="allMenuTree" class="easyui-tree"></ul>
     </div>
     <div data-options="region:'center' " border="false" split="true">
 
         <table id="dg" class="easyui-datagrid  " url="${ctx!}/sysRole/query"
-               toolbar="#tb" rownumbers="true"   singleSelect="true" border="false"
-               fit="true" pagination="true" >
+               toolbar="#tb" rownumbers="true" singleSelect="true" border="false"
+               fit="true" pagination="true">
             <thead>
             <tr>
                 <th data-options="field:'id',checkbox:true"></th>
@@ -118,9 +118,9 @@
         </table>
 
         <div id="tb">
-            <a onclick="newModel()" href="#"  class="easyui-linkbutton" iconCls="icon-add" plain="true" >新增</a>
-            <a onclick="editModel()" href="#"  class="easyui-linkbutton" iconCls="icon-edit" plain="true"  >编辑</a>
-            <a onclick="deleteModel()" href="#"  class="easyui-linkbutton  " iconCls="icon-remove" plain="true"  >删除</a>
+            <a onclick="newModel()" href="#" class="easyui-linkbutton" iconCls="icon-add" plain="true">新增</a>
+            <a onclick="editModel()" href="#" class="easyui-linkbutton" iconCls="icon-edit" plain="true">编辑</a>
+            <a onclick="deleteModel()" href="#" class="easyui-linkbutton  " iconCls="icon-remove" plain="true">删除</a>
             <span class="searchInputArea">
 					<input id="roleName" prompt="角色名" class="easyui-textbox" style="width:150px">
 					<a href="#" class="easyui-linkbutton" iconCls="icon-search" onclick="queryModel()">搜索</a>
@@ -137,15 +137,15 @@
 <script>
 
     $(function () {
-        var easyTree = new  EasyTree();
+        var easyTree = new EasyTree();
         $("#dg").datagrid({
             onSelect: function (index, row) {
                 var url = "${ctx!}/sysRole/menuTreePermissionChecked/" + row.id;
                 $.getJSON(url, function (data) {
-                    data = easyTree.treeDataBuild(data,'id','pid','text,state,checked,pid');
+                    data = easyTree.treeDataBuild(data, 'id', 'pid', 'text,state,checked,pid');
                     $("#allMenuTree").tree({
-                        data:data,
-                        checkbox:true
+                        data: data,
+                        checkbox: true
                     })
                     $("#nestLayout").layout("expand", "east");
                 });

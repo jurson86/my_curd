@@ -16,16 +16,16 @@ import com.jfinal.plugin.activerecord.ActiveRecordPlugin;
 public class SystemMappingKit {
 
 
-	public static void mapping(ActiveRecordPlugin arp) {
-		arp.addMapping("sys_menu", "id", SysMenu.class);
-		arp.addMapping("sys_oplog", "id", SysOplog.class);
-		arp.addMapping("sys_org", "id", SysOrg.class);
-		arp.addMapping("sys_role", "id", SysRole.class);
-		// Composite Primary Key order: menu_id,role_id
-		arp.addMapping("sys_role_menu", "menu_id,role_id", SysRoleMenu.class);
-		arp.addMapping("sys_user", "id", SysUser.class);
-		// Composite Primary Key order: role_id,user_id
-		arp.addMapping("sys_user_role", "role_id,user_id", SysUserRole.class);
-	}
+    public static void mapping(ActiveRecordPlugin arp) {
+        arp.addMapping("sys_menu", "id", SysMenu.class);
+        arp.addMapping("sys_oplog", "id", SysOplog.class);
+        arp.addMapping("sys_org", "id", SysOrg.class);
+        arp.addMapping("sys_role", "id", SysRole.class);
+        // Composite Primary Key order: menu_id,role_id
+        arp.addMapping("sys_role_menu", "menu_id,role_id", SysRoleMenu.class);
+        arp.addMapping("sys_user", "id", SysUser.class);
+        // Composite Primary Key order: role_id,user_id
+        arp.addMapping("sys_user_role", "role_id,user_id", SysUserRole.class);
+    }
 }
 

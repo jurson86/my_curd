@@ -7,5 +7,5 @@ import com.hxkj.system.model.base.BaseSysUserRole;
  */
 @SuppressWarnings("serial")
 public class SysUserRole extends BaseSysUserRole<SysUserRole> {
-	public static final SysUserRole dao = new SysUserRole().dao();
+    public static final SysUserRole dao = new SysUserRole().dao();
 }

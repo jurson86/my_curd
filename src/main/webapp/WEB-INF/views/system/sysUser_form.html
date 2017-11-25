@@ -5,10 +5,10 @@
     function saveAction() {
         var url;
         var idVal = $("#id").val();
-        if($.trim(idVal)=="" || idVal == undefined || idVal == null){
-            url   = '${ctx!}/sysUser/addAction';
-        }else{
-            url  = '${ctx!}/sysUser/updateAction';
+        if ($.trim(idVal) == "" || idVal == undefined || idVal == null) {
+            url = '${ctx!}/sysUser/addAction';
+        } else {
+            url = '${ctx!}/sysUser/updateAction';
         }
 
         $('#modelForm').form('submit', {
@@ -26,14 +26,15 @@
 </script>
 </head>
 <body style="padding: 10px 30px; ">
-<form id="modelForm" method="POST" >
+<form id="modelForm" method="POST">
     <table class=" pure-table pure-table-horizontal">
-        <input id="id" name="id" type="hidden"  value="${(sysUser.id)!}">
+        <input id="id" name="id" type="hidden" value="${(sysUser.id)!}">
         <tbody>
         <tr>
             <td>登录名：</td>
             <td>
-                <input name="username" value="${(sysUser.username)!}" type="text" class="easyui-textbox" data-options="required:true">
+                <input name="username" value="${(sysUser.username)!}" type="text" class="easyui-textbox"
+                       data-options="required:true">
             </td>
             <td>密码：</td>
             <td>
@@ -45,29 +46,30 @@
         <tr>
             <td>姓名：</td>
             <td>
-                <input name="name" value="${(sysUser.name)!}" type="text" class="easyui-textbox" data-options="required:true">
+                <input name="name" value="${(sysUser.name)!}" type="text" class="easyui-textbox"
+                       data-options="required:true">
             </td>
             <td>部门</td>
             <td>
-                <input name="orgId"  id="orgId"  >
+                <input name="orgId" id="orgId">
             </td>
         </tr>
 
         <tr>
             <td>电话：</td>
             <td>
-                <input name="phone" value="${(sysUser.phone)!}" type="text" class="easyui-textbox"  >
+                <input name="phone" value="${(sysUser.phone)!}" type="text" class="easyui-textbox">
             </td>
             <td>邮箱：</td>
             <td>
-                <input name="email" value="${(sysUser.email)!}" type="text" class="easyui-textbox"  >
+                <input name="email" value="${(sysUser.email)!}" type="text" class="easyui-textbox">
             </td>
         </tr>
 
         <tr>
             <td>状态：</td>
             <td colspan="3">
-                <select id="disabled"  class="easyui-combobox" name="disabled" style="width:170px;"  >
+                <select id="disabled" class="easyui-combobox" name="disabled" style="width:170px;">
                     <option value="0">正常</option>
                     <option value="1">无效</option>
                 </select>
@@ -92,12 +94,12 @@
     ;(function () {
         var easyTree = new EasyTree();
         $("#orgId").combotree({
-            url:'${ctx!}/sysOrg/allOrg',
-            value:'${(sysUser.orgId)!}',
-            loadFilter:function(data,parent){
+            url: '${ctx!}/sysOrg/allOrg',
+            value: '${(sysUser.orgId)!}',
+            loadFilter: function (data, parent) {
                 // 数据处理
                 //console.log(JSON.stringify(data));
-                data = easyTree.treeDataBuild(data,"id","pid","text,open");
+                data = easyTree.treeDataBuild(data, "id", "pid", "text,open");
                 // console.log(data);
                 return data;
             }

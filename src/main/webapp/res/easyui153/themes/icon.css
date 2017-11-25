@@ -94,3 +94,19 @@
 .icon-large-chart{
 	background:url('icons/large_chart.png') no-repeat center center;
 }
+
+
+
+/*自定义图标*/
+.icon-excel{
+	background:url('cus-icons/excel.png') no-repeat center center;
+}
+
+.icon-csv{
+	background:url('cus-icons/CSV.png') no-repeat center center;
+}
+
+.icon-druid{
+	background:url('cus-icons/druid.png') no-repeat center center;
+}
+

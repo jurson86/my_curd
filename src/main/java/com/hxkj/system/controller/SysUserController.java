@@ -4,7 +4,9 @@ import com.hxkj.common.constant.Constant;
 import com.hxkj.common.util.BaseController;
 import com.hxkj.common.util.Identities;
 import com.hxkj.common.util.SearchSql;
-import com.hxkj.system.model.*;
+import com.hxkj.system.model.SysRole;
+import com.hxkj.system.model.SysUser;
+import com.hxkj.system.model.SysUserRole;
 import com.jfinal.aop.Before;
 import com.jfinal.kit.HashKit;
 import com.jfinal.kit.StrKit;
@@ -81,7 +83,7 @@ public class SysUserController extends BaseController {
 
         // 密码变更
         /*if(!oldSysUser.getPassword().equals(password)){
-			password = HashKit.sha1(password);
+            password = HashKit.sha1(password);
 			sysUser.setPassword(password);
 		}*/
         String password = sysUser.getPassword();

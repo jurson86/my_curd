@@ -1,17 +1,20 @@
 package com.hxkj.common.util;
 
+import com.hxkj.common.constant.Constant;
 import com.jfinal.aop.Interceptor;
 import com.jfinal.aop.Invocation;
 import com.jfinal.core.Controller;
 import com.jfinal.kit.StrKit;
+
 import javax.servlet.http.HttpServletRequest;
 import java.util.Collection;
 import java.util.Enumeration;
 import java.util.Map;
 import java.util.TreeMap;
- ;
 
- 
+;
+
+
 public class SearchSql implements Interceptor {
     private final String prefix = "search_";
 
@@ -35,8 +38,8 @@ public class SearchSql implements Interceptor {
             pageNumber += 1;
         } else {
             // easyui grid 分页
-            pageNumber = c.getParaToInt("page",1);
-            pageSize = c.getParaToInt("rows",1);
+            pageNumber = c.getParaToInt("page", 1);
+            pageSize = c.getParaToInt("rows", 1);
         }
         c.setAttr("pageNumber", pageNumber);
         c.setAttr("pageSize", pageSize);
@@ -45,7 +48,7 @@ public class SearchSql implements Interceptor {
 
     /**
      * 取得带相同前缀的Request Parameters, copy from spring WebUtils.
-     *
+     * <p>
      * 返回的结果的Parameter名已去除前缀.
      */
     private Map<String, Object> getParametersStartingWith(

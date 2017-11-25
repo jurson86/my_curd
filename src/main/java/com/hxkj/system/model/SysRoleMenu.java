@@ -8,5 +8,5 @@ import com.hxkj.system.model.base.BaseSysRoleMenu;
  */
 @SuppressWarnings("serial")
 public class SysRoleMenu extends BaseSysRoleMenu<SysRoleMenu> {
-	public static final SysRoleMenu dao = new SysRoleMenu().dao();
+    public static final SysRoleMenu dao = new SysRoleMenu().dao();
 }

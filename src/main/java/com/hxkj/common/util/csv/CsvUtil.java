@@ -1,12 +1,12 @@
 /**
  * Copyright (c) 2011-2013, kidzhou 周磊 (zhouleib1412@gmail.com)
- *
+ * <p>
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * <p>
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * <p>
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -15,18 +15,13 @@
  */
 package com.hxkj.common.util.csv;
 
-import java.sql.Timestamp;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
-import java.util.Set;
-
 import com.jfinal.plugin.activerecord.Model;
 import com.jfinal.plugin.activerecord.Record;
+
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+import java.util.*;
+import java.util.Map.Entry;
 
 /**
  * 该类是把数据转化成csv字符串做了简要的封装 List headers是显示数据每列的属性，建议使用字符 List data数据，单个元素格式可以为Array，list，map，model，record List columns
@@ -41,16 +36,13 @@ public class CsvUtil {
 
     /**
      * 将文本头与数据共同转成csv字符串
-     * 
-     * @param headers
-     *            列属性
-     * @param data
-     *            数据
-     * @param columns
-     *            需要显示列的key值
+     *
+     * @param headers 列属性
+     * @param data    数据
+     * @param columns 需要显示列的key值
      * @return csv字符串
      */
-    @SuppressWarnings({ "unchecked", "rawtypes" })
+    @SuppressWarnings({"unchecked", "rawtypes"})
     public static String createCSV(List headers, List data, List columns) {
         StringBuffer strOut = new StringBuffer("");
         if (null != headers && !headers.isEmpty()) { // 如果文本不为空则添加到csv字符串中
@@ -109,7 +101,7 @@ public class CsvUtil {
             } else if (obj instanceof Model) {
                 Model objmodel = (Model) obj;
                 if (null == columns || columns.isEmpty()) { // 如果没有限制，默认全部显示
-                    Set<Entry<String, Object>> entries =  objmodel._getAttrsEntrySet();
+                    Set<Entry<String, Object>> entries = objmodel._getAttrsEntrySet();
                     for (Entry entry : entries) {
                         createCol(strOut, entry.getValue());
                         strOut.append(",");
@@ -159,11 +151,9 @@ public class CsvUtil {
 
     /**
      * 把单纯的集合转化成csv字符串
-     * 
-     * @param strOut
-     *            StringBuffer
-     * @param list
-     *            数据
+     *
+     * @param strOut StringBuffer
+     * @param list   数据
      */
     public static void listToCSV(StringBuffer strOut, List<?> list) {
         if (null != list && !list.isEmpty()) { // 如果文本不为空则添加到csv字符串中
@@ -211,9 +201,9 @@ public class CsvUtil {
         if (!textQualify
                 && userSettings.useTextQualifier
                 && (content.indexOf(userSettings.textQualifier) > -1 || content.indexOf(userSettings.delimiter) > -1
-                        || (content.indexOf(Letters.LF) > -1 || content.indexOf(Letters.CR) > -1)
-                        || (content.indexOf(userSettings.recordDelimiter) > -1)
-                        || (content.length() > 0 && content.charAt(0) == userSettings.comment) || (content.length() == 0))) {
+                || (content.indexOf(Letters.LF) > -1 || content.indexOf(Letters.CR) > -1)
+                || (content.indexOf(userSettings.recordDelimiter) > -1)
+                || (content.length() > 0 && content.charAt(0) == userSettings.comment) || (content.length() == 0))) {
             textQualify = true;
         }
 

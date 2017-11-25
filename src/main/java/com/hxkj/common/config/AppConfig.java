@@ -1,38 +1,34 @@
 package com.hxkj.common.config;
 
 import com.alibaba.druid.filter.stat.StatFilter;
-import com.alibaba.druid.support.http.WebStatFilter;
 import com.alibaba.druid.wall.WallFilter;
 import com.hxkj.common.constant.Constant;
-import com.hxkj.system.model.SysUser;
-import com.jfinal.config.Constants;
-import com.jfinal.config.Handlers;
-import com.jfinal.config.Interceptors;
-import com.jfinal.config.JFinalConfig;
-import com.jfinal.config.Plugins;
-import com.jfinal.config.Routes;
-import com.jfinal.core.JFinal;
-import com.jfinal.ext.interceptor.SessionInViewInterceptor;
-import com.jfinal.kit.PropKit;
-import com.jfinal.plugin.druid.DruidStatViewHandler;
-import com.jfinal.plugin.druid.IDruidStatViewAuth;
-import com.jfinal.template.Engine;
-
-import freemarker.template.TemplateModelException;
 import com.hxkj.common.interceptor.AuthorityInterceptor;
 import com.hxkj.common.route.SystemRoute;
+import com.hxkj.system.model.SysUser;
 import com.hxkj.system.model.SystemMappingKit;
-
-import com.jfinal.plugin.druid.DruidPlugin;
+import com.jfinal.config.*;
+import com.jfinal.core.JFinal;
+import com.jfinal.ext.interceptor.SessionInViewInterceptor;
 import com.jfinal.json.FastJsonFactory;
+import com.jfinal.kit.PropKit;
 import com.jfinal.plugin.activerecord.ActiveRecordPlugin;
 import com.jfinal.plugin.activerecord.dialect.MysqlDialect;
+import com.jfinal.plugin.druid.DruidPlugin;
+import com.jfinal.plugin.druid.DruidStatViewHandler;
+import com.jfinal.plugin.druid.IDruidStatViewAuth;
 import com.jfinal.render.FreeMarkerRender;
 import com.jfinal.render.ViewType;
+import com.jfinal.template.Engine;
+import freemarker.template.TemplateModelException;
 
 import javax.servlet.http.HttpServletRequest;
 
 public class AppConfig extends JFinalConfig {
+    public static void main(String[] args) {
+        JFinal.start("WebRoot", 80, "/");
+    }
+
     /**
      * 配置JFinal常量
      */
@@ -93,7 +89,6 @@ public class AppConfig extends JFinalConfig {
         me.addGlobalActionInterceptor(new SessionInViewInterceptor());
     }
 
-
     @Override
     public void configHandler(Handlers me) {
 
@@ -110,7 +105,6 @@ public class AppConfig extends JFinalConfig {
         });
         me.add(dvh);
     }
-
 
     @Override
     public void afterJFinalStart() {
@@ -135,10 +129,6 @@ public class AppConfig extends JFinalConfig {
         //这里只有选择JFinal TPL的时候才用
         //配置共享函数模板
         //me.addSharedFunction("/view/common/layout.html")
-    }
-
-    public static void main(String[] args) {
-        JFinal.start("WebRoot", 80, "/");
     }
 
 
