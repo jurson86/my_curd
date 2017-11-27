@@ -5,7 +5,6 @@ import com.hxkj.common.util.BaseController;
 import com.hxkj.common.util.SearchSql;
 import com.hxkj.common.util.csv.CsvRender;
 import com.hxkj.system.model.SysOplog;
-import com.hxkj.system.model.SysOrg;
 import com.jfinal.aop.Before;
 import com.jfinal.kit.StrKit;
 import com.jfinal.plugin.activerecord.Db;
