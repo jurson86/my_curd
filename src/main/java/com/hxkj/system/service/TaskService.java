@@ -3,6 +3,7 @@ package com.hxkj.system.service;
 import com.hxkj.common.Task.MyTask;
 import com.hxkj.common.constant.TaskConstant;
 import com.hxkj.common.exception.ErrorMsgException;
+import com.hxkj.common.util.ToolDateTime;
 import com.hxkj.system.model.SysTask;
 import com.jfinal.plugin.cron4j.Cron4jPlugin;
 import com.jfinal.plugin.cron4j.ITask;
@@ -20,7 +21,7 @@ public class TaskService {
      * 启动所有任务（启动项目时调用）
      */
     public void startAll() {
-        System.out.println(new Date() + "开始启动定时任务");
+        System.out.println(ToolDateTime.format(new Date(), "yyyy-MM-dd HH:mm:ss.S") + "开始启动定时任务");
         List<SysTask> taskList = SysTask.dao.find("select * from sys_task");
         int count = 0;
         for (SysTask taskBase : taskList) {
@@ -32,7 +33,7 @@ public class TaskService {
                 count++;
             }
         }
-        System.out.println(new Date() + "完成启动定时任务	已启动" + count + "个任务");
+        System.out.println(ToolDateTime.format(new Date(), "yyyy-MM-dd HH:mm:ss.S") + "完成启动定时任务	已启动" + count + "个任务");
     }
 
     /**

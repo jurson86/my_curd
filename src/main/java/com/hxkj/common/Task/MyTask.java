@@ -1,6 +1,7 @@
 package com.hxkj.common.Task;
 
 import com.hxkj.common.constant.TaskConstant;
+import com.hxkj.common.util.ToolDateTime;
 import com.hxkj.system.model.SysTask;
 import com.hxkj.system.model.SysTaskLog;
 import com.jfinal.plugin.activerecord.Db;
@@ -83,7 +84,7 @@ public class MyTask implements ITask {
             sysTask.setLastRunTimeCost(costTime);
             sysTask.update();
         }
-        System.out.println(new Date() + "定时任务执行完成");
+        System.out.println(ToolDateTime.format(new Date(), "yyyy-MM-dd HH:mm:ss.S") + "定时任务执行完成");
     }
 
     public void stop() {
