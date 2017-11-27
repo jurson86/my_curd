@@ -6,9 +6,10 @@ package com.hxkj.common.util;
  */
 public class IdGentral {
 
+    private static IdGentral instance = null;
     private long workerId = 0L;        //从配置文件中获取, 0 - 31
-    private long datacenterId = 0L;		//从配置文件中获取，0 - 31
-    private long sequence = 0L;		//0 - 4095
+    private long datacenterId = 0L;        //从配置文件中获取，0 - 31
+    private long sequence = 0L;        //0 - 4095
     private long twepoch = 1288834974657L; //Thu, 04 Nov 2010 01:42:54 GMT
     private long workerIdBits = 5L; //节点ID长度
     private long datacenterIdBits = 5L; //数据中心ID长度
@@ -21,20 +22,7 @@ public class IdGentral {
     private long sequenceMask = -1L ^ (-1L << sequenceBits); //4095
     private long lastTimestamp = -1L;
 
-    private static IdGentral instance = null;
-
-    public static IdGentral get(){
-        if(instance == null){
-            IdGentral idGen = new IdGentral();
-            idGen.loadConfig();
-
-            instance = idGen;
-        }
-
-        return instance;
-    }
-
-    public IdGentral(){
+    public IdGentral() {
 
     }
 
@@ -47,6 +35,23 @@ public class IdGentral {
         }
         this.workerId = workerId;
         this.datacenterId = datacenterId;
+    }
+
+    public static IdGentral get() {
+        if (instance == null) {
+            IdGentral idGen = new IdGentral();
+            idGen.loadConfig();
+
+            instance = idGen;
+        }
+
+        return instance;
+    }
+
+    public static void main(String[] args) {
+        for (int i = 0; i < 100; i++) {
+            System.out.println(IdGentral.get().nextId());
+        }
     }
 
     public void loadConfig() {
@@ -103,11 +108,5 @@ public class IdGentral {
 
     protected long timeGen() {
         return System.currentTimeMillis();
-    }
-
-    public static void main(String[] args) {
-        for(int i=0;i<100;i++){
-            System.out.println(IdGentral.get().nextId());
-        }
     }
 }

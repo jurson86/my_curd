@@ -1,15 +1,14 @@
 package com.hxkj.common.util;
 
+import com.jfinal.render.FreeMarkerRender;
+import com.jfinal.render.RenderException;
+import freemarker.template.Template;
+
 import java.io.IOException;
 import java.io.Writer;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Map;
-
-import com.jfinal.render.FreeMarkerRender;
-import com.jfinal.render.RenderException;
-
-import freemarker.template.Template;
 
 @SuppressWarnings("serial")
 public class FreeMarkerXMLRender extends FreeMarkerRender {
@@ -20,7 +19,7 @@ public class FreeMarkerXMLRender extends FreeMarkerRender {
     }
 
     @Override
-    @SuppressWarnings({ "unchecked", "rawtypes" })
+    @SuppressWarnings({"unchecked", "rawtypes"})
     public void render() {
         response.setContentType(CONTENT_TYPE);
 

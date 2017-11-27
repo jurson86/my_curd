@@ -1,20 +1,21 @@
 package com.hxkj.system.controller;
 
 
-import java.util.List;
-
-import org.apache.log4j.Logger;
+import com.hxkj.common.constant.Constant;
+import com.hxkj.common.interceptor.AuthorityInterceptor;
+import com.hxkj.common.util.BaseController;
+import com.hxkj.system.model.SysMenu;
+import com.hxkj.system.model.SysUser;
+import com.hxkj.system.model.SysUserRole;
+import com.jfinal.aop.Before;
 import com.jfinal.aop.Clear;
 import com.jfinal.core.ActionKey;
 import com.jfinal.kit.HashKit;
 import com.jfinal.kit.StrKit;
+import com.jfinal.plugin.activerecord.tx.Tx;
+import org.apache.log4j.Logger;
 
-import com.hxkj.common.constant.Constant;
-import com.hxkj.common.interceptor.AuthorityInterceptor;
-import com.hxkj.system.model.SysMenu;
-import com.hxkj.system.model.SysUser;
-import com.hxkj.system.model.SysUserRole;
-import com.hxkj.common.util.BaseController;
+import java.util.List;
 
 public class LoginController extends BaseController {
 
@@ -32,6 +33,7 @@ public class LoginController extends BaseController {
      * 登录Action
      */
     @Clear(AuthorityInterceptor.class)
+    @Before(Tx.class)
     public void action() {
 
         String username = getPara("username");
@@ -66,7 +68,7 @@ public class LoginController extends BaseController {
             return;
         }
 
-        if ( sysUsers.get(0).getDisabled().equals("1")){
+        if (sysUsers.get(0).getDisabled().equals("1")) {
             setAttr("errMsg", "该用户被禁用，请联系管理员处理。");
             render("system/login.html");
             return;
@@ -89,7 +91,7 @@ public class LoginController extends BaseController {
                 + " GROUP BY sur.user_id";
         SysUserRole sysUserRole = SysUserRole.dao.findFirst(roleSql, sysUser.getId());
 
-        if(sysUserRole!=null){
+        if (sysUserRole != null) {
             // 角色名称
             setSessionAttr(Constant.SYSTEM_USER_ROLES, sysUserRole.get("roleNames"));
             // 查询权限
@@ -101,12 +103,12 @@ public class LoginController extends BaseController {
                     + " order by sm.sort";
             List<SysMenu> ownSysMenus = SysMenu.dao.find(ownMenuSql, sysUserRole.getStr("roleIds"));
             setSessionAttr(Constant.OWN_MENU, ownSysMenus);
-        }else{
+        } else {
             setSessionAttr(Constant.SYSTEM_USER_ROLES, null);
             setSessionAttr(Constant.OWN_MENU, null);
         }
 
-
+        addOpLog("登录");
         redirect("/main");
     }
 
@@ -116,13 +118,15 @@ public class LoginController extends BaseController {
      */
     @Clear(AuthorityInterceptor.class)
     @ActionKey("/logout")
+    @Before(Tx.class)
     public void logout() {
+        addOpLog("退出");
+
         removeSessionAttr(Constant.SYSTEM_USER);
         removeSessionAttr(Constant.SYSTEM_USER_ROLES);
         removeSessionAttr(Constant.OWN_MENU);
         redirect("/login");
     }
-
 
 
 }

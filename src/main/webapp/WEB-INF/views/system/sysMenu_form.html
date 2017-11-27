@@ -5,10 +5,10 @@
     function saveAction() {
         var url;
         var idVal = $("#id").val();
-        if($.trim(idVal)=="" || idVal == undefined || idVal == null){
-            url   = '${ctx!}/sysMenu/addAction';
-        }else{
-            url  = '${ctx!}/sysMenu/updateAction';
+        if ($.trim(idVal) == "" || idVal == undefined || idVal == null) {
+            url = '${ctx!}/sysMenu/addAction';
+        } else {
+            url = '${ctx!}/sysMenu/updateAction';
         }
 
         $('#modelForm').form('submit', {
@@ -26,41 +26,44 @@
 </script>
 </head>
 <body style="padding: 10px 30px; ">
-<form id="modelForm" method="POST" >
+<form id="modelForm" method="POST">
     <table class=" pure-table pure-table-horizontal">
-        <input id="id" name="id" type="hidden"  value="${(sysMenu.id)!}">
+        <input id="id" name="id" type="hidden" value="${(sysMenu.id)!}">
         <tbody>
         <tr>
             <td>父菜单</td>
             <td>
-                <input name="pid"  id="pid"  >
+                <input name="pid" id="pid">
             </td>
         </tr>
         <tr>
             <td>菜单名：</td>
             <td>
-                <input name="name" value="${(sysMenu.name)!}" type="text" class="easyui-textbox" data-options="required:true">
+                <input name="name" value="${(sysMenu.name)!}" type="text" class="easyui-textbox"
+                       data-options="required:true">
             </td>
         </tr>
 
         <tr>
             <td>菜单地址：</td>
             <td>
-                <input name="url" value="${(sysMenu.url)!}" type="text" class="easyui-textbox" data-options="required:true">
+                <input name="url" value="${(sysMenu.url)!}" type="text" class="easyui-textbox"
+                       data-options="required:true">
             </td>
         </tr>
 
         <tr>
             <td>排序：</td>
             <td>
-                <input name="sort" value="${(sysMenu.sort)!}" type="text" class="easyui-numberbox" data-options="required:true,precision:0">
+                <input name="sort" value="${(sysMenu.sort)!}" type="text" class="easyui-numberbox"
+                       data-options="required:true,precision:0">
             </td>
         </tr>
 
         <tr>
             <td>图标：</td>
             <td>
-                <input name="icon" value="${(sysMenu.icon)!}" type="text" class="easyui-textbox"  >
+                <input name="icon" value="${(sysMenu.icon)!}" type="text" class="easyui-textbox">
             </td>
         </tr>
         </tbody>
@@ -76,14 +79,14 @@
     ;(function () {
         var easyTree = new EasyTree();
         $("#pid").combotree({
-            url:'${ctx!}/sysMenu/allMenu',
-            value:'${(sysMenu.pid)!}',
-            loadFilter:function(data,parent){
-                  // 数据处理
-                  //console.log(JSON.stringify(data));
-                  data = easyTree.treeDataBuild(data,"id","pid","text,open,icon");
-                 // console.log(data);
-                  return data;
+            url: '${ctx!}/sysMenu/allMenu',
+            value: '${(sysMenu.pid)!}',
+            loadFilter: function (data, parent) {
+                // 数据处理
+                //console.log(JSON.stringify(data));
+                data = easyTree.treeDataBuild(data, "id", "pid", "text,open,icon");
+                // console.log(data);
+                return data;
             }
         });
     })();

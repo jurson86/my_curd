@@ -10,10 +10,10 @@ import java.util.List;
  */
 @SuppressWarnings("serial")
 public class SysRole extends BaseSysRole<SysRole> {
-	public static final SysRole dao = new SysRole().dao();
+    public static final SysRole dao = new SysRole().dao();
 
-	public List<SysRole> findAll(){
-		String sql = "select * from sys_role order by sort";
-		return find(sql);
-	}
+    public List<SysRole> findAll() {
+        String sql = "select * from sys_role order by sort";
+        return find(sql);
+    }
 }

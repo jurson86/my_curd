@@ -5,10 +5,10 @@
     function saveAction() {
         var url;
         var idVal = $("#id").val();
-        if($.trim(idVal)=="" || idVal == undefined || idVal == null){
-            url   = '${ctx!}/sysRole/addAction';
-        }else{
-            url  = '${ctx!}/sysRole/updateAction';
+        if ($.trim(idVal) == "" || idVal == undefined || idVal == null) {
+            url = '${ctx!}/sysRole/addAction';
+        } else {
+            url = '${ctx!}/sysRole/updateAction';
         }
 
         $('#modelForm').form('submit', {
@@ -26,26 +26,28 @@
 </script>
 </head>
 <body style="padding: 10px 30px; ">
-<form id="modelForm" method="POST" >
+<form id="modelForm" method="POST">
     <table class=" pure-table pure-table-horizontal">
-        <input id="id" name="id" type="hidden"  value="${(sysRole.id)!}">
+        <input id="id" name="id" type="hidden" value="${(sysRole.id)!}">
         <tbody>
         <tr>
             <td>角色名：</td>
             <td>
-                <input name="roleName"  id="roleName"  value="${(sysRole.roleName)!}" >
+                <input name="roleName" id="roleName" value="${(sysRole.roleName)!}">
             </td>
         </tr>
         <tr>
             <td>角色描述：</td>
             <td>
-                <input name="roleDesc" value="${(sysRole.roleDesc)!}" type="text" class="easyui-textbox" data-options="required:true">
+                <input name="roleDesc" value="${(sysRole.roleDesc)!}" type="text" class="easyui-textbox"
+                       data-options="required:true">
             </td>
         </tr>
         <tr>
             <td>排序：</td>
             <td>
-                <input name="sort" value="${(sysRole.sort)!}" type="text" class="easyui-numberbox" data-options="required:true,precision:0">
+                <input name="sort" value="${(sysRole.sort)!}" type="text" class="easyui-numberbox"
+                       data-options="required:true,precision:0">
             </td>
         </tr>
         </tbody>

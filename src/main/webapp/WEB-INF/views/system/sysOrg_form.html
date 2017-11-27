@@ -5,10 +5,10 @@
     function saveAction() {
         var url;
         var idVal = $("#id").val();
-        if($.trim(idVal)=="" || idVal == undefined || idVal == null){
-            url   = '${ctx!}/sysOrg/addAction';
-        }else{
-            url  = '${ctx!}/sysOrg/updateAction';
+        if ($.trim(idVal) == "" || idVal == undefined || idVal == null) {
+            url = '${ctx!}/sysOrg/addAction';
+        } else {
+            url = '${ctx!}/sysOrg/updateAction';
         }
 
         $('#modelForm').form('submit', {
@@ -26,39 +26,43 @@
 </script>
 </head>
 <body style="padding: 10px 30px; ">
-<form id="modelForm" method="POST" >
+<form id="modelForm" method="POST">
     <table class=" pure-table pure-table-horizontal">
-        <input id="id" name="id" type="hidden"  value="${(sysOrg.id)!}">
+        <input id="id" name="id" type="hidden" value="${(sysOrg.id)!}">
         <tbody>
         <tr>
             <td>父机构</td>
             <td>
-                <input name="pid"  id="pid"  >
+                <input name="pid" id="pid">
             </td>
         </tr>
         <tr>
             <td>机构名：</td>
             <td>
-                <input name="orgName" value="${(sysOrg.orgName)!}" type="text" class="easyui-textbox" data-options="required:true">
+                <input name="orgName" value="${(sysOrg.orgName)!}" type="text" class="easyui-textbox"
+                       data-options="required:true">
             </td>
         </tr>
         <tr>
             <td>机构地址：</td>
             <td>
-                <input style="height: 80px" name="orgAddress" value="${(sysOrg.orgAddress)!}" type="text" class="easyui-textbox" data-options="multiline:true" >
+                <input style="height: 80px" name="orgAddress" value="${(sysOrg.orgAddress)!}" type="text"
+                       class="easyui-textbox" data-options="multiline:true">
             </td>
         </tr>
         <tr>
             <td>机构备注：</td>
             <td>
-                <input style="height: 80px" name="orgRemark" value="${(sysOrg.orgRemark)!}" type="text" class="easyui-textbox" data-options="multiline:true" >
+                <input style="height: 80px" name="orgRemark" value="${(sysOrg.orgRemark)!}" type="text"
+                       class="easyui-textbox" data-options="multiline:true">
             </td>
         </tr>
 
         <tr>
             <td>排序：</td>
             <td>
-                <input name="sort" value="${(sysOrg.sort)!}" type="text" class="easyui-numberbox" data-options="required:true,precision:0">
+                <input name="sort" value="${(sysOrg.sort)!}" type="text" class="easyui-numberbox"
+                       data-options="required:true,precision:0">
             </td>
         </tr>
 
@@ -75,12 +79,12 @@
     ;(function () {
         var easyTree = new EasyTree();
         $("#pid").combotree({
-            url:'${ctx!}/sysOrg/allOrg',
-            value:'${(sysOrg.pid)!}',
-            loadFilter:function(data,parent){
+            url: '${ctx!}/sysOrg/allOrg',
+            value: '${(sysOrg.pid)!}',
+            loadFilter: function (data, parent) {
                 // 数据处理
                 //console.log(JSON.stringify(data));
-                data = easyTree.treeDataBuild(data,"id","pid","text,open");
+                data = easyTree.treeDataBuild(data, "id", "pid", "text,open");
                 // console.log(data);
                 return data;
             }
