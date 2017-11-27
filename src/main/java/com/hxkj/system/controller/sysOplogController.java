@@ -58,7 +58,7 @@ public class sysOplogController extends BaseController {
             sqlExceptSelect += " where " + where;
         }
 
-        where += "order by so.create_time desc";
+        sqlExceptSelect += "order by so.create_time desc";
         List<SysOplog> sysOplogs = SysOplog.dao.find(sqlSelect + sqlExceptSelect);
 
         List<Map<String, Object>> maps = new ArrayList<Map<String, Object>>();
@@ -79,6 +79,7 @@ public class sysOplogController extends BaseController {
 
     }
 
+    @Before(SearchSql.class)
     public void exportToCvs() {
         String where = getAttr(Constant.SEARCH_SQL);
 
@@ -88,7 +89,7 @@ public class sysOplogController extends BaseController {
             sqlExceptSelect += " where " + where;
         }
 
-        where += "order by so.create_time desc";
+        sqlExceptSelect += "order by so.create_time desc";
         List<SysOplog> sysOplogs = SysOplog.dao.find(sqlSelect + sqlExceptSelect);
         List<String> headers = Arrays.asList("操作人员", "日志内容", "IP地址", "操作时间");
         List<String> columns = Arrays.asList("user_name", "op_content", "ip", "create_time");

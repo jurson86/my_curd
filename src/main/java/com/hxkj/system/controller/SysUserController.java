@@ -37,7 +37,7 @@ public class SysUserController extends BaseController {
             sqlExceptSelect += " where " + where;
         }
 
-        where += "order by su.create_time";
+        sqlExceptSelect += "order by su.create_time";
         Page<SysUser> sysUsers = SysUser.dao.paginate(pageNumber, pageSize, sqlSelect, sqlExceptSelect);
 
         renderDatagrid(sysUsers);

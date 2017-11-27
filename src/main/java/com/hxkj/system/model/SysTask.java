@@ -11,4 +11,12 @@ import com.hxkj.system.model.base.BaseSysTask;
 public class SysTask extends BaseSysTask<SysTask> {
 	public static final SysTask dao = new SysTask().dao();
 
+	public String getTaskType(){
+		return  get("task_type");
+	}
+
+	public String getTaskStatus(){
+		return  get("task_status");
+	}
+
 }

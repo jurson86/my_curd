@@ -26,6 +26,8 @@ public class SystemMappingKit {
         arp.addMapping("sys_user", "id", SysUser.class);
         // Composite Primary Key order: role_id,user_id
         arp.addMapping("sys_user_role", "role_id,user_id", SysUserRole.class);
+        arp.addMapping("sys_task", "id", SysTask.class);
+        arp.addMapping("sys_task_log", "id", SysTaskLog.class);
     }
 }
 

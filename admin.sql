@@ -10,10 +10,33 @@ Target Server Type    : MYSQL
 Target Server Version : 50719
 File Encoding         : 65001
 
-Date: 2017-11-25 17:36:08
+Date: 2017-11-27 22:56:25
 */
 
 SET FOREIGN_KEY_CHECKS=0;
+
+-- ----------------------------
+-- Table structure for `sys_dict`
+-- ----------------------------
+DROP TABLE IF EXISTS `sys_dict`;
+CREATE TABLE `sys_dict` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT 'id',
+  `dict_type` varchar(50) NOT NULL DEFAULT '' COMMENT '类型',
+  `dict_key` varchar(50) NOT NULL DEFAULT '' COMMENT '键',
+  `dict_value` varchar(100) NOT NULL DEFAULT '' COMMENT '值',
+  `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '创建时间',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8 COMMENT='数据字典';
+
+-- ----------------------------
+-- Records of sys_dict
+-- ----------------------------
+INSERT INTO `sys_dict` VALUES ('8', 'task_type', '1', 'url', '2017-03-12 23:29:43');
+INSERT INTO `sys_dict` VALUES ('9', 'task_type', '2', 'sql', '2017-03-12 23:29:51');
+INSERT INTO `sys_dict` VALUES ('10', 'task_type', '3', 'ITask', '2017-11-27 20:56:30');
+INSERT INTO `sys_dict` VALUES ('11', 'task_statu', '1', '等待运行', '2017-11-27 20:56:17');
+INSERT INTO `sys_dict` VALUES ('12', 'task_statu', '2', '已停止', '2017-11-27 20:56:33');
+INSERT INTO `sys_dict` VALUES ('13', 'task_statu', '3', '运行中', '2017-03-28 23:26:26');
 
 -- ----------------------------
 -- Table structure for `sys_menu`
@@ -27,7 +50,7 @@ CREATE TABLE `sys_menu` (
   `sort` int(11) DEFAULT NULL,
   `pid` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=71 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=72 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of sys_menu
@@ -38,7 +61,7 @@ INSERT INTO `sys_menu` VALUES ('23', '角色管理', '/sysRole', null, '2', '5')
 INSERT INTO `sys_menu` VALUES ('58', '组织机构', '/sysOrg', null, '4', '5');
 INSERT INTO `sys_menu` VALUES ('59', '用户管理', '/sysUser', null, '3', '5');
 INSERT INTO `sys_menu` VALUES ('60', '修改密码', '/sysChangePassword', null, '5', '5');
-INSERT INTO `sys_menu` VALUES ('61', 'druid监控', '/druid', null, '7', '5');
+INSERT INTO `sys_menu` VALUES ('61', 'druid监控', '/druid', 'icon-druid', '8', '5');
 INSERT INTO `sys_menu` VALUES ('62', '供应链', ' /', null, '2', null);
 INSERT INTO `sys_menu` VALUES ('63', '采购申请', '/scmPurchase', null, '3', '66');
 INSERT INTO `sys_menu` VALUES ('64', '仓库入库', '/scmDepotIn', null, '2', '62');
@@ -48,6 +71,7 @@ INSERT INTO `sys_menu` VALUES ('67', '请假申请', '/ooLeaveRequest', null, '1
 INSERT INTO `sys_menu` VALUES ('68', '请假审批', '/ooLeaveAudit', null, '2', '66');
 INSERT INTO `sys_menu` VALUES ('69', '采购审批', '/scmPurchaseAudit', null, '4', '66');
 INSERT INTO `sys_menu` VALUES ('70', '系统日志', '/sysOplog', null, '6', '5');
+INSERT INTO `sys_menu` VALUES ('71', '定时任务', '/sysTask', null, '7', '5');
 
 -- ----------------------------
 -- Table structure for `sys_oplog`
@@ -65,46 +89,48 @@ CREATE TABLE `sys_oplog` (
 -- ----------------------------
 -- Records of sys_oplog
 -- ----------------------------
-INSERT INTO `sys_oplog` VALUES ('934348031367577600', '916654989969981440', '访问无权限路径[/sysUser]', '0:0:0:0:0:0:0:1', '2017-11-25 17:08:24');
-INSERT INTO `sys_oplog` VALUES ('934348035238920192', '916654989969981440', '访问无权限路径[/sysUser]', '0:0:0:0:0:0:0:1', '2017-11-25 17:08:25');
-INSERT INTO `sys_oplog` VALUES ('934348036115529728', '916654989969981440', '访问无权限路径[/sysUser]', '0:0:0:0:0:0:0:1', '2017-11-25 17:08:25');
-INSERT INTO `sys_oplog` VALUES ('934348037587730432', '916654989969981440', '访问无权限路径[/sysUser]', '0:0:0:0:0:0:0:1', '2017-11-25 17:08:26');
-INSERT INTO `sys_oplog` VALUES ('934348038502088704', '916654989969981440', '访问无权限路径[/sysUser]', '0:0:0:0:0:0:0:1', '2017-11-25 17:08:26');
-INSERT INTO `sys_oplog` VALUES ('934348069732876288', '916654989969981440', '访问无权限路径[/sysUser]', '0:0:0:0:0:0:0:1', '2017-11-25 17:08:33');
-INSERT INTO `sys_oplog` VALUES ('934348071179911168', '916654989969981440', '访问无权限路径[/sysUser]', '0:0:0:0:0:0:0:1', '2017-11-25 17:08:34');
-INSERT INTO `sys_oplog` VALUES ('934348072048132096', '916654989969981440', '访问无权限路径[/sysUser]', '0:0:0:0:0:0:0:1', '2017-11-25 17:08:34');
 INSERT INTO `sys_oplog` VALUES ('934348072786329600', '916654989969981440', '访问无权限路径[/sysUser]', '0:0:0:0:0:0:0:1', '2017-11-25 17:08:34');
-INSERT INTO `sys_oplog` VALUES ('934348073562275840', '916654989969981440', '访问无权限路径[/sysUser]', '0:0:0:0:0:0:0:1', '2017-11-25 17:08:34');
-INSERT INTO `sys_oplog` VALUES ('934348076577980416', '916654989969981440', '访问无权限路径[/sysUser]', '0:0:0:0:0:0:0:1', '2017-11-25 17:08:35');
-INSERT INTO `sys_oplog` VALUES ('934348078188593152', '916654989969981440', '访问无权限路径[/sysUser]', '0:0:0:0:0:0:0:1', '2017-11-25 17:08:35');
-INSERT INTO `sys_oplog` VALUES ('934348078998093824', '916654989969981440', '访问无权限路径[/sysUser]', '0:0:0:0:0:0:0:1', '2017-11-25 17:08:36');
-INSERT INTO `sys_oplog` VALUES ('934348079765651456', '916654989969981440', '访问无权限路径[/sysUser]', '0:0:0:0:0:0:0:1', '2017-11-25 17:08:36');
-INSERT INTO `sys_oplog` VALUES ('934348081476927488', '916654989969981440', '访问无权限路径[/sysUser]', '0:0:0:0:0:0:0:1', '2017-11-25 17:08:36');
-INSERT INTO `sys_oplog` VALUES ('934348112078569472', '916654989969981440', '访问无权限路径[/sysUser]', '0:0:0:0:0:0:0:1', '2017-11-25 17:08:43');
-INSERT INTO `sys_oplog` VALUES ('934348183251714048', '916654989969981440', '访问无权限路径[/sysUser]', '0:0:0:0:0:0:0:1', '2017-11-25 17:09:00');
-INSERT INTO `sys_oplog` VALUES ('934348184124129280', '916654989969981440', '访问无权限路径[/sysUser]', '0:0:0:0:0:0:0:1', '2017-11-25 17:09:01');
-INSERT INTO `sys_oplog` VALUES ('934348184958795776', '916654989969981440', '访问无权限路径[/sysUser]', '0:0:0:0:0:0:0:1', '2017-11-25 17:09:01');
-INSERT INTO `sys_oplog` VALUES ('934348185768296448', '916654989969981440', '访问无权限路径[/sysUser]', '0:0:0:0:0:0:0:1', '2017-11-25 17:09:01');
-INSERT INTO `sys_oplog` VALUES ('934348187034976256', '916654989969981440', '访问无权限路径[/sysUser]', '0:0:0:0:0:0:0:1', '2017-11-25 17:09:01');
-INSERT INTO `sys_oplog` VALUES ('934348188087746560', '916654989969981440', '访问无权限路径[/sysUser]', '0:0:0:0:0:0:0:1', '2017-11-25 17:09:02');
-INSERT INTO `sys_oplog` VALUES ('934348189522198528', '916654989969981440', '访问无权限路径[/sysUser]', '0:0:0:0:0:0:0:1', '2017-11-25 17:09:02');
-INSERT INTO `sys_oplog` VALUES ('934348190361059328', '916654989969981440', '访问无权限路径[/sysUser]', '0:0:0:0:0:0:0:1', '2017-11-25 17:09:02');
-INSERT INTO `sys_oplog` VALUES ('934348191904563200', '916654989969981440', '访问无权限路径[/sysUser]', '0:0:0:0:0:0:0:1', '2017-11-25 17:09:02');
-INSERT INTO `sys_oplog` VALUES ('934348192709869568', '916654989969981440', '访问无权限路径[/sysUser]', '0:0:0:0:0:0:0:1', '2017-11-25 17:09:03');
-INSERT INTO `sys_oplog` VALUES ('934348193414512640', '916654989969981440', '访问无权限路径[/sysUser]', '0:0:0:0:0:0:0:1', '2017-11-25 17:09:03');
-INSERT INTO `sys_oplog` VALUES ('934348194219819008', '916654989969981440', '访问无权限路径[/sysUser]', '0:0:0:0:0:0:0:1', '2017-11-25 17:09:03');
-INSERT INTO `sys_oplog` VALUES ('934348194890907648', '916654989969981440', '访问无权限路径[/sysUser]', '0:0:0:0:0:0:0:1', '2017-11-25 17:09:03');
-INSERT INTO `sys_oplog` VALUES ('934348195629105152', '916654989969981440', '访问无权限路径[/sysUser]', '0:0:0:0:0:0:0:1', '2017-11-25 17:09:03');
-INSERT INTO `sys_oplog` VALUES ('934348196472160256', '916654989969981440', '访问无权限路径[/sysUser]', '0:0:0:0:0:0:0:1', '2017-11-25 17:09:04');
-INSERT INTO `sys_oplog` VALUES ('934348197239717888', '916654989969981440', '访问无权限路径[/sysUser]', '0:0:0:0:0:0:0:1', '2017-11-25 17:09:04');
-INSERT INTO `sys_oplog` VALUES ('934348198414123008', '916654989969981440', '访问无权限路径[/sysUser]', '0:0:0:0:0:0:0:1', '2017-11-25 17:09:04');
-INSERT INTO `sys_oplog` VALUES ('934348199362035712', '916654989969981440', '访问无权限路径[/sysUser]', '0:0:0:0:0:0:0:1', '2017-11-25 17:09:04');
-INSERT INTO `sys_oplog` VALUES ('934348200091844608', '916654989969981440', '访问无权限路径[/sysUser]', '0:0:0:0:0:0:0:1', '2017-11-25 17:09:04');
-INSERT INTO `sys_oplog` VALUES ('934348200834236416', '916654989969981440', '访问无权限路径[/sysUser]', '0:0:0:0:0:0:0:1', '2017-11-25 17:09:05');
-INSERT INTO `sys_oplog` VALUES ('934348201832480768', '916654989969981440', '访问无权限路径[/sysUser]', '0:0:0:0:0:0:0:1', '2017-11-25 17:09:05');
-INSERT INTO `sys_oplog` VALUES ('934348204860768256', '916654989969981440', '访问无权限路径[/sysUser]', '0:0:0:0:0:0:0:1', '2017-11-25 17:09:06');
-INSERT INTO `sys_oplog` VALUES ('934348205838041088', '916654989969981440', '访问无权限路径[/sysUser]', '0:0:0:0:0:0:0:1', '2017-11-25 17:09:06');
-INSERT INTO `sys_oplog` VALUES ('934348207444459520', '916654989969981440', '访问无权限路径[/sysUser]', '0:0:0:0:0:0:0:1', '2017-11-25 17:09:06');
+INSERT INTO `sys_oplog` VALUES ('934416742954827776', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-11-25 21:41:26');
+INSERT INTO `sys_oplog` VALUES ('934417489868095488', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-11-25 21:44:24');
+INSERT INTO `sys_oplog` VALUES ('934417794479423488', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-11-25 21:45:37');
+INSERT INTO `sys_oplog` VALUES ('934417948032892928', '916654989969981440', '退出', '0:0:0:0:0:0:0:1', '2017-11-25 21:46:14');
+INSERT INTO `sys_oplog` VALUES ('934417953871364096', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-11-25 21:46:15');
+INSERT INTO `sys_oplog` VALUES ('934422092747636736', '916654989969981440', '退出', '0:0:0:0:0:0:0:1', '2017-11-25 22:02:42');
+INSERT INTO `sys_oplog` VALUES ('934422254073151488', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-11-25 22:03:20');
+INSERT INTO `sys_oplog` VALUES ('934422272431620096', '916654989969981440', '退出', '0:0:0:0:0:0:0:1', '2017-11-25 22:03:25');
+INSERT INTO `sys_oplog` VALUES ('934422278140067840', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-11-25 22:03:26');
+INSERT INTO `sys_oplog` VALUES ('934422344577843200', '916654989969981440', '123456 修改为新密码：111111', '0:0:0:0:0:0:0:1', '2017-11-25 22:03:42');
+INSERT INTO `sys_oplog` VALUES ('934422354677727232', '916654989969981440', '退出', '0:0:0:0:0:0:0:1', '2017-11-25 22:03:44');
+INSERT INTO `sys_oplog` VALUES ('934422376748154880', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-11-25 22:03:50');
+INSERT INTO `sys_oplog` VALUES ('934422476283183104', '916654989969981440', '退出', '0:0:0:0:0:0:0:1', '2017-11-25 22:04:13');
+INSERT INTO `sys_oplog` VALUES ('934422522160480256', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-11-25 22:04:24');
+INSERT INTO `sys_oplog` VALUES ('934422535699693568', '916654989969981440', '退出', '0:0:0:0:0:0:0:1', '2017-11-25 22:04:27');
+INSERT INTO `sys_oplog` VALUES ('934422848192118784', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-11-25 22:05:42');
+INSERT INTO `sys_oplog` VALUES ('934422862104625152', '916654989969981440', '退出', '0:0:0:0:0:0:0:1', '2017-11-25 22:05:45');
+INSERT INTO `sys_oplog` VALUES ('934423982201896960', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-11-25 22:10:12');
+INSERT INTO `sys_oplog` VALUES ('934431093933735936', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-11-25 22:38:28');
+INSERT INTO `sys_oplog` VALUES ('934435355099136000', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-11-25 22:55:24');
+INSERT INTO `sys_oplog` VALUES ('934435672771526656', '916654989969981440', '123456 修改为新密码：654321', '0:0:0:0:0:0:0:1', '2017-11-25 22:56:40');
+INSERT INTO `sys_oplog` VALUES ('934435680010895360', '916654989969981440', '退出', '0:0:0:0:0:0:0:1', '2017-11-25 22:56:41');
+INSERT INTO `sys_oplog` VALUES ('934435704878923776', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-11-25 22:56:47');
+INSERT INTO `sys_oplog` VALUES ('934435786827235328', '916654989969981440', '654321 修改为新密码：123456', '0:0:0:0:0:0:0:1', '2017-11-25 22:57:07');
+INSERT INTO `sys_oplog` VALUES ('934435804791439360', '916654989969981440', '退出', '0:0:0:0:0:0:0:1', '2017-11-25 22:57:11');
+INSERT INTO `sys_oplog` VALUES ('934435809740718080', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-11-25 22:57:12');
+INSERT INTO `sys_oplog` VALUES ('934438061637369856', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-11-25 23:06:09');
+INSERT INTO `sys_oplog` VALUES ('934438660193910784', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-11-25 23:08:32');
+INSERT INTO `sys_oplog` VALUES ('935134889513058304', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-11-27 21:15:06');
+INSERT INTO `sys_oplog` VALUES ('935135239133462528', '916654989969981440', '退出', '0:0:0:0:0:0:0:1', '2017-11-27 21:16:29');
+INSERT INTO `sys_oplog` VALUES ('935135243797528576', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-11-27 21:16:30');
+INSERT INTO `sys_oplog` VALUES ('935136672012566528', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-11-27 21:22:11');
+INSERT INTO `sys_oplog` VALUES ('935138453278949376', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-11-27 21:29:15');
+INSERT INTO `sys_oplog` VALUES ('935139148514197504', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-11-27 21:32:01');
+INSERT INTO `sys_oplog` VALUES ('935139553944010752', '916654989969981440', '退出', '0:0:0:0:0:0:0:1', '2017-11-27 21:33:38');
+INSERT INTO `sys_oplog` VALUES ('935139558859735040', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-11-27 21:33:39');
+INSERT INTO `sys_oplog` VALUES ('935147779901095936', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-11-27 22:06:19');
+INSERT INTO `sys_oplog` VALUES ('935150352066412544', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-11-27 22:16:32');
+INSERT INTO `sys_oplog` VALUES ('935151210812407808', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-11-27 22:19:57');
+INSERT INTO `sys_oplog` VALUES ('935151866998685696', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-11-27 22:22:34');
+INSERT INTO `sys_oplog` VALUES ('935152160755154944', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-11-27 22:23:44');
 
 -- ----------------------------
 -- Table structure for `sys_org`
@@ -180,6 +206,7 @@ INSERT INTO `sys_role_menu` VALUES ('3', '67');
 INSERT INTO `sys_role_menu` VALUES ('3', '68');
 INSERT INTO `sys_role_menu` VALUES ('3', '69');
 INSERT INTO `sys_role_menu` VALUES ('3', '70');
+INSERT INTO `sys_role_menu` VALUES ('3', '71');
 INSERT INTO `sys_role_menu` VALUES ('24', '63');
 INSERT INTO `sys_role_menu` VALUES ('24', '66');
 INSERT INTO `sys_role_menu` VALUES ('24', '67');
@@ -191,6 +218,53 @@ INSERT INTO `sys_role_menu` VALUES ('25', '69');
 INSERT INTO `sys_role_menu` VALUES ('26', '62');
 INSERT INTO `sys_role_menu` VALUES ('26', '64');
 INSERT INTO `sys_role_menu` VALUES ('26', '65');
+
+-- ----------------------------
+-- Table structure for `sys_task`
+-- ----------------------------
+DROP TABLE IF EXISTS `sys_task`;
+CREATE TABLE `sys_task` (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'id',
+  `name` varchar(50) NOT NULL DEFAULT '' COMMENT '名称',
+  `target_type` int(11) DEFAULT NULL COMMENT '任务类型',
+  `target_value` varchar(5000) DEFAULT NULL COMMENT '任务值',
+  `cron` varchar(50) DEFAULT NULL COMMENT 'cron表达式',
+  `last_run_result` varchar(50) DEFAULT NULL COMMENT '上次执行结果',
+  `last_run_time` datetime DEFAULT NULL COMMENT '上次执行时间',
+  `last_run_time_cost` int(11) DEFAULT NULL COMMENT '上次执行耗时',
+  `status` int(11) DEFAULT NULL COMMENT '状态',
+  `create_user_id` int(11) DEFAULT NULL COMMENT '创建人',
+  `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COMMENT='定时任务';
+
+-- ----------------------------
+-- Records of sys_task
+-- ----------------------------
+INSERT INTO `sys_task` VALUES ('1', '百度', '1', 'https://www.baidu.com', '* */1 * * *', '成功', '2017-09-12 20:22:00', '18', '1', '1', '2017-03-04 16:08:06');
+INSERT INTO `sys_task` VALUES ('2', 'css', '1', 'http://www.newsres.cn/2017lh/css/lhxl.css', '* */1 * * *', '成功', '2017-04-12 00:00:34', '75', '2', '1', '2017-03-04 00:00:00');
+INSERT INTO `sys_task` VALUES ('3', '查询', '2', 'select 2', '* */1 * * *', '成功', '2017-09-12 20:22:00', '20', '2', null, '2017-03-04 17:32:02');
+INSERT INTO `sys_task` VALUES ('4', '存储过程', '2', 'call zcurd_base.pro_test()', '* */1 * * *', '成功', '2017-04-09 09:31:24', '2', '3', null, '2017-03-05 00:30:20');
+INSERT INTO `sys_task` VALUES ('5', 'ITask', '3', 'com.zcurd.common.task.DemoTask', '* */1 * * *', '成功', '2017-03-26 22:50:00', '3', '2', null, '2017-03-18 14:43:55');
+
+-- ----------------------------
+-- Table structure for `sys_task_log`
+-- ----------------------------
+DROP TABLE IF EXISTS `sys_task_log`;
+CREATE TABLE `sys_task_log` (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'id',
+  `task_id` int(11) DEFAULT NULL COMMENT '所属任务',
+  `result` varchar(50) DEFAULT NULL COMMENT '执行结果',
+  `start_time` datetime DEFAULT NULL COMMENT '开始时间',
+  `end_time` datetime DEFAULT NULL COMMENT '结束时间',
+  `cost_time` int(11) DEFAULT NULL COMMENT '耗时',
+  `remark` varchar(500) DEFAULT NULL COMMENT '备注',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2441 DEFAULT CHARSET=utf8 COMMENT='定时任务-日志';
+
+-- ----------------------------
+-- Records of sys_task_log
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for `sys_user`
