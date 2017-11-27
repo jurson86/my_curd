@@ -47,8 +47,7 @@ public class AppConfig extends JFinalConfig {
         //设置默认视图类型
         me.setViewType(ViewType.FREE_MARKER);
         //设置404渲染视图
-
-        //me.setError404View("https://envato.ukiedev.com/404-error/rabbit/");
+        //me.setError404View();
         //设置json工厂
         me.setJsonFactory(FastJsonFactory.me());
 
