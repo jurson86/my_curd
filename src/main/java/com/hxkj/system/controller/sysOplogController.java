@@ -71,10 +71,10 @@ public class sysOplogController extends BaseController {
             maps.add(map);
         }
 
-        String[] columns = new String[] { "user_name","op_content", "ip", "create_time"};
-        String[] headers = new String[]  { "操作人","日志内容", "IP地址", "操作时间"};
+        String[] columns = new String[]{"user_name", "op_content", "ip", "create_time"};
+        String[] headers = new String[]{"操作人", "日志内容", "IP地址", "操作时间"};
 
-        render(PoiRender.me(sysOplogs).fileName(ToolString.toUtf8String( "操作日志.xls")).sheetName("操作日志统计").columns(columns).headers(headers).cellWidth(3500).headerRow(1));
+        render(PoiRender.me(sysOplogs).fileName(ToolString.toUtf8String("操作日志.xls")).sheetName("操作日志统计").columns(columns).headers(headers).cellWidth(3500).headerRow(1));
 
 
     }

@@ -8,5 +8,5 @@ import com.hxkj.system.model.base.BaseSysTaskLog;
  */
 @SuppressWarnings("serial")
 public class SysTaskLog extends BaseSysTaskLog<SysTaskLog> {
-	public static final SysTaskLog dao = new SysTaskLog().dao();
+    public static final SysTaskLog dao = new SysTaskLog().dao();
 }

@@ -7,6 +7,8 @@ import com.hxkj.common.interceptor.AuthorityInterceptor;
 import com.hxkj.common.route.SystemRoute;
 import com.hxkj.system.model.SysUser;
 import com.hxkj.system.model.SystemMappingKit;
+import com.hxkj.system.service.TaskService;
+import com.jfinal.aop.Duang;
 import com.jfinal.config.*;
 import com.jfinal.core.JFinal;
 import com.jfinal.ext.interceptor.SessionInViewInterceptor;
@@ -114,6 +116,10 @@ public class AppConfig extends JFinalConfig {
         } catch (TemplateModelException e) {
             e.printStackTrace();
         }
+
+        //定时任务
+        TaskService taskService = Duang.duang(TaskService.class);
+        taskService.startAll();
     }
 
     @Override

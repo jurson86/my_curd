@@ -69,6 +69,37 @@
         queryParams['search_LIKE_st.name'] = $("#name").textbox("getValue");
         $('#dg').datagrid('load', queryParams);
     }
+
+
+    /**
+     * 启动/停止
+     */
+    function startOrStop(index, status) {
+        var tipMsg = "停止";
+        if (status == 1) {
+            tipMsg = "启动";
+        }
+        layerTools.confirm(3, '确认', tipMsg + '?', function () {
+            var row = $("#dg").datagrid("getRows")[index];
+            $.post("${ctx!}/sysTask/startOrStop", {id: row.id, status: status}, function (data) {
+                layerTools.layerMsg(tipMsg + "成功！");
+                $("#dg").datagrid("reload");
+            });
+        });
+    }
+
+    /**
+     * 立即执行
+     */
+    function runAtSoon(index) {
+        layerTools.confirm(3, '确认', '确认立即执行', function () {
+            var row = $("#dg").datagrid("getRows")[index];
+            $.post("${ctx!}/sysTask/runAtSoon", {id: row.id}, function (data) {
+                layerTools.layerMsg("操作成功！");
+                $("#dg").datagrid("reload");
+            });
+        });
+    }
 </script>
 <table id="dg" class="easyui-datagrid"
        url="${ctx!}/sysTask/query"

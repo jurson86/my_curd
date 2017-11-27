@@ -8,5 +8,5 @@ import com.hxkj.system.model.base.BaseSysDict;
  */
 @SuppressWarnings("serial")
 public class SysDict extends BaseSysDict<SysDict> {
-	public static final SysDict dao = new SysDict().dao();
+    public static final SysDict dao = new SysDict().dao();
 }

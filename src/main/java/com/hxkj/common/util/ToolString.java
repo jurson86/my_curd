@@ -230,8 +230,7 @@ public abstract class ToolString {
     /**
      * 将文件名中的汉字转为UTF8编码的串,以便下载时能正确显示另存的文件名.
      *
-     * @param s
-     *            原文件名
+     * @param s 原文件名
      * @return 重新编码后的文件名
      */
     public static String toUtf8String(String s) {

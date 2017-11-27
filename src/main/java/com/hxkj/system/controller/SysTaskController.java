@@ -5,7 +5,9 @@ import com.hxkj.common.util.BaseController;
 import com.hxkj.common.util.SearchSql;
 import com.hxkj.common.util.csv.CsvRender;
 import com.hxkj.system.model.SysTask;
+import com.hxkj.system.service.TaskService;
 import com.jfinal.aop.Before;
+import com.jfinal.aop.Duang;
 import com.jfinal.kit.StrKit;
 import com.jfinal.plugin.activerecord.Page;
 
@@ -58,12 +60,61 @@ public class SysTaskController extends BaseController {
         }
         List<SysTask> sysTasks = SysTask.dao.find(sqlSelect + sqlExceptSelect);
 
-        List<String> headers = Arrays.asList("名称", "任务类型", "任务值", "cron表达式","上次执行结果", "上次执行时间", "上次执行耗时", "状态");
-        List<String> columns = Arrays.asList("name", "task_type", "target_value", "cron","last_run_result", "last_run_time", "last_run_time_cost", "task_status");
+        List<String> headers = Arrays.asList("名称", "任务类型", "任务值", "cron表达式", "上次执行结果", "上次执行时间", "上次执行耗时", "状态");
+        List<String> columns = Arrays.asList("name", "task_type", "target_value", "cron", "last_run_result", "last_run_time", "last_run_time_cost", "task_status");
         CsvRender csvRender = new CsvRender(headers, sysTasks);
         csvRender.fileName("task.csv");
         csvRender.clomuns(columns);
         render(csvRender);
-
     }
+
+    public void newModel() {
+        String id = getPara("id");
+        if (id != null) {
+            SysTask sysTask = SysTask.dao.findById(id);
+            setAttr("sysTask", sysTask);
+        }
+        render("system/sysTask_form.html");
+    }
+
+    public void addAction() {
+        SysTask sysTask = getBean(SysTask.class, "");
+        TaskService taskService = Duang.duang(TaskService.class);
+        taskService.add(sysTask);
+        addOpLog("[定时任务：" + sysTask.getName() + "]增加");
+        renderText(Constant.ADD_SUCCESS);
+    }
+
+    public void updateAction() {
+        SysTask sysTask = getBean(SysTask.class, "");
+        TaskService taskService = Duang.duang(TaskService.class);
+        taskService.update(sysTask);
+        addOpLog("[定时任务] 修改");
+        renderText(Constant.UPDATE_SUCCESS);
+    }
+
+    public void deleteAction() {
+        Integer id = getParaToInt("id");
+        TaskService taskService = Duang.duang(TaskService.class);
+        taskService.delete(id);
+        addOpLog("[定时任务] 删除");
+        renderText(Constant.DELETE_SUCCESS);
+    }
+
+
+    //启动/停止任务
+    public void startOrStop() {
+        TaskService taskService = Duang.duang(TaskService.class);
+        taskService.startOrStop(getParaToInt("id"), getParaToInt("status"));
+        renderSuccess();
+    }
+
+    //立即执行
+    public void runAtSoon() {
+        TaskService taskService = Duang.duang(TaskService.class);
+        SysTask sysTask = SysTask.dao.findById(getPara("id"));
+        taskService.runAtSoon(sysTask);
+        renderSuccess();
+    }
+
 }

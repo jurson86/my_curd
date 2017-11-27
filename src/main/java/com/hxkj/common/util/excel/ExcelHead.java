@@ -5,67 +5,65 @@ import java.util.Map;
 
 /**
  * Excel头信息
- *
- * 
  */
 public class ExcelHead {
-	/**
-	 * 列信息
-	 */
-	private List<ExcelColumn> columns;
-	
-	/**
-	 * 需要转换的列
-	 */
-	private Map<String, Map> columnsConvertMap;
-	
-	/**
-	 * 头部所占用的行数
-	 */
-	private int rowCount;
-	
-	/**
-	 * 头部所占用的列数
-	 */
-	private int columnCount;
+    /**
+     * 列信息
+     */
+    private List<ExcelColumn> columns;
 
-	public List<ExcelColumn> getColumns() {
-		return columns;
-	}
+    /**
+     * 需要转换的列
+     */
+    private Map<String, Map> columnsConvertMap;
 
-	public int getRowCount() {
-		return rowCount;
-	}
+    /**
+     * 头部所占用的行数
+     */
+    private int rowCount;
 
-	public int getColumnCount() {
-		return columnCount;
-	}
+    /**
+     * 头部所占用的列数
+     */
+    private int columnCount;
 
-	public void setColumns(List<ExcelColumn> columns) {
-		this.columns = columns;
-	}
+    public List<ExcelColumn> getColumns() {
+        return columns;
+    }
 
-	public void setRowCount(int rowCount) {
-		this.rowCount = rowCount;
-	}
+    public void setColumns(List<ExcelColumn> columns) {
+        this.columns = columns;
+    }
 
-	public void setColumnCount(int columnCount) {
-		this.columnCount = columnCount;
-	}
+    public int getRowCount() {
+        return rowCount;
+    }
 
-	public Map<String, Map> getColumnsConvertMap() {
-		return columnsConvertMap;
-	}
+    public void setRowCount(int rowCount) {
+        this.rowCount = rowCount;
+    }
 
-	public void setColumnsConvertMap(Map<String, Map> columnsConvertMap) {
-		this.columnsConvertMap = columnsConvertMap;
-	}
+    public int getColumnCount() {
+        return columnCount;
+    }
 
-	@Override
-	public String toString() {
-		return "ExcelHead [columnCount=" + columnCount + ", columns=" + columns
-				+ ", columnsConvertMap=" + columnsConvertMap + ", rowCount="
-				+ rowCount + "]";
-	}
+    public void setColumnCount(int columnCount) {
+        this.columnCount = columnCount;
+    }
+
+    public Map<String, Map> getColumnsConvertMap() {
+        return columnsConvertMap;
+    }
+
+    public void setColumnsConvertMap(Map<String, Map> columnsConvertMap) {
+        this.columnsConvertMap = columnsConvertMap;
+    }
+
+    @Override
+    public String toString() {
+        return "ExcelHead [columnCount=" + columnCount + ", columns=" + columns
+                + ", columnsConvertMap=" + columnsConvertMap + ", rowCount="
+                + rowCount + "]";
+    }
 
 }

@@ -11,6 +11,7 @@ public class SearchFilter {
     public String fieldName;
     public Object value;
     public Operator operator;
+
     public SearchFilter(String fieldName, Operator operator, Object value) {
         this.fieldName = fieldName;
         this.value = value;

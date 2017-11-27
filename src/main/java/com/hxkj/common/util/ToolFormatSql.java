@@ -40,6 +40,13 @@ public abstract class ToolFormatSql {
         }
     }
 
+    public static void main(String[] args) {
+
+        String sql = "select s.*   from (select b.*,c.drivername as drivernames,c.drivernum as drivernums,c.driverphone as driverphones,c.id as idc,c.money as moneys,(select count(*) from log_quotn a where b.id=a.orderid  ) as num, (select name from log_company a where b.companyid=a.id  ) as companyname  from log_order b left join log_quotn c on c.orderid=b.id and c.flag='1')s  order by  lrrq desc,flag asc,quotn_end asc limit 0, 50";
+        System.out.println(format(sql));
+
+    }
+
     /**
      * DDL
      */
@@ -441,13 +448,6 @@ public abstract class ToolFormatSql {
             }
             beginLine = true;
         }
-    }
-
-    public static void main(String[] args) {
-
-        String sql = "select s.*   from (select b.*,c.drivername as drivernames,c.drivernum as drivernums,c.driverphone as driverphones,c.id as idc,c.money as moneys,(select count(*) from log_quotn a where b.id=a.orderid  ) as num, (select name from log_company a where b.companyid=a.id  ) as companyname  from log_order b left join log_quotn c on c.orderid=b.id and c.flag='1')s  order by  lrrq desc,flag asc,quotn_end asc limit 0, 50";
-        System.out.println(format(sql));
-
     }
 
 }

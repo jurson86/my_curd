@@ -1,22 +1,21 @@
 package com.hxkj.common.Task;
 
-import java.util.Date;
-
+import com.hxkj.common.constant.TaskConstant;
+import com.hxkj.system.model.SysTask;
+import com.hxkj.system.model.SysTaskLog;
 import com.jfinal.plugin.activerecord.Db;
 import com.jfinal.plugin.cron4j.ITask;
 import jodd.util.StringUtil;
 
-import com.hxkj.system.model.SysTask;
-import com.hxkj.system.model.SysTaskLog;
-import com.hxkj.common.constant.TaskConstant;
+import java.util.Date;
 
 /**
- *  cron4j 通过 Runnable 实现类
+ * cron4j 通过 Runnable 实现类
  */
 public class MyTask implements ITask {
-    private int id;	            //taskBaseId
-    private int taskTargetType;	//任务类型
-    private String taskTargetValue;	//任务值
+    private int id;                //taskBaseId
+    private int taskTargetType;    //任务类型
+    private String taskTargetValue;    //任务值
 
     public MyTask(int taskTargetType, String taskTargetValue) {
         this.taskTargetType = taskTargetType;
@@ -39,26 +38,26 @@ public class MyTask implements ITask {
         String result = "成功";
         try {
             for (final String value : taskTargetValue.trim().split(";")) {
-                if(StringUtil.isEmpty(value)) {
+                if (StringUtil.isEmpty(value)) {
                     continue;
                 }
 
-                if(taskTargetType == TaskConstant.TASK_TARGET_TYPE1) {
+                if (taskTargetType == TaskConstant.TASK_TARGET_TYPE1) {
                     // String content = UrlUtil.getAsText(value);
                     // TODO 执行结果判断
 
-                }else if(taskTargetType == TaskConstant.TASK_TARGET_TYPE2) {
+                } else if (taskTargetType == TaskConstant.TASK_TARGET_TYPE2) {
                     Db.find(value);
                     //权限太大慎用，可执行任意SQL
-					/*Db.execute(new ICallback() {
-						@Override
+                    /*Db.execute(new ICallback() {
+                        @Override
 						public Object call(Connection conn) throws SQLException {
 							conn.createStatement().execute(value);
 							return true;
 						}
 					});*/
 
-                }else if(taskTargetType == TaskConstant.TASK_TARGET_TYPE3) {
+                } else if (taskTargetType == TaskConstant.TASK_TARGET_TYPE3) {
                     ITask task = (ITask) Class.forName(value).newInstance();
                     task.run();
                 }
@@ -77,7 +76,7 @@ public class MyTask implements ITask {
         log.update();
 
         //更新任务运行信息
-        if(id > 0) {
+        if (id > 0) {
             SysTask sysTask = SysTask.dao.findById(id);
             sysTask.setLastRunResult(result);
             sysTask.setLastRunTime(startDate);

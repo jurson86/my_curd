@@ -61,7 +61,7 @@ public abstract class ToolImageTailor {
             ImageReadParam param = reader.getDefaultReadParam();
 
 			/*
-			 * 图片裁剪区域。Rectangle 指定了坐标空间中的一个区域，通过 Rectangle 对象 的左上顶点的坐标（x，y）、宽度和高度可以定义这个区域。
+             * 图片裁剪区域。Rectangle 指定了坐标空间中的一个区域，通过 Rectangle 对象 的左上顶点的坐标（x，y）、宽度和高度可以定义这个区域。
 			 */
             Rectangle rect = new Rectangle(x, y, width, height);
 

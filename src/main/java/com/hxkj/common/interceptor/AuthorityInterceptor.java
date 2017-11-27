@@ -5,7 +5,6 @@ import com.hxkj.common.util.BaseController;
 import com.hxkj.system.model.SysMenu;
 import com.jfinal.aop.Interceptor;
 import com.jfinal.aop.Invocation;
-import com.jfinal.kit.JsonKit;
 import com.jfinal.kit.StrKit;
 import org.apache.log4j.Logger;
 
