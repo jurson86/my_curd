@@ -28,6 +28,7 @@ public class SystemMappingKit {
         arp.addMapping("sys_user_role", "role_id,user_id", SysUserRole.class);
         arp.addMapping("sys_task", "id", SysTask.class);
         arp.addMapping("sys_task_log", "id", SysTaskLog.class);
+        arp.addMapping("sys_dict", "id", SysDict.class);
     }
 }
 

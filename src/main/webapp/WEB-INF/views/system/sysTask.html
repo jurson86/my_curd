@@ -35,6 +35,21 @@
 </head>
 <body>
 <script type="text/javascript">
+
+    function newModel(){
+        layerTools.layerIframe('新建', '${ctx!}/sysTask/newModel', '600px', '450px');
+    }
+
+    function editModel() {
+        var row = $("#dg").treegrid("getSelected");
+        if (row != null) {
+            layerTools.layerIframe('编辑', '${ctx!}/sysTask/newModel?id=' + row.id, '600px', '450px')
+        } else {
+            layerTools.layerMsg('请选择一行数据进行编辑');
+        }
+    }
+
+
     function exportToCsv() {
         var queryParams = {};
         queryParams['search_LIKE_st.name'] = $("#name").textbox("getValue");
@@ -44,22 +59,18 @@
     }
 
     function deleteModel() {
-        var rows = $("#dg").datagrid("getSelections");
-        if (rows != null) {
-            layerTools.confirm(3, '删除', '您确定要删除选中的记录吗?', function () {
-                var ids = [];
-                for (x in rows) {
-                    ids.push(rows[x].id);
-                }
-                ids = ids.join(',');
-                $.post('${ctx}/sysTask/deleteAction?ids=' + ids, function (data) {
+        var row = $("#dg").datagrid("getSelected");
+        if (row != null) {
+            layerTools.confirm(3, '删除', '您确定要删除选中的任务吗?', function () {
+                $.post('${ctx}/sysTask/deleteAction?id=' + row.id, function (data) {
                     layerTools.layerMsg(data, function () {
                         $('#dg').datagrid('reload');
                     });
                 }, "text");
             });
+
         } else {
-            layerTools.layerMsg('请选择记录进行删除');
+            layerTools.layerMsg('请选择一个进行删除');
         }
     }
 
@@ -126,8 +137,8 @@
 </table>
 
 <div id="tb">
-    <a onclick="deleteModel()" class="easyui-linkbutton" data-options="iconCls:'icon-add',plain:true">增加</a>
-    <a onclick="deleteModel()" class="easyui-linkbutton" data-options="iconCls:'icon-edit',plain:true">编辑</a>
+    <a onclick="newModel()" class="easyui-linkbutton" data-options="iconCls:'icon-add',plain:true">增加</a>
+    <a onclick="editModel()" class="easyui-linkbutton" data-options="iconCls:'icon-edit',plain:true">编辑</a>
     <a onclick="deleteModel()" class="easyui-linkbutton" data-options="iconCls:'icon-remove',plain:true">删除</a>
     <a onclick="exportToCsv()" class="easyui-linkbutton" data-options="iconCls:'icon-csv',plain:true">导出csv</a>
     <span class="searchInputArea" >
@@ -153,8 +164,8 @@
         }else {
             html += '<a class="pure-button button-success" href="###" onclick="startOrStop(' + index + ', 1)">启动</a>';
         }
-        html += '<a class="pure-button button-warning" href="###" onclick="runAtSoon(' + index + ')">立即执行</a>';
-        html += '<a class="pure-button button-secondary" href="###" onclick="runLog(' + index + ')">执行记录</a>';
+        html += '<a class="pure-button button-warning" href="###" onclick="runAtSoon(' + index + ')">立即</a>';
+        html += '<a class="pure-button button-secondary" href="###" onclick="runLog(' + index + ')">记录</a>';
         return html;
     }
 </script>

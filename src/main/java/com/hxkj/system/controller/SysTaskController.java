@@ -4,6 +4,7 @@ import com.hxkj.common.constant.Constant;
 import com.hxkj.common.util.BaseController;
 import com.hxkj.common.util.SearchSql;
 import com.hxkj.common.util.csv.CsvRender;
+import com.hxkj.system.model.SysDict;
 import com.hxkj.system.model.SysTask;
 import com.hxkj.system.service.TaskService;
 import com.jfinal.aop.Before;
@@ -73,7 +74,12 @@ public class SysTaskController extends BaseController {
         if (id != null) {
             SysTask sysTask = SysTask.dao.findById(id);
             setAttr("sysTask", sysTask);
+            List<SysDict>  taskStatus = SysDict.dao.find("select * from sys_dict where dict_type = 'task_statu' ");
+            setAttr("taskStatus",taskStatus);
         }
+
+        List<SysDict>  taskTypes = SysDict.dao.find("select * from sys_dict where dict_type = 'task_type' ");
+        setAttr("taskTypes",taskTypes);
         render("system/sysTask_form.html");
     }
 
