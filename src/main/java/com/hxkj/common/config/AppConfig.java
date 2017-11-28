@@ -27,6 +27,7 @@ import freemarker.template.TemplateModelException;
 import javax.servlet.http.HttpServletRequest;
 
 public class AppConfig extends JFinalConfig {
+
     public static void main(String[] args) {
         JFinal.start("WebRoot", 80, "/");
     }

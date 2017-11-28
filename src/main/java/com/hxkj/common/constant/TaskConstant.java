@@ -9,13 +9,16 @@ import java.util.Map;
  */
 public class TaskConstant {
     /**
-     * 任务状态 运行中
+     * 任务状态 等待运行
      **/
     public final static int TASK_STATU1 = 1;
     /**
      * 任务状态 已停止
      **/
     public final static int TASK_STATU2 = 2;
+
+    // 任务运行中
+    public final static  int TASK_STATU3 = 3;
 
     /**
      * 任务目标类型 URL

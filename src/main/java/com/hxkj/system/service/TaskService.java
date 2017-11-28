@@ -1,10 +1,12 @@
 package com.hxkj.system.service;
 
-import com.hxkj.common.Task.MyTask;
+import com.hxkj.common.task.TaskWraper;
 import com.hxkj.common.constant.TaskConstant;
 import com.hxkj.common.exception.ErrorMsgException;
 import com.hxkj.common.util.ToolDateTime;
 import com.hxkj.system.model.SysTask;
+import com.jfinal.aop.Before;
+import com.jfinal.plugin.activerecord.tx.Tx;
 import com.jfinal.plugin.cron4j.Cron4jPlugin;
 import com.jfinal.plugin.cron4j.ITask;
 
@@ -15,6 +17,7 @@ import java.util.List;
 /**
  * 定时任务service
  */
+@Before(Tx.class)
 public class TaskService {
 
     /**
@@ -26,9 +29,10 @@ public class TaskService {
         int count = 0;
         for (SysTask taskBase : taskList) {
             Cron4jPlugin cp = new Cron4jPlugin();
-            cp.addTask(taskBase.getCron(), createTask(taskBase));
-            TaskConstant.getTaskMap().put(taskBase.getId(), cp);
+            cp.addTask(taskBase.getCron(), createTask(taskBase));  // cp中添加任务
+            TaskConstant.getTaskMap().put(taskBase.getId(), cp);   // 任务id， cp
             if (taskBase.getStatus() == TaskConstant.TASK_STATU1) {
+                // 状态等待运行
                 cp.start();
                 count++;
             }
@@ -76,8 +80,11 @@ public class TaskService {
      */
     public void update(SysTask taskBase) {
         Cron4jPlugin cp = (Cron4jPlugin) TaskConstant.getTaskMap().get(taskBase.getId());
+
+        SysTask sysTaskOld = SysTask.dao.findById(taskBase.getId());
         try {
-            if (taskBase.getStatus() == TaskConstant.TASK_STATU1) {
+            // 原来的 状态为 不为 "停止“ ，停止原来的运行任务
+            if (sysTaskOld.getStatus() == TaskConstant.TASK_STATU1 || sysTaskOld.getStatus() == TaskConstant.TASK_STATU3) {
                 cp.stop();
             }
         } catch (Exception e) {
@@ -85,6 +92,7 @@ public class TaskService {
             throw new ErrorMsgException("任务停止失败，" + e.getMessage());
         }
 
+        // 创建新的task
         cp = new Cron4jPlugin();
         cp.addTask(taskBase.getCron(), createTask(taskBase));
         try {
@@ -131,6 +139,7 @@ public class TaskService {
      */
     public void runAtSoon(SysTask taskBase) {
         createTask(taskBase).run();
+        // 阻塞
     }
 
     /**
@@ -140,7 +149,7 @@ public class TaskService {
      * @return ITask
      */
     private ITask createTask(SysTask taskBase) {
-        ITask task = new MyTask(taskBase.getId(), taskBase.getTargetType(), taskBase.getTargetValue());
+        ITask task = new TaskWraper(taskBase.getId(), taskBase.getTargetType(), taskBase.getTargetValue());
         return task;
     }
 

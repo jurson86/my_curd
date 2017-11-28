@@ -9,12 +9,18 @@ import com.hxkj.system.model.SysTask;
 import com.hxkj.system.service.TaskService;
 import com.jfinal.aop.Before;
 import com.jfinal.aop.Duang;
+import com.jfinal.kit.JsonKit;
 import com.jfinal.kit.StrKit;
 import com.jfinal.plugin.activerecord.Page;
 
 import java.util.Arrays;
 import java.util.List;
 
+
+/**
+ *  糟糕的设计，实用价值不大。
+ *  //TODO　重构
+ */
 public class SysTaskController extends BaseController {
 
     public void index() {
@@ -85,9 +91,12 @@ public class SysTaskController extends BaseController {
 
     public void addAction() {
         SysTask sysTask = getBean(SysTask.class, "");
+        System.out.println(JsonKit.toJson(sysTask));
+
         TaskService taskService = Duang.duang(TaskService.class);
         taskService.add(sysTask);
-        addOpLog("[定时任务：" + sysTask.getName() + "]增加");
+        addOpLog("[定时任务]增加");
+
         renderText(Constant.ADD_SUCCESS);
     }
 
@@ -117,6 +126,8 @@ public class SysTaskController extends BaseController {
 
     //立即执行
     public void runAtSoon() {
+        //（不可以长时间任务）
+        // 长时间 任务 会一致阻塞当前 线程，前台得不到反馈
         TaskService taskService = Duang.duang(TaskService.class);
         SysTask sysTask = SysTask.dao.findById(getPara("id"));
         taskService.runAtSoon(sysTask);

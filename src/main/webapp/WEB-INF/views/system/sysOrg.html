@@ -3,6 +3,17 @@
 <link rel="stylesheet" href="${ctx!}/res/css/magic-check.css">
 <link rel="stylesheet" href="${ctx!}/res/layer/theme/default/layer.css">
 <link rel="stylesheet" href="${ctx!}/res/pure/tables-min.css">
+<style>
+    .tree-folder {
+        background:url('${ctx!}/res/easyui153/themes/cus-icons/org.png') no-repeat center center;
+    }
+    .tree-folder-open {
+        background: url('${ctx!}/res/easyui153/themes/cus-icons/org.png') no-repeat center center;
+    }
+    .tree-file {
+        background: url('${ctx!}/res/easyui153/themes/cus-icons/org2.png') no-repeat center center;
+    }
+</style>
 <script>
     function newModel() {
         layerTools.layerIframe('新建', '${ctx!}/sysOrg/newModel', '600px', '600px')
@@ -130,6 +141,7 @@
             rownumbers: true,
             toolbar: '#tt-tb',
             loadFilter: function (data) {
+
                 data = easyTree.treeDataBuild(data, 'id', 'pid', 'orgName,orgAddress,orgRemark,sort');
                 return data;
             },

@@ -142,7 +142,7 @@
             onSelect: function (index, row) {
                 var url = "${ctx!}/sysRole/menuTreePermissionChecked/" + row.id;
                 $.getJSON(url, function (data) {
-                    data = easyTree.treeDataBuild(data, 'id', 'pid', 'text,state,checked,pid');
+                    data = easyTree.treeDataBuild(data, 'id', 'pid', 'text,state,checked,pid,iconCls');
                     $("#allMenuTree").tree({
                         data: data,
                         checkbox: true

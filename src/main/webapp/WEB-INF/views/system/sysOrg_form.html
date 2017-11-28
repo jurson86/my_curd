@@ -1,6 +1,17 @@
 <#include "/WEB-INF/views/common/common.html"/>
 <@layout>
 <link rel="stylesheet" href="${ctx!}/res/pure/tables-min.css">
+<style>
+    .tree-folder {
+        background:url('${ctx!}/res/easyui153/themes/cus-icons/org.png') no-repeat center center;
+    }
+    .tree-folder-open {
+        background: url('${ctx!}/res/easyui153/themes/cus-icons/org.png') no-repeat center center;
+    }
+    .tree-file {
+        background: url('${ctx!}/res/easyui153/themes/cus-icons/org2.png') no-repeat center center;
+    }
+</style>
 <script>
     function saveAction() {
         var url;
@@ -27,20 +38,20 @@
 </head>
 <body style="padding: 10px 30px; ">
 <form id="modelForm" method="POST">
-    <table class=" pure-table pure-table-horizontal">
+    <table class=" pure-table pure-table-horizontal" style="width: 80%;">
         <input id="id" name="id" type="hidden" value="${(sysOrg.id)!}">
         <tbody>
         <tr>
             <td>父机构</td>
             <td>
-                <input name="pid" id="pid">
+                <input name="pid" id="pid" style="width: 100%;">
             </td>
         </tr>
         <tr>
             <td>机构名：</td>
             <td>
                 <input name="orgName" value="${(sysOrg.orgName)!}" type="text" class="easyui-textbox"
-                       data-options="required:true">
+                       data-options="required:true" >
             </td>
         </tr>
         <tr>

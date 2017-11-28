@@ -116,7 +116,7 @@ public class SysMenuController extends BaseController {
             map.put("id", sysMenu.getId());
             map.put("pid", sysMenu.getPid());
             map.put("text", sysMenu.getName());
-            map.put("icon", sysMenu.getIcon());
+            map.put("iconCls", sysMenu.getIcon());
             map.put("open", true);
             maps.add(map);
         }

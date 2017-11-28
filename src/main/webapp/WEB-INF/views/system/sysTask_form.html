@@ -91,21 +91,4 @@
     <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-cancel'"
        onclick="parent.layer.close(parent.layer.getFrameIndex(window.name));">取消</a>
 </div>
-<script src="${ctx!}/res/js/easyui-tree-tools.js"></script>
-<script type="text/javascript" charset="utf-8">
-    ;(function () {
-        var easyTree = new EasyTree();
-        $("#orgId").combotree({
-            url: '${ctx!}/sysOrg/allOrg',
-            value: '${(sysUser.orgId)!}',
-            loadFilter: function (data, parent) {
-                // 数据处理
-                //console.log(JSON.stringify(data));
-                data = easyTree.treeDataBuild(data, "id", "pid", "text,open");
-                // console.log(data);
-                return data;
-            }
-        });
-    })();
-</script>
 </@layout>

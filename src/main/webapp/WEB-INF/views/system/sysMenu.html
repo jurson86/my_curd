@@ -68,7 +68,16 @@
             rownumbers: true,
             toolbar: '#tt-tb',
             loadFilter: function (data) {
-                data = easyTree.treeDataBuild(data, 'id', 'pid', 'name,url,icon,sort');
+
+                // 为了显示图标
+                for(var i=0;i<data.length;i++){
+                    if(data[i].icon != null){
+                        console.log(data[i].icon);
+                        data[i].iconCls = data[i].icon;
+                    }
+                }
+                // tree json 构建
+                data = easyTree.treeDataBuild(data, 'id', 'pid', 'name,url,icon,sort,iconCls');
                 return data;
             },
             columns: [[
