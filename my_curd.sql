@@ -4,13 +4,13 @@ Navicat MySQL Data Transfer
 Source Server         : localhost
 Source Server Version : 50719
 Source Host           : localhost:3306
-Source Database       : admin
+Source Database       : my_curd
 
 Target Server Type    : MYSQL
 Target Server Version : 50719
 File Encoding         : 65001
 
-Date: 2017-11-29 23:06:08
+Date: 2017-11-29 23:34:09
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -201,6 +201,7 @@ INSERT INTO `sys_oplog` VALUES ('935476466437586944', '916654989969981440', '登
 INSERT INTO `sys_oplog` VALUES ('935797849763872768', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-11-29 17:09:28');
 INSERT INTO `sys_oplog` VALUES ('935798049261748224', '916654989969981440', '[定时任务] 删除', '0:0:0:0:0:0:0:1', '2017-11-29 17:10:15');
 INSERT INTO `sys_oplog` VALUES ('935812586975264768', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-11-29 18:08:01');
+INSERT INTO `sys_oplog` VALUES ('935893994984964096', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-11-29 23:31:31');
 
 -- ----------------------------
 -- Table structure for `sys_org`

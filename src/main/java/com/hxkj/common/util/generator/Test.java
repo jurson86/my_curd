@@ -6,7 +6,7 @@ import javax.sql.DataSource;
 
 public class Test {
     public static DataSource getDataSource() {
-        DruidPlugin dp = new DruidPlugin("jdbc:mysql://127.0.0.1/admin?characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=true", "root", "123456");
+        DruidPlugin dp = new DruidPlugin("jdbc:mysql://127.0.0.1/my_curd?characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=true", "root", "123456");
         dp.start();
         return dp == null ? null : dp.getDataSource();
     }
