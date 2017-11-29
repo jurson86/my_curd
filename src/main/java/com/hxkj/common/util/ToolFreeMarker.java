@@ -1,14 +1,19 @@
 package com.hxkj.common.util;
 
 
+import com.jfinal.kit.PathKit;
 import com.jfinal.log.Log;
 import freemarker.cache.TemplateLoader;
 import freemarker.template.Configuration;
 import freemarker.template.DefaultObjectWrapper;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
+import org.apache.commons.io.FileUtils;
 
 import java.io.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -18,10 +23,38 @@ public abstract class ToolFreeMarker {
 
     private static final Log log = Log.getLog(ToolFreeMarker.class);
 
+    public static void main(String[] args) {
+
+        String tplFilePath  = PathKit.getRootClassPath()+File.separator+"tpl"+File.separator+"test.ftl";
+        System.out.println(tplFilePath);
+        if(!new File(tplFilePath).exists()){
+            return;
+        }
+        String encoding="UTF-8";
+        try {
+            String tplContent = FileUtils.readFileToString(new File(tplFilePath),encoding);
+            List<Map<String,Object>> maps = new ArrayList<Map<String,Object>>();
+            Map<String,Object> map = new HashMap<String,Object>();
+            map.put("name","chuang");
+            Map<String,Object> map2 = new HashMap<String,Object>();
+            map2.put("name","li");
+            maps.add(map);
+            maps.add(map2);
+
+            Map<String,Object> paramMap = new HashMap<String,Object>();
+            paramMap.put("persons",maps);
+            String result = render(tplContent,paramMap);
+            System.out.println(result);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     /**
-     * 渲染模板
+     * 通过ftl 和参数 获得 渲染后的 字符串
      *
-     * @param templateContent
+     * @param templateContent   ftl文件文本内容
      * @param paramMap
      * @return
      */
@@ -32,7 +65,6 @@ public abstract class ToolFreeMarker {
             Configuration cfg = new Configuration(Configuration.VERSION_2_3_22);
             cfg.setTemplateLoader(new StringTemplateLoader(templateContent));
             cfg.setDefaultEncoding("UTF-8");
-
             Template template = cfg.getTemplate("");
 
             template.process(paramMap, writer);
