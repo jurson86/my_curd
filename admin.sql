@@ -10,10 +10,41 @@ Target Server Type    : MYSQL
 Target Server Version : 50719
 File Encoding         : 65001
 
-Date: 2017-11-29 18:09:54
+Date: 2017-11-29 23:06:08
 */
 
 SET FOREIGN_KEY_CHECKS=0;
+
+-- ----------------------------
+-- Table structure for `bus_novel`
+-- ----------------------------
+DROP TABLE IF EXISTS `bus_novel`;
+CREATE TABLE `bus_novel` (
+  `id` varchar(32) NOT NULL,
+  `title` varchar(255) DEFAULT NULL,
+  `author` varchar(255) DEFAULT NULL,
+  `create_time` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of bus_novel
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for `bus_novel_chapter`
+-- ----------------------------
+DROP TABLE IF EXISTS `bus_novel_chapter`;
+CREATE TABLE `bus_novel_chapter` (
+  `id` varchar(32) NOT NULL,
+  `title` varchar(255) DEFAULT NULL,
+  `content` text,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of bus_novel_chapter
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for `sys_dict`

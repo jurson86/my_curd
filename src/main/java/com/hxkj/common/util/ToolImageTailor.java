@@ -69,7 +69,7 @@ public abstract class ToolImageTailor {
             param.setSourceRegion(rect);
 
 			/*
-			 * 使用所提供的 ImageReadParam 读取通过索引 imageIndex 指定的对象，并将 它作为一个完整的 BufferedImage 返回。
+             * 使用所提供的 ImageReadParam 读取通过索引 imageIndex 指定的对象，并将 它作为一个完整的 BufferedImage 返回。
 			 */
             BufferedImage bi = reader.read(0, param);
 

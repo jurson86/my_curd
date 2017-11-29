@@ -150,7 +150,7 @@ public class SysRoleController extends BaseController {
             map.put("id", sysMenu.getId());
             map.put("pid", sysMenu.getPid());
             map.put("text", sysMenu.getName());
-            map.put("iconCls",sysMenu.getIcon());
+            map.put("iconCls", sysMenu.getIcon());
             map.put("state", "open");
             for (SysRoleMenu sysRoleMenu : sysRoleMenus) {
                 // 中间表 有记录，且是 叶子

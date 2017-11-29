@@ -1,4 +1,4 @@
-package com.hxkj.common;
+package com.hxkj.common.util.generator;
 
 import com.jfinal.kit.PathKit;
 import com.jfinal.kit.PropKit;
@@ -8,6 +8,7 @@ import com.jfinal.plugin.c3p0.C3p0Plugin;
 import javax.sql.DataSource;
 
 /**
+ * Jfinal 官方 model 生成器
  * 本 demo 仅表达最为粗浅的 jfinal 用法，更为有价值的实用的企业级用法
  * 详见 JFinal 俱乐部: http://jfinal.com/club
  * <p>

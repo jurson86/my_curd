@@ -18,8 +18,8 @@ import java.util.List;
 
 
 /**
- *  糟糕的设计，实用价值不大。
- *  //TODO　重构
+ * 糟糕的设计，实用价值不大。
+ * //TODO　重构
  */
 public class SysTaskController extends BaseController {
 
@@ -80,12 +80,12 @@ public class SysTaskController extends BaseController {
         if (id != null) {
             SysTask sysTask = SysTask.dao.findById(id);
             setAttr("sysTask", sysTask);
-            List<SysDict>  taskStatus = SysDict.dao.find("select * from sys_dict where dict_type = 'task_statu' ");
-            setAttr("taskStatus",taskStatus);
+            List<SysDict> taskStatus = SysDict.dao.find("select * from sys_dict where dict_type = 'task_statu' ");
+            setAttr("taskStatus", taskStatus);
         }
 
-        List<SysDict>  taskTypes = SysDict.dao.find("select * from sys_dict where dict_type = 'task_type' ");
-        setAttr("taskTypes",taskTypes);
+        List<SysDict> taskTypes = SysDict.dao.find("select * from sys_dict where dict_type = 'task_type' ");
+        setAttr("taskTypes", taskTypes);
         render("system/sysTask_form.html");
     }
 

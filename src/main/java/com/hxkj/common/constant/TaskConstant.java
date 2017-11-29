@@ -18,7 +18,7 @@ public class TaskConstant {
     public final static int TASK_STATU2 = 2;
 
     // 任务运行中
-    public final static  int TASK_STATU3 = 3;
+    public final static int TASK_STATU3 = 3;
 
     /**
      * 任务目标类型 URL

@@ -25,25 +25,25 @@ public abstract class ToolFreeMarker {
 
     public static void main(String[] args) {
 
-        String tplFilePath  = PathKit.getRootClassPath()+File.separator+"tpl"+File.separator+"test.ftl";
+        String tplFilePath = PathKit.getRootClassPath() + File.separator + "tpl" + File.separator + "test.ftl";
         System.out.println(tplFilePath);
-        if(!new File(tplFilePath).exists()){
+        if (!new File(tplFilePath).exists()) {
             return;
         }
-        String encoding="UTF-8";
+        String encoding = "UTF-8";
         try {
-            String tplContent = FileUtils.readFileToString(new File(tplFilePath),encoding);
-            List<Map<String,Object>> maps = new ArrayList<Map<String,Object>>();
-            Map<String,Object> map = new HashMap<String,Object>();
-            map.put("name","chuang");
-            Map<String,Object> map2 = new HashMap<String,Object>();
-            map2.put("name","li");
+            String tplContent = FileUtils.readFileToString(new File(tplFilePath), encoding);
+            List<Map<String, Object>> maps = new ArrayList<Map<String, Object>>();
+            Map<String, Object> map = new HashMap<String, Object>();
+            map.put("name", "chuang");
+            Map<String, Object> map2 = new HashMap<String, Object>();
+            map2.put("name", "li");
             maps.add(map);
             maps.add(map2);
 
-            Map<String,Object> paramMap = new HashMap<String,Object>();
-            paramMap.put("persons",maps);
-            String result = render(tplContent,paramMap);
+            Map<String, Object> paramMap = new HashMap<String, Object>();
+            paramMap.put("persons", maps);
+            String result = render(tplContent, paramMap);
             System.out.println(result);
 
         } catch (IOException e) {
@@ -54,7 +54,7 @@ public abstract class ToolFreeMarker {
     /**
      * 通过ftl 和参数 获得 渲染后的 字符串
      *
-     * @param templateContent   ftl文件文本内容
+     * @param templateContent ftl文件文本内容
      * @param paramMap
      * @return
      */
