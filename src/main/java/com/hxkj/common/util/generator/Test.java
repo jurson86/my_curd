@@ -12,9 +12,9 @@ public class Test {
     }
 
     public static void main(String[] args) {
-        String[] templates = {"model.html", "baseModel.html"};   //model、basemodel   [可以views/list.html]
-        String[] paths = {"model", "model/base"};                //(分隔符根据系统而定) model、basemodel
-        String[] fileNameWrapers = {"@tableName@.java", "Base@tableName@.java"};             //model、basemodel
+        String[] templates = {"model.html", "baseModel.html","controller.html"};   //model、basemodel   [可以views/list.html]
+        String[] paths = {"model", "model/base","controller"};                //(分隔符根据系统而定) model、basemodel
+        String[] fileNameWrapers = {"@tableName@.java", "Base@tableName@.java","@tableName@Controller.java"};             //model、basemodel
 
         MyGenerator myGenerator = new MyGenerator();
         myGenerator.setTemplates(templates);
