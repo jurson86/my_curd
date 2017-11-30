@@ -1,5 +1,6 @@
 package ${(meta.basePackageName)!}.${(meta.moduleName)!}.model;
 
+import com.jfinal.kit.StrKit;
 import ${(meta.basePackageName)!}.${(meta.moduleName)!}.model.base.Base${meta.claUpName};
 
 /**
@@ -9,5 +10,16 @@ public class ${(meta.claUpName)!} extends Base${meta.claUpName}<${(meta.claUpNam
 
     private static final long serialVersionUID = 1L;
     public static final ${(meta.claUpName)!} dao = new ${(meta.claUpName)!}();
+
+    public Page<${(meta.claUpName)!}>  page(int pageNumber,int pageSize,String where ){
+
+        String sqlSelect = " select * ";
+        String sqlExceptSelect = " from ${(meta.tableName)!}  ";
+        if (StrKit.notBlank(where)) {
+            sqlExceptSelect += " where " + where;
+        }
+
+        return this.paginate(pageNumber,pageSize,sqlSelect,sqlExceptSelect);
+    };
 
 }

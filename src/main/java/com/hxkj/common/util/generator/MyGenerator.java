@@ -208,7 +208,9 @@ public class MyGenerator implements Generator {
             for (TableMeta tableMeta : tableMetaList) {
                 Map<String, Object> content = new HashMap<String, Object>();
                 String claLowName = StrKit.firstCharToLowerCase(StrKit.toCamelCase(tableMeta.modelName));
-                GeneratorMeta gm = new GeneratorMeta(tableMeta.name, tableMeta.modelName, claLowName, this.basePackageName, this.moduleName, tableMeta.columnMetas, tableMeta.remarks);
+
+                GeneratorMeta gm = new GeneratorMeta(tableMeta.name,tableMeta.primaryKey, tableMeta.modelName, claLowName,
+                        this.basePackageName, this.moduleName, tableMeta.columnMetas, tableMeta.remarks);
                 content.put("meta", gm);
                 for (int i = 0; i < templates.length; i++) {
                     String fileName;
