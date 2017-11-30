@@ -2,9 +2,9 @@
 <link rel="stylesheet" href="${ctx!}/res/layer/theme/default/layer.css">
 <link rel="stylesheet" href="${ctx!}/res/pure/buttons-min.css">
 <style>
-    .pure-button{
-        padding:5px 8px;
-        margin:5px 2px;
+    .pure-button {
+        padding: 5px 8px;
+        margin: 5px 2px;
     }
 
     .button-success,
@@ -36,7 +36,7 @@
 <body>
 <script type="text/javascript">
 
-    function newModel(){
+    function newModel() {
         layerTools.layerIframe('新建', '${ctx!}/sysTask/newModel', '600px', '450px');
     }
 
@@ -128,7 +128,7 @@
         <th field="targetValue" width="250">任务值</th>
         <th field="cron" width="80">cron表达式</th>
         <th field="lastRunResult" width="50">上次执行结果</th>
-        <th field="lastRunTime" width="120"  >上次执行时间</th>
+        <th field="lastRunTime" width="120">上次执行时间</th>
         <th field="lastRunTimeCost" width="80" formatter="formatLRTC">上次执行耗时</th>
         <th field="taskStatus" width="100" styler="formatStatus">状态</th>
         <th field="operate" width="200" formatter="formatOperate">操作</th>
@@ -141,7 +141,7 @@
     <a onclick="editModel()" class="easyui-linkbutton" data-options="iconCls:'icon-edit',plain:true">编辑</a>
     <a onclick="deleteModel()" class="easyui-linkbutton" data-options="iconCls:'icon-remove',plain:true">删除</a>
     <a onclick="exportToCsv()" class="easyui-linkbutton" data-options="iconCls:'icon-csv',plain:true">导出csv</a>
-    <span class="searchInputArea" >
+    <span class="searchInputArea">
           <input id="name" prompt="名称" class="easyui-textbox" style="width:120px; ">
           <a href="#" class="easyui-linkbutton" iconCls="icon-search" onclick="queryModel()">搜索</a>
     </span>
@@ -149,26 +149,26 @@
 <script src="${ctx!}/res/layer/layer.js"></script>
 <script src="${ctx!}/res/js/layer-tools.js"></script>
 <script>
-    function formatLRTC(val,row){
-        if(val == null || val == undefined){
+    function formatLRTC(val, row) {
+        if (val == null || val == undefined) {
             return val;
         }
-       return val/1000 +' 秒';
+        return val / 1000 + ' 秒';
     }
 
-    function formatStatus(val, row){
-        if(val == "等待运行") {
+    function formatStatus(val, row) {
+        if (val == "等待运行") {
             return 'background-color: #4cae4c; color: #fff;';
-        }else if(val == "运行中") {
+        } else if (val == "运行中") {
             return 'background-color: #4cae4c; color: #ffa500;';
         }
     }
 
-    function formatOperate(value, row, index){
+    function formatOperate(value, row, index) {
         var html = "";
-        if((row.status || row.status) == 1) {
+        if ((row.status || row.status) == 1) {
             html += '<a class="pure-button button-error" href="###" onclick="startOrStop(' + index + ', 2)">停止</a>';
-        }else {
+        } else {
             html += '<a class="pure-button button-success" href="###" onclick="startOrStop(' + index + ', 1)">启动</a>';
         }
         html += '<a class="pure-button button-warning" href="###" onclick="runAtSoon(' + index + ')">立即运行</a>';

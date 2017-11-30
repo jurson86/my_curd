@@ -1,8 +1,7 @@
-package com.hxkj.common.route;
+package com.hxkj.common.config;
 
 import com.hxkj.bus.controller.BusNovelController;
 import com.hxkj.common.constant.Constant;
-import com.hxkj.system.controller.LoginController;
 import com.jfinal.config.Routes;
 
 /**

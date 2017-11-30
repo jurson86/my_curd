@@ -12,17 +12,20 @@ public class Test {
     }
 
     public static void main(String[] args) {
-        String[] templates = {"model.html", "baseModel.html","controller.html"};   //model、basemodel   [可以views/list.html]
-        String[] paths = {"model", "model/base","controller"};                //(分隔符根据系统而定) model、basemodel
-        String[] fileNameWrapers = {"@tableName@.java", "Base@tableName@.java","@tableName@Controller.java"};             //model、basemodel
+        String[] templates = {"model.ftl", "baseModel.ftl",
+                "controller.ftl", "list.ftl", "form.ftl"};
+        String[] paths = {"model", "model/base",
+                "controller", "views/bus", "views/bus"};
+        String[] fileNameWrapers = {"@tableName@.java", "Base@tableName@.java",
+                "@tableName@Controller.java", "@tableName@.html", "@tableName@_form.html"};
 
-        MyGenerator myGenerator = new MyGenerator();
+        MyGenerator myGenerator = new MyGenerator(getDataSource());
         myGenerator.setTemplates(templates);
         myGenerator.setPaths(paths);
         myGenerator.setfileNameWrapers(fileNameWrapers);
 
         try {
-            myGenerator.gen2M2C(getDataSource());
+            myGenerator.gen2M2C();
         } catch (Exception e) {
             e.printStackTrace();
         }

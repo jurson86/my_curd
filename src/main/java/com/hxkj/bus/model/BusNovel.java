@@ -5,14 +5,14 @@ import com.jfinal.kit.StrKit;
 import com.jfinal.plugin.activerecord.Page;
 
 /**
-*  table name: bus_novel   
-*/
-public class BusNovel extends BaseBusNovel<BusNovel> implements java.io.Serializable{
+ * table name: bus_novel
+ */
+public class BusNovel extends BaseBusNovel<BusNovel> implements java.io.Serializable {
 
+    public static final BusNovel dao = new BusNovel().dao();
     private static final long serialVersionUID = 1L;
-    public static final BusNovel dao = new BusNovel();
 
-    public Page<BusNovel>  page(int pageNumber,int pageSize,String where ){
+    public Page<BusNovel> page(int pageNumber, int pageSize, String where) {
 
         String sqlSelect = " select * ";
         String sqlExceptSelect = " from bus_novel  ";
@@ -20,7 +20,9 @@ public class BusNovel extends BaseBusNovel<BusNovel> implements java.io.Serializ
             sqlExceptSelect += " where " + where;
         }
 
-        return this.paginate(pageNumber,pageSize,sqlSelect,sqlExceptSelect);
-    };
+        return this.paginate(pageNumber, pageSize, sqlSelect, sqlExceptSelect);
+    }
+
+    ;
 
 }

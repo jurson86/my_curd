@@ -1,5 +1,7 @@
-package com.hxkj.system.model;
+package com.hxkj.common.config;
 
+import com.hxkj.bus.model.BusNovel;
+import com.hxkj.system.model.*;
 import com.jfinal.plugin.activerecord.ActiveRecordPlugin;
 
 /**
@@ -13,10 +15,11 @@ import com.jfinal.plugin.activerecord.ActiveRecordPlugin;
  * }
  * </pre>
  */
-public class SystemMappingKit {
+public class MappingKit {
 
 
     public static void mapping(ActiveRecordPlugin arp) {
+
         arp.addMapping("sys_menu", "id", SysMenu.class);
         arp.addMapping("sys_oplog", "id", SysOplog.class);
         arp.addMapping("sys_org", "id", SysOrg.class);
@@ -29,6 +32,9 @@ public class SystemMappingKit {
         arp.addMapping("sys_task", "id", SysTask.class);
         arp.addMapping("sys_task_log", "id", SysTaskLog.class);
         arp.addMapping("sys_dict", "id", SysDict.class);
+
+
+        arp.addMapping("bus_novel", "id", BusNovel.class);
     }
 }
 

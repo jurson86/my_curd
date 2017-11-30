@@ -2,17 +2,17 @@ package ${(meta.basePackageName)!}.${(meta.moduleName)!}.controller;
 
 import com.jfinal.aop.Before;
 import com.jfinal.plugin.activerecord.Page;
+
 import com.hxkj.common.constant.Constant;
 import com.hxkj.common.util.BaseController;
 import com.hxkj.common.util.Identities;
 import com.hxkj.common.util.SearchSql;
-
 import ${(meta.basePackageName)!}.${(meta.moduleName)!}.model.${(meta.claUpName)!};
 
 /**
  * ${(meta.claUpName)!} 控制器
  */
-public class $ {(meta.claUpName)!}Controller extends BaseController{
+public class ${(meta.claUpName)!}Controller extends BaseController{
 
         /**
          * 列表页
@@ -42,7 +42,7 @@ public class $ {(meta.claUpName)!}Controller extends BaseController{
         public void newModel(){
             String id=getPara("id");
             if(id!=null){
-            ${(meta.claUpName)!}${(meta.claLowName)!}=${(meta.claUpName)!}.dao.findById(id);
+            ${(meta.claUpName)!} ${(meta.claLowName)!}=${(meta.claUpName)!}.dao.findById(id);
             setAttr("${(meta.claLowName)!}",${(meta.claLowName)!});
             }
 
@@ -55,7 +55,7 @@ public class $ {(meta.claUpName)!}Controller extends BaseController{
          */
         public void addAction(){
 
-            ${(meta.claUpName)!}${(meta.claLowName)!}=getBean(${(meta.claUpName)!}.class,"");
+            ${(meta.claUpName)!} ${(meta.claLowName)!}=getBean(${(meta.claUpName)!}.class,"");
             ${(meta.claLowName)!}.setId(Identities.uuid2());
             boolean saveFlag=${(meta.claLowName)!}.save();
             if(saveFlag){
@@ -83,7 +83,7 @@ public class $ {(meta.claUpName)!}Controller extends BaseController{
          * 修改
          */
         public void updateAction(){
-            ${(meta.claUpName)!}${(meta.claLowName)!}=getBean(${(meta.claUpName)!}.class,"");
+            ${(meta.claUpName)!} ${(meta.claLowName)!}=getBean(${(meta.claUpName)!}.class,"");
             boolean updateFlag=${(meta.claLowName)!}.update();
             if(updateFlag){
                 renderText(Constant.ADD_SUCCESS);

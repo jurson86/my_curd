@@ -4,9 +4,7 @@ import com.alibaba.druid.filter.stat.StatFilter;
 import com.alibaba.druid.wall.WallFilter;
 import com.hxkj.common.constant.Constant;
 import com.hxkj.common.interceptor.AuthorityInterceptor;
-import com.hxkj.common.route.SystemRoute;
 import com.hxkj.system.model.SysUser;
-import com.hxkj.system.model.SystemMappingKit;
 import com.hxkj.system.service.TaskService;
 import com.jfinal.aop.Duang;
 import com.jfinal.config.*;
@@ -29,7 +27,7 @@ import javax.servlet.http.HttpServletRequest;
 public class AppConfig extends JFinalConfig {
 
     public static void main(String[] args) {
-        JFinal.start("WebRoot", 80, "/");
+        //JFinal.start("WebRoot", 80, "/");
     }
 
     /**
@@ -62,6 +60,7 @@ public class AppConfig extends JFinalConfig {
     @Override
     public void configRoute(Routes me) {
         me.add(new SystemRoute()); // system 模块 路由
+        me.add(new BusRoute());  // bus 模块 路由
     }
 
     @Override
@@ -79,7 +78,8 @@ public class AppConfig extends JFinalConfig {
         arp.setShowSql(PropKit.getBoolean("devMode"));
         arp.setDialect(new MysqlDialect());
         // 系统模块 设置
-        SystemMappingKit.mapping(arp);
+        MappingKit.mapping(arp);
+
         me.add(dbPlugin);
         me.add(arp);
     }

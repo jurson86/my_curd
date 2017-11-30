@@ -27,8 +27,8 @@
 </head>
 <body style="padding: 10px 30px; ">
 <form id="modelForm" method="POST">
-    <table class=" pure-table pure-table-horizontal"  >
-        <input id="id" name="id" type="hidden" value="${(sysTask.id)!}"  >
+    <table class=" pure-table pure-table-horizontal">
+        <input id="id" name="id" type="hidden" value="${(sysTask.id)!}">
         <tbody>
         <tr>
             <td>名称：</td>
@@ -40,7 +40,7 @@
         <tr>
             <td>任务类型：</td>
             <td>
-                    <input    class="easyui-combobox" id="targetType" name="targetType"   data-options="
+                <input class="easyui-combobox" id="targetType" name="targetType" data-options="
                                 value:'${(sysTask.targetType)!}',
 	            				valueField: 'id',
    								textField: 'text',
@@ -49,14 +49,15 @@
 	            					{id:'', text:''}<#list taskTypes as taskType>,{id:'${(taskType.dictKey)!}', text:'${(taskType.dictValue)!}'}</#list>
 	            				]
 	            				,required:true
-	            	" />
+	            	"/>
             </td>
         </tr>
 
         <tr>
             <td>任务值：</td>
             <td>
-                <input name="targetValue" value="${(sysTask.targetValue)!}" type="text" class="easyui-textbox" style="height: 100px; "
+                <input name="targetValue" value="${(sysTask.targetValue)!}" type="text" class="easyui-textbox"
+                       style="height: 100px; "
                        data-options="required:true,multiline:true">
             </td>
 
@@ -64,14 +65,14 @@
         <tr>
             <td>cron表达式:</td>
             <td>
-                <input name="cron"  class="easyui-textbox"    value="${(sysTask.cron)!}"    data-options="required:true">
+                <input name="cron" class="easyui-textbox" value="${(sysTask.cron)!}" data-options="required:true">
             </td>
         </tr>
         <#if sysTask??>
             <tr>
                 <td>状态：</td>
-                <td  >
-                    <input   id="status" name="status" id="status" class="easyui-combobox"  data-options="
+                <td>
+                    <input id="status" name="status" id="status" class="easyui-combobox" data-options="
                             value:'${(sysTask.status)!}',
                				valueField: 'id',
         					textField: 'text',

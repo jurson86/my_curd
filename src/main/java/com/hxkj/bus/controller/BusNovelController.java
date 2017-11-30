@@ -1,13 +1,12 @@
 package com.hxkj.bus.controller;
 
-import com.jfinal.aop.Before;
-import com.jfinal.plugin.activerecord.Page;
-
+import com.hxkj.bus.model.BusNovel;
 import com.hxkj.common.constant.Constant;
 import com.hxkj.common.util.BaseController;
 import com.hxkj.common.util.Identities;
 import com.hxkj.common.util.SearchSql;
-import com.hxkj.bus.model.BusNovel;
+import com.jfinal.aop.Before;
+import com.jfinal.plugin.activerecord.Page;
 
 /**
  * BusNovel 控制器

@@ -9,6 +9,7 @@ import java.util.List;
 public class GeneratorMeta {
 
 
+    public List<GeneratorColumnMeta> cols; //字段  - （attrName重要)
     private String tableName;  //数据库表名字
     private String primaryKey; // 数据表主键名
     private String claUpName; //类名大写 (modelName)
@@ -17,14 +18,13 @@ public class GeneratorMeta {
     private String basePackageName; // 包基础路径
     private String moduleName;      // 模块的名称
 
-    public List<GeneratorColumnMeta> cols; //字段  - （attrName重要)
-
     public GeneratorMeta() {
     }
 
-    public GeneratorMeta(String tableName,String primaryKey, String claUpName, String claLowName, String basePackageName, String moduleName, List<ColumnMeta> cols, String remarks) {
+    public GeneratorMeta(String tableName, String primaryKey, String claUpName, String claLowName, String basePackageName, String moduleName, List<ColumnMeta> cols, String remarks) {
         super();
         this.tableName = tableName;
+        this.primaryKey = primaryKey;
         this.claUpName = claUpName;
         this.claLowName = claLowName;
         this.basePackageName = basePackageName;
@@ -32,6 +32,7 @@ public class GeneratorMeta {
 
         this.cols = new ArrayList<GeneratorColumnMeta>();
         for (ColumnMeta col : cols) {
+            //System.out.println(col.remarks);
             GeneratorColumnMeta generatorColumnMeta =
                     new GeneratorColumnMeta(col.name, col.javaType, col.attrName, col.type, col.isNullable, col.isPrimaryKey, col.defaultValue, col.remarks);
             this.cols.add(generatorColumnMeta);
