@@ -1,13 +1,13 @@
-package  ${(meta.basePackageName)!}.${(meta.moduleName)!}.model;
+package ${(meta.basePackageName)!}.${(meta.moduleName)!}.model;
 
-import  ${(meta.basePackageName)!}.${(meta.moduleName)!}.model.base.Base${meta.claUpName};
+import ${(meta.basePackageName)!}.${(meta.moduleName)!}.model.base.Base${meta.claUpName};
 
 /**
 *  table name: ${(meta.tableName)!}   ${(meta.remarks)!}
 */
 public class ${(meta.claUpName)!} extends Base${meta.claUpName}<${(meta.claUpName)!}> implements java.io.Serializable{
 
-private static final long serialVersionUID = 1L;
-public static final ${(meta.claUpName)!} dao = new ${(meta.claUpName)!}();
+    private static final long serialVersionUID = 1L;
+    public static final ${(meta.claUpName)!} dao = new ${(meta.claUpName)!}();
 
 }
