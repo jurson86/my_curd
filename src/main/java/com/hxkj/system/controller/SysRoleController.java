@@ -113,14 +113,16 @@ public class SysRoleController extends BaseController {
         String deleteSql = "delete from  sys_role_menu where role_id = ?";
         Db.update(deleteSql, roleId);
 
-        String[] menuIds = permissIds.split(";");
-        for (int i = 0; i < menuIds.length; i++) {
-            SysRoleMenu sysRoleMenu = new SysRoleMenu();
-            sysRoleMenu.setRoleId(roleId);
-            sysRoleMenu.setMenuId(Integer.parseInt(menuIds[i]));
-            sysRoleMenu.save();
-        }
+        if(StrKit.notBlank(permissIds)){
+            String[] menuIds = permissIds.split(";");
 
+            for (int i = 0; i < menuIds.length; i++) {
+                SysRoleMenu sysRoleMenu = new SysRoleMenu();
+                sysRoleMenu.setRoleId(roleId);
+                sysRoleMenu.setMenuId(Integer.parseInt(menuIds[i]));
+                sysRoleMenu.save();
+            }
+        }
         renderText("赋权成功");
     }
 

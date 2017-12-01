@@ -36,7 +36,7 @@ public class MyGenerator {
     public MyGenerator(DataSource dataSource) {
 
         this.dataSource = dataSource;
-        Prop prop = PropKit.use("tpl/generator.properties");
+        Prop prop = PropKit.use("generator.properties");
         this.basePackageName = prop.get("basePackageName");
         this.moduleName = prop.get("moduleName");
         this.tables = prop.get("tables").split(";");

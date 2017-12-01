@@ -1,0 +1,53 @@
+<#include "/WEB-INF/views/common/common.html"/><@layout>
+<link rel="stylesheet" href="${ctx!}/res/pure/tables-min.css">
+<script>
+    function saveAction() {
+        var url;
+        var idVal = $("#id").val();
+        if ($.trim(idVal) == "" || idVal == undefined || idVal == null) {
+            url = '${ctx!}/busNovelChapter/addAction';
+        } else {
+            url = '${ctx!}/busNovelChapter/updateAction';
+        }
+
+        $('#modelForm').form('submit', {
+            url: url,
+            onSubmit: function() {
+                return $(this).form('validate');
+            },
+            success: function (data) {
+                parent.layerTools.layerMsg(data, function () {
+                    parent.window.location.reload();
+                });
+            }
+        });
+    }
+</script>
+</head>
+<body style="padding: 10px 30px; ">
+<form id="modelForm" method="POST">
+    <table class=" pure-table pure-table-horizontal">
+        <input id="id" name="id" type="hidden" value="${(busNovelChapter.id)!}">
+        <tbody>
+                <tr>
+                    <td>title：</td>
+                    <td>
+                        <input name="title" value="${(busNovelChapter.title)!}" type="text" class="easyui-textbox"  data-options="required:true">
+                    </td>
+                </tr>
+                <tr>
+                    <td>content：</td>
+                    <td>
+                        <input name="content" value="${(busNovelChapter.content)!}" type="text" class="easyui-textbox"  data-options="required:true">
+                    </td>
+                </tr>
+        </tbody>
+    </table>
+</form>
+<div id="toolbars" style="text-align:center; margin-top: 20px;">
+    <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-save'" onclick="saveAction()">确定</a>
+    <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-cancel'"
+       onclick="parent.layer.close(parent.layer.getFrameIndex(window.name));">取消</a>
+</div>
+<script src="${ctx!}/res/js/easyui-tree-tools.js"></script>
+</@layout>

@@ -61,11 +61,6 @@
     function givePermission() {
         var checkedNodes = $("#allMenuTree").tree("getChecked");
 
-        if (checkedNodes.length == 0) {
-            layerTools.layerMsg('请选择要分配的权限菜单!');
-            return;
-        }
-
         var roleRow = $("#dg").datagrid("getSelected");
         if (roleRow == null) {
             layerTools.layerMsg('请选择要分配权限的角色!');

@@ -1,6 +1,7 @@
 package com.hxkj.common.config;
 
 import com.hxkj.bus.model.BusNovel;
+import com.hxkj.bus.model.BusNovelChapter;
 import com.hxkj.system.model.*;
 import com.jfinal.plugin.activerecord.ActiveRecordPlugin;
 
@@ -35,6 +36,7 @@ public class MappingKit {
 
 
         arp.addMapping("bus_novel", "id", BusNovel.class);
+        arp.addMapping("bus_novel_chapter","id", BusNovelChapter.class);
     }
 }
 
