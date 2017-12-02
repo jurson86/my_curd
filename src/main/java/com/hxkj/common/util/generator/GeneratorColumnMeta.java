@@ -3,9 +3,9 @@ package com.hxkj.common.util.generator;
 import com.jfinal.kit.StrKit;
 
 public class GeneratorColumnMeta {
-    private String name;
-    private String javaType;
-    private String attrName;
+    private String name;        //数据库表 列名称
+    private String javaType;    //列对应 的 java类型
+    private String attrName;    //列名 驼峰
     private String attrNameUp;  // 字段名驼峰，首字母大写
     private String type;
     private String isNullable;
