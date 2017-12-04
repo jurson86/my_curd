@@ -15,7 +15,7 @@
 ![](preview_img/task.png)
 
 7. 代码生成器  
-通过配置文件generator.properties，运行main 方法，一键生成 model、controller、view 代码，可实现单表的curd 操作（内部封装了PoiRender、CsvRender以及相应工具类）
+通过配置文件generator.properties，运行main 方法，一键生成 model、controller、view 代码，可实现单表的curd 操作（excel导入导出可选）
 ```properties
 # 基础包名
 basePackageName=com.hxkj
