@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50719
 File Encoding         : 65001
 
-Date: 2017-11-30 23:23:13
+Date: 2017-12-04 12:42:38
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -46,6 +46,10 @@ CREATE TABLE `bus_novel_chapter` (
 -- ----------------------------
 -- Records of bus_novel_chapter
 -- ----------------------------
+INSERT INTO `bus_novel_chapter` VALUES ('936391816486322176', '1', '1');
+INSERT INTO `bus_novel_chapter` VALUES ('936391834907705344', '2', '2');
+INSERT INTO `bus_novel_chapter` VALUES ('936391852507004928', '3', '3');
+INSERT INTO `bus_novel_chapter` VALUES ('936391882370449408', '4', '4');
 
 -- ----------------------------
 -- Table structure for `sys_dict`
@@ -82,7 +86,7 @@ CREATE TABLE `sys_menu` (
   `sort` int(11) DEFAULT NULL,
   `pid` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=72 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=73 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of sys_menu
@@ -98,6 +102,7 @@ INSERT INTO `sys_menu` VALUES ('66', '代码生成模块测试', '/', null, '1',
 INSERT INTO `sys_menu` VALUES ('67', 'busNovel', '/busNovel', null, '1', '66');
 INSERT INTO `sys_menu` VALUES ('70', '系统日志', '/sysOplog', null, '6', '5');
 INSERT INTO `sys_menu` VALUES ('71', '定时任务', '/sysTask', null, '7', '5');
+INSERT INTO `sys_menu` VALUES ('72', 'busNovelChapter', '/busNovelChapter', null, '2', '66');
 
 -- ----------------------------
 -- Table structure for `sys_oplog`
@@ -208,6 +213,30 @@ INSERT INTO `sys_oplog` VALUES ('936243270978109440', '916654989969981440', '登
 INSERT INTO `sys_oplog` VALUES ('936249410856157184', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-11-30 23:03:48');
 INSERT INTO `sys_oplog` VALUES ('936253852695396352', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-11-30 23:21:27');
 INSERT INTO `sys_oplog` VALUES ('936253900682428416', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-11-30 23:21:39');
+INSERT INTO `sys_oplog` VALUES ('936389678188199936', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-01 08:21:11');
+INSERT INTO `sys_oplog` VALUES ('936391300708564992', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-01 08:27:38');
+INSERT INTO `sys_oplog` VALUES ('936391500445515776', '916654989969981440', '退出', '0:0:0:0:0:0:0:1', '2017-12-01 08:28:25');
+INSERT INTO `sys_oplog` VALUES ('936391506166546432', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-01 08:28:27');
+INSERT INTO `sys_oplog` VALUES ('936396525460783104', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-01 08:48:23');
+INSERT INTO `sys_oplog` VALUES ('936396825177358336', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-01 08:49:35');
+INSERT INTO `sys_oplog` VALUES ('936422261936619520', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-01 10:30:39');
+INSERT INTO `sys_oplog` VALUES ('936423984294002688', '916654989969981440', '退出', '0:0:0:0:0:0:0:1', '2017-12-01 10:37:30');
+INSERT INTO `sys_oplog` VALUES ('936424833590231040', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-01 10:40:52');
+INSERT INTO `sys_oplog` VALUES ('936431714790539264', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-01 11:08:13');
+INSERT INTO `sys_oplog` VALUES ('936431729432854528', '916654989969981440', '退出', '0:0:0:0:0:0:0:1', '2017-12-01 11:08:17');
+INSERT INTO `sys_oplog` VALUES ('936464819450544128', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-01 13:19:46');
+INSERT INTO `sys_oplog` VALUES ('936465112313626624', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-01 13:20:56');
+INSERT INTO `sys_oplog` VALUES ('936472876226183168', '916654989969981440', '退出', '0:0:0:0:0:0:0:1', '2017-12-01 13:51:47');
+INSERT INTO `sys_oplog` VALUES ('936495169581088768', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-01 15:20:22');
+INSERT INTO `sys_oplog` VALUES ('936495336019460096', '916654989969981440', '退出', '0:0:0:0:0:0:0:1', '2017-12-01 15:21:02');
+INSERT INTO `sys_oplog` VALUES ('936495346496831488', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-01 15:21:04');
+INSERT INTO `sys_oplog` VALUES ('936495353732005888', '916654989969981440', '退出', '0:0:0:0:0:0:0:1', '2017-12-01 15:21:06');
+INSERT INTO `sys_oplog` VALUES ('936496296397635584', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-01 15:24:50');
+INSERT INTO `sys_oplog` VALUES ('936496956513976320', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-01 15:27:28');
+INSERT INTO `sys_oplog` VALUES ('936530613316354048', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-01 17:41:12');
+INSERT INTO `sys_oplog` VALUES ('936792253265870848', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-02 11:00:52');
+INSERT INTO `sys_oplog` VALUES ('937535319056580608', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-04 12:13:33');
+INSERT INTO `sys_oplog` VALUES ('937542425851723776', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-04 12:41:47');
 
 -- ----------------------------
 -- Table structure for `sys_org`
@@ -278,10 +307,7 @@ INSERT INTO `sys_role_menu` VALUES ('3', '66');
 INSERT INTO `sys_role_menu` VALUES ('3', '67');
 INSERT INTO `sys_role_menu` VALUES ('3', '70');
 INSERT INTO `sys_role_menu` VALUES ('3', '71');
-INSERT INTO `sys_role_menu` VALUES ('24', '66');
-INSERT INTO `sys_role_menu` VALUES ('24', '67');
-INSERT INTO `sys_role_menu` VALUES ('25', '66');
-INSERT INTO `sys_role_menu` VALUES ('25', '67');
+INSERT INTO `sys_role_menu` VALUES ('3', '72');
 
 -- ----------------------------
 -- Table structure for `sys_task`
@@ -300,7 +326,7 @@ CREATE TABLE `sys_task` (
   `create_user_id` int(11) DEFAULT NULL COMMENT '创建人',
   `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COMMENT='定时任务';
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COMMENT='定时任务';
 
 -- ----------------------------
 -- Records of sys_task
