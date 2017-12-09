@@ -1,6 +1,19 @@
 <#include "/WEB-INF/views/common/common.html"/>
 <@layout>
 <link rel="stylesheet" href="${ctx!}/res/pure/tables-min.css">
+<style>
+    .tree-folder {
+        background: url('${ctx!}/res/easyui153/themes/cus-icons/org.png') no-repeat center center;
+    }
+
+    .tree-folder-open {
+        background: url('${ctx!}/res/easyui153/themes/cus-icons/org.png') no-repeat center center;
+    }
+
+    .tree-file {
+        background: url('${ctx!}/res/easyui153/themes/cus-icons/org2.png') no-repeat center center;
+    }
+</style>
 <script>
     function saveAction() {
         var url;
