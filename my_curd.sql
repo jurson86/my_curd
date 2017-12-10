@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50719
 File Encoding         : 65001
 
-Date: 2017-12-04 12:42:38
+Date: 2017-12-10 16:11:05
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -47,9 +47,7 @@ CREATE TABLE `bus_novel_chapter` (
 -- Records of bus_novel_chapter
 -- ----------------------------
 INSERT INTO `bus_novel_chapter` VALUES ('936391816486322176', '1', '1');
-INSERT INTO `bus_novel_chapter` VALUES ('936391834907705344', '2', '2');
 INSERT INTO `bus_novel_chapter` VALUES ('936391852507004928', '3', '3');
-INSERT INTO `bus_novel_chapter` VALUES ('936391882370449408', '4', '4');
 
 -- ----------------------------
 -- Table structure for `sys_dict`
@@ -73,6 +71,24 @@ INSERT INTO `sys_dict` VALUES ('10', 'task_type', '3', 'ITask', '2017-11-27 20:5
 INSERT INTO `sys_dict` VALUES ('11', 'task_statu', '1', '等待运行', '2017-11-27 20:56:17');
 INSERT INTO `sys_dict` VALUES ('12', 'task_statu', '2', '已停止', '2017-11-27 20:56:33');
 INSERT INTO `sys_dict` VALUES ('13', 'task_statu', '3', '运行中', '2017-03-28 23:26:26');
+
+-- ----------------------------
+-- Table structure for `sys_file`
+-- ----------------------------
+DROP TABLE IF EXISTS `sys_file`;
+CREATE TABLE `sys_file` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `path` varchar(255) DEFAULT NULL COMMENT '文件路径',
+  `original_filename` varchar(100) DEFAULT NULL COMMENT '文件原名',
+  `type` varchar(30) DEFAULT NULL COMMENT '文件类型',
+  `remark` varchar(255) DEFAULT NULL COMMENT '文件备注',
+  `create_time` datetime DEFAULT NULL COMMENT '上传时间',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of sys_file
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for `sys_menu`
@@ -100,8 +116,8 @@ INSERT INTO `sys_menu` VALUES ('60', '修改密码', '/sysChangePassword', null,
 INSERT INTO `sys_menu` VALUES ('61', 'druid监控', '/druid', 'icon-druid', '8', '5');
 INSERT INTO `sys_menu` VALUES ('66', '代码生成模块测试', '/', null, '1', null);
 INSERT INTO `sys_menu` VALUES ('67', 'busNovel', '/busNovel', null, '1', '66');
-INSERT INTO `sys_menu` VALUES ('70', '系统日志', '/sysOplog', null, '6', '5');
-INSERT INTO `sys_menu` VALUES ('71', '定时任务', '/sysTask', null, '7', '5');
+INSERT INTO `sys_menu` VALUES ('70', '系统日志', '/sysOplog', null, '7', '5');
+INSERT INTO `sys_menu` VALUES ('71', '定时任务', '/sysTask', null, '6', '5');
 INSERT INTO `sys_menu` VALUES ('72', 'busNovelChapter', '/busNovelChapter', null, '2', '66');
 
 -- ----------------------------
@@ -237,6 +253,22 @@ INSERT INTO `sys_oplog` VALUES ('936530613316354048', '916654989969981440', '登
 INSERT INTO `sys_oplog` VALUES ('936792253265870848', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-02 11:00:52');
 INSERT INTO `sys_oplog` VALUES ('937535319056580608', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-04 12:13:33');
 INSERT INTO `sys_oplog` VALUES ('937542425851723776', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-04 12:41:47');
+INSERT INTO `sys_oplog` VALUES ('937542671084290048', '916654989969981440', '退出', '0:0:0:0:0:0:0:1', '2017-12-04 12:42:46');
+INSERT INTO `sys_oplog` VALUES ('937604955492057088', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-04 16:50:15');
+INSERT INTO `sys_oplog` VALUES ('937858976039567360', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-05 09:39:39');
+INSERT INTO `sys_oplog` VALUES ('939369737815588864', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-09 13:42:52');
+INSERT INTO `sys_oplog` VALUES ('939729923688366080', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-10 13:34:07');
+INSERT INTO `sys_oplog` VALUES ('939730241197178880', '916654989969981440', '登录', '127.0.0.1', '2017-12-10 13:35:23');
+INSERT INTO `sys_oplog` VALUES ('939730667745312768', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-10 13:37:05');
+INSERT INTO `sys_oplog` VALUES ('939731095509794816', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-10 13:38:47');
+INSERT INTO `sys_oplog` VALUES ('939742913758232576', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-10 14:25:44');
+INSERT INTO `sys_oplog` VALUES ('939750012974268416', '916654989969981440', '退出', '0:0:0:0:0:0:0:1', '2017-12-10 14:53:57');
+INSERT INTO `sys_oplog` VALUES ('939750028564496384', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-10 14:54:01');
+INSERT INTO `sys_oplog` VALUES ('939750573794656256', '916654989969981440', '退出', '0:0:0:0:0:0:0:1', '2017-12-10 14:56:11');
+INSERT INTO `sys_oplog` VALUES ('939750584292999168', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-10 14:56:13');
+INSERT INTO `sys_oplog` VALUES ('939750707211272192', '916654989969981440', '退出', '0:0:0:0:0:0:0:1', '2017-12-10 14:56:42');
+INSERT INTO `sys_oplog` VALUES ('939751177732489216', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-10 14:58:35');
+INSERT INTO `sys_oplog` VALUES ('939752836860739584', '916654989969981440', '[定时任务] 修改', '0:0:0:0:0:0:0:1', '2017-12-10 15:05:10');
 
 -- ----------------------------
 -- Table structure for `sys_org`
@@ -335,7 +367,7 @@ INSERT INTO `sys_task` VALUES ('1', '百度', '1', 'https://www.baidu.com', '*/1
 INSERT INTO `sys_task` VALUES ('2', 'css', '1', 'http://www.newsres.cn/2017lh/css/lhxl.css', '* */1 * * *', '成功', '2017-04-12 00:00:34', '75', '2', '1', '2017-03-04 00:00:00');
 INSERT INTO `sys_task` VALUES ('3', '查询', '2', 'select 2', '* */1 * * *', '成功', '2017-09-12 20:22:00', '20', '2', null, '2017-03-04 17:32:02');
 INSERT INTO `sys_task` VALUES ('4', '存储过程', '2', 'call admin.task_pro_test()', '* */1 * * *', '成功', '2017-11-27 23:56:00', '7', '2', null, '2017-03-05 00:30:20');
-INSERT INTO `sys_task` VALUES ('5', 'ITask', '3', 'com.zcurd.common.task.DemoTask', '* */1 * * *', '成功', '2017-03-26 22:50:00', '3', '2', null, '2017-03-18 14:43:55');
+INSERT INTO `sys_task` VALUES ('5', 'ITask', '3', 'com.hxkj.common.task.LongTimeTask', '* */1 * * *', '成功', '2017-03-26 22:50:00', '3', '2', null, '2017-03-18 14:43:55');
 INSERT INTO `sys_task` VALUES ('6', '查询用户表2', '2', 'select * from sys_user', '*/1 * * * *', '成功', '2017-11-28 18:50:00', '5', '2', null, '2017-11-28 17:55:56');
 
 -- ----------------------------
