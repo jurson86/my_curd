@@ -40,7 +40,7 @@
 </head>
 <body style="padding: 10px 30px; ">
 <form id="modelForm" method="POST">
-    <table class=" pure-table pure-table-horizontal" style="width: 80%;">
+    <table class=" pure-table pure-table-horizontal" style="width: 80%;max-width: 460px;">
         <input id="id" name="id" type="hidden" value="${(sysOrg.id)!}">
         <tbody>
         <tr>
@@ -53,21 +53,21 @@
             <td>机构名：</td>
             <td>
                 <input name="orgName" value="${(sysOrg.orgName)!}" type="text" class="easyui-textbox"
-                       data-options="required:true">
+                       data-options="required:true" style="width: 91.2%;">
             </td>
         </tr>
         <tr>
             <td>机构地址：</td>
             <td>
-                <input style="height: 80px" name="orgAddress" value="${(sysOrg.orgAddress)!}" type="text"
-                       class="easyui-textbox" data-options="multiline:true">
+                <input style="width: 91.2%;height: 80px" name="orgAddress" value="${(sysOrg.orgAddress)!}" type="text"
+                       class="easyui-textbox" data-options="multiline:true"  >
             </td>
         </tr>
         <tr>
             <td>机构备注：</td>
             <td>
-                <input style="height: 80px" name="orgRemark" value="${(sysOrg.orgRemark)!}" type="text"
-                       class="easyui-textbox" data-options="multiline:true">
+                <input style="width: 91.2%;height: 80px" name="orgRemark" value="${(sysOrg.orgRemark)!}" type="text"
+                       class="easyui-textbox" data-options="multiline:true" >
             </td>
         </tr>
 
@@ -75,7 +75,7 @@
             <td>排序：</td>
             <td>
                 <input name="sort" value="${(sysOrg.sort)!}" type="text" class="easyui-numberbox"
-                       data-options="required:true,precision:0">
+                       data-options="required:true,precision:0" style="width: 91.2%;">
             </td>
         </tr>
 

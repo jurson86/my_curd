@@ -27,20 +27,20 @@
 </head>
 <body style="padding: 10px 30px; ">
 <form id="modelForm" method="POST">
-    <table class=" pure-table pure-table-horizontal">
+    <table class=" pure-table pure-table-horizontal" style="width: 80%;max-width: 460px;">
         <input id="id" name="id" type="hidden" value="${(sysMenu.id)!}">
         <tbody>
         <tr>
             <td>父菜单</td>
             <td>
-                <input name="pid" id="pid">
+                <input name="pid" id="pid" style="width: 100%;">
             </td>
         </tr>
         <tr>
             <td>菜单名：</td>
             <td>
                 <input name="name" value="${(sysMenu.name)!}" type="text" class="easyui-textbox"
-                       data-options="required:true">
+                       data-options="required:true" style="width: 91.2%;">
             </td>
         </tr>
 
@@ -48,7 +48,7 @@
             <td>菜单地址：</td>
             <td>
                 <input name="url" value="${(sysMenu.url)!}" type="text" class="easyui-textbox"
-                       data-options="required:true">
+                       data-options="required:true" style="width: 91.2%;">
             </td>
         </tr>
 
@@ -56,14 +56,14 @@
             <td>排序：</td>
             <td>
                 <input name="sort" value="${(sysMenu.sort)!}" type="text" class="easyui-numberbox"
-                       data-options="required:true,precision:0">
+                       data-options="required:true,precision:0" style="width: 91.2%;">
             </td>
         </tr>
 
         <tr>
             <td>图标：</td>
             <td>
-                <input name="icon" value="${(sysMenu.icon)!}" type="text" class="easyui-textbox">
+                <input name="icon" value="${(sysMenu.icon)!}" type="text" class="easyui-textbox" style="width: 91.2%;">
             </td>
         </tr>
         </tbody>

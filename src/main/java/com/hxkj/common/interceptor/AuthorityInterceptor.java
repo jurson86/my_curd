@@ -28,14 +28,14 @@ public class AuthorityInterceptor implements Interceptor {
         for (SysMenu sysMenu : ownSysMenus) {
             // 拥有权限
             if (StrKit.notBlank(sysMenu.getUrl()) && !sysMenu.getUrl().equals("/") && actionKey.startsWith(sysMenu.getUrl())) {
-                System.err.println(actionKey + " == " + sysMenu.getUrl());
-                System.err.println("权限拦截器   通过");
+                //System.err.println(actionKey + " == " + sysMenu.getUrl());
+                //System.err.println("权限拦截器   通过");
                 inv.invoke();
                 return;
             }
         }
 
-        System.err.println("权限拦截器   禁止");
+        //System.err.println("权限拦截器   禁止");
         BaseController baseController = (BaseController) inv.getController();
         baseController.addOpLog("访问无权限路径[" + actionKey + "]");
 
