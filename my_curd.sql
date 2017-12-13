@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50719
 File Encoding         : 65001
 
-Date: 2017-12-10 16:11:05
+Date: 2017-12-13 17:36:19
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -78,17 +78,21 @@ INSERT INTO `sys_dict` VALUES ('13', 'task_statu', '3', '运行中', '2017-03-28
 DROP TABLE IF EXISTS `sys_file`;
 CREATE TABLE `sys_file` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` varchar(32) DEFAULT NULL,
   `path` varchar(255) DEFAULT NULL COMMENT '文件路径',
   `original_filename` varchar(100) DEFAULT NULL COMMENT '文件原名',
   `type` varchar(30) DEFAULT NULL COMMENT '文件类型',
   `remark` varchar(255) DEFAULT NULL COMMENT '文件备注',
   `create_time` datetime DEFAULT NULL COMMENT '上传时间',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of sys_file
 -- ----------------------------
+INSERT INTO `sys_file` VALUES ('11', '916654989969981440', 'upload/image/20171213164925_617.jpg', 'timg (1).jpg', 'jpg', 'ggg', '2017-12-13 16:49:25');
+INSERT INTO `sys_file` VALUES ('12', '916654989969981440', 'upload/file/20171213165035_731.pdf', 'V5.6SP1数据字典.pdf', 'pdf', 'pdf 测试', '2017-12-13 16:50:35');
+INSERT INTO `sys_file` VALUES ('13', '916654989969981440', 'upload/file/20171213171748_299.xls', '2017年金刚线 订单.xls', 'xls', 'ggggg', '2017-12-13 17:17:48');
 
 -- ----------------------------
 -- Table structure for `sys_menu`
@@ -102,7 +106,7 @@ CREATE TABLE `sys_menu` (
   `sort` int(11) DEFAULT NULL,
   `pid` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=73 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=74 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of sys_menu
@@ -113,12 +117,13 @@ INSERT INTO `sys_menu` VALUES ('23', '角色管理', '/sysRole', null, '2', '5')
 INSERT INTO `sys_menu` VALUES ('58', '组织机构', '/sysOrg', null, '4', '5');
 INSERT INTO `sys_menu` VALUES ('59', '用户管理', '/sysUser', null, '3', '5');
 INSERT INTO `sys_menu` VALUES ('60', '修改密码', '/sysChangePassword', null, '5', '5');
-INSERT INTO `sys_menu` VALUES ('61', 'druid监控', '/druid', 'icon-druid', '8', '5');
+INSERT INTO `sys_menu` VALUES ('61', 'druid监控', '/druid', 'icon-druid', '9', '5');
 INSERT INTO `sys_menu` VALUES ('66', '代码生成模块测试', '/', null, '1', null);
 INSERT INTO `sys_menu` VALUES ('67', 'busNovel', '/busNovel', null, '1', '66');
 INSERT INTO `sys_menu` VALUES ('70', '系统日志', '/sysOplog', null, '7', '5');
 INSERT INTO `sys_menu` VALUES ('71', '定时任务', '/sysTask', null, '6', '5');
 INSERT INTO `sys_menu` VALUES ('72', 'busNovelChapter', '/busNovelChapter', null, '2', '66');
+INSERT INTO `sys_menu` VALUES ('73', '文件管理', '/sysFile', null, '8', '5');
 
 -- ----------------------------
 -- Table structure for `sys_oplog`
@@ -269,6 +274,28 @@ INSERT INTO `sys_oplog` VALUES ('939750584292999168', '916654989969981440', '登
 INSERT INTO `sys_oplog` VALUES ('939750707211272192', '916654989969981440', '退出', '0:0:0:0:0:0:0:1', '2017-12-10 14:56:42');
 INSERT INTO `sys_oplog` VALUES ('939751177732489216', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-10 14:58:35');
 INSERT INTO `sys_oplog` VALUES ('939752836860739584', '916654989969981440', '[定时任务] 修改', '0:0:0:0:0:0:0:1', '2017-12-10 15:05:10');
+INSERT INTO `sys_oplog` VALUES ('940831666568429568', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-13 14:32:03');
+INSERT INTO `sys_oplog` VALUES ('940834027751866368', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-13 14:41:26');
+INSERT INTO `sys_oplog` VALUES ('940834316282232832', '916654989969981440', '退出', '0:0:0:0:0:0:0:1', '2017-12-13 14:42:35');
+INSERT INTO `sys_oplog` VALUES ('940834321638359040', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-13 14:42:36');
+INSERT INTO `sys_oplog` VALUES ('940846246849937408', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-13 15:29:59');
+INSERT INTO `sys_oplog` VALUES ('940850570573381632', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-13 15:47:10');
+INSERT INTO `sys_oplog` VALUES ('940852071962247168', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-13 15:53:08');
+INSERT INTO `sys_oplog` VALUES ('940852717985726464', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-13 15:55:42');
+INSERT INTO `sys_oplog` VALUES ('940854581028454400', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-13 16:03:07');
+INSERT INTO `sys_oplog` VALUES ('940856169386213376', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-13 16:09:25');
+INSERT INTO `sys_oplog` VALUES ('940856632215076864', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-13 16:11:16');
+INSERT INTO `sys_oplog` VALUES ('940857432643469312', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-13 16:14:26');
+INSERT INTO `sys_oplog` VALUES ('940858078721474560', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-13 16:17:00');
+INSERT INTO `sys_oplog` VALUES ('940858475490050048', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-13 16:18:35');
+INSERT INTO `sys_oplog` VALUES ('940860272363438080', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-13 16:25:43');
+INSERT INTO `sys_oplog` VALUES ('940861946767343616', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-13 16:32:23');
+INSERT INTO `sys_oplog` VALUES ('940862238485381120', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-13 16:33:32');
+INSERT INTO `sys_oplog` VALUES ('940863982657339392', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-13 16:40:28');
+INSERT INTO `sys_oplog` VALUES ('940865875311853568', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-13 16:47:59');
+INSERT INTO `sys_oplog` VALUES ('940870712304861184', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-13 17:07:13');
+INSERT INTO `sys_oplog` VALUES ('940876529938726912', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-13 17:30:20');
+INSERT INTO `sys_oplog` VALUES ('940877670361595904', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-13 17:34:51');
 
 -- ----------------------------
 -- Table structure for `sys_org`
@@ -340,6 +367,7 @@ INSERT INTO `sys_role_menu` VALUES ('3', '67');
 INSERT INTO `sys_role_menu` VALUES ('3', '70');
 INSERT INTO `sys_role_menu` VALUES ('3', '71');
 INSERT INTO `sys_role_menu` VALUES ('3', '72');
+INSERT INTO `sys_role_menu` VALUES ('3', '73');
 
 -- ----------------------------
 -- Table structure for `sys_task`

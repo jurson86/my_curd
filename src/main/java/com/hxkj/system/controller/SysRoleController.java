@@ -113,7 +113,7 @@ public class SysRoleController extends BaseController {
         String deleteSql = "delete from  sys_role_menu where role_id = ?";
         Db.update(deleteSql, roleId);
 
-        if(StrKit.notBlank(permissIds)){
+        if (StrKit.notBlank(permissIds)) {
             String[] menuIds = permissIds.split(";");
 
             for (int i = 0; i < menuIds.length; i++) {

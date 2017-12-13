@@ -1,0 +1,136 @@
+<#include "/WEB-INF/views/common/common.html"/> <@layout>
+<link rel="stylesheet" href="${ctx!}/res/layer/theme/default/layer.css">
+<link rel="stylesheet" href="${ctx!}/res/pure/buttons-min.css">
+<style>
+    .pure-button {
+        padding: 5px 8px;
+        margin: 5px 2px;
+    }
+
+    .button-success,
+    .button-secondary {
+        color: white;
+        border-radius: 4px;
+        text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+    }
+
+    .button-success {
+        background: rgb(28, 184, 65); /* this is a green */
+    }
+
+    .button-secondary {
+        background: rgb(66, 184, 221); /* this is a light blue */
+    }
+</style>
+</head>
+<body>
+<script type="text/javascript">
+
+    // 新增 model
+    function newModel() {
+        layerTools.layerIframe('新建', '${ctx!}/sysFile/newModel', '800px', '500px')
+    }
+
+    // 编辑 model
+    function editModel() {
+        var row = $("#dg").treegrid("getSelected");
+        if (row != null) {
+            layerTools.layerIframe('编辑', '${ctx!}/sysFile/newModel?id=' + row.id, '800px', '500px')
+        } else {
+            layerTools.layerMsg('请选择一行数据进行编辑');
+        }
+    }
+
+    // 删除 model
+    function deleteModel() {
+        var row = $("#dg").datagrid("getSelected");
+        if (row != null) {
+            layerTools.confirm(3, '删除', '您确定要删除选中的记录吗?', function () {
+                $.post('${ctx!}/sysFile/deleteAction?id=' + row.id, function (data) {
+                    layerTools.layerMsg(data, function () {
+                        $('#dg').datagrid('reload');
+                    });
+                }, "text");
+            });
+
+        } else {
+            layerTools.layerMsg('请选择一行进行删除');
+        }
+    }
+
+    //条件查询
+    function queryModel() {
+        var queryParams = {};
+        queryParams['search_LIKE_sf.original_filename'] = $("#originalFilename").textbox("getValue");
+        queryParams['search_LIKE_sf.remark'] = $("#remark").textbox("getValue");
+        queryParams['search_LIKE_su.name'] = $("#name").textbox("getValue");
+
+        queryParams['search_GTE_sf.create_time'] = $("#timeStart").datetimebox("getValue");
+        queryParams['search_LTE_sf.create_time'] = $("#timeEnd").datetimebox("getValue");
+        if($("#fileType").combobox("getValues").length!=0){
+            queryParams['search_IN_sf.type'] = "('"+$("#fileType").combobox("getValues").join("','")+"')";
+        }
+
+        $('#dg').datagrid('load', queryParams);
+    }
+</script>
+<table id="dg" class="easyui-datagrid"
+       url="${ctx!}/sysFile/query"
+       toolbar="#tb" rownumbers="true" border="false"
+       fit="true" pagination="true" singleSelect="true"
+       fitColumns="true"
+       pageSize="40" pageList="[20,40]">
+    <thead>
+    <tr>
+                   <th data-options="field:'ck',checkbox:true"></th>
+                   <th field="id" width="100">主键</th>
+
+                   <th field="imgView" width="200" formatter="fView" align="center">图片预览</th>
+                   <th field="name" width="100"  formatter="redFormat">上传者</th>
+                   <th field="path" width="300">文件路径</th>
+
+                   <th field="originalFilename" width="200">文件原名</th>
+                   <th field="type" width="100" formatter="redFormat">文件类型</th>
+                   <th field="remark" width="300">文件备注</th>
+                   <th field="createTime" width="200">上传时间</th>
+    </tr>
+    </thead>
+</table>
+
+<div id="tb">
+    <a onclick="newModel()" href="#" class="easyui-linkbutton" iconCls="icon-add" plain="true">新增</a>
+    <a onclick="editModel()" href="#" class="easyui-linkbutton" iconCls="icon-edit" plain="true">编辑</a>
+    <a onclick="deleteModel()" href="#" class="easyui-linkbutton  " iconCls="icon-remove" plain="true">删除</a>
+    <span class="searchInputArea">
+          <input id="fileType" prompt="文件类型" class="easyui-combobox"
+                data-options="valueField:'value', multiple:true,textField:'label',url:'${ctx!}/sysFile/fileTypeData'">
+          <input id="name" prompt="上传者" class="easyui-textbox" style="width:120px; ">
+          <input id="originalFilename" prompt="文件原名" class="easyui-textbox" style="width:120px; ">
+          <input id="remark" prompt="备注" class="easyui-textbox" style="width:120px; ">
+          &nbsp;&nbsp;&nbsp;&nbsp;
+
+          <input id="timeStart" prompt="时间起" class="easyui-datetimebox" style="width:150px; ">
+          ~
+          <input id="timeEnd" prompt="时间止" class="easyui-datetimebox" style="width:150px; ">
+          <a href="#" class="easyui-linkbutton" iconCls="icon-search" onclick="queryModel()">搜索</a>
+    </span>
+</div>
+<script src="${ctx!}/res/layer/layer.js"></script>
+<script src="${ctx!}/res/js/layer-tools.js"></script>
+<script>
+    var ctx = '${ctx!}/';
+    // 图片格式化
+    function  fView(val,row) {
+        if('png,jpg,jpeg,gif,bmp'.indexOf(row.type)>=0){
+            return '<a target="_blank" href="'+ctx+row.path+'"><img height="100px" src="'+ctx+row.path+'" alt="'+row.originalFilename+'"/></a>'
+        }else if('pdf,html'.indexOf(row.type)>=0){
+            return '<a class="pure-button button-success" target="_blank" href="'+ctx+row.path+'">查看</a>';
+        }else{
+            return '<a class="pure-button button-secondary" target="_blank" href="'+ctx+row.path+'">下载</a>';
+        }
+    }
+    function redFormat(val,row){
+        return '<b><span style="color:red">'+val+'</span></b>';
+    }
+</script>
+</@layout>

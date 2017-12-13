@@ -88,31 +88,35 @@ public class SearchSql implements Interceptor {
                 sb.append(filter.fieldName);
                 switch (filter.operator) {
                     case EQ:
-                        sb.append("='").append(filter.value).append("'");
+                        sb.append(" ='").append(filter.value).append("'");
                         break;
                     case LIKE:
                         sb.append(" like ").append("'%" + filter.value + "%'");
                         break;
                     case GT:
-                        sb.append(">'").append(filter.value).append("'");
+                        sb.append(" >'").append(filter.value).append("'");
                         break;
                     case LT:
-                        sb.append("<'").append(filter.value).append("'");
+                        sb.append(" <'").append(filter.value).append("'");
                         break;
                     case GTE:
-                        sb.append(">='").append(filter.value).append("'");
+                        sb.append(" >='").append(filter.value).append("'");
                         break;
                     case LTE:
-                        sb.append("<='").append(filter.value).append("'");
+                        sb.append(" <='").append(filter.value).append("'");
                         break;
                     case GTES:
-                        sb.append(">=").append(filter.value).append("");
+                        sb.append(" >=").append(filter.value).append("");
                         break;
                     case LTES:
-                        sb.append("<=").append(filter.value).append("");
+                        sb.append(" <=").append(filter.value).append("");
                         break;
                     case NEQ:
-                        sb.append("!='").append(filter.value).append("'");
+                        sb.append(" !='").append(filter.value).append("'");
+                        break;
+                    /*自定义*/
+                    case IN:
+                        sb.append(" in ").append(filter.value);
                         break;
                 }
             }

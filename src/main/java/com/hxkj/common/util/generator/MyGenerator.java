@@ -228,7 +228,7 @@ public class MyGenerator {
                     if (fileNameWrapers[i].endsWith(".java")) {
                         fileName = toOutPath(paths[i]) + fileNameWrapers[i].replaceAll("@tableName@", tableMeta.modelName);
                     } else {
-                        fileName = toOutPath(paths[i]) + fileNameWrapers[i].replaceAll("@tableName@", claLowName);
+                        fileName = toOutPath(paths[i] + File.separator + moduleName) + fileNameWrapers[i].replaceAll("@tableName@", claLowName);
                     }
                     System.out.println("fileName: " + fileName);
                     ToolFreeMarker.makeHtml(tplDir, templates[i], content, fileName);

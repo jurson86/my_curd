@@ -33,7 +33,11 @@ public class SystemRoute extends Routes {
         // 系统日志
         add("/sysOplog", sysOplogController.class, Constant.VIEW_PATH);
 
+        // 定时任务
         add("/sysTask", SysTaskController.class, Constant.VIEW_PATH);
+
+        // 文件管理
+        add("/sysFile", SysFileController.class, Constant.VIEW_PATH);
 
     }
 

@@ -15,7 +15,7 @@ public class Test {
         String[] templates = {"model.ftl", "baseModel.ftl",
                 "controller.ftl", "list.ftl", "form.ftl"};
         String[] paths = {"model", "model/base",
-                "controller", "views/bus", "views/bus"};
+                "controller", "views", "views"};
         String[] fileNameWrapers = {"@tableName@.java", "Base@tableName@.java",
                 "@tableName@Controller.java", "@tableName@.html", "@tableName@_form.html"};
 
