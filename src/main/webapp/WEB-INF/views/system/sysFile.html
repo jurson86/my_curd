@@ -134,8 +134,12 @@
     }
 
     function pathFormat(val,row){
-        var ctx  = '${ctx!}/';
-        return ctx+val;
+         //var ctx  = '${ctx!}/';
+         var curHref = window.document.location.href;
+         var curPathname = window.document.location.pathname;
+         var firstPos = curHref.indexOf(curPathname);
+         curHref = curHref.substring(0,firstPos);
+         return curHref+'/'+val;
     }
 </script>
 </@layout>
