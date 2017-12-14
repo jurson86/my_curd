@@ -87,7 +87,7 @@
 
                    <th field="imgView" width="200" formatter="fView" align="center">图片预览</th>
                    <th field="name" width="100"  formatter="redFormat">上传者</th>
-                   <th field="path" width="300">文件路径</th>
+                   <th field="path" width="300" formatter="pathFormat">文件路径</th>
 
                    <th field="originalFilename" width="200">文件原名</th>
                    <th field="type" width="100" formatter="redFormat">文件类型</th>
@@ -131,6 +131,11 @@
     }
     function redFormat(val,row){
         return '<b><span style="color:red">'+val+'</span></b>';
+    }
+
+    function pathFormat(val,row){
+        var ctx  = '${ctx!}/';
+        return ctx+val;
     }
 </script>
 </@layout>
