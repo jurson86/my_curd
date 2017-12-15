@@ -157,5 +157,14 @@
 	background:url('cus-icons/system.png') no-repeat center center;
 }
 
+.icon-fullScreen{
+	background:url('cus-icons/fullScreen.png') no-repeat center center;
+}
+
+.icon-noFullScreen{
+	background:url('cus-icons/noFullScreen.png') no-repeat center center;
+}
+
+
 
 

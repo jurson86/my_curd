@@ -6,20 +6,23 @@
         padding: 5px 8px;
         margin: 5px 2px;
     }
-
+    .button-blue,
     .button-success,
-    .button-secondary {
+    .button-black {
         color: white;
         border-radius: 4px;
         text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
     }
 
+    .button-blue {
+        background: #00bbee; /* this is a maroon */
+     }
     .button-success {
         background: rgb(28, 184, 65); /* this is a green */
     }
 
-    .button-secondary {
-        background: rgb(66, 184, 221); /* this is a light blue */
+    .button-black {
+        background: #333; /* this is a light blue */
     }
 </style>
 </head>
@@ -28,14 +31,14 @@
 
     // 新增 model
     function newModel() {
-        layerTools.layerIframe('新建', '${ctx!}/sysFile/newModel', '800px', '500px')
+        layerTools.layerIframe('新建', '${ctx!}/sysFile/newModel', '550px', '350px')
     }
 
     // 编辑 model
     function editModel() {
         var row = $("#dg").treegrid("getSelected");
         if (row != null) {
-            layerTools.layerIframe('编辑', '${ctx!}/sysFile/newModel?id=' + row.id, '800px', '500px')
+            layerTools.layerIframe('编辑', '${ctx!}/sysFile/newModel?id=' + row.id,'550px', '320px')
         } else {
             layerTools.layerMsg('请选择一行数据进行编辑');
         }
@@ -79,7 +82,7 @@
        toolbar="#tb" rownumbers="true" border="false"
        fit="true" pagination="true" singleSelect="true"
        fitColumns="true"
-       pageSize="40" pageList="[20,40]">
+       pageSize="20" pageList="[20,40]">
     <thead>
     <tr>
                    <th data-options="field:'ck',checkbox:true"></th>
@@ -122,12 +125,15 @@
     // 图片格式化
     function  fView(val,row) {
         if('png,jpg,jpeg,gif,bmp'.indexOf(row.type)>=0){
-            return '<a target="_blank" href="'+ctx+row.path+'"><img height="100px" src="'+ctx+row.path+'" alt="'+row.original_filename+'"/></a>'
-        }else if('pdf,html'.indexOf(row.type)>=0){
-            return '<a class="pure-button button-success" target="_blank" href="'+ctx+row.path+'">查看</a>';
+            return '<a target="_blank" href="'+ctx+row.path+'"><img height="40px" src="'+ctx+row.path+'" alt="'+row.original_filename+'"/></a>'
+        }else if('pdf,html,txt,xml'.indexOf(row.type)>=0){
+            return '<a class="pure-button button-success" target="_blank" href="'+ctx+row.path+'"><i class="fa fa-eye"></i></a>';
+        }else if('swf,flv,mp3,wav,wma,wmv,mid,avi,mpg,asf,rm,rmvb,mp4'.indexOf(row.type)>=0) {
+            return '<a class="pure-button button-blue" target="_blank" href="'+ctx+row.path+'"><i class="fa fa-play-circle"></i></a>';
         }else{
-            return '<a class="pure-button button-secondary" target="_blank" href="'+ctx+row.path+'">下载</a>';
-        }
+                return '<a class="pure-button button-black" target="_blank" href="'+ctx+row.path+'"><i class="fa fa-download"></i></a>'
+        };
+
     }
     function redFormat(val,row){
         return '<b><span style="color:red">'+val+'</span></b>';

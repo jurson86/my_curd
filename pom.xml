@@ -196,6 +196,6 @@
 
     </dependencies>
     <build>
-        <finalName>admin</finalName>
+        <finalName>my_curd</finalName>
     </build>
 </project>

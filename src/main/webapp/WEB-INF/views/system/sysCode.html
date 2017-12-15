@@ -6,14 +6,14 @@
 
     // 新增 model
     function newModel() {
-        layerTools.layerIframe('新建', '${ctx!}/sysCode/newModel', '800px', '500px')
+        layerTools.layerIframe('新建', '${ctx!}/sysCode/newModel', '500px', '300px')
     }
 
     // 编辑 model
     function editModel() {
         var row = $("#dg").treegrid("getSelected");
         if (row != null) {
-            layerTools.layerIframe('编辑', '${ctx!}/sysCode/newModel?id=' + row.id, '800px', '500px')
+            layerTools.layerIframe('编辑', '${ctx!}/sysCode/newModel?id=' + row.id, '500px', '300px')
         } else {
             layerTools.layerMsg('请选择一行数据进行编辑');
         }
