@@ -34,6 +34,7 @@ public class MappingKit {
         arp.addMapping("sys_task_log", "id", SysTaskLog.class);
         arp.addMapping("sys_dict", "id", SysDict.class);
         arp.addMapping("sys_file", "id", SysFile.class);
+        arp.addMapping("sys_code", "id", SysCode.class);
 
 
         arp.addMapping("bus_novel", "id", BusNovel.class);

@@ -154,9 +154,9 @@ public class SysFileController extends BaseController {
         SysFile sysFile = getBean(SysFile.class, "");
         boolean updateFlag = sysFile.update();
         if (updateFlag) {
-            renderText(Constant.ADD_SUCCESS);
+            renderText(Constant.UPDATE_SUCCESS);
         } else {
-            renderText(Constant.ADD_FAIL);
+            renderText(Constant.UPDATE_FAIL);
         }
     }
 

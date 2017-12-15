@@ -1,4 +1,4 @@
-package ${(meta.basePackageName)!}.${(meta.moduleName)!}.controller;
+package com.hxkj.system.controller;
 
 import com.jfinal.aop.Before;
 import com.jfinal.plugin.activerecord.Page;
@@ -7,18 +7,18 @@ import com.hxkj.common.constant.Constant;
 import com.hxkj.common.util.BaseController;
 import com.hxkj.common.util.Identities;
 import com.hxkj.common.util.SearchSql;
-import ${(meta.basePackageName)!}.${(meta.moduleName)!}.model.${(meta.claUpName)!};
+import com.hxkj.system.model.SysCode;
 
 /**
- * ${(meta.claUpName)!} 控制器
+ * SysCode 控制器
  */
-public class ${(meta.claUpName)!}Controller extends BaseController{
+public class SysCodeController extends BaseController{
 
         /**
          * 列表页
          */
         public void index(){
-          render("${(meta.moduleName)!}/${(meta.claLowName)!}.html");
+          render("system/sysCode.html");
         }
 
 
@@ -30,9 +30,9 @@ public class ${(meta.claUpName)!}Controller extends BaseController{
             int pageNumber=getAttr("pageNumber");
             int pageSize=getAttr("pageSize");
             String where=getAttr(Constant.SEARCH_SQL);
-            Page<${(meta.claUpName)!}>${(meta.claLowName)!}Page=${(meta.claUpName)!}.dao.page(pageNumber,pageSize,where);
+            Page<SysCode>sysCodePage=SysCode.dao.page(pageNumber,pageSize,where);
 
-            renderDatagrid(${(meta.claLowName)!}Page);
+            renderDatagrid(sysCodePage);
         }
 
 
@@ -42,11 +42,11 @@ public class ${(meta.claUpName)!}Controller extends BaseController{
         public void newModel(){
             String id=getPara("id");
             if(id!=null){
-            ${(meta.claUpName)!} ${(meta.claLowName)!}=${(meta.claUpName)!}.dao.findById(id);
-            setAttr("${(meta.claLowName)!}",${(meta.claLowName)!});
+            SysCode sysCode=SysCode.dao.findById(id);
+            setAttr("sysCode",sysCode);
             }
 
-            render("${(meta.moduleName)!}/${(meta.claLowName)!}_form.html");
+            render("system/sysCode_form.html");
         }
 
 
@@ -55,9 +55,8 @@ public class ${(meta.claUpName)!}Controller extends BaseController{
          */
         public void addAction(){
 
-            ${(meta.claUpName)!} ${(meta.claLowName)!}=getBean(${(meta.claUpName)!}.class,"");
-            ${(meta.claLowName)!}.setId(Identities.uuid2());
-            boolean saveFlag=${(meta.claLowName)!}.save();
+            SysCode sysCode=getBean(SysCode.class,"");
+            boolean saveFlag=sysCode.save();
             if(saveFlag){
                 renderText(Constant.ADD_SUCCESS);
             }else{
@@ -71,7 +70,7 @@ public class ${(meta.claUpName)!}Controller extends BaseController{
          */
         public void deleteAction(){
             String id=getPara("id");
-            Boolean delflag=${(meta.claUpName)!}.dao.deleteById(id);
+            Boolean delflag=SysCode.dao.deleteById(id);
             if(delflag){
                 renderText(Constant.DELETE_SUCCESS);
             }else{
@@ -83,8 +82,8 @@ public class ${(meta.claUpName)!}Controller extends BaseController{
          * 修改
          */
         public void updateAction(){
-            ${(meta.claUpName)!} ${(meta.claLowName)!}=getBean(${(meta.claUpName)!}.class,"");
-            boolean updateFlag=${(meta.claLowName)!}.update();
+            SysCode sysCode=getBean(SysCode.class,"");
+            boolean updateFlag=sysCode.update();
             if(updateFlag){
                 renderText(Constant.UPDATE_SUCCESS);
             }else{
