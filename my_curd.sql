@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50719
 File Encoding         : 65001
 
-Date: 2017-12-15 19:30:33
+Date: 2017-12-15 23:42:26
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -3688,149 +3688,6 @@ INSERT INTO `bus_novel_chapter` VALUES ('936391816486322176', '1', '1');
 INSERT INTO `bus_novel_chapter` VALUES ('936391852507004928', '3', '3');
 
 -- ----------------------------
--- Table structure for `sys_code`
--- ----------------------------
-DROP TABLE IF EXISTS `sys_code`;
-CREATE TABLE `sys_code` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `type` varchar(50) DEFAULT NULL COMMENT '数据类型编码',
-  `type_desc` varchar(255) DEFAULT NULL COMMENT '数据类型编码描述',
-  `code` varchar(100) DEFAULT NULL COMMENT '代码',
-  `sort` int(11) DEFAULT NULL COMMENT '排序标志',
-  `create_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '修改时间',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=161 DEFAULT CHARSET=utf8 COMMENT='数据码表';
-
--- ----------------------------
--- Records of sys_code
--- ----------------------------
-INSERT INTO `sys_code` VALUES ('36', 'mblb', '码表类别1', 'mblb', '1', '2017-12-15 17:46:36');
-INSERT INTO `sys_code` VALUES ('37', 'mblb', '标准体系', 'standard', '2', '2017-12-15 17:48:00');
-INSERT INTO `sys_code` VALUES ('38', 'standard', '产品标准', 'Q', null, '2017-12-15 17:22:07');
-INSERT INTO `sys_code` VALUES ('39', 'standard', '技术标准', 'J', null, '2017-12-15 17:22:07');
-INSERT INTO `sys_code` VALUES ('40', 'standard', '管理标准', 'G', null, '2017-12-15 17:22:07');
-INSERT INTO `sys_code` VALUES ('41', 'standard', '工作标准', 'Z', null, '2017-12-15 17:22:07');
-INSERT INTO `sys_code` VALUES ('42', 'mblb', '备用1', '1', null, '2017-12-15 17:22:07');
-INSERT INTO `sys_code` VALUES ('43', 'mblb', '备用2', '4', null, '2017-12-15 17:22:07');
-INSERT INTO `sys_code` VALUES ('44', 'mblb', '备用3', '3', null, '2017-12-15 17:22:07');
-INSERT INTO `sys_code` VALUES ('45', 'mblb', '部门编号', 'orgid', null, '2017-12-15 17:22:07');
-INSERT INTO `sys_code` VALUES ('46', 'orgid', '企管中心', 'HXQG', null, '2017-12-15 17:22:07');
-INSERT INTO `sys_code` VALUES ('47', 'orgid', '经营部', 'HXQG-JY', null, '2017-12-15 17:22:07');
-INSERT INTO `sys_code` VALUES ('48', 'orgid', '人力资源', 'HXQG-RL', null, '2017-12-15 17:22:07');
-INSERT INTO `sys_code` VALUES ('49', 'orgid', '行政部', 'HXQG-XZ', null, '2017-12-15 17:22:07');
-INSERT INTO `sys_code` VALUES ('50', 'orgid', '财务中心', 'HXCW', null, '2017-12-15 17:22:07');
-INSERT INTO `sys_code` VALUES ('51', 'orgid', '证券部', 'HXCW-ZQ', null, '2017-12-15 17:22:07');
-INSERT INTO `sys_code` VALUES ('52', 'orgid', '融资部', 'HXCW-RZ', null, '2017-12-15 17:22:07');
-INSERT INTO `sys_code` VALUES ('53', 'orgid', '财务部', 'HXCW-CW', null, '2017-12-15 17:22:07');
-INSERT INTO `sys_code` VALUES ('54', 'mblb', '产品标准', 'cpbz', null, '2017-12-15 17:22:07');
-INSERT INTO `sys_code` VALUES ('55', 'cpbz', 'GB/T3428-2012', 'GBT34282012', null, '2017-12-15 17:22:07');
-INSERT INTO `sys_code` VALUES ('56', 'cpbz', 'GB/T3428-2002', 'GBT34282002', null, '2017-12-15 17:22:07');
-INSERT INTO `sys_code` VALUES ('57', 'cpbz', 'GB/T1179-2008', 'GBT11792008', null, '2017-12-15 17:22:07');
-INSERT INTO `sys_code` VALUES ('58', 'cpbz', 'YB/T5004-2012', 'YBT50042012', null, '2017-12-15 17:22:07');
-INSERT INTO `sys_code` VALUES ('59', 'cpbz', 'YB/T5004-2001', 'YBT50042001', null, '2017-12-15 17:22:07');
-INSERT INTO `sys_code` VALUES ('60', 'cpbz', 'YB/T184-2000', 'YBT1842000', null, '2017-12-15 17:22:07');
-INSERT INTO `sys_code` VALUES ('61', 'cpbz', 'ASTM498-A', 'ASTM498A', null, '2017-12-15 17:22:07');
-INSERT INTO `sys_code` VALUES ('62', 'cpbz', 'ASTM232', 'ASTM232', null, '2017-12-15 17:22:07');
-INSERT INTO `sys_code` VALUES ('63', 'cpbz', 'BS183', 'BS183', null, '2017-12-15 17:22:07');
-INSERT INTO `sys_code` VALUES ('64', 'cpbz', 'IEC61089-1991', 'IEC61089-1991', null, '2017-12-15 17:22:07');
-INSERT INTO `sys_code` VALUES ('65', 'cpbz', 'EN50189-2000', 'EN501892000', null, '2017-12-15 17:22:07');
-INSERT INTO `sys_code` VALUES ('66', 'cpbz', 'BS4565-1990', 'BS45651990', null, '2017-12-15 17:22:07');
-INSERT INTO `sys_code` VALUES ('67', 'cpbz', 'ASTMA363-2003', 'ASTMA3632003', null, '2017-12-15 17:22:07');
-INSERT INTO `sys_code` VALUES ('68', 'cpbz', 'YB/T183-2000', 'YBT1832000', null, '2017-12-15 17:22:07');
-INSERT INTO `sys_code` VALUES ('69', 'cpbz', 'ASTMA475', 'ASTMA475', null, '2017-12-15 17:22:07');
-INSERT INTO `sys_code` VALUES ('70', 'cpbz', 'GB1200-88', 'GB120088', null, '2017-12-15 17:22:07');
-INSERT INTO `sys_code` VALUES ('71', 'cpbz', 'IEC60888-1987', 'IEC60888-1987', null, '2017-12-15 17:22:07');
-INSERT INTO `sys_code` VALUES ('72', 'cpbz', '强度', 'QD', null, '2017-12-15 17:22:07');
-INSERT INTO `sys_code` VALUES ('73', 'cpbz', 'BS215', 'BS215', null, '2017-12-15 17:22:07');
-INSERT INTO `sys_code` VALUES ('74', 'cpbz', 'GB/T20492-2006', 'GBT204922006', null, '2017-12-15 17:22:07');
-INSERT INTO `sys_code` VALUES ('75', 'cpbz', 'EN50282-2011', 'EN50282-2011', null, '2017-12-15 17:22:07');
-INSERT INTO `sys_code` VALUES ('76', 'mblb', '付款类型', 'payment', null, '2017-12-15 17:22:07');
-INSERT INTO `sys_code` VALUES ('77', 'payment', '现金', '0', null, '2017-12-15 17:22:07');
-INSERT INTO `sys_code` VALUES ('78', 'payment', '电汇', '1', null, '2017-12-15 17:22:07');
-INSERT INTO `sys_code` VALUES ('79', 'payment', '银兑', '2', null, '2017-12-15 17:22:07');
-INSERT INTO `sys_code` VALUES ('80', 'mblb', '币种', 'currency', null, '2017-12-15 17:22:07');
-INSERT INTO `sys_code` VALUES ('81', 'currency', '人民币', 'RMB', null, '2017-12-15 17:22:07');
-INSERT INTO `sys_code` VALUES ('82', 'currency', '美元', 'USD', null, '2017-12-15 17:22:07');
-INSERT INTO `sys_code` VALUES ('83', 'currency', '欧元', 'EUR', null, '2017-12-15 17:22:07');
-INSERT INTO `sys_code` VALUES ('84', 'payment', '商兑', '3', null, '2017-12-15 17:22:07');
-INSERT INTO `sys_code` VALUES ('85', 'mblb', '物资类别', 'wz_type', null, '2017-12-15 17:22:07');
-INSERT INTO `sys_code` VALUES ('86', 'wz_type', '线材', '0', null, '2017-12-15 17:22:07');
-INSERT INTO `sys_code` VALUES ('87', 'wz_type', '辅助材料', '1', null, '2017-12-15 17:22:07');
-INSERT INTO `sys_code` VALUES ('88', 'wz_type', '设备', '3', null, '2017-12-15 17:22:07');
-INSERT INTO `sys_code` VALUES ('89', 'wz_type', '其它生产物资', '2', null, '2017-12-15 17:22:07');
-INSERT INTO `sys_code` VALUES ('90', 'wz_type', '非生产物资', '5', null, '2017-12-15 17:22:07');
-INSERT INTO `sys_code` VALUES ('91', 'wz_type', '电脑耗材', '6', null, '2017-12-15 17:22:07');
-INSERT INTO `sys_code` VALUES ('92', 'mblb', '计量单位', 'unit', null, '2017-12-15 17:22:07');
-INSERT INTO `sys_code` VALUES ('93', 'unit', '个', '01', null, '2017-12-15 17:22:07');
-INSERT INTO `sys_code` VALUES ('94', 'unit', '只', '02', null, '2017-12-15 17:22:07');
-INSERT INTO `sys_code` VALUES ('95', 'unit', '台', '03', null, '2017-12-15 17:22:07');
-INSERT INTO `sys_code` VALUES ('96', 'unit', '双', '04', null, '2017-12-15 17:22:07');
-INSERT INTO `sys_code` VALUES ('97', 'unit', '米', '05', null, '2017-12-15 17:22:07');
-INSERT INTO `sys_code` VALUES ('98', 'unit', '千克', 'kg', null, '2017-12-15 17:22:07');
-INSERT INTO `sys_code` VALUES ('99', 'unit', '克', 'g', null, '2017-12-15 17:22:07');
-INSERT INTO `sys_code` VALUES ('100', 'unit', '平方', '07', null, '2017-12-15 17:22:07');
-INSERT INTO `sys_code` VALUES ('101', 'unit', '吨', 't', null, '2017-12-15 17:22:07');
-INSERT INTO `sys_code` VALUES ('102', 'unit', '升', 'l', null, '2017-12-15 17:22:07');
-INSERT INTO `sys_code` VALUES ('103', 'unit', '毫升', 'ml', null, '2017-12-15 17:22:07');
-INSERT INTO `sys_code` VALUES ('104', 'unit', '条', '09', null, '2017-12-15 17:22:07');
-INSERT INTO `sys_code` VALUES ('105', 'unit', '盒', '10', null, '2017-12-15 17:22:07');
-INSERT INTO `sys_code` VALUES ('106', 'mblb', '公司', 'org', null, '2017-12-15 17:22:07');
-INSERT INTO `sys_code` VALUES ('107', 'org', '河南恒星钢缆有限公司', '0', null, '2017-12-15 17:22:07');
-INSERT INTO `sys_code` VALUES ('108', 'org', '河南恒星金属制品有限公司', '1', null, '2017-12-15 17:22:07');
-INSERT INTO `sys_code` VALUES ('109', 'org', '河南恒星科技有限公司', '2', null, '2017-12-15 17:22:07');
-INSERT INTO `sys_code` VALUES ('110', 'org', '博宇新能源', '6', null, '2017-12-15 17:22:07');
-INSERT INTO `sys_code` VALUES ('111', 'org', '鼎恒投资', '8', null, '2017-12-15 17:22:07');
-INSERT INTO `sys_code` VALUES ('112', 'org', '恒星贸易', '9', null, '2017-12-15 17:22:07');
-INSERT INTO `sys_code` VALUES ('113', 'payment', '挂帐', '4', null, '2017-12-15 17:22:07');
-INSERT INTO `sys_code` VALUES ('114', 'payment', '借款', '5', null, '2017-12-15 17:22:07');
-INSERT INTO `sys_code` VALUES ('115', 'payment', '补助', '6', null, '2017-12-15 17:22:07');
-INSERT INTO `sys_code` VALUES ('116', 'org', '恒星新材料', '10', null, '2017-12-15 17:22:07');
-INSERT INTO `sys_code` VALUES ('117', 'org', '售电公司', '15', null, '2017-12-15 17:22:07');
-INSERT INTO `sys_code` VALUES ('118', 'mblb', '仓库类别', 'depot', null, '2017-12-15 17:22:07');
-INSERT INTO `sys_code` VALUES ('119', 'depot', '科技实物库', '2', null, '2017-12-15 17:22:07');
-INSERT INTO `sys_code` VALUES ('120', 'depot', '园区实物库', '3', null, '2017-12-15 17:22:07');
-INSERT INTO `sys_code` VALUES ('121', 'depot', '金属实物库', '1', null, '2017-12-15 17:22:07');
-INSERT INTO `sys_code` VALUES ('122', 'depot', '钢缆实物库', '0', null, '2017-12-15 17:22:07');
-INSERT INTO `sys_code` VALUES ('123', 'depot', '博宇实物库', '4', null, '2017-12-15 17:22:07');
-INSERT INTO `sys_code` VALUES ('124', 'depot', '新材料实物库', '5', null, '2017-12-15 17:22:07');
-INSERT INTO `sys_code` VALUES ('125', 'depot', '机械钢轮实物库', '6', null, '2017-12-15 17:22:07');
-INSERT INTO `sys_code` VALUES ('126', 'org', '机械钢轮', '7', null, '2017-12-15 17:22:07');
-INSERT INTO `sys_code` VALUES ('127', 'mblb', '供应商类别', 'gylb', null, '2017-12-15 17:22:07');
-INSERT INTO `sys_code` VALUES ('128', 'gylb', '包装类', 'bzl', null, '2017-12-15 17:22:07');
-INSERT INTO `sys_code` VALUES ('129', 'gylb', '电器配件', 'dqpj', null, '2017-12-15 17:22:07');
-INSERT INTO `sys_code` VALUES ('130', 'gylb', '机械配件', 'jxpj', null, '2017-12-15 17:22:07');
-INSERT INTO `sys_code` VALUES ('131', 'gylb', '五金劳保日杂', 'wjlbrz', null, '2017-12-15 17:22:07');
-INSERT INTO `sys_code` VALUES ('132', 'depot', '钢轮厂实物库', '9', null, '2017-12-15 17:22:07');
-INSERT INTO `sys_code` VALUES ('133', 'gylb', '钢材', 'gc', null, '2017-12-15 17:22:07');
-INSERT INTO `sys_code` VALUES ('134', 'gylb', '多晶硅', 'djg', null, '2017-12-15 17:22:07');
-INSERT INTO `sys_code` VALUES ('135', 'gylb', '铜锌', 'tx', null, '2017-12-15 17:22:07');
-INSERT INTO `sys_code` VALUES ('136', 'gylb', '煤炭', 'mt', null, '2017-12-15 17:22:07');
-INSERT INTO `sys_code` VALUES ('137', 'gylb', '天然气', 'trq', null, '2017-12-15 17:22:07');
-INSERT INTO `sys_code` VALUES ('138', 'gylb', '进出口贸易', 'jckmy', null, '2017-12-15 17:22:07');
-INSERT INTO `sys_code` VALUES ('139', 'gylb', '机械成套', 'jxct', null, '2017-12-15 17:22:07');
-INSERT INTO `sys_code` VALUES ('140', 'gylb', '电器成套 ', 'dqct', null, '2017-12-15 17:22:07');
-INSERT INTO `sys_code` VALUES ('141', 'gylb', '化工原料', 'hgyl', null, '2017-12-15 17:22:07');
-INSERT INTO `sys_code` VALUES ('142', 'gylb', '建筑工程', 'jzgc', null, '2017-12-15 17:22:07');
-INSERT INTO `sys_code` VALUES ('143', 'gylb', '劳务合作', 'lwhz', null, '2017-12-15 17:22:07');
-INSERT INTO `sys_code` VALUES ('144', 'gylb', '办公用品', 'bgyp', null, '2017-12-15 17:22:07');
-INSERT INTO `sys_code` VALUES ('145', 'mblb', '资产类别', 'eam_type', null, '2017-12-15 17:22:07');
-INSERT INTO `sys_code` VALUES ('146', 'eam_type', '生产设备', '01', null, '2017-12-15 17:22:07');
-INSERT INTO `sys_code` VALUES ('147', 'eam_type', '办公设备', '02', null, '2017-12-15 17:22:07');
-INSERT INTO `sys_code` VALUES ('148', 'mblb', '费用归属公司', 'cost', null, '2017-12-15 17:22:07');
-INSERT INTO `sys_code` VALUES ('149', 'cost', '科技帘线', '2', null, '2017-12-15 17:22:07');
-INSERT INTO `sys_code` VALUES ('150', 'cost', '科技半成品', '12', null, '2017-12-15 17:22:07');
-INSERT INTO `sys_code` VALUES ('151', 'cost', '科技超精细', '13', null, '2017-12-15 17:22:07');
-INSERT INTO `sys_code` VALUES ('152', 'cost', '科技金刚线', '14', null, '2017-12-15 17:22:07');
-INSERT INTO `sys_code` VALUES ('153', 'cost', '钢缆公司', '0', null, '2017-12-15 17:22:07');
-INSERT INTO `sys_code` VALUES ('154', 'cost', '金属公司', '1', null, '2017-12-15 17:22:07');
-INSERT INTO `sys_code` VALUES ('155', 'cost', '博宇新能源', '6', null, '2017-12-15 17:22:07');
-INSERT INTO `sys_code` VALUES ('156', 'cost', '机械钢轮', '7', null, '2017-12-15 17:22:07');
-INSERT INTO `sys_code` VALUES ('157', 'cost', '鼎恒投资', '8', null, '2017-12-15 17:22:07');
-INSERT INTO `sys_code` VALUES ('158', 'cost', '恒星贸易', '9', null, '2017-12-15 17:22:07');
-INSERT INTO `sys_code` VALUES ('159', 'cost', '恒星新材料', '10', null, '2017-12-15 17:22:07');
-INSERT INTO `sys_code` VALUES ('160', 'cost', '售电公司', '15', null, '2017-12-15 17:22:07');
-
--- ----------------------------
 -- Table structure for `sys_dict`
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_dict`;
@@ -3841,7 +3698,7 @@ CREATE TABLE `sys_dict` (
   `dict_value` varchar(100) NOT NULL DEFAULT '' COMMENT '值',
   `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '创建时间',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8 COMMENT='数据字典';
+) ENGINE=InnoDB AUTO_INCREMENT=139 DEFAULT CHARSET=utf8 COMMENT='数据字典';
 
 -- ----------------------------
 -- Records of sys_dict
@@ -3852,6 +3709,131 @@ INSERT INTO `sys_dict` VALUES ('10', 'task_type', '3', 'ITask', '2017-11-27 20:5
 INSERT INTO `sys_dict` VALUES ('11', 'task_statu', '1', '等待运行', '2017-11-27 20:56:17');
 INSERT INTO `sys_dict` VALUES ('12', 'task_statu', '2', '已停止', '2017-11-27 20:56:33');
 INSERT INTO `sys_dict` VALUES ('13', 'task_statu', '3', '运行中', '2017-03-28 23:26:26');
+INSERT INTO `sys_dict` VALUES ('14', 'mblb', '码表类别', 'mblb', '2017-12-15 23:27:02');
+INSERT INTO `sys_dict` VALUES ('15', 'mblb', '标准体系', 'standard', '2017-12-15 23:20:37');
+INSERT INTO `sys_dict` VALUES ('16', 'standard', '产品标准', 'Q', '2017-12-15 23:20:37');
+INSERT INTO `sys_dict` VALUES ('17', 'standard', '技术标准', 'J', '2017-12-15 23:20:37');
+INSERT INTO `sys_dict` VALUES ('18', 'standard', '管理标准', 'G', '2017-12-15 23:20:37');
+INSERT INTO `sys_dict` VALUES ('19', 'standard', '工作标准', 'Z', '2017-12-15 23:20:37');
+INSERT INTO `sys_dict` VALUES ('20', 'mblb', '备用1', '1', '2017-12-15 23:20:37');
+INSERT INTO `sys_dict` VALUES ('21', 'mblb', '备用2', '4', '2017-12-15 23:20:37');
+INSERT INTO `sys_dict` VALUES ('22', 'mblb', '备用3', '3', '2017-12-15 23:20:37');
+INSERT INTO `sys_dict` VALUES ('23', 'mblb', '部门编号', 'orgid', '2017-12-15 23:20:37');
+INSERT INTO `sys_dict` VALUES ('24', 'orgid', '企管中心', 'HXQG', '2017-12-15 23:20:37');
+INSERT INTO `sys_dict` VALUES ('25', 'orgid', '经营部', 'HXQG-JY', '2017-12-15 23:20:37');
+INSERT INTO `sys_dict` VALUES ('26', 'orgid', '人力资源', 'HXQG-RL', '2017-12-15 23:20:37');
+INSERT INTO `sys_dict` VALUES ('27', 'orgid', '行政部', 'HXQG-XZ', '2017-12-15 23:20:37');
+INSERT INTO `sys_dict` VALUES ('28', 'orgid', '财务中心', 'HXCW', '2017-12-15 23:20:37');
+INSERT INTO `sys_dict` VALUES ('29', 'orgid', '证券部', 'HXCW-ZQ', '2017-12-15 23:20:37');
+INSERT INTO `sys_dict` VALUES ('30', 'orgid', '融资部', 'HXCW-RZ', '2017-12-15 23:20:37');
+INSERT INTO `sys_dict` VALUES ('31', 'orgid', '财务部', 'HXCW-CW', '2017-12-15 23:20:37');
+INSERT INTO `sys_dict` VALUES ('32', 'mblb', '产品标准', 'cpbz', '2017-12-15 23:20:37');
+INSERT INTO `sys_dict` VALUES ('33', 'cpbz', 'GB/T3428-2012', 'GBT34282012', '2017-12-15 23:20:37');
+INSERT INTO `sys_dict` VALUES ('34', 'cpbz', 'GB/T3428-2002', 'GBT34282002', '2017-12-15 23:20:37');
+INSERT INTO `sys_dict` VALUES ('35', 'cpbz', 'GB/T1179-2008', 'GBT11792008', '2017-12-15 23:20:37');
+INSERT INTO `sys_dict` VALUES ('36', 'cpbz', 'YB/T5004-2012', 'YBT50042012', '2017-12-15 23:20:37');
+INSERT INTO `sys_dict` VALUES ('37', 'cpbz', 'YB/T5004-2001', 'YBT50042001', '2017-12-15 23:20:37');
+INSERT INTO `sys_dict` VALUES ('38', 'cpbz', 'YB/T184-2000', 'YBT1842000', '2017-12-15 23:20:37');
+INSERT INTO `sys_dict` VALUES ('39', 'cpbz', 'ASTM498-A', 'ASTM498A', '2017-12-15 23:20:37');
+INSERT INTO `sys_dict` VALUES ('40', 'cpbz', 'ASTM232', 'ASTM232', '2017-12-15 23:20:37');
+INSERT INTO `sys_dict` VALUES ('41', 'cpbz', 'BS183', 'BS183', '2017-12-15 23:20:37');
+INSERT INTO `sys_dict` VALUES ('42', 'cpbz', 'IEC61089-1991', 'IEC61089-1991', '2017-12-15 23:20:37');
+INSERT INTO `sys_dict` VALUES ('43', 'cpbz', 'EN50189-2000', 'EN501892000', '2017-12-15 23:20:37');
+INSERT INTO `sys_dict` VALUES ('44', 'cpbz', 'BS4565-1990', 'BS45651990', '2017-12-15 23:20:37');
+INSERT INTO `sys_dict` VALUES ('45', 'cpbz', 'ASTMA363-2003', 'ASTMA3632003', '2017-12-15 23:20:37');
+INSERT INTO `sys_dict` VALUES ('46', 'cpbz', 'YB/T183-2000', 'YBT1832000', '2017-12-15 23:20:37');
+INSERT INTO `sys_dict` VALUES ('47', 'cpbz', 'ASTMA475', 'ASTMA475', '2017-12-15 23:20:37');
+INSERT INTO `sys_dict` VALUES ('48', 'cpbz', 'GB1200-88', 'GB120088', '2017-12-15 23:20:37');
+INSERT INTO `sys_dict` VALUES ('49', 'cpbz', 'IEC60888-1987', 'IEC60888-1987', '2017-12-15 23:20:37');
+INSERT INTO `sys_dict` VALUES ('50', 'cpbz', '强度', 'QD', '2017-12-15 23:20:37');
+INSERT INTO `sys_dict` VALUES ('51', 'cpbz', 'BS215', 'BS215', '2017-12-15 23:20:37');
+INSERT INTO `sys_dict` VALUES ('52', 'cpbz', 'GB/T20492-2006', 'GBT204922006', '2017-12-15 23:20:37');
+INSERT INTO `sys_dict` VALUES ('53', 'cpbz', 'EN50282-2011', 'EN50282-2011', '2017-12-15 23:20:37');
+INSERT INTO `sys_dict` VALUES ('54', 'mblb', '付款类型', 'payment', '2017-12-15 23:20:37');
+INSERT INTO `sys_dict` VALUES ('55', 'payment', '现金', '0', '2017-12-15 23:20:37');
+INSERT INTO `sys_dict` VALUES ('56', 'payment', '电汇', '1', '2017-12-15 23:20:37');
+INSERT INTO `sys_dict` VALUES ('57', 'payment', '银兑', '2', '2017-12-15 23:20:37');
+INSERT INTO `sys_dict` VALUES ('58', 'mblb', '币种', 'currency', '2017-12-15 23:20:37');
+INSERT INTO `sys_dict` VALUES ('59', 'currency', '人民币', 'RMB', '2017-12-15 23:20:37');
+INSERT INTO `sys_dict` VALUES ('60', 'currency', '美元', 'USD', '2017-12-15 23:20:37');
+INSERT INTO `sys_dict` VALUES ('61', 'currency', '欧元', 'EUR', '2017-12-15 23:20:37');
+INSERT INTO `sys_dict` VALUES ('62', 'payment', '商兑', '3', '2017-12-15 23:20:37');
+INSERT INTO `sys_dict` VALUES ('63', 'mblb', '物资类别', 'wz_type', '2017-12-15 23:20:37');
+INSERT INTO `sys_dict` VALUES ('64', 'wz_type', '线材', '0', '2017-12-15 23:20:37');
+INSERT INTO `sys_dict` VALUES ('65', 'wz_type', '辅助材料', '1', '2017-12-15 23:20:37');
+INSERT INTO `sys_dict` VALUES ('66', 'wz_type', '设备', '3', '2017-12-15 23:20:37');
+INSERT INTO `sys_dict` VALUES ('67', 'wz_type', '其它生产物资', '2', '2017-12-15 23:20:37');
+INSERT INTO `sys_dict` VALUES ('68', 'wz_type', '非生产物资', '5', '2017-12-15 23:20:37');
+INSERT INTO `sys_dict` VALUES ('69', 'wz_type', '电脑耗材', '6', '2017-12-15 23:20:37');
+INSERT INTO `sys_dict` VALUES ('70', 'mblb', '计量单位', 'unit', '2017-12-15 23:20:37');
+INSERT INTO `sys_dict` VALUES ('71', 'unit', '个', '01', '2017-12-15 23:20:37');
+INSERT INTO `sys_dict` VALUES ('72', 'unit', '只', '02', '2017-12-15 23:20:37');
+INSERT INTO `sys_dict` VALUES ('73', 'unit', '台', '03', '2017-12-15 23:20:37');
+INSERT INTO `sys_dict` VALUES ('74', 'unit', '双', '04', '2017-12-15 23:20:37');
+INSERT INTO `sys_dict` VALUES ('75', 'unit', '米', '05', '2017-12-15 23:20:37');
+INSERT INTO `sys_dict` VALUES ('76', 'unit', '千克', 'kg', '2017-12-15 23:20:37');
+INSERT INTO `sys_dict` VALUES ('77', 'unit', '克', 'g', '2017-12-15 23:20:37');
+INSERT INTO `sys_dict` VALUES ('78', 'unit', '平方', '07', '2017-12-15 23:20:37');
+INSERT INTO `sys_dict` VALUES ('79', 'unit', '吨', 't', '2017-12-15 23:20:37');
+INSERT INTO `sys_dict` VALUES ('80', 'unit', '升', 'l', '2017-12-15 23:20:37');
+INSERT INTO `sys_dict` VALUES ('81', 'unit', '毫升', 'ml', '2017-12-15 23:20:37');
+INSERT INTO `sys_dict` VALUES ('82', 'unit', '条', '09', '2017-12-15 23:20:37');
+INSERT INTO `sys_dict` VALUES ('83', 'unit', '盒', '10', '2017-12-15 23:20:37');
+INSERT INTO `sys_dict` VALUES ('84', 'mblb', '公司', 'org', '2017-12-15 23:20:37');
+INSERT INTO `sys_dict` VALUES ('85', 'org', '河南恒星钢缆有限公司', '0', '2017-12-15 23:20:37');
+INSERT INTO `sys_dict` VALUES ('86', 'org', '河南恒星金属制品有限公司', '1', '2017-12-15 23:20:37');
+INSERT INTO `sys_dict` VALUES ('87', 'org', '河南恒星科技有限公司', '2', '2017-12-15 23:20:37');
+INSERT INTO `sys_dict` VALUES ('88', 'org', '博宇新能源', '6', '2017-12-15 23:20:37');
+INSERT INTO `sys_dict` VALUES ('89', 'org', '鼎恒投资', '8', '2017-12-15 23:20:37');
+INSERT INTO `sys_dict` VALUES ('90', 'org', '恒星贸易', '9', '2017-12-15 23:20:37');
+INSERT INTO `sys_dict` VALUES ('91', 'payment', '挂帐', '4', '2017-12-15 23:20:37');
+INSERT INTO `sys_dict` VALUES ('92', 'payment', '借款', '5', '2017-12-15 23:20:37');
+INSERT INTO `sys_dict` VALUES ('93', 'payment', '补助', '6', '2017-12-15 23:20:37');
+INSERT INTO `sys_dict` VALUES ('94', 'org', '恒星新材料', '10', '2017-12-15 23:20:37');
+INSERT INTO `sys_dict` VALUES ('95', 'org', '售电公司', '15', '2017-12-15 23:20:37');
+INSERT INTO `sys_dict` VALUES ('96', 'mblb', '仓库类别', 'depot', '2017-12-15 23:20:37');
+INSERT INTO `sys_dict` VALUES ('97', 'depot', '科技实物库', '2', '2017-12-15 23:20:37');
+INSERT INTO `sys_dict` VALUES ('98', 'depot', '园区实物库', '3', '2017-12-15 23:20:37');
+INSERT INTO `sys_dict` VALUES ('99', 'depot', '金属实物库', '1', '2017-12-15 23:20:37');
+INSERT INTO `sys_dict` VALUES ('100', 'depot', '钢缆实物库', '0', '2017-12-15 23:20:37');
+INSERT INTO `sys_dict` VALUES ('101', 'depot', '博宇实物库', '4', '2017-12-15 23:20:37');
+INSERT INTO `sys_dict` VALUES ('102', 'depot', '新材料实物库', '5', '2017-12-15 23:20:37');
+INSERT INTO `sys_dict` VALUES ('103', 'depot', '机械钢轮实物库', '6', '2017-12-15 23:20:37');
+INSERT INTO `sys_dict` VALUES ('104', 'org', '机械钢轮', '7', '2017-12-15 23:20:37');
+INSERT INTO `sys_dict` VALUES ('105', 'mblb', '供应商类别', 'gylb', '2017-12-15 23:20:37');
+INSERT INTO `sys_dict` VALUES ('106', 'gylb', '包装类', 'bzl', '2017-12-15 23:20:37');
+INSERT INTO `sys_dict` VALUES ('107', 'gylb', '电器配件', 'dqpj', '2017-12-15 23:20:37');
+INSERT INTO `sys_dict` VALUES ('108', 'gylb', '机械配件', 'jxpj', '2017-12-15 23:20:37');
+INSERT INTO `sys_dict` VALUES ('109', 'gylb', '五金劳保日杂', 'wjlbrz', '2017-12-15 23:20:37');
+INSERT INTO `sys_dict` VALUES ('110', 'depot', '钢轮厂实物库', '9', '2017-12-15 23:20:37');
+INSERT INTO `sys_dict` VALUES ('111', 'gylb', '钢材', 'gc', '2017-12-15 23:20:37');
+INSERT INTO `sys_dict` VALUES ('112', 'gylb', '多晶硅', 'djg', '2017-12-15 23:20:37');
+INSERT INTO `sys_dict` VALUES ('113', 'gylb', '铜锌', 'tx', '2017-12-15 23:20:37');
+INSERT INTO `sys_dict` VALUES ('114', 'gylb', '煤炭', 'mt', '2017-12-15 23:20:37');
+INSERT INTO `sys_dict` VALUES ('115', 'gylb', '天然气', 'trq', '2017-12-15 23:20:37');
+INSERT INTO `sys_dict` VALUES ('116', 'gylb', '进出口贸易', 'jckmy', '2017-12-15 23:20:37');
+INSERT INTO `sys_dict` VALUES ('117', 'gylb', '机械成套', 'jxct', '2017-12-15 23:20:37');
+INSERT INTO `sys_dict` VALUES ('118', 'gylb', '电器成套 ', 'dqct', '2017-12-15 23:20:37');
+INSERT INTO `sys_dict` VALUES ('119', 'gylb', '化工原料', 'hgyl', '2017-12-15 23:20:37');
+INSERT INTO `sys_dict` VALUES ('120', 'gylb', '建筑工程', 'jzgc', '2017-12-15 23:20:37');
+INSERT INTO `sys_dict` VALUES ('121', 'gylb', '劳务合作', 'lwhz', '2017-12-15 23:20:37');
+INSERT INTO `sys_dict` VALUES ('122', 'gylb', '办公用品', 'bgyp', '2017-12-15 23:20:37');
+INSERT INTO `sys_dict` VALUES ('123', 'mblb', '资产类别', 'eam_type', '2017-12-15 23:20:37');
+INSERT INTO `sys_dict` VALUES ('124', 'eam_type', '生产设备', '01', '2017-12-15 23:20:37');
+INSERT INTO `sys_dict` VALUES ('125', 'eam_type', '办公设备', '02', '2017-12-15 23:20:37');
+INSERT INTO `sys_dict` VALUES ('126', 'mblb', '费用归属公司', 'cost', '2017-12-15 23:20:37');
+INSERT INTO `sys_dict` VALUES ('127', 'cost', '科技帘线', '2', '2017-12-15 23:20:37');
+INSERT INTO `sys_dict` VALUES ('128', 'cost', '科技半成品', '12', '2017-12-15 23:20:37');
+INSERT INTO `sys_dict` VALUES ('129', 'cost', '科技超精细', '13', '2017-12-15 23:20:37');
+INSERT INTO `sys_dict` VALUES ('130', 'cost', '科技金刚线', '14', '2017-12-15 23:20:37');
+INSERT INTO `sys_dict` VALUES ('131', 'cost', '钢缆公司', '0', '2017-12-15 23:20:37');
+INSERT INTO `sys_dict` VALUES ('132', 'cost', '金属公司', '1', '2017-12-15 23:20:37');
+INSERT INTO `sys_dict` VALUES ('133', 'cost', '博宇新能源', '6', '2017-12-15 23:20:37');
+INSERT INTO `sys_dict` VALUES ('134', 'cost', '机械钢轮', '7', '2017-12-15 23:20:37');
+INSERT INTO `sys_dict` VALUES ('135', 'cost', '鼎恒投资', '8', '2017-12-15 23:20:37');
+INSERT INTO `sys_dict` VALUES ('136', 'cost', '恒星贸易', '9', '2017-12-15 23:20:37');
+INSERT INTO `sys_dict` VALUES ('137', 'cost', '恒星新材料', '10', '2017-12-15 23:20:37');
+INSERT INTO `sys_dict` VALUES ('138', 'cost', '售电公司', '15', '2017-12-15 23:20:37');
 
 -- ----------------------------
 -- Table structure for `sys_file`
@@ -3866,21 +3848,12 @@ CREATE TABLE `sys_file` (
   `remark` varchar(255) DEFAULT NULL COMMENT '文件备注',
   `create_time` datetime DEFAULT NULL COMMENT '上传时间',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of sys_file
 -- ----------------------------
-INSERT INTO `sys_file` VALUES ('11', '916654989969981440', 'upload/image/20171213164925_617.jpg', 'timg (1).jpg', 'jpg', 'ggg', '2017-12-13 16:49:25');
-INSERT INTO `sys_file` VALUES ('12', '916654989969981440', 'upload/file/20171213165035_731.pdf', 'V5.6SP1数据字典.pdf', 'pdf', 'pdf 测试', '2017-12-13 16:50:35');
-INSERT INTO `sys_file` VALUES ('13', '916654989969981440', 'upload/file/20171213171748_299.xls', '2017年金刚线 订单.xls', 'xls', 'ggggg', '2017-12-13 17:17:48');
-INSERT INTO `sys_file` VALUES ('14', '916654989969981440', 'upload/file/20171214081451_545.xls', '2017年金刚线 订单.xls', 'xls', 'test', '2017-12-14 08:14:51');
-INSERT INTO `sys_file` VALUES ('15', '916654989969981440', 'upload/file/20171214081516_773.docx', '17081401001质量报告(博宇新能源).docx', 'docx', 'etst', '2017-12-14 08:15:16');
-INSERT INTO `sys_file` VALUES ('18', '916654989969981440', 'upload/file/20171214082528_990.xls', '科技园区物资编码.xls', 'xls', 'test', '2017-12-14 08:25:28');
-INSERT INTO `sys_file` VALUES ('19', '916654989969981440', 'upload/file/20171214082620_914.pdf', 'jfinal-3.1-manual.pdf', 'pdf', 'jfinal3.1 说明文档', '2017-12-14 08:26:20');
-INSERT INTO `sys_file` VALUES ('20', '916654989969981440', 'upload/file/20171214124935_697.pdf', 'Activiti5.4 用户指南（中文版） .pdf', 'pdf', 'Activiti5.4 用户指南（中文版） ', '2017-12-14 12:49:35');
-INSERT INTO `sys_file` VALUES ('21', '916654989969981440', 'upload/file/20171214165822_177.pdf', '深入浅出MySQL全文.pdf', 'pdf', 'mysql pdf', '2017-12-14 16:58:22');
-INSERT INTO `sys_file` VALUES ('22', '916654989969981440', 'upload/file/20171214165909_318.txt', 'readme.txt', 'txt', '在', '2017-12-14 16:59:09');
+INSERT INTO `sys_file` VALUES ('36', '916654989969981440', 'upload/media/20171215233952_523.mp3', 'ZQ0DAFYp4uKAD5tyAEgvmkjJyY0858.mp3', 'mp3', 'adelee hello', '2017-12-15 23:39:52');
 
 -- ----------------------------
 -- Table structure for `sys_menu`
@@ -3912,7 +3885,7 @@ INSERT INTO `sys_menu` VALUES ('70', '系统日志', '/sysOplog', 'icon-log', '7
 INSERT INTO `sys_menu` VALUES ('71', '定时任务', '/sysTask', 'icon-task', '6', '5');
 INSERT INTO `sys_menu` VALUES ('72', 'busNovelChapter', '/busNovelChapter', null, '2', '66');
 INSERT INTO `sys_menu` VALUES ('73', '文件管理', '/sysFile', 'icon-file', '8', '5');
-INSERT INTO `sys_menu` VALUES ('74', '码表管理', '/sysCode', 'icon-code', '9', '5');
+INSERT INTO `sys_menu` VALUES ('74', '字典管理', '/sysDict', 'icon-code', '9', '5');
 
 -- ----------------------------
 -- Table structure for `sys_oplog`
@@ -3923,7 +3896,7 @@ CREATE TABLE `sys_oplog` (
   `user_id` varchar(32) DEFAULT NULL,
   `op_content` varchar(255) DEFAULT NULL,
   `ip` varchar(100) DEFAULT NULL,
-  `create_time` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+  `create_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -4127,6 +4100,22 @@ INSERT INTO `sys_oplog` VALUES ('941625944307662848', '916654989969981440', '登
 INSERT INTO `sys_oplog` VALUES ('941628411980283904', '916654989969981440', '退出', '0:0:0:0:0:0:0:1', '2017-12-15 19:18:02');
 INSERT INTO `sys_oplog` VALUES ('941628419928489984', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-15 19:18:04');
 INSERT INTO `sys_oplog` VALUES ('941630169100058624', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-15 19:25:01');
+INSERT INTO `sys_oplog` VALUES ('941642420129366016', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-15 20:13:42');
+INSERT INTO `sys_oplog` VALUES ('941643836956868608', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-15 20:19:20');
+INSERT INTO `sys_oplog` VALUES ('941645849623003136', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-15 20:27:20');
+INSERT INTO `sys_oplog` VALUES ('941646507755438080', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-15 20:29:57');
+INSERT INTO `sys_oplog` VALUES ('941684724810645504', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-15 23:01:48');
+INSERT INTO `sys_oplog` VALUES ('941684780775243776', '916654989969981440', '退出', '0:0:0:0:0:0:0:1', '2017-12-15 23:02:02');
+INSERT INTO `sys_oplog` VALUES ('941684786383028224', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-15 23:02:03');
+INSERT INTO `sys_oplog` VALUES ('941687495395901440', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-15 23:12:49');
+INSERT INTO `sys_oplog` VALUES ('941687683527213056', '916654989969981440', '退出', '0:0:0:0:0:0:0:1', '2017-12-15 23:13:34');
+INSERT INTO `sys_oplog` VALUES ('941687696286285824', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-15 23:13:37');
+INSERT INTO `sys_oplog` VALUES ('941688612502634496', '916654989969981440', '退出', '0:0:0:0:0:0:0:1', '2017-12-15 23:17:15');
+INSERT INTO `sys_oplog` VALUES ('941688618089447424', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-15 23:17:16');
+INSERT INTO `sys_oplog` VALUES ('941690770916638720', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-15 23:25:50');
+INSERT INTO `sys_oplog` VALUES ('941692325443141632', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-15 23:32:00');
+INSERT INTO `sys_oplog` VALUES ('941693305354190848', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-15 23:35:54');
+INSERT INTO `sys_oplog` VALUES ('941693957241307136', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-15 23:38:29');
 
 -- ----------------------------
 -- Table structure for `sys_org`
@@ -4639,7 +4628,7 @@ CREATE TABLE `sys_user` (
   `email` varchar(100) DEFAULT NULL,
   `phone` varchar(12) DEFAULT NULL,
   `disabled` varchar(2) DEFAULT '0' COMMENT '是否禁用0 未禁用 1禁用',
-  `create_time` datetime DEFAULT NULL,
+  `create_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   KEY `sys_user_org_id` (`org_id`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -4647,7 +4636,7 @@ CREATE TABLE `sys_user` (
 -- ----------------------------
 -- Records of sys_user
 -- ----------------------------
-INSERT INTO `sys_user` VALUES ('916654989969981440', 'admin', '7c4a8d09ca3762af61e59520943dc26494f8941b', '管理员', '75', '916432779@qq.com', '15238002477', '0', '2017-11-23 18:32:29');
+INSERT INTO `sys_user` VALUES ('916654989969981440', 'admin', '7c4a8d09ca3762af61e59520943dc26494f8941b', '管理员', '75', '916432779@qq.com', '15238002477', '0', '2017-12-15 23:02:41');
 
 -- ----------------------------
 -- Table structure for `sys_user_role`

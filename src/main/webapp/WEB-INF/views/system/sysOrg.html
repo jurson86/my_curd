@@ -18,13 +18,13 @@
 </style>
 <script>
     function newModel() {
-        layerTools.layerIframe('新建', '${ctx!}/sysOrg/newModel', '600px', '500px')
+        layerTools.layerIframe('fa-plus', '新建', '${ctx!}/sysOrg/newModel', '600px', '500px')
     }
 
     function editModel() {
         var node = $("#tt").treegrid("getSelected");
         if (node != null) {
-            layerTools.layerIframe('编辑', '${ctx!}/sysOrg/newModel?id=' + node.id, '600px', '500px')
+            layerTools.layerIframe('fa-pencil', '编辑', '${ctx!}/sysOrg/newModel?id=' + node.id, '600px', '500px')
         } else {
             layerTools.layerMsg('请选择一行数据进行编辑');
         }

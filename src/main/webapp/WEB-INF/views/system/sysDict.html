@@ -6,14 +6,14 @@
 
     // 新增 model
     function newModel() {
-        layerTools.layerIframe('新建', '${ctx!}/sysCode/newModel', '500px', '300px')
+        layerTools.layerIframe('fa-plus', '新建', '${ctx!}/sysDict/newModel', '500px', '300px')
     }
 
     // 编辑 model
     function editModel() {
         var row = $("#dg").treegrid("getSelected");
         if (row != null) {
-            layerTools.layerIframe('编辑', '${ctx!}/sysCode/newModel?id=' + row.id, '500px', '300px')
+            layerTools.layerIframe('fa-pencil', '编辑', '${ctx!}/sysDict/newModel?id=' + row.id, '500px', '300px')
         } else {
             layerTools.layerMsg('请选择一行数据进行编辑');
         }
@@ -24,7 +24,7 @@
         var row = $("#dg").datagrid("getSelected");
         if (row != null) {
             layerTools.confirm(3, '删除', '您确定要删除选中的记录吗?', function () {
-                $.post('${ctx!}/sysCode/deleteAction?id=' + row.id, function (data) {
+                $.post('${ctx!}/sysDict/deleteAction?id=' + row.id, function (data) {
                     layerTools.layerMsg(data, function () {
                         $('#dg').datagrid('reload');
                     });
@@ -39,23 +39,22 @@
     //条件查询
     function queryModel() {
         var queryParams = {};
-        queryParams['search_LIKE_type'] = $("#type").textbox("getValue");
+        queryParams['search_LIKE_dict_type'] = $("#type").textbox("getValue");
         $('#dg').datagrid('load', queryParams);
     }
 </script>
 <table id="dg" class="easyui-datagrid"
-       url="${ctx!}/sysCode/query"
+       url="${ctx!}/sysDict/query"
        toolbar="#tb" rownumbers="true" border="false"
        fit="true" pagination="true" singleSelect="true"
        pageSize="40" pageList="[20,40]">
     <thead>
     <tr>
-                   <th data-options="field:'id',checkbox:true"></th>
-                   <th field="type" width="100">类型(type)</th>
-                   <th field="type_desc" width="200">类型描述(typeDesc)</th>
-                   <th field="code" width="100">编码(code)</th>
-                   <th field="sort" width="100">排序</th>
-                   <th field="create_time" width="200">时间戳</th>
+        <th data-options="field:'id',checkbox:true"></th>
+        <th field="dict_type" width="100">类型(dict_type)</th>
+        <th field="dict_key" width="200">键(dict_key)</th>
+        <th field="dict_value" width="300">值(dict_value)</th>
+        <th field="create_time" width="200">创建时间</th>
     </tr>
     </thead>
 </table>
@@ -65,7 +64,7 @@
     <a onclick="editModel()" href="#" class="easyui-linkbutton" iconCls="icon-edit" plain="true">编辑</a>
     <a onclick="deleteModel()" href="#" class="easyui-linkbutton  " iconCls="icon-remove" plain="true">删除</a>
     <span class="searchInputArea">
-          <input id="type" prompt="类型(type)" class="easyui-textbox" style="width:120px; ">
+          <input id="type" prompt="类型(dict_type)" class="easyui-textbox" style="width:120px; ">
           <a href="#" class="easyui-linkbutton" iconCls="icon-search" onclick="queryModel()">搜索</a>
     </span>
 </div>

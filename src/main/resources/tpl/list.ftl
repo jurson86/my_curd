@@ -6,14 +6,14 @@
 
     // 新增 model
     function newModel() {
-        layerTools.layerIframe('新建', '<#noparse>${ctx!}</#noparse>/${(meta.claLowName)!}/newModel', '800px', '500px')
+        layerTools.layerIframe('fa-plus','新建', '<#noparse>${ctx!}</#noparse>/${(meta.claLowName)!}/newModel', '800px', '500px')
     }
 
     // 编辑 model
     function editModel() {
         var row = $("#dg").treegrid("getSelected");
         if (row != null) {
-            layerTools.layerIframe('编辑', '<#noparse>${ctx!}</#noparse>/${(meta.claLowName)!}/newModel?id=' + row.id, '800px', '500px')
+            layerTools.layerIframe('fa-pencil','编辑', '<#noparse>${ctx!}</#noparse>/${(meta.claLowName)!}/newModel?id=' + row.id, '800px', '500px')
         } else {
             layerTools.layerMsg('请选择一行数据进行编辑');
         }

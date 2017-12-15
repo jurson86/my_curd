@@ -39,8 +39,8 @@ public class SystemRoute extends Routes {
         // 文件管理
         add("/sysFile", SysFileController.class, Constant.VIEW_PATH);
 
-        // 码表管理
-        add("/sysCode",SysCodeController.class,Constant.VIEW_PATH);
+        // 字典表管理
+        add("/sysDict", SysDictController.class, Constant.VIEW_PATH);
 
     }
 

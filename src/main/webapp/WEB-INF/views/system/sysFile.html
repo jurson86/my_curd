@@ -6,6 +6,12 @@
         padding: 5px 8px;
         margin: 5px 2px;
     }
+
+    a.pure-button:hover {
+        color: wheat;
+        text-decoration: none;
+    }
+
     .button-blue,
     .button-success,
     .button-black {
@@ -16,7 +22,8 @@
 
     .button-blue {
         background: #00bbee; /* this is a maroon */
-     }
+    }
+
     .button-success {
         background: rgb(28, 184, 65); /* this is a green */
     }
@@ -31,14 +38,14 @@
 
     // 新增 model
     function newModel() {
-        layerTools.layerIframe('新建', '${ctx!}/sysFile/newModel', '550px', '350px')
+        layerTools.layerIframe('fa-plus', '新建', '${ctx!}/sysFile/newModel', '550px', '350px')
     }
 
     // 编辑 model
     function editModel() {
         var row = $("#dg").treegrid("getSelected");
         if (row != null) {
-            layerTools.layerIframe('编辑', '${ctx!}/sysFile/newModel?id=' + row.id,'550px', '320px')
+            layerTools.layerIframe('fa-pencil', '编辑', '${ctx!}/sysFile/newModel?id=' + row.id, '550px', '320px')
         } else {
             layerTools.layerMsg('请选择一行数据进行编辑');
         }
@@ -70,8 +77,8 @@
 
         queryParams['search_GTE_sf.create_time'] = $("#timeStart").datetimebox("getValue");
         queryParams['search_LTE_sf.create_time'] = $("#timeEnd").datetimebox("getValue");
-        if($("#fileType").combobox("getValues").length!=0){
-            queryParams['search_IN_sf.type'] = "('"+$("#fileType").combobox("getValues").join("','")+"')";
+        if ($("#fileType").combobox("getValues").length != 0) {
+            queryParams['search_IN_sf.type'] = "('" + $("#fileType").combobox("getValues").join("','") + "')";
         }
 
         $('#dg').datagrid('load', queryParams);
@@ -85,17 +92,17 @@
        pageSize="20" pageList="[20,40]">
     <thead>
     <tr>
-                   <th data-options="field:'ck',checkbox:true"></th>
-                   <th field="id" width="100">主键</th>
+        <th data-options="field:'ck',checkbox:true"></th>
+        <th field="id" width="100">主键</th>
 
-                   <th field="img_view" width="200" formatter="fView" align="center">图片预览</th>
-                   <th field="name" width="100"  formatter="redFormat">上传者</th>
-                   <th field="path" width="300" formatter="pathFormat">文件路径</th>
+        <th field="img_view" width="200" formatter="fView" align="center">图片预览</th>
+        <th field="name" width="100" formatter="redFormat">上传者</th>
+        <th field="path" width="300" formatter="pathFormat">文件路径</th>
 
-                   <th field="original_filename" width="200">文件原名</th>
-                   <th field="type" width="100" formatter="redFormat">文件类型</th>
-                   <th field="remark" width="300">文件备注</th>
-                   <th field="create_time" width="200">上传时间</th>
+        <th field="original_filename" width="200">文件原名</th>
+        <th field="type" width="100" formatter="redFormat">文件类型</th>
+        <th field="remark" width="300">文件备注</th>
+        <th field="create_time" width="200">上传时间</th>
     </tr>
     </thead>
 </table>
@@ -106,7 +113,7 @@
     <a onclick="deleteModel()" href="#" class="easyui-linkbutton  " iconCls="icon-remove" plain="true">删除</a>
     <span class="searchInputArea">
           <input id="fileType" prompt="文件类型" class="easyui-combobox"
-                data-options="valueField:'value', multiple:true,textField:'label',url:'${ctx!}/sysFile/fileTypeData'">
+                 data-options="valueField:'value', multiple:true,textField:'label',url:'${ctx!}/sysFile/fileTypeData'">
           <input id="name" prompt="上传者" class="easyui-textbox" style="width:120px; ">
           <input id="originalFilename" prompt="文件原名" class="easyui-textbox" style="width:120px; ">
           <input id="remark" prompt="备注" class="easyui-textbox" style="width:120px; ">
@@ -122,30 +129,33 @@
 <script src="${ctx!}/res/js/layer-tools.js"></script>
 <script>
     var ctx = '${ctx!}/';
+
     // 图片格式化
-    function  fView(val,row) {
-        if('png,jpg,jpeg,gif,bmp'.indexOf(row.type)>=0){
-            return '<a target="_blank" href="'+ctx+row.path+'"><img height="40px" src="'+ctx+row.path+'" alt="'+row.original_filename+'"/></a>'
-        }else if('pdf,html,txt,xml'.indexOf(row.type)>=0){
-            return '<a class="pure-button button-success" target="_blank" href="'+ctx+row.path+'"><i class="fa fa-eye"></i></a>';
-        }else if('swf,flv,mp3,wav,wma,wmv,mid,avi,mpg,asf,rm,rmvb,mp4'.indexOf(row.type)>=0) {
-            return '<a class="pure-button button-blue" target="_blank" href="'+ctx+row.path+'"><i class="fa fa-play-circle"></i></a>';
-        }else{
-                return '<a class="pure-button button-black" target="_blank" href="'+ctx+row.path+'"><i class="fa fa-download"></i></a>'
-        };
+    function fView(val, row) {
+        if ('png,jpg,jpeg,gif,bmp'.indexOf(row.type) >= 0) {
+            return '<a target="_blank" href="' + ctx + row.path + '"><img height="40px" src="' + ctx + row.path + '" alt="' + row.original_filename + '"/></a>'
+        } else if ('pdf,html,txt,xml'.indexOf(row.type) >= 0) {
+            return '<a class="pure-button button-success" target="_blank" href="' + ctx + row.path + '"><i class="fa fa-eye"></i></a>';
+        } else if ('swf,flv,mp3,wav,wma,wmv,mid,avi,mpg,asf,rm,rmvb,mp4'.indexOf(row.type) >= 0) {
+            return '<a class="pure-button button-blue" target="_blank" href="' + ctx + row.path + '"><i class="fa fa-play-circle"></i></a>';
+        } else {
+            return '<a class="pure-button button-black" target="_blank" href="' + ctx + row.path + '"><i class="fa fa-download"></i></a>'
+        }
+        ;
 
     }
-    function redFormat(val,row){
-        return '<b><span style="color:red">'+val+'</span></b>';
+
+    function redFormat(val, row) {
+        return '<b><span style="color:red">' + val + '</span></b>';
     }
 
-    function pathFormat(val,row){
-         //var ctx  = '${ctx!}/';
-         var curHref = window.document.location.href;
-         var curPathname = window.document.location.pathname;
-         var firstPos = curHref.indexOf(curPathname);
-         curHref = curHref.substring(0,firstPos);
-         return curHref+'/'+val;
+    function pathFormat(val, row) {
+        //var ctx  = '${ctx!}/';
+        var curHref = window.document.location.href;
+        var curPathname = window.document.location.pathname;
+        var firstPos = curHref.indexOf(curPathname);
+        curHref = curHref.substring(0, firstPos);
+        return curHref + '/' + val;
     }
 </script>
 </@layout>

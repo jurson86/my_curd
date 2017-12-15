@@ -4,13 +4,13 @@
 <body>
 <script type="text/javascript">
     function newModel() {
-        layerTools.layerIframe('新建', '${ctx!}/sysRole/newModel', '600px', '350px')
+        layerTools.layerIframe('fa-plus', '新建', '${ctx!}/sysRole/newModel', '600px', '350px')
     }
 
     function editModel() {
         var row = $("#dg").treegrid("getSelected");
         if (row != null) {
-            layerTools.layerIframe('编辑', '${ctx!}/sysRole/newModel?id=' + row.id, '600px', '350px')
+            layerTools.layerIframe('fa-pencil', '编辑', '${ctx!}/sysRole/newModel?id=' + row.id, '600px', '350px')
         } else {
             layerTools.layerMsg('请选择一行数据进行编辑');
         }

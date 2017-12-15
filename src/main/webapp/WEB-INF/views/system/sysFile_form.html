@@ -1,8 +1,8 @@
 <#include "/WEB-INF/views/common/common.html"/><@layout>
 <link rel="stylesheet" href="${ctx!}/res/pure/tables-min.css">
 <style>
-    #error{
-        font-size:12px;
+    #error {
+        font-size: 12px;
         color: red;
         text-align: center;
         padding: 10px;
@@ -20,20 +20,20 @@
 
         $('#modelForm').form('submit', {
             url: url,
-            onSubmit: function() {
+            onSubmit: function () {
                 return $(this).form('validate');
             },
             success: function (data) {
-                try{
+                try {
                     data = JSON.parse(data);
-                    if(data.error==0){
+                    if (data.error == 0) {
                         parent.layerTools.layerMsg("上传成功", function () {
                             parent.window.location.reload();
                         });
-                    }else{
+                    } else {
                         $('#error').html(data.message);
                     }
-                }catch(e){
+                } catch (e) {
                     parent.layerTools.layerMsg(data, function () {
                         parent.window.location.reload();
                     });
@@ -45,27 +45,31 @@
 </head>
 <body style="padding: 10px 30px; ">
 <div id="error"></div>
-<form id="modelForm" method="POST" <#if !sysFile??>enctype="multipart/form-data"</#if> >
-    <table class=" pure-table pure-table-horizontal">
-        <input id="id" name="id" type="hidden" value="${(sysFile.id)!}">
-        <tbody id="tbody">
-                <#if !sysFile??>
-                <tr>
-                    <td>文件：</td>
-                    <td>
-                        <input style="width: 100%;" name="file" class="easyui-filebox"  data-options="required:true, buttonText: '选择文件', buttonAlign: 'right'">
-                    </td>
-                </tr>
-                </#if>
-                <tr>
-                    <td>文件备注：</td>
-                    <td>
-                        <input style="width: 300px; height: 100px" name="remark" value="${(sysFile.remark)!}" type="text" class="easyui-textbox"  data-options="multiline:true ">
-                    </td>
-                </tr>
+<form id="modelForm" method="POST"
+<#if !sysFile??>enctype="multipart/form-data"</#if>
+>
+<table class=" pure-table pure-table-horizontal">
+    <input id="id" name="id" type="hidden" value="${(sysFile.id)!}">
+    <tbody id="tbody">
+    <#if !sysFile??>
+        <tr>
+            <td>文件：</td>
+            <td>
+                <input style="width: 100%;" name="file" class="easyui-filebox"
+                       data-options="required:true, buttonText: '选择文件', buttonAlign: 'right'">
+            </td>
+        </tr>
+    </#if>
+    <tr>
+        <td>文件备注：</td>
+        <td>
+            <input style="width: 300px; height: 100px" name="remark" value="${(sysFile.remark)!}" type="text"
+                   class="easyui-textbox" data-options="multiline:true ">
+        </td>
+    </tr>
 
-        </tbody>
-    </table>
+    </tbody>
+</table>
 </form>
 <div id="toolbars" style="text-align:center; margin-top: 20px;">
     <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-save'" onclick="saveAction()">确定</a>

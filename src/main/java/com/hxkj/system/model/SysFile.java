@@ -9,8 +9,8 @@ import com.jfinal.plugin.activerecord.Page;
  */
 public class SysFile extends BaseSysFile<SysFile> implements java.io.Serializable {
 
-    private static final long serialVersionUID = 1L;
     public static final SysFile dao = new SysFile().dao();
+    private static final long serialVersionUID = 1L;
 
     public String getName() {
         return get("name");

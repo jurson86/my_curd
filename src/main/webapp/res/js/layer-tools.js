@@ -23,7 +23,7 @@ var layerTools = layerTools ||{};
      * @param index 当前窗口, 接收返回 var index = OAutil.openLayerDialog() 在传回来
      * @returns {*}
      */
-    layerTools.layerIframe=function(title,url,width,height,fun,index){
+    layerTools.layerIframe=function(faCls,title,url,width,height,fun,index){
         if(width==undefined)
             width='80%';
         if(height==undefined)
@@ -31,7 +31,7 @@ var layerTools = layerTools ||{};
         var index =  layer.open({
             skin: 'layui-layer-molv',
             type: 2,   // iframe
-            title: ['<i class="fa fa-th-large"></i>&nbsp;&nbsp;'+title,'background:#00aced;line-height:40px;height:40px;padding: 0 15px'],
+            title: ['<i class="fa '+faCls+'"></i>&nbsp;&nbsp;'+title,'background:#607D8B; line-height:40px;height:40px;padding: 0 15px'],
             maxmin: true,
             shadeClose: true, //
             area : [width , height],

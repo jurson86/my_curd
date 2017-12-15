@@ -9,8 +9,8 @@ import com.jfinal.plugin.activerecord.Page;
  */
 public class BusNovelChapter extends BaseBusNovelChapter<BusNovelChapter> implements java.io.Serializable {
 
-    private static final long serialVersionUID = 1L;
     public static final BusNovelChapter dao = new BusNovelChapter().dao();
+    private static final long serialVersionUID = 1L;
 
     public Page<BusNovelChapter> page(int pageNumber, int pageSize, String where) {
 

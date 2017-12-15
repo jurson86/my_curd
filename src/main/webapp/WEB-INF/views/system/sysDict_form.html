@@ -5,9 +5,9 @@
         var url;
         var idVal = $("#id").val();
         if ($.trim(idVal) == "" || idVal == undefined || idVal == null) {
-            url = '${ctx!}/busNovelChapter/addAction';
+            url = '${ctx!}/sysDict/addAction';
         } else {
-            url = '${ctx!}/busNovelChapter/updateAction';
+            url = '${ctx!}/sysDict/updateAction';
         }
 
         $('#modelForm').form('submit', {
@@ -27,19 +27,26 @@
 <body style="padding: 10px 30px; ">
 <form id="modelForm" method="POST">
     <table class=" pure-table pure-table-horizontal">
-        <input id="id" name="id" type="hidden" value="${(busNovelChapter.id)!}">
+        <input id="id" name="id" type="hidden" value="${(sysDict.id)!}">
         <tbody>
         <tr>
-            <td>title：</td>
+            <td>类型：</td>
             <td>
-                <input name="title" value="${(busNovelChapter.title)!}" type="text" class="easyui-textbox"
+                <input name="dictType" value="${(sysDict.dictType)!}" type="text" class="easyui-textbox"
                        data-options="required:true">
             </td>
         </tr>
         <tr>
-            <td>content：</td>
+            <td>键：</td>
             <td>
-                <input name="content" value="${(busNovelChapter.content)!}" type="text" class="easyui-textbox"
+                <input name="dictKey" value="${(sysDict.dictKey)!}" type="text" class="easyui-textbox"
+                       data-options="required:true">
+            </td>
+        </tr>
+        <tr>
+            <td>值：</td>
+            <td>
+                <input name="dictValue" value="${(sysDict.dictValue)!}" type="text" class="easyui-textbox"
                        data-options="required:true">
             </td>
         </tr>

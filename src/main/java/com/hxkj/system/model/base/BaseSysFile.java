@@ -9,60 +9,60 @@ import com.jfinal.plugin.activerecord.Model;
 @SuppressWarnings("serial")
 public abstract class BaseSysFile<M extends BaseSysFile<M>> extends Model<M> implements IBean {
 
-    public void setId(Integer id) {
-        set("id", id);
-    }
-
     public Integer getId() {
         return get("id");
     }
 
-    public void setUserId(String userId) {
-        set("user_id", userId);
+    public void setId(Integer id) {
+        set("id", id);
     }
 
     public String getUserId() {
         return get("user_id");
     }
 
-    public void setPath(String path) {
-        set("path", path);
+    public void setUserId(String userId) {
+        set("user_id", userId);
     }
 
     public String getPath() {
         return get("path");
     }
 
-    public void setOriginalFilename(String originalFilename) {
-        set("original_filename", originalFilename);
+    public void setPath(String path) {
+        set("path", path);
     }
 
     public String getOriginalFilename() {
         return get("original_filename");
     }
 
-    public void setType(String type) {
-        set("type", type);
+    public void setOriginalFilename(String originalFilename) {
+        set("original_filename", originalFilename);
     }
 
     public String getType() {
         return get("type");
     }
 
-    public void setRemark(String remark) {
-        set("remark", remark);
+    public void setType(String type) {
+        set("type", type);
     }
 
     public String getRemark() {
         return get("remark");
     }
 
-    public void setCreateTime(java.util.Date createTime) {
-        set("create_time", createTime);
+    public void setRemark(String remark) {
+        set("remark", remark);
     }
 
     public java.util.Date getCreateTime() {
         return get("create_time");
+    }
+
+    public void setCreateTime(java.util.Date createTime) {
+        set("create_time", createTime);
     }
 
 }

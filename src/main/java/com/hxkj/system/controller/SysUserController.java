@@ -14,7 +14,10 @@ import com.jfinal.plugin.activerecord.Db;
 import com.jfinal.plugin.activerecord.Page;
 import com.jfinal.plugin.activerecord.tx.Tx;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class SysUserController extends BaseController {
 
@@ -55,7 +58,6 @@ public class SysUserController extends BaseController {
     public void addAction() {
         SysUser sysUser = getBean(SysUser.class, "");
 
-        sysUser.setCreateTime(new Date());
         sysUser.setId(Identities.uuid2());
 
         String password = HashKit.sha1(sysUser.getPassword());
@@ -71,8 +73,6 @@ public class SysUserController extends BaseController {
 
     public void updateAction() {
         SysUser sysUser = getBean(SysUser.class, "");
-        sysUser.setCreateTime(new Date());
-
         String id = sysUser.getId();
         //SysUser oldSysUser = sysUser.dao().findById(id);
 

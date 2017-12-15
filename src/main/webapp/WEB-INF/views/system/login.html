@@ -12,6 +12,7 @@
         html {
             height: 100%;
         }
+
         body {
             font-family: "Open Sans";
             font-weight: 100;
@@ -164,7 +165,7 @@
     </style>
 </head>
 <body>
-<form action="${ctx!}/login/action" method="post" class="login-form" >
+<form action="${ctx!}/login/action" method="post" class="login-form">
     <p class="login-text">
     <span class="fa-stack fa-lg">
       <i class="fa fa-circle fa-stack-2x"></i>
@@ -172,8 +173,10 @@
     </span>
     </p>
     <div class="login-error">${errMsg!}</div>
-    <input name="username" type="text" class="login-username" autofocus="true" required="true" placeholder="Username"  value="admin"/>
-    <input name="password" type="password" class="login-password" required="true" placeholder="Password" value="123456"/>
+    <input name="username" type="text" class="login-username" autofocus="true" required="true" placeholder="Username"
+           value="admin"/>
+    <input name="password" type="password" class="login-password" required="true" placeholder="Password"
+           value="123456"/>
     <input type="submit" name="Login" value="Login" class="login-submit"/>
 </form>
 

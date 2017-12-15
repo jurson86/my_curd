@@ -9,28 +9,28 @@ import com.jfinal.plugin.activerecord.Model;
 @SuppressWarnings("serial")
 public abstract class BaseBusNovelChapter<M extends BaseBusNovelChapter<M>> extends Model<M> implements IBean {
 
-    public void setId(String id) {
-        set("id", id);
-    }
-
     public String getId() {
         return get("id");
     }
 
-    public void setTitle(String title) {
-        set("title", title);
+    public void setId(String id) {
+        set("id", id);
     }
 
     public String getTitle() {
         return get("title");
     }
 
-    public void setContent(String content) {
-        set("content", content);
+    public void setTitle(String title) {
+        set("title", title);
     }
 
     public String getContent() {
         return get("content");
+    }
+
+    public void setContent(String content) {
+        set("content", content);
     }
 
 }

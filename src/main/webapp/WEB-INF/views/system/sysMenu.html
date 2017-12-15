@@ -3,13 +3,13 @@
 <link rel="stylesheet" href="${ctx!}/res/layer/theme/default/layer.css">
 <script>
     function newModel() {
-        layerTools.layerIframe('新建', '${ctx!}/sysMenu/newModel', '600px', '400px')
+        layerTools.layerIframe('fa-plus', '新建', '${ctx!}/sysMenu/newModel', '600px', '400px')
     }
 
     function editModel() {
         var node = $("#tt").treegrid("getSelected");
         if (node != null) {
-            layerTools.layerIframe('编辑', '${ctx!}/sysMenu/newModel?id=' + node.id, '600px', '400px')
+            layerTools.layerIframe('fa-pencil', '编辑', '${ctx!}/sysMenu/newModel?id=' + node.id, '600px', '400px')
         } else {
             layerTools.layerMsg('请选择一行数据进行编辑');
         }
