@@ -46,7 +46,7 @@ var TabTools = {
         }
     },
     // tab 增加 控制
-    control: function (url, queryParams, title) {
+    control: function (url, queryParams, title,iconCls) {
         var that = this;
         var tabsControl = $('#tabsControl');
         if (!tabsControl.hasClass("easyui-tabs")) {
@@ -90,6 +90,7 @@ var TabTools = {
                 title: title,
                 content: content,
                 fit: true,
+                iconCls:iconCls,
                 /* cache:false,*/
                 closable: true
             });

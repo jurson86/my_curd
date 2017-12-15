@@ -138,30 +138,30 @@
             url: '${ctx!}/sysOrg/query',
             method: 'POST',
             idField: 'id',
-            treeField: 'orgName',
+            treeField: 'org_name',
             fit: true,
             rownumbers: true,
             toolbar: '#tt-tb',
             loadFilter: function (data) {
 
-                data = easyTree.treeDataBuild(data, 'id', 'pid', 'orgName,orgAddress,orgRemark,sort');
+                data = easyTree.treeDataBuild(data, 'id', 'pid', 'org_name,org_address,org_remark,sort');
                 return data;
             },
             columns: [[
-                {field: 'orgName', title: '机构名', width: 300},
+                {field: 'org_name', title: '机构名', width: 300},
                 {field: 'sort', title: '排序', width: 80}
             ]],
             onSelect: function (row) {
-                if (row.orgAddress == undefined) {
+                if (row.org_address == undefined) {
                     $('#orgAddressTd').text("");
                 } else {
-                    $('#orgAddressTd').text(row.orgAddress);
+                    $('#orgAddressTd').text(row.org_address);
                 }
 
-                if (row.orgRemark == undefined) {
+                if (row.org_remark == undefined) {
                     $('#orgRemarkTd').text("");
                 } else {
-                    $('#orgRemarkTd').text(row.orgRemark);
+                    $('#orgRemarkTd').text(row.org_remark);
                 }
 
                 var queryParams = {};

@@ -39,7 +39,7 @@
     //条件查询
     function queryModel() {
         var queryParams = {};
-        queryParams['search_LIKE_test'] = $("#test").textbox("getValue");
+        queryParams['search_LIKE_type'] = $("#type").textbox("getValue");
         $('#dg').datagrid('load', queryParams);
     }
 </script>
@@ -52,10 +52,10 @@
     <tr>
                    <th data-options="field:'id',checkbox:true"></th>
                    <th field="type" width="100">类型(type)</th>
-                   <th field="typeDesc" width="200">类型描述(typeDesc)</th>
+                   <th field="type_desc" width="200">类型描述(typeDesc)</th>
                    <th field="code" width="100">编码(code)</th>
                    <th field="sort" width="100">排序</th>
-                   <th field="createTime" width="200">时间戳</th>
+                   <th field="create_time" width="200">时间戳</th>
     </tr>
     </thead>
 </table>
@@ -65,7 +65,7 @@
     <a onclick="editModel()" href="#" class="easyui-linkbutton" iconCls="icon-edit" plain="true">编辑</a>
     <a onclick="deleteModel()" href="#" class="easyui-linkbutton  " iconCls="icon-remove" plain="true">删除</a>
     <span class="searchInputArea">
-          <input id="test" prompt="test" class="easyui-textbox" style="width:120px; ">
+          <input id="type" prompt="类型(type)" class="easyui-textbox" style="width:120px; ">
           <a href="#" class="easyui-linkbutton" iconCls="icon-search" onclick="queryModel()">搜索</a>
     </span>
 </div>

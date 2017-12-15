@@ -10,7 +10,5 @@ import com.hxkj.system.model.base.BaseSysUser;
 public class SysUser extends BaseSysUser<SysUser> {
     public static final SysUser dao = new SysUser().dao();
 
-    public String getOrgName() {
-        return get("orgName");
-    }
+
 }

@@ -1,6 +1,22 @@
 <#include "/WEB-INF/views/common/common.html"/>
 <@layout>
 <link rel="stylesheet" href="${ctx!}/res/pure/buttons-min.css">
+<style>
+    .pure-button {
+        padding: 5px 8px;
+        margin: 5px 2px;
+    }
+    .button-light-black{
+        color: white;
+        color: white;
+        border-radius: 4px;
+        text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+    }
+
+    .button-light-black {
+        background: #757575; /* this is a light blue */
+    }
+</style>
 </head>
 <body>
 <div class="easyui-layout" fit="true" border="none">
@@ -13,7 +29,9 @@
                 (${(session.system_user_roles)!} )
                 &nbsp;
                 &nbsp;
-                <a class="pure-button pure-button-primary" href="${ctx!}/logout">退出</a>
+                <a class="pure-button  button-light-black" href="${ctx!}/logout">
+                    <i class="fa fa-sign-out"></i>退出
+                </a>
 			</span>
     </div>
     <div data-options="region:'west',split:false" title="权限菜单" style="width:200px;"  >
@@ -24,7 +42,7 @@
         </ul>
     </div>
     <div data-options="region:'center'" border="false">
-        <div id="tabsControl"></div>
+        <div id="tabsControl"  pill="true"></div>
         <div id="tabsMenu" class="easyui-menu">
             <div data-options="name:1">关闭</div>
             <div data-options="name:2">关闭其他</div>
@@ -64,7 +82,7 @@
                                 // 只能打开 叶子node
                                 if ($("#tree").tree("isLeaf", node.target)) {
                                     //alert("open:" + node.url);
-                                    TabTools.control(node.url, "", node.text);
+                                    TabTools.control(node.url, "", node.text,node.iconCls);
                                 }
                             }
                         });

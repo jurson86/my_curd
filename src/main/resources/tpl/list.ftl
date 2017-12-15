@@ -53,7 +53,7 @@
                    <th data-options="field:'${(meta.primaryKey)!}',checkbox:true"></th>
         <#list meta.cols as col>
                <#if !(col.isPrimaryKey)?? >
-                   <th field="${(col.attrName)!}" width="100"><#if (col.remarks)??>${(col.remarks)!}<#else>${(col.name)!}</#if></th>
+                   <th field="${(col.name)!}" width="100"><#if (col.remarks)??>${(col.remarks)!}<#else>${(col.name)!}</#if></th>
                </#if>
         </#list>
     </tr>
