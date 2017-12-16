@@ -6,14 +6,14 @@
 
     // 新增 model
     function newModel() {
-        layerTools.layerIframe('新建', '${ctx!}/busNovel/newModel', '800px', '500px')
+        layerTools.layerIframe('fa-plus','新建', '${ctx!}/busNovel/newModel', '500px', '450px')
     }
 
     // 编辑 model
     function editModel() {
         var row = $("#dg").treegrid("getSelected");
         if (row != null) {
-            layerTools.layerIframe('编辑', '${ctx!}/busNovel/newModel?id=' + row.id, '800px', '500px')
+            layerTools.layerIframe('fa-pencil','编辑', '${ctx!}/busNovel/newModel?id=' + row.id, '500px', '450px')
         } else {
             layerTools.layerMsg('请选择一行数据进行编辑');
         }
