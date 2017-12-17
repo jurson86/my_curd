@@ -1,0 +1,146 @@
+<#include "/WEB-INF/views/common/common.html"/> <@layout>
+<link rel="stylesheet" href="${ctx!}/res/layer/theme/default/layer.css">
+<link rel="stylesheet" href="${ctx!}/res/codemirror/codemirror.css">
+<link rel="stylesheet" href="${ctx!}/res/codemirror/bespin.css">
+<script src="${ctx!}/res/codemirror/codemirror.js"></script>
+<script src="${ctx!}/res/codemirror/javascript.js"></script>
+<link rel="stylesheet" href="${ctx!}/res/pure/buttons-min.css">
+<style>
+    #editAfterGen{
+        position: absolute;
+        z-index: 9999;
+        right:10px;
+        bottom:10px;
+    }
+    .pure-button {
+        padding: 5px 8px;
+        margin: 5px 2px;
+    }
+    .button-success {
+        color: white;
+        border-radius: 4px;
+        text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+        background: rgb(28, 184, 65); /* this is a green */
+    }
+</style>
+</head>
+<body>
+<script type="text/javascript">
+    var myCodeMirror ;
+    function genCode(){
+        console.log('=============='+myCodeMirror.getValue())
+    }
+
+    function jsonView(){
+        var rows = $("#dg").treegrid("getSelections");
+        if (rows.length !=0) {
+
+            var formatJSONStr = JSON.stringify(rows, null, "\t");
+            var content = '<div id="cm"  ></div>'
+                +' <button id="editAfterGen"  onclick="genCode()"  class="pure-button button-success" >代码生成</button>';
+            layerTools.layerDialog(['500px','449px'],'Json视图' ,content)
+            myCodeMirror = CodeMirror(document.getElementById('cm'), {
+                value: formatJSONStr,
+                lineNumbers: true,
+                mode: {name: "javascript", json: true},
+                scrollbarStyle:null,
+                matchBrackets: true,
+                theme:"bespin",
+            });
+            //console.log(myCodeMirror.getValue())
+            //myCodeMirror.setSize('auto','auto');
+
+            //console.log(formatJSONStr)
+        } else {
+            layerTools.layerMsg('请至少选择一行数据');
+        }
+    }
+
+
+
+
+    function editModel() {
+        var row = $("#dg").treegrid("getSelected");
+        if (row != null) {
+            layerTools.layerIframe('fa-pencil', '编辑', '${ctx!}/sysRole/newModel?id=' + row.id, '600px', '350px')
+        } else {
+            layerTools.layerMsg('请选择一行数据进行编辑');
+        }
+    }
+
+
+    //条件查询
+    function queryModel() {
+        var tableName = $("#tableName").textbox("getValue");
+        $('#dg').datagrid({
+            loadFilter: function(data){
+                var dAry=[];
+                for(var i=0;i<data.length;i++){
+                    if(data[i].tableName.indexOf(tableName)>=0){
+                        dAry.push(data[i]);
+                    }
+                }
+                return dAry;
+            }
+        });
+    }
+
+</script>
+
+<div id="nestLayout" class="easyui-layout" fit="true">
+    <div data-options="region:'east' " title="列信息"
+         split="true" collapsed="true"
+         style="width: 40%;">
+        <table id="rdg" class="easyui-datagrid"  fit="true" border="false" fitColumns="true" rownumbers="true" singleSelect="true"></table>
+    </div>
+    <div data-options="region:'center' " border="false" split="true">
+        <table id="dg" class="easyui-datagrid  " url="${ctx!}/sysGenerator/query?fullFlag=true"
+               toolbar="#tb" rownumbers="true"   border="false" fitColumns="true"
+               fit="true">
+            <thead>
+            <tr>
+                <th data-options="field:'ck',checkbox:true"></th>
+                <th field="tableName" width="50">表名</th>
+                <th field="tableComment" width="100">表备注</th>
+                <th field="tablePrimaryKeys" width="50">主键</th>
+                <th field="tableNameCamel" width="100">表名驼峰</th>
+                <th field="tableNameCamelFirstUp" width="100">表名驼峰首字大写</th>
+            </tr>
+            </thead>
+        </table>
+        <div id="tb">
+            <a onclick="jsonView()" href="#" class="easyui-linkbutton" iconCls="icon-json" plain="true">json视图</a>
+            <a onclick="editModel()" href="#" class="easyui-linkbutton" iconCls="icon-genTool" plain="true">代码生成</a>
+            <span >
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+					<input id="tableName" prompt="表名" class="easyui-textbox" style="width:150px">
+					<a href="#" class="easyui-linkbutton" iconCls="icon-search" onclick="queryModel()">过滤</a>
+            </span>
+        </div>
+    </div>
+</div>
+<script src="${ctx!}/res/layer/layer.js"></script>
+<script src="${ctx!}/res/js/layer-tools.js"></script>
+<script>
+    $(function () {
+
+        $("#dg").datagrid({
+            onSelect: function (index, row) {
+                $('#rdg').datagrid({
+                    data:row.columnList,
+                    columns:[[
+                        {field:'columnName',title:'列名',width:100},
+                        {field:'columnComment',title:'列注释',width:100},
+                        {field:'columnDBType',title:'列类型DB',width:100},
+                        {field:'columnJavaType',title:'列类型Java',width:100 }
+                    ]]
+                });
+                $("#nestLayout").layout("expand", "east");
+            },
+            onUnselect: function (index, row) {
+                $("#nestLayout").layout("collapse", "east");
+            }
+        })
+    });
+</script>
+</@layout>

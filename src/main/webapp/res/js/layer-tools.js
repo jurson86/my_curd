@@ -64,15 +64,19 @@ var layerTools = layerTools ||{};
             shadeClose: true, //
             area: area?area:"",
             title:title,
-            top:20,
             closeBtn: 0, //不显示关闭按钮
             content: content,
             btn: btn,//按钮
             yes:function(){
-                yesCallBack(index)
+                if(yesCallBack!=null){
+                    yesCallBack(index);
+                }
             },
             cancel :function(){
-                cancelCallBack(index);
+                if(cancelCallBack!=null){
+                    cancelCallBack(index);
+                }
+                layer.close(index);
             }
         });
         return index ;

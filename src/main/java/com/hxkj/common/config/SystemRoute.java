@@ -42,6 +42,10 @@ public class SystemRoute extends Routes {
         // 字典表管理
         add("/sysDict", SysDictController.class, Constant.VIEW_PATH);
 
+        // 代码生成器
+        add("/sysGenerator", SysGeneratorController.class, Constant.VIEW_PATH);
+
+
     }
 
 }

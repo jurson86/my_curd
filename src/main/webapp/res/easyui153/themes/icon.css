@@ -106,6 +106,17 @@
 	background:url('cus-icons/CSV.png') no-repeat center center;
 }
 
+.icon-generator{
+	background:url('cus-icons/codegen.png') no-repeat center center;
+}
+.icon-genTool{
+	background:url('cus-icons/genTool.png') no-repeat center center;
+}
+.icon-json{
+	background:url('cus-icons/json.png') no-repeat center center;
+}
+
+
 .icon-druid{
 	background:url('cus-icons/druid.png') no-repeat center center;
 }
