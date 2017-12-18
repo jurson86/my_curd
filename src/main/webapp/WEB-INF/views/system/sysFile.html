@@ -111,7 +111,7 @@
     <a onclick="newModel()" href="#" class="easyui-linkbutton" iconCls="icon-add" plain="true">新增</a>
     <a onclick="editModel()" href="#" class="easyui-linkbutton" iconCls="icon-edit" plain="true">编辑</a>
     <a onclick="deleteModel()" href="#" class="easyui-linkbutton  " iconCls="icon-remove" plain="true">删除</a>
-    <span class="searchInputArea">
+    <span id="enterSpan" class="searchInputArea">
           <input id="fileType" prompt="文件类型" class="easyui-combobox"
                  data-options="valueField:'value', multiple:true,textField:'label',url:'${ctx!}/sysFile/fileTypeData'">
           <input id="name" prompt="上传者" class="easyui-textbox" style="width:120px; ">
@@ -128,6 +128,14 @@
 <script src="${ctx!}/res/layer/layer.js"></script>
 <script src="${ctx!}/res/js/layer-tools.js"></script>
 <script>
+    // enter监听查询
+    $("#enterSpan").on("keydown",function(e){
+        if(e.keyCode==13){
+            queryModel();
+        }
+    })
+
+
     var ctx = '${ctx!}/';
 
     // 图片格式化

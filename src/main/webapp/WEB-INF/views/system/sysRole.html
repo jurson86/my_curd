@@ -98,7 +98,7 @@
     </div>
     <div data-options="region:'center' " border="false" split="true">
 
-        <table id="dg" class="easyui-datagrid  " url="${ctx!}/sysRole/query"
+        <table id="dg" class="easyui-datagrid  "
                toolbar="#tb" rownumbers="true" singleSelect="true" border="false"
                fit="true" pagination="true">
             <thead>
@@ -116,7 +116,7 @@
             <a onclick="newModel()" href="#" class="easyui-linkbutton" iconCls="icon-add" plain="true">新增</a>
             <a onclick="editModel()" href="#" class="easyui-linkbutton" iconCls="icon-edit" plain="true">编辑</a>
             <a onclick="deleteModel()" href="#" class="easyui-linkbutton  " iconCls="icon-remove" plain="true">删除</a>
-            <span class="searchInputArea">
+            <span id="enterSpan" class="searchInputArea">
 					<input id="roleName" prompt="角色名" class="easyui-textbox" style="width:150px">
 					<a href="#" class="easyui-linkbutton" iconCls="icon-search" onclick="queryModel()">搜索</a>
             </span>
@@ -132,8 +132,17 @@
 <script>
 
     $(function () {
+
+        // enter监听查询
+        $("#enterSpan").on("keydown",function(e){
+            if(e.keyCode==13){
+                queryModel();
+            }
+        })
+
         var easyTree = new EasyTree();
         $("#dg").datagrid({
+            url:"${ctx!}/sysRole/query",
             onSelect: function (index, row) {
                 var url = "${ctx!}/sysRole/menuTreePermissionChecked/" + row.id;
                 $.getJSON(url, function (data) {

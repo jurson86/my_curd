@@ -4,13 +4,14 @@
 <link rel="stylesheet" href="${ctx!}/res/codemirror/bespin.css">
 <script src="${ctx!}/res/codemirror/codemirror.js"></script>
 <script src="${ctx!}/res/codemirror/javascript.js"></script>
+<script src="${ctx!}/res/codemirror/jquery.nicescroll.min.js"></script>
 <link rel="stylesheet" href="${ctx!}/res/pure/buttons-min.css">
 <style>
     #editAfterGen{
         position: absolute;
         z-index: 9999;
         right:10px;
-        bottom:10px;
+        top:10px;
     }
     .pure-button {
         padding: 5px 8px;
@@ -21,6 +22,18 @@
         border-radius: 4px;
         text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
         background: rgb(28, 184, 65); /* this is a green */
+    }
+
+
+    .CodeMirror {
+        border: 1px solid black;
+        height: auto;
+    }
+
+    .CodeMirror-scroll {
+        height: auto;
+        overflow-y: hidden;
+        overflow-x: auto;
     }
 </style>
 </head>
@@ -34,11 +47,13 @@
     function jsonView(){
         var rows = $("#dg").treegrid("getSelections");
         if (rows.length !=0) {
-
-            var formatJSONStr = JSON.stringify(rows, null, "\t");
+            var obj = {};
+            obj.moduleName="请在此输入模块名 :)";
+            obj.rows = rows;
+            var formatJSONStr = JSON.stringify(obj, null, "\t");
             var content = '<div id="cm"  ></div>'
                 +' <button id="editAfterGen"  onclick="genCode()"  class="pure-button button-success" >代码生成</button>';
-            layerTools.layerDialog(['500px','449px'],'Json视图' ,content)
+            layerTools.layerDialog(['500px','80%'],'<i class="fa fa-code"></i>&nbsp;&nbsp;&nbsp;&nbsp;'+'代码生成（可修改json控制生成的代码)' ,content)
             myCodeMirror = CodeMirror(document.getElementById('cm'), {
                 value: formatJSONStr,
                 lineNumbers: true,
@@ -46,6 +61,23 @@
                 scrollbarStyle:null,
                 matchBrackets: true,
                 theme:"bespin",
+            });
+
+            $('.layui-layer-content').niceScroll({
+                cursorcolor: "#dcdee0", //滚动条的颜色
+                cursoropacitymax: 1, //滚动条的透明度，从0-1
+                touchbehavior: false, //使光标拖动滚动像在台式电脑触摸设备
+                cursorwidth: "8px", //滚动条的宽度
+                cursorborder: "0", // 游标边框css定义
+                cursorborderradius: "5px", //以像素为光标边界半径  圆角
+                autohidemode: true, //是否隐藏滚动条  true的时候默认不显示滚动条，当鼠标经过的时候显示滚动条
+                zindex: "auto", //给滚动条设置z-index值
+                railpadding: {
+                    top: 0,
+                    right: -4,
+                    left: 0,
+                    bottom: 0
+                }, //滚动条的位置
             });
             //console.log(myCodeMirror.getValue())
             //myCodeMirror.setSize('auto','auto');
@@ -85,6 +117,8 @@
         });
     }
 
+
+
 </script>
 
 <div id="nestLayout" class="easyui-layout" fit="true">
@@ -94,7 +128,7 @@
         <table id="rdg" class="easyui-datagrid"  fit="true" border="false" fitColumns="true" rownumbers="true" singleSelect="true"></table>
     </div>
     <div data-options="region:'center' " border="false" split="true">
-        <table id="dg" class="easyui-datagrid  " url="${ctx!}/sysGenerator/query?fullFlag=true"
+        <table id="dg" class="easyui-datagrid  "
                toolbar="#tb" rownumbers="true"   border="false" fitColumns="true"
                fit="true">
             <thead>
@@ -109,11 +143,10 @@
             </thead>
         </table>
         <div id="tb">
-            <a onclick="jsonView()" href="#" class="easyui-linkbutton" iconCls="icon-json" plain="true">json视图</a>
-            <a onclick="editModel()" href="#" class="easyui-linkbutton" iconCls="icon-genTool" plain="true">代码生成</a>
-            <span >
+            <a onclick="jsonView()" href="#" class="easyui-linkbutton" iconCls="icon-genTool" plain="true">代码生成</a>
+            <span id="enterSpan">
                 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-					<input id="tableName" prompt="表名" class="easyui-textbox" style="width:150px">
+					<input id="tableName" prompt="表名" class="easyui-textbox" style="width:150px" >
 					<a href="#" class="easyui-linkbutton" iconCls="icon-search" onclick="queryModel()">过滤</a>
             </span>
         </div>
@@ -124,7 +157,15 @@
 <script>
     $(function () {
 
+        // enter监听查询
+        $("#enterSpan").on("keydown",function(e){
+            if(e.keyCode==13){
+                queryModel();
+            }
+        })
+
         $("#dg").datagrid({
+            url:"${ctx!}/sysGenerator/query?fullFlag=true",  // 放在dom 中会导致请求两次
             onSelect: function (index, row) {
                 $('#rdg').datagrid({
                     data:row.columnList,

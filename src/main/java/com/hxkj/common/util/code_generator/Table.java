@@ -1,29 +1,38 @@
 package com.hxkj.common.util.code_generator;
 
 
+import com.alibaba.fastjson.annotation.JSONField;
+
 import java.util.List;
 
 /**
  * 数据库 表
  */
+
 public class Table {
 
     //表 名字
+    @JSONField(ordinal = 1)
     private String tableName;
 
     //表 名字 驼峰
+    @JSONField(ordinal = 2)
     private String tableNameCamel;
 
     //表 名字 驼峰 首字母大写
+    @JSONField(ordinal = 3)
     private String tableNameCamelFirstUp;
 
     //表 的 备注
+    @JSONField(ordinal = 4)
     private String tableComment;
 
     // 表主键名字
+    @JSONField(ordinal = 5)
     private List<String> tablePrimaryKeys;
 
     //表 的 列集合
+    @JSONField(ordinal = 6)
     private List<Column> columnList;
 
     public String getTableName() {

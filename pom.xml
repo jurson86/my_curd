@@ -44,8 +44,9 @@
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>fastjson</artifactId>
-            <version>1.2.31</version>
+            <version>1.2.43</version>
         </dependency>
+
         <!--jfinal-->
         <dependency>
             <groupId>com.jfinal</groupId>

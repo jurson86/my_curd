@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50719
 File Encoding         : 65001
 
-Date: 2017-12-15 23:42:26
+Date: 2017-12-18 11:50:59
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -24,7 +24,7 @@ CREATE TABLE `ajax_b_city` (
   `cname` varchar(32) NOT NULL,
   `pid` varchar(32) NOT NULL,
   PRIMARY KEY (`cid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='城市数据表';
 
 -- ----------------------------
 -- Records of ajax_b_city
@@ -394,7 +394,7 @@ CREATE TABLE `ajax_b_county` (
   `oname` varchar(32) NOT NULL,
   `cid` varchar(32) NOT NULL,
   PRIMARY KEY (`oid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='县区数据表';
 
 -- ----------------------------
 -- Records of ajax_b_county
@@ -3613,7 +3613,7 @@ CREATE TABLE `ajax_b_province` (
   `pid` int(21) NOT NULL,
   `pname` varchar(30) NOT NULL,
   PRIMARY KEY (`pid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='省份数据表';
 
 -- ----------------------------
 -- Records of ajax_b_province
@@ -3663,7 +3663,7 @@ CREATE TABLE `bus_novel` (
   `author` varchar(255) DEFAULT NULL COMMENT '作者',
   `create_time` datetime DEFAULT NULL COMMENT '创建时间',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='小说表';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='代码生成测试表--小说表';
 
 -- ----------------------------
 -- Records of bus_novel
@@ -3679,7 +3679,7 @@ CREATE TABLE `bus_novel_chapter` (
   `title` varchar(255) DEFAULT NULL,
   `content` text,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='代码生成测试表--小说章节表';
 
 -- ----------------------------
 -- Records of bus_novel_chapter
@@ -3848,12 +3848,16 @@ CREATE TABLE `sys_file` (
   `remark` varchar(255) DEFAULT NULL COMMENT '文件备注',
   `create_time` datetime DEFAULT NULL COMMENT '上传时间',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=45 DEFAULT CHARSET=utf8 COMMENT='文件表';
 
 -- ----------------------------
 -- Records of sys_file
 -- ----------------------------
-INSERT INTO `sys_file` VALUES ('36', '916654989969981440', 'upload/media/20171215233952_523.mp3', 'ZQ0DAFYp4uKAD5tyAEgvmkjJyY0858.mp3', 'mp3', 'adelee hello', '2017-12-15 23:39:52');
+INSERT INTO `sys_file` VALUES ('37', '916654989969981440', 'upload/image/20171216081309_206.gif', 'timg.gif', 'gif', 'strong man', '2017-12-16 08:13:09');
+INSERT INTO `sys_file` VALUES ('38', '916654989969981440', 'upload/image/20171216081333_339.gif', 'timg (1).gif', 'gif', 'korea kim', '2017-12-16 08:13:33');
+INSERT INTO `sys_file` VALUES ('39', '916654989969981440', 'upload/image/20171216081405_207.jpg', 'timg.jpg', 'jpg', '高晓松', '2017-12-16 08:14:05');
+INSERT INTO `sys_file` VALUES ('43', '916654989969981440', 'upload/media/20171216082738_496.mp4', '2980301744.mp4', 'mp4', '这个我知道，骆驼趾模拟器，是给男生用来假扮女人用的', '2017-12-16 08:27:38');
+INSERT INTO `sys_file` VALUES ('44', '916654989969981440', 'upload/media/20171216084637_428.mp4', '2979929506.mp4', 'mp4', '怎么车还没来呢', '2017-12-16 08:46:37');
 
 -- ----------------------------
 -- Table structure for `sys_menu`
@@ -3867,7 +3871,7 @@ CREATE TABLE `sys_menu` (
   `sort` int(11) DEFAULT NULL,
   `pid` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=75 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=76 DEFAULT CHARSET=utf8 COMMENT='菜单表（权限表）';
 
 -- ----------------------------
 -- Records of sys_menu
@@ -3878,7 +3882,7 @@ INSERT INTO `sys_menu` VALUES ('23', '角色管理', '/sysRole', 'icon-role', '2
 INSERT INTO `sys_menu` VALUES ('58', '组织机构', '/sysOrg', 'icon-orgm', '4', '5');
 INSERT INTO `sys_menu` VALUES ('59', '用户管理', '/sysUser', 'icon-user', '3', '5');
 INSERT INTO `sys_menu` VALUES ('60', '修改密码', '/sysChangePassword', 'icon-password', '5', '5');
-INSERT INTO `sys_menu` VALUES ('61', 'druid监控', '/druid', 'icon-druid', '10', '5');
+INSERT INTO `sys_menu` VALUES ('61', 'druid监控', '/druid', 'icon-druid', '11', '5');
 INSERT INTO `sys_menu` VALUES ('66', '代码生成模块测试', '/', null, '1', null);
 INSERT INTO `sys_menu` VALUES ('67', 'busNovel', '/busNovel', null, '1', '66');
 INSERT INTO `sys_menu` VALUES ('70', '系统日志', '/sysOplog', 'icon-log', '7', '5');
@@ -3886,6 +3890,7 @@ INSERT INTO `sys_menu` VALUES ('71', '定时任务', '/sysTask', 'icon-task', '6
 INSERT INTO `sys_menu` VALUES ('72', 'busNovelChapter', '/busNovelChapter', null, '2', '66');
 INSERT INTO `sys_menu` VALUES ('73', '文件管理', '/sysFile', 'icon-file', '8', '5');
 INSERT INTO `sys_menu` VALUES ('74', '字典管理', '/sysDict', 'icon-code', '9', '5');
+INSERT INTO `sys_menu` VALUES ('75', '代码生成', '/sysGenerator', 'icon-generator', '10', '5');
 
 -- ----------------------------
 -- Table structure for `sys_oplog`
@@ -3898,7 +3903,7 @@ CREATE TABLE `sys_oplog` (
   `ip` varchar(100) DEFAULT NULL,
   `create_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='操作日志表';
 
 -- ----------------------------
 -- Records of sys_oplog
@@ -4116,6 +4121,29 @@ INSERT INTO `sys_oplog` VALUES ('941690770916638720', '916654989969981440', '登
 INSERT INTO `sys_oplog` VALUES ('941692325443141632', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-15 23:32:00');
 INSERT INTO `sys_oplog` VALUES ('941693305354190848', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-15 23:35:54');
 INSERT INTO `sys_oplog` VALUES ('941693957241307136', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-15 23:38:29');
+INSERT INTO `sys_oplog` VALUES ('941823270028574720', '916654989969981440', '退出', '0:0:0:0:0:0:0:1', '2017-12-16 08:12:20');
+INSERT INTO `sys_oplog` VALUES ('941823275430838272', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-16 08:12:21');
+INSERT INTO `sys_oplog` VALUES ('941842421635874816', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-16 09:28:26');
+INSERT INTO `sys_oplog` VALUES ('941877242781237248', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-16 11:46:48');
+INSERT INTO `sys_oplog` VALUES ('941905418618142720', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-16 13:38:46');
+INSERT INTO `sys_oplog` VALUES ('942350037038399488', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-17 19:05:31');
+INSERT INTO `sys_oplog` VALUES ('942350687289737216', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-17 19:08:06');
+INSERT INTO `sys_oplog` VALUES ('942548035626336256', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-18 08:12:18');
+INSERT INTO `sys_oplog` VALUES ('942548508840296448', '916654989969981440', '退出', '0:0:0:0:0:0:0:1', '2017-12-18 08:14:10');
+INSERT INTO `sys_oplog` VALUES ('942548515295330304', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-18 08:14:12');
+INSERT INTO `sys_oplog` VALUES ('942553221665128448', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-18 08:32:54');
+INSERT INTO `sys_oplog` VALUES ('942554401858387968', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-18 08:37:35');
+INSERT INTO `sys_oplog` VALUES ('942554627671326720', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-18 08:38:29');
+INSERT INTO `sys_oplog` VALUES ('942555042177613824', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-18 08:40:08');
+INSERT INTO `sys_oplog` VALUES ('942574068446527488', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-18 09:55:44');
+INSERT INTO `sys_oplog` VALUES ('942578813840130048', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-18 10:14:36');
+INSERT INTO `sys_oplog` VALUES ('942579807244255232', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-18 10:18:33');
+INSERT INTO `sys_oplog` VALUES ('942581003799494656', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-18 10:23:18');
+INSERT INTO `sys_oplog` VALUES ('942581629975527424', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-18 10:25:47');
+INSERT INTO `sys_oplog` VALUES ('942582369297104896', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-18 10:28:43');
+INSERT INTO `sys_oplog` VALUES ('942582717470474240', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-18 10:30:06');
+INSERT INTO `sys_oplog` VALUES ('942582966062678016', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-18 10:31:06');
+INSERT INTO `sys_oplog` VALUES ('942584224437764096', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-18 10:36:06');
 
 -- ----------------------------
 -- Table structure for `sys_org`
@@ -4129,7 +4157,7 @@ CREATE TABLE `sys_org` (
   `sort` int(11) DEFAULT NULL,
   `pid` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=80 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=80 DEFAULT CHARSET=utf8 COMMENT='组织机构表';
 
 -- ----------------------------
 -- Records of sys_org
@@ -4152,7 +4180,7 @@ CREATE TABLE `sys_role` (
   `create_time` datetime DEFAULT NULL,
   `sort` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8 COMMENT='角色表';
 
 -- ----------------------------
 -- Records of sys_role
@@ -4170,7 +4198,7 @@ CREATE TABLE `sys_role_menu` (
   `role_id` int(11) NOT NULL,
   `menu_id` int(11) NOT NULL,
   PRIMARY KEY (`role_id`,`menu_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='角色权限中间表';
 
 -- ----------------------------
 -- Records of sys_role_menu
@@ -4189,6 +4217,7 @@ INSERT INTO `sys_role_menu` VALUES ('3', '71');
 INSERT INTO `sys_role_menu` VALUES ('3', '72');
 INSERT INTO `sys_role_menu` VALUES ('3', '73');
 INSERT INTO `sys_role_menu` VALUES ('3', '74');
+INSERT INTO `sys_role_menu` VALUES ('3', '75');
 
 -- ----------------------------
 -- Table structure for `sys_task`
@@ -4631,7 +4660,7 @@ CREATE TABLE `sys_user` (
   `create_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   KEY `sys_user_org_id` (`org_id`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='系统用户表';
 
 -- ----------------------------
 -- Records of sys_user
@@ -4646,7 +4675,7 @@ CREATE TABLE `sys_user_role` (
   `user_id` varchar(32) NOT NULL,
   `role_id` int(11) NOT NULL,
   PRIMARY KEY (`user_id`,`role_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='用户角色中间表';
 
 -- ----------------------------
 -- Records of sys_user_role

@@ -63,7 +63,7 @@
     <a onclick="newModel()" href="#" class="easyui-linkbutton" iconCls="icon-add" plain="true">新增</a>
     <a onclick="editModel()" href="#" class="easyui-linkbutton" iconCls="icon-edit" plain="true">编辑</a>
     <a onclick="deleteModel()" href="#" class="easyui-linkbutton  " iconCls="icon-remove" plain="true">删除</a>
-    <span class="searchInputArea">
+    <span id="enterSpan" class="searchInputArea">
           <input id="type" prompt="类型(dict_type)" class="easyui-textbox" style="width:120px; ">
           <a href="#" class="easyui-linkbutton" iconCls="icon-search" onclick="queryModel()">搜索</a>
     </span>
@@ -71,5 +71,11 @@
 <script src="${ctx!}/res/layer/layer.js"></script>
 <script src="${ctx!}/res/js/layer-tools.js"></script>
 <script>
+    // enter监听查询
+    $("#enterSpan").on("keydown",function(e){
+        if(e.keyCode==13){
+            queryModel();
+        }
+    })
 </script>
 </@layout>

@@ -1,5 +1,6 @@
 package com.hxkj.system.controller;
 
+import com.alibaba.fastjson.JSON;
 import com.hxkj.common.util.BaseController;
 import com.hxkj.common.util.ToolFormatJson;
 import com.hxkj.common.util.code_generator.SchemaInfoUtil;
@@ -32,7 +33,7 @@ public class SysGeneratorController extends BaseController {
             fullFlag = false;
         }
         List<Table> tables = schemaInfoUtil.getAllTableInfo(fullFlag);
-        renderJson(tables);
+        renderJson(JSON.toJSONString(tables));
     }
 
     /**

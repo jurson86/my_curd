@@ -141,7 +141,7 @@
     <a onclick="editModel()" class="easyui-linkbutton" data-options="iconCls:'icon-edit',plain:true">编辑</a>
     <a onclick="deleteModel()" class="easyui-linkbutton" data-options="iconCls:'icon-remove',plain:true">删除</a>
     <a onclick="exportToCsv()" class="easyui-linkbutton" data-options="iconCls:'icon-csv',plain:true">导出csv</a>
-    <span class="searchInputArea">
+    <span id="enterSpan" class="searchInputArea">
           <input id="name" prompt="名称" class="easyui-textbox" style="width:120px; ">
           <a href="#" class="easyui-linkbutton" iconCls="icon-search" onclick="queryModel()">搜索</a>
     </span>
@@ -149,6 +149,12 @@
 <script src="${ctx!}/res/layer/layer.js"></script>
 <script src="${ctx!}/res/js/layer-tools.js"></script>
 <script>
+    // enter监听查询
+    $("#enterSpan").on("keydown",function(e){
+        if(e.keyCode==13){
+            queryModel();
+        }
+    })
     function formatLRTC(val, row) {
         if (val == null || val == undefined) {
             return val;

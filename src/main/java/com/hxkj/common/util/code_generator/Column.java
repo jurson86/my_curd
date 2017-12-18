@@ -1,16 +1,24 @@
 package com.hxkj.common.util.code_generator;
 
 
+import com.alibaba.fastjson.annotation.JSONField;
+
 /**
  * 数据库列
  */
 public class Column {
+    @JSONField(ordinal = 0)
     private String columnName;
+    @JSONField(ordinal = 1)
     private String columnNameCamel;
+    @JSONField(ordinal = 2)
     private String columnNameCamelFirstUp;
 
+    @JSONField(ordinal = 3)
     private String columnComment;
+    @JSONField(ordinal = 4)
     private String columnDBType;
+    @JSONField(ordinal = 5)
     private String columnJavaType;
 
     public String getColumnName() {
