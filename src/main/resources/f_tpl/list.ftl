@@ -1,19 +1,19 @@
-<#include "/WEB-INF/views/common/common.html"/> <@layout>
-<link rel="stylesheet" href="${ctx!}/res/layer/theme/default/layer.css">
+<#noparse><#include "/WEB-INF/views/common/common.html"/> <@layout></#noparse>
+<link rel="stylesheet" href="<#noparse>${ctx!}</#noparse>/res/layer/theme/default/layer.css">
 </head>
 <body>
 <script type="text/javascript">
 
     // 新增 model
     function newModel() {
-        layerTools.layerIframe('fa-plus','新建', '${ctx!}/busNovel/newModel', '800px', '500px')
+        layerTools.layerIframe('fa-plus','新建', '<#noparse>${ctx!}</#noparse>/${(table.tableNameCamel)!}/newModel', '800px', '500px')
     }
 
     // 编辑 model
     function editModel() {
         var row = $("#dg").treegrid("getSelected");
         if (row != null) {
-            layerTools.layerIframe('fa-pencil','编辑', '${ctx!}/busNovel/newModel?id=' + row.id, '800px', '500px')
+            layerTools.layerIframe('fa-pencil','编辑', '<#noparse>${ctx!}</#noparse>/${(table.tableNameCamel)!}/newModel?id=' + row.id, '800px', '500px')
         } else {
             layerTools.layerMsg('请选择一行数据进行编辑');
         }
@@ -24,7 +24,7 @@
         var row = $("#dg").datagrid("getSelected");
         if (row != null) {
             layerTools.confirm(3, '删除', '您确定要删除选中的记录吗?', function () {
-                $.post('${ctx!}/busNovel/deleteAction?id=' + row.id, function (data) {
+                $.post('<#noparse>${ctx!}</#noparse>/${(table.tableNameCamel)!}/deleteAction?id=' + row.id, function (data) {
                     layerTools.layerMsg(data, function () {
                         $('#dg').datagrid('reload');
                     });
@@ -44,16 +44,22 @@
     }
 </script>
 <table id="dg" class="easyui-datagrid"
-       url="${ctx!}/busNovel/query"
+       url="<#noparse>${ctx!}</#noparse>/${(table.tableNameCamel)!}/query"
        toolbar="#tb" rownumbers="true" border="false"
        fit="true" pagination="true" singleSelect="true"
        pageSize="40" pageList="[20,40]">
     <thead>
     <tr>
-                    <th data-options="field:'id',checkbox:true"></th>
-                    <th field="title" width="100">书名</th>
-                    <th field="author" width="100">作者</th>
-                    <th field="create_time" width="100">创建时间</th>
+        <#list table.tablePrimaryKeys as pk>
+                    <th data-options="field:'${(pk)!}',checkbox:true"></th>
+        </#list>
+        <#list table.columnList as col>
+            <#list table.tablePrimaryKeys as pk>
+                <#if col.columnName !=pk >
+                    <th field="${(col.columnName)!}" width="100"><#if (col.columnComment)??>${(col.columnComment)!}<#else>${(col.columnName)!}</#if></th>
+                </#if>
+            </#list>
+        </#list>
     </tr>
     </thead>
 </table>
@@ -67,8 +73,8 @@
           <a href="#" class="easyui-linkbutton" iconCls="icon-search" onclick="queryModel()">搜索</a>
     </span>
 </div>
-<script src="${ctx!}/res/layer/layer.js"></script>
-<script src="${ctx!}/res/js/layer-tools.js"></script>
+<script src="<#noparse>${ctx!}</#noparse>/res/layer/layer.js"></script>
+<script src="<#noparse>${ctx!}</#noparse>/res/js/layer-tools.js"></script>
 <script>
     // enter监听查询
     $("#enterSpan").on("keydown",function(e){
@@ -77,4 +83,6 @@
         }
     })
 </script>
+<#noparse>
 </@layout>
+</#noparse>

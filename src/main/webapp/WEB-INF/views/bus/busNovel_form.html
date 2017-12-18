@@ -3,7 +3,7 @@
 <script>
     function saveAction() {
         var url;
-        var idVal = $("#id").val();
+        var idVal = $("#").val();
         if ($.trim(idVal) == "" || idVal == undefined || idVal == null) {
             url = '${ctx!}/busNovel/addAction';
         } else {
@@ -12,7 +12,7 @@
 
         $('#modelForm').form('submit', {
             url: url,
-            onSubmit: function () {
+            onSubmit: function() {
                 return $(this).form('validate');
             },
             success: function (data) {
@@ -27,29 +27,26 @@
 <body style="padding: 10px 30px; ">
 <form id="modelForm" method="POST">
     <table class=" pure-table pure-table-horizontal">
-        <input id="id" name="id" type="hidden" value="${(busNovel.id)!}">
+            <input id="id" name="id" type="hidden" value="${(busNovel.id)!}">
         <tbody>
-        <tr>
-            <td>书名：</td>
-            <td>
-                <input name="title" value="${(busNovel.title)!}" type="text" class="easyui-textbox"
-                       data-options="required:true">
-            </td>
-        </tr>
-        <tr>
-            <td>作者：</td>
-            <td>
-                <input name="author" value="${(busNovel.author)!}" type="text" class="easyui-textbox"
-                       data-options="required:true">
-            </td>
-        </tr>
-        <tr>
-            <td>创建时间：</td>
-            <td>
-                <input name="createTime" value="${(busNovel.createTime)!}" type="text" class="easyui-datetimebox"
-                       data-options="required:true">
-            </td>
-        </tr>
+                    <tr>
+                        <td>书名：</td>
+                        <td>
+                            <input name="title" value="${(busNovel.title)!}" type="text" class="easyui-textbox"  data-options="required:true">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>作者：</td>
+                        <td>
+                            <input name="author" value="${(busNovel.author)!}" type="text" class="easyui-textbox"  data-options="required:true">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>创建时间：</td>
+                        <td>
+                            <input name="createTime" value="${(busNovel.createTime)!}" type="text" class="easyui-datetimebox"  data-options="required:true">
+                        </td>
+                    </tr>
         </tbody>
     </table>
 </form>

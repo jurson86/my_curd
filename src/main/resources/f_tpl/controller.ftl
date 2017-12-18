@@ -1,4 +1,4 @@
-package com.hxkj.bus.controller;
+package ${(basePackageName)!}.${(moduleName)!}.controller;
 
 import com.jfinal.aop.Before;
 import com.jfinal.plugin.activerecord.Page;
@@ -7,18 +7,18 @@ import com.hxkj.common.constant.Constant;
 import com.hxkj.common.util.BaseController;
 import com.hxkj.common.util.Identities;
 import com.hxkj.common.util.SearchSql;
-import com.hxkj.bus.model.BusNovel;
+import ${(basePackageName)!}.${(moduleName)!}.model.${(table.tableNameCamelFirstUp)!};
 
 /**
- * BusNovel 控制器
+ * ${(table.tableNameCamelFirstUp)!} 控制器
  */
-public class BusNovelController extends BaseController{
+public class ${(table.tableNameCamelFirstUp)!}Controller extends BaseController{
 
         /**
          * 列表页
          */
         public void index(){
-          render("bus/busNovel.html");
+          render("${(moduleName)!}/${(table.tableNameCamel)!}.html");
         }
 
 
@@ -30,9 +30,9 @@ public class BusNovelController extends BaseController{
             int pageNumber=getAttr("pageNumber");
             int pageSize=getAttr("pageSize");
             String where=getAttr(Constant.SEARCH_SQL);
-            Page<BusNovel> busNovelPage=BusNovel.dao.page(pageNumber,pageSize,where);
+            Page<${(table.tableNameCamelFirstUp)!}> ${(table.tableNameCamel)!}Page=${(table.tableNameCamelFirstUp)!}.dao.page(pageNumber,pageSize,where);
 
-            renderDatagrid(busNovelPage);
+            renderDatagrid(${(table.tableNameCamel)!}Page);
         }
 
 
@@ -42,11 +42,11 @@ public class BusNovelController extends BaseController{
         public void newModel(){
             String id=getPara("id");
             if(id!=null){
-            BusNovel busNovel=BusNovel.dao.findById(id);
-            setAttr("busNovel",busNovel);
+            ${(table.tableNameCamelFirstUp)!} ${(table.tableNameCamel)!}=${(table.tableNameCamelFirstUp)!}.dao.findById(id);
+            setAttr("${(table.tableNameCamel)!}",${(table.tableNameCamel)!});
             }
 
-            render("bus/busNovel_form.html");
+            render("${(moduleName)!}/${(table.tableNameCamel)!}_form.html");
         }
 
 
@@ -55,9 +55,9 @@ public class BusNovelController extends BaseController{
          */
         public void addAction(){
 
-            BusNovel busNovel=getBean(BusNovel.class,"");
-            busNovel.setId(Identities.uuid2());
-            boolean saveFlag=busNovel.save();
+            ${(table.tableNameCamelFirstUp)!} ${(table.tableNameCamel)!}=getBean(${(table.tableNameCamelFirstUp)!}.class,"");
+            ${(table.tableNameCamel)!}.setId(Identities.uuid2());
+            boolean saveFlag=${(table.tableNameCamel)!}.save();
             if(saveFlag){
                 renderText(Constant.ADD_SUCCESS);
             }else{
@@ -71,7 +71,7 @@ public class BusNovelController extends BaseController{
          */
         public void deleteAction(){
             String id=getPara("id");
-            Boolean delflag=BusNovel.dao.deleteById(id);
+            Boolean delflag=${(table.tableNameCamelFirstUp)!}.dao.deleteById(id);
             if(delflag){
                 renderText(Constant.DELETE_SUCCESS);
             }else{
@@ -83,8 +83,8 @@ public class BusNovelController extends BaseController{
          * 修改
          */
         public void updateAction(){
-            BusNovel busNovel=getBean(BusNovel.class,"");
-            boolean updateFlag=busNovel.update();
+            ${(table.tableNameCamelFirstUp)!} ${(table.tableNameCamel)!}=getBean(${(table.tableNameCamelFirstUp)!}.class,"");
+            boolean updateFlag=${(table.tableNameCamel)!}.update();
             if(updateFlag){
                 renderText(Constant.UPDATE_SUCCESS);
             }else{
