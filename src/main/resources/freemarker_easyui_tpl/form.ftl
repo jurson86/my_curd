@@ -37,16 +37,14 @@
         </#list>
         <tbody>
         <#list table.columnList as col>
-                <#list table.tablePrimaryKeys as pk>
-                    <#if col.columnName !=pk >
-                    <tr>
-                        <td><#if (col.columnComment)??>${(col.columnComment)!}<#else>${(col.columnName)!}</#if>：</td>
-                        <td>
-                            <input name="${(col.columnNameCamel)!}" value="<#noparse>${(</#noparse>${(table.tableNameCamel)!}.${(col.columnNameCamel)!}<#noparse>)!}</#noparse>" type="text" class="easyui-textbox"  data-options="required:true">
-                        </td>
-                    </tr>
+                   <#if !(col.primaryKey)>
+            <tr>
+                <td><#if (col.columnComment)?? && col.columnComment != "" >${(col.columnComment)!}<#else>${(col.columnName)!}</#if>：</td>
+                <td>
+                    <input name="${(col.columnNameCamel)!}" value="<#noparse>${(</#noparse>${(table.tableNameCamel)!}.${(col.columnNameCamel)!}<#noparse>)!}</#noparse>" type="text" class="easyui-textbox"  data-options="required:true">
+                </td>
+            </tr>
                     </#if>
-                </#list>
         </#list>
         </tbody>
     </table>

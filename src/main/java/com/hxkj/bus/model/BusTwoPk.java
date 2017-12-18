@@ -1,21 +1,21 @@
 package com.hxkj.bus.model;
 
-import com.hxkj.bus.model.base.BaseBusNovel;
+import com.hxkj.bus.model.base.BaseBusTwoPk;
 import com.jfinal.kit.StrKit;
 import com.jfinal.plugin.activerecord.Page;
 
 /**
- * table name: bus_novel   代码生成测试表--小说表
+ * table name: bus_two_pk   多主键 代码生成测试
  */
-public class BusNovel extends BaseBusNovel<BusNovel> implements java.io.Serializable {
+public class BusTwoPk extends BaseBusTwoPk<BusTwoPk> implements java.io.Serializable {
 
-    public static final BusNovel dao = new BusNovel().dao();
+    public static final BusTwoPk dao = new BusTwoPk().dao();
     private static final long serialVersionUID = 1L;
 
-    public Page<BusNovel> page(int pageNumber, int pageSize, String where) {
+    public Page<BusTwoPk> page(int pageNumber, int pageSize, String where) {
 
         String sqlSelect = " select * ";
-        String sqlExceptSelect = " from bus_novel  ";
+        String sqlExceptSelect = " from bus_two_pk  ";
         if (StrKit.notBlank(where)) {
             sqlExceptSelect += " where " + where;
         }

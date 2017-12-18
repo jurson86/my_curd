@@ -32,6 +32,16 @@ public class SchemaInfoUtil {
         this.typeMapping = new TypeMapping();
     }
 
+    public static void main(String[] args) {
+        DruidPlugin dp = new DruidPlugin("jdbc:mysql://127.0.0.1/my_curd?characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useInformationSchema=true", "root", "123456");
+        dp.start();
+        Dialect mysqlDialect = new MysqlDialect();
+        SchemaInfoUtil util = new SchemaInfoUtil(mysqlDialect, dp.getDataSource());
+        List<Table> tables = util.getAllTableInfo(true);
+        DbKit.getConfig().getDialect();
+        DbKit.getConfig().getDataSource();
+        System.out.println(JsonKit.toJson(tables));
+    }
 
     /**
      * 数据库表信息
@@ -98,6 +108,11 @@ public class SchemaInfoUtil {
                         column.setColumnComment(rs2.getString("REMARKS"));
                         column.setColumnDBType(rs2.getString("TYPE_NAME"));
                         column.setColumnJavaType(nameJavaTypeMap.get(column.getColumnName()));
+                        if (table.getTablePrimaryKeys().contains(column.getColumnName())) {
+                            column.setPrimaryKey(true);
+                        } else {
+                            column.setPrimaryKey(false);
+                        }
                         columns.add(column);
                     }
                     table.setColumnList(columns);
@@ -115,17 +130,5 @@ public class SchemaInfoUtil {
             }
         }
         return tables;
-    }
-
-
-    public static void main(String[] args) {
-        DruidPlugin dp = new DruidPlugin("jdbc:mysql://127.0.0.1/my_curd?characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useInformationSchema=true", "root", "123456");
-        dp.start();
-        Dialect mysqlDialect = new MysqlDialect();
-        SchemaInfoUtil util = new SchemaInfoUtil(mysqlDialect, dp.getDataSource());
-        List<Table> tables = util.getAllTableInfo(true);
-        DbKit.getConfig().getDialect();
-        DbKit.getConfig().getDataSource();
-        System.out.println(JsonKit.toJson(tables));
     }
 }

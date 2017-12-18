@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50719
 File Encoding         : 65001
 
-Date: 2017-12-18 11:50:59
+Date: 2017-12-18 21:05:23
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -3668,7 +3668,7 @@ CREATE TABLE `bus_novel` (
 -- ----------------------------
 -- Records of bus_novel
 -- ----------------------------
-INSERT INTO `bus_novel` VALUES ('936253986443362304', 'lalalla', 'fffff', '2017-11-30 23:21:57');
+INSERT INTO `bus_novel` VALUES ('936253986443362304', '2', '2', '2017-11-30 23:21:57');
 
 -- ----------------------------
 -- Table structure for `bus_novel_chapter`
@@ -3686,6 +3686,23 @@ CREATE TABLE `bus_novel_chapter` (
 -- ----------------------------
 INSERT INTO `bus_novel_chapter` VALUES ('936391816486322176', '1', '1');
 INSERT INTO `bus_novel_chapter` VALUES ('936391852507004928', '3', '3');
+
+-- ----------------------------
+-- Table structure for `bus_two_pk`
+-- ----------------------------
+DROP TABLE IF EXISTS `bus_two_pk`;
+CREATE TABLE `bus_two_pk` (
+  `id` varchar(32) NOT NULL,
+  `id2` varchar(32) NOT NULL,
+  `v` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`,`id2`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='多主键 代码生成测试';
+
+-- ----------------------------
+-- Records of bus_two_pk
+-- ----------------------------
+INSERT INTO `bus_two_pk` VALUES ('942741122516516864', '942741122516516865', '2');
+INSERT INTO `bus_two_pk` VALUES ('942741144268177408', '942741144268177409', '3');
 
 -- ----------------------------
 -- Table structure for `sys_dict`
@@ -3871,7 +3888,7 @@ CREATE TABLE `sys_menu` (
   `sort` int(11) DEFAULT NULL,
   `pid` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=76 DEFAULT CHARSET=utf8 COMMENT='菜单表（权限表）';
+) ENGINE=InnoDB AUTO_INCREMENT=77 DEFAULT CHARSET=utf8 COMMENT='菜单表（权限表）';
 
 -- ----------------------------
 -- Records of sys_menu
@@ -3891,6 +3908,7 @@ INSERT INTO `sys_menu` VALUES ('72', 'busNovelChapter', '/busNovelChapter', null
 INSERT INTO `sys_menu` VALUES ('73', '文件管理', '/sysFile', 'icon-file', '8', '5');
 INSERT INTO `sys_menu` VALUES ('74', '字典管理', '/sysDict', 'icon-code', '9', '5');
 INSERT INTO `sys_menu` VALUES ('75', '代码生成', '/sysGenerator', 'icon-generator', '10', '5');
+INSERT INTO `sys_menu` VALUES ('76', '多主键测试', '/busTwoPk', null, '3', '66');
 
 -- ----------------------------
 -- Table structure for `sys_oplog`
@@ -4144,6 +4162,21 @@ INSERT INTO `sys_oplog` VALUES ('942582369297104896', '916654989969981440', '登
 INSERT INTO `sys_oplog` VALUES ('942582717470474240', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-18 10:30:06');
 INSERT INTO `sys_oplog` VALUES ('942582966062678016', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-18 10:31:06');
 INSERT INTO `sys_oplog` VALUES ('942584224437764096', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-18 10:36:06');
+INSERT INTO `sys_oplog` VALUES ('942728948901478400', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-18 20:11:11');
+INSERT INTO `sys_oplog` VALUES ('942729720305287168', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-18 20:14:15');
+INSERT INTO `sys_oplog` VALUES ('942732473421266944', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-18 20:25:11');
+INSERT INTO `sys_oplog` VALUES ('942733160976744448', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-18 20:27:55');
+INSERT INTO `sys_oplog` VALUES ('942734028476252160', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-18 20:31:22');
+INSERT INTO `sys_oplog` VALUES ('942734640492314624', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-18 20:33:48');
+INSERT INTO `sys_oplog` VALUES ('942737667139829760', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-18 20:45:49');
+INSERT INTO `sys_oplog` VALUES ('942738306616000512', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-18 20:48:22');
+INSERT INTO `sys_oplog` VALUES ('942739153609555968', '916654989969981440', '退出', '0:0:0:0:0:0:0:1', '2017-12-18 20:51:44');
+INSERT INTO `sys_oplog` VALUES ('942739158990848000', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-18 20:51:45');
+INSERT INTO `sys_oplog` VALUES ('942739714060845056', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-18 20:53:57');
+INSERT INTO `sys_oplog` VALUES ('942739976993374208', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-18 20:55:00');
+INSERT INTO `sys_oplog` VALUES ('942740716377866240', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-18 20:57:56');
+INSERT INTO `sys_oplog` VALUES ('942741077792653312', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-18 20:59:22');
+INSERT INTO `sys_oplog` VALUES ('942741837410467840', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-18 21:02:24');
 
 -- ----------------------------
 -- Table structure for `sys_org`
@@ -4218,6 +4251,7 @@ INSERT INTO `sys_role_menu` VALUES ('3', '72');
 INSERT INTO `sys_role_menu` VALUES ('3', '73');
 INSERT INTO `sys_role_menu` VALUES ('3', '74');
 INSERT INTO `sys_role_menu` VALUES ('3', '75');
+INSERT INTO `sys_role_menu` VALUES ('3', '76');
 
 -- ----------------------------
 -- Table structure for `sys_task`

@@ -40,10 +40,12 @@ public class ${(table.tableNameCamelFirstUp)!}Controller extends BaseController{
          * 打开新增或者修改弹出框
          */
         public void newModel(){
-            String id=getPara("id");
-            if(id!=null){
-            ${(table.tableNameCamelFirstUp)!} ${(table.tableNameCamel)!}=${(table.tableNameCamelFirstUp)!}.dao.findById(id);
-            setAttr("${(table.tableNameCamel)!}",${(table.tableNameCamel)!});
+            <#list table.tablePrimaryKeys as pk>
+            String ${pk}=getPara("${pk}");
+            </#list>
+            if(<#list table.tablePrimaryKeys as pk><#if pk_has_next>${pk}!=null && <#else>${pk}!=null </#if></#list>){
+                ${(table.tableNameCamelFirstUp)!} ${(table.tableNameCamel)!}=${(table.tableNameCamelFirstUp)!}.dao.findById( <#list table.tablePrimaryKeys as pk> <#if pk_has_next>${pk} , <#else>${pk}</#if></#list>);
+                setAttr("${(table.tableNameCamel)!}",${(table.tableNameCamel)!});
             }
 
             render("${(moduleName)!}/${(table.tableNameCamel)!}_form.html");
@@ -56,7 +58,9 @@ public class ${(table.tableNameCamelFirstUp)!}Controller extends BaseController{
         public void addAction(){
 
             ${(table.tableNameCamelFirstUp)!} ${(table.tableNameCamel)!}=getBean(${(table.tableNameCamelFirstUp)!}.class,"");
-            ${(table.tableNameCamel)!}.setId(Identities.uuid2());
+            <#list table.tablePrimaryKeys as pk>
+            ${(table.tableNameCamel)!}.set("${pk}",Identities.uuid2());
+            </#list>
             boolean saveFlag=${(table.tableNameCamel)!}.save();
             if(saveFlag){
                 renderText(Constant.ADD_SUCCESS);
@@ -70,8 +74,10 @@ public class ${(table.tableNameCamelFirstUp)!}Controller extends BaseController{
          * 删除
          */
         public void deleteAction(){
-            String id=getPara("id");
-            Boolean delflag=${(table.tableNameCamelFirstUp)!}.dao.deleteById(id);
+            <#list table.tablePrimaryKeys as pk>
+            String ${pk}=getPara("${pk}");
+            </#list>
+            Boolean delflag=${(table.tableNameCamelFirstUp)!}.dao.deleteById( <#list table.tablePrimaryKeys as pk> <#if pk_has_next>${pk} , <#else>${pk}</#if></#list>);
             if(delflag){
                 renderText(Constant.DELETE_SUCCESS);
             }else{

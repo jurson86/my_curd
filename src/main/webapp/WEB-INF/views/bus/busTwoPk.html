@@ -6,7 +6,7 @@
 
     // 新增 model
     function newModel() {
-        layerTools.layerIframe('fa-plus', '新建', '${ctx!}/busNovel/newModel', '800px', '500px')
+        layerTools.layerIframe('fa-plus', '新建', '${ctx!}/busTwoPk/newModel', '800px', '500px')
     }
 
     // 编辑 model
@@ -14,8 +14,9 @@
         var row = $("#dg").treegrid("getSelected");
         if (row != null) {
             var params = "";
-            params += 'id=' + row.id;
-            layerTools.layerIframe('fa-pencil', '编辑', '${ctx!}/busNovel/newModel?' + params, '800px', '500px')
+            params += 'id=' + row.id + '&';
+            params += 'id2=' + row.id2;
+            layerTools.layerIframe('fa-pencil', '编辑', '${ctx!}/busTwoPk/newModel?' + params, '800px', '500px')
         } else {
             layerTools.layerMsg('请选择一行数据进行编辑');
         }
@@ -26,9 +27,10 @@
         var row = $("#dg").datagrid("getSelected");
         if (row != null) {
             var params = "";
-            params += 'id=' + row.id;
+            params += 'id=' + row.id + '&';
+            params += 'id2=' + row.id2;
             layerTools.confirm(3, '删除', '您确定要删除选中的记录吗?', function () {
-                $.post('${ctx!}/busNovel/deleteAction?' + params, function (data) {
+                $.post('${ctx!}/busTwoPk/deleteAction?' + params, function (data) {
                     layerTools.layerMsg(data, function () {
                         $('#dg').datagrid('reload');
                     });
@@ -48,16 +50,15 @@
     }
 </script>
 <table id="dg" class="easyui-datagrid"
-       url="${ctx!}/busNovel/query"
+       url="${ctx!}/busTwoPk/query"
        toolbar="#tb" rownumbers="true" border="false"
        fit="true" pagination="true" singleSelect="true"
        pageSize="40" pageList="[20,40]">
     <thead>
     <tr>
         <th data-options="field:'id',checkbox:true"></th>
-        <th field="title" width="100">书名</th>
-        <th field="author" width="100">作者</th>
-        <th field="create_time" width="100">创建时间</th>
+        <th data-options="field:'id2',checkbox:true"></th>
+        <th field="v" width="100">v</th>
     </tr>
     </thead>
 </table>

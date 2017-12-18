@@ -85,9 +85,9 @@ public class BusNovelChapterController extends BaseController {
         BusNovelChapter busNovelChapter = getBean(BusNovelChapter.class, "");
         boolean updateFlag = busNovelChapter.update();
         if (updateFlag) {
-            renderText(Constant.ADD_SUCCESS);
+            renderText(Constant.UPDATE_SUCCESS);
         } else {
-            renderText(Constant.ADD_FAIL);
+            renderText(Constant.UPDATE_FAIL);
         }
     }
 }

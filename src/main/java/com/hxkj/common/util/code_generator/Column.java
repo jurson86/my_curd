@@ -21,6 +21,9 @@ public class Column {
     @JSONField(ordinal = 5)
     private String columnJavaType;
 
+    private Boolean isPrimaryKey;
+
+
     public String getColumnName() {
         return columnName;
     }
@@ -67,5 +70,13 @@ public class Column {
 
     public void setColumnJavaType(String columnJavaType) {
         this.columnJavaType = columnJavaType;
+    }
+
+    public Boolean getPrimaryKey() {
+        return isPrimaryKey;
+    }
+
+    public void setPrimaryKey(Boolean primaryKey) {
+        isPrimaryKey = primaryKey;
     }
 }

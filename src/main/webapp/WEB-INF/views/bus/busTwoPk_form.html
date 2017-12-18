@@ -6,11 +6,13 @@
         var pkVAry = [];
         var idVal = $("#id").val();
         pkVAry.push(idVal);
+        var id2Val = $("#id2").val();
+        pkVAry.push(id2Val);
 
         if ($.trim(pkVAry[0]) == "" || pkVAry[0] == undefined || pkVAry[0] == null) {
-            url = '${ctx!}/busNovelChapter/addAction';
+            url = '${ctx!}/busTwoPk/addAction';
         } else {
-            url = '${ctx!}/busNovelChapter/updateAction';
+            url = '${ctx!}/busTwoPk/updateAction';
         }
 
         $('#modelForm').form('submit', {
@@ -30,19 +32,13 @@
 <body style="padding: 10px 30px; ">
 <form id="modelForm" method="POST">
     <table class=" pure-table pure-table-horizontal">
-        <input id="id" name="id" type="hidden" value="${(busNovelChapter.id)!}">
+        <input id="id" name="id" type="hidden" value="${(busTwoPk.id)!}">
+        <input id="id2" name="id2" type="hidden" value="${(busTwoPk.id2)!}">
         <tbody>
         <tr>
-            <td>title：</td>
+            <td>v：</td>
             <td>
-                <input name="title" value="${(busNovelChapter.title)!}" type="text" class="easyui-textbox"
-                       data-options="required:true">
-            </td>
-        </tr>
-        <tr>
-            <td>content：</td>
-            <td>
-                <input name="content" value="${(busNovelChapter.content)!}" type="text" class="easyui-textbox"
+                <input name="v" value="${(busTwoPk.v)!}" type="text" class="easyui-textbox"
                        data-options="required:true">
             </td>
         </tr>

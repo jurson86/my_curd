@@ -13,7 +13,15 @@
     function editModel() {
         var row = $("#dg").treegrid("getSelected");
         if (row != null) {
-            layerTools.layerIframe('fa-pencil','编辑', '<#noparse>${ctx!}</#noparse>/${(table.tableNameCamel)!}/newModel?id=' + row.id, '800px', '500px')
+            var params="";
+            <#list table.tablePrimaryKeys as pk>
+                <#if pk_has_next>
+            params += '${pk}='+row.${pk}+'&';
+                <#else>
+            params += '${pk}='+row.${pk};
+                </#if>
+            </#list>
+            layerTools.layerIframe('fa-pencil','编辑', '<#noparse>${ctx!}</#noparse>/${(table.tableNameCamel)!}/newModel?' + params, '800px', '500px')
         } else {
             layerTools.layerMsg('请选择一行数据进行编辑');
         }
@@ -23,8 +31,16 @@
     function deleteModel() {
         var row = $("#dg").datagrid("getSelected");
         if (row != null) {
+            var params="";
+            <#list table.tablePrimaryKeys as pk>
+                <#if pk_has_next>
+            params += '${pk}='+row.${pk}+'&';
+                <#else>
+             params += '${pk}='+row.${pk};
+                </#if>
+            </#list>
             layerTools.confirm(3, '删除', '您确定要删除选中的记录吗?', function () {
-                $.post('<#noparse>${ctx!}</#noparse>/${(table.tableNameCamel)!}/deleteAction?id=' + row.id, function (data) {
+                $.post('<#noparse>${ctx!}</#noparse>/${(table.tableNameCamel)!}/deleteAction?' + params, function (data) {
                     layerTools.layerMsg(data, function () {
                         $('#dg').datagrid('reload');
                     });
@@ -51,15 +67,13 @@
     <thead>
     <tr>
         <#list table.tablePrimaryKeys as pk>
-                    <th data-options="field:'${(pk)!}',checkbox:true"></th>
+            <th data-options="field:'${(pk)!}',checkbox:true"></th>
         </#list>
         <#list table.columnList as col>
-            <#list table.tablePrimaryKeys as pk>
-                <#if col.columnName !=pk >
-                    <th field="${(col.columnName)!}" width="100"><#if (col.columnComment)??>${(col.columnComment)!}<#else>${(col.columnName)!}</#if></th>
-                </#if>
-            </#list>
-        </#list>
+        <#if !(col.primaryKey)>
+            <th field="${(col.columnName)!}" width="100"><#if (col.columnComment)?? && col.columnComment != "">${(col.columnComment)!}<#else>${(col.columnName)!}</#if></th>
+        </#if>
+         </#list>
     </tr>
     </thead>
 </table>

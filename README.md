@@ -22,14 +22,5 @@
 10. druid 监控
 ![](preview_img/druid.png)
 11. 代码生成器  
-通过配置文件generator.properties，运行main 方法，一键生成 model、controller、view 代码，可实现单表的curd 操作（excel导入导出可选）
-```properties
-# 基础包名
-basePackageName=com.hxkj
-# 模块名
-moduleName=bus
-# 需要生成代码的表(多张表以 ; 分割)
-tables=bus_novel_chapter
-com.hxkj.common.util.generator.tpl
-tplDir=tpl
-```
+![](preview_img/codegen.png)
+先选中数据表，打开json视图，修改（或不修改）提交这个json数据，一键生成model、controller、views代码，放入项目下即可实现单表CURD操作
