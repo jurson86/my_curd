@@ -3,11 +3,13 @@
 <script>
     function saveAction() {
         var url;
+        var pkVAry =[];
         <#list table.tablePrimaryKeys as pk>
             var ${(pk)!}Val = $("#${(pk)!}").val();
+            pkVAry.push(${(pk)!}Val);
         </#list>
 
-        if ($.trim(idVal) == "" || idVal == undefined || idVal == null) {
+        if ($.trim(pkVAry[0]) == "" || pkVAry[0] == undefined || pkVAry[0] == null) {
             url = '<#noparse>${ctx!}</#noparse>/${(table.tableNameCamel)!}/addAction';
         } else {
             url = '<#noparse>${ctx!}</#noparse>/${(table.tableNameCamel)!}/updateAction';

@@ -1,22 +1,24 @@
 <#include "/WEB-INF/views/common/common.html"/> <@layout>
 <link rel="stylesheet" href="${ctx!}/res/layer/theme/default/layer.css">
 <link rel="stylesheet" href="${ctx!}/res/codemirror/codemirror.css">
-<link rel="stylesheet" href="${ctx!}/res/codemirror/bespin.css">
+<link rel="stylesheet" href="${ctx!}/res/codemirror/material.css">
 <script src="${ctx!}/res/codemirror/codemirror.js"></script>
 <script src="${ctx!}/res/codemirror/javascript.js"></script>
 <script src="${ctx!}/res/codemirror/jquery.nicescroll.min.js"></script>
 <link rel="stylesheet" href="${ctx!}/res/pure/buttons-min.css">
 <style>
-    #editAfterGen{
+    #editAfterGen {
         position: absolute;
         z-index: 9999;
-        right:10px;
-        top:10px;
+        right: 10px;
+        top: 10px;
     }
+
     .pure-button {
         padding: 5px 8px;
         margin: 5px 2px;
     }
+
     .button-success {
         color: white;
         border-radius: 4px;
@@ -24,9 +26,8 @@
         background: rgb(28, 184, 65); /* this is a green */
     }
 
-
     .CodeMirror {
-        border: 1px solid black;
+        border: 1px solid #263238;
         height: auto;
     }
 
@@ -36,36 +37,82 @@
         overflow-x: auto;
     }
 </style>
+<script>
+    Date.prototype.Format = function (fmt) { //author: meizz
+        var o = {
+            "M+": this.getMonth() + 1, //月份
+            "d+": this.getDate(), //日
+            "h+": this.getHours(), //小时
+            "m+": this.getMinutes(), //分
+            "s+": this.getSeconds(), //秒
+            "q+": Math.floor((this.getMonth() + 3) / 3), //季度
+            "S": this.getMilliseconds() //毫秒
+        };
+        if (/(y+)/.test(fmt)) fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
+        for (var k in o)
+            if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+        return fmt;
+    }
+</script>
 </head>
 <body>
 <script type="text/javascript">
-    var myCodeMirror ;
-    function genCode(){
-        console.log('=============='+myCodeMirror.getValue())
+    var myCodeMirror;
+    function genCode() {
+        var jsonObj;
+        try {
+            jsonObj = JSON.parse(myCodeMirror.getValue())
+        } catch (e) {
+            layerTools.layerMsg("json格式错误: " + e);
+            return;
+        }
+        $.ajax({
+            url: '${ctx!}/sysGenerator/generate',
+            type: 'post',
+            data: {
+                jsonStr: myCodeMirror.getValue()
+            },
+            dataType: 'json',
+            success: function (data) {
+                if (data.state == 'ok') {
+                    layer.alert("代码生成成功（文件路径可通过浏览器控制台查看）! ", {icon: 6});
+                    console.log("-----generateTime:" + new Date().Format("yyyy-MM-dd hh:mm:ss") + "-----moduleName:"+jsonObj.moduleName+"-----");
+                    for(var i=0;i<data.outputPaths.length;i++){
+                        console.log(i+ " ========== "+data.outputPaths[i])
+                    }
+                    $("#editAfterGen").attr("disabled", "disabled");
+                } else {
+                    layerTools.layerMsg(data.msg);
+                }
+            },
+            error: function (e) {
+                console.log(e);
+            }
+        });
     }
 
-    function jsonView(){
+    function jsonView() {
         var rows = $("#dg").treegrid("getSelections");
-        if (rows.length !=0) {
+        if (rows.length != 0) {
             var obj = {};
-            obj.moduleName="请在此输入模块名 :)";
+            obj.moduleName = "请在此输入模块名 :)";
             obj.tables = rows;
             var formatJSONStr = JSON.stringify(obj, null, "\t");
             var content = '<div id="cm"  ></div>'
-                +' <button id="editAfterGen"  onclick="genCode()"  class="pure-button button-success" >代码生成</button>';
-            layerTools.layerDialog(['500px','80%'],'<i class="fa fa-code"></i>&nbsp;&nbsp;&nbsp;&nbsp;'+'代码生成（可修改json控制生成的代码)' ,content)
+                + ' <button id="editAfterGen"  onclick="genCode()"  class="pure-button button-success" >代码生成</button>';
+            layerTools.layerDialog(['500px', '60%'], '<i class="fa fa-code"></i>&nbsp;&nbsp;&nbsp;&nbsp;' + '代码生成（可修改json控制生成的代码)', content)
             myCodeMirror = CodeMirror(document.getElementById('cm'), {
                 value: formatJSONStr,
                 lineNumbers: true,
                 mode: {name: "javascript", json: true},
-                scrollbarStyle:null,
+                scrollbarStyle: null,
                 matchBrackets: true,
-                theme:"bespin",
+                theme: "material"
             });
 
             $('.layui-layer-content').niceScroll({
                 cursorcolor: "#dcdee0", //滚动条的颜色
-                cursoropacitymax: 1, //滚动条的透明度，从0-1
+                cursoropacitymax: 0, //滚动条的透明度，从0-1（隐藏）
                 touchbehavior: false, //使光标拖动滚动像在台式电脑触摸设备
                 cursorwidth: "8px", //滚动条的宽度
                 cursorborder: "0", // 游标边框css定义
@@ -79,16 +126,10 @@
                     bottom: 0
                 }, //滚动条的位置
             });
-            //console.log(myCodeMirror.getValue())
-            //myCodeMirror.setSize('auto','auto');
-
-            //console.log(formatJSONStr)
         } else {
             layerTools.layerMsg('请至少选择一行数据');
         }
     }
-
-
 
 
     function editModel() {
@@ -105,10 +146,10 @@
     function queryModel() {
         var tableName = $("#tableName").textbox("getValue");
         $('#dg').datagrid({
-            loadFilter: function(data){
-                var dAry=[];
-                for(var i=0;i<data.length;i++){
-                    if(data[i].tableName.indexOf(tableName)>=0){
+            loadFilter: function (data) {
+                var dAry = [];
+                for (var i = 0; i < data.length; i++) {
+                    if (data[i].tableName.indexOf(tableName) >= 0) {
                         dAry.push(data[i]);
                     }
                 }
@@ -118,18 +159,18 @@
     }
 
 
-
 </script>
 
 <div id="nestLayout" class="easyui-layout" fit="true">
     <div data-options="region:'east' " title="列信息"
          split="true" collapsed="true"
          style="width: 40%;">
-        <table id="rdg" class="easyui-datagrid"  fit="true" border="false" fitColumns="true" rownumbers="true" singleSelect="true"></table>
+        <table id="rdg" class="easyui-datagrid" fit="true" border="false" fitColumns="true" rownumbers="true"
+               singleSelect="true"></table>
     </div>
     <div data-options="region:'center' " border="false" split="true">
         <table id="dg" class="easyui-datagrid  "
-               toolbar="#tb" rownumbers="true"   border="false" fitColumns="true"
+               toolbar="#tb" rownumbers="true" border="false" fitColumns="true"
                fit="true">
             <thead>
             <tr>
@@ -146,7 +187,7 @@
             <a onclick="jsonView()" href="#" class="easyui-linkbutton" iconCls="icon-genTool" plain="true">代码生成</a>
             <span id="enterSpan">
                 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-					<input id="tableName" prompt="表名" class="easyui-textbox" style="width:150px" >
+					<input id="tableName" prompt="表名" class="easyui-textbox" style="width:150px">
 					<a href="#" class="easyui-linkbutton" iconCls="icon-search" onclick="queryModel()">过滤</a>
             </span>
         </div>
@@ -158,22 +199,22 @@
     $(function () {
 
         // enter监听查询
-        $("#enterSpan").on("keydown",function(e){
-            if(e.keyCode==13){
+        $("#enterSpan").on("keydown", function (e) {
+            if (e.keyCode == 13) {
                 queryModel();
             }
         })
 
         $("#dg").datagrid({
-            url:"${ctx!}/sysGenerator/query?fullFlag=true",  // 放在dom 中会导致请求两次
+            url: "${ctx!}/sysGenerator/query?fullFlag=true",  // 放在dom 中会导致请求两次
             onSelect: function (index, row) {
                 $('#rdg').datagrid({
-                    data:row.columnList,
-                    columns:[[
-                        {field:'columnName',title:'列名',width:100},
-                        {field:'columnComment',title:'列注释',width:100},
-                        {field:'columnDBType',title:'列类型DB',width:100},
-                        {field:'columnJavaType',title:'列类型Java',width:100 }
+                    data: row.columnList,
+                    columns: [[
+                        {field: 'columnName', title: '列名', width: 100},
+                        {field: 'columnComment', title: '列注释', width: 100},
+                        {field: 'columnDBType', title: '列类型DB', width: 100},
+                        {field: 'columnJavaType', title: '列类型Java', width: 100}
                     ]]
                 });
                 $("#nestLayout").layout("expand", "east");

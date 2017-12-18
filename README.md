@@ -30,6 +30,6 @@ basePackageName=com.hxkj
 moduleName=bus
 # 需要生成代码的表(多张表以 ; 分割)
 tables=bus_novel_chapter
-# 模板文件相对路径（相对于classes,此处为/resources/tpl）
+com.hxkj.common.util.generator.tpl
 tplDir=tpl
 ```

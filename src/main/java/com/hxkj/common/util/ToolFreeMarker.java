@@ -25,7 +25,7 @@ public abstract class ToolFreeMarker {
 
     public static void main(String[] args) {
 
-        String tplFilePath = PathKit.getRootClassPath() + File.separator + "tpl" + File.separator + "test.ftl";
+        String tplFilePath = PathKit.getRootClassPath() + File.separator + "com/hxkj/common/util/generator/tpl" + File.separator + "test.ftl";
         System.out.println(tplFilePath);
         if (!new File(tplFilePath).exists()) {
             return;

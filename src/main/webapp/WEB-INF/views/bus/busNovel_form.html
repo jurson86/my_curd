@@ -3,8 +3,11 @@
 <script>
     function saveAction() {
         var url;
-        var idVal = $("#").val();
-        if ($.trim(idVal) == "" || idVal == undefined || idVal == null) {
+        var pkVAry =[];
+            var idVal = $("#id").val();
+            pkVAry.push(idVal);
+
+        if ($.trim(pkVAry[0]) == "" || pkVAry[0] == undefined || pkVAry[0] == null) {
             url = '${ctx!}/busNovel/addAction';
         } else {
             url = '${ctx!}/busNovel/updateAction';
