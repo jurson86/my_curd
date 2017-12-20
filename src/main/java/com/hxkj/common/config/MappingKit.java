@@ -1,8 +1,7 @@
 package com.hxkj.common.config;
 
-import com.hxkj.bus.model.BusNovel;
-import com.hxkj.bus.model.BusNovelChapter;
-import com.hxkj.bus.model.BusTwoPk;
+import com.hxkj.gentest.model.GentestBook;
+import com.hxkj.gentest.model.GentestMulpktable;
 import com.hxkj.system.model.*;
 import com.jfinal.plugin.activerecord.ActiveRecordPlugin;
 
@@ -25,10 +24,9 @@ public class MappingKit {
         arp.addMapping("sys_dict", "id", SysDict.class);
         arp.addMapping("sys_file", "id", SysFile.class);
 
-        // bus 模块
-        arp.addMapping("bus_novel", "id", BusNovel.class);
-        arp.addMapping("bus_novel_chapter", "id", BusNovelChapter.class);
-        arp.addMapping("bus_two_pk", "id,id2", BusTwoPk.class);
+        // 代码生成测试表
+        arp.addMapping("gentest_book", "id", GentestBook.class);
+        arp.addMapping("gentest_mulpktable", "id,id2,id3", GentestMulpktable.class);
     }
 }
 

@@ -8,10 +8,9 @@ import com.jfinal.kit.HashKit;
 import com.jfinal.plugin.activerecord.tx.Tx;
 
 /**
- * Created by Administrator on 2017/11/21.
+ * 修改密码
  */
 public class SysChangePasswordController extends BaseController {
-
 
     @Before(SessionInViewInterceptor.class)
     public void index() {
@@ -20,31 +19,28 @@ public class SysChangePasswordController extends BaseController {
 
     @Before(Tx.class)
     public void changePwdAction() {
-        SysUser sysUser = getSessionUser();
+        SysUser curUser = getSessionUser();
         String oldPassword = getPara("oldPwd");
         String newPassword = getPara("newPwd");
 
-        addOpLog(oldPassword + " 修改为新密码：" + newPassword);
-
-        String sql = "select * from sys_user where username = ? and password = ?";
         oldPassword = HashKit.sha1(oldPassword);
-        SysUser sSysUser = SysUser.dao.findFirst(sql, sysUser.getUsername(), oldPassword);
+        SysUser sysUser = SysUser.dao.findByUsernameAndPassword(curUser.getUsername(), oldPassword);
 
-        if (sSysUser == null) {
+        if (sysUser == null) {
             renderText("旧密码错误！");
             return;
         }
-
         if (sysUser.getDisabled().equals("1")) {
             renderText("用户被禁用，无法修改密码！");
             return;
         }
 
         newPassword = HashKit.sha1(newPassword);
-        sSysUser.setPassword(newPassword);
+        sysUser.setPassword(newPassword);
 
-        boolean updateFlag = sSysUser.update();
-
+        boolean updateFlag = sysUser.update();
+        // 添加操作日志
+        addOpLog(oldPassword + " 修改为新密码：" + newPassword);
 
         if (updateFlag) {
             renderText("修改密码成功");

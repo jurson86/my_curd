@@ -100,7 +100,18 @@
                 data = easyTree.treeDataBuild(data, "id", "pid", "text,open");
                 // console.log(data);
                 return data;
+            },
+            onLoadSuccess:function(){
+                // 移除自身和 子
+                var sid ='${(sysOrg.id)!}';
+                if($.trim(sid)!=""){
+                    console.log('remove tree node :'+sid);
+                    var t = $("#pid").combotree('tree');
+                    var node= t.tree("find",sid);
+                    t.tree("remove",node.target);
+                }
             }
+
         });
     })();
 </script>

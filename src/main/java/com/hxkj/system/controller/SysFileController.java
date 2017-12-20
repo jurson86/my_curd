@@ -161,6 +161,9 @@ public class SysFileController extends BaseController {
     }
 
 
+    /**
+     * 系统运输上传的文件类型，供combobox 使用
+     */
     public void fileTypeData() {
         Prop prop = PropKit.use("config.properties");
         String imageTypes = prop.get("imageType");

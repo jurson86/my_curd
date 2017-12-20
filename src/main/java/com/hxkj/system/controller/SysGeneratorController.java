@@ -4,11 +4,9 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.hxkj.common.util.BaseController;
-import com.hxkj.common.util.ToolFormatJson;
 import com.hxkj.common.util.code_generator.SchemaInfoUtil;
 import com.hxkj.common.util.code_generator.Table;
 import com.hxkj.system.service.CodeGeneratorService;
-import com.jfinal.kit.JsonKit;
 import com.jfinal.kit.LogKit;
 import com.jfinal.kit.Ret;
 import com.jfinal.kit.StrKit;
@@ -28,13 +26,13 @@ public class SysGeneratorController extends BaseController {
         schemaInfoUtil = new SchemaInfoUtil(config.getDialect(), config.getDataSource());
     }
 
-    /**
-     * 网格视图
-     */
     public void index() {
         render("system/sysGenerator.html");
     }
 
+    /**
+     * 数据库表数据
+     */
     public void query() {
         Boolean fullFlag = getParaToBoolean("fullFlag");
         if (fullFlag == null) {
@@ -44,19 +42,10 @@ public class SysGeneratorController extends BaseController {
         renderJson(JSON.toJSONString(tables));
     }
 
-    /**
-     * json 视图
-     */
-    public void index_json() {
-        Boolean fullFlag = getParaToBoolean("fullFlag");
-        if (fullFlag == null) {
-            fullFlag = false;
-        }
-        List<Table> tables = schemaInfoUtil.getAllTableInfo(fullFlag);
-        String formatJSONStr = ToolFormatJson.format(JsonKit.toJson(tables));
-        renderJson(formatJSONStr);
-    }
 
+    /**
+     * 生成代码 文件
+     */
     public void generate() {
         Ret ret = Ret.create();
         String jsonStr = getPara("jsonStr");

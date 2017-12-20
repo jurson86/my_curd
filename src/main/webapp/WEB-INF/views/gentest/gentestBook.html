@@ -6,14 +6,16 @@
 
     // 新增 model
     function newModel() {
-        layerTools.layerIframe('fa-plus', '新建', '${ctx!}/busNovelChapter/newModel', '800px', '500px')
+        layerTools.layerIframe('fa-plus','新建', '${ctx!}/gentestBook/newModel', '800px', '500px')
     }
 
     // 编辑 model
     function editModel() {
         var row = $("#dg").treegrid("getSelected");
         if (row != null) {
-            layerTools.layerIframe('fa-pencil', '编辑', '${ctx!}/busNovelChapter/newModel?id=' + row.id, '800px', '500px')
+            var params="";
+            params += 'id='+row.id;
+            layerTools.layerIframe('fa-pencil','编辑', '${ctx!}/gentestBook/newModel?' + params, '800px', '500px')
         } else {
             layerTools.layerMsg('请选择一行数据进行编辑');
         }
@@ -23,8 +25,10 @@
     function deleteModel() {
         var row = $("#dg").datagrid("getSelected");
         if (row != null) {
+            var params="";
+             params += 'id='+row.id;
             layerTools.confirm(3, '删除', '您确定要删除选中的记录吗?', function () {
-                $.post('${ctx!}/busNovelChapter/deleteAction?id=' + row.id, function (data) {
+                $.post('${ctx!}/gentestBook/deleteAction?' + params, function (data) {
                     layerTools.layerMsg(data, function () {
                         $('#dg').datagrid('reload');
                     });
@@ -39,20 +43,22 @@
     //条件查询
     function queryModel() {
         var queryParams = {};
-        queryParams['search_LIKE_test'] = $("#test").textbox("getValue");
+        queryParams['search_LIKE_title'] = $("#title").textbox("getValue");
         $('#dg').datagrid('load', queryParams);
     }
 </script>
 <table id="dg" class="easyui-datagrid"
-       url="${ctx!}/busNovelChapter/query"
+       url="${ctx!}/gentestBook/query"
        toolbar="#tb" rownumbers="true" border="false"
        fit="true" pagination="true" singleSelect="true"
        pageSize="40" pageList="[20,40]">
     <thead>
     <tr>
-        <th data-options="field:'id',checkbox:true"></th>
-        <th field="title" width="100">title</th>
-        <th field="content" width="100">content</th>
+            <th data-options="field:'id',checkbox:true"></th>
+            <th field="title" width="100">书名</th>
+            <th field="info" width="200">简介</th>
+            <th field="author" width="100">作者</th>
+            <th field="create_time" width="100">create_time</th>
     </tr>
     </thead>
 </table>
@@ -62,7 +68,7 @@
     <a onclick="editModel()" href="#" class="easyui-linkbutton" iconCls="icon-edit" plain="true">编辑</a>
     <a onclick="deleteModel()" href="#" class="easyui-linkbutton  " iconCls="icon-remove" plain="true">删除</a>
     <span id="enterSpan" class="searchInputArea">
-          <input id="test" prompt="test" class="easyui-textbox" style="width:120px; ">
+          <input id="title" prompt="书名" class="easyui-textbox" style="width:120px; ">
           <a href="#" class="easyui-linkbutton" iconCls="icon-search" onclick="queryModel()">搜索</a>
     </span>
 </div>
@@ -70,8 +76,8 @@
 <script src="${ctx!}/res/js/layer-tools.js"></script>
 <script>
     // enter监听查询
-    $("#enterSpan").on("keydown", function (e) {
-        if (e.keyCode == 13) {
+    $("#enterSpan").on("keydown",function(e){
+        if(e.keyCode==13){
             queryModel();
         }
     })

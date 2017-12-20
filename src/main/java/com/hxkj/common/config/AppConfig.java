@@ -49,7 +49,6 @@ public class AppConfig extends JFinalConfig {
         //me.setError404View();
         //设置json工厂
         //me.setJsonFactory(FastJsonFactory.me());  // json 驼峰，但是 record 等不能正常转换
-
         // json日期格式
         me.setJsonDatePattern("yyyy-MM-dd HH:mm:ss");
 
@@ -57,13 +56,12 @@ public class AppConfig extends JFinalConfig {
 
     @Override
     public void configRoute(Routes me) {
-        me.add(new SysRoute()); // system 模块 路由
-        me.add(new BusRoute());  // bus 模块 路由
+        me.add(new SysRoute());     // system 模块 路由
+        me.add(new GentestRoute()); // 代码生成测试 模块 路由
     }
 
     @Override
     public void configPlugin(Plugins me) {
-
         DruidPlugin dbPlugin = new DruidPlugin(PropKit.get("jdbcUrl"), PropKit.get("user"), PropKit.get("password"));
         // druid 监控
         dbPlugin.addFilter(new StatFilter());
@@ -84,15 +82,12 @@ public class AppConfig extends JFinalConfig {
 
     @Override
     public void configInterceptor(Interceptors me) {
-
-        // Action 级别 权限拦截器
         me.addGlobalActionInterceptor(new AuthorityInterceptor());
         me.addGlobalActionInterceptor(new SessionInViewInterceptor());
     }
 
     @Override
     public void configHandler(Handlers me) {
-
         // druid 监控（只允许admin查看）
         DruidStatViewHandler dvh = new DruidStatViewHandler("/druid", new IDruidStatViewAuth() {
             public boolean isPermitted(HttpServletRequest request) {
@@ -115,10 +110,6 @@ public class AppConfig extends JFinalConfig {
         } catch (TemplateModelException e) {
             e.printStackTrace();
         }
-
-        //定时任务
-        //TaskService taskService = Duang.duang(TaskService.class);
-        //taskService.startAll();
     }
 
     @Override

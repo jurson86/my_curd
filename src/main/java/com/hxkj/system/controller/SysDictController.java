@@ -98,13 +98,15 @@ public class SysDictController extends BaseController {
         }
     }
 
-    /*码表查询 接口，供其它模块使用，不拦截*/
+    /**
+     * 字典数据公共借口，供其它控制器使用，不拦截权限
+     */
     @Clear
     public void queryDictData() {
-        String format = getPara("formatFlag"); // json 是否格式化
+        String format = getPara("formatFlag"); // json 是否格式化(有改参数返回的json经过格式化)
 
-        String fields = getPara("fields");
-        String type = getPara("type");
+        String fields = getPara("fields");  //查询的字段 例如dict_key as label, dict_value as value
+        String type = getPara("type");      // 字典字段类型
         Preconditions.checkNotNull(fields, "fields字段信息不能为空");
         String strWhere = StrKit.notBlank(type) ? " where  dict_type = " + type : "";
         List<Record> codeData = Db.find("select " + fields + " from  sys_dict" + strWhere);

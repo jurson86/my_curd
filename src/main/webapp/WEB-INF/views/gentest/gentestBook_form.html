@@ -8,9 +8,9 @@
         pkVAry.push(idVal);
 
         if ($.trim(pkVAry[0]) == "" || pkVAry[0] == undefined || pkVAry[0] == null) {
-            url = '${ctx!}/busNovelChapter/addAction';
+            url = '${ctx!}/gentestBook/addAction';
         } else {
-            url = '${ctx!}/busNovelChapter/updateAction';
+            url = '${ctx!}/gentestBook/updateAction';
         }
 
         $('#modelForm').form('submit', {
@@ -30,19 +30,33 @@
 <body style="padding: 10px 30px; ">
 <form id="modelForm" method="POST">
     <table class=" pure-table pure-table-horizontal">
-        <input id="id" name="id" type="hidden" value="${(busNovelChapter.id)!}">
+        <input id="id" name="id" type="hidden" value="${(gentestBook.id)!}">
         <tbody>
         <tr>
-            <td>title：</td>
+            <td>书名：</td>
             <td>
-                <input name="title" value="${(busNovelChapter.title)!}" type="text" class="easyui-textbox"
+                <input name="title" value="${(gentestBook.title)!}" type="text" class="easyui-textbox"
                        data-options="required:true">
             </td>
         </tr>
         <tr>
-            <td>content：</td>
+            <td>简介：</td>
             <td>
-                <input name="content" value="${(busNovelChapter.content)!}" type="text" class="easyui-textbox"
+                <input name="info" value="${(gentestBook.info)!}" type="text" class="easyui-textbox"
+                       data-options="required:true">
+            </td>
+        </tr>
+        <tr>
+            <td>作者：</td>
+            <td>
+                <input name="author" value="${(gentestBook.author)!}" type="text" class="easyui-textbox"
+                       data-options="required:true">
+            </td>
+        </tr>
+        <tr>
+            <td>create_time：</td>
+            <td>
+                <input name="createTime" value="${(gentestBook.createTime)!}" type="text" class="easyui-datetimebox"
                        data-options="required:true">
             </td>
         </tr>

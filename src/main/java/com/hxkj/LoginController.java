@@ -1,6 +1,5 @@
 package com.hxkj;
 
-
 import com.hxkj.common.constant.Constant;
 import com.hxkj.common.interceptor.AuthorityInterceptor;
 import com.hxkj.common.util.BaseController;

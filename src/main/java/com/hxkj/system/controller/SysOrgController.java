@@ -7,6 +7,7 @@ import com.hxkj.system.model.SysOrg;
 import com.hxkj.system.model.SysUser;
 import com.jfinal.aop.Before;
 import com.jfinal.kit.StrKit;
+import com.jfinal.plugin.activerecord.ActiveRecordException;
 import com.jfinal.plugin.activerecord.Db;
 import com.jfinal.plugin.activerecord.Page;
 import com.jfinal.plugin.activerecord.Record;
@@ -28,13 +29,7 @@ public class SysOrgController extends BaseController {
     @Before(SearchSql.class)
     public void query() {
         String where = getAttr(Constant.SEARCH_SQL);
-        String sqlSelect = " select * ";
-        String sqlExceptSelect = " from sys_org  ";
-        if (StrKit.notBlank(where)) {
-            sqlExceptSelect += " where " + where;
-        }
-        sqlExceptSelect += " order by id asc , sort asc ";
-        List<SysOrg> sysOrgs = SysOrg.dao.find(sqlSelect + sqlExceptSelect);
+        List<SysOrg> sysOrgs = SysOrg.dao.findWhere(where);
         renderJson(sysOrgs);
     }
 
@@ -54,7 +49,6 @@ public class SysOrgController extends BaseController {
             String childrenIds = record.getStr("childrenIds");  // 子、孙 id
             if (StrKit.notBlank(childrenIds)) {
                 sqlExceptSelect += " where  org_id  in  (" + childrenIds + ")";
-                ;
             }
 
             if (StrKit.notBlank(where)) {
@@ -110,26 +104,23 @@ public class SysOrgController extends BaseController {
      */
     @Before(Tx.class)
     public void deleteAction() {
-
         Integer id = getParaToInt("id");
-
-        Record record = Db.findFirst("select getChildLst(?,'sys_org') as childrenIds ", id);
-        String childrenIds = record.getStr("childrenIds");  // 子、孙 id
-
-
-        String deleteSql = "delete from sys_org where  id  in (" + childrenIds + ")";
-        Db.update(deleteSql);
-
-        String updateSql = "update sys_user set org_id = null where  org_id in (" + childrenIds + ")";
-        Db.update(updateSql);
-
-        renderText(Constant.DELETE_SUCCESS);
-
+        try {
+            Record record = Db.findFirst("select getChildLst(?,'sys_org') as childrenIds ", id);
+            String childrenIds = record.getStr("childrenIds");  // 子、孙 id
+            String deleteSql = "delete from sys_org where  id  in (" + childrenIds + ")";
+            Db.update(deleteSql);
+            String updateSql = "update sys_user set org_id = null where  org_id in (" + childrenIds + ")";
+            Db.update(updateSql);
+            renderText(Constant.DELETE_SUCCESS);
+        } catch (ActiveRecordException e) {
+            renderText(Constant.DELETE_FAIL);
+        }
     }
 
 
     public void allOrg() {
-        List<SysOrg> sysOrgs = SysOrg.dao.findAll();
+        List<SysOrg> sysOrgs = SysOrg.dao.findWhere(null);
         List<Map<String, Object>> maps = new ArrayList<Map<String, Object>>();
         for (SysOrg sysOrg : sysOrgs) {
             Map<String, Object> map = new HashMap<String, Object>();

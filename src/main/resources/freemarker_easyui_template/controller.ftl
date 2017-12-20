@@ -56,7 +56,6 @@ public class ${(table.tableNameCamelFirstUp)!}Controller extends BaseController{
          * 增加
          */
         public void addAction(){
-
             ${(table.tableNameCamelFirstUp)!} ${(table.tableNameCamel)!}=getBean(${(table.tableNameCamelFirstUp)!}.class,"");
             <#list table.tablePrimaryKeys as pk>
             ${(table.tableNameCamel)!}.set("${pk}",Identities.uuid2());

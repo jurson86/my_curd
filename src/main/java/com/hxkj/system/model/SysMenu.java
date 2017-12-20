@@ -2,7 +2,6 @@ package com.hxkj.system.model;
 
 import com.hxkj.system.model.base.BaseSysMenu;
 import com.jfinal.kit.StrKit;
-import jodd.util.StringUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,14 +25,29 @@ public class SysMenu extends BaseSysMenu<SysMenu> {
 
     /**
      * 根据  用户角色 从 角色菜单中间表  和  菜单表，查询 用户角色拥有的不重复的 菜单
+     *
      * @param roleIds
      * @return
      */
     public List<SysMenu> findByRoleIds(String roleIds) {
         List<SysMenu> result = new ArrayList<SysMenu>();
-        if(StrKit.notBlank(roleIds)) {
+        if (StrKit.notBlank(roleIds)) {
             result = find("select distinct b.* from sys_role_menu a join sys_menu b on a.menu_id=b.id where a.role_id in(" + roleIds + ")");
         }
         return result;
     }
+
+
+    public List<SysMenu> findWhere(String where) {
+        String sqlSelect = " select * ";
+        String sqlExceptSelect = " from sys_menu  ";
+        if (StrKit.notBlank(where)) {
+            sqlExceptSelect += " where " + where;
+        }
+        sqlExceptSelect += " order by   sort asc ";
+        List<SysMenu> sysMenus = SysMenu.dao.find(sqlSelect + sqlExceptSelect);
+        return sysMenus;
+    }
+
+
 }

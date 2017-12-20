@@ -9,7 +9,7 @@ import com.hxkj.system.model.SysUser;
 import com.hxkj.system.model.SysUserRole;
 import com.jfinal.aop.Before;
 import com.jfinal.kit.HashKit;
-import com.jfinal.kit.StrKit;
+import com.jfinal.plugin.activerecord.ActiveRecordException;
 import com.jfinal.plugin.activerecord.Db;
 import com.jfinal.plugin.activerecord.Page;
 import com.jfinal.plugin.activerecord.tx.Tx;
@@ -21,7 +21,6 @@ import java.util.Map;
 
 public class SysUserController extends BaseController {
 
-
     public void index() {
         render("system/sysUser.html");
     }
@@ -32,17 +31,7 @@ public class SysUserController extends BaseController {
         int pageNumber = getAttr("pageNumber");
         int pageSize = getAttr("pageSize");
         String where = getAttr(Constant.SEARCH_SQL);
-
-        String sqlSelect = " select su.*, so.org_name as orgName ";
-        String sqlExceptSelect = " from sys_user su" +
-                " LEFT JOIN sys_org so on su.org_id = so.id ";
-        if (StrKit.notBlank(where)) {
-            sqlExceptSelect += " where " + where;
-        }
-
-        sqlExceptSelect += "order by su.create_time";
-        Page<SysUser> sysUsers = SysUser.dao.paginate(pageNumber, pageSize, sqlSelect, sqlExceptSelect);
-
+        Page<SysUser> sysUsers = SysUser.dao.page(pageNumber, pageSize, where);
         renderDatagrid(sysUsers);
     }
 
@@ -57,12 +46,9 @@ public class SysUserController extends BaseController {
 
     public void addAction() {
         SysUser sysUser = getBean(SysUser.class, "");
-
         sysUser.setId(Identities.uuid2());
-
         String password = HashKit.sha1(sysUser.getPassword());
         sysUser.setPassword(password);
-
         boolean saveFlag = sysUser.save();
         if (saveFlag) {
             renderText(Constant.ADD_SUCCESS);
@@ -74,27 +60,13 @@ public class SysUserController extends BaseController {
     public void updateAction() {
         SysUser sysUser = getBean(SysUser.class, "");
         String id = sysUser.getId();
-        //SysUser oldSysUser = sysUser.dao().findById(id);
-
-        //System.out.println("*************************");
-        //sysUser.getPassword();  // 此处报出 异常  dao 只允许调用查询方法
-        //System.out.println("*************************");
-
-
-        // 密码变更
-        /*if(!oldSysUser.getPassword().equals(password)){
-            password = HashKit.sha1(password);
-			sysUser.setPassword(password);
-		}*/
         String password = sysUser.getPassword();
         // 认为密码改变
         if (password.length() < 20) {
-            password = HashKit.sha1(password);
+            password = HashKit.sha1(password);   // 加密后为40位字符
             sysUser.setPassword(password);
         }
-
         boolean updateFlag = sysUser.update();
-
         if (updateFlag) {
             renderText(Constant.UPDATE_SUCCESS);
         } else {
@@ -105,16 +77,18 @@ public class SysUserController extends BaseController {
     @Before(Tx.class)
     public void deleteAction() {
         String id = getPara("id");
-
-        // 用户表
-        String deleteSql = "delete from sys_user where id = ?";
-        Db.update(deleteSql, id);
-
-        //用户角色表
-        deleteSql = "delete from sys_user_role where user_id = ?";
-        Db.update(deleteSql, id);
-
-        renderText(Constant.DELETE_SUCCESS);
+        try {
+            // 用户表
+            String deleteSql = "delete from sys_user where id = ?";
+            Db.update(deleteSql, id);
+            //用户角色表
+            deleteSql = "delete from sys_user_role where user_id = ?";
+            Db.update(deleteSql, id);
+            renderText(Constant.DELETE_SUCCESS);
+        } catch (ActiveRecordException e) {
+            e.printStackTrace();
+            renderText(Constant.DELETE_FAIL);
+        }
     }
 
 
@@ -125,18 +99,22 @@ public class SysUserController extends BaseController {
     public void giveRole() {
         String userId = getPara("userId");
         String roleIdstr = getPara("roleIds");
-        String deleteSql = "delete from  sys_user_role where user_id = ?";
-        Db.update(deleteSql, userId);
-
-        String[] roleIds = roleIdstr.split(";");
-        for (int i = 0; i < roleIds.length; i++) {
-            SysUserRole sysUserRole = new SysUserRole();
-            sysUserRole.setUserId(userId);
-            sysUserRole.setRoleId(Integer.parseInt(roleIds[i]));
-            sysUserRole.save();
+        try {
+            String deleteSql = "delete from  sys_user_role where user_id = ?";
+            Db.update(deleteSql, userId);
+            String[] roleIds = roleIdstr.split(";");
+            for (int i = 0; i < roleIds.length; i++) {
+                SysUserRole sysUserRole = new SysUserRole();
+                sysUserRole.setUserId(userId);
+                sysUserRole.setRoleId(Integer.parseInt(roleIds[i]));
+                sysUserRole.save();
+            }
+            renderText("赋予角色成功");
+        } catch (ActiveRecordException e) {
+            e.printStackTrace();
+            renderText("赋予角色失败");
         }
 
-        renderText("赋予角色成功");
     }
 
 
@@ -145,10 +123,7 @@ public class SysUserController extends BaseController {
      */
     public void roleListChecked() {
         String id = getPara(0);
-
-        List<SysUserRole> sysUserRoles =
-                SysUserRole.dao.find("select * from sys_user_role where user_id = ? ", id);
-
+        List<SysUserRole> sysUserRoles = SysUserRole.dao.findUserRolesByUserId(id);
         List<SysRole> sysRoles = SysRole.dao.findAll();
         List<Map<String, Object>> maps = new ArrayList<Map<String, Object>>();
         for (SysRole sysRole : sysRoles) {
@@ -165,8 +140,8 @@ public class SysUserController extends BaseController {
             }
             maps.add(map);
         }
-
         renderJson(maps);
     }
+
 
 }

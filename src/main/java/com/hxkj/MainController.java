@@ -19,7 +19,7 @@ import java.util.Map;
 public class MainController extends BaseController {
 
     /**
-     * dashboard
+     * 操作面板页面
      */
     @Clear(AuthorityInterceptor.class)
     @Before(SessionInViewInterceptor.class)
@@ -29,7 +29,7 @@ public class MainController extends BaseController {
 
 
     /**
-     * 权限菜单树
+     * 用户权限数据
      */
     @Clear(AuthorityInterceptor.class)
     public void permissionTree() {

@@ -1,6 +1,7 @@
 package com.hxkj.system.model;
 
 import com.hxkj.system.model.base.BaseSysOrg;
+import com.jfinal.kit.StrKit;
 
 import java.util.List;
 
@@ -12,12 +13,14 @@ import java.util.List;
 public class SysOrg extends BaseSysOrg<SysOrg> {
     public static final SysOrg dao = new SysOrg().dao();
 
-    public List<SysOrg> findAll() {
-        String sql = "select * from sys_org order by  sort asc";
-        return find(sql);
-    }
-
-    public List<SysOrg> getChildren() {
-        return get("children");
+    public List<SysOrg> findWhere(String where) {
+        String sqlSelect = " select * ";
+        String sqlExceptSelect = " from sys_org  ";
+        if (StrKit.notBlank(where)) {
+            sqlExceptSelect += " where " + where;
+        }
+        sqlExceptSelect += " order by   sort asc ";
+        List<SysOrg> sysOrgs = SysOrg.dao.find(sqlSelect + sqlExceptSelect);
+        return sysOrgs;
     }
 }

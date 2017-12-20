@@ -1,6 +1,8 @@
 package com.hxkj.system.model;
 
 import com.hxkj.system.model.base.BaseSysRole;
+import com.jfinal.kit.StrKit;
+import com.jfinal.plugin.activerecord.Page;
 
 import java.util.List;
 
@@ -15,5 +17,16 @@ public class SysRole extends BaseSysRole<SysRole> {
     public List<SysRole> findAll() {
         String sql = "select * from sys_role order by sort";
         return find(sql);
+    }
+
+    public Page<SysRole> page(int pageNumber, int pageSize, String where) {
+        String sqlSelect = " select * ";
+        String sqlExceptSelect = " from sys_role   ";
+        if (StrKit.notBlank(where)) {
+            sqlExceptSelect += " where " + where;
+        }
+        sqlExceptSelect += "order by   sort  ";
+        Page<SysRole> sysMenus = SysRole.dao.paginate(pageNumber, pageSize, sqlSelect, sqlExceptSelect);
+        return sysMenus;
     }
 }

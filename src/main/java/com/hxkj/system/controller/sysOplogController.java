@@ -1,6 +1,5 @@
 package com.hxkj.system.controller;
 
-
 import com.hxkj.common.constant.Constant;
 import com.hxkj.common.util.BaseController;
 import com.hxkj.common.util.SearchSql;
@@ -9,14 +8,18 @@ import com.hxkj.common.util.csv.CsvRender;
 import com.hxkj.common.util.excel.PoiRender;
 import com.hxkj.system.model.SysOplog;
 import com.jfinal.aop.Before;
-import com.jfinal.kit.StrKit;
+import com.jfinal.plugin.activerecord.ActiveRecordException;
 import com.jfinal.plugin.activerecord.Db;
 import com.jfinal.plugin.activerecord.Page;
 import com.jfinal.plugin.activerecord.tx.Tx;
 import org.apache.log4j.Logger;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.List;
 
+/**
+ * 操作日志
+ */
 public class sysOplogController extends BaseController {
 
     private final static Logger LOGGER = Logger.getLogger(sysOplogController.class);
@@ -30,17 +33,7 @@ public class sysOplogController extends BaseController {
         int pageNumber = getAttr("pageNumber");
         int pageSize = getAttr("pageSize");
         String where = getAttr(Constant.SEARCH_SQL);
-
-        String sqlSelect = " select so.*, su.name as user_name ";
-        String sqlExceptSelect = " from sys_oplog  so LEFT JOIN sys_user  su on so.user_id = su.id  ";
-        if (StrKit.notBlank(where)) {
-            sqlExceptSelect += " where " + where;
-        }
-
-        sqlExceptSelect += " order by so.create_time desc ";
-
-        Page<SysOplog> sysOplogPage = SysOplog.dao.paginate(pageNumber, pageSize, sqlSelect, sqlExceptSelect);
-
+        Page<SysOplog> sysOplogPage = SysOplog.dao.page(pageNumber, pageSize, where);
         renderDatagrid(sysOplogPage);
     }
 
@@ -51,26 +44,7 @@ public class sysOplogController extends BaseController {
     @Before(SearchSql.class)
     public void exportToExcel() {
         String where = getAttr(Constant.SEARCH_SQL);
-
-        String sqlSelect = " select so.*, su.name as user_name ";
-        String sqlExceptSelect = " from sys_oplog  so LEFT JOIN sys_user  su on so.user_id = su.id  ";
-        if (StrKit.notBlank(where)) {
-            sqlExceptSelect += " where " + where;
-        }
-
-        sqlExceptSelect += "order by so.create_time desc";
-        List<SysOplog> sysOplogs = SysOplog.dao.find(sqlSelect + sqlExceptSelect);
-
-        List<Map<String, Object>> maps = new ArrayList<Map<String, Object>>();
-        for (SysOplog sysOplog : sysOplogs) {
-            Map<String, Object> map = new HashMap<String, Object>();
-            map.put("user_name", sysOplog.getUsername());
-            map.put("op_content", sysOplog.getOpContent());
-            map.put("ip", sysOplog.getIp());
-            map.put("create_time", sysOplog.getCreateTime());
-            maps.add(map);
-        }
-
+        List<SysOplog> sysOplogs = SysOplog.dao.findWhere(where);
         String[] columns = new String[]{"user_name", "op_content", "ip", "create_time"};
         String[] headers = new String[]{"操作人", "日志内容", "IP地址", "操作时间"};
 
@@ -82,15 +56,7 @@ public class sysOplogController extends BaseController {
     @Before(SearchSql.class)
     public void exportToCvs() {
         String where = getAttr(Constant.SEARCH_SQL);
-
-        String sqlSelect = " select so.*, su.name as user_name ";
-        String sqlExceptSelect = " from sys_oplog  so LEFT JOIN sys_user  su on so.user_id = su.id  ";
-        if (StrKit.notBlank(where)) {
-            sqlExceptSelect += " where " + where;
-        }
-
-        sqlExceptSelect += "order by so.create_time desc";
-        List<SysOplog> sysOplogs = SysOplog.dao.find(sqlSelect + sqlExceptSelect);
+        List<SysOplog> sysOplogs = SysOplog.dao.findWhere(where);
         List<String> headers = Arrays.asList("操作人员", "日志内容", "IP地址", "操作时间");
         List<String> columns = Arrays.asList("user_name", "op_content", "ip", "create_time");
         CsvRender csvRender = new CsvRender(headers, sysOplogs);
@@ -100,16 +66,15 @@ public class sysOplogController extends BaseController {
 
     }
 
-
     @Before(Tx.class)
     public void deleteAction() {
         String ids = getPara("ids");
         ids = "'" + ids.replace(",", "','") + "'";
-        String deleteSql = "delete from sys_oplog where id  in ( " + ids + " ) ";
-        Integer updateNum = Db.update(deleteSql);
-        if (updateNum != 0) {
+        try {
+            String deleteSql = "delete from sys_oplog where id  in ( " + ids + " ) ";
+            Db.update(deleteSql);
             renderText(Constant.DELETE_SUCCESS);
-        } else {
+        } catch (ActiveRecordException e) {
             renderText(Constant.DELETE_FAIL);
         }
     }

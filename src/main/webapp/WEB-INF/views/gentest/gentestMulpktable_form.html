@@ -8,11 +8,13 @@
         pkVAry.push(idVal);
         var id2Val = $("#id2").val();
         pkVAry.push(id2Val);
+        var id3Val = $("#id3").val();
+        pkVAry.push(id3Val);
 
         if ($.trim(pkVAry[0]) == "" || pkVAry[0] == undefined || pkVAry[0] == null) {
-            url = '${ctx!}/busTwoPk/addAction';
+            url = '${ctx!}/gentestMulpktable/addAction';
         } else {
-            url = '${ctx!}/busTwoPk/updateAction';
+            url = '${ctx!}/gentestMulpktable/updateAction';
         }
 
         $('#modelForm').form('submit', {
@@ -32,13 +34,14 @@
 <body style="padding: 10px 30px; ">
 <form id="modelForm" method="POST">
     <table class=" pure-table pure-table-horizontal">
-        <input id="id" name="id" type="hidden" value="${(busTwoPk.id)!}">
-        <input id="id2" name="id2" type="hidden" value="${(busTwoPk.id2)!}">
+        <input id="id" name="id" type="hidden" value="${(gentestMulpktable.id)!}">
+        <input id="id2" name="id2" type="hidden" value="${(gentestMulpktable.id2)!}">
+        <input id="id3" name="id3" type="hidden" value="${(gentestMulpktable.id3)!}">
         <tbody>
         <tr>
-            <td>v：</td>
+            <td>值：</td>
             <td>
-                <input name="v" value="${(busTwoPk.v)!}" type="text" class="easyui-textbox"
+                <input name="v" value="${(gentestMulpktable.v)!}" type="text" class="easyui-textbox"
                        data-options="required:true">
             </td>
         </tr>

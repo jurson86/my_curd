@@ -1,23 +1,23 @@
-package com.hxkj.bus.controller;
+package com.hxkj.gentest.controller;
 
-import com.hxkj.bus.model.BusTwoPk;
 import com.hxkj.common.constant.Constant;
 import com.hxkj.common.util.BaseController;
 import com.hxkj.common.util.Identities;
 import com.hxkj.common.util.SearchSql;
+import com.hxkj.gentest.model.GentestBook;
 import com.jfinal.aop.Before;
 import com.jfinal.plugin.activerecord.Page;
 
 /**
- * BusTwoPk 控制器
+ * GentestBook 控制器
  */
-public class BusTwoPkController extends BaseController {
+public class GentestBookController extends BaseController {
 
     /**
      * 列表页
      */
     public void index() {
-        render("bus/busTwoPk.html");
+        render("gentest/gentestBook.html");
     }
 
 
@@ -29,9 +29,9 @@ public class BusTwoPkController extends BaseController {
         int pageNumber = getAttr("pageNumber");
         int pageSize = getAttr("pageSize");
         String where = getAttr(Constant.SEARCH_SQL);
-        Page<BusTwoPk> busTwoPkPage = BusTwoPk.dao.page(pageNumber, pageSize, where);
+        Page<GentestBook> gentestBookPage = GentestBook.dao.page(pageNumber, pageSize, where);
 
-        renderDatagrid(busTwoPkPage);
+        renderDatagrid(gentestBookPage);
     }
 
 
@@ -40,13 +40,12 @@ public class BusTwoPkController extends BaseController {
      */
     public void newModel() {
         String id = getPara("id");
-        String id2 = getPara("id2");
-        if (id != null && id2 != null) {
-            BusTwoPk busTwoPk = BusTwoPk.dao.findById(id, id2);
-            setAttr("busTwoPk", busTwoPk);
+        if (id != null) {
+            GentestBook gentestBook = GentestBook.dao.findById(id);
+            setAttr("gentestBook", gentestBook);
         }
 
-        render("bus/busTwoPk_form.html");
+        render("gentest/gentestBook_form.html");
     }
 
 
@@ -54,11 +53,9 @@ public class BusTwoPkController extends BaseController {
      * 增加
      */
     public void addAction() {
-
-        BusTwoPk busTwoPk = getBean(BusTwoPk.class, "");
-        busTwoPk.set("id", Identities.uuid2());
-        busTwoPk.set("id2", Identities.uuid2());
-        boolean saveFlag = busTwoPk.save();
+        GentestBook gentestBook = getBean(GentestBook.class, "");
+        gentestBook.set("id", Identities.uuid2());
+        boolean saveFlag = gentestBook.save();
         if (saveFlag) {
             renderText(Constant.ADD_SUCCESS);
         } else {
@@ -72,8 +69,7 @@ public class BusTwoPkController extends BaseController {
      */
     public void deleteAction() {
         String id = getPara("id");
-        String id2 = getPara("id2");
-        Boolean delflag = BusTwoPk.dao.deleteById(id, id2);
+        Boolean delflag = GentestBook.dao.deleteById(id);
         if (delflag) {
             renderText(Constant.DELETE_SUCCESS);
         } else {
@@ -85,8 +81,8 @@ public class BusTwoPkController extends BaseController {
      * 修改
      */
     public void updateAction() {
-        BusTwoPk busTwoPk = getBean(BusTwoPk.class, "");
-        boolean updateFlag = busTwoPk.update();
+        GentestBook gentestBook = getBean(GentestBook.class, "");
+        boolean updateFlag = gentestBook.update();
         if (updateFlag) {
             renderText(Constant.UPDATE_SUCCESS);
         } else {

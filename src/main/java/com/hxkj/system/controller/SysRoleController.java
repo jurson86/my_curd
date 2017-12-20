@@ -8,6 +8,7 @@ import com.hxkj.system.model.SysRole;
 import com.hxkj.system.model.SysRoleMenu;
 import com.jfinal.aop.Before;
 import com.jfinal.kit.StrKit;
+import com.jfinal.plugin.activerecord.ActiveRecordException;
 import com.jfinal.plugin.activerecord.Db;
 import com.jfinal.plugin.activerecord.Page;
 import com.jfinal.plugin.activerecord.tx.Tx;
@@ -17,28 +18,15 @@ import java.util.*;
 public class SysRoleController extends BaseController {
 
     public void index() {
-
         render("system/sysRole.html");
-
     }
-
 
     @Before(SearchSql.class)
     public void query() {
-
         int pageNumber = getAttr("pageNumber");
         int pageSize = getAttr("pageSize");
         String where = getAttr(Constant.SEARCH_SQL);
-
-        String sqlSelect = " select * ";
-        String sqlExceptSelect = " from sys_role   ";
-        if (StrKit.notBlank(where)) {
-            sqlExceptSelect += " where " + where;
-        }
-
-        sqlExceptSelect += "order by   sort  ";
-        Page<SysRole> sysMenus = SysRole.dao.paginate(pageNumber, pageSize, sqlSelect, sqlExceptSelect);
-
+        Page<SysRole> sysMenus = SysRole.dao.page(pageNumber, pageSize, where);
         renderDatagrid(sysMenus);
     }
 
@@ -83,23 +71,22 @@ public class SysRoleController extends BaseController {
 
     @Before(Tx.class)
     public void deleteAction() {
-
         Integer id = getParaToInt("id");
-
-        // 角色表
-        String deleteSql = "delete from sys_role where id = ?";
-        Db.update(deleteSql, id);
-
-        // 角色 菜单中间表
-        deleteSql = "delete from sys_role_menu where role_id = ?";
-        Db.update(deleteSql, id);
-
-        //用户角色表
-        deleteSql = "delete from sys_user_role where role_id = ?";
-        Db.update(deleteSql, id);
-
-        renderText(Constant.DELETE_SUCCESS);
-
+        try {
+            // 角色表
+            String deleteSql = "delete from sys_role where id = ?";
+            Db.update(deleteSql, id);
+            // 角色 菜单中间表
+            deleteSql = "delete from sys_role_menu where role_id = ?";
+            Db.update(deleteSql, id);
+            //用户角色表
+            deleteSql = "delete from sys_user_role where role_id = ?";
+            Db.update(deleteSql, id);
+            renderText(Constant.DELETE_SUCCESS);
+        } catch (ActiveRecordException e) {
+            e.printStackTrace();
+            renderText(Constant.DELETE_FAIL);
+        }
     }
 
 
@@ -110,20 +97,23 @@ public class SysRoleController extends BaseController {
     public void givePermission() {
         Integer roleId = getParaToInt("roleId");
         String permissIds = getPara("permissIds");
-        String deleteSql = "delete from  sys_role_menu where role_id = ?";
-        Db.update(deleteSql, roleId);
-
-        if (StrKit.notBlank(permissIds)) {
-            String[] menuIds = permissIds.split(";");
-
-            for (int i = 0; i < menuIds.length; i++) {
-                SysRoleMenu sysRoleMenu = new SysRoleMenu();
-                sysRoleMenu.setRoleId(roleId);
-                sysRoleMenu.setMenuId(Integer.parseInt(menuIds[i]));
-                sysRoleMenu.save();
+        try {
+            String deleteSql = "delete from  sys_role_menu where role_id = ?";
+            Db.update(deleteSql, roleId);
+            if (StrKit.notBlank(permissIds)) {
+                String[] menuIds = permissIds.split(";");
+                for (int i = 0; i < menuIds.length; i++) {
+                    SysRoleMenu sysRoleMenu = new SysRoleMenu();
+                    sysRoleMenu.setRoleId(roleId);
+                    sysRoleMenu.setMenuId(Integer.parseInt(menuIds[i]));
+                    sysRoleMenu.save();
+                }
             }
+            renderText("赋权成功");
+        } catch (ActiveRecordException e) {
+            e.printStackTrace();
+            renderText("赋权失败");
         }
-        renderText("赋权成功");
     }
 
 
@@ -132,11 +122,8 @@ public class SysRoleController extends BaseController {
      */
     public void menuTreePermissionChecked() {
         Integer id = getParaToInt(0);
-
         // 联合主键保证不重复
-        List<SysRoleMenu> sysRoleMenus =
-                SysRoleMenu.dao.find("select * from sys_role_menu where role_id = ? ", id);
-
+        List<SysRoleMenu> sysRoleMenus = SysRoleMenu.dao.findByRoleId(id);
         List<SysMenu> sysMenus = SysMenu.dao.findAll();
 
         // 非叶子 id 集合
@@ -144,7 +131,6 @@ public class SysRoleController extends BaseController {
         for (SysMenu sysMenu : sysMenus) {
             pids.add(sysMenu.getPid());
         }
-
 
         List<Map<String, Object>> maps = new ArrayList<Map<String, Object>>();
         for (SysMenu sysMenu : sysMenus) {
@@ -163,7 +149,6 @@ public class SysRoleController extends BaseController {
             }
             maps.add(map);
         }
-
         renderJson(maps);
     }
 
