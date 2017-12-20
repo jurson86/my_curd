@@ -69,15 +69,15 @@
 
         var permissIds = [];
         for (var i = 0; i < checkedNodes.length; i++) {
-            permissIds.push(checkedNodes[i].id);
-            if (checkedNodes[i].pid != undefined && checkedNodes[i].pid != null) {
-                permissIds.push(checkedNodes[i].pid);
+            if($("#allMenuTree").tree("isLeaf",checkedNodes[i].target)){
+                permissIds.push(checkedNodes[i].id);
             }
         }
 
+       // return;
         // 去重
         //alert(JSON.stringify(permissIds));
-        permissIds = permissIds.unique();
+        //permissIds = permissIds.unique();
         // alert(JSON.stringify(permissIds));
         $.post('${ctx!}/sysRole/givePermission', {
             roleId: roleRow.id,

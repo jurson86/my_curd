@@ -36,7 +36,7 @@ public class SysRoleController extends BaseController {
             sqlExceptSelect += " where " + where;
         }
 
-        where += "order by id asc , sort asc";
+        sqlExceptSelect += "order by   sort  ";
         Page<SysRole> sysMenus = SysRole.dao.paginate(pageNumber, pageSize, sqlSelect, sqlExceptSelect);
 
         renderDatagrid(sysMenus);

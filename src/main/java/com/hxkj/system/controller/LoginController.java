@@ -7,15 +7,17 @@ import com.hxkj.common.util.BaseController;
 import com.hxkj.system.model.SysMenu;
 import com.hxkj.system.model.SysUser;
 import com.hxkj.system.model.SysUserRole;
+import com.hxkj.system.service.LoginService;
 import com.jfinal.aop.Before;
 import com.jfinal.aop.Clear;
+import com.jfinal.aop.Duang;
 import com.jfinal.core.ActionKey;
 import com.jfinal.kit.HashKit;
 import com.jfinal.kit.StrKit;
 import com.jfinal.plugin.activerecord.tx.Tx;
 import org.apache.log4j.Logger;
 
-import java.util.List;
+import java.util.*;
 
 public class LoginController extends BaseController {
 
@@ -94,15 +96,9 @@ public class LoginController extends BaseController {
         if (sysUserRole != null) {
             // 角色名称
             setSessionAttr(Constant.SYSTEM_USER_ROLES, sysUserRole.get("roleNames"));
-            // 查询权限
-            String ownMenuSql = "SELECT"
-                    + " DISTINCT sm.*"
-                    + " FROM sys_role_menu srm"
-                    + " LEFT JOIN sys_menu sm ON srm.menu_id = sm.id"
-                    + " WHERE role_id IN (?)"
-                    + " order by sm.sort";
-            List<SysMenu> ownSysMenus = SysMenu.dao.find(ownMenuSql, sysUserRole.getStr("roleIds"));
-            setSessionAttr(Constant.OWN_MENU, ownSysMenus);
+            LoginService loginService = Duang.duang(LoginService.class);
+            List<SysMenu> userMenus = loginService.getUserMenu(sysUserRole.get("roleIds"));
+            setSessionAttr(Constant.OWN_MENU, userMenus);
         } else {
             setSessionAttr(Constant.SYSTEM_USER_ROLES, null);
             setSessionAttr(Constant.OWN_MENU, null);

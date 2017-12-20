@@ -119,8 +119,8 @@ public class AppConfig extends JFinalConfig {
         }
 
         //定时任务
-        TaskService taskService = Duang.duang(TaskService.class);
-        taskService.startAll();
+        //TaskService taskService = Duang.duang(TaskService.class);
+        //taskService.startAll();
     }
 
     @Override
