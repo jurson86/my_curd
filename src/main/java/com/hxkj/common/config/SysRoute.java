@@ -1,11 +1,16 @@
 package com.hxkj.common.config;
 
+import com.hxkj.LoginController;
+import com.hxkj.MainController;
 import com.hxkj.common.constant.Constant;
 import com.hxkj.system.controller.*;
 import com.jfinal.config.Routes;
 
 
-public class SystemRoute extends Routes {
+/**
+ * sys 模块 路由
+ */
+public class SysRoute extends Routes {
 
     @Override
     public void config() {
@@ -32,9 +37,6 @@ public class SystemRoute extends Routes {
 
         // 系统日志
         add("/sysOplog", sysOplogController.class, Constant.VIEW_PATH);
-
-        // 定时任务
-        add("/sysTask", SysTaskController.class, Constant.VIEW_PATH);
 
         // 文件管理
         add("/sysFile", SysFileController.class, Constant.VIEW_PATH);

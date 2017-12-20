@@ -5,8 +5,6 @@ import com.alibaba.druid.wall.WallFilter;
 import com.hxkj.common.constant.Constant;
 import com.hxkj.common.interceptor.AuthorityInterceptor;
 import com.hxkj.system.model.SysUser;
-import com.hxkj.system.service.TaskService;
-import com.jfinal.aop.Duang;
 import com.jfinal.config.*;
 import com.jfinal.core.JFinal;
 import com.jfinal.ext.interceptor.SessionInViewInterceptor;
@@ -59,7 +57,7 @@ public class AppConfig extends JFinalConfig {
 
     @Override
     public void configRoute(Routes me) {
-        me.add(new SystemRoute()); // system 模块 路由
+        me.add(new SysRoute()); // system 模块 路由
         me.add(new BusRoute());  // bus 模块 路由
     }
 

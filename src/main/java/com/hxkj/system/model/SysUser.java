@@ -10,5 +10,14 @@ import com.hxkj.system.model.base.BaseSysUser;
 public class SysUser extends BaseSysUser<SysUser> {
     public static final SysUser dao = new SysUser().dao();
 
-
+    public SysUser findByUsername(String username){
+        String sql = "SELECT"
+                + " su.*,"
+                + " so.org_name AS orgName, "
+                + " so.id as orgId "
+                + " FROM sys_user su"
+                + " LEFT JOIN sys_org so ON su.org_id = so.id"
+                + " where username = ?   ";
+        return findFirst(sql,username);
+    }
 }

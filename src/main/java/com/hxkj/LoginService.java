@@ -1,4 +1,4 @@
-package com.hxkj.system.service;
+package com.hxkj;
 
 import com.hxkj.system.model.SysMenu;
 

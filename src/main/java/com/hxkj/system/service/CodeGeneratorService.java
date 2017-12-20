@@ -27,7 +27,7 @@ public class CodeGeneratorService {
     private String basePackageName;             // 包 基路径
 
     public CodeGeneratorService() {
-        Prop prop = PropKit.use("code_generator.properties");
+        Prop prop = PropKit.use("generator.properties");
         this.tplDir = prop.get("tplDir");
         this.basePackageName = prop.get("basePackageName");
         this.templates = prop.get("templates").split(";");

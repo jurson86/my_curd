@@ -1,4 +1,4 @@
-package com.hxkj.system.controller;
+package com.hxkj;
 
 import com.hxkj.common.constant.Constant;
 import com.hxkj.common.interceptor.AuthorityInterceptor;
@@ -24,7 +24,7 @@ public class MainController extends BaseController {
     @Clear(AuthorityInterceptor.class)
     @Before(SessionInViewInterceptor.class)
     public void index() {
-        render("system/main.html");
+        render("main.html");
     }
 
 

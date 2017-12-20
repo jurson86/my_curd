@@ -38,12 +38,12 @@ public class LoginFilter implements Filter {
         String contextPath = request.getContextPath();
         req.setAttribute("ctx", contextPath);
 
-        // 不拦截 登陆、静态资源
+        // 不拦截 登录、静态资源
         if (!curUrl.endsWith("login/index")
                 && !curUrl.endsWith("login/action")
                 && !curUrl.startsWith(contextPath + "/res")) {
 
-            // 未登陆，跳转到登陆界面
+            // 登录，跳转到登录界面
             if (session.getAttribute(Constant.SYSTEM_USER) == null) {
                 response.sendRedirect(request.getContextPath() + "/login/index");
                 return;
