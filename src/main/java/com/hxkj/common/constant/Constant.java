@@ -8,15 +8,8 @@ public class Constant {
     // 当前登录用户的角色
     public final static String SYSTEM_USER_ROLES = "system_user_roles";
 
-    // 当前登录用户的 部门
-    public final static String SYSTEM_USER_ORG = "system_user_org";
-
     //views 视图 相对路径
     public final static String VIEW_PATH = "/WEB-INF/views/";
-
-    // 操作面板左侧 树形菜单
-    public final static String TREE_MENU = "tree_menu";
-
 
     // 当前登录的用户的权限菜单
     public final static String OWN_MENU = "own_menu";

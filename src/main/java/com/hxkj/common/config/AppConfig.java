@@ -40,7 +40,7 @@ public class AppConfig extends JFinalConfig {
 
         me.setBaseUploadPath("upload/temp/");
         //设置上传最大限制尺寸
-        me.setMaxPostSize(1024 * 1024 * 100);
+        me.setMaxPostSize(1024 * 1024 * 1000);
         //设置默认下载文件路径 renderFile使用
         me.setBaseDownloadPath("download");
         //设置默认视图类型
