@@ -158,7 +158,7 @@
                                 // 只能打开 叶子node
                                 if ($("#tree").tree("isLeaf", node.target)) {
                                     //alert("open:" + node.url);
-                                    TabTools.control(node.url, "", node.text, node.iconCls);
+                                    TabTools.control("${ctx!}"+node.url, "", node.text, node.iconCls);
                                 }
                             }
                         });

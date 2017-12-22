@@ -7,6 +7,7 @@ import com.hxkj.common.interceptor.AuthorityInterceptor;
 import com.hxkj.system.model.SysUser;
 import com.jfinal.config.*;
 import com.jfinal.core.JFinal;
+import com.jfinal.ext.handler.ContextPathHandler;
 import com.jfinal.ext.interceptor.SessionInViewInterceptor;
 import com.jfinal.kit.PropKit;
 import com.jfinal.plugin.activerecord.ActiveRecordPlugin;
@@ -84,10 +85,12 @@ public class AppConfig extends JFinalConfig {
     public void configInterceptor(Interceptors me) {
         me.addGlobalActionInterceptor(new AuthorityInterceptor());
         me.addGlobalActionInterceptor(new SessionInViewInterceptor());
+
     }
 
     @Override
     public void configHandler(Handlers me) {
+        me.add(new ContextPathHandler("ctx"));
         // druid 监控（只允许admin查看）
         DruidStatViewHandler dvh = new DruidStatViewHandler("/druid", new IDruidStatViewAuth() {
             public boolean isPermitted(HttpServletRequest request) {
@@ -104,12 +107,7 @@ public class AppConfig extends JFinalConfig {
 
     @Override
     public void afterJFinalStart() {
-        // freemarker 中添加上下文路径
-        try {
-            FreeMarkerRender.getConfiguration().setSharedVariable("ctx", JFinal.me().getContextPath());
-        } catch (TemplateModelException e) {
-            e.printStackTrace();
-        }
+
     }
 
     @Override
