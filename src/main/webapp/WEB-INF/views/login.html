@@ -92,6 +92,7 @@
     </form>
 </div>
 <script>
+    // 不被 iframe 嵌套
     if(top.location!=self.location){
         top.location = "${ctx!}/login";
     }

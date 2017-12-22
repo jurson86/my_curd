@@ -1,6 +1,12 @@
 <#include "/WEB-INF/views/common/common.html"/>
 <@layout>
 <link rel="stylesheet" href="${ctx!}/res/pure/buttons-min.css">
+<script>
+    // 不被 iframe 嵌套
+    if(top.location!=self.location){
+        top.location = "${ctx!}/login";
+    }
+</script>
 <style>
 
     .pure-button {
@@ -186,4 +192,5 @@
         MainPage.init();
     })();
 </script>
+
 </@layout>
