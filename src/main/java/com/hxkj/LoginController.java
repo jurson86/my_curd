@@ -101,8 +101,10 @@ public class LoginController extends BaseController {
 
         //登录用户信息
         setSessionAttr(Constant.SYSTEM_USER, sysUser);
+
         //为了 druid session 监控用
         setSessionAttr(Constant.SYSTEM_USER_NAME, sysUser.getName());
+
 
         // 用户角色
         SysUserRole sysUserRole = SysUserRole.dao.findRolesByUserId(sysUser.getId());

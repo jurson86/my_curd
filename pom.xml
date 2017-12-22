@@ -194,6 +194,7 @@
             <version>${jodd.bean.version}</version>
         </dependency>
 
+
     </dependencies>
     <build>
         <finalName>my_curd</finalName>
