@@ -26,6 +26,28 @@ public class LoginController extends BaseController {
      */
     @Clear(AuthorityInterceptor.class)
     public void index() {
+        String username =getCookie("mycurd_username");
+        String password = getCookie("mycurd_password");
+        System.out.println("username from cookie: "+username);
+        System.out.println("password from cookie: "+password);
+        if(username!=null && password!=null){
+            SysUser sysUser = SysUser.dao.findByUsernameAndPassword(username,password);
+            // 用户名密码正确且未被禁用
+            if(sysUser!=null && !sysUser.getDisabled().equals("1")){
+                setSessionAttr(Constant.SYSTEM_USER, sysUser);
+                setSessionAttr(Constant.SYSTEM_USER_NAME, sysUser.getName());
+                SysUserRole sysUserRole = SysUserRole.dao.findRolesByUserId(sysUser.getId());
+                if (sysUserRole != null) {
+                    setSessionAttr(Constant.SYSTEM_USER_ROLES, sysUserRole.get("roleNames"));
+                    LoginService loginService = Duang.duang(LoginService.class);
+                    List<SysMenu> userMenus = loginService.getUserMenu(sysUserRole.get("roleIds"));
+                    setSessionAttr(Constant.OWN_MENU, userMenus);
+                }
+                addOpLog("通过 cookie 登录");
+                redirect("/main");
+                return;
+            }
+        }
         render("login.html");
     }
 
@@ -58,6 +80,7 @@ public class LoginController extends BaseController {
         }
         password = HashKit.sha1(password);
         if (!sysUser.getPassword().equals(password)) {
+            setAttr("username",username);
             setAttr("errMsg", " 密码错误。");
             render("login.html");
             return;
@@ -66,7 +89,16 @@ public class LoginController extends BaseController {
         if (sysUser.getDisabled().equals("1")) {
             setAttr("errMsg", username + " 用户被禁用，请联系管理员。");
             render("login.html");
+            return;
         }
+
+        String remember = getPara("remember");
+        // 记住密码 && cookie 不存在
+        if("on".equals(remember) && getCookie("mycurd_username")==null){
+            setCookie("mycurd_username",username,1000*60*60*24*1); // 1天
+            setCookie("mycurd_password",password,1000*60*60*24*1);
+        }
+
         //登录用户信息
         setSessionAttr(Constant.SYSTEM_USER, sysUser);
         //为了 druid session 监控用
@@ -98,6 +130,10 @@ public class LoginController extends BaseController {
         removeSessionAttr(Constant.SYSTEM_USER);
         removeSessionAttr(Constant.SYSTEM_USER_ROLES);
         removeSessionAttr(Constant.OWN_MENU);
+
+        // 清理 cookie （记住密码信息）
+        setCookie("mycurd_username",null,0);
+        setCookie("mycurd_password",null,0);
         redirect("/login");
     }
 

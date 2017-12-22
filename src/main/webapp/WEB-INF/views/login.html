@@ -1,188 +1,97 @@
 <!DOCTYPE html>
-<html lang="zh_CN">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>login</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:100,300,400,700">
-    <link rel="stylesheet" href="${ctx!}/res/font-awesome/css/font-awesome.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>用户登录</title>
+    <link rel="shortcut icon" href="${ctx!}/res/image/favicon.ico"/>
+    <link rel="stylesheet" href="${ctx!}/res/pure/pure-min.css">
+    <!--[if lte IE 8]>
+    <link rel="stylesheet" href="${ctx!}/res/pure/grids-responsive-old-ie-min.css">
+    <![endif]-->
+    <!--[if gt IE 8]><!-->
+    <link rel="stylesheet" href="${ctx!}/res/pure/grids-responsive-min.css">
+    <!--<![endif]-->
+    <!--[if lt IE 9]>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.js"></script>
+    <![endif]-->
     <style>
-        body,
-        html {
-            height: 100%;
+        *{
+            font-family: "Arial","Microsoft YaHei","黑体","宋体",sans-serif;
         }
-
         body {
-            font-family: "Open Sans";
-            font-weight: 100;
-            display: -webkit-box;
-            display: -ms-flexbox;
-            display: flex;
-            overflow: hidden;
+            background: #eee !important;
+        }
+        .wrapper {
+            margin-top: 80px;
+            margin-bottom: 80px;
         }
 
-        input ::-webkit-input-placeholder {
-            color: rgba(255, 255, 255, 0.7);
-        }
-
-        input ::-moz-placeholder {
-            color: rgba(255, 255, 255, 0.7);
-        }
-
-        input :-ms-input-placeholder {
-            color: rgba(255, 255, 255, 0.7);
-        }
-
-        input:focus {
-            outline: 0 transparent solid;
-        }
-
-        input:focus ::-webkit-input-placeholder {
-            color: rgba(0, 0, 0, 0.7);
-        }
-
-        input:focus ::-moz-placeholder {
-            color: rgba(0, 0, 0, 0.7);
-        }
-
-        input:focus :-ms-input-placeholder {
-            color: rgba(0, 0, 0, 0.7);
-        }
-
-        .login-form {
-            min-height: 10rem;
-            margin: auto;
-            max-width: 50%;
-            padding: 0.5rem;
-        }
-
-        .login-text {
-            color: white;
-            font-size: 1.5rem;
+        .form-signin {
+            max-width: 300px;
+            padding: 15px 35px 45px;
             margin: 0 auto;
-            max-width: 50%;
-            padding: 0.5rem;
-            text-align: center;
+            background-color: #fff;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+        .form-signin .form-signin-heading,
+        .form-signin .checkbox {
+            margin-bottom: 30px;
+        }
+        .form-signin .checkbox {
+            font-weight: normal;
+        }
+        .form-signin input {
+            position: relative;
+            font-size: 16px;
+            height: auto;
+            padding: 10px;
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+        .form-signin .pure-checkbox{
+            font-size:14px;
+        }
+        .form-signin input:focus {
+            z-index: 2;
         }
 
-        .login-text .fa-stack-1x {
-            color: black;
+        .errorm-msg{
+            color: red;
+            font-size:14px;
         }
 
-        .login-username,
-        .login-password {
-            background: transparent;
-            border: 0 solid;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.5);
-            color: white;
-            display: block;
-            margin: 1rem;
-            padding: 0.5rem;
-            -webkit-transition: 250ms background ease-in;
-            transition: 250ms background ease-in;
-            width: calc(100% - 3rem);
+        .button-large {
+            font-size: 115%;
         }
-
-        .login-username:focus,
-        .login-password:focus {
-            background: white;
-            color: black;
-            -webkit-transition: 250ms background ease-in;
-            transition: 250ms background ease-in;
+        .warning-msg{
+            color: #a94442;
+            font-weight: bold;
+            padding-left:10px;
         }
-
-        .login-error {
-            color: white;
-            font-size: 75%;
-            opacity: 0.6;
-            text-align: center;
-        }
-
-        .login-error:hover {
-            opacity: 1;
-        }
-
-        .login-submit {
-            border: 1px solid white;
-            background: transparent;
-            color: white;
-            display: block;
-            margin: 1rem auto;
-            min-width: 1px;
-            padding: 0.25rem;
-            -webkit-transition: 250ms background ease-in;
-            transition: 250ms background ease-in;
-        }
-
-        .login-submit:hover, .login-submit:focus {
-            background: white;
-            color: black;
-            -webkit-transition: 250ms background ease-in;
-            transition: 250ms background ease-in;
-        }
-
-        [class*="underlay"] {
-            left: 0;
-            min-height: 100%;
-            min-width: 100%;
-            position: fixed;
-            top: 0;
-        }
-
-        .underlay-photo {
-            -webkit-animation: hue-rotate 6s infinite;
-            animation: hue-rotate 6s infinite;
-            background: url("${ctx!}/res/image/bg/bg5.jpg");
-            /*background: url("http://pic.soutu123.com/back_pic/04/00/16/4157fc56437fcd5.jpg!/fw/700/quality/90/unsharp/true/compress/true");*/
-            /*background-size: cover;*/
-            -webkit-filter: grayscale(30%);
-            z-index: -1;
-        }
-
-        .underlay-black {
-            background: rgba(0, 0, 0, 0.7);
-            z-index: -1;
-        }
-
-        @-webkit-keyframes hue-rotate {
-            from {
-                -webkit-filter: grayscale(30%) hue-rotate(0deg);
-            }
-            to {
-                -webkit-filter: grayscale(30%) hue-rotate(360deg);
-            }
-        }
-
-        @keyframes hue-rotate {
-            from {
-                -webkit-filter: grayscale(30%) hue-rotate(0deg);
-            }
-            to {
-                -webkit-filter: grayscale(30%) hue-rotate(360deg);
-            }
+        .hiddenCls{
+            display: none;
         }
     </style>
 </head>
 <body>
-<form action="${ctx!}/login/action" method="post" class="login-form">
-    <p class="login-text">
-    <span class="fa-stack fa-lg">
-      <i class="fa fa-circle fa-stack-2x"></i>
-      <i class="fa fa-lock fa-stack-1x"></i>
-    </span>
-    </p>
-    <div class="login-error">${errMsg!}</div>
-    <input name="username" type="text" class="login-username" autofocus="true" required="true" placeholder="Username"
-          value="admin" />
-    <input name="password" type="password" class="login-password" required="true" placeholder="Password"
-           value="111111" />
-    <input type="submit" name="Login" value="Login" class="login-submit"/>
-</form>
-
-<div class="underlay-photo"></div>
-<div class="underlay-black"></div>
- <script>
+<div class="wrapper">
+    <form class="pure-form form-signin " action="${ctx!}/login/action" method="post" >
+        <h2 class="form-signin-heading">用户 登录</h2>
+        <fieldset class="pure-group">
+            <input type="text"  name="username"  class="pure-input-1" placeholder="用户名" value="${username!}">
+            <input type="password"  name="password" class="pure-input-1" placeholder="密码">
+        </fieldset>
+        <div class="errorm-msg">${errMsg!}</div>
+        <label for="remember" class="pure-checkbox" onmouseenter="document.getElementsByClassName('warning-msg')[0].classList.remove('hiddenCls');"
+               onmouseleave="document.getElementsByClassName('warning-msg')[0].classList.add('hiddenCls');">
+            <input  id="remember" name="remember" class="checkbox" type="checkbox"> 记住我（24h）<span class="warning-msg hiddenCls">公共电脑慎用此功能!</span>
+        </label>
+        <button type="submit" class="pure-button pure-input-1 pure-button-primary button-large">登录</button>
+    </form>
+</div>
+<script>
     if(top.location!=self.location){
         top.location = "${ctx!}/login";
     }
