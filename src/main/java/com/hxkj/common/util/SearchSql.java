@@ -114,7 +114,6 @@ public class SearchSql implements Interceptor {
                     case NEQ:
                         sb.append(" !='").append(filter.value).append("'");
                         break;
-                    /*自定义*/
                     case IN:
                         sb.append(" in ").append(filter.value);
                         break;

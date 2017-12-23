@@ -137,7 +137,8 @@ public abstract class ToolNet {
     }
 
     public static void main(String[] args) {
-        System.out.println(telnet("172.16.100.122", 80, 10000));
+        System.out.println(name());
+        System.out.println(ip());
     }
 
 }

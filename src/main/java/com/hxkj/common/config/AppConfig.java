@@ -6,19 +6,15 @@ import com.hxkj.common.constant.Constant;
 import com.hxkj.common.interceptor.AuthorityInterceptor;
 import com.hxkj.system.model.SysUser;
 import com.jfinal.config.*;
-import com.jfinal.core.JFinal;
 import com.jfinal.ext.handler.ContextPathHandler;
-import com.jfinal.ext.interceptor.SessionInViewInterceptor;
 import com.jfinal.kit.PropKit;
 import com.jfinal.plugin.activerecord.ActiveRecordPlugin;
 import com.jfinal.plugin.activerecord.dialect.MysqlDialect;
 import com.jfinal.plugin.druid.DruidPlugin;
 import com.jfinal.plugin.druid.DruidStatViewHandler;
 import com.jfinal.plugin.druid.IDruidStatViewAuth;
-import com.jfinal.render.FreeMarkerRender;
 import com.jfinal.render.ViewType;
 import com.jfinal.template.Engine;
-import freemarker.template.TemplateModelException;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -33,18 +29,11 @@ public class AppConfig extends JFinalConfig {
      */
     @Override
     public void configConstant(Constants me) {
-        //读取数据库配置文件
         PropKit.use("config.properties");
-        //设置当前是否为开发模式
         me.setDevMode(PropKit.getBoolean("devMode"));
-        //设置默认上传文件保存路径 getFile等使用
-
         me.setBaseUploadPath("upload/temp/");
-        //设置上传最大限制尺寸
         me.setMaxPostSize(1024 * 1024 * 1000);
-        //设置默认下载文件路径 renderFile使用
         me.setBaseDownloadPath("download");
-        //设置默认视图类型
         me.setViewType(ViewType.FREE_MARKER);
         //设置404渲染视图
         //me.setError404View();
@@ -52,7 +41,6 @@ public class AppConfig extends JFinalConfig {
         //me.setJsonFactory(FastJsonFactory.me());  // json 驼峰，但是 record 等不能正常转换
         // json日期格式
         me.setJsonDatePattern("yyyy-MM-dd HH:mm:ss");
-
     }
 
     @Override
@@ -70,13 +58,10 @@ public class AppConfig extends JFinalConfig {
         wall.setDbType("mysql");
         dbPlugin.addFilter(wall);
 
-
         ActiveRecordPlugin arp = new ActiveRecordPlugin(dbPlugin);
         arp.setShowSql(PropKit.getBoolean("devMode"));
         arp.setDialect(new MysqlDialect());
-        // 系统模块 设置
         MappingKit.mapping(arp);
-
         me.add(dbPlugin);
         me.add(arp);
     }
@@ -84,8 +69,6 @@ public class AppConfig extends JFinalConfig {
     @Override
     public void configInterceptor(Interceptors me) {
         me.addGlobalActionInterceptor(new AuthorityInterceptor());
-        me.addGlobalActionInterceptor(new SessionInViewInterceptor());
-
     }
 
     @Override
@@ -115,14 +98,8 @@ public class AppConfig extends JFinalConfig {
 
     }
 
-    /**
-     * 配置模板引擎
-     */
     @Override
     public void configEngine(Engine me) {
-        //这里只有选择JFinal TPL的时候才用
-        //配置共享函数模板
-        //me.addSharedFunction("/view/common/layout.html")
     }
 
 

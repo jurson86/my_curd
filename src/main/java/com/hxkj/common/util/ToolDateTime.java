@@ -364,8 +364,7 @@ public abstract class ToolDateTime {
     }
 
     /**
-     * 获取开始时间
-     *
+     * 获取日期的相对日期（天）
      * @param start
      * @param end
      * @return

@@ -15,10 +15,7 @@ import java.util.Properties;
 
 /**
  * 邮件发送
- * <p>
- * <p>
  * 描述：使用javamail出现java.net.SocketException: Network is unreachable: connect异常 解决方法
- * <p>
  * 1. main方法加入System.setProperty("java.net.preferIPv4Stack", "true");
  * 2. tomcat服务器加上启动参数 -Djava.net.preferIPv4Stack=true
  */
@@ -45,9 +42,9 @@ public class ToolMail {
             String host, String port, boolean validate, String userName, String password,
             String from, List<String> to,
             String subject, String content, String[] attachFileNames) {
-        if (log.isInfoEnabled()) log.info("发送文本邮件");
-        SendMail mail = new SendMail(sendType_text, host, port, validate, userName, password, from, to, subject, content, attachFileNames);
-        mail.start();
+            if (log.isInfoEnabled()) log.info("发送文本邮件");
+            SendMail mail = new SendMail(sendType_text, host, port, validate, userName, password, from, to, subject, content, attachFileNames);
+            mail.start();
     }
 
     /**
@@ -68,27 +65,27 @@ public class ToolMail {
             String host, String port, boolean validate, String userName, String password,
             String from, List<String> to,
             String subject, String content, String[] attachFileNames) {
-        if (log.isInfoEnabled()) log.info("发送html邮件");
-        SendMail mail = new SendMail(sendType_html, host, port, validate, userName, password, from, to, subject, content, attachFileNames);
-        mail.start();
+            if (log.isInfoEnabled()) log.info("发送html邮件");
+            SendMail mail = new SendMail(sendType_html, host, port, validate, userName, password, from, to, subject, content, attachFileNames);
+            mail.start();
     }
 
     public static void main(String[] args) {
-        String host = "smtp.163.com";        // 发送邮件的服务器的IP
-        String port = "25";    // 发送邮件的服务器的端口
+        String host = "smtp.163.com";               // 发送邮件的服务器的IP
+        String port = "25";                         // 发送邮件的服务器的端口
 
-        String from = "dongcb678@163.com";        // 邮件发送者的地址
-        String userName = "dongcb678@163.com";    // 登陆邮件发送服务器的用户名
-        String password = "xxx";    // 登陆邮件发送服务器的密码
+        String from = "15238002477@163.com";        // 邮件发送者的地址
+        String userName = "15238002477@163.com";    // 登陆邮件发送服务器的用户名
+        String password = "sdfsdfdfdf";                // 登陆邮件发送服务器的密码
 
         List<String> to = new ArrayList<String>();            // 邮件接收者的地址
-        to.add("150584428@qq.com");
+        to.add("916432779@qq.com");
 
         boolean validate = true;    // 是否需要身份验证
 
-        String subject = "标题test111";        // 邮件标题
+        String subject = "测试邮件";        // 邮件标题
         String content = "内容test111";        // 邮件的文本内容
-        String[] attachFileNames = new String[]{"D:/code.jpg"};    // 邮件附件的文件名
+        String[] attachFileNames = new String[]{"E:/pdf doc/深入浅出MySQL全文.pdf"};    // 邮件附件的文件名
 
         sendTextMail(host, port, validate, userName, password, from, to, subject, content, attachFileNames);
     }
@@ -97,29 +94,24 @@ public class ToolMail {
 
 /**
  * 异步发送邮件线程
- *
- * @author 董华健  dongcb678@163.com
  */
 class SendMail extends Thread {
 
     private static final Log log = Log.getLog(ToolMail.class);
 
     private String sendType;        // 发送邮件的类型：text 、html
-
-    private String host;        // 发送邮件的服务器的IP
-    private String port = "25";    // 发送邮件的服务器的端口
-
-    private String from;        // 邮件发送者的地址
-    private String userName;    // 登陆邮件发送服务器的用户名
-    private String password;    // 登陆邮件发送服务器的密码
-
-    private List<String> to;            // 邮件接收者的地址
+    private String host;            // 发送邮件的服务器的IP
+    private String port = "25";     // 发送邮件的服务器的端口
+    private String from;            // 邮件发送者的地址
+    private String userName;        // 登陆邮件发送服务器的用户名
+    private String password;        // 登陆邮件发送服务器的密码
+    private List<String> to;        // 邮件接收者的地址
 
     private boolean validate = false;    // 是否需要身份验证
 
-    private String subject;        // 邮件标题
-    private String content;        // 邮件的文本内容
-    private String[] attachFileNames;    // 邮件附件的文件名
+    private String subject;               // 邮件标题
+    private String content;               // 邮件的文本内容
+    private String[] attachFileNames;     // 邮件附件的文件名
 
     public SendMail(String sendType,
                     String host, String port, boolean validate, String userName, String password,

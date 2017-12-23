@@ -12,8 +12,6 @@ import java.io.FileOutputStream;
 
 /**
  * 图片水印处理
- *
- * @author 董华健
  */
 @SuppressWarnings("restriction")
 public abstract class ToolImagePressText {

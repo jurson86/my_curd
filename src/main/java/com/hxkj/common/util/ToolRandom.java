@@ -106,4 +106,8 @@ public abstract class ToolRandom {
         return rgb;
     }
 
+    public static void main(String[] args) {
+        System.out.println(getRandomRgb());
+    }
+
 }
