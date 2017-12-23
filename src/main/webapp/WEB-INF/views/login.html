@@ -23,8 +23,15 @@
             background: #eee !important;
         }
         .wrapper {
-            margin-top: 80px;
-            margin-bottom: 80px;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            width:50%;
+            height: 50%;
+            -webkit-transform: translateX(-50%) translateY(-50%);
+            -moz-transform: translateX(-50%) translateY(-50%);
+            -ms-transform: translateX(-50%) translateY(-50%);
+            transform: translateX(-50%) translateY(-50%);
         }
 
         .form-signin {
@@ -33,9 +40,15 @@
             margin: 0 auto;
             background-color: #fff;
             border: 1px solid rgba(0, 0, 0, 0.1);
+            transition: .3s;
+            -webkit-transition: .3s;
+            -moz-transition: .3s;
         }
-        .form-signin .form-signin-heading,
+        .form-signin:hover{
+            box-shadow: lightgrey 0px 0px 25px 0px;
+        }
 
+        .form-signin .form-signin-heading,
         .form-signin .checkbox {
             font-weight: normal;
         }
@@ -75,9 +88,13 @@
     </style>
 </head>
 <body>
-<div class="wrapper">
+<div id="loginFormWraper" class="wrapper">
+    <div style="text-align: center">
+             </div>
     <form class="pure-form form-signin " action="${ctx!}/login/action" method="post" >
-        <h2 class="form-signin-heading">用户 登录</h2>
+        <h2 class="form-signin-heading">
+            用户 登录
+        </h2>
         <fieldset class="pure-group">
             <input type="text"  name="username"  class="pure-input-1" placeholder="用户名" value="${username!}">
             <input type="password"  name="password" class="pure-input-1" placeholder="密码">
@@ -90,6 +107,7 @@
         <button type="submit" class="pure-button pure-input-1 pure-button-primary button-large">登录</button>
     </form>
 </div>
+
 <script>
     // 不被 iframe 嵌套
     if(top.location!=self.location){
