@@ -1,0 +1,87 @@
+<#include "/WEB-INF/views/common/common.html"/> <@layout>
+<link rel="stylesheet" href="${ctx!}/res/layer/theme/default/layer.css">
+</head>
+<body>
+<script type="text/javascript">
+
+    // 新增 model
+    function newModel() {
+        layerTools.layerIframe('fa-plus','新建', '${ctx!}/sysNews/newModel', '100%', '100%')
+    }
+
+    // 编辑 model
+    function editModel() {
+        var row = $("#dg").treegrid("getSelected");
+        if (row != null) {
+            var params="";
+            params += 'id='+row.id;
+            layerTools.layerIframe('fa-pencil','编辑', '${ctx!}/sysNews/newModel?' + params, '100%', '100%')
+        } else {
+            layerTools.layerMsg('请选择一行数据进行编辑');
+        }
+    }
+
+    // 删除 model
+    function deleteModel() {
+        var row = $("#dg").datagrid("getSelected");
+        if (row != null) {
+            var params="";
+             params += 'id='+row.id;
+            layerTools.confirm(3, '删除', '您确定要删除选中的记录吗?', function () {
+                $.post('${ctx!}/sysNews/deleteAction?' + params, function (data) {
+                    layerTools.layerMsg(data, function () {
+                        $('#dg').datagrid('reload');
+                    });
+                }, "text");
+            });
+
+        } else {
+            layerTools.layerMsg('请选择一行进行删除');
+        }
+    }
+
+    //条件查询
+    function queryModel() {
+        var queryParams = {};
+        queryParams['search_LIKE_sn.title'] = $("#title").textbox("getValue");
+        queryParams['search_LIKE_sn.tags'] = $("#tags").textbox("getValue");
+        $('#dg').datagrid('load', queryParams);
+    }
+</script>
+<table id="dg" class="easyui-datagrid"
+       url="${ctx!}/sysNews/query"
+       toolbar="#tb" rownumbers="true" border="false"
+       fit="true" pagination="true" singleSelect="true"
+       pageSize="40" pageList="[20,40]">
+    <thead>
+    <tr>
+            <th data-options="field:'id',checkbox:true"></th>
+            <th field="title" width="200">标题</th>
+            <th field="tags" width="150">关键字</th>
+            <th field="user_name" width="100">发布者</th>
+            <th field="create_time" width="200">发布时间</th>
+    </tr>
+    </thead>
+</table>
+
+<div id="tb">
+    <a onclick="newModel()" href="#" class="easyui-linkbutton" iconCls="icon-add" plain="true">新增</a>
+    <a onclick="editModel()" href="#" class="easyui-linkbutton" iconCls="icon-edit" plain="true">编辑</a>
+    <a onclick="deleteModel()" href="#" class="easyui-linkbutton  " iconCls="icon-remove" plain="true">删除</a>
+    <span id="enterSpan" class="searchInputArea">
+          <input id="title" prompt="标题" class="easyui-textbox" style="width:120px; ">
+         <input id="tags" prompt="关键字" class="easyui-textbox" style="width:120px; ">
+          <a href="#" class="easyui-linkbutton" iconCls="icon-search" onclick="queryModel()">搜索</a>
+    </span>
+</div>
+<script src="${ctx!}/res/layer/layer.js"></script>
+<script src="${ctx!}/res/js/layer-tools.js"></script>
+<script>
+    // enter监听查询
+    $("#enterSpan").on("keydown",function(e){
+        if(e.keyCode==13){
+            queryModel();
+        }
+    })
+</script>
+</@layout>

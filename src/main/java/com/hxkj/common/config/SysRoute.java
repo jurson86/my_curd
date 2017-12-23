@@ -4,6 +4,7 @@ import com.hxkj.LoginController;
 import com.hxkj.MainController;
 import com.hxkj.common.constant.Constant;
 import com.hxkj.system.controller.*;
+import com.hxkj.system.model.SysNews;
 import com.jfinal.config.Routes;
 
 
@@ -40,6 +41,9 @@ public class SysRoute extends Routes {
 
         // 文件管理
         add("/sysFile", SysFileController.class, Constant.VIEW_PATH);
+
+        // 文章 管理
+        add("/sysNews", SysNewsController.class, Constant.VIEW_PATH);
 
         // 字典表管理
         add("/sysDict", SysDictController.class, Constant.VIEW_PATH);

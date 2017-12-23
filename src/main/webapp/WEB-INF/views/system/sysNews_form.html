@@ -1,0 +1,69 @@
+<#include "/WEB-INF/views/common/common.html"/><@layout>
+<link rel="stylesheet" href="${ctx!}/res/pure/tables-min.css">
+<script src="${ctx!}/res/ckeditor/ckeditor.js"></script>
+<link rel="stylesheet" href="${ctx!}/res/ckeditor/config.js">
+<style>
+    #cke_content{
+        border:none !important;
+    }
+</style>
+<script>
+    function saveAction() {
+        var url;
+        var pkVAry =[];
+            var idVal = $("#id").val();
+            pkVAry.push(idVal);
+
+        if ($.trim(pkVAry[0]) == "" || pkVAry[0] == undefined || pkVAry[0] == null) {
+            url = '${ctx!}/sysNews/addAction';
+        } else {
+            url = '${ctx!}/sysNews/updateAction';
+        }
+
+        $('#modelForm').form('submit', {
+            url: url,
+            onSubmit: function() {
+                return $(this).form('validate');
+            },
+            success: function (data) {
+                parent.layerTools.layerMsg(data, function () {
+                    parent.window.location.reload();
+                });
+            }
+        });
+    }
+</script>
+</head>
+<body style="padding: 10px 30px; ">
+<form id="modelForm" method="POST">
+    <table class=" pure-table pure-table-horizontal  "   >
+            <input id="id" name="id" type="hidden" value="${(sysNews.id)!}">
+        <tbody>
+            <tr>
+                <td>
+                    <input label="题目:" name="title" value="${(sysNews.title)!}" type="text" class="easyui-textbox"   style="width:300px" data-options="required:true">
+                </td>
+                <td>
+                    <input label="标签:" name="tags" value="${(sysNews.tags)!}" type="text" class="easyui-tagbox" style="width:300px;"  >
+                </td>
+            </tr>
+
+            <tr >
+                <td  style="padding: 0;" colspan="2" >
+                     <textarea name="content" id="content"    >
+                         ${(sysNews.content)!}
+                      </textarea>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</form>
+<div id="toolbars" style="text-align:center; margin-top: 20px;">
+    <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-save'" onclick="saveAction()">确定</a>
+    <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-cancel'"
+       onclick="parent.layer.close(parent.layer.getFrameIndex(window.name));">取消</a>
+</div>
+<script>
+   CKEDITOR.replace( 'content' );
+</script>
+</@layout>

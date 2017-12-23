@@ -23,6 +23,7 @@ public class MappingKit {
         arp.addMapping("sys_user_role", "role_id,user_id", SysUserRole.class);
         arp.addMapping("sys_dict", "id", SysDict.class);
         arp.addMapping("sys_file", "id", SysFile.class);
+        arp.addMapping("sys_news", "id", SysNews.class);
 
         // 代码生成测试表
         arp.addMapping("gentest_book", "id", GentestBook.class);

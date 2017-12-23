@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50719
 File Encoding         : 65001
 
-Date: 2017-12-20 23:16:53
+Date: 2017-12-23 23:58:01
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -3853,13 +3853,14 @@ CREATE TABLE `sys_file` (
   `remark` varchar(255) DEFAULT NULL COMMENT '文件备注',
   `create_time` datetime DEFAULT NULL COMMENT '上传时间',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=48 DEFAULT CHARSET=utf8 COMMENT='文件表';
+) ENGINE=InnoDB AUTO_INCREMENT=49 DEFAULT CHARSET=utf8 COMMENT='文件表';
 
 -- ----------------------------
 -- Records of sys_file
 -- ----------------------------
 INSERT INTO `sys_file` VALUES ('46', '916654989969981440', 'upload/file/20171220201127_756.pdf', '[www.java1234.com]Apache_Shiro_reference(中文版).pdf', 'pdf', 'shiro 中文文档', '2017-12-20 20:11:27');
 INSERT INTO `sys_file` VALUES ('47', '916654989969981440', 'upload/file/20171220201200_281.pdf', 'jfinal-3.1-manual.pdf', 'pdf', 'jfinal3.1 文档\r\n', '2017-12-20 20:12:00');
+INSERT INTO `sys_file` VALUES ('48', '916654989969981440', 'upload/image/20171223233747_835.jpg', 'u=1276578832,1424294049&fm=214&gp=0.jpg', 'jpg', '测', '2017-12-23 23:37:47');
 
 -- ----------------------------
 -- Table structure for `sys_menu`
@@ -3873,7 +3874,7 @@ CREATE TABLE `sys_menu` (
   `sort` int(11) DEFAULT NULL,
   `pid` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=89 DEFAULT CHARSET=utf8 COMMENT='菜单表（权限表）';
+) ENGINE=InnoDB AUTO_INCREMENT=90 DEFAULT CHARSET=utf8 COMMENT='菜单表（权限表）';
 
 -- ----------------------------
 -- Records of sys_menu
@@ -3896,6 +3897,26 @@ INSERT INTO `sys_menu` VALUES ('85', '内容管理', '/', null, '4', '5');
 INSERT INTO `sys_menu` VALUES ('86', '代码生成测试', '/', null, '1', null);
 INSERT INTO `sys_menu` VALUES ('87', '普通表', '/gentestBook', null, '1', '86');
 INSERT INTO `sys_menu` VALUES ('88', '三主键表', '/gentestMulpktable', null, '2', '86');
+INSERT INTO `sys_menu` VALUES ('89', '文章', '/sysNews', null, '2', '85');
+
+-- ----------------------------
+-- Table structure for `sys_news`
+-- ----------------------------
+DROP TABLE IF EXISTS `sys_news`;
+CREATE TABLE `sys_news` (
+  `id` varchar(255) NOT NULL,
+  `title` varchar(255) DEFAULT NULL,
+  `tags` varchar(100) DEFAULT NULL,
+  `content` text,
+  `user_id` varchar(32) DEFAULT NULL,
+  `create_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of sys_news
+-- ----------------------------
+INSERT INTO `sys_news` VALUES ('944593836988956672', '测试', 'test,hello', '<p><strong>这是一个富文本编辑器的测试，<s>啦啦啦</s>啦<sup>啦啦啦</sup></strong></p>\r\n\r\n<p><img alt=\"sad\" src=\"http://localhost/res/ckeditor/plugins/smiley/images/sad_smile.png\" style=\"height:23px; width:23px\" title=\"sad\" /><img alt=\"broken heart\" src=\"http://localhost/res/ckeditor/plugins/smiley/images/broken_heart.png\" style=\"height:23px; width:23px\" title=\"broken heart\" /><img alt=\"mail\" src=\"http://localhost/res/ckeditor/plugins/smiley/images/envelope.png\" style=\"height:23px; width:23px\" title=\"mail\" /><img alt=\"yes\" src=\"http://localhost/res/ckeditor/plugins/smiley/images/thumbs_up.png\" style=\"height:23px; width:23px\" title=\"yes\" /></p>\r\n\r\n<table align=\"center\" border=\"1\" cellpadding=\"1\" cellspacing=\"0\" style=\"width:500px\" summary=\"测试表格拉啊啦啦啦啦啦啦\">\r\n	<caption>测试表格</caption>\r\n	<thead>\r\n		<tr>\r\n			<th scope=\"col\">name</th>\r\n			<th scope=\"col\">sex</th>\r\n		</tr>\r\n	</thead>\r\n	<tbody>\r\n		<tr>\r\n			<td>张闯</td>\r\n			<td>male</td>\r\n		</tr>\r\n		<tr>\r\n			<td>赵丽</td>\r\n			<td>female</td>\r\n		</tr>\r\n	</tbody>\r\n</table>\r\n\r\n<p><strong><img alt=\"\" src=\"/upload/image/20171223233747_835.jpg\" style=\"float:left; height:56px; margin:10px; width:100px\" /></strong></p>\r\n\r\n<p>absjflsjdflkj<strong>jjjjjljdlfjlsdjflsjdlfjlsdjflsjdlfjsldjfls</strong>jdfljslfjlsjsjldfjsdfjlsdjfljdfljdlfjljfsldjf</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<div style=\"page-break-after:always\"><span style=\"display:none\">&nbsp;</span></div>\r\n\r\n<p>&nbsp;</p>\r\n', '916654989969981440', '2017-12-23 23:54:07');
 
 -- ----------------------------
 -- Table structure for `sys_oplog`
@@ -4283,6 +4304,47 @@ INSERT INTO `sys_oplog` VALUES ('943466951739441152', '916654989969981440', '退
 INSERT INTO `sys_oplog` VALUES ('943467444574355456', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-20 21:05:42');
 INSERT INTO `sys_oplog` VALUES ('943476621296271360', '916654989969981440', '退出', '0:0:0:0:0:0:0:1', '2017-12-20 21:42:10');
 INSERT INTO `sys_oplog` VALUES ('943477056753106944', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-20 21:43:53');
+INSERT INTO `sys_oplog` VALUES ('943501753003802624', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-20 23:22:02');
+INSERT INTO `sys_oplog` VALUES ('943508603875098624', '916654989969981440', '退出', '0:0:0:0:0:0:0:1', '2017-12-20 23:49:15');
+INSERT INTO `sys_oplog` VALUES ('944163653232361472', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-22 19:12:11');
+INSERT INTO `sys_oplog` VALUES ('944163756642926592', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-22 19:12:35');
+INSERT INTO `sys_oplog` VALUES ('944164092808003584', '916654989969981440', '登录', '127.0.0.1', '2017-12-22 19:13:56');
+INSERT INTO `sys_oplog` VALUES ('944168220720365568', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-22 19:30:20');
+INSERT INTO `sys_oplog` VALUES ('944172329716416512', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-22 19:46:39');
+INSERT INTO `sys_oplog` VALUES ('944172389808209920', '916654989969981440', '退出', '0:0:0:0:0:0:0:1', '2017-12-22 19:46:54');
+INSERT INTO `sys_oplog` VALUES ('944172911571238912', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-22 19:48:58');
+INSERT INTO `sys_oplog` VALUES ('944173583234498560', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-22 19:51:38');
+INSERT INTO `sys_oplog` VALUES ('944174308240916480', '916654989969981440', '登录', '127.0.0.1', '2017-12-22 19:54:31');
+INSERT INTO `sys_oplog` VALUES ('944178123103010816', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-22 20:09:41');
+INSERT INTO `sys_oplog` VALUES ('944178829277003776', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-22 20:12:29');
+INSERT INTO `sys_oplog` VALUES ('944179292550463488', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-22 20:14:20');
+INSERT INTO `sys_oplog` VALUES ('944183805801922560', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-22 20:32:16');
+INSERT INTO `sys_oplog` VALUES ('944184458410459136', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-22 20:34:51');
+INSERT INTO `sys_oplog` VALUES ('944186173721411584', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-22 20:41:40');
+INSERT INTO `sys_oplog` VALUES ('944189262880833536', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-22 20:53:57');
+INSERT INTO `sys_oplog` VALUES ('944190841667190784', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-22 21:00:13');
+INSERT INTO `sys_oplog` VALUES ('944199542687924224', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-22 21:34:48');
+INSERT INTO `sys_oplog` VALUES ('944201083851374592', '916654989969981440', '登录', '127.0.0.1', '2017-12-22 21:40:55');
+INSERT INTO `sys_oplog` VALUES ('944201736761901056', '916654989969981440', '登录', '127.0.0.1', '2017-12-22 21:43:31');
+INSERT INTO `sys_oplog` VALUES ('944206686388748288', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-22 22:03:11');
+INSERT INTO `sys_oplog` VALUES ('944207337982263296', '916654989969981440', '登录', '127.0.0.1', '2017-12-22 22:05:46');
+INSERT INTO `sys_oplog` VALUES ('944217001994223616', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-22 22:44:10');
+INSERT INTO `sys_oplog` VALUES ('944222427695546368', '916654989969981440', '退出', '127.0.0.1', '2017-12-22 23:05:44');
+INSERT INTO `sys_oplog` VALUES ('944222463024168960', '943317632851902464', '登录', '127.0.0.1', '2017-12-22 23:05:52');
+INSERT INTO `sys_oplog` VALUES ('944222539586994176', '943317632851902464', '通过 cookie 登录', '127.0.0.1', '2017-12-22 23:06:10');
+INSERT INTO `sys_oplog` VALUES ('944222549691072512', '943317632851902464', '退出', '127.0.0.1', '2017-12-22 23:06:13');
+INSERT INTO `sys_oplog` VALUES ('944566560087867392', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-23 21:53:11');
+INSERT INTO `sys_oplog` VALUES ('944569508180262912', '916654989969981440', '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2017-12-23 22:04:54');
+INSERT INTO `sys_oplog` VALUES ('944570035542687744', '916654989969981440', '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2017-12-23 22:07:00');
+INSERT INTO `sys_oplog` VALUES ('944570645306408960', '916654989969981440', '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2017-12-23 22:09:25');
+INSERT INTO `sys_oplog` VALUES ('944571143132545024', '916654989969981440', '退出', '0:0:0:0:0:0:0:1', '2017-12-23 22:11:24');
+INSERT INTO `sys_oplog` VALUES ('944571182579974144', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-23 22:11:33');
+INSERT INTO `sys_oplog` VALUES ('944571492035723264', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-23 22:12:47');
+INSERT INTO `sys_oplog` VALUES ('944572275712065536', '916654989969981440', '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2017-12-23 22:15:54');
+INSERT INTO `sys_oplog` VALUES ('944591998726176768', '916654989969981440', '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2017-12-23 23:34:16');
+INSERT INTO `sys_oplog` VALUES ('944592219350761472', '916654989969981440', '退出', '0:0:0:0:0:0:0:1', '2017-12-23 23:35:09');
+INSERT INTO `sys_oplog` VALUES ('944592263927824384', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-23 23:35:20');
+INSERT INTO `sys_oplog` VALUES ('944595930181533696', '916654989969981440', '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2017-12-23 23:49:54');
 
 -- ----------------------------
 -- Table structure for `sys_org`
@@ -4355,6 +4417,7 @@ INSERT INTO `sys_role_menu` VALUES ('3', '74');
 INSERT INTO `sys_role_menu` VALUES ('3', '75');
 INSERT INTO `sys_role_menu` VALUES ('3', '87');
 INSERT INTO `sys_role_menu` VALUES ('3', '88');
+INSERT INTO `sys_role_menu` VALUES ('3', '89');
 INSERT INTO `sys_role_menu` VALUES ('24', '60');
 INSERT INTO `sys_role_menu` VALUES ('27', '58');
 INSERT INTO `sys_role_menu` VALUES ('27', '59');

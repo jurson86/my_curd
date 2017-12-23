@@ -54,5 +54,4 @@
     <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-cancel'"
        onclick="parent.layer.close(parent.layer.getFrameIndex(window.name));">取消</a>
 </div>
-<script src="<#noparse>${ctx!}</#noparse>/res/js/easyui-tree-tools.js"></script>
 <#noparse></@layout></#noparse>
