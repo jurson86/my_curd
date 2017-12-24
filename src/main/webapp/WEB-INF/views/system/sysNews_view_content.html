@@ -23,9 +23,9 @@
         }
     </style>
 </head>
-<body>
+<body class="cke_editable cke_editable_themed cke_contents_ltr cke_show_borders">
 <div id="container"  style="width: 220mm; min-height: 100%; margin: 0px auto; background-color: #fff; padding: 10mm; ">
-    <div id="printBtnWrapper" style="text-align: right">
+    <div id="printBtnWrapper" style="text-align: right" class="no-print">
         <button id="printBtn" class="pure-button pure-button-primary" ><i class="fa fa-print"></i>&nbsp;&nbsp;打印</button>
     </div>
     <script>
@@ -34,8 +34,12 @@
             document.getElementById('container').removeChild(printWrapper);
         }
     </script>
-    <div id="printArea" style="width: 210mm; min-height: 100%;   margin:0  auto; ">
-        ${(sysNews.content)!}
+    <div style="width: 210mm; min-height: 100%;   margin:0  auto; "  >
+            <div id="printArea"   >
+                <div class="cke_editable cke_editable_themed cke_contents_ltr cke_show_borders">
+                 ${(sysNews.content)!}
+                </div>
+            </div>
     </div>
 </div>
 <script src="${ctx!}/res/easyui153/jquery.min.js"></script>
@@ -43,7 +47,7 @@
 <script>
     $("#printBtn").on("click",function(){
         $("#printArea").print({
-            globalStyles: false,  //是否包含父文档的样式，默认为true
+            globalStyles: true,  //是否包含父文档的样式，默认为true
             mediaPrint: false,   //是否包含media='print'的链接标签。会被globalStyles选项覆盖，默认为false
             stylesheet: null,    //外部样式表的URL地址，默认为null
             noPrintSelector: ".no-print", //不想打印的元素的jQuery选择器，默认为".no-print"
