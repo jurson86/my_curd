@@ -5,7 +5,7 @@
 
 CKEDITOR.editorConfig = function( config ) {
 	 config.language = 'zh-cn';
-     config.height = 300;
+     config.height = 450;
      config.width = 'auto';
     config.toolbar = [
         { name: 'document', items: [ 'Source', 'Preview', 'Print', 'Templates' ] },

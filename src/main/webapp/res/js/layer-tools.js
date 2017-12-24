@@ -31,7 +31,7 @@ var layerTools = layerTools ||{};
         var index =  layer.open({
             skin: 'layui-layer-molv',
             type: 2,   // iframe
-            title: ['<i class="fa '+faCls+'"></i>&nbsp;&nbsp;'+title,'background:#607D8B; line-height:40px;height:40px;padding: 0 15px'],
+            title: ['<i class="fa '+faCls+'"></i>&nbsp;&nbsp;'+title,'background:#7f8c8d; line-height:40px;height:40px;padding: 0 15px'],
             maxmin: true,
             shadeClose: true, //
             area : [width , height],

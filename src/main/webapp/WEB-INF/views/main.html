@@ -15,20 +15,9 @@
     }
 
     a.pure-button:hover {
-        color: wheat;
         text-decoration: none;
     }
 
-    .button-light-black {
-        color: white;
-        color: white;
-        border-radius: 4px;
-        text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
-    }
-
-    .button-light-black {
-        background: rgb(96, 125, 139);
-    }
 </style>
 <script>
     function fullScreen() {
@@ -101,8 +90,8 @@
                 (${(session.system_user_roles)!} )
                 &nbsp;
                 &nbsp;
-                <a class="pure-button  button-light-black" href="${ctx!}/logout">
-                    <i class="fa fa-sign-out"></i>退出
+                <a class="pure-button pure-button-primary" href="${ctx!}/logout">
+                    <i class="fa fa-sign-out"></i>&nbsp;&nbsp;退出
                 </a>
 			</span>
     </div>
