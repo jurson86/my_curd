@@ -47,11 +47,34 @@
         queryParams['search_LIKE_sn.tags'] = $("#tags").textbox("getValue");
         $('#dg').datagrid('load', queryParams);
     }
+
+
+    //打印
+    function printModel(){
+        var row = $("#dg").datagrid("getSelected");
+        if (row != null) {
+            layerTools.layerIframe('fa-print','打印', '${ctx!}/sysNews/viewContent?id='+row.id, '241mm', '90%')
+        } else {
+            layerTools.layerMsg('请选择一行数据');
+        }
+    }
+
+    // 查看
+    function viewModel(){
+        var row = $("#dg").datagrid("getSelected");
+        if (row != null) {
+            var url ='${ctx!}/sysNews/viewContent?id='+row.id;
+            window.open(url, "_blank");
+        } else {
+            layerTools.layerMsg('请选择一行数据');
+        }
+    }
 </script>
 <table id="dg" class="easyui-datagrid"
        url="${ctx!}/sysNews/query"
        toolbar="#tb" rownumbers="true" border="false"
        fit="true" pagination="true" singleSelect="true"
+       data-options="onDblClickRow:viewModel"
        pageSize="40" pageList="[20,40]">
     <thead>
     <tr>
@@ -68,6 +91,7 @@
     <a onclick="newModel()" href="#" class="easyui-linkbutton" iconCls="icon-add" plain="true">新增</a>
     <a onclick="editModel()" href="#" class="easyui-linkbutton" iconCls="icon-edit" plain="true">编辑</a>
     <a onclick="deleteModel()" href="#" class="easyui-linkbutton  " iconCls="icon-remove" plain="true">删除</a>
+    <a onclick="printModel()" href="#" class="easyui-linkbutton  " iconCls="icon-print" plain="true">打印</a>
     <span id="enterSpan" class="searchInputArea">
           <input id="title" prompt="标题" class="easyui-textbox" style="width:120px; ">
          <input id="tags" prompt="关键字" class="easyui-textbox" style="width:120px; ">

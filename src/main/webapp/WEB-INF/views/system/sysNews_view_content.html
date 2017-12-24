@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>${(sysNews.title)!}</title>
+    <meta name="keywords" content="${(sysNews.tags)!}">
+    <link rel="stylesheet" href="${ctx!}/res/css/custom.css">
+    <link rel="stylesheet" href="${ctx!}/res/pure/buttons-min.css">
+    <link rel="stylesheet" href="${ctx!}/res/ckeditor/contents.css">
+    <link rel="stylesheet" href="${ctx!}/res/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="${ctx!}/res/ckeditor/plugins/copyformatting/styles/copyformatting.css">
+    <link rel="stylesheet" href="${ctx!}/res/ckeditor/plugins/tableselection/styles/tableselection.css">
+    <style>
+        html,body{
+            margin:0;
+            padding:0;
+            width:100%;
+            height:100%;
+            background-color: #eee;
+        }
+    </style>
+</head>
+<body>
+<div id="container"  style="width: 220mm; min-height: 100%; margin: 0px auto; background-color: #fff; padding: 10mm; ">
+    <div id="printBtnWrapper" style="text-align: right">
+        <button id="printBtn" class="pure-button pure-button-primary" ><i class="fa fa-print"></i>&nbsp;&nbsp;打印</button>
+    </div>
+    <script>
+        if(top.location==self.location){
+            var printWrapper = document.getElementById('printBtnWrapper');
+            document.getElementById('container').removeChild(printWrapper);
+        }
+    </script>
+    <div id="printArea" style="width: 210mm; min-height: 100%;   margin:0  auto; ">
+        ${(sysNews.content)!}
+    </div>
+</div>
+<script src="${ctx!}/res/easyui153/jquery.min.js"></script>
+<script src="${ctx!}/res/jqprint/jquery.printarea.js"></script>
+<script>
+    $("#printBtn").on("click",function(){
+        $("#printArea").printArea();
+    });
+</script>
+</body>
+</html>

@@ -97,4 +97,15 @@ public class SysNewsController extends BaseController {
             renderText(Constant.UPDATE_FAIL);
         }
     }
+
+
+    public void viewContent(){
+        String id = getPara("id");
+        if (id != null) {
+            SysNews sysNews = SysNews.dao.findById(id);
+            setAttr("sysNews", sysNews);
+        }
+
+        render("system/sysNews_view_content.html");
+    }
 }
