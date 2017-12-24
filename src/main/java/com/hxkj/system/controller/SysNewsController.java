@@ -57,9 +57,9 @@ public class SysNewsController extends BaseController {
     public void addAction() {
         SysNews sysNews = getBean(SysNews.class, "");
         sysNews.set("id", Identities.uuid2());
-        sysNews.set("tags", StrKit.join(getParaValues("tags"),","));
+        sysNews.set("tags", StrKit.join(getParaValues("tags"), ","));
         SysUser sysUser = getSessionUser();
-        sysNews.set("user_id",sysUser.getId());
+        sysNews.set("user_id", sysUser.getId());
         boolean saveFlag = sysNews.save();
         if (saveFlag) {
             renderText(Constant.ADD_SUCCESS);
@@ -87,9 +87,9 @@ public class SysNewsController extends BaseController {
      */
     public void updateAction() {
         SysNews sysNews = getBean(SysNews.class, "");
-        sysNews.set("tags", StrKit.join(getParaValues("tags"),","));
+        sysNews.set("tags", StrKit.join(getParaValues("tags"), ","));
         SysUser sysUser = getSessionUser();
-        sysNews.set("user_id",sysUser.getId());
+        sysNews.set("user_id", sysUser.getId());
         boolean updateFlag = sysNews.update();
         if (updateFlag) {
             renderText(Constant.UPDATE_SUCCESS);
@@ -99,7 +99,7 @@ public class SysNewsController extends BaseController {
     }
 
 
-    public void viewContent(){
+    public void viewContent() {
         String id = getPara("id");
         if (id != null) {
             SysNews sysNews = SysNews.dao.findById(id);

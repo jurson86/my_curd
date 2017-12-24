@@ -11,6 +11,8 @@ import com.jfinal.aop.Clear;
 import com.jfinal.aop.Duang;
 import com.jfinal.core.ActionKey;
 import com.jfinal.kit.HashKit;
+import com.jfinal.kit.Prop;
+import com.jfinal.kit.PropKit;
 import com.jfinal.kit.StrKit;
 import com.jfinal.plugin.activerecord.tx.Tx;
 import org.apache.log4j.Logger;
@@ -20,20 +22,28 @@ import java.util.List;
 public class LoginController extends BaseController {
 
     private final static Logger LOG = Logger.getLogger(LoginController.class);
+    private static String usernameKey;
+    private static String passwordKey;
+
+    static {
+        Prop prop = PropKit.use("config.properties");
+        usernameKey = prop.get("cookie_username_key");
+        passwordKey = prop.get("cookie_password_key");
+    }
 
     /**
      * 登录页面
      */
     @Clear(AuthorityInterceptor.class)
     public void index() {
-        String username =getCookie("mycurd_username");
-        String password = getCookie("mycurd_password");
-        System.out.println("username from cookie: "+username);
-        System.out.println("password from cookie: "+password);
-        if(username!=null && password!=null){
-            SysUser sysUser = SysUser.dao.findByUsernameAndPassword(username,password);
+        String username = getCookie(usernameKey);
+        String password = getCookie(passwordKey);
+        System.out.println("username from cookie: " + username);
+        System.out.println("password from cookie: " + password);
+        if (username != null && password != null) {
+            SysUser sysUser = SysUser.dao.findByUsernameAndPassword(username, password);
             // 用户名密码正确且未被禁用
-            if(sysUser!=null && !sysUser.getDisabled().equals("1")){
+            if (sysUser != null && !sysUser.getDisabled().equals("1")) {
                 setSessionAttr(Constant.SYSTEM_USER, sysUser);
                 setSessionAttr(Constant.SYSTEM_USER_NAME, sysUser.getName());
                 SysUserRole sysUserRole = SysUserRole.dao.findRolesByUserId(sysUser.getId());
@@ -80,7 +90,7 @@ public class LoginController extends BaseController {
         }
         password = HashKit.sha1(password);
         if (!sysUser.getPassword().equals(password)) {
-            setAttr("username",username);
+            setAttr("username", username);
             setAttr("errMsg", " 密码错误。");
             render("login.html");
             return;
@@ -94,9 +104,9 @@ public class LoginController extends BaseController {
 
         String remember = getPara("remember");
         // 记住密码 && cookie 不存在
-        if("on".equals(remember) && getCookie("mycurd_username")==null){
-            setCookie("mycurd_username",username,1000*60*60*24*1); // 1天
-            setCookie("mycurd_password",password,1000*60*60*24*1);
+        if ("on".equals(remember) && getCookie(usernameKey) == null) {
+            setCookie(usernameKey, username, 1000 * 60 * 60 * 24 * 1); // 1天
+            setCookie(passwordKey, password, 1000 * 60 * 60 * 24 * 1);
         }
 
         //登录用户信息
@@ -134,8 +144,8 @@ public class LoginController extends BaseController {
         removeSessionAttr(Constant.OWN_MENU);
 
         // 清理 cookie （记住密码信息）
-        setCookie("mycurd_username",null,0);
-        setCookie("mycurd_password",null,0);
+        setCookie(usernameKey, null, 0);
+        setCookie(passwordKey, null, 0);
         redirect("/login");
     }
 

@@ -11,8 +11,8 @@ var TabTools = {
             _refresh_ifram.contentWindow.location.href = refresh_url;
         }
     },
-    // tab  关闭 menu
-    closeTab: function (tabsObj, menu, type) {
+    // tabMEnu
+    tabMenuControl: function (tabsObj, menu, type) {
         var allTabs = tabsObj.tabs("tabs");
         var allTabTitle = [];
         $.each(allTabs, function (i, n) {
@@ -43,6 +43,12 @@ var TabTools = {
                     tabsObj.tabs("close", allTabTitle[i]);
                 }
                 break;
+            case 4:
+                // 浏览器新窗口打开 tab
+                var tab = tabsObj.tabs("getTab",curTabTitle);
+                var targetUrl = $(tab).find("iframe").first().attr("src")
+                window.open(targetUrl,"_target");
+                break;
         }
     },
     // tab 增加 控制
@@ -56,7 +62,6 @@ var TabTools = {
 
                 //为其附加鼠标右键事件
                 onContextMenu: function (e, title, index) {
-                    //alert("right");
                     //该方法通知浏览器不要执行与此事件关联的默认动作
                     //即屏蔽了浏览器在tab页上的鼠标右键事件
                     e.preventDefault();
@@ -69,7 +74,7 @@ var TabTools = {
                     //为右键菜单选项绑定事件
                     mm.menu({
                         onClick: function (item) {
-                            that.closeTab(tabsControl, this, item.name);
+                            that.tabMenuControl(tabsControl, this, item.name);
                         }
                     });
                 }

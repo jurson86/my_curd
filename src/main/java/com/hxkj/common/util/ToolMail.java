@@ -42,9 +42,9 @@ public class ToolMail {
             String host, String port, boolean validate, String userName, String password,
             String from, List<String> to,
             String subject, String content, String[] attachFileNames) {
-            if (log.isInfoEnabled()) log.info("发送文本邮件");
-            SendMail mail = new SendMail(sendType_text, host, port, validate, userName, password, from, to, subject, content, attachFileNames);
-            mail.start();
+        if (log.isInfoEnabled()) log.info("发送文本邮件");
+        SendMail mail = new SendMail(sendType_text, host, port, validate, userName, password, from, to, subject, content, attachFileNames);
+        mail.start();
     }
 
     /**
@@ -65,9 +65,9 @@ public class ToolMail {
             String host, String port, boolean validate, String userName, String password,
             String from, List<String> to,
             String subject, String content, String[] attachFileNames) {
-            if (log.isInfoEnabled()) log.info("发送html邮件");
-            SendMail mail = new SendMail(sendType_html, host, port, validate, userName, password, from, to, subject, content, attachFileNames);
-            mail.start();
+        if (log.isInfoEnabled()) log.info("发送html邮件");
+        SendMail mail = new SendMail(sendType_html, host, port, validate, userName, password, from, to, subject, content, attachFileNames);
+        mail.start();
     }
 
     public static void main(String[] args) {

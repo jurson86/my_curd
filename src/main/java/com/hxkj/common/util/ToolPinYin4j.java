@@ -94,7 +94,8 @@ public class ToolPinYin4j {
     }
 
     public static void main(String[] args) {
-        System.out.println(getPingYin("单于"));;
+        System.out.println(getPingYin("单于"));
+        ;
     }
 
 }

@@ -4,7 +4,6 @@ import com.hxkj.LoginController;
 import com.hxkj.MainController;
 import com.hxkj.common.constant.Constant;
 import com.hxkj.system.controller.*;
-import com.hxkj.system.model.SysNews;
 import com.jfinal.config.Routes;
 
 
