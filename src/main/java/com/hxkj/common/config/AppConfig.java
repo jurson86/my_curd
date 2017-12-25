@@ -47,6 +47,7 @@ public class AppConfig extends JFinalConfig {
     public void configRoute(Routes me) {
         me.add(new SysRoute());     // system 模块 路由
         me.add(new GentestRoute()); // 代码生成测试 模块 路由
+        me.add(new ReadRoute());    // 阅读路由
     }
 
     @Override

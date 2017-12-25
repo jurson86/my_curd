@@ -96,7 +96,9 @@
 }
 
 
-
+.icon-download{
+	background:url('cus-icons/download.png') no-repeat center center;
+}
 
 .icon-excel{
 	background:url('cus-icons/excel.png') no-repeat center center;

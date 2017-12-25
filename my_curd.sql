@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50719
 File Encoding         : 65001
 
-Date: 2017-12-25 00:48:06
+Date: 2017-12-25 22:30:12
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -3874,7 +3874,7 @@ CREATE TABLE `sys_menu` (
   `sort` int(11) DEFAULT NULL,
   `pid` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=90 DEFAULT CHARSET=utf8 COMMENT='菜单表（权限表）';
+) ENGINE=InnoDB AUTO_INCREMENT=92 DEFAULT CHARSET=utf8 COMMENT='菜单表（权限表）';
 
 -- ----------------------------
 -- Records of sys_menu
@@ -3898,6 +3898,8 @@ INSERT INTO `sys_menu` VALUES ('86', '代码生成测试', '/', null, '1', null)
 INSERT INTO `sys_menu` VALUES ('87', '普通表', '/gentestBook', null, '1', '86');
 INSERT INTO `sys_menu` VALUES ('88', '三主键表', '/gentestMulpktable', null, '2', '86');
 INSERT INTO `sys_menu` VALUES ('89', '文章', '/sysNews', null, '2', '85');
+INSERT INTO `sys_menu` VALUES ('90', '阅读', '/', null, '0', null);
+INSERT INTO `sys_menu` VALUES ('91', '小说', '/novel', null, '1', '90');
 
 -- ----------------------------
 -- Table structure for `sys_news`
@@ -4358,6 +4360,13 @@ INSERT INTO `sys_oplog` VALUES ('944972372438417408', '916654989969981440', '通
 INSERT INTO `sys_oplog` VALUES ('944972388712316928', '916654989969981440', '退出', '0:0:0:0:0:0:0:1', '2017-12-25 00:45:48');
 INSERT INTO `sys_oplog` VALUES ('944972418806448128', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-25 00:45:56');
 INSERT INTO `sys_oplog` VALUES ('944972496375906304', '916654989969981440', '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2017-12-25 00:46:14');
+INSERT INTO `sys_oplog` VALUES ('944975153895309312', '916654989969981440', '退出', '0:0:0:0:0:0:0:1', '2017-12-25 00:56:48');
+INSERT INTO `sys_oplog` VALUES ('944975894139633664', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-25 00:59:44');
+INSERT INTO `sys_oplog` VALUES ('945284687117418496', '916654989969981440', '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2017-12-25 21:26:46');
+INSERT INTO `sys_oplog` VALUES ('945284928445087744', '916654989969981440', '退出', '0:0:0:0:0:0:0:1', '2017-12-25 21:27:44');
+INSERT INTO `sys_oplog` VALUES ('945284954529464320', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-25 21:27:50');
+INSERT INTO `sys_oplog` VALUES ('945297072360259584', '916654989969981440', '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2017-12-25 22:15:59');
+INSERT INTO `sys_oplog` VALUES ('945300234907418624', '916654989969981440', '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2017-12-25 22:28:33');
 
 -- ----------------------------
 -- Table structure for `sys_org`
@@ -4431,6 +4440,7 @@ INSERT INTO `sys_role_menu` VALUES ('3', '75');
 INSERT INTO `sys_role_menu` VALUES ('3', '87');
 INSERT INTO `sys_role_menu` VALUES ('3', '88');
 INSERT INTO `sys_role_menu` VALUES ('3', '89');
+INSERT INTO `sys_role_menu` VALUES ('3', '91');
 INSERT INTO `sys_role_menu` VALUES ('24', '60');
 INSERT INTO `sys_role_menu` VALUES ('27', '58');
 INSERT INTO `sys_role_menu` VALUES ('27', '59');
