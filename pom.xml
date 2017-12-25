@@ -18,6 +18,7 @@
         <guava.version>14.0.1</guava.version>
         <jodd.core.version>3.6.2</jodd.core.version>
         <jodd.bean.version>3.6.2</jodd.bean.version>
+        <httpClien.version>4.5.4</httpClien.version>
     </properties>
 
     <dependencies>
@@ -194,7 +195,17 @@
             <version>${jodd.bean.version}</version>
         </dependency>
 
-
+        <!-- httpclient -->
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient</artifactId>
+            <version>${httpClien.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>fluent-hc</artifactId>
+            <version>${httpClien.version}</version>
+        </dependency>
     </dependencies>
     <build>
         <finalName>my_curd</finalName>
