@@ -6,7 +6,7 @@
 
     // 新增 model
     function newModel() {
-        layerTools.layerIframe('fa-plus','新建', '${ctx!}/sysNews/newModel', '100%', '100%')
+        layerTools.layerIframe('fa-plus','新建', '${ctx!}/sysNews/newModel', '242mm', '90%')
     }
 
     // 编辑 model
@@ -15,7 +15,7 @@
         if (row != null) {
             var params="";
             params += 'id='+row.id;
-            layerTools.layerIframe('fa-pencil','编辑', '${ctx!}/sysNews/newModel?' + params, '100%', '100%')
+            layerTools.layerIframe('fa-pencil','编辑', '${ctx!}/sysNews/newModel?' + params, '242mm', '90%')
         } else {
             layerTools.layerMsg('请选择一行数据进行编辑');
         }

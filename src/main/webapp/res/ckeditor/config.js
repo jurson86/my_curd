@@ -12,9 +12,9 @@ CKEDITOR.editorConfig = function( config ) {
         { name: 'clipboard', items: [ 'Cut', 'Copy', '-', 'Undo', 'Redo' ] },
         { name: 'editing', items: [ 'Find', 'Replace' ] },
         { name: 'basicstyles', items: [ 'Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript', '-', 'CopyFormatting', 'RemoveFormat' ] },
-        { name: 'colors', items: [ 'TextColor', 'BGColor','Image','Table', 'Smiley','Iframe','Link', 'Unlink', 'Anchor', 'HorizontalRule',  'SpecialChar', 'PageBreak','Maximize' ] },
+        { name: 'colors', items: [ 'Image','Table', 'Smiley','Iframe','Link', 'Unlink', 'Anchor', 'HorizontalRule',  'SpecialChar', 'PageBreak','Maximize' ] },
         '/',
         { name: 'styles', items: [ 'Styles', 'Format', 'Font', 'FontSize' ] },
-        { name: 'paragraph', items: [ 'NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote', 'CreateDiv', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'] }
+        { name: 'paragraph', items: [ 'NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote', 'CreateDiv', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock','TextColor', 'BGColor'] }
     ];
 };
