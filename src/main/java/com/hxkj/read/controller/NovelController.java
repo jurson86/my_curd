@@ -4,6 +4,9 @@ import com.hxkj.common.util.BaseController;
 import com.hxkj.read.service.NovelService;
 import com.jfinal.kit.StrKit;
 
+import java.io.IOException;
+import java.io.PrintWriter;
+
 public class NovelController extends BaseController {
 
     public void index() {
@@ -37,5 +40,13 @@ public class NovelController extends BaseController {
     public void chapter() {
         String url = getPara(0);
         renderJson(NovelService.chapter(url));
+    }
+
+    public void test() throws IOException, InterruptedException {
+        PrintWriter out = getResponse().getWriter();
+        out.print("hello");
+        getRequest().startAsync();
+        Thread.sleep(3000);
+        out.println(" zhang chuang!");
     }
 }
