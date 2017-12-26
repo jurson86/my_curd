@@ -4,7 +4,9 @@ package com.hxkj.common.util;
 import com.jfinal.log.Log;
 import org.apache.commons.codec.binary.Base64;
 
+import javax.servlet.http.HttpServletRequest;
 import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.text.DecimalFormat;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -296,5 +298,35 @@ public abstract class ToolString {
         return classNameTemp.substring(0, 1) + classNameTemp.substring(1);
     }
 
+    /**
+     * 用于文件下载 文件名适配
+     *
+     * @param request
+     * @param fileName
+     * @return
+     */
+    public static String encodeFileName(HttpServletRequest request, String fileName) {
+        String userAgent = request.getHeader("User-Agent");
+
+        try {
+            String encodedFileName = URLEncoder.encode(fileName, "UTF8");
+            if (userAgent == null) {
+                return "filename=\"" + encodedFileName + "\"";
+            } else {
+                userAgent = userAgent.toLowerCase();
+                if (userAgent.indexOf("msie") != -1) {
+                    return "filename=\"" + encodedFileName + "\"";
+                } else if (userAgent.indexOf("opera") != -1) {
+                    return "filename*=UTF-8''" + encodedFileName;
+                } else if (userAgent.indexOf("safari") == -1 && userAgent.indexOf("applewebkit") == -1 && userAgent.indexOf("chrome") == -1) {
+                    return userAgent.indexOf("mozilla") != -1 ? "filename*=UTF-8''" + encodedFileName : "filename=\"" + encodedFileName + "\"";
+                } else {
+                    return "filename=\"" + new String(fileName.getBytes("UTF-8"), "ISO8859-1") + "\"";
+                }
+            }
+        } catch (UnsupportedEncodingException var5) {
+            throw new RuntimeException(var5);
+        }
+    }
 
 }

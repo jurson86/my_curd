@@ -1,11 +1,13 @@
 package com.hxkj.read.controller;
 
 import com.hxkj.common.util.BaseController;
+import com.hxkj.common.util.ToolString;
 import com.hxkj.read.service.NovelService;
 import com.jfinal.kit.StrKit;
 
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.util.Map;
+
 
 public class NovelController extends BaseController {
 
@@ -19,11 +21,11 @@ public class NovelController extends BaseController {
         Integer start = (pageNumber - 1) * limit;
 
         String keyword = getPara("keyword");
-        if(StrKit.isBlank(keyword)){
+        if (StrKit.isBlank(keyword)) {
             String category = StrKit.isBlank(getPara("category")) ? "gender=male&major=都市" : getPara("category");
             renderJson(NovelService.category(category, start, limit));
-        }else{
-            renderJson(NovelService.fuzzySearch(keyword,start,limit));
+        } else {
+            renderJson(NovelService.fuzzySearch(keyword, start, limit));
         }
     }
 
@@ -42,11 +44,29 @@ public class NovelController extends BaseController {
         renderJson(NovelService.chapter(url));
     }
 
-    public void test() throws IOException, InterruptedException {
-        PrintWriter out = getResponse().getWriter();
-        out.print("hello");
-        getRequest().startAsync();
-        Thread.sleep(3000);
-        out.println(" zhang chuang!");
+
+    public void download() throws IOException {
+        String nid = getPara("nid");
+        String title = getPara("title");
+        if (StrKit.isBlank(nid)) {
+            renderText("小说id必须");
+            return;
+        }
+        if (StrKit.isBlank(title)) {
+            renderText("小说名字必须");
+            return;
+        }
+
+        Map<String, Object> map = NovelService.saveInMap(nid);
+        Integer code = (Integer) map.get("code");
+        if (code == -1) {
+            renderText((String) map.get("message"));
+            return;
+        }
+        StringBuilder sb = (StringBuilder) map.get("content");
+        getResponse().setHeader("Accept-Ranges", "bytes");
+        getResponse().setHeader("Content-Disposition", "attachment;" + ToolString.encodeFileName(getRequest(), title + ".txt"));
+        renderText(sb.toString());
+
     }
 }

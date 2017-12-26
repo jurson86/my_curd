@@ -108,7 +108,7 @@ public class SysDictController extends BaseController {
         String fields = getPara("fields");  //查询的字段 例如dict_key as label, dict_value as value
         String type = getPara("type");      // 字典字段类型
         Preconditions.checkNotNull(fields, "fields字段信息不能为空");
-        String strWhere = StrKit.notBlank(type) ? " where  dict_type = '" + type+"'" : "";
+        String strWhere = StrKit.notBlank(type) ? " where  dict_type = '" + type + "'" : "";
         List<Record> codeData = Db.find("select " + fields + " from  sys_dict" + strWhere);
         String jsonStr = JsonKit.toJson(codeData);
 

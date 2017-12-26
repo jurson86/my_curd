@@ -9,6 +9,23 @@
 </head>
 <body>
 <script type="text/javascript">
+
+    function downloadModel() {
+        var row = $("#dg").treegrid("getSelected");
+        if (row != null) {
+            $("#nid").val(row._id);
+            $("#ntitle").val(row.title);
+            layerTools.layerMsg("即将打开新tab下载小说，可能需要一点时间",function () {
+                document.downloadForm.submit();
+            });
+
+        } else {
+            layerTools.layerMsg('请先选择一行数据');
+        }
+    }
+
+
+
     //条件查询
     function queryModel() {
         var queryParams = {};
@@ -18,7 +35,10 @@
     }
 
     function cateformat(val,row){
-      return row.majorCate+" : "+row.minorCate;
+        if(row.majorCate == undefined || row.minorCate == undefined){
+            return row.cat;
+        }
+        return row.majorCate+"   "+row.minorCate;
     }
     function shorIntroFormat(val,row){
         return "<div style='padding: 5px;'><p class='datagrid-p'>"+val.replace("\n","<p class='datagrid-p'>")+"</div>";
@@ -34,6 +54,10 @@
         return "<b>"+val+"</b>";
     }
 </script>
+<form name="downloadForm" action="${ctx!}/novel/download" method="POST" target="_blank">
+    <input type="hidden" name="nid" id="nid">
+    <input type="hidden" name="title" id="ntitle">
+</form>
 <table id="dg" class="easyui-datagrid"
        url="${ctx!}/novel/query"
        toolbar="#tb" rownumbers="true"
@@ -45,7 +69,7 @@
     <thead>
     <tr>
         <th field="cover" width="50" align="center" formatter="coverFormat">图片</th>
-        <th field="title" width="60" formatter="titleFormat">书名</th>
+        <th field="title" width="40" formatter="titleFormat">书名</th>
         <th field="shortIntro" width="200"    formatter="shorIntroFormat">简介</th>
         <th field="author" width="30">作者</th>
         <th field="minorCate" width="60" formatter="cateformat">分类</th>

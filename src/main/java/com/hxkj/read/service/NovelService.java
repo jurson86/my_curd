@@ -1,6 +1,7 @@
 package com.hxkj.read.service;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.hxkj.common.util.ToolRandom;
 import org.apache.commons.io.FileUtils;
@@ -9,9 +10,11 @@ import org.apache.http.client.fluent.Request;
 import org.apache.log4j.Logger;
 
 import java.io.File;
+import java.io.IOException;
 import java.net.URLEncoder;
 import java.nio.charset.Charset;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 
 public class NovelService {
@@ -29,16 +32,17 @@ public class NovelService {
 
     /**
      * 模糊查询
+     *
      * @param keyword
      * @param start
      * @param limit
      */
-    public  static Map<String, Object> fuzzySearch(String keyword, Integer start, Integer limit){
+    public static Map<String, Object> fuzzySearch(String keyword, Integer start, Integer limit) {
         Map<String, Object> map = new HashMap<String, Object>();
         try {
-            String url ="http://api.zhuishushenqi.com/book/fuzzy-search?query=" +keyword +
+            String url = "http://api.zhuishushenqi.com/book/fuzzy-search?query=" + keyword +
                     "&start=" + start + "&limit=" + limit;
-            LOGGER.info("fuzzySearch url: "+url);
+            LOGGER.info("fuzzySearch url: " + url);
             Content content = Request.Get(url)
                     .setHeader("User-Agent", userAgents[ToolRandom.number(0, 6)])
                     .execute().returnContent();
@@ -70,6 +74,7 @@ public class NovelService {
 
     /**
      * 小说分类
+     *
      * @param category
      * @param start
      * @param limit
@@ -78,11 +83,11 @@ public class NovelService {
     public static Map<String, Object> category(String category, Integer start, Integer limit) {
         Map<String, Object> map = new HashMap<String, Object>();
         try {
-            String url ="http://api.zhuishushenqi.com/book/by-categories?" +
-                     category+
-                    "&type=hot"+
+            String url = "http://api.zhuishushenqi.com/book/by-categories?" +
+                    category +
+                    "&type=hot" +
                     "&start=" + start + "&limit=" + limit;
-            LOGGER.info("category url: "+url);
+            LOGGER.info("category url: " + url);
             Content content = Request.Get(url)
                     .setHeader("User-Agent", userAgents[ToolRandom.number(0, 6)])
                     .execute().returnContent();
@@ -121,7 +126,7 @@ public class NovelService {
         Map<String, Object> map = new HashMap<String, Object>();
         try {
             String url = "http://api.zhuishushenqi.com/book/" + nid;
-            LOGGER.info("novel url:"+url);
+            LOGGER.info("novel url:" + url);
             Content content = Request.Get(url).setHeader("User-Agent", userAgents[ToolRandom.number(0, 6)])
                     .execute().returnContent();
             String jsonStr = content.asString(Charset.forName(charset));
@@ -151,7 +156,7 @@ public class NovelService {
         Map<String, Object> map = new HashMap<String, Object>();
         try {
             String url = "http://api.zhuishushenqi.com/mix-atoc/" + nid + "?view=chapters";
-            LOGGER.info("chapters url:"+url);
+            LOGGER.info("chapters url:" + url);
             Content content = Request.Get(url)
                     .setHeader("User-Agent", userAgents[ToolRandom.number(0, 6)])
                     .execute().returnContent();
@@ -184,7 +189,7 @@ public class NovelService {
         try {
             url = URLEncoder.encode(url, "utf-8");
             String dUrl = "http://chapter2.zhuishushenqi.com/chapter/" + url;
-            LOGGER.info("chapter url:"+dUrl);
+            LOGGER.info("chapter url:" + dUrl);
             Content content = Request.Get(dUrl)
                     .setHeader("User-Agent", userAgents[ToolRandom.number(0, 6)])
                     .execute().returnContent();
@@ -205,8 +210,88 @@ public class NovelService {
         return map;
     }
 
-    public void saveToTxt(String nid, File txtFile){
+    /**
+     * 小说文本放入 map
+     * // TODO 多线程方案
+     *
+     * @param nid
+     * @return
+     */
+    public static Map<String, Object> saveInMap(String nid) {
+        Map<String, Object> map = new HashMap<String, Object>();
+        StringBuilder sb = new StringBuilder();
+        Map<String, Object> stepOneMap = chapters(nid);
+        Integer stepOneCode = (Integer) stepOneMap.get("code");
+        if (stepOneCode == -1) {
+            return stepOneMap;
+        }
+        JSONArray jsonArray = (JSONArray) stepOneMap.get("rows");
 
+        Iterator it = jsonArray.iterator();
+        int count = 1;
+        while (it.hasNext()) {
+            JSONObject chapterObj = (JSONObject) it.next();
+            if (!chapterObj.getBoolean("unreadble")) {
+                Map<String, Object> stepTwoMap = chapter(chapterObj.getString("link"));
+                Integer stepTwoCode = (Integer) stepTwoMap.get("code");
+                if (stepTwoCode == 1) {
+                    JSONObject cObj = (JSONObject) stepTwoMap.get("chapterDetail");
+                    sb.append("第 " + count + " 章 \n" + chapterObj.getString("title") + " \n" + cObj.getString("body") + " \n");
+                    System.out.println("count: " + count + chapterObj.getString("title"));
+                    count++;
+                }
+            }
+        }
+        map.put("code", 1);
+        map.put("content", sb);
+        return map;
+    }
+
+
+    /**
+     * 小说文本存入 文件中
+     * //TODO  多线程方案
+     *
+     * @param nid
+     * @param txtFile
+     * @return
+     */
+    public static Map<String, Object> saveToTxt(String nid, File txtFile) {
+        Map<String, Object> map = new HashMap<String, Object>();
+        Map<String, Object> stepOneMap = chapters(nid);
+        Integer stepOneCode = (Integer) stepOneMap.get("code");
+        if (stepOneCode == -1) {
+            return stepOneMap;
+        }
+        JSONArray jsonArray = (JSONArray) stepOneMap.get("rows");
+
+        Iterator it = jsonArray.iterator();
+        int count = 1;
+        while (it.hasNext()) {
+            JSONObject chapterObj = (JSONObject) it.next();
+            if (!chapterObj.getBoolean("unreadble")) {
+                Map<String, Object> stepTwoMap = chapter(chapterObj.getString("link"));
+                Integer stepTwoCode = (Integer) stepTwoMap.get("code");
+                if (stepTwoCode == 1) {
+                    try {
+                        JSONObject cObj = (JSONObject) stepTwoMap.get("chapterDetail");
+                        FileUtils.write(txtFile, "第 " + count + " 章 \n" + chapterObj.getString("title") + " \n" + cObj.getString("body") + " \n", "UTF-8", true);
+                        System.out.println("count: " + count + chapterObj.getString("title"));
+                        count++;
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                        LOGGER.error(e.getMessage());
+                    }
+                }
+            }
+        }
+        map.put("code", 1);
+        map.put("path", txtFile.getAbsolutePath());
+        return map;
+    }
+
+    public static void main(String[] args) {
+        saveToTxt("53fb5e6581d0bda6124fe509", new File("E:/fuck.txt"));
     }
 
 }
