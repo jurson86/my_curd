@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50719
 File Encoding         : 65001
 
-Date: 2017-12-25 22:30:12
+Date: 2017-12-26 13:47:01
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -3703,7 +3703,7 @@ CREATE TABLE `sys_dict` (
   `dict_value` varchar(100) NOT NULL DEFAULT '' COMMENT '值',
   `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '创建时间',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=139 DEFAULT CHARSET=utf8 COMMENT='数据字典';
+) ENGINE=InnoDB AUTO_INCREMENT=170 DEFAULT CHARSET=utf8 COMMENT='数据字典';
 
 -- ----------------------------
 -- Records of sys_dict
@@ -3839,6 +3839,35 @@ INSERT INTO `sys_dict` VALUES ('135', 'cost', '鼎恒投资', '8', '2017-12-15 2
 INSERT INTO `sys_dict` VALUES ('136', 'cost', '恒星贸易', '9', '2017-12-15 23:20:37');
 INSERT INTO `sys_dict` VALUES ('137', 'cost', '恒星新材料', '10', '2017-12-15 23:20:37');
 INSERT INTO `sys_dict` VALUES ('138', 'cost', '售电公司', '15', '2017-12-15 23:20:37');
+INSERT INTO `sys_dict` VALUES ('141', 'category', '玄幻', 'gender=male&major=玄幻', '2017-12-26 11:52:43');
+INSERT INTO `sys_dict` VALUES ('142', 'category', '奇幻', 'gender=male&major=奇幻', '2017-12-26 11:52:43');
+INSERT INTO `sys_dict` VALUES ('143', 'category', '武侠', 'gender=male&major=武侠', '2017-12-26 11:52:43');
+INSERT INTO `sys_dict` VALUES ('144', 'category', '仙侠', 'gender=male&major=仙侠', '2017-12-26 11:52:43');
+INSERT INTO `sys_dict` VALUES ('145', 'category', '都市', 'gender=male&major=都市', '2017-12-26 11:52:43');
+INSERT INTO `sys_dict` VALUES ('146', 'category', '职场', 'gender=male&major=职场', '2017-12-26 11:52:43');
+INSERT INTO `sys_dict` VALUES ('147', 'category', '历史', 'gender=male&major=历史', '2017-12-26 11:52:43');
+INSERT INTO `sys_dict` VALUES ('148', 'category', '军事', 'gender=male&major=军事', '2017-12-26 11:52:43');
+INSERT INTO `sys_dict` VALUES ('149', 'category', '游戏', 'gender=male&major=游戏', '2017-12-26 11:52:43');
+INSERT INTO `sys_dict` VALUES ('150', 'category', '竞技', 'gender=male&major=竞技', '2017-12-26 11:52:43');
+INSERT INTO `sys_dict` VALUES ('151', 'category', '科幻', 'gender=male&major=科幻', '2017-12-26 11:52:43');
+INSERT INTO `sys_dict` VALUES ('152', 'category', '灵异', 'gender=male&major=灵异', '2017-12-26 11:52:43');
+INSERT INTO `sys_dict` VALUES ('153', 'category', '同人', 'gender=male&major=同人', '2017-12-26 11:52:43');
+INSERT INTO `sys_dict` VALUES ('154', 'category', '轻小说', 'gender=male&major=轻小说', '2017-12-26 11:52:43');
+INSERT INTO `sys_dict` VALUES ('155', 'category', '传记名著', 'gender=press&major=传记名著', '2017-12-26 11:56:30');
+INSERT INTO `sys_dict` VALUES ('156', 'category', '人文社科', 'gender=press&major=人文社科', '2017-12-26 11:56:33');
+INSERT INTO `sys_dict` VALUES ('157', 'category', '成功励志', 'gender=press&major=成功励志', '2017-12-26 11:56:36');
+INSERT INTO `sys_dict` VALUES ('158', 'category', '女频-古代言情', 'gender=female&major=古代言情', '0000-00-00 00:00:00');
+INSERT INTO `sys_dict` VALUES ('159', 'category', '女频-现代言情', 'gender=female&major=现代言情', '0000-00-00 00:00:00');
+INSERT INTO `sys_dict` VALUES ('160', 'category', '女频-青春校园', 'gender=female&major=青春校园', '0000-00-00 00:00:00');
+INSERT INTO `sys_dict` VALUES ('161', 'category', '女频-纯爱', 'gender=female&major=纯爱', '0000-00-00 00:00:00');
+INSERT INTO `sys_dict` VALUES ('162', 'category', '女频-玄幻奇幻', 'gender=female&major=玄幻奇幻', '0000-00-00 00:00:00');
+INSERT INTO `sys_dict` VALUES ('163', 'category', '女频-武侠仙侠', 'gender=female&major=武侠仙侠', '0000-00-00 00:00:00');
+INSERT INTO `sys_dict` VALUES ('164', 'category', '女频-科幻', 'gender=female&major=科幻', '0000-00-00 00:00:00');
+INSERT INTO `sys_dict` VALUES ('165', 'category', '女频-游戏竞技', 'gender=female&major=游戏竞技', '0000-00-00 00:00:00');
+INSERT INTO `sys_dict` VALUES ('166', 'category', '女频-悬疑灵异', 'gender=female&major=悬疑灵异', '0000-00-00 00:00:00');
+INSERT INTO `sys_dict` VALUES ('167', 'category', '女频-同人', 'gender=female&major=同人', '0000-00-00 00:00:00');
+INSERT INTO `sys_dict` VALUES ('168', 'category', '女频-女尊', 'gender=female&major=女尊', '0000-00-00 00:00:00');
+INSERT INTO `sys_dict` VALUES ('169', 'category', '女频-莉莉', 'gender=female&major=莉莉', '0000-00-00 00:00:00');
 
 -- ----------------------------
 -- Table structure for `sys_file`
@@ -4367,6 +4396,16 @@ INSERT INTO `sys_oplog` VALUES ('945284928445087744', '916654989969981440', '退
 INSERT INTO `sys_oplog` VALUES ('945284954529464320', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-25 21:27:50');
 INSERT INTO `sys_oplog` VALUES ('945297072360259584', '916654989969981440', '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2017-12-25 22:15:59');
 INSERT INTO `sys_oplog` VALUES ('945300234907418624', '916654989969981440', '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2017-12-25 22:28:33');
+INSERT INTO `sys_oplog` VALUES ('945457397944549376', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-26 08:53:04');
+INSERT INTO `sys_oplog` VALUES ('945467973286494208', '916654989969981440', '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2017-12-26 09:35:05');
+INSERT INTO `sys_oplog` VALUES ('945485761992458240', '916654989969981440', '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2017-12-26 10:45:46');
+INSERT INTO `sys_oplog` VALUES ('945489943306698752', '916654989969981440', '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2017-12-26 11:02:23');
+INSERT INTO `sys_oplog` VALUES ('945491449258967040', '916654989969981440', '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2017-12-26 11:08:22');
+INSERT INTO `sys_oplog` VALUES ('945492002886123520', '916654989969981440', '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2017-12-26 11:10:34');
+INSERT INTO `sys_oplog` VALUES ('945495031878254592', '916654989969981440', '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2017-12-26 11:22:36');
+INSERT INTO `sys_oplog` VALUES ('945510552912789504', '916654989969981440', '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2017-12-26 12:24:17');
+INSERT INTO `sys_oplog` VALUES ('945511541212446720', '916654989969981440', '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2017-12-26 12:28:12');
+INSERT INTO `sys_oplog` VALUES ('945520764226895872', '916654989969981440', '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2017-12-26 13:04:51');
 
 -- ----------------------------
 -- Table structure for `sys_org`
@@ -4380,7 +4419,7 @@ CREATE TABLE `sys_org` (
   `sort` int(11) DEFAULT NULL,
   `pid` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=80 DEFAULT CHARSET=utf8 COMMENT='组织机构表';
+) ENGINE=InnoDB AUTO_INCREMENT=82 DEFAULT CHARSET=utf8 COMMENT='组织机构表';
 
 -- ----------------------------
 -- Records of sys_org
@@ -4391,6 +4430,7 @@ INSERT INTO `sys_org` VALUES ('76', '人力资源部', '办公楼 307', '负责�
 INSERT INTO `sys_org` VALUES ('77', '采购部', '办公楼104', '负责企业内部的商品采购工作', '3', '74');
 INSERT INTO `sys_org` VALUES ('78', '销售部', null, null, '4', '74');
 INSERT INTO `sys_org` VALUES ('79', '财务部', null, null, '5', '74');
+INSERT INTO `sys_org` VALUES ('81', '1', '1', '1', '6', '74');
 
 -- ----------------------------
 -- Table structure for `sys_role`
