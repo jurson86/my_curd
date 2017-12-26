@@ -3,10 +3,12 @@ package com.hxkj.read.service;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.hxkj.common.util.ToolRandom;
+import org.apache.commons.io.FileUtils;
 import org.apache.http.client.fluent.Content;
 import org.apache.http.client.fluent.Request;
 import org.apache.log4j.Logger;
 
+import java.io.File;
 import java.net.URLEncoder;
 import java.nio.charset.Charset;
 import java.util.HashMap;
@@ -26,38 +28,79 @@ public class NovelService {
 
 
     /**
-     * 小说分类
-     *
-     * @param gender
-     * @param major
+     * 模糊查询
+     * @param keyword
      * @param start
      * @param limit
-     * @return
      */
-    public static Map<String, Object> category(String gender, String major, Integer start, Integer limit) {
+    public  static Map<String, Object> fuzzySearch(String keyword, Integer start, Integer limit){
         Map<String, Object> map = new HashMap<String, Object>();
         try {
-            Content content = Request.Get("http://novel.juhe.im/category-info?" +
-                    "gender=" + gender +
-                    "&type=hot&major=" + major +
-                    "&start=" + start + "&limit=" + limit)
+            String url ="http://api.zhuishushenqi.com/book/fuzzy-search?query=" +keyword +
+                    "&start=" + start + "&limit=" + limit;
+            LOGGER.info("fuzzySearch url: "+url);
+            Content content = Request.Get(url)
                     .setHeader("User-Agent", userAgents[ToolRandom.number(0, 6)])
                     .execute().returnContent();
             String jsonStr = content.asString(Charset.forName(charset));
             JSONObject jsonObject = JSON.parseObject(jsonStr);
-            if (jsonObject.getInteger("code") == 1) {
+            if (!jsonObject.getBoolean("ok")) {
+                map.put("code", -1);
+                map.put("message", jsonObject.getString("msg"));
+            } else {
                 map.put("code", 1);
-                JSONObject dataObj = (JSONObject) jsonObject.get("data");
-                Integer total = dataObj.getInteger("total");
+                Integer total = jsonObject.getInteger("total");
+                // 允许翻1000 条
                 if (total > 1000) {
                     map.put("total", 1000);
                 } else {
-                    map.put("total", dataObj.get("total"));
+                    map.put("total", jsonObject.get("total"));
                 }
-                map.put("rows", dataObj.get("books"));
-            } else {
+                map.put("rows", jsonObject.get("books"));
+            }
+        } catch (Exception e) {
+            LOGGER.error(e.getMessage());
+            map.put("code", -1);
+            map.put("message", e.getMessage());
+        }
+        return map;
+
+    }
+
+
+    /**
+     * 小说分类
+     * @param category
+     * @param start
+     * @param limit
+     * @return
+     */
+    public static Map<String, Object> category(String category, Integer start, Integer limit) {
+        Map<String, Object> map = new HashMap<String, Object>();
+        try {
+            String url ="http://api.zhuishushenqi.com/book/by-categories?" +
+                     category+
+                    "&type=hot"+
+                    "&start=" + start + "&limit=" + limit;
+            LOGGER.info("category url: "+url);
+            Content content = Request.Get(url)
+                    .setHeader("User-Agent", userAgents[ToolRandom.number(0, 6)])
+                    .execute().returnContent();
+            String jsonStr = content.asString(Charset.forName(charset));
+            JSONObject jsonObject = JSON.parseObject(jsonStr);
+            if (!jsonObject.getBoolean("ok")) {
                 map.put("code", -1);
-                map.put("message", jsonObject.getString("message"));
+                map.put("message", jsonObject.getString("msg"));
+            } else {
+                map.put("code", 1);
+                Integer total = jsonObject.getInteger("total");
+                // 允许翻1000 条
+                if (total > 1000) {
+                    map.put("total", 1000);
+                } else {
+                    map.put("total", jsonObject.get("total"));
+                }
+                map.put("rows", jsonObject.get("books"));
             }
         } catch (Exception e) {
             LOGGER.error(e.getMessage());
@@ -77,7 +120,9 @@ public class NovelService {
     public static Map<String, Object> novel(String nid) {
         Map<String, Object> map = new HashMap<String, Object>();
         try {
-            Content content = Request.Get("http://api.zhuishushenqi.com/book/" + nid).setHeader("User-Agent", userAgents[ToolRandom.number(0, 6)])
+            String url = "http://api.zhuishushenqi.com/book/" + nid;
+            LOGGER.info("novel url:"+url);
+            Content content = Request.Get(url).setHeader("User-Agent", userAgents[ToolRandom.number(0, 6)])
                     .execute().returnContent();
             String jsonStr = content.asString(Charset.forName(charset));
             JSONObject jsonObject = JSON.parseObject(jsonStr);
@@ -105,7 +150,9 @@ public class NovelService {
     public static Map<String, Object> chapters(String nid) {
         Map<String, Object> map = new HashMap<String, Object>();
         try {
-            Content content = Request.Get("http://api.zhuishushenqi.com/mix-atoc/" + nid + "?view=chapters")
+            String url = "http://api.zhuishushenqi.com/mix-atoc/" + nid + "?view=chapters";
+            LOGGER.info("chapters url:"+url);
+            Content content = Request.Get(url)
                     .setHeader("User-Agent", userAgents[ToolRandom.number(0, 6)])
                     .execute().returnContent();
             String jsonStr = content.asString(Charset.forName(charset));
@@ -136,7 +183,9 @@ public class NovelService {
         Map<String, Object> map = new HashMap<String, Object>();
         try {
             url = URLEncoder.encode(url, "utf-8");
-            Content content = Request.Get("http://chapter2.zhuishushenqi.com/chapter/" + url)
+            String dUrl = "http://chapter2.zhuishushenqi.com/chapter/" + url;
+            LOGGER.info("chapter url:"+dUrl);
+            Content content = Request.Get(dUrl)
                     .setHeader("User-Agent", userAgents[ToolRandom.number(0, 6)])
                     .execute().returnContent();
             String jsonStr = content.asString(Charset.forName(charset));
@@ -154,6 +203,10 @@ public class NovelService {
             map.put("message", e.getMessage());
         }
         return map;
+    }
+
+    public void saveToTxt(String nid, File txtFile){
+
     }
 
 }

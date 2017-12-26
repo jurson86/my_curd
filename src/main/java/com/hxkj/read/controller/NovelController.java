@@ -2,6 +2,7 @@ package com.hxkj.read.controller;
 
 import com.hxkj.common.util.BaseController;
 import com.hxkj.read.service.NovelService;
+import com.jfinal.kit.StrKit;
 
 public class NovelController extends BaseController {
 
@@ -9,13 +10,18 @@ public class NovelController extends BaseController {
         render("read/novel.html");
     }
 
-    public void category() {
-        String gender = getPara("gender") == null ? "male" : getPara("gender");
-        String major = getPara("major") == null ? "都市" : getPara("major");
+    public void query() {
         Integer pageNumber = getParaToInt("page") == null ? 1 : getParaToInt("page");
         Integer limit = getParaToInt("rows") == null ? 20 : getParaToInt("rows");
         Integer start = (pageNumber - 1) * limit;
-        renderJson(NovelService.category(gender, major, start, limit));
+
+        String keyword = getPara("keyword");
+        if(StrKit.isBlank(keyword)){
+            String category = StrKit.isBlank(getPara("category")) ? "gender=male&major=都市" : getPara("category");
+            renderJson(NovelService.category(category, start, limit));
+        }else{
+            renderJson(NovelService.fuzzySearch(keyword,start,limit));
+        }
     }
 
     public void novel() {

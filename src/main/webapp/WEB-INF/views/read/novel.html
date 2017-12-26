@@ -12,7 +12,8 @@
     //条件查询
     function queryModel() {
         var queryParams = {};
-        queryParams['search_LIKE_title'] = $("#title").textbox("getValue");
+        queryParams['category'] = $("#category").combobox("getValue");
+        queryParams['keyword'] = $("#fuzzyQuery").textbox("getValue");
         $('#dg').datagrid('load', queryParams);
     }
 
@@ -34,7 +35,7 @@
     }
 </script>
 <table id="dg" class="easyui-datagrid"
-       url="${ctx!}/novel/category"
+       url="${ctx!}/novel/query"
        toolbar="#tb" rownumbers="true"
        fitColumns="true"
        nowrap="false"
@@ -53,9 +54,13 @@
     </thead>
 </table>
 <div id="tb">
+
     <a onclick="downloadModel()" href="#" class="easyui-linkbutton" iconCls="icon-download" plain="true">下载</a>
     <span id="enterSpan"   class="searchInputArea" >
-          <input id="title" prompt="书名" class="easyui-textbox" style="width:120px; ">
+         <input id="category" prompt="类型" class="easyui-combobox" style="width:120px; "
+                data-options="url:'${ctx!}/sysDict/queryDictData?type=category&fields=dict_key as text, dict_value as value'">
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <input id="fuzzyQuery" prompt="模糊查询" class="easyui-textbox" style="width:120px; ">
           <a href="#" class="easyui-linkbutton" iconCls="icon-search" onclick="queryModel()">搜索</a>
     </span>
 </div>
