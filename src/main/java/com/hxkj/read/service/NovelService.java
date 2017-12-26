@@ -7,6 +7,7 @@ import com.hxkj.common.util.ToolRandom;
 import org.apache.commons.io.FileUtils;
 import org.apache.http.client.fluent.Content;
 import org.apache.http.client.fluent.Request;
+import org.apache.http.entity.ContentType;
 import org.apache.log4j.Logger;
 
 import java.io.File;
@@ -290,8 +291,13 @@ public class NovelService {
         return map;
     }
 
-    public static void main(String[] args) {
-        saveToTxt("53fb5e6581d0bda6124fe509", new File("E:/fuck.txt"));
+    public static void main(String[] args) throws IOException {
+        File txt = new File("E://柯南世界里的巫师.txt");
+        Content content = Request.Post("https://www.baidu.com")
+                .bodyFile(txt, ContentType.getByMimeType("txt"))
+                .execute().returnContent();
+
+        System.out.println(content.asString());
     }
 
 }
