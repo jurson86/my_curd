@@ -57,7 +57,7 @@ public class NovelController extends BaseController {
             return;
         }
 
-        Map<String, Object> map = NovelService.saveInMap(nid);
+        Map<String, Object> map = NovelService.saveInMapQuick(nid);
         Integer code = (Integer) map.get("code");
         if (code == -1) {
             renderText((String) map.get("message"));

@@ -7,7 +7,6 @@ import com.hxkj.common.util.ToolRandom;
 import org.apache.commons.io.FileUtils;
 import org.apache.http.client.fluent.Content;
 import org.apache.http.client.fluent.Request;
-import org.apache.http.entity.ContentType;
 import org.apache.log4j.Logger;
 
 import java.io.File;
@@ -17,6 +16,9 @@ import java.nio.charset.Charset;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
 
 public class NovelService {
     private final static Logger LOGGER = Logger.getLogger(NovelService.class);
@@ -43,7 +45,7 @@ public class NovelService {
         try {
             String url = "http://api.zhuishushenqi.com/book/fuzzy-search?query=" + keyword +
                     "&start=" + start + "&limit=" + limit;
-            LOGGER.info("fuzzySearch url: " + url);
+            LOGGER.debug("fuzzySearch url: " + url);
             Content content = Request.Get(url)
                     .setHeader("User-Agent", userAgents[ToolRandom.number(0, 6)])
                     .execute().returnContent();
@@ -88,7 +90,7 @@ public class NovelService {
                     category +
                     "&type=hot" +
                     "&start=" + start + "&limit=" + limit;
-            LOGGER.info("category url: " + url);
+            LOGGER.debug("category url: " + url);
             Content content = Request.Get(url)
                     .setHeader("User-Agent", userAgents[ToolRandom.number(0, 6)])
                     .execute().returnContent();
@@ -127,7 +129,7 @@ public class NovelService {
         Map<String, Object> map = new HashMap<String, Object>();
         try {
             String url = "http://api.zhuishushenqi.com/book/" + nid;
-            LOGGER.info("novel url:" + url);
+            LOGGER.debug("novel url:" + url);
             Content content = Request.Get(url).setHeader("User-Agent", userAgents[ToolRandom.number(0, 6)])
                     .execute().returnContent();
             String jsonStr = content.asString(Charset.forName(charset));
@@ -157,7 +159,7 @@ public class NovelService {
         Map<String, Object> map = new HashMap<String, Object>();
         try {
             String url = "http://api.zhuishushenqi.com/mix-atoc/" + nid + "?view=chapters";
-            LOGGER.info("chapters url:" + url);
+            LOGGER.debug("chapters url:" + url);
             Content content = Request.Get(url)
                     .setHeader("User-Agent", userAgents[ToolRandom.number(0, 6)])
                     .execute().returnContent();
@@ -190,7 +192,7 @@ public class NovelService {
         try {
             url = URLEncoder.encode(url, "utf-8");
             String dUrl = "http://chapter2.zhuishushenqi.com/chapter/" + url;
-            LOGGER.info("chapter url:" + dUrl);
+            LOGGER.debug("chapter url:" + dUrl);
             Content content = Request.Get(dUrl)
                     .setHeader("User-Agent", userAgents[ToolRandom.number(0, 6)])
                     .execute().returnContent();
@@ -249,6 +251,8 @@ public class NovelService {
     }
 
 
+
+
     /**
      * 小说文本存入 文件中
      * //TODO  多线程方案
@@ -291,13 +295,122 @@ public class NovelService {
         return map;
     }
 
-    public static void main(String[] args) throws IOException {
-        File txt = new File("E://柯南世界里的巫师.txt");
-        Content content = Request.Post("https://www.baidu.com")
-                .bodyFile(txt, ContentType.getByMimeType("txt"))
-                .execute().returnContent();
 
-        System.out.println(content.asString());
+    /**
+     * 不适合在 用户很多的 web 环境下
+     * @param nid
+     * @return
+     */
+    public static Map<String, Object> saveInMapQuick(String nid) {
+        ExecutorService executorService = Executors.newFixedThreadPool(5);
+        Map<String, Object> map = new HashMap<String, Object>();
+        StringBuilder sb = new StringBuilder();
+        Map<String, Object> stepOneMap = chapters(nid);
+        Integer stepOneCode = (Integer) stepOneMap.get("code");
+        if (stepOneCode == -1) {
+            return stepOneMap;
+        }
+        JSONArray jsonArray = (JSONArray) stepOneMap.get("rows");
+        Iterator it = jsonArray.iterator();
+        while (it.hasNext()) {
+            JSONObject jsonObject = (JSONObject) it.next();
+            executorService.execute(new Runnable() {
+                @Override
+                public void run() {
+                    if (!jsonObject.getBoolean("unreadble")) {
+                        Map<String, Object> stepTwoMap = chapter(jsonObject.getString("link"));
+                        Integer stepTwoCode = (Integer) stepTwoMap.get("code");
+                        if (stepTwoCode == 1) {
+                            JSONObject cObj = (JSONObject) stepTwoMap.get("chapterDetail");
+                            jsonObject.put("body", cObj.getString("body"));
+                        }
+                    }
+                }
+            });
+        }
+        executorService.shutdown();
+        while (true) {
+            if (executorService.isTerminated()) {
+                Iterator it2 = jsonArray.iterator();
+                int count = 1;
+                while (it2.hasNext()) {
+                    JSONObject jsonObject = (JSONObject) it2.next();
+                    sb.append("第 " + (count) + " 章 \n" + jsonObject.getString("title") + " \n" + jsonObject.getString("body") + " \n");
+                    //System.out.println("count: " + count + jsonObject.getString("title"));
+                    count++;
+                }
+                break;
+            }
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+        map.put("code", 1);
+        map.put("content", sb);
+        return map;
     }
+
+
+    public static Map<String, Object> saveToTxtQuick(String nid, File txtFile) {
+        Map<String, Object> map = new HashMap<String, Object>();
+        ExecutorService executorService = Executors.newFixedThreadPool(5);
+        Map<String, Object> stepOneMap = chapters(nid);
+        Integer stepOneCode = (Integer) stepOneMap.get("code");
+        if (stepOneCode == -1) {
+            return stepOneMap;
+        }
+        JSONArray jsonArray = (JSONArray) stepOneMap.get("rows");
+        Iterator it = jsonArray.iterator();
+        while (it.hasNext()) {
+            JSONObject jsonObject = (JSONObject) it.next();
+            executorService.execute(new Runnable() {
+                @Override
+                public void run() {
+                    if (!jsonObject.getBoolean("unreadble")) {
+                        Map<String, Object> stepTwoMap = chapter(jsonObject.getString("link"));
+                        Integer stepTwoCode = (Integer) stepTwoMap.get("code");
+                        if (stepTwoCode == 1) {
+                            JSONObject cObj = (JSONObject) stepTwoMap.get("chapterDetail");
+                            jsonObject.put("body", cObj.getString("body"));
+                        }
+                    }
+                }
+            });
+        }
+        executorService.shutdown();
+        while (true) {
+            if (executorService.isTerminated()) {
+                Iterator it2 = jsonArray.iterator();
+                int count = 0;
+                while (it2.hasNext()) {
+                    JSONObject jsonObject = (JSONObject) it2.next();
+                    try {
+                        FileUtils.write(txtFile, "第 " + (count + 1) + " 章 \n" + jsonObject.getString("title") + " \n" + jsonObject.getString("body") + " \n", "UTF-8", true);
+                        count++;
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                        LOGGER.error(e.getMessage());
+                    }
+                }
+                break;
+            }
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+        map.put("code", 1);
+        map.put("path", txtFile.getAbsolutePath());
+        return map;
+    }
+
+
+    public static void main(String[] args) throws IOException {
+        saveToTxtQuick("53fb5e6581d0bda6124fe509", new File("E://pzdhy.txt"));
+    }
+
 
 }
