@@ -215,7 +215,6 @@ public class NovelService {
 
     /**
      * 小说文本放入 map
-     * // TODO 多线程方案
      *
      * @param nid
      * @return
@@ -255,7 +254,6 @@ public class NovelService {
 
     /**
      * 小说文本存入 文件中
-     * //TODO  多线程方案
      *
      * @param nid
      * @param txtFile
