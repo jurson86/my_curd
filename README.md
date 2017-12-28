@@ -1,26 +1,23 @@
-### 基于JFinal3.2 和 Easyui11.5.3 实现的 权限管理系统
-#### （页面级权限 ; 单表代码生成器）
+my_curd 简介
+========
+基于 JFinal3.3  + Easyui1.5.3  权限系统。 <br>
+页面级别权限，单表代码生成器 (快速开发)。
 
-1. 登录
-![](preview_img/login.png)
-2. 菜单 (权限管理)
-![](preview_img/menu.png)
-3. 角色
-![](preview_img/role.png)
-4. 用户
-![](preview_img/user.png)
-5. 组织机构
-![](preview_img/org.png)
-6. 任务
-![](preview_img/task.png)
-7. 系统日志
-![](preview_img/log.png)
-8. 文件管理
-![](preview_img/file.png)
-9. 字典管理
-![](preview_img/dict.png)
-10. druid 监控
-![](preview_img/druid.png)
-11. 代码生成器  
-![](preview_img/codegen.png)
-先选中数据表，打开json视图，修改（或不修改）提交这个json数据，一键生成model、controller、views代码，放入项目下即可实现单表CURD操作
+功能
+--------
+1. 角色、用户、菜单（权限）、组织机构 管理。<br>
+2. 文件管理、文章管理。<br>
+3. 代码生成器。 <br>
+4. 网络小说下载 <br>
+
+系统页面
+--------
+![github](preview_img/login.png "登录页面")
+![github](preview_img/menu.png "菜单管理")
+![github](preview_img/role.png "角色管理")
+![github](preview_img/user.png "用户管理")
+![github](preview_img/org.png "机构管理")
+![github](preview_img/file.png "文件管理")
+![github](preview_img/article.png "文章管理")
+![github](preview_img/gen.png "代码生成器，一间生成model、controller、view")
+![github](preview_img/novel.png "小说下载")
