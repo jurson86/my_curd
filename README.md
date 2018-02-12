@@ -10,15 +10,9 @@
 一分钟就可做出可用的业务功能(单表增删改查导入导出)。
 
 ### 一些简单说明 
-1. 项目的结构、方法说明  
-
-![github](preview_img/code1.jpg "项目结构")
-![github](preview_img/code2.jpg "控制器中方法")
-![github](preview_img/code3.jpg "条件筛选")
-
-[项目结构、类中方法](https://github.com/qinyou/my_curd/wiki)  
-[权限控制](https://github.com/qinyou/my_curd/wiki)  
-[代码生成器](https://github.com/qinyou/my_curd/wiki)
+[项目结构、代码说明](https://github.com/qinyou/my_curd/wiki/%E9%A1%B9%E7%9B%AE%E7%BB%93%E6%9E%84%E3%80%81%E4%BB%A3%E7%A0%81%E8%AF%B4%E6%98%8E)  
+[权限控制（未写）](https://github.com/qinyou/my_curd/wiki)  
+[代码生成器使用步骤](https://github.com/qinyou/my_curd/wiki/%E4%BB%A3%E7%A0%81%E7%94%9F%E6%88%90%E5%99%A8%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95)
 
 ### 系统的一些截图
 ![github](preview_img/login.png "登录页面")
