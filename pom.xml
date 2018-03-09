@@ -195,7 +195,7 @@
             <version>${jodd.bean.version}</version>
         </dependency>
 
-        <!-- httpclient -->
+        <!-- httpclient http 请求客户端 -->
         <dependency>
             <groupId>org.apache.httpcomponents</groupId>
             <artifactId>httpclient</artifactId>
@@ -206,6 +206,21 @@
             <artifactId>fluent-hc</artifactId>
             <version>${httpClien.version}</version>
         </dependency>
+
+        <!-- websocket 支持-->
+        <dependency>
+            <groupId>org.apache.tomcat</groupId>
+            <artifactId>tomcat-websocket-api</artifactId>
+            <version>8.5.28</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>javax</groupId>
+            <artifactId>javaee-api</artifactId>
+            <version>8.0</version>
+            <scope>provided</scope>
+        </dependency>
+
     </dependencies>
     <build>
         <finalName>my_curd</finalName>

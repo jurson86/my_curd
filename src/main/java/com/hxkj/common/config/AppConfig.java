@@ -5,6 +5,8 @@ import com.alibaba.druid.wall.WallFilter;
 import com.hxkj.common.constant.Constant;
 import com.hxkj.common.interceptor.AuthorityInterceptor;
 import com.hxkj.system.model.SysUser;
+import com.hxkj.websocket.controller.WebsocketController;
+import com.hxkj.websocket.handler.WebSocketHandler;
 import com.jfinal.config.*;
 import com.jfinal.ext.handler.ContextPathHandler;
 import com.jfinal.kit.PropKit;
@@ -48,6 +50,9 @@ public class AppConfig extends JFinalConfig {
         me.add(new SysRoute());     // system 模块 路由
         me.add(new GentestRoute()); // 代码生成测试 模块 路由
         me.add(new ReadRoute());    // 阅读路由
+
+        // websocket 入口
+        me.add("/ws", WebsocketController.class,Constant.VIEW_PATH);
     }
 
     @Override
@@ -74,6 +79,9 @@ public class AppConfig extends JFinalConfig {
 
     @Override
     public void configHandler(Handlers me) {
+        // 处理 websocket 请求
+        me.add(new  WebSocketHandler("^/websocket"));
+
         me.add(new ContextPathHandler("ctx"));
         // druid 监控（只允许admin查看）
         DruidStatViewHandler dvh = new DruidStatViewHandler("/druid", new IDruidStatViewAuth() {
