@@ -105,8 +105,8 @@ public class LoginController extends BaseController {
         String remember = getPara("remember");
         // 记住密码 && cookie 不存在
         if ("on".equals(remember) && getCookie(usernameKey) == null) {
-            setCookie(usernameKey, username,  60 * 60 * 24 * 1); // 1天
-            setCookie(passwordKey, password,  60 * 60 * 24 * 1);
+            setCookie(usernameKey, username, 60 * 60 * 24 * 1); // 1天
+            setCookie(passwordKey, password, 60 * 60 * 24 * 1);
         }
 
         //登录用户信息

@@ -19,7 +19,6 @@ import java.util.Map;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-
 public class NovelService {
     private final static Logger LOGGER = Logger.getLogger(NovelService.class);
     public static String charset = "UTF-8";
@@ -250,8 +249,6 @@ public class NovelService {
     }
 
 
-
-
     /**
      * 小说文本存入 文件中
      *
@@ -296,6 +293,7 @@ public class NovelService {
 
     /**
      * 不适合在 用户很多的 web 环境下
+     *
      * @param nid
      * @return
      */
@@ -404,11 +402,4 @@ public class NovelService {
         map.put("path", txtFile.getAbsolutePath());
         return map;
     }
-
-
-    public static void main(String[] args) throws IOException {
-        saveToTxtQuick("53fb5e6581d0bda6124fe509", new File("E://pzdhy.txt"));
-    }
-
-
 }

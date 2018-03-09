@@ -22,7 +22,6 @@ public class SysNewsController extends BaseController {
         render("system/sysNews.html");
     }
 
-
     /**
      * 列表数据
      */
@@ -36,7 +35,6 @@ public class SysNewsController extends BaseController {
         renderDatagrid(sysNewsPage);
     }
 
-
     /**
      * 打开新增或者修改弹出框
      */
@@ -49,7 +47,6 @@ public class SysNewsController extends BaseController {
 
         render("system/sysNews_form.html");
     }
-
 
     /**
      * 增加

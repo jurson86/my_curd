@@ -7,6 +7,9 @@ CKEDITOR.editorConfig = function( config ) {
 	 config.language = 'zh-cn';
      config.height = 450;
      config.width = 'auto';
+    config.forcePasteAsPlainText = false;
+    config.pasteFromWordRemoveFontStyles = false;
+    config.pasteFromWordRemoveStyles = false;
     config.toolbar = [
         { name: 'document', items: [ 'Source', 'Preview', 'Print', 'Templates' ] },
         { name: 'clipboard', items: [ 'Cut', 'Copy', '-', 'Undo', 'Redo' ] },
