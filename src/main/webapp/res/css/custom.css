@@ -1,31 +1,43 @@
-html,body{
+:not(.fa){
     font-family:  "Arial","Microsoft YaHei","黑体","宋体",sans-serif !important;
 }
 
 /*main header*/
 .head {
+    height: 40px;
     /*background-image: url('../image/bg/bg4.jpg');*/
-    background-color:#607d8b;
+    background-color: #007bff;
     color: #FAFAFA;
 }
+
 .head-text {
     padding-left: 20px;
     font-size: 20px;
-    line-height: 50px;
+    line-height: 40px;
 }
 .head-menu {
     position: absolute;
     right: 10px;
-    line-height: 50px;
+    line-height: 40px;
 }
-a{color:#333;text-decoration:none; }
-a:hover {color:#CC3300;text-decoration:underline;}
+.head .pure-button {
+    padding: 5px 8px;
+    margin: 5px 2px;
+}
+.head  a.pure-button:hover {
+    text-decoration: none;
+}
+
+/*树形链接去掉下划线*/
+#permissionTree a{color:#333;text-decoration:none; }
+#permissionTree a:hover {color:#CC3300;text-decoration:underline;}
 
 /*tab iframe 两个滚动条问题*/
 #tabsControl .tabs-panels>.panel>.panel-body {
     overflow: hidden;
 }
 
+/*input 样式*/
 .input-control{
     text-align: center;
     padding:10px 0px;
@@ -56,13 +68,10 @@ a:hover {color:#CC3300;text-decoration:underline;}
     right: 20px;
 }
 
-
 /*form 中 table 居中*/
 form>table{
     margin: 0 auto;
 }
-
-
 
 /* webkit 内核 滚动条 样式*/
 ::-webkit-scrollbar {
