@@ -63,7 +63,7 @@ var layerTools = layerTools ||{};
             skin: 'layui-layer-lan',
             shadeClose: true, //
             area: area?area:"",
-            title:[title,'background:#607D8B; line-height:40px;height:40px;padding: 0 15px'],
+            title:[title,'background:#607D8B; line-height:30px;height:30px;padding: 0 10px'],
             closeBtn: 0, //不显示关闭按钮
             content: content,
             btn: btn,//按钮
@@ -107,7 +107,7 @@ var layerTools = layerTools ||{};
         layer.confirm(msg, {
            /* skin: 'layui-layer-molv',*/
             icon: icon,
-            title:title,
+            title:[title,'background:#607D8B; color:white; line-height:30px;height:30px;padding: 0 10px'],
             btn: ['确定','取消']
         }, function(){
             if(yesFun!=null){
