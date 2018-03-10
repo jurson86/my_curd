@@ -11,8 +11,5 @@
 
 ### 系统截图
 ![github](preview_img/menu.png "菜单")
-![github](preview_img/role.png "角色")
-![github](preview_img/user.png "用户")
-![github](preview_img/file.png "文件")
 ![github](preview_img/article.png "文章")
-![github](preview_img/gen.png "代码生成器，生成model、controller、view")
+![github](preview_img/codegen.png "代码生成器，生成model、controller、view")
