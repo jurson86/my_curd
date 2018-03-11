@@ -6,6 +6,7 @@
     <title>用户登录</title>
     <link rel="shortcut icon" href="${ctx!}/res/image/favicon.ico"/>
     <link rel="stylesheet" href="${ctx!}/res/pure/pure-min.css">
+    <link rel="stylesheet" href="${ctx!}/res/css/magic-check.css">
     <!--[if lte IE 8]>
     <link rel="stylesheet" href="${ctx!}/res/pure/grids-responsive-old-ie-min.css">
     <![endif]-->
@@ -20,9 +21,11 @@
             font-family: "Arial","Microsoft YaHei","黑体","宋体",sans-serif;
         }
         body {
-            background: #eee !important;
+            background-color:  #eee !important;;
+         /*   background-image: url("${ctx!}/res/image/bg/bg4.jpg");*/
         }
         .wrapper {
+          /*  opacity: .8;*/
             position: fixed;
             top: 50%;
             left: 50%;
@@ -76,6 +79,7 @@
 
         .button-large {
             font-size: 115%;
+            margin-top: .7rem;
         }
         .warning-msg{
             color: #a94442;
@@ -89,8 +93,6 @@
 </head>
 <body>
 <div id="loginFormWraper" class="wrapper">
-    <div style="text-align: center">
-             </div>
     <form class="pure-form form-signin " action="${ctx!}/login/action" method="post" >
         <h2 class="form-signin-heading">
             用户 登录
@@ -100,16 +102,18 @@
             <input type="password"  name="password" class="pure-input-1" placeholder="密码">
         </fieldset>
         <div class="errorm-msg">${errMsg!}</div>
-        <label for="remember" class="pure-checkbox" onmouseenter="document.getElementsByClassName('warning-msg')[0].classList.remove('hiddenCls');"
-               onmouseleave="document.getElementsByClassName('warning-msg')[0].classList.add('hiddenCls');">
-            <input  id="remember" name="remember" class="checkbox" type="checkbox"> 记住我（24h）<span class="warning-msg hiddenCls">公共电脑慎用此功能!</span>
+        <input  id="remember" name="remember"  class="magic-checkbox" type="checkbox"   checked>
+        <label for="remember"
+               onmouseenter="document.getElementsByClassName('warning-msg')[0].classList.remove('hiddenCls');"
+               onmouseleave="document.getElementsByClassName('warning-msg')[0].classList.add('hiddenCls');" >
+            记住我(24h)<span class="warning-msg hiddenCls">公共电脑慎用此功能!</span>
         </label>
-        <button type="submit" class="pure-button pure-input-1 pure-button-primary button-large">登录</button>
+        <button type="submit"   class="pure-button pure-input-1 pure-button-primary button-large">登录</button>
     </form>
 </div>
 
 <script>
-    // 不被 iframe 嵌套
+    // 不被 iframe 嵌套, 如果被嵌套，父跳转到登录页面
     if(top.location!=self.location){
         top.location = "${ctx!}/login";
     }
