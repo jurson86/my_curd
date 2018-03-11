@@ -7,21 +7,16 @@
         <meta http-equiv="X-UA-Compatible" content="edge"/>
         <link rel="shortcut icon" href="${ctx!}/res/image/favicon.ico"/>
         <title>你好！${(session.system_user.name)!}</title>
-        <link rel="stylesheet" type="text/css" href="${ctx!}/res/easyui153/themes/bootstrap/easyui.css">
+        <link rel="stylesheet" type="text/css" href="${ctx!}/res/easyui153/themes/material/easyui.css">
         <link rel="stylesheet" type="text/css" href="${ctx!}/res/easyui153/themes/icon.css">
-        <!-- <link rel="stylesheet" type="text/css" href="${ctx!}/res/easyui153/themes/color.css">-->
-        <link rel="stylesheet" href="${ctx!}/res/css/custom.css">
-        <link rel="stylesheet" href="${ctx!}/res/font-awesome/css/font-awesome.min.css">
         <script type="text/javascript" src="${ctx!}/res/easyui153/jquery.min.js"></script>
         <script type="text/javascript" src="${ctx!}/res/easyui153/jquery.easyui.min.js"></script>
-        <script src="${ctx!}/res/js/base-loading.js" type="text/javascript" charset="utf-8"></script>
         <script src="${ctx!}/res/easyui153/locale/easyui-lang-zh_CN.js"></script>
-        <style>
-            .layui-layer-setwin {
-                right: 6px;
-                top: 7px;
-            }
-        </style>
+        <link rel="stylesheet" href="${ctx!}/res/font-awesome/css/font-awesome.min.css">
+        <!--自定义样式-->
+        <link rel="stylesheet" href="${ctx!}/res/css/custom.css">
+        <!--easyui 页面渲染遮罩-->
+        <script src="${ctx!}/res/js/base-loading.js" type="text/javascript" charset="utf-8"></script>
         <#nested>
          </body>
     </html>

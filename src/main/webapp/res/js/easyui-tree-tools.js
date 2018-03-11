@@ -1,9 +1,7 @@
 /**
- * Created by Administrator on 2017/10/28.
  * easyui tree 数据处理工具函数
  */
 var EasyTree = function() {
-
     /**
      * rows 中 是否有任何 row de  ParentId 与 参数 ParentId 相同
      * @param   rows

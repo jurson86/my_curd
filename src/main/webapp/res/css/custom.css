@@ -92,3 +92,10 @@ form>table{
 ::-webkit-scrollbar-thumb:window-inactive {
     background: rgba(0,0,0,0.2);
 }
+
+
+/*layer 弹窗框 右上角样式修改*/
+.layui-layer-setwin {
+    right: 6px !important;
+    top: 8px !important;
+}

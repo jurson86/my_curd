@@ -2,12 +2,11 @@
 <@layout>
 <link rel="stylesheet" href="${ctx!}/res/pure/buttons-min.css">
 <script>
-    // 不被 iframe 嵌套
+    /*main 页面不可被 iframe 嵌套，如果被嵌套跳转到到登录页面*/
     if(top.location!=self.location){
         top.location = "${ctx!}/login";
     }
-</script>
-<script>
+    /*浏览器全屏*/
     function fullScreen() {
         var el = document.documentElement,
             rfs = el.requestFullScreen || el.webkitRequestFullScreen || el.mozRequestFullScreen || el.msRequestFullScreen,
@@ -17,7 +16,6 @@
             rfs.call(el);
             return;
         }
-
         if (typeof window.ActiveXObject != "undefined") {
             wscript = new ActiveXObject("WScript.Shell");
             if (wscript) {
@@ -25,12 +23,11 @@
             }
         }
     }
-
+    /*浏览器退出全屏*/
     function exitFullScreen() {
         var el = document,
             cfs = el.cancelFullScreen || el.webkitCancelFullScreen || el.mozCancelFullScreen || el.exitFullScreen,
             wscript;
-
         if (typeof cfs != "undefined" && cfs) {
             cfs.call(el);
             return;
@@ -45,7 +42,7 @@
     }
 
     // 全屏切换函数
-    function fstFun(obj) {
+    function fullScreenToggle(obj) {
         fullScreen();
         if ($(obj).hasClass('icon-fullScreen')) {
             $(obj).removeClass('icon-fullScreen')
@@ -54,7 +51,6 @@
                 .attr('title', '退出全屏');
             //$("#mainLayout").layout("collapse", "north");
             //$("#mainLayout").layout("collapse", "west");
-
         } else {
             exitFullScreen();
             $(obj).removeClass('icon-noFullScreen')
@@ -91,11 +87,11 @@
         </ul>
     </div>
     <div id="leftTB">
-        <a id="fstButton" href="#" iconCls="icon-fullScreen" onclick="fstFun(this)" title="全屏"></a>
+        <a id="fstButton" href="#" iconCls="icon-fullScreen" onclick="fullScreenToggle(this)" title="全屏"></a>
     </div>
     <div data-options="region:'center'" border="false">
         <!-- pill="true" narrow="true" plain="true" tab 可选样式-->
-        <div id="tabsControl" > </div>
+        <div id="tabGroup" > </div>
         <div id="tabsMenu" class="easyui-menu">
             <div data-options="name:1">关闭</div>
             <div data-options="name:2">关闭其他</div>
@@ -108,35 +104,28 @@
 <script src="${ctx!}/res/js/tab-tools.js"></script>
 <script>
     ;(function () {
-
         var MainPage = {
             init: function () {
                 var that = this;
-                that.initData();
+                that.permissTreeInit();
+                TabTools.contextMenuInit();
                 that.bind();
-
             },
-            initData: function () {
+            permissTreeInit: function () {
+                // 初始化左侧 菜单 并绑定事件
                 var easyTree = new EasyTree();
                 $.ajax({
                     url: "${ctx!}/main/permissionTree",
                     type: "GET",
                     dataType: "json",
                     success: function (data) {
-                        //console.log(JSON.stringify(data));
-
                         var treeData = easyTree.treeDataBuild(data, "id", "pid", "text,iconCls,url");
-
-                        //console.log("----easyui tree data----")
-                        //console.log(JSON.stringify(treeData));
-
                         $('#permissionTree').tree({
                             data: treeData,
                             onSelect: function (node) {
                                 // 只能打开 叶子node
                                 if ($("#tree").tree("isLeaf", node.target)) {
-                                    //alert("open:" + node.url);
-                                    TabTools.control("${ctx!}"+node.url, "", node.text, node.iconCls);
+                                    TabTools.addOrRefresh("${ctx!}"+node.url, "", node.text, node.iconCls);
                                 }
                             }
                         });
@@ -147,7 +136,7 @@
                 });
             },
             bind: function () {
-                // 权限树过滤
+                // 权限树过滤（根据输入框内容过滤）
                 $("#filterInput").on("keydown", function () {
                     if (event.keyCode == "13") {
                         var inputVal = $(this).val();
@@ -166,9 +155,7 @@
                 })
             }
         }
-
         MainPage.init();
     })();
 </script>
-
 </@layout>

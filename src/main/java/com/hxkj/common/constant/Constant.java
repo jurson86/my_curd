@@ -15,7 +15,7 @@ public class Constant {
     public final static String OWN_MENU = "own_menu";
 
     public final static String SEARCH_SQL = "search_sql";
-
+    public final static String DOMAIN_KEY = "domain_key";
 
     /*增、删、改 操作信息*/
     public final static String ADD_SUCCESS = "添加成功";
@@ -27,6 +27,6 @@ public class Constant {
     public final static String UPDATE_SUCCESS = "修改成功";
     public final static String UPDATE_FAIL = "修改失败";
 
-    public final static String DOMAIN_KEY = "domain_key";
+
 
 }
