@@ -33,7 +33,7 @@
 #permissionTree a:hover {color:#CC3300;text-decoration:underline;}
 
 /*tab iframe 两个滚动条问题*/
-#tabsControl .tabs-panels>.panel>.panel-body {
+#tabGroup .tabs-panels>.panel>.panel-body {
     overflow: hidden;
 }
 
