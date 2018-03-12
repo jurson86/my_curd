@@ -10,6 +10,7 @@
 [代码生成器，一键生成model、controller、view](https://github.com/qinyou/my_curd/wiki/%E4%BB%A3%E7%A0%81%E7%94%9F%E6%88%90%E5%99%A8%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95)
 
 ### 系统截图
+![github](preview_img/look.png "look in macbook")
 ![github](preview_img/menu.png "菜单")
 ![github](preview_img/role.png "角色")
 ![github](preview_img/userrole.png "用户角色")

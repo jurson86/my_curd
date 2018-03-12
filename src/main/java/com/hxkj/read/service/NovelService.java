@@ -7,6 +7,7 @@ import com.hxkj.common.util.ToolRandom;
 import org.apache.commons.io.FileUtils;
 import org.apache.http.client.fluent.Content;
 import org.apache.http.client.fluent.Request;
+import org.apache.http.message.BasicNameValuePair;
 import org.apache.log4j.Logger;
 
 import java.io.File;
