@@ -11,6 +11,13 @@
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
+        <slf4j.version>1.7.25</slf4j.version>
+        <log4j.version>1.2.17</log4j.version>
+        <fastjson.version>1.2.43</fastjson.version>
+        <jfinal.version>3.3</jfinal.version>
+        <mysql-connector.version>5.1.20</mysql-connector.version>
+        <druid.version>1.0.29</druid.version>
+        <freemarker.version>2.3.22</freemarker.version>
         <poi.version>3.7</poi.version>
         <poi.ooxml.version>3.7</poi.ooxml.version>
         <poi.ooxml.schemas.version>3.7</poi.ooxml.schemas.version>
@@ -22,7 +29,6 @@
     </properties>
 
     <dependencies>
-
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
@@ -35,54 +41,70 @@
             <version>4.0.0</version>
             <scope>provided</scope>
         </dependency>
+
+
         <!--日志-->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>${slf4j.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-log4j12</artifactId>
+            <version>${slf4j.version}</version>
+        </dependency>
         <dependency>
             <groupId>log4j</groupId>
             <artifactId>log4j</artifactId>
-            <version>1.2.16</version>
+            <version>${log4j.version}</version>
         </dependency>
-        <!--json处理-->
+
+        <!--json 工具-->
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>fastjson</artifactId>
-            <version>1.2.43</version>
+            <version>${fastjson.version}</version>
         </dependency>
 
         <!--jfinal-->
         <dependency>
             <groupId>com.jfinal</groupId>
             <artifactId>jfinal</artifactId>
-            <version>3.3</version>
+            <version>${jfinal.version}</version>
         </dependency>
 
         <!--mysql 驱动-->
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
-            <version>5.1.20</version>
+            <version>${mysql-connector.version}</version>
         </dependency>
 
         <!--druid数据源-->
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>druid</artifactId>
-            <version>1.0.29</version>
+            <version>${druid.version}</version>
         </dependency>
 
 
-        <!--freemarker模板-->
+        <!--freemarker-->
         <dependency>
             <groupId>org.freemarker</groupId>
             <artifactId>freemarker</artifactId>
-            <version>2.3.22</version>
+            <version>${freemarker.version}</version>
         </dependency>
 
-        <!--文件上传-->
+        <!--jfinal 文件上传-->
         <dependency>
             <groupId>com.jfinal</groupId>
             <artifactId>cos</artifactId>
             <version>2017.5</version>
         </dependency>
+
+
+
 
 
         <!-- 定时任务 -->
@@ -91,56 +113,47 @@
             <artifactId>cron4j</artifactId>
             <version>2.2.5</version>
         </dependency>
-
-
         <!--中文转拼音-->
         <dependency>
             <groupId>com.belerweb</groupId>
             <artifactId>pinyin4j</artifactId>
             <version>2.5.1</version>
         </dependency>
-
         <!--java mail-->
         <dependency>
             <groupId>javax.mail</groupId>
             <artifactId>mail</artifactId>
             <version>1.4.7</version>
         </dependency>
-
         <!--编码-->
         <dependency>
             <groupId>commons-codec</groupId>
             <artifactId>commons-codec</artifactId>
             <version>1.10</version>
         </dependency>
-
         <!--xml-->
         <dependency>
             <groupId>dom4j</groupId>
             <artifactId>dom4j</artifactId>
             <version>1.6.1</version>
         </dependency>
-
         <!--commons lang3-->
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
             <version>3.5</version>
         </dependency>
-
-        <!--jsoup html 解析-->
+        <!--jsoup -->
         <dependency>
             <groupId>org.jsoup</groupId>
             <artifactId>jsoup</artifactId>
             <version>1.10.3</version>
         </dependency>
-
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-exec</artifactId>
             <version>1.3</version>
         </dependency>
-
         <dependency>
             <groupId>commons-io</groupId>
             <artifactId>commons-io</artifactId>
@@ -159,7 +172,6 @@
             <artifactId>poi</artifactId>
             <version>${poi.version}</version>
         </dependency>
-
         <dependency>
             <groupId>org.apache.poi</groupId>
             <artifactId>poi-ooxml</artifactId>
@@ -224,5 +236,19 @@
     </dependencies>
     <build>
         <finalName>my_curd</finalName>
+        <plugins>
+            <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>2.3.1</version>
+                <configuration>
+                    <source>${maven.compiler.source}</source>
+                    <target>${maven.compiler.target}</target>
+                    <encoding>UTF-8</encoding>
+                    <compilerArguments>
+                        <extdirs>src/main/webapp/WEB-INF/lib</extdirs>
+                    </compilerArguments>
+                </configuration>
+            </plugin>
+        </plugins>
     </build>
 </project>

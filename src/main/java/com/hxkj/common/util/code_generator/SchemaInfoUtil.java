@@ -7,7 +7,7 @@ import com.jfinal.plugin.activerecord.dialect.Dialect;
 import com.jfinal.plugin.activerecord.dialect.MysqlDialect;
 import com.jfinal.plugin.activerecord.generator.TypeMapping;
 import com.jfinal.plugin.druid.DruidPlugin;
-import org.apache.log4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.sql.DataSource;
 import java.sql.*;
@@ -20,8 +20,7 @@ import java.util.Map;
  * 数据库信息工具
  */
 public class SchemaInfoUtil {
-
-    private final static Logger LOG = Logger.getLogger(SchemaInfoUtil.class);
+    private final static org.slf4j.Logger LOG = LoggerFactory.getLogger(SchemaInfoUtil.class);
     private Dialect dialect;
     private DataSource ds;
     private TypeMapping typeMapping;

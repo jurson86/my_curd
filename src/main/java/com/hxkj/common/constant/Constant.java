@@ -28,5 +28,4 @@ public class Constant {
     public final static String UPDATE_FAIL = "修改失败";
 
 
-
 }

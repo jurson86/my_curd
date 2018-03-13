@@ -10,7 +10,7 @@ import java.util.Map;
 
 /**
  *  错误消息 前端提示（暂时无用)
- *  发生异常后异常信息作为json返回
+ * 发生异常后异常信息作为json返回
  */
 public class ErrorInterceptor implements Interceptor {
 

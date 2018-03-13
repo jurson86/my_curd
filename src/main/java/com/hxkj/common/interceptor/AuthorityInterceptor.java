@@ -5,37 +5,36 @@ import com.hxkj.common.util.BaseController;
 import com.hxkj.system.model.SysMenu;
 import com.jfinal.aop.Interceptor;
 import com.jfinal.aop.Invocation;
+import com.jfinal.kit.JsonKit;
 import com.jfinal.kit.StrKit;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.List;
 
 
 /**
  * 权限拦截器
- *
- * @author Administrator
  */
 public class AuthorityInterceptor implements Interceptor {
 
-    private final static Logger LOG = Logger.getLogger(AuthorityInterceptor.class);
+    private final static Logger LOG = LoggerFactory.getLogger(AuthorityInterceptor.class);
 
 
     public void intercept(Invocation inv) {
         String actionKey = inv.getActionKey();
         List<SysMenu> ownSysMenus = inv.getController().getSessionAttr(Constant.OWN_MENU);
-        //System.err.println(JsonKit.toJson(ownSysMenus));
+        LOG.debug("permission menu: {}", JsonKit.toJson(ownSysMenus));
         for (SysMenu sysMenu : ownSysMenus) {
             // 拥有权限
             if (StrKit.notBlank(sysMenu.getUrl()) && !sysMenu.getUrl().equals("/") && actionKey.startsWith(sysMenu.getUrl())) {
-                //System.err.println(actionKey + " == " + sysMenu.getUrl());
-                //System.err.println("权限拦截器   通过");
+                LOG.debug("{} == {}, have this permission. ", actionKey, sysMenu.getUrl());
                 inv.invoke();
                 return;
             }
         }
 
-        //System.err.println("权限拦截器   禁止");
+        //没有权限
         BaseController baseController = (BaseController) inv.getController();
         baseController.addOpLog("访问无权限路径[" + actionKey + "]");
 

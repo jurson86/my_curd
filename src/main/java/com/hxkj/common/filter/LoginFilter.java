@@ -12,8 +12,6 @@ import java.io.IOException;
 
 /**
  * 登录拦截器（放置在 Jfinal 拦截器之前的 filter)
- *
- * @author Administrator
  */
 public class LoginFilter implements Filter {
 

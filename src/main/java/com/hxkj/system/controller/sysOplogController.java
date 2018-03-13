@@ -12,7 +12,6 @@ import com.jfinal.plugin.activerecord.ActiveRecordException;
 import com.jfinal.plugin.activerecord.Db;
 import com.jfinal.plugin.activerecord.Page;
 import com.jfinal.plugin.activerecord.tx.Tx;
-import org.apache.log4j.Logger;
 
 import java.util.Arrays;
 import java.util.List;
@@ -22,7 +21,6 @@ import java.util.List;
  */
 public class sysOplogController extends BaseController {
 
-    private final static Logger LOGGER = Logger.getLogger(sysOplogController.class);
 
     public void index() {
         render("system/sysOplog.html");

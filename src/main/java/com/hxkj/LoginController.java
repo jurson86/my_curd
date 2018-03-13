@@ -15,13 +15,14 @@ import com.jfinal.kit.Prop;
 import com.jfinal.kit.PropKit;
 import com.jfinal.kit.StrKit;
 import com.jfinal.plugin.activerecord.tx.Tx;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.List;
 
 public class LoginController extends BaseController {
 
-    private final static Logger LOG = Logger.getLogger(LoginController.class);
+    private  final static  Logger LOG = LoggerFactory.getLogger(LoginController.class);
     private static String usernameKey;
     private static String passwordKey;
 
@@ -38,8 +39,8 @@ public class LoginController extends BaseController {
     public void index() {
         String username = getCookie(usernameKey);
         String password = getCookie(passwordKey);
-        System.out.println("username from cookie: " + username);
-        System.out.println("password from cookie: " + password);
+        LOG.debug("username from cookie: {}" , username);
+        LOG.debug("password from cookie: {}" , password);
         if (username != null && password != null) {
             SysUser sysUser = SysUser.dao.findByUsernameAndPassword(username, password);
             // 用户名密码正确且未被禁用
@@ -48,6 +49,7 @@ public class LoginController extends BaseController {
                 setSessionAttr(Constant.SYSTEM_USER_NAME, sysUser.getName());
                 SysUserRole sysUserRole = SysUserRole.dao.findRolesByUserId(sysUser.getId());
                 if (sysUserRole != null) {
+                    setSessionAttr(Constant.SYSTEM_USER_ROLES, sysUserRole.get("roleNames"));
                     setSessionAttr(Constant.SYSTEM_USER_ROLES, sysUserRole.get("roleNames"));
                     LoginService loginService = Duang.duang(LoginService.class);
                     List<SysMenu> userMenus = loginService.getUserMenu(sysUserRole.get("roleIds"));

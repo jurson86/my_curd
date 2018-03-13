@@ -52,7 +52,7 @@ public class AppConfig extends JFinalConfig {
         me.add(new ReadRoute());    // 阅读路由
 
         // websocket 入口
-        me.add("/ws", WebsocketController.class,Constant.VIEW_PATH);
+        me.add("/ws", WebsocketController.class, Constant.VIEW_PATH);
     }
 
     @Override
@@ -80,7 +80,7 @@ public class AppConfig extends JFinalConfig {
     @Override
     public void configHandler(Handlers me) {
         // 处理 websocket 请求
-        me.add(new  WebSocketHandler("^/websocket"));
+        me.add(new WebSocketHandler("^/websocket"));
 
         me.add(new ContextPathHandler("ctx"));
         // druid 监控（只允许admin查看）

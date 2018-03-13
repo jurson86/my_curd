@@ -7,8 +7,8 @@ import com.hxkj.common.util.ToolRandom;
 import org.apache.commons.io.FileUtils;
 import org.apache.http.client.fluent.Content;
 import org.apache.http.client.fluent.Request;
-import org.apache.http.message.BasicNameValuePair;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.io.IOException;
@@ -21,7 +21,9 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 public class NovelService {
-    private final static Logger LOGGER = Logger.getLogger(NovelService.class);
+
+
+    private final static Logger LOG = LoggerFactory.getLogger(NovelService.class);
     public static String charset = "UTF-8";
     public static String[] userAgents = {
             "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36", "" +
@@ -45,7 +47,7 @@ public class NovelService {
         try {
             String url = "http://api.zhuishushenqi.com/book/fuzzy-search?query=" + keyword +
                     "&start=" + start + "&limit=" + limit;
-            LOGGER.debug("fuzzySearch url: " + url);
+            LOG.debug("fuzzySearch url: {}", url);
             Content content = Request.Get(url)
                     .setHeader("User-Agent", userAgents[ToolRandom.number(0, 6)])
                     .execute().returnContent();
@@ -66,7 +68,7 @@ public class NovelService {
                 map.put("rows", jsonObject.get("books"));
             }
         } catch (Exception e) {
-            LOGGER.error(e.getMessage());
+            LOG.error(e.getMessage());
             map.put("code", -1);
             map.put("message", e.getMessage());
         }
@@ -90,7 +92,7 @@ public class NovelService {
                     category +
                     "&type=hot" +
                     "&start=" + start + "&limit=" + limit;
-            LOGGER.debug("category url: " + url);
+            LOG.debug("category url: {}", url);
             Content content = Request.Get(url)
                     .setHeader("User-Agent", userAgents[ToolRandom.number(0, 6)])
                     .execute().returnContent();
@@ -111,7 +113,7 @@ public class NovelService {
                 map.put("rows", jsonObject.get("books"));
             }
         } catch (Exception e) {
-            LOGGER.error(e.getMessage());
+            LOG.error(e.getMessage());
             map.put("code", -1);
             map.put("message", e.getMessage());
         }
@@ -129,7 +131,7 @@ public class NovelService {
         Map<String, Object> map = new HashMap<String, Object>();
         try {
             String url = "http://api.zhuishushenqi.com/book/" + nid;
-            LOGGER.debug("novel url:" + url);
+            LOG.debug("novel url: {}", url);
             Content content = Request.Get(url).setHeader("User-Agent", userAgents[ToolRandom.number(0, 6)])
                     .execute().returnContent();
             String jsonStr = content.asString(Charset.forName(charset));
@@ -142,7 +144,7 @@ public class NovelService {
                 map.put("bookDetail", jsonObject);
             }
         } catch (Exception e) {
-            LOGGER.error(e.getMessage());
+            LOG.error(e.getMessage());
             map.put("code", -1);
             map.put("message", e.getMessage());
         }
@@ -159,7 +161,7 @@ public class NovelService {
         Map<String, Object> map = new HashMap<String, Object>();
         try {
             String url = "http://api.zhuishushenqi.com/mix-atoc/" + nid + "?view=chapters";
-            LOGGER.debug("chapters url:" + url);
+            LOG.debug("chapters url: {}", url);
             Content content = Request.Get(url)
                     .setHeader("User-Agent", userAgents[ToolRandom.number(0, 6)])
                     .execute().returnContent();
@@ -174,7 +176,7 @@ public class NovelService {
                 map.put("rows", jsonObjectTemp.get("chapters"));
             }
         } catch (Exception e) {
-            LOGGER.error(e.getMessage());
+            LOG.error(e.getMessage());
             map.put("code", -1);
             map.put("message", e.getMessage());
         }
@@ -192,7 +194,7 @@ public class NovelService {
         try {
             url = URLEncoder.encode(url, "utf-8");
             String dUrl = "http://chapter2.zhuishushenqi.com/chapter/" + url;
-            LOGGER.debug("chapter url:" + dUrl);
+            LOG.debug("chapter url: {}", dUrl);
             Content content = Request.Get(dUrl)
                     .setHeader("User-Agent", userAgents[ToolRandom.number(0, 6)])
                     .execute().returnContent();
@@ -206,7 +208,7 @@ public class NovelService {
                 map.put("chapterDetail", jsonObject.get("chapter"));
             }
         } catch (Exception e) {
-            LOGGER.error(e.getMessage());
+            LOG.error(e.getMessage());
             map.put("code", -1);
             map.put("message", e.getMessage());
         }
@@ -281,7 +283,7 @@ public class NovelService {
                         count++;
                     } catch (IOException e) {
                         e.printStackTrace();
-                        LOGGER.error(e.getMessage());
+                        LOG.error(e.getMessage());
                     }
                 }
             }
@@ -388,7 +390,7 @@ public class NovelService {
                         count++;
                     } catch (IOException e) {
                         e.printStackTrace();
-                        LOGGER.error(e.getMessage());
+                        LOG.error(e.getMessage());
                     }
                 }
                 break;
