@@ -20,12 +20,18 @@
         *{
             font-family: "Arial","Microsoft YaHei","黑体","宋体",sans-serif;
         }
-        body {
-            background-color:  #eee !important;;
-         /*   background-image: url("${ctx!}/res/image/bg/bg4.jpg");*/
+        body,html {
+            height:100%;
+            width:100%;
+            overflow: hidden;
+            background-color:  #eee !important;
+            background-image: url("http://www.pptbz.com/d/file/p/201708/3152da9d788ad33b32992bb183f1b8d0.jpg");
+            background-repeat: no-repeat;
+            -webkit-background-size:cover;
+            background-size: cover;
         }
         .wrapper {
-          /*  opacity: .8;*/
+            opacity: .8;
             position: fixed;
             top: 50%;
             left: 50%;
@@ -102,7 +108,7 @@
             <input type="password"  name="password" class="pure-input-1" placeholder="密码">
         </fieldset>
         <div class="errorm-msg">${errMsg!}</div>
-        <input  id="remember" name="remember"  class="magic-checkbox" type="checkbox"   checked>
+        <input  id="remember" name="remember"  class="magic-checkbox" type="checkbox" >
         <label for="remember"
                onmouseenter="document.getElementsByClassName('warning-msg')[0].classList.remove('hiddenCls');"
                onmouseleave="document.getElementsByClassName('warning-msg')[0].classList.add('hiddenCls');" >

@@ -264,7 +264,7 @@ public abstract class ToolDateTime {
     /**
      * 得到某一天是星期几
      *
-     * @param strDate 日期字符串
+     * @param date
      * @return String 星期几
      */
     @SuppressWarnings("static-access")
@@ -386,7 +386,6 @@ public abstract class ToolDateTime {
      * 获取结束时间
      *
      * @param start
-     * @param end
      * @return
      */
     public static Date endDateByDay(Date start) {
@@ -402,7 +401,6 @@ public abstract class ToolDateTime {
 
     /**
      * 获取开始时间
-     *
      * @param start
      * @param end
      * @return
@@ -417,8 +415,6 @@ public abstract class ToolDateTime {
 
     /**
      * 获取结束时间
-     *
-     * @param start
      * @param end
      * @return
      */
@@ -505,7 +501,6 @@ public abstract class ToolDateTime {
 
     /**
      * 分割List
-     *
      * @param list     待分割的list
      * @param pageSize 每段list的大小
      * @return List<<List<T>>

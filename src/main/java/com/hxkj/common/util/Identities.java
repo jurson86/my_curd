@@ -5,8 +5,6 @@ import java.util.UUID;
 
 /**
  * 封装各种生成唯一性ID算法的工具类.
- *
- * @author xiaojing
  */
 public class Identities {
 
@@ -27,8 +25,6 @@ public class Identities {
      */
     public static String uuid2() {
         return IdGentral.get().nextId() + "";
-//		return idGentral.nextId()+"";
-//		return UUID.randomUUID().toString().replaceAll("-", "");
     }
 
     /**

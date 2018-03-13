@@ -1,4 +1,4 @@
-package com.hxkj.common.util;
+package com.hxkj.common.util.image;
 
 import com.jfinal.log.Log;
 import com.sun.image.codec.jpeg.JPEGCodec;
