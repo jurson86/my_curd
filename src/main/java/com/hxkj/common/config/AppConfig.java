@@ -9,6 +9,7 @@ import com.hxkj.websocket.controller.WebsocketController;
 import com.hxkj.websocket.handler.WebSocketHandler;
 import com.jfinal.config.*;
 import com.jfinal.ext.handler.ContextPathHandler;
+import com.jfinal.ext.handler.UrlSkipHandler;
 import com.jfinal.kit.PropKit;
 import com.jfinal.plugin.activerecord.ActiveRecordPlugin;
 import com.jfinal.plugin.activerecord.dialect.MysqlDialect;
@@ -37,6 +38,8 @@ public class AppConfig extends JFinalConfig {
         me.setMaxPostSize(1024 * 1024 * 1000);
         me.setBaseDownloadPath("download");
         me.setViewType(ViewType.FREE_MARKER);
+
+
         //设置404渲染视图
         //me.setError404View();
         //设置json工厂
@@ -79,10 +82,13 @@ public class AppConfig extends JFinalConfig {
 
     @Override
     public void configHandler(Handlers me) {
+
         // 处理 websocket 请求
         me.add(new WebSocketHandler("^/websocket"));
 
+        // 视图中添加应用contenxt
         me.add(new ContextPathHandler("ctx"));
+
         // druid 监控（只允许admin查看）
         DruidStatViewHandler dvh = new DruidStatViewHandler("/druid", new IDruidStatViewAuth() {
             public boolean isPermitted(HttpServletRequest request) {

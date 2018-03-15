@@ -2,6 +2,8 @@ package com.hxkj.common.filter;
 
 import com.hxkj.common.constant.Constant;
 import com.hxkj.common.util.UrlUtil;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
@@ -14,6 +16,7 @@ import java.io.IOException;
  * 登录拦截器（放置在 Jfinal 拦截器之前的 filter)
  */
 public class LoginFilter implements Filter {
+    private final static Logger LOG = LoggerFactory.getLogger(LoginFilter.class);
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
@@ -22,6 +25,8 @@ public class LoginFilter implements Filter {
 
     public void doFilter(ServletRequest req, ServletResponse res, FilterChain filterChain)
             throws IOException, ServletException {
+
+        LOG.debug("do servlet filter: LoginFilter ");
 
         HttpServletRequest request = (HttpServletRequest) req;
         HttpServletResponse response = (HttpServletResponse) res;
