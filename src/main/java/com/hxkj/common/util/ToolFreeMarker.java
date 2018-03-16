@@ -2,13 +2,14 @@ package com.hxkj.common.util;
 
 
 import com.jfinal.kit.PathKit;
-import com.jfinal.log.Log;
 import freemarker.cache.TemplateLoader;
 import freemarker.template.Configuration;
 import freemarker.template.DefaultObjectWrapper;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
 import org.apache.commons.io.FileUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -21,7 +22,8 @@ import java.util.Map;
  */
 public abstract class ToolFreeMarker {
 
-    private static final Log log = Log.getLog(ToolFreeMarker.class);
+
+    private final static Logger LOG = LoggerFactory.getLogger(ToolFreeMarker.class);
 
     public static void main(String[] args) {
 
@@ -70,10 +72,10 @@ public abstract class ToolFreeMarker {
             template.process(paramMap, writer);
         } catch (IOException e) {
             e.printStackTrace();
-            if (log.isErrorEnabled()) log.error(e.getMessage(), e);
+            LOG.error(e.getMessage(), e);
         } catch (TemplateException e) {
             e.printStackTrace();
-            if (log.isErrorEnabled()) log.error(e.getMessage(), e);
+            LOG.error(e.getMessage(), e);
         }
         return writer.toString();
     }

@@ -1,6 +1,5 @@
 package com.hxkj.common.util;
 
-import com.jfinal.log.Log;
 
 import java.util.HashSet;
 import java.util.LinkedList;
@@ -10,10 +9,8 @@ import java.util.StringTokenizer;
 /**
  * SQL格式化处理
  */
-@SuppressWarnings({"rawtypes", "unchecked", "unused"})
-public abstract class ToolFormatSql {
 
-    private static final Log log = Log.getLog(ToolFormatSql.class);
+public abstract class ToolFormatSql {
 
     /**
      * sql格式化方法

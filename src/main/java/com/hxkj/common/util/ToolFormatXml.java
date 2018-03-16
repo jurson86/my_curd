@@ -1,7 +1,5 @@
 package com.hxkj.common.util;
 
-
-import com.jfinal.log.Log;
 import org.dom4j.Document;
 import org.dom4j.DocumentException;
 import org.dom4j.io.OutputFormat;
@@ -17,8 +15,6 @@ import java.io.StringWriter;
  */
 public abstract class ToolFormatXml {
 
-    @SuppressWarnings("unused")
-    private static final Log log = Log.getLog(ToolFormatXml.class);
 
     public static void main(String[] args) {
         String xml = "<xml>";

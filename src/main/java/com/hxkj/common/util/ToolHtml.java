@@ -1,7 +1,5 @@
 package com.hxkj.common.util;
 
-
-import com.jfinal.log.Log;
 import org.apache.commons.lang3.StringEscapeUtils;
 import org.jsoup.Jsoup;
 import org.jsoup.safety.Whitelist;
@@ -10,10 +8,6 @@ import org.jsoup.safety.Whitelist;
  * Html处理
  */
 public abstract class ToolHtml {
-
-    @SuppressWarnings("unused")
-    private static final Log log = Log.getLog(ToolHtml.class);
-
     /**
      * 特殊字符转义，避免XSS
      *

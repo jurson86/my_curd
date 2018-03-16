@@ -15,9 +15,9 @@ public class WebSocketServer {
 
     private final static Logger LOG = LoggerFactory.getLogger(WebSocketServer.class);
 
-    //  session id 和 当前登录的用户id 映射
+    //  session id 和 当前登录的用户id
     public static Map<String, String> sIdMUid = new ConcurrentHashMap<>();
-    // ws sessionid  和 session 映射
+    // ws sessionid  和 session
     public static Map<String, Session> sIdMSession = new ConcurrentHashMap<>();
 
     /**

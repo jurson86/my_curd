@@ -1,12 +1,12 @@
 package com.hxkj.common.util;
 
-
-import com.jfinal.log.Log;
 import org.apache.commons.exec.CommandLine;
 import org.apache.commons.exec.DefaultExecutor;
 import org.apache.commons.exec.PumpStreamHandler;
 import org.apache.commons.io.output.ByteArrayOutputStream;
 import org.apache.commons.net.telnet.TelnetClient;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.net.InetAddress;
@@ -16,7 +16,7 @@ import java.net.UnknownHostException;
 
 public abstract class ToolNet {
 
-    private static final Log log = Log.getLog(ToolNet.class);
+    private final static Logger LOG = LoggerFactory.getLogger(ToolNet.class);
 
     /**
      * 本机IP
@@ -43,6 +43,7 @@ public abstract class ToolNet {
             InetAddress addr = InetAddress.getLocalHost();
             return addr.getHostName();
         } catch (UnknownHostException e) {
+            LOG.error(e.getMessage());
             e.printStackTrace();
         }
         return null;
@@ -75,7 +76,7 @@ public abstract class ToolNet {
             String error = errorStream.toString(encode);
             return out + error;
         } catch (Exception e) {
-            if (log.isErrorEnabled()) log.error("ping task failed.", e);
+            LOG.error("ping task failed.", e);
             return e.toString();
         }
     }
@@ -96,12 +97,14 @@ public abstract class ToolNet {
             tc.connect(ip, port);
             return true;
         } catch (Exception e) {
+            LOG.error(e.getMessage());
             return false;
         } finally {
             if (null != tc) {
                 try {
                     tc.disconnect();
                 } catch (IOException e) {
+                    LOG.error(e.getMessage());
                     e.printStackTrace();
                 }
             }
@@ -124,12 +127,14 @@ public abstract class ToolNet {
             socket.connect(addr, timeout);
             return true;
         } catch (Exception e) {
+            LOG.error(e.getMessage());
             return false;
         } finally {
             if (null != socket) {
                 try {
                     socket.close();
                 } catch (IOException e) {
+                    LOG.error(e.getMessage());
                     e.printStackTrace();
                 }
             }

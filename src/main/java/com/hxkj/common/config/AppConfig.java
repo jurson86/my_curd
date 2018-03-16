@@ -9,7 +9,6 @@ import com.hxkj.websocket.controller.WebsocketController;
 import com.hxkj.websocket.handler.WebSocketHandler;
 import com.jfinal.config.*;
 import com.jfinal.ext.handler.ContextPathHandler;
-import com.jfinal.ext.handler.UrlSkipHandler;
 import com.jfinal.kit.PropKit;
 import com.jfinal.plugin.activerecord.ActiveRecordPlugin;
 import com.jfinal.plugin.activerecord.dialect.MysqlDialect;

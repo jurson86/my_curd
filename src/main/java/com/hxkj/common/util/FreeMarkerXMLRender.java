@@ -10,7 +10,6 @@ import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Map;
 
-@SuppressWarnings("serial")
 public class FreeMarkerXMLRender extends FreeMarkerRender {
     private static final String CONTENT_TYPE = "text/xml; charset=" + getEncoding();
 
@@ -19,7 +18,6 @@ public class FreeMarkerXMLRender extends FreeMarkerRender {
     }
 
     @Override
-    @SuppressWarnings({"unchecked", "rawtypes"})
     public void render() {
         response.setContentType(CONTENT_TYPE);
 

@@ -4,7 +4,8 @@ package com.hxkj.common.util;
 import com.hxkj.common.constant.Constant;
 import com.jfinal.kit.PropKit;
 import com.jfinal.kit.StrKit;
-import com.jfinal.log.Log;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.servlet.ServletInputStream;
 import javax.servlet.http.Cookie;
@@ -22,7 +23,7 @@ import java.util.Map;
  */
 public abstract class ToolWeb {
 
-    private static final Log log = Log.getLog(ToolWeb.class);
+    private final static Logger LOG = LoggerFactory.getLogger(ToolWeb.class);
 
     /**
      * 获取客户端IP地址
@@ -86,7 +87,7 @@ public abstract class ToolWeb {
             try {
                 return URLDecoder.decode(value, ToolString.encoding).trim();
             } catch (UnsupportedEncodingException e) {
-                if (log.isErrorEnabled()) log.error("decode异常：" + value);
+                LOG.error("decode异常：" + value);
                 return value;
             }
         }
@@ -139,8 +140,6 @@ public abstract class ToolWeb {
         }
         response.setContentType(contentType);
         response.setCharacterEncoding(ToolString.encoding);
-        // PrintWriter out = response.getWriter();
-        // out.print(content);
         try {
             response.getOutputStream().write(content);// char to byte 性能提升
         } catch (IOException e) {
@@ -162,15 +161,12 @@ public abstract class ToolWeb {
         } catch (UnsupportedEncodingException e1) {
             e1.printStackTrace();
         }
-        // PrintWriter out = response.getWriter();
-        // out.write(content);
+
         try {
             response.getOutputStream().write(content.getBytes(ToolString.encoding));
         } catch (IOException e) {
             e.printStackTrace();
-        }// char to byte 性能提升
-        // out.flush();
-        // out.close();
+        }
     }
 
     /**
@@ -195,34 +191,31 @@ public abstract class ToolWeb {
             }
             return sb.toString();
         } catch (IOException e) {
-            if (log.isErrorEnabled()) log.error("request.getInputStream() to String 异常", e);
+            LOG.error("request.getInputStream() to String 异常", e);
             return null;
         } finally { // 释放资源
             if (null != bufferedReader) {
                 try {
                     bufferedReader.close();
                 } catch (IOException e) {
-                    if (log.isErrorEnabled()) log.error("bufferedReader.close()异常", e);
+                    LOG.error("bufferedReader.close()异常", e);
                 }
-                bufferedReader = null;
             }
 
             if (null != inputStreamReader) {
                 try {
                     inputStreamReader.close();
                 } catch (IOException e) {
-                    if (log.isErrorEnabled()) log.error("inputStreamReader.close()异常", e);
+                    LOG.error("inputStreamReader.close()异常", e);
                 }
-                inputStreamReader = null;
             }
 
             if (null != inputStream) {
                 try {
                     inputStream.close();
                 } catch (IOException e) {
-                    if (log.isErrorEnabled()) log.error("inputStream.close()异常", e);
+                    LOG.error("inputStream.close()异常", e);
                 }
-                inputStream = null;
             }
         }
     }
@@ -262,7 +255,7 @@ public abstract class ToolWeb {
         try {
             cookie.setHttpOnly(isHttpOnly);
         } catch (Exception e) {
-            if (log.isErrorEnabled()) log.error("servlet容器版本太低，servlet3.0以前不支持设置cookie只读" + e.getMessage());
+            LOG.error("servlet容器版本太低，servlet3.0以前不支持设置cookie只读" + e.getMessage());
         }
 
         // https模式传递此cookie，否则忽略此cookie
@@ -340,7 +333,6 @@ public abstract class ToolWeb {
      * （防止资源外链）
      *
      * @return
-     * @author 董华健 2012-10-30 上午10:26:04
      */
     public static boolean authReferer(HttpServletRequest request) {
         String referer = request.getHeader("Referer");

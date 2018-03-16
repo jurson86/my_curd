@@ -12,8 +12,6 @@ import java.util.Enumeration;
 import java.util.Map;
 import java.util.TreeMap;
 
-;
-
 
 public class SearchSql implements Interceptor {
     private final String prefix = "search_";

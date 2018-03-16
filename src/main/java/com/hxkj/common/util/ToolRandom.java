@@ -33,8 +33,9 @@ public abstract class ToolRandom {
     }
 
     /**
-     * 生成验证码
+     * 生成指定长度的验证码
      *
+     * @param length
      * @return
      */
     public static String getAuthCodeAll(int length) {
@@ -46,8 +47,9 @@ public abstract class ToolRandom {
     }
 
     /**
-     * 生成验证码，纯数字
+     * 生成指定长度纯数字验证码，
      *
+     * @param length
      * @return
      */
     public static String getAuthCodeNumber(int length) {
@@ -62,11 +64,10 @@ public abstract class ToolRandom {
      * 获取UUID by jdk
      *
      * @return
-     * @author 董华健    2012-9-7 下午2:22:18
      */
-    public static String getUuid(boolean is32bit) {
+    public static String getUuid(boolean underline) {
         String uuid = UUID.randomUUID().toString();
-        if (is32bit) {
+        if (!underline) {
             return uuid.toString().replace("-", "");
         }
         return uuid;
@@ -84,7 +85,7 @@ public abstract class ToolRandom {
     }
 
     /**
-     * 产生0--number的随机数,不包括num
+     * 产生0--number的随机数,不包括number
      *
      * @param number 数字
      * @return int 随机数字
@@ -107,7 +108,11 @@ public abstract class ToolRandom {
     }
 
     public static void main(String[] args) {
-        System.out.println(getRandomRgb());
+        int[] rgb = getRandomRgb();
+        System.out.println(rgb[0] + "," + rgb[1] + "," + rgb[2]);
+
+        System.out.println(getUuid(false));
+        System.out.println(getUuid(true));
     }
 
 }

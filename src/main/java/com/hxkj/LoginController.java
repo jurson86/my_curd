@@ -22,7 +22,7 @@ import java.util.List;
 
 public class LoginController extends BaseController {
 
-    private  final static  Logger LOG = LoggerFactory.getLogger(LoginController.class);
+    private final static Logger LOG = LoggerFactory.getLogger(LoginController.class);
     private static String usernameKey;
     private static String passwordKey;
 
@@ -39,8 +39,8 @@ public class LoginController extends BaseController {
     public void index() {
         String username = getCookie(usernameKey);
         String password = getCookie(passwordKey);
-        LOG.debug("username from cookie: {}" , username);
-        LOG.debug("password from cookie: {}" , password);
+        LOG.debug("username from cookie: {}", username);
+        LOG.debug("password from cookie: {}", password);
         if (username != null && password != null) {
             SysUser sysUser = SysUser.dao.findByUsernameAndPassword(username, password);
             // 用户名密码正确且未被禁用

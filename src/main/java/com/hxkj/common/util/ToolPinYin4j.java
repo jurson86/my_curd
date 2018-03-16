@@ -1,7 +1,6 @@
 package com.hxkj.common.util;
 
 
-import com.jfinal.log.Log;
 import net.sourceforge.pinyin4j.PinyinHelper;
 import net.sourceforge.pinyin4j.format.HanyuPinyinCaseType;
 import net.sourceforge.pinyin4j.format.HanyuPinyinOutputFormat;
@@ -16,9 +15,6 @@ import java.nio.charset.Charset;
  */
 public class ToolPinYin4j {
 
-    @SuppressWarnings("unused")
-    private static final Log log = Log.getLog(ToolPinYin4j.class);
-
     /**
      * 得到 全拼
      *
@@ -26,9 +22,9 @@ public class ToolPinYin4j {
      * @return
      */
     public static String getPingYin(String src) {
-        char[] t1 = null;
+        char[] t1;
         t1 = src.toCharArray();
-        String[] t2 = new String[t1.length];
+        String[] t2;
         HanyuPinyinOutputFormat t3 = new HanyuPinyinOutputFormat();
         t3.setCaseType(HanyuPinyinCaseType.LOWERCASE);
         t3.setToneType(HanyuPinyinToneType.WITHOUT_TONE);
@@ -38,7 +34,6 @@ public class ToolPinYin4j {
         try {
             for (int i = 0; i < t0; i++) {
                 // 判断是否为汉字字符
-
                 if (java.lang.Character.toString(t1[i]).matches("[\\u4E00-\\u9FA5]+")) {
                     t2 = PinyinHelper.toHanyuPinyinStringArray(t1[i], t3);
                     t4 += t2[0];
@@ -84,18 +79,18 @@ public class ToolPinYin4j {
         StringBuilder sb = new StringBuilder();
         byte[] strByte = cnStr.getBytes(Charset.forName("UTF-8"));
         for (int i = 0; i < strByte.length; i++) {
-            // System.out.println(Integer.toHexString(bGBK[i]&0xff));
-
             sb.append(Integer.toHexString(strByte[i] & 0xff));
         }
         String val = sb.toString();
-        sb = null;
         return val;
     }
 
     public static void main(String[] args) {
         System.out.println(getPingYin("单于"));
-        ;
+        System.out.println(getPinYinHeadChar("The big bang theory"));
+        System.out.println(getPingYin("单今朝"));
+        System.out.println(getCnASCII("你好"));
+        System.out.println(getCnASCII("good morning"));
     }
 
 }
