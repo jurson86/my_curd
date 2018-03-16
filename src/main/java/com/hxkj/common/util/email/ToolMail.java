@@ -55,7 +55,7 @@ public class ToolMail {
         boolean validate = true;                    // 是否需要身份验证
         String from = "15238002477@163.com";        // 邮件发送者的地址
         String userName = from;                     // 登陆邮件发送服务器的用户名
-        String password = "zgl1994";             // 登陆邮件发送服务器的密码
+        String password = "akkk1994";             // 登陆邮件发送服务器的密码
 
         List<String> to = new ArrayList<String>();       // 邮件接收者的地址
         to.add("916432779@qq.com");
