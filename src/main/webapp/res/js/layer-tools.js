@@ -25,7 +25,7 @@ var layerTools = layerTools || {};
         if (height == undefined)
             height = '90%';
         var index = layer.open({
-            skin: 'layui-layer-molv', /*官方默认样式*/
+            skin: 'layui-layer-molv', /*官方样式*/
             type: 2,
             title: ['<i class="fa ' + faCls + '"></i>&nbsp;&nbsp;' + title, 'background:#2196F3; line-height:30px;height:30px;padding: 0 10px'],
             maxmin: true,
@@ -97,7 +97,9 @@ var layerTools = layerTools || {};
      */
     layerTools.layerLoading = function (cbfun) {
         var i = layer.load();
-        cbfun();
+        if(cbfun!=null){
+            cbfun();
+        };
         layer.close(i);
     }
 
