@@ -1,6 +1,5 @@
 package com.hxkj.common.util.image;
 
-import com.jfinal.log.Log;
 import com.sun.image.codec.jpeg.JPEGCodec;
 import com.sun.image.codec.jpeg.JPEGImageEncoder;
 
@@ -13,10 +12,7 @@ import java.io.FileOutputStream;
 /**
  * 图片水印处理
  */
-@SuppressWarnings("restriction")
-public abstract class ToolImagePressText {
-
-    private static final Log log = Log.getLog(ToolImagePressText.class);
+public abstract class ImageWatermark {
 
 
     /**

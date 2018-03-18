@@ -7,6 +7,7 @@ import com.jfinal.plugin.activerecord.dialect.Dialect;
 import com.jfinal.plugin.activerecord.dialect.MysqlDialect;
 import com.jfinal.plugin.activerecord.generator.TypeMapping;
 import com.jfinal.plugin.druid.DruidPlugin;
+import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.sql.DataSource;
@@ -17,10 +18,10 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * 数据库信息工具
+ * 数据库表信息 转换
  */
 public class SchemaInfoUtil {
-    private final static org.slf4j.Logger LOG = LoggerFactory.getLogger(SchemaInfoUtil.class);
+    private final static Logger LOG = LoggerFactory.getLogger(SchemaInfoUtil.class);
     private Dialect dialect;
     private DataSource ds;
     private TypeMapping typeMapping;
@@ -32,6 +33,7 @@ public class SchemaInfoUtil {
     }
 
     public static void main(String[] args) {
+        //注意 InformationSchema=true
         DruidPlugin dp = new DruidPlugin("jdbc:mysql://127.0.0.1/my_curd?characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useInformationSchema=true", "root", "123456");
         dp.start();
         Dialect mysqlDialect = new MysqlDialect();
@@ -45,7 +47,7 @@ public class SchemaInfoUtil {
     /**
      * 数据库表信息
      *
-     * @param fullInfoFlag true查询表的同时查询列集合信息
+     * @param fullInfoFlag true 查询表的同时查询列集合信息
      * @return
      */
     public List<Table> getAllTableInfo(Boolean fullInfoFlag) {

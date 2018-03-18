@@ -1,7 +1,5 @@
 package com.hxkj.common.util.image;
 
-import com.jfinal.log.Log;
-
 import javax.imageio.ImageIO;
 import javax.imageio.ImageReadParam;
 import javax.imageio.ImageReader;
@@ -16,10 +14,8 @@ import java.util.Iterator;
 /**
  * 图片裁剪
  */
-public abstract class ToolImageTailor {
+public abstract class ImageTailor {
 
-
-    private static final Log log = Log.getLog(ToolImageTailor.class);
 
     /**
      * 裁剪
@@ -98,7 +94,7 @@ public abstract class ToolImageTailor {
 
 
     public static void main(String[] args) throws Exception {
-        ToolImageTailor.cut("d:/sago.jpg", "d:/sago2.jpg", 100, 100, 100, 100);
+        ImageTailor.cut("d:/sago.jpg", "d:/sago2.jpg", 100, 100, 100, 100);
     }
 
 }

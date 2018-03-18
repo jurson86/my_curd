@@ -3,7 +3,9 @@ package com.hxkj.common.util.email;
 import javax.mail.Authenticator;
 import javax.mail.PasswordAuthentication;
 
-
+/**
+ * 邮箱认证
+ */
 public class MailAuthenticator extends Authenticator {
     private String userName;
     private String password;

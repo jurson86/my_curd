@@ -68,14 +68,13 @@ public abstract class ToolFreeMarker {
             cfg.setTemplateLoader(new StringTemplateLoader(templateContent));
             cfg.setDefaultEncoding("UTF-8");
             Template template = cfg.getTemplate("");
-
             template.process(paramMap, writer);
         } catch (IOException e) {
             e.printStackTrace();
-            LOG.error(e.getMessage(), e);
+            LOG.error(e.getMessage());
         } catch (TemplateException e) {
             e.printStackTrace();
-            LOG.error(e.getMessage(), e);
+            LOG.error(e.getMessage());
         }
         return writer.toString();
     }
@@ -97,7 +96,6 @@ public abstract class ToolFreeMarker {
             configuration.setDirectoryForTemplateLoading(file);
             configuration.setObjectWrapper(new DefaultObjectWrapper(Configuration.VERSION_2_3_22));
             Template template = configuration.getTemplate(tlName, ToolString.encoding);
-
             File file2 = new File(htmlPath);// 生成html目录
             fileOutputStream = new FileOutputStream(file2);
             outputStreamWriter = new OutputStreamWriter(fileOutputStream, ToolString.encoding);
@@ -108,8 +106,10 @@ public abstract class ToolFreeMarker {
             fileOutputStream.close();
         } catch (IOException e) {
             e.printStackTrace();
+            LOG.error(e.getMessage());
         } catch (TemplateException e) {
             e.printStackTrace();
+            LOG.error(e.getMessage());
         } finally {
             if (null != fileOutputStream) {
                 try {

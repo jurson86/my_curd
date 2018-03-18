@@ -11,21 +11,23 @@
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
-        <slf4j.version>1.7.25</slf4j.version>
-        <log4j.version>1.2.17</log4j.version>
-        <fastjson.version>1.2.43</fastjson.version>
+        <!--必须的-->
         <jfinal.version>3.3</jfinal.version>
         <mysql-connector.version>5.1.20</mysql-connector.version>
         <druid.version>1.0.29</druid.version>
         <freemarker.version>2.3.22</freemarker.version>
+        <fastjson.version>1.2.43</fastjson.version>
+        <slf4j.version>1.7.25</slf4j.version>
+        <log4j.version>1.2.17</log4j.version>
         <poi.version>3.7</poi.version>
         <poi.ooxml.version>3.7</poi.ooxml.version>
         <poi.ooxml.schemas.version>3.7</poi.ooxml.schemas.version>
+        <httpClient.version>4.5.4</httpClient.version>
+        <!--额外的工具集，可能没用到-->
         <google.collections.version>1.0-rc2</google.collections.version>
         <guava.version>14.0.1</guava.version>
         <jodd.core.version>3.6.2</jodd.core.version>
         <jodd.bean.version>3.6.2</jodd.bean.version>
-        <httpClien.version>4.5.4</httpClien.version>
     </properties>
 
     <dependencies>
@@ -211,12 +213,12 @@
         <dependency>
             <groupId>org.apache.httpcomponents</groupId>
             <artifactId>httpclient</artifactId>
-            <version>${httpClien.version}</version>
+            <version>${httpClient.version}</version>
         </dependency>
         <dependency>
             <groupId>org.apache.httpcomponents</groupId>
             <artifactId>fluent-hc</artifactId>
-            <version>${httpClien.version}</version>
+            <version>${httpClient.version}</version>
         </dependency>
 
         <!-- websocket 支持-->

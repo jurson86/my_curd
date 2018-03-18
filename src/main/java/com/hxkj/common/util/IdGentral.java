@@ -1,7 +1,6 @@
 package com.hxkj.common.util;
 
 /**
- * Created by wz on 16/1/12.
  * 全局唯一ID生成器
  */
 public class IdGentral {
