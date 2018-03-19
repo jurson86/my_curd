@@ -1,6 +1,5 @@
 package com.hxkj.common.util.image;
 
-import com.jfinal.log.Log;
 import com.sun.image.codec.jpeg.JPEGCodec;
 import com.sun.image.codec.jpeg.JPEGEncodeParam;
 import com.sun.image.codec.jpeg.JPEGImageEncoder;
@@ -23,7 +22,7 @@ public abstract class ImageResize {
     public static final MediaTracker tracker = new MediaTracker(new Component() {
         private static final long serialVersionUID = 1234162663955668507L;
     });
-    private final  static Logger LOG = LoggerFactory.getLogger(ImageResize.class);
+    private final static Logger LOG = LoggerFactory.getLogger(ImageResize.class);
 
     /**
      * @param oldPath 原图像
@@ -41,7 +40,7 @@ public abstract class ImageResize {
         }
         FileInputStream fis = null;
         ByteArrayOutputStream byteStream = null;
-        byte[] in ;
+        byte[] in;
         try {
             fis = new FileInputStream(originalFile);
             byteStream = new ByteArrayOutputStream();
@@ -100,12 +99,12 @@ public abstract class ImageResize {
     private static void checkImage(Image image) {
         waitForImage(image);
         int imageWidth = image.getWidth(null);
-        if (imageWidth < 1){
+        if (imageWidth < 1) {
             throw new IllegalArgumentException("image width " + imageWidth + " is out of range");
         }
 
         int imageHeight = image.getHeight(null);
-        if (imageHeight < 1){
+        if (imageHeight < 1) {
             throw new IllegalArgumentException("image height " + imageHeight + " is out of range");
         }
 
@@ -130,12 +129,12 @@ public abstract class ImageResize {
      */
     private static void encode(OutputStream outputStream, Image outputImage, String format) throws java.io.IOException {
         int outputWidth = outputImage.getWidth(null);
-        if (outputWidth < 1){
+        if (outputWidth < 1) {
             throw new IllegalArgumentException("output image width " + outputWidth + " is out of range");
         }
 
         int outputHeight = outputImage.getHeight(null);
-        if (outputHeight < 1){
+        if (outputHeight < 1) {
             throw new IllegalArgumentException("output image height " + outputHeight + " is out of range");
         }
         // Get a buffered image from the image.

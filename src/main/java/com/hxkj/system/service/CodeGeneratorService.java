@@ -7,6 +7,8 @@ import com.jfinal.kit.PathKit;
 import com.jfinal.kit.Prop;
 import com.jfinal.kit.PropKit;
 import com.jfinal.kit.StrKit;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -15,11 +17,11 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Created by Administrator on 2017-12-18.
+ * Created by zhangchuang on 2017-12-18.
  */
-
-
 public class CodeGeneratorService {
+
+    private final static Logger LOG = LoggerFactory.getLogger(CodeGeneratorService.class);
     private String tplDir;                      // 模板目录
     private String[] templates;                 //模板文件名 s
     private String[] paths;                     //生成的文件地址 s
@@ -45,6 +47,60 @@ public class CodeGeneratorService {
             throw new IllegalArgumentException("配置文件出错： templates、paths、fileNameWrapers 个数不匹配");
         }
     }
+
+
+    /**
+     * 生成的代码文件路径处理
+     *
+     * @param moduleName
+     * @param out
+     * @return
+     */
+    private String toOutPath(String moduleName, String out) {
+        String basePath = PathKit.getRootClassPath() + File.separator;
+        String pathStr = out;
+        String outPath = basePath + "out" + File.separator
+                + (this.basePackageName + "." + moduleName).replace(".", File.separator) + File.separator
+                + pathStr + File.separator;
+
+        File file = new File(outPath);
+        if (!file.exists()) {
+            file.mkdirs();
+        }
+        return outPath;
+    }
+
+    /**
+     * 生成代码 文件
+     *
+     * @param moduleName
+     * @param tables
+     * @return
+     */
+    public List<String> generate(String moduleName, List<Table> tables) {
+        List<String> outPathList = new ArrayList<String>();
+        for (Table table : tables) {
+            Map<String, Object> content = new HashMap<String, Object>();
+            content.put("moduleName", moduleName);
+            content.put("basePackageName", this.basePackageName);
+            content.put("table", table);
+            for (int i = 0; i < this.templates.length; i++) {
+                String fileName;
+                // .java 文件 使用 首字母大写的驼峰, 非java 文件使用驼峰命名
+                if (fileNameWrapers[i].endsWith(".java")) {
+                    fileName = toOutPath(moduleName, this.paths[i]) + fileNameWrapers[i].replaceAll("@tableName@", table.getTableNameCamelFirstUp());
+                } else {
+                    fileName = toOutPath(moduleName, this.paths[i] + File.separator + moduleName) + fileNameWrapers[i].replaceAll("@tableName@", table.getTableNameCamel());
+                }
+                fileName = fileName.replaceAll("\\\\", "/");
+                LOG.debug("fileName: {}", fileName);
+                ToolFreeMarker.makeHtml(tplDir, templates[i], content, fileName);
+                outPathList.add(fileName);
+            }
+        }
+        return outPathList;
+    }
+
 
     public static void main(String[] args) {
         CodeGeneratorService service = new CodeGeneratorService();
@@ -95,53 +151,6 @@ public class CodeGeneratorService {
         Table table = JSON.parseObject(jsonStr, Table.class);
         tables.add(table);
         service.generate("bus", tables);
-    }
-
-    private String toOutPath(String moduleName, String out) {
-        String basePath = PathKit.getRootClassPath() + File.separator;
-        String pathStr = out;
-        String outPath = basePath + "out" + File.separator
-                + (this.basePackageName + "." + moduleName).replace(".", File.separator) + File.separator
-                + pathStr + File.separator;
-
-        File file = new File(outPath);
-        if (!file.exists()) {
-            file.mkdirs();
-        }
-        return outPath;
-    }
-
-    /**
-     * 生成代码
-     *
-     * @param moduleName
-     * @param tables
-     * @return
-     */
-    public List<String> generate(String moduleName, List<Table> tables) {
-
-        List<String> outPathList = new ArrayList<String>();
-        for (Table table : tables) {
-            Map<String, Object> content = new HashMap<String, Object>();
-            content.put("moduleName", moduleName);
-            content.put("basePackageName", this.basePackageName);
-            content.put("table", table);
-            for (int i = 0; i < this.templates.length; i++) {
-                String fileName;
-                // .java 文件 使用 首字母大写的驼峰, 非java 文件使用驼峰命名
-                if (fileNameWrapers[i].endsWith(".java")) {
-                    fileName = toOutPath(moduleName, this.paths[i]) + fileNameWrapers[i].replaceAll("@tableName@", table.getTableNameCamelFirstUp());
-                } else {
-                    fileName = toOutPath(moduleName, this.paths[i] + File.separator + moduleName) + fileNameWrapers[i].replaceAll("@tableName@", table.getTableNameCamel());
-                }
-
-                fileName = fileName.replaceAll("\\\\", "/");
-                System.out.println("fileName: " + fileName);
-                ToolFreeMarker.makeHtml(tplDir, templates[i], content, fileName);
-                outPathList.add(fileName);
-            }
-        }
-        return outPathList;
     }
 
 

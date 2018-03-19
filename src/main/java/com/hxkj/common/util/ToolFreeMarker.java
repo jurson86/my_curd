@@ -54,7 +54,7 @@ public abstract class ToolFreeMarker {
     }
 
     /**
-     * 通过ftl 和参数 获得 渲染后的 字符串
+     * 通过模板内容 和 参数 获得 渲染后的 字符串
      *
      * @param templateContent ftl文件文本内容
      * @param paramMap
@@ -80,7 +80,7 @@ public abstract class ToolFreeMarker {
     }
 
     /**
-     * 生成HTML
+     * 通过模板和参数生成HTML文件
      *
      * @param tlDirectory tl模板目录
      * @param tlName      ftl模板

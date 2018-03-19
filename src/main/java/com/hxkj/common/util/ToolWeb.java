@@ -132,7 +132,6 @@ public abstract class ToolWeb {
      * @param response
      * @param content
      * @param contentType
-     * @author 董华健 2012-9-14 下午8:04:01
      */
     public static void outPage(HttpServletResponse response, byte[] content, String contentType) {
         if (StrKit.isBlank(contentType)) {
@@ -152,7 +151,6 @@ public abstract class ToolWeb {
      *
      * @param response
      * @param content  CSV内容
-     * @author 董华健 2012-9-14 下午8:02:33
      */
     public static void outDownCsv(HttpServletResponse response, String content) {
         response.setContentType("application/download; charset=gb18030");
@@ -328,8 +326,7 @@ public abstract class ToolWeb {
     }
 
     /**
-     * 根据配置文件
-     * 效验Referer有效性
+     * 根据配置文件 效验Referer有效性
      * （防止资源外链）
      *
      * @return

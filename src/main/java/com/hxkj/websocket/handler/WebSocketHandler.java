@@ -13,7 +13,7 @@ import java.util.regex.Pattern;
 /**
  * websocket handler
  * 匹配特定的 ws url
- * 依赖于 jfinal
+ * 依赖 jfinal
  */
 public class WebSocketHandler extends Handler {
     private final static Logger LOG = LoggerFactory.getLogger(WebSocketHandler.class);
@@ -35,5 +35,4 @@ public class WebSocketHandler extends Handler {
             next.handle(target, request, response, isHandled);
         }
     }
-
 }

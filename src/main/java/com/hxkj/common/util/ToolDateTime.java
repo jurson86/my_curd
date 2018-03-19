@@ -1,7 +1,8 @@
 package com.hxkj.common.util;
 
 
-import com.jfinal.log.Log;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.sql.Timestamp;
 import java.text.DateFormat;
@@ -14,6 +15,8 @@ import java.util.*;
  */
 public abstract class ToolDateTime {
 
+    private static final Logger LOG = LoggerFactory.getLogger(ToolDateTime.class);
+
     public static final String pattern_ym = "yyyy-MM"; // pattern_ym
     public static final int pattern_ym_length = 7;
     public static final String pattern_ymd = "yyyy-MM-dd"; // pattern_ymd
@@ -24,10 +27,10 @@ public abstract class ToolDateTime {
     public static final int pattern_ymd_hms_length = 19;
     public static final String pattern_ymd_hms_s = "yyyy-MM-dd HH:mm:ss:SSS"; // pattern_ymd timeMillisecond
     public static final int pattern_ymd_hms_s_length = 23;
-    private static final Log log = Log.getLog(ToolDateTime.class);
+
 
     /**
-     * 获得时间戳
+     * 获得当前时间时间戳
      *
      * @return
      */
@@ -36,7 +39,7 @@ public abstract class ToolDateTime {
     }
 
     /**
-     * 获得时间戳
+     * 获指定时间的时间戳
      *
      * @param date
      * @return
@@ -49,17 +52,17 @@ public abstract class ToolDateTime {
     }
 
     /**
-     * 获得时间戳
+     * 获得指定的时间戳
      *
      * @param time
      * @return
      */
     public static Timestamp getSqlTimestamp(long time) {
-        return new java.sql.Timestamp(time);
+        return new Timestamp(time);
     }
 
     /**
-     * 获得时间戳
+     * 获得指定时间的时间戳
      *
      * @param date
      * @param pattern
@@ -68,9 +71,9 @@ public abstract class ToolDateTime {
     public static Timestamp getSqlTimestamp(String date, String pattern) {
         SimpleDateFormat format = new SimpleDateFormat(pattern);
         try {
-            return new java.sql.Timestamp(format.parse(date).getTime());
+            return new Timestamp(format.parse(date).getTime());
         } catch (ParseException e) {
-            if (log.isErrorEnabled()) log.error("ToolDateTime.parse异常：date值" + date + "，pattern值" + pattern, e);
+            LOG.error(e.getMessage());
             return null;
         }
     }
@@ -85,7 +88,7 @@ public abstract class ToolDateTime {
     }
 
     /**
-     * 获取指定日期
+     * 获得当前日期 多长时间之后的日期
      *
      * @param date
      * @param hour
@@ -105,7 +108,7 @@ public abstract class ToolDateTime {
     }
 
     /**
-     * 获取当前时间的时间戳
+     * 获取当前时间 long 类型值
      *
      * @return
      */
@@ -114,7 +117,7 @@ public abstract class ToolDateTime {
     }
 
     /**
-     * 格式化
+     * 日期格式化
      *
      * @param date
      * @param pattern
@@ -126,7 +129,8 @@ public abstract class ToolDateTime {
     }
 
     /**
-     * 格式化
+     * 指定时区 日期格式化
+     * 可用于时区间 转换（例如date 是当前时间，timeZone指定哥本哈根，可以获得 哥本哈根当前时间）
      *
      * @param date
      * @param pattern
@@ -140,7 +144,7 @@ public abstract class ToolDateTime {
     }
 
     /**
-     * 格式化
+     * 字符串日期格式化
      *
      * @param date
      * @param parsePattern
@@ -152,7 +156,7 @@ public abstract class ToolDateTime {
     }
 
     /**
-     * 格式化
+     * 指定时区，字符串日期格式化
      *
      * @param date
      * @param parsePattern
@@ -165,7 +169,7 @@ public abstract class ToolDateTime {
     }
 
     /**
-     * 解析
+     * 指定格式解析
      *
      * @param date
      * @param pattern
@@ -176,13 +180,13 @@ public abstract class ToolDateTime {
         try {
             return format.parse(date);
         } catch (ParseException e) {
-            if (log.isErrorEnabled()) log.error("ToolDateTime.parse异常：date值" + date + "，pattern值" + pattern, e);
+            LOG.error(e.getMessage());
             return null;
         }
     }
 
     /**
-     * 解析
+     * 根据默认格式解析
      *
      * @param dateStr
      * @return
@@ -192,7 +196,7 @@ public abstract class ToolDateTime {
         try {
             date = DateFormat.getDateTimeInstance().parse(dateStr);
         } catch (ParseException e) {
-            if (log.isErrorEnabled()) log.error("ToolDateTime.parse异常：date值" + date, e);
+            LOG.error(e.getMessage());
             return null;
         }
         return date;
@@ -364,7 +368,7 @@ public abstract class ToolDateTime {
     }
 
     /**
-     * 获取日期的相对日期（天）
+     * 某个日期的 时分秒毫秒清零，向左或者向右偏移多少天
      *
      * @param start
      * @param end
@@ -383,7 +387,7 @@ public abstract class ToolDateTime {
     }
 
     /**
-     * 获取结束时间
+     * 获得某个日期最后时间（1毫秒之后为下一天开始）
      *
      * @param start
      * @return
@@ -400,27 +404,29 @@ public abstract class ToolDateTime {
     }
 
     /**
-     * 获取开始时间
+     * 某个时间 分秒毫秒清零，向左或者向右有偏移几分钟
      *
      * @param start
      * @param end
      * @return
      */
-    public static Date startDateByHour(Date start, int end) {
+    public static Date startDateByMinute(Date start, int end) {
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(start);
         calendar.set(Calendar.MINUTE, end);
+        calendar.set(Calendar.SECOND, 0);
+        calendar.set(Calendar.MILLISECOND, 0);
         Date date = calendar.getTime();
         return date;
     }
 
     /**
-     * 获取结束时间
+     * 某个日期最后时间，1毫秒后为 下一分钟开始
      *
      * @param end
      * @return
      */
-    public static Date endDateByHour(Date end) {
+    public static Date endDateByMinute(Date end) {
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(end);
         calendar.set(Calendar.SECOND, 59);
@@ -501,35 +507,5 @@ public abstract class ToolDateTime {
         return map;
     }
 
-    /**
-     * 分割List
-     *
-     * @param list     待分割的list
-     * @param pageSize 每段list的大小
-     * @return List<<List<T>>
-     */
-    public static <T> List<List<T>> splitList(List<T> list, int pageSize) {
-        int listSize = list.size(); // list的大小
-        int page = (listSize + (pageSize - 1)) / pageSize; // 页数
-
-        List<List<T>> listArray = new ArrayList<List<T>>();// 创建list数组
-        // ,用来保存分割后的list
-
-        for (int i = 0; i < page; i++) { // 按照数组大小遍历
-            List<T> subList = new ArrayList<T>(); // 数组每一位放入一个分割后的list
-            for (int j = 0; j < listSize; j++) { // 遍历待分割的list
-                int pageIndex = ((j + 1) + (pageSize - 1)) / pageSize; // 当前记录的页码(第几页)
-                if (pageIndex == (i + 1)) { // 当前记录的页码等于要放入的页码时
-                    subList.add(list.get(j)); // 放入list中的元素到分割后的list(subList)
-                }
-
-                if ((j + 1) == ((j + 1) * pageSize)) { // 当放满一页时退出当前循环
-                    break;
-                }
-            }
-            listArray.add(subList); // 将分割后的list放入对应的数组的位中
-        }
-        return listArray;
-    }
 
 }
