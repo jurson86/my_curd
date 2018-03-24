@@ -295,8 +295,7 @@ public class NovelService {
 
 
     /**
-     * 不适合在 用户很多的 web 环境下
-     *
+     * web 环境下应该使用 全局 的线程池, 使用Callable 而不是 Runnable
      * @param nid
      * @return
      */
@@ -311,6 +310,7 @@ public class NovelService {
         }
         JSONArray jsonArray = (JSONArray) stepOneMap.get("rows");
         Iterator it = jsonArray.iterator();
+        // 创建任务，执行或者放入到线程池任务队列中
         while (it.hasNext()) {
             JSONObject jsonObject = (JSONObject) it.next();
             executorService.execute(new Runnable() {
@@ -327,6 +327,7 @@ public class NovelService {
                 }
             });
         }
+        // 线程池状态变更为SHUTDOWN，不再接受新任务。当任务队列不再有任务（所有任务执行完毕）,任务状态变更为 TERMINATED
         executorService.shutdown();
         while (true) {
             if (executorService.isTerminated()) {

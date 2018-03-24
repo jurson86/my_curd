@@ -15,6 +15,7 @@ import com.jfinal.kit.Prop;
 import com.jfinal.kit.PropKit;
 import com.jfinal.kit.StrKit;
 import com.jfinal.plugin.activerecord.tx.Tx;
+import jodd.util.URLDecoder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -151,5 +152,22 @@ public class LoginController extends BaseController {
         redirect("/login");
     }
 
+
+
+    // 无用
+    @Clear(AuthorityInterceptor.class)
+    @ActionKey("/captcha")
+    public void captcha(){
+        renderCaptcha();
+    }
+
+    // 无用
+    @Clear(AuthorityInterceptor.class)
+    @ActionKey("/qrcode")
+    public void qrcode(){
+        String text = StrKit.isBlank(getPara(0))?"oh, my_curd!":getPara(0);
+        text=URLDecoder.decode(text, "UTF-8");
+        renderQrCode(text, 200,200);
+    }
 
 }

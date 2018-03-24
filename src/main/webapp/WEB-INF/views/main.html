@@ -113,7 +113,7 @@
                 that.bind();
             },
             permissTreeInit: function () {
-                // 初始化左侧 菜单 并绑定事件
+                /* 初始化左侧 菜单 并绑定事件*/
                 var easyTree = new EasyTree();
                 $.ajax({
                     url: "${ctx!}/main/permissionTree",
@@ -124,7 +124,7 @@
                         $('#permissionTree').tree({
                             data: treeData,
                             onSelect: function (node) {
-                                // 只能打开 叶子node
+                                /* 只能打开 叶子node*/
                                 if ($("#tree").tree("isLeaf", node.target)) {
                                     TabTools.addOrRefresh("${ctx!}"+node.url, "", node.text, node.iconCls);
                                 }
@@ -137,7 +137,7 @@
                 });
             },
             bind: function () {
-                // 权限树过滤（根据输入框内容过滤）
+                /* 权限树过滤（根据输入框内容过滤）*/
                 $("#filterInput").on("keydown", function () {
                     if (event.keyCode == "13") {
                         var inputVal = $(this).val();
