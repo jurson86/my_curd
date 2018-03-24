@@ -21,11 +21,15 @@ import org.slf4j.LoggerFactory;
 
 import java.util.List;
 
+/**
+ * 登录控制器
+ */
+@Clear({AuthorityInterceptor.class})
 public class LoginController extends BaseController {
 
     private final static Logger LOG = LoggerFactory.getLogger(LoginController.class);
-    private static String usernameKey;
-    private static String passwordKey;
+    private final static String usernameKey;
+    private final static String passwordKey;
 
     static {
         Prop prop = PropKit.use("config.properties");
@@ -36,7 +40,6 @@ public class LoginController extends BaseController {
     /**
      * 登录页面
      */
-    @Clear(AuthorityInterceptor.class)
     public void index() {
         String username = getCookie(usernameKey);
         String password = getCookie(passwordKey);
@@ -67,7 +70,6 @@ public class LoginController extends BaseController {
     /**
      * 登录Action
      */
-    @Clear(AuthorityInterceptor.class)
     @Before(Tx.class)
     public void action() {
 
@@ -137,7 +139,6 @@ public class LoginController extends BaseController {
     /**
      * 退出
      */
-    @Clear(AuthorityInterceptor.class)
     @ActionKey("/logout")
     @Before(Tx.class)
     public void logout() {
@@ -153,21 +154,18 @@ public class LoginController extends BaseController {
     }
 
 
-
     // 无用
-    @Clear(AuthorityInterceptor.class)
     @ActionKey("/captcha")
-    public void captcha(){
+    public void captcha() {
         renderCaptcha();
     }
 
     // 无用
-    @Clear(AuthorityInterceptor.class)
     @ActionKey("/qrcode")
-    public void qrcode(){
-        String text = StrKit.isBlank(getPara(0))?"oh, my_curd!":getPara(0);
-        text=URLDecoder.decode(text, "UTF-8");
-        renderQrCode(text, 200,200);
+    public void qrcode() {
+        String text = StrKit.isBlank(getPara(0)) ? "oh, my_curd!" : getPara(0);
+        text = URLDecoder.decode(text, "UTF-8");
+        renderQrCode(text, 200, 200);
     }
 
 }

@@ -76,7 +76,7 @@ public class AppConfig extends JFinalConfig {
 
     @Override
     public void configInterceptor(Interceptors me) {
-        me.addGlobalActionInterceptor(new AuthorityInterceptor());
+        me.addGlobalActionInterceptor(new AuthorityInterceptor());// 权限拦截器
     }
 
     @Override

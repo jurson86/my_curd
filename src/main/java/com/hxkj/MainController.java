@@ -14,14 +14,15 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Created by Administrator on 2017/11/15.
+ * 管理主面板
+ * 去掉权限拦截器
  */
+@Clear(AuthorityInterceptor.class)
 public class MainController extends BaseController {
 
     /**
      * 操作面板页面
      */
-    @Clear(AuthorityInterceptor.class)
     @Before(SessionInViewInterceptor.class)
     public void index() {
         render("main.html");
@@ -31,7 +32,6 @@ public class MainController extends BaseController {
     /**
      * 用户权限数据
      */
-    @Clear(AuthorityInterceptor.class)
     public void permissionTree() {
         List<SysMenu> ownSysMenus = getSessionAttr(Constant.OWN_MENU);
         List<Map<String, Object>> maps = new ArrayList<Map<String, Object>>();
