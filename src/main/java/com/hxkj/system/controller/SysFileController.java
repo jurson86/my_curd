@@ -64,6 +64,7 @@ public class SysFileController extends BaseController {
 
     /**
      * 增加
+     * 文件过大 没有良好的提示性信息
      */
     public void addAction() throws IOException {
         Map<String, Object> result = new HashMap<String, Object>();
@@ -81,9 +82,10 @@ public class SysFileController extends BaseController {
                 result.put("message", "只允许后缀为:<br/>" + extMap.get("image") + "<br/>" + extMap.get("media") + "<br/>" + extMap.get("file") + "<br/>格式文件");
                 uploadFile.getFile().delete();
             } else {
+                // 文件量大、上传频繁 这种分发方式并不合适（文件copy后删除原文件占资源，按类型分类可能导致某个目录下文件量超多）
                 SimpleDateFormat df = new SimpleDateFormat("yyyyMMddHHmmss");
                 String newFileName = df.format(new Date()) + "_" + new Random().nextInt(1000) + "." + fileSuf;
-                String pre = "";
+                String pre;
                 if (Arrays.asList(extMap.get("image").split(",")).contains(fileSuf)) {
                     pre = prop.get("imagePath");
                 } else if (Arrays.asList(extMap.get("media").split(",")).contains(fileSuf)) {

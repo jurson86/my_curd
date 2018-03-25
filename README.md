@@ -17,3 +17,6 @@
 ![github](preview_img/file.png "文件")
 ![github](preview_img/article.png "文章")
 ![github](preview_img/codegen.png "代码生成器，生成model、controller、view")
+
+### 开发这个项目的一些问题记录（并不准备修改）
+1. jfinal 的日志工具使用log4j 就好，使用其它的可能是给自己找麻烦（使用slf4j后发现让人难受的问题)。 

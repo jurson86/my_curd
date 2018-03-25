@@ -10,6 +10,7 @@
         <meta content=always name=referrer>
         <link rel="shortcut icon" href="${ctx!}/res/image/favicon.ico"/>
         <title>你好！${(session.system_user.name)!}</title>
+        <#--子iframe页 并不是需要下面所有的cssjs文件，统一使用一个父页面不是很合适-->
         <link rel="stylesheet" type="text/css" href="${ctx!}/res/easyui153/themes/material/easyui.css">
         <link rel="stylesheet" type="text/css" href="${ctx!}/res/easyui153/themes/icon.css">
         <script type="text/javascript" src="${ctx!}/res/easyui153/jquery.min.js"></script>

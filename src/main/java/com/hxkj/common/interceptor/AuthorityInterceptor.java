@@ -14,7 +14,7 @@ import java.util.List;
 
 
 /**
- *
+ * 权限拦截器
  */
 public class AuthorityInterceptor implements Interceptor {
 

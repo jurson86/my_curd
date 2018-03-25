@@ -34,11 +34,15 @@
                         $('#error').html(data.message);
                     }
                 } catch (e) {
+                    console.log(data);
                     parent.layerTools.layerMsg(data, function () {
                         parent.$("#dg").datagrid("reload");
                         parent.layer.close(parent.layer.getFrameIndex(window.name));
                     });
                 }
+            },
+            error:function(e){
+                console.log(e);
             }
         });
     }
