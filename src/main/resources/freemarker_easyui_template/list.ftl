@@ -61,6 +61,7 @@
 </script>
 <table id="dg" class="easyui-datagrid"
        url="<#noparse>${ctx!}</#noparse>/${(table.tableNameCamel)!}/query"
+       data-options="onDblClickRow:editModel"
        toolbar="#tb" rownumbers="true" border="false"
        fit="true" pagination="true" singleSelect="true"
        pageSize="40" pageList="[20,40]">

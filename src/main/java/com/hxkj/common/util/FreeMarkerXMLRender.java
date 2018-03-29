@@ -10,6 +10,9 @@ import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * 通过freemarker渲染xml
+ */
 public class FreeMarkerXMLRender extends FreeMarkerRender {
     private static final String CONTENT_TYPE = "text/xml; charset=" + getEncoding();
 

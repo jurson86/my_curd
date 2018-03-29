@@ -1,8 +1,7 @@
 package com.hxkj.common.util;
 
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.log4j.Logger;
 
 import java.sql.Timestamp;
 import java.text.DateFormat;
@@ -15,7 +14,7 @@ import java.util.*;
  */
 public abstract class ToolDateTime {
 
-    private static final Logger LOG = LoggerFactory.getLogger(ToolDateTime.class);
+    private static final Logger LOG = Logger.getLogger(ToolDateTime.class);
 
     public static final String pattern_ym = "yyyy-MM"; // pattern_ym
     public static final int pattern_ym_length = 7;

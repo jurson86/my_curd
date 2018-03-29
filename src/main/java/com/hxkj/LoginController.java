@@ -16,8 +16,7 @@ import com.jfinal.kit.PropKit;
 import com.jfinal.kit.StrKit;
 import com.jfinal.plugin.activerecord.tx.Tx;
 import jodd.util.URLDecoder;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.log4j.Logger;
 
 import java.util.List;
 
@@ -27,7 +26,7 @@ import java.util.List;
 @Clear({AuthorityInterceptor.class})
 public class LoginController extends BaseController {
 
-    private final static Logger LOG = LoggerFactory.getLogger(LoginController.class);
+    private final static Logger LOG = Logger.getLogger(LoginController.class);
     private final static String usernameKey;
     private final static String passwordKey;
 
@@ -43,8 +42,8 @@ public class LoginController extends BaseController {
     public void index() {
         String username = getCookie(usernameKey);
         String password = getCookie(passwordKey);
-        LOG.debug("username from cookie: {}", username);
-        LOG.debug("password from cookie: {}", password);
+        LOG.debug("username from cookie: " + username);
+        LOG.debug("password from cookie:+" + password);
         if (username != null && password != null) {
             SysUser sysUser = SysUser.dao.findByUsernameAndPassword(username, password);
             // 用户名密码正确且未被禁用

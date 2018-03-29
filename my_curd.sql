@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50719
 File Encoding         : 65001
 
-Date: 2017-12-28 15:03:16
+Date: 2018-03-29 15:43:09
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -3882,16 +3882,17 @@ CREATE TABLE `sys_file` (
   `remark` varchar(255) DEFAULT NULL COMMENT '文件备注',
   `create_time` datetime DEFAULT NULL COMMENT '上传时间',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=54 DEFAULT CHARSET=utf8 COMMENT='文件表';
+) ENGINE=InnoDB AUTO_INCREMENT=62 DEFAULT CHARSET=utf8 COMMENT='文件表';
 
 -- ----------------------------
 -- Records of sys_file
 -- ----------------------------
-INSERT INTO `sys_file` VALUES ('49', '916654989969981440', 'upload/image/20171228142856_70.jpg', 'u=1472689379,2607742771&fm=214&gp=0.jpg', 'jpg', '', '2017-12-28 14:28:57');
-INSERT INTO `sys_file` VALUES ('50', '916654989969981440', 'upload/image/20171228142905_745.jpg', 'u=899342633,2525904470&fm=214&gp=0.jpg', 'jpg', '', '2017-12-28 14:29:05');
-INSERT INTO `sys_file` VALUES ('51', '916654989969981440', 'upload/image/20171228142915_439.jpg', 'u=58334019,2626317702&fm=214&gp=0.jpg', 'jpg', '', '2017-12-28 14:29:15');
-INSERT INTO `sys_file` VALUES ('52', '916654989969981440', 'upload/file/20171228142939_210.pdf', '深入浅出MySQL全文.pdf', 'pdf', '', '2017-12-28 14:29:39');
-INSERT INTO `sys_file` VALUES ('53', '916654989969981440', 'upload/file/20171228142959_548.txt', '最后的土匪.txt', 'txt', '', '2017-12-28 14:29:59');
+INSERT INTO `sys_file` VALUES ('54', '916654989969981440', 'upload/image/20180311200658_385.gif', 'box_factory-7bcdffc0.gif', 'gif', '机械生产气息动图', '2018-03-11 20:06:58');
+INSERT INTO `sys_file` VALUES ('55', '916654989969981440', 'upload/image/20180311200728_565.jpg', 'hf.jpg', 'jpg', '', '2018-03-11 20:07:28');
+INSERT INTO `sys_file` VALUES ('57', '916654989969981440', 'upload/image/20180311200758_613.jpg', 'timg.jpg', 'jpg', 'Krystal', '2018-03-11 20:07:59');
+INSERT INTO `sys_file` VALUES ('58', '916654989969981440', 'upload/image/20180325195549_426.jpg', '821144604.jpg', 'jpg', '漫威黑豹', '2018-03-25 19:55:49');
+INSERT INTO `sys_file` VALUES ('60', '916654989969981440', 'upload/image/20180325210626_114.jpg', 'images.jpg', 'jpg', '', '2018-03-25 21:06:26');
+INSERT INTO `sys_file` VALUES ('61', '916654989969981440', 'upload/image/20180325213748_974.jpg', 'v2-6b5a00db13634eb5b051eb769fe9ffed_hd.jpg', 'jpg', '', '2018-03-25 21:37:48');
 
 -- ----------------------------
 -- Table structure for `sys_menu`
@@ -3951,6 +3952,9 @@ CREATE TABLE `sys_news` (
 -- ----------------------------
 INSERT INTO `sys_news` VALUES ('944593836988956672', '测试', 'test,hello', '<p><strong>这是一个富文本编辑器的测试，<s>啦啦啦</s>啦<sup>啦啦啦</sup></strong></p>\r\n\r\n<p><img alt=\"sad\" src=\"http://localhost/res/ckeditor/plugins/smiley/images/sad_smile.png\" style=\"height:23px; width:23px\" title=\"sad\" /><img alt=\"broken heart\" src=\"http://localhost/res/ckeditor/plugins/smiley/images/broken_heart.png\" style=\"height:23px; width:23px\" title=\"broken heart\" /><img alt=\"mail\" src=\"http://localhost/res/ckeditor/plugins/smiley/images/envelope.png\" style=\"height:23px; width:23px\" title=\"mail\" /><img alt=\"yes\" src=\"http://localhost/res/ckeditor/plugins/smiley/images/thumbs_up.png\" style=\"height:23px; width:23px\" title=\"yes\" /></p>\r\n\r\n<table align=\"center\" border=\"1\" cellpadding=\"1\" cellspacing=\"0\" style=\"width:500px\" summary=\"测试表格拉啊啦啦啦啦啦啦\">\r\n	<caption>测试表格</caption>\r\n	<thead>\r\n		<tr>\r\n			<th scope=\"col\">name</th>\r\n			<th scope=\"col\">sex</th>\r\n		</tr>\r\n	</thead>\r\n	<tbody>\r\n		<tr>\r\n			<td>张闯</td>\r\n			<td>male</td>\r\n		</tr>\r\n		<tr>\r\n			<td>赵丽</td>\r\n			<td>female</td>\r\n		</tr>\r\n	</tbody>\r\n</table>\r\n\r\n<p><strong><img alt=\"\" src=\"/upload/image/20171223233747_835.jpg\" style=\"float:left; height:56px; margin:10px; width:100px\" /></strong></p>\r\n\r\n<p>absjflsjdflkj<strong>jjjjjljdlfjlsdjflsjdlfjlsdjflsjdlfjsldjfls</strong>jdfljslfjlsjsjldfjsdfjlsdjfljdfljdlfjljfsldjf</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<div style=\"page-break-after:always\"><span style=\"display:none\">&nbsp;</span></div>\r\n\r\n<p>&nbsp;</p>\r\n', '916654989969981440', '2017-12-23 23:54:07');
 INSERT INTO `sys_news` VALUES ('944793360520970240', '测试文章 哈哈哈啊哈', 'test,est2', '<h1 style=\"text-align:center\">Quis enim potest ea, non probare?</h1>\r\n\r\n<blockquote>\r\n<p>You know the golden rule, don&rsquo;t you boy? Those who have the gold make the rules.</p>\r\n\r\n<p>&mdash;&nbsp;<a href=\"http://www.imdb.com/character/ch0000672/quotes\">Crazy hunch-backed old guy</a>&nbsp;in&nbsp;<cite><a href=\"http://en.wikipedia.org/wiki/Aladdin_(1992_Disney_film)\">Aladdin</a></cite></p>\r\n</blockquote>\r\n\r\n<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vide igitur ne non debeas verbis nostris uti, sententiis tuis. Quo plebiscito decreta a senatu est consuli quaestio Cn.&nbsp;<a href=\"http://127.0.0.1/\">Tamen a proposito, inquam, aberramus.</a>&nbsp;Duo Reges: constructio interrete. Eamne rationem igitur sequere, qua tecum ipse et cum tuis utare, profiteri et in medium proferre non audeas? Qui si omnes veri erunt, ut Epicuri ratio docet, tum denique poterit aliquid cognosci et percipi.&nbsp;<a href=\"http://wikipedia.org/\" target=\"_blank\">Philosophi autem in suis lectulis plerumque moriuntur.</a>&nbsp;Istam voluptatem perpetuam quis potest praestare sapienti? His enim rebus detractis negat se reperire in asotorum vita quod reprehendat. Ut etiam contendant et elaborent, si efficere possint, ut aut non appareat corporis vitium aut quam minimum appareat?&nbsp;<strong>Quae duo sunt, unum facit.</strong>&nbsp;Cum id quoque, ut cupiebat, audivisset, evelli iussit eam, qua erat transfixus, hastam.</p>\r\n\r\n<p>Idemne potest esse dies saepius, qui semel fuit? Hoc&nbsp;HTML&nbsp;ille tuus non vult omnibusque ex rebus voluptatem quasi mercedem exigit. Sunt autem, qui dicant foedus esse quoddam sapientium, ut ne minus amicos quam se ipsos diligant. Sed non sunt in eo genere tantae commoditates corporis tamque productae temporibus tamque multae. Ac ne plura complectar-sunt enim innumerabilia-, bene laudata virtus voluptatis aditus intercludat necesse est. Multa sunt dicta ab antiquis de contemnendis ac despiciendis rebus humanis;&nbsp;<a href=\"http://bafs.github.io/Gutenberg/local-link\">Moriatur, inquit.</a>&nbsp;<a href=\"http://cern.ch/\">Ratio quidem vestra sic cogit.</a></p>\r\n\r\n<p><img src=\"http://bafs.github.io/Gutenberg/gutenberg.png\" style=\"float:left\" /></p>\r\n\r\n<h2>Expectoque quid ad id, quod quaerebam, respondeas.<img alt=\"no\" src=\"http://localhost/res/ckeditor/plugins/smiley/images/thumbs_down.png\" style=\"height:23px; width:23px\" title=\"no\" /></h2>\r\n\r\n<p>Non perfecti autem homines et tamen ingeniis excellentibus praediti excitantur saepe gloria,&nbsp;<q>quae habet speciem&nbsp;<q>honestatis</q>&nbsp;et similitudinem</q>. Illo enim addito iuste fit recte factum, per se autem hoc ipsum reddere in officio ponitur. Quis animo aequo videt eum, quem inpure ac flagitiose putet vivere? Iubet igitur nos Pythius Apollo noscere nosmet ipsos.&nbsp;<code>Quid ad utilitatem tantae pecuniae?</code>&nbsp;Quaesita enim virtus est, non quae relinqueret naturam, sed quae tueretur. Sin kakan malitiam dixisses, ad aliud nos unum certum vitium consuetudo Latina traduceret. Ut enim consuetudo loquitur, id solum dicitur honestum, quod est populari fama gloriosum.</p>\r\n\r\n<ul>\r\n	<li>An vero displicuit ea, quae tributa est animi virtutibus tanta praestantia?</li>\r\n	<li>Quae ista amicitia est?</li>\r\n	<li>Quod non faceret, si in voluptate summum bonum poneret.</li>\r\n	<li>At enim hic etiam dolore.</li>\r\n</ul>\r\n\r\n<blockquote>\r\n<p>Et hanc quidem primam exigam a te operam, ut audias me quae a te dicta sunt refellentem.</p>\r\n</blockquote>\r\n\r\n<p>Atque etiam ad iustitiam colendam, ad tuendas amicitias et reliquas caritates quid natura valeat haec una cognitio potest tradere. Quicquid enim a sapientia proficiscitur, id continuo debet expletum esse omnibus suis partibus; Non quam nostram quidem, inquit Pomponius iocans; Nonne igitur tibi videntur, inquit, mala? Videamus igitur sententias eorum, tum ad verba redeamus.</p>\r\n\r\n<p>Bonum patria: miserum exilium.</p>\r\n\r\n<p>Rhetorice igitur, inquam, nos mavis quam dialectice disputare?</p>\r\n\r\n<p>Equidem e Cn.</p>\r\n\r\n<p>Ergo instituto veterum, quo etiam Stoici utuntur, hinc capiamus exordium.</p>\r\n\r\n<h3>Dolor sit amet</h3>\r\n\r\n<p>Quem Tiberina descensio festo illo die tanto gaudio affecit, quanto L.&nbsp;<a href=\"http://github.com/\">Disserendi artem nullam habuit.</a>&nbsp;Dulce amarum, leve asperum, prope longe, stare movere, quadratum rotundum. Tuo vero id quidem, inquam, arbitratu. Possumusne ergo in vita summum bonum dicere, cum id ne in cena quidem posse videamur? Sed quid ages tandem, si utilitas ab amicitia, ut fit saepe, defecerit? Virtutibus igitur rectissime mihi videris et ad consuetudinem nostrae orationis vitia posuisse contraria. Non autem hoc: igitur ne illud quidem. Cur iustitia laudatur? Negat enim summo bono afferre incrementum diem.</p>\r\n\r\n<pre>\r\n<code>var y = function(le) {\r\n    return function(f) {\r\n       return f(f);\r\n    }(function(f) {\r\n        return le(\r\n            function(x) { return (f(f))(x); }\r\n        );\r\n    });\r\n};</code></pre>\r\n\r\n<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>\r\n\r\n<table align=\"center\" border=\"1\" cellpadding=\"0\" cellspacing=\"0\" style=\"width:200px\">\r\n	<thead>\r\n		<tr>\r\n			<th>username</th>\r\n			<th>password</th>\r\n		</tr>\r\n	</thead>\r\n	<tbody>\r\n		<tr>\r\n			<td>wolverine</td>\r\n			<td>claws</td>\r\n		</tr>\r\n		<tr>\r\n			<td>spiderman</td>\r\n			<td>ben</td>\r\n		</tr>\r\n		<tr>\r\n			<td>superman</td>\r\n			<td>loislane</td>\r\n		</tr>\r\n		<tr>\r\n			<td>aquaman</td>\r\n			<td>fish</td>\r\n		</tr>\r\n		<tr>\r\n			<td>batman</td>\r\n			<td>rachel</td>\r\n		</tr>\r\n		<tr>\r\n			<td>hulk</td>\r\n			<td>smash</td>\r\n		</tr>\r\n	</tbody>\r\n</table>\r\n\r\n<ol>\r\n	<li>Nummus in Croesi divitiis obscuratur, pars est tamen divitiarum.</li>\r\n	<li>Quodsi vultum tibi, si incessum fingeres, quo gravior viderere, non esses tui similis;</li>\r\n</ol>\r\n', '916654989969981440', '2017-12-24 21:35:52');
+INSERT INTO `sys_news` VALUES ('955727625051963392', '水电费水电费', '是的发生的', '<p style=\"text-align:center\"><strong>中国是一个非常棒的发展中国家，我是一份非常睡个的人，啦啦啦啦啦啦啦啦，</strong></p>\r\n\r\n<p style=\"text-align:center\"><strong>今天是个好日子，明天是个好日子，今天明天都是好日子</strong></p>\r\n', '916654989969981440', '2018-01-23 17:03:17');
+INSERT INTO `sys_news` VALUES ('955727899292336128', 'java 多线程', 'java 多线程', '<h3>java 多线程</h3>\r\n\r\n<ol>\r\n	<li>继承Thread或者实现Runnable，重写run 方法。通过调用Thread 的start 方法启动线程。start之后新的线程交给JVM 控制执行，非start之后就执行。</li>\r\n	<li>获得新线程名字的方法：run方法内部Thread.currentThread.getName或者普通方法内 this.getName; getID,获得线程唯一标识类似。</li>\r\n	<li>判断线程是否存活 线程.isAlive(), 判断线程是否总之 isInterrupted(不重置状态)或者interrupted(重置状态，如果返回false，就终止当前线程)</li>\r\n	<li>终止线程的方法： 线程对象调用interrupt(),在该线程的run方法中判断是否终止，抛出一个终止异常终止（或者return）</li>\r\n</ol>\r\n\r\n<pre>\r\n<code>@Override\r\n    public void run() {\r\n        super.run();\r\n        try{\r\n            for(int i = 0 ; i &lt; 50000000 ; i++){\r\n                if (interrupted()){\r\n                    System.out.println(&quot;已经是停止状态，我要退出了&quot;);\r\n                    throw new InterruptedException(&quot;停止.......&quot;);\r\n                }\r\n                System.out.println(&quot;i=&quot; + (i + 1));\r\n            }\r\n        }catch (InterruptedException e){\r\n            // 原来sleep  调用了interrupt 或者 已经 interrupt ，然后sleep\r\n            // 此异常捕捉有必要\r\n            System.out.println(&quot;顺利停止&quot;);\r\n        }\r\n\r\n    }\r\n</code></pre>\r\n\r\n<ol start=\"5\">\r\n	<li>线程设置优先级 setPriority， 优先级高的线程 或者更多的cpu资源，更早被执行。（执行是否完成与逻辑有关）</li>\r\n	<li>一个对象，有成员变量、使用成员变量的方法。 如果一个该对象实例被多个线程调用同一个方法，可能造成线程不安全情况，得到非正确结果。synchronized 加在方法上是对象锁，多个线程调用一个对象的相同方法是，可保证方法同步执行。&nbsp;<a href=\"https://github.com/byhieg/JavaTutorial/blob/master/src/main/java/cn/byhieg/threadtutorial/char02/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E7%AC%AC%E4%BA%8C%E7%AB%A0%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93.md\">方法同步执行</a></li>\r\n	<li>synchronized 可以修改方法内部 线程不安全的代码块，如果方法非常消耗时间的话</li>\r\n</ol>\r\n\r\n<pre>\r\n<code>    // 方法内部成员变量赋值\r\n   synchronized (this){\r\n                getData1 = privateGetData1;\r\n                getData2 = privateGetData2;\r\n   }</code></pre>\r\n', '916654989969981440', '2018-01-23 17:04:22');
+INSERT INTO `sys_news` VALUES ('977086361439830016', '线程安全性', '线程安全性', '<h3>线程安全性</h3>\r\n\r\n<ol>\r\n	<li>编写线程安全的代码，核心在于对状态变量的访问操作信命管理。特别是共享的和可变的的状态的访问。 一个对象是否需要线程安全，取决于它是否被多个线程访问。要使得对象线程是安全的，需要采用同步机制来协同对对象可变状态的访问。</li>\r\n	<li>java 中的 &ldquo;同步&rdquo; 设计到 synchronized(独占加锁)、volatile类型变量、显式锁(Explicit Lock)、原子变量。</li>\r\n	<li>线程安全对象的实现方式\r\n	<ul>\r\n		<li>不再线程质检共享状态变量。</li>\r\n		<li>状态变量修改为不可变的变量。</li>\r\n		<li>访问状态变量时使用同步。</li>\r\n	</ul>\r\n	</li>\r\n	<li>正确的编程方法：首先使代码正确运行，然后再提高代码的速度。即便如此，最好也只是当性能测试结果和应用需求告诉你必须提高性能，以及测量结果表明这种优化在实际环境中确实能带来性能提升是，才进行优化。（尽量自己不写多线程操作代码，并发错误非常难以重现和调试。）</li>\r\n	<li>无状态对象一定是线程安全的。</li>\r\n</ol>\r\n\r\n<h3>java 多线程</h3>\r\n\r\n<ol>\r\n	<li>继承Thread或者实现Runnable，重写run 方法。通过调用Thread 的start 方法启动线程。start之后新的线程交给JVM 控制执行，非start之后就执行。</li>\r\n	<li>获得新线程名字的方法：run方法内部Thread.currentThread.getName或者普通方法内 this.getName; getID,获得线程唯一标识类似。</li>\r\n	<li>判断线程是否存活 线程.isAlive(), 判断线程是否总之 isInterrupted(不重置状态)或者interrupted(重置状态，如果返回false，就终止当前线程)</li>\r\n	<li>终止线程的方法： 线程对象调用interrupt(),在该线程的run方法中判断是否终止，抛出一个终止异常终止（或者return）</li>\r\n</ol>\r\n\r\n<pre>\r\n<code>@Override\r\n    public void run() {\r\n        super.run();\r\n        try{\r\n            for(int i = 0 ; i &lt; 50000000 ; i++){\r\n                if (interrupted()){\r\n                    System.out.println(&quot;已经是停止状态，我要退出了&quot;);\r\n                    throw new InterruptedException(&quot;停止.......&quot;);\r\n                }\r\n                System.out.println(&quot;i=&quot; + (i + 1));\r\n            }\r\n        }catch (InterruptedException e){\r\n            // 原来sleep  调用了interrupt 或者 已经 interrupt ，然后sleep\r\n            // 此异常捕捉有必要\r\n            System.out.println(&quot;顺利停止&quot;);\r\n        }\r\n\r\n    }\r\n</code></pre>\r\n\r\n<ol start=\"5\">\r\n	<li>线程设置优先级 setPriority， 优先级高的线程 或者更多的cpu资源，更早被执行。（执行是否完成与逻辑有关）</li>\r\n	<li>一个对象，有成员变量、使用成员变量的方法。 如果一个该对象实例被多个线程调用同一个方法，可能造成线程不安全情况，得到非正确结果。synchronized 加在方法上是对象锁，多个线程调用一个对象的相同方法是，可保证方法同步执行。&nbsp;<a href=\"https://github.com/byhieg/JavaTutorial/blob/master/src/main/java/cn/byhieg/threadtutorial/char02/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E7%AC%AC%E4%BA%8C%E7%AB%A0%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93.md\">方法同步执行</a></li>\r\n	<li>synchronized 可以修改方法内部 线程不安全的代码块，如果方法非常消耗时间的话</li>\r\n</ol>\r\n\r\n<pre>\r\n<code>    // 方法内部成员变量赋值\r\n   synchronized (this){\r\n                getData1 = privateGetData1;\r\n                getData2 = privateGetData2;\r\n   }</code></pre>\r\n\r\n<p>&nbsp;</p>\r\n', '916654989969981440', '2018-03-23 15:35:16');
 
 -- ----------------------------
 -- Table structure for `sys_oplog`
@@ -3968,479 +3972,9 @@ CREATE TABLE `sys_oplog` (
 -- ----------------------------
 -- Records of sys_oplog
 -- ----------------------------
-INSERT INTO `sys_oplog` VALUES ('935151210812407808', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-11-27 22:19:57');
-INSERT INTO `sys_oplog` VALUES ('935151866998685696', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-11-27 22:22:34');
-INSERT INTO `sys_oplog` VALUES ('935152160755154944', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-11-27 22:23:44');
-INSERT INTO `sys_oplog` VALUES ('935162701397622784', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-11-27 23:05:37');
-INSERT INTO `sys_oplog` VALUES ('935170307482714112', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-11-27 23:35:50');
-INSERT INTO `sys_oplog` VALUES ('935173587160006656', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-11-27 23:48:52');
-INSERT INTO `sys_oplog` VALUES ('935176671907020800', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-11-28 00:01:07');
-INSERT INTO `sys_oplog` VALUES ('935180857398788096', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-11-28 00:17:45');
-INSERT INTO `sys_oplog` VALUES ('935183899959492608', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-11-28 00:29:51');
-INSERT INTO `sys_oplog` VALUES ('935300483092840448', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-11-28 08:13:06');
-INSERT INTO `sys_oplog` VALUES ('935305809988943872', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-11-28 08:34:16');
-INSERT INTO `sys_oplog` VALUES ('935306941276618752', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-11-28 08:38:46');
-INSERT INTO `sys_oplog` VALUES ('935314474896719872', '916654989969981440', '退出', '0:0:0:0:0:0:0:1', '2017-11-28 09:08:42');
-INSERT INTO `sys_oplog` VALUES ('935314481104289792', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-11-28 09:08:44');
-INSERT INTO `sys_oplog` VALUES ('935314561098055680', '916654989969981440', '退出', '0:0:0:0:0:0:0:1', '2017-11-28 09:09:03');
-INSERT INTO `sys_oplog` VALUES ('935351146153771008', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-11-28 11:34:25');
-INSERT INTO `sys_oplog` VALUES ('935381214435475456', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-11-28 13:33:54');
-INSERT INTO `sys_oplog` VALUES ('935411447037427712', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-11-28 15:34:02');
-INSERT INTO `sys_oplog` VALUES ('935425126017531904', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-11-28 16:28:24');
-INSERT INTO `sys_oplog` VALUES ('935427425431453696', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-11-28 16:37:32');
-INSERT INTO `sys_oplog` VALUES ('935434065329258496', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-11-28 17:03:55');
-INSERT INTO `sys_oplog` VALUES ('935438377858105344', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-11-28 17:21:03');
-INSERT INTO `sys_oplog` VALUES ('935438979023503360', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-11-28 17:23:26');
-INSERT INTO `sys_oplog` VALUES ('935445950959190016', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-11-28 17:51:09');
-INSERT INTO `sys_oplog` VALUES ('935447035866251264', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-11-28 17:55:27');
-INSERT INTO `sys_oplog` VALUES ('935447157299740672', '916654989969981440', '[定时任务]增加', '0:0:0:0:0:0:0:1', '2017-11-28 17:55:56');
-INSERT INTO `sys_oplog` VALUES ('935449391630647296', '916654989969981440', '[定时任务] 修改', '0:0:0:0:0:0:0:1', '2017-11-28 18:04:49');
-INSERT INTO `sys_oplog` VALUES ('935460050518933504', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-11-28 18:47:10');
-INSERT INTO `sys_oplog` VALUES ('935460206177943552', '916654989969981440', '[定时任务] 修改', '0:0:0:0:0:0:0:1', '2017-11-28 18:47:47');
-INSERT INTO `sys_oplog` VALUES ('935460898493956096', '916654989969981440', '[定时任务] 修改', '0:0:0:0:0:0:0:1', '2017-11-28 18:50:32');
-INSERT INTO `sys_oplog` VALUES ('935462591948390400', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-11-28 18:57:16');
-INSERT INTO `sys_oplog` VALUES ('935464481692057600', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-11-28 19:04:47');
-INSERT INTO `sys_oplog` VALUES ('935464827155906560', '916654989969981440', '[定时任务]增加', '0:0:0:0:0:0:0:1', '2017-11-28 19:06:09');
-INSERT INTO `sys_oplog` VALUES ('935467358057660416', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-11-28 19:16:12');
-INSERT INTO `sys_oplog` VALUES ('935469427699220480', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-11-28 19:24:26');
-INSERT INTO `sys_oplog` VALUES ('935469944970149888', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-11-28 19:26:29');
-INSERT INTO `sys_oplog` VALUES ('935471922085363712', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-11-28 19:34:21');
-INSERT INTO `sys_oplog` VALUES ('935472009142337536', '916654989969981440', '[定时任务] 修改', '0:0:0:0:0:0:0:1', '2017-11-28 19:34:41');
-INSERT INTO `sys_oplog` VALUES ('935476466437586944', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-11-28 19:52:24');
-INSERT INTO `sys_oplog` VALUES ('935797849763872768', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-11-29 17:09:28');
-INSERT INTO `sys_oplog` VALUES ('935798049261748224', '916654989969981440', '[定时任务] 删除', '0:0:0:0:0:0:0:1', '2017-11-29 17:10:15');
-INSERT INTO `sys_oplog` VALUES ('935812586975264768', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-11-29 18:08:01');
-INSERT INTO `sys_oplog` VALUES ('935893994984964096', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-11-29 23:31:31');
-INSERT INTO `sys_oplog` VALUES ('935895492426989568', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-11-29 23:37:28');
-INSERT INTO `sys_oplog` VALUES ('936195301721505792', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-11-30 19:28:48');
-INSERT INTO `sys_oplog` VALUES ('936195691800166400', '916654989969981440', '退出', '0:0:0:0:0:0:0:1', '2017-11-30 19:30:21');
-INSERT INTO `sys_oplog` VALUES ('936195697156292608', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-11-30 19:30:22');
-INSERT INTO `sys_oplog` VALUES ('936196548566450176', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-11-30 19:33:45');
-INSERT INTO `sys_oplog` VALUES ('936197492712669184', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-11-30 19:37:30');
-INSERT INTO `sys_oplog` VALUES ('936199777819820032', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-11-30 19:46:35');
-INSERT INTO `sys_oplog` VALUES ('936243270978109440', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-11-30 22:39:25');
-INSERT INTO `sys_oplog` VALUES ('936249410856157184', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-11-30 23:03:48');
-INSERT INTO `sys_oplog` VALUES ('936253852695396352', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-11-30 23:21:27');
-INSERT INTO `sys_oplog` VALUES ('936253900682428416', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-11-30 23:21:39');
-INSERT INTO `sys_oplog` VALUES ('936389678188199936', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-01 08:21:11');
-INSERT INTO `sys_oplog` VALUES ('936391300708564992', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-01 08:27:38');
-INSERT INTO `sys_oplog` VALUES ('936391500445515776', '916654989969981440', '退出', '0:0:0:0:0:0:0:1', '2017-12-01 08:28:25');
-INSERT INTO `sys_oplog` VALUES ('936391506166546432', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-01 08:28:27');
-INSERT INTO `sys_oplog` VALUES ('936396525460783104', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-01 08:48:23');
-INSERT INTO `sys_oplog` VALUES ('936396825177358336', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-01 08:49:35');
-INSERT INTO `sys_oplog` VALUES ('936422261936619520', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-01 10:30:39');
-INSERT INTO `sys_oplog` VALUES ('936423984294002688', '916654989969981440', '退出', '0:0:0:0:0:0:0:1', '2017-12-01 10:37:30');
-INSERT INTO `sys_oplog` VALUES ('936424833590231040', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-01 10:40:52');
-INSERT INTO `sys_oplog` VALUES ('936431714790539264', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-01 11:08:13');
-INSERT INTO `sys_oplog` VALUES ('936431729432854528', '916654989969981440', '退出', '0:0:0:0:0:0:0:1', '2017-12-01 11:08:17');
-INSERT INTO `sys_oplog` VALUES ('936464819450544128', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-01 13:19:46');
-INSERT INTO `sys_oplog` VALUES ('936465112313626624', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-01 13:20:56');
-INSERT INTO `sys_oplog` VALUES ('936472876226183168', '916654989969981440', '退出', '0:0:0:0:0:0:0:1', '2017-12-01 13:51:47');
-INSERT INTO `sys_oplog` VALUES ('936495169581088768', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-01 15:20:22');
-INSERT INTO `sys_oplog` VALUES ('936495336019460096', '916654989969981440', '退出', '0:0:0:0:0:0:0:1', '2017-12-01 15:21:02');
-INSERT INTO `sys_oplog` VALUES ('936495346496831488', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-01 15:21:04');
-INSERT INTO `sys_oplog` VALUES ('936495353732005888', '916654989969981440', '退出', '0:0:0:0:0:0:0:1', '2017-12-01 15:21:06');
-INSERT INTO `sys_oplog` VALUES ('936496296397635584', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-01 15:24:50');
-INSERT INTO `sys_oplog` VALUES ('936496956513976320', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-01 15:27:28');
-INSERT INTO `sys_oplog` VALUES ('936530613316354048', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-01 17:41:12');
-INSERT INTO `sys_oplog` VALUES ('936792253265870848', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-02 11:00:52');
-INSERT INTO `sys_oplog` VALUES ('937535319056580608', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-04 12:13:33');
-INSERT INTO `sys_oplog` VALUES ('937542425851723776', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-04 12:41:47');
-INSERT INTO `sys_oplog` VALUES ('937542671084290048', '916654989969981440', '退出', '0:0:0:0:0:0:0:1', '2017-12-04 12:42:46');
-INSERT INTO `sys_oplog` VALUES ('937604955492057088', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-04 16:50:15');
-INSERT INTO `sys_oplog` VALUES ('937858976039567360', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-05 09:39:39');
-INSERT INTO `sys_oplog` VALUES ('939369737815588864', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-09 13:42:52');
-INSERT INTO `sys_oplog` VALUES ('939729923688366080', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-10 13:34:07');
-INSERT INTO `sys_oplog` VALUES ('939730241197178880', '916654989969981440', '登录', '127.0.0.1', '2017-12-10 13:35:23');
-INSERT INTO `sys_oplog` VALUES ('939730667745312768', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-10 13:37:05');
-INSERT INTO `sys_oplog` VALUES ('939731095509794816', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-10 13:38:47');
-INSERT INTO `sys_oplog` VALUES ('939742913758232576', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-10 14:25:44');
-INSERT INTO `sys_oplog` VALUES ('939750012974268416', '916654989969981440', '退出', '0:0:0:0:0:0:0:1', '2017-12-10 14:53:57');
-INSERT INTO `sys_oplog` VALUES ('939750028564496384', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-10 14:54:01');
-INSERT INTO `sys_oplog` VALUES ('939750573794656256', '916654989969981440', '退出', '0:0:0:0:0:0:0:1', '2017-12-10 14:56:11');
-INSERT INTO `sys_oplog` VALUES ('939750584292999168', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-10 14:56:13');
-INSERT INTO `sys_oplog` VALUES ('939750707211272192', '916654989969981440', '退出', '0:0:0:0:0:0:0:1', '2017-12-10 14:56:42');
-INSERT INTO `sys_oplog` VALUES ('939751177732489216', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-10 14:58:35');
-INSERT INTO `sys_oplog` VALUES ('939752836860739584', '916654989969981440', '[定时任务] 修改', '0:0:0:0:0:0:0:1', '2017-12-10 15:05:10');
-INSERT INTO `sys_oplog` VALUES ('940831666568429568', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-13 14:32:03');
-INSERT INTO `sys_oplog` VALUES ('940834027751866368', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-13 14:41:26');
-INSERT INTO `sys_oplog` VALUES ('940834316282232832', '916654989969981440', '退出', '0:0:0:0:0:0:0:1', '2017-12-13 14:42:35');
-INSERT INTO `sys_oplog` VALUES ('940834321638359040', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-13 14:42:36');
-INSERT INTO `sys_oplog` VALUES ('940846246849937408', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-13 15:29:59');
-INSERT INTO `sys_oplog` VALUES ('940850570573381632', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-13 15:47:10');
-INSERT INTO `sys_oplog` VALUES ('940852071962247168', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-13 15:53:08');
-INSERT INTO `sys_oplog` VALUES ('940852717985726464', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-13 15:55:42');
-INSERT INTO `sys_oplog` VALUES ('940854581028454400', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-13 16:03:07');
-INSERT INTO `sys_oplog` VALUES ('940856169386213376', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-13 16:09:25');
-INSERT INTO `sys_oplog` VALUES ('940856632215076864', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-13 16:11:16');
-INSERT INTO `sys_oplog` VALUES ('940857432643469312', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-13 16:14:26');
-INSERT INTO `sys_oplog` VALUES ('940858078721474560', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-13 16:17:00');
-INSERT INTO `sys_oplog` VALUES ('940858475490050048', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-13 16:18:35');
-INSERT INTO `sys_oplog` VALUES ('940860272363438080', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-13 16:25:43');
-INSERT INTO `sys_oplog` VALUES ('940861946767343616', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-13 16:32:23');
-INSERT INTO `sys_oplog` VALUES ('940862238485381120', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-13 16:33:32');
-INSERT INTO `sys_oplog` VALUES ('940863982657339392', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-13 16:40:28');
-INSERT INTO `sys_oplog` VALUES ('940865875311853568', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-13 16:47:59');
-INSERT INTO `sys_oplog` VALUES ('940870712304861184', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-13 17:07:13');
-INSERT INTO `sys_oplog` VALUES ('940876529938726912', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-13 17:30:20');
-INSERT INTO `sys_oplog` VALUES ('940877670361595904', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-13 17:34:51');
-INSERT INTO `sys_oplog` VALUES ('941098254458683392', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-14 08:11:23');
-INSERT INTO `sys_oplog` VALUES ('941102359629529088', '916654989969981440', '退出', '0:0:0:0:0:0:0:1', '2017-12-14 08:27:42');
-INSERT INTO `sys_oplog` VALUES ('941102517285027840', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-14 08:28:19');
-INSERT INTO `sys_oplog` VALUES ('941122101882912768', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-14 09:46:08');
-INSERT INTO `sys_oplog` VALUES ('941125446571917312', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-14 09:59:26');
-INSERT INTO `sys_oplog` VALUES ('941141253599264768', '916654989969981440', '登录', '127.0.0.1', '2017-12-14 11:02:15');
-INSERT INTO `sys_oplog` VALUES ('941143504275374080', '916654989969981440', '退出', '127.0.0.1', '2017-12-14 11:11:11');
-INSERT INTO `sys_oplog` VALUES ('941165280220938240', '916654989969981440', '登录', '127.0.0.1', '2017-12-14 12:37:43');
-INSERT INTO `sys_oplog` VALUES ('941230119131807744', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-14 16:55:22');
-INSERT INTO `sys_oplog` VALUES ('941482746738376704', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-15 09:39:13');
-INSERT INTO `sys_oplog` VALUES ('941482958915633152', '916654989969981440', '退出', '0:0:0:0:0:0:0:1', '2017-12-15 09:40:03');
-INSERT INTO `sys_oplog` VALUES ('941482964645052416', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-15 09:40:05');
-INSERT INTO `sys_oplog` VALUES ('941487506166120448', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-15 09:58:08');
-INSERT INTO `sys_oplog` VALUES ('941489308617932800', '916654989969981440', '退出', '0:0:0:0:0:0:0:1', '2017-12-15 10:05:17');
-INSERT INTO `sys_oplog` VALUES ('941590805670264832', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-15 16:48:36');
-INSERT INTO `sys_oplog` VALUES ('941598142128717824', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-15 17:17:45');
-INSERT INTO `sys_oplog` VALUES ('941601388218023936', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-15 17:30:39');
-INSERT INTO `sys_oplog` VALUES ('941601400746409984', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-15 17:30:42');
-INSERT INTO `sys_oplog` VALUES ('941601964087574528', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-15 17:32:57');
-INSERT INTO `sys_oplog` VALUES ('941602810783334400', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-15 17:36:18');
-INSERT INTO `sys_oplog` VALUES ('941603084742688768', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-15 17:37:24');
-INSERT INTO `sys_oplog` VALUES ('941603223377018880', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-15 17:37:57');
-INSERT INTO `sys_oplog` VALUES ('941603520073695232', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-15 17:39:07');
-INSERT INTO `sys_oplog` VALUES ('941603828896104448', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-15 17:40:21');
-INSERT INTO `sys_oplog` VALUES ('941608913701175296', '916654989969981440', '退出', '0:0:0:0:0:0:0:1', '2017-12-15 18:00:33');
-INSERT INTO `sys_oplog` VALUES ('941608918470098944', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-15 18:00:35');
-INSERT INTO `sys_oplog` VALUES ('941608986312966144', '916654989969981440', '退出', '0:0:0:0:0:0:0:1', '2017-12-15 18:00:51');
-INSERT INTO `sys_oplog` VALUES ('941608990792482816', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-15 18:00:52');
-INSERT INTO `sys_oplog` VALUES ('941610296751947776', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-15 18:06:03');
-INSERT INTO `sys_oplog` VALUES ('941610651443265536', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-15 18:07:28');
-INSERT INTO `sys_oplog` VALUES ('941610918532349952', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-15 18:08:31');
-INSERT INTO `sys_oplog` VALUES ('941617636444209152', '916654989969981440', '退出', '0:0:0:0:0:0:0:1', '2017-12-15 18:35:13');
-INSERT INTO `sys_oplog` VALUES ('941617641825501184', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-15 18:35:14');
-INSERT INTO `sys_oplog` VALUES ('941617777205051392', '916654989969981440', '退出', '0:0:0:0:0:0:0:1', '2017-12-15 18:35:47');
-INSERT INTO `sys_oplog` VALUES ('941617784155013120', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-15 18:35:48');
-INSERT INTO `sys_oplog` VALUES ('941624843600658432', '916654989969981440', '退出', '0:0:0:0:0:0:0:1', '2017-12-15 19:03:51');
-INSERT INTO `sys_oplog` VALUES ('941624850143772672', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-15 19:03:53');
-INSERT INTO `sys_oplog` VALUES ('941625937877794816', '916654989969981440', '退出', '0:0:0:0:0:0:0:1', '2017-12-15 19:08:12');
-INSERT INTO `sys_oplog` VALUES ('941625944307662848', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-15 19:08:14');
-INSERT INTO `sys_oplog` VALUES ('941628411980283904', '916654989969981440', '退出', '0:0:0:0:0:0:0:1', '2017-12-15 19:18:02');
-INSERT INTO `sys_oplog` VALUES ('941628419928489984', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-15 19:18:04');
-INSERT INTO `sys_oplog` VALUES ('941630169100058624', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-15 19:25:01');
-INSERT INTO `sys_oplog` VALUES ('941642420129366016', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-15 20:13:42');
-INSERT INTO `sys_oplog` VALUES ('941643836956868608', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-15 20:19:20');
-INSERT INTO `sys_oplog` VALUES ('941645849623003136', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-15 20:27:20');
-INSERT INTO `sys_oplog` VALUES ('941646507755438080', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-15 20:29:57');
-INSERT INTO `sys_oplog` VALUES ('941684724810645504', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-15 23:01:48');
-INSERT INTO `sys_oplog` VALUES ('941684780775243776', '916654989969981440', '退出', '0:0:0:0:0:0:0:1', '2017-12-15 23:02:02');
-INSERT INTO `sys_oplog` VALUES ('941684786383028224', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-15 23:02:03');
-INSERT INTO `sys_oplog` VALUES ('941687495395901440', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-15 23:12:49');
-INSERT INTO `sys_oplog` VALUES ('941687683527213056', '916654989969981440', '退出', '0:0:0:0:0:0:0:1', '2017-12-15 23:13:34');
-INSERT INTO `sys_oplog` VALUES ('941687696286285824', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-15 23:13:37');
-INSERT INTO `sys_oplog` VALUES ('941688612502634496', '916654989969981440', '退出', '0:0:0:0:0:0:0:1', '2017-12-15 23:17:15');
-INSERT INTO `sys_oplog` VALUES ('941688618089447424', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-15 23:17:16');
-INSERT INTO `sys_oplog` VALUES ('941690770916638720', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-15 23:25:50');
-INSERT INTO `sys_oplog` VALUES ('941692325443141632', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-15 23:32:00');
-INSERT INTO `sys_oplog` VALUES ('941693305354190848', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-15 23:35:54');
-INSERT INTO `sys_oplog` VALUES ('941693957241307136', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-15 23:38:29');
-INSERT INTO `sys_oplog` VALUES ('941823270028574720', '916654989969981440', '退出', '0:0:0:0:0:0:0:1', '2017-12-16 08:12:20');
-INSERT INTO `sys_oplog` VALUES ('941823275430838272', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-16 08:12:21');
-INSERT INTO `sys_oplog` VALUES ('941842421635874816', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-16 09:28:26');
-INSERT INTO `sys_oplog` VALUES ('941877242781237248', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-16 11:46:48');
-INSERT INTO `sys_oplog` VALUES ('941905418618142720', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-16 13:38:46');
-INSERT INTO `sys_oplog` VALUES ('942350037038399488', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-17 19:05:31');
-INSERT INTO `sys_oplog` VALUES ('942350687289737216', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-17 19:08:06');
-INSERT INTO `sys_oplog` VALUES ('942548035626336256', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-18 08:12:18');
-INSERT INTO `sys_oplog` VALUES ('942548508840296448', '916654989969981440', '退出', '0:0:0:0:0:0:0:1', '2017-12-18 08:14:10');
-INSERT INTO `sys_oplog` VALUES ('942548515295330304', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-18 08:14:12');
-INSERT INTO `sys_oplog` VALUES ('942553221665128448', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-18 08:32:54');
-INSERT INTO `sys_oplog` VALUES ('942554401858387968', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-18 08:37:35');
-INSERT INTO `sys_oplog` VALUES ('942554627671326720', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-18 08:38:29');
-INSERT INTO `sys_oplog` VALUES ('942555042177613824', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-18 08:40:08');
-INSERT INTO `sys_oplog` VALUES ('942574068446527488', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-18 09:55:44');
-INSERT INTO `sys_oplog` VALUES ('942578813840130048', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-18 10:14:36');
-INSERT INTO `sys_oplog` VALUES ('942579807244255232', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-18 10:18:33');
-INSERT INTO `sys_oplog` VALUES ('942581003799494656', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-18 10:23:18');
-INSERT INTO `sys_oplog` VALUES ('942581629975527424', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-18 10:25:47');
-INSERT INTO `sys_oplog` VALUES ('942582369297104896', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-18 10:28:43');
-INSERT INTO `sys_oplog` VALUES ('942582717470474240', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-18 10:30:06');
-INSERT INTO `sys_oplog` VALUES ('942582966062678016', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-18 10:31:06');
-INSERT INTO `sys_oplog` VALUES ('942584224437764096', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-18 10:36:06');
-INSERT INTO `sys_oplog` VALUES ('942728948901478400', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-18 20:11:11');
-INSERT INTO `sys_oplog` VALUES ('942729720305287168', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-18 20:14:15');
-INSERT INTO `sys_oplog` VALUES ('942732473421266944', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-18 20:25:11');
-INSERT INTO `sys_oplog` VALUES ('942733160976744448', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-18 20:27:55');
-INSERT INTO `sys_oplog` VALUES ('942734028476252160', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-18 20:31:22');
-INSERT INTO `sys_oplog` VALUES ('942734640492314624', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-18 20:33:48');
-INSERT INTO `sys_oplog` VALUES ('942737667139829760', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-18 20:45:49');
-INSERT INTO `sys_oplog` VALUES ('942738306616000512', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-18 20:48:22');
-INSERT INTO `sys_oplog` VALUES ('942739153609555968', '916654989969981440', '退出', '0:0:0:0:0:0:0:1', '2017-12-18 20:51:44');
-INSERT INTO `sys_oplog` VALUES ('942739158990848000', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-18 20:51:45');
-INSERT INTO `sys_oplog` VALUES ('942739714060845056', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-18 20:53:57');
-INSERT INTO `sys_oplog` VALUES ('942739976993374208', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-18 20:55:00');
-INSERT INTO `sys_oplog` VALUES ('942740716377866240', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-18 20:57:56');
-INSERT INTO `sys_oplog` VALUES ('942741077792653312', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-18 20:59:22');
-INSERT INTO `sys_oplog` VALUES ('942741837410467840', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-18 21:02:24');
-INSERT INTO `sys_oplog` VALUES ('942912395326521344', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-19 08:20:08');
-INSERT INTO `sys_oplog` VALUES ('942912429027753984', '916654989969981440', '退出', '0:0:0:0:0:0:0:1', '2017-12-19 08:20:16');
-INSERT INTO `sys_oplog` VALUES ('942912437114372096', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-19 08:20:18');
-INSERT INTO `sys_oplog` VALUES ('942917503061852160', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-19 08:40:25');
-INSERT INTO `sys_oplog` VALUES ('942917685992226816', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-19 08:41:09');
-INSERT INTO `sys_oplog` VALUES ('942969284378755072', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-19 12:06:11');
-INSERT INTO `sys_oplog` VALUES ('942990497796849664', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-19 13:30:29');
-INSERT INTO `sys_oplog` VALUES ('942990569267789824', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-19 13:30:46');
-INSERT INTO `sys_oplog` VALUES ('943006604419137536', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-19 14:34:29');
-INSERT INTO `sys_oplog` VALUES ('943010098526027776', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-19 14:48:22');
-INSERT INTO `sys_oplog` VALUES ('943046462944575488', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-19 17:12:52');
-INSERT INTO `sys_oplog` VALUES ('943054784166887424', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-19 17:45:56');
-INSERT INTO `sys_oplog` VALUES ('943271709899751424', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-20 08:07:55');
-INSERT INTO `sys_oplog` VALUES ('943287179310792704', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-20 09:09:23');
-INSERT INTO `sys_oplog` VALUES ('943287187556794368', '916654989969981440', '退出', '0:0:0:0:0:0:0:1', '2017-12-20 09:09:25');
-INSERT INTO `sys_oplog` VALUES ('943287193357516800', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-20 09:09:26');
-INSERT INTO `sys_oplog` VALUES ('943287208809332736', '916654989969981440', '退出', '0:0:0:0:0:0:0:1', '2017-12-20 09:09:30');
-INSERT INTO `sys_oplog` VALUES ('943287222512123904', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-20 09:09:33');
-INSERT INTO `sys_oplog` VALUES ('943287276195020800', '916654989969981440', '退出', '0:0:0:0:0:0:0:1', '2017-12-20 09:09:46');
-INSERT INTO `sys_oplog` VALUES ('943287282687803392', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-20 09:09:48');
-INSERT INTO `sys_oplog` VALUES ('943288605931995136', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-20 09:15:03');
-INSERT INTO `sys_oplog` VALUES ('943288836874567680', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-20 09:15:58');
-INSERT INTO `sys_oplog` VALUES ('943289081729646592', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-20 09:16:57');
-INSERT INTO `sys_oplog` VALUES ('943297577405644800', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-20 09:50:42');
-INSERT INTO `sys_oplog` VALUES ('943318011366866944', '916654989969981440', '退出', '0:0:0:0:0:0:0:1', '2017-12-20 11:11:54');
-INSERT INTO `sys_oplog` VALUES ('943318039644864512', '943317340492136448', '登录', '0:0:0:0:0:0:0:1', '2017-12-20 11:12:01');
-INSERT INTO `sys_oplog` VALUES ('943318093323567104', '943317340492136448', '退出', '0:0:0:0:0:0:0:1', '2017-12-20 11:12:14');
-INSERT INTO `sys_oplog` VALUES ('943318099682131968', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-20 11:12:15');
-INSERT INTO `sys_oplog` VALUES ('943318921539223552', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-20 11:15:31');
-INSERT INTO `sys_oplog` VALUES ('943319253304475648', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-20 11:16:50');
-INSERT INTO `sys_oplog` VALUES ('943319455792889856', '916654989969981440', '退出', '0:0:0:0:0:0:0:1', '2017-12-20 11:17:38');
-INSERT INTO `sys_oplog` VALUES ('943319484070887424', '943317632851902464', '登录', '0:0:0:0:0:0:0:1', '2017-12-20 11:17:45');
-INSERT INTO `sys_oplog` VALUES ('943319549246177280', '943317632851902464', '退出', '0:0:0:0:0:0:0:1', '2017-12-20 11:18:01');
-INSERT INTO `sys_oplog` VALUES ('943319709791551488', '943317632851902464', '登录', '0:0:0:0:0:0:0:1', '2017-12-20 11:18:39');
-INSERT INTO `sys_oplog` VALUES ('943320846015922176', '943317632851902464', '登录', '0:0:0:0:0:0:0:1', '2017-12-20 11:23:10');
-INSERT INTO `sys_oplog` VALUES ('943321175507861504', '943317632851902464', '退出', '0:0:0:0:0:0:0:1', '2017-12-20 11:24:28');
-INSERT INTO `sys_oplog` VALUES ('943321203806830592', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-20 11:24:35');
-INSERT INTO `sys_oplog` VALUES ('943321463509745664', '916654989969981440', '退出', '0:0:0:0:0:0:0:1', '2017-12-20 11:25:37');
-INSERT INTO `sys_oplog` VALUES ('943321489212440576', '943317632851902464', '登录', '0:0:0:0:0:0:0:1', '2017-12-20 11:25:43');
-INSERT INTO `sys_oplog` VALUES ('943321633655881728', '943317632851902464', '退出', '0:0:0:0:0:0:0:1', '2017-12-20 11:26:18');
-INSERT INTO `sys_oplog` VALUES ('943321662537859072', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-20 11:26:25');
-INSERT INTO `sys_oplog` VALUES ('943321743445983232', '916654989969981440', '退出', '0:0:0:0:0:0:0:1', '2017-12-20 11:26:44');
-INSERT INTO `sys_oplog` VALUES ('943321772743196672', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-20 11:26:51');
-INSERT INTO `sys_oplog` VALUES ('943321924824465408', '916654989969981440', '退出', '0:0:0:0:0:0:0:1', '2017-12-20 11:27:27');
-INSERT INTO `sys_oplog` VALUES ('943321988355588096', '943317632851902464', '登录', '0:0:0:0:0:0:0:1', '2017-12-20 11:27:42');
-INSERT INTO `sys_oplog` VALUES ('943322231914627072', '943317632851902464', '退出', '0:0:0:0:0:0:0:1', '2017-12-20 11:28:40');
-INSERT INTO `sys_oplog` VALUES ('943322270003101696', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-20 11:28:49');
-INSERT INTO `sys_oplog` VALUES ('943322819607920640', '916654989969981440', '退出', '0:0:0:0:0:0:0:1', '2017-12-20 11:31:00');
-INSERT INTO `sys_oplog` VALUES ('943322860800180224', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-20 11:31:10');
-INSERT INTO `sys_oplog` VALUES ('943322898540527616', '916654989969981440', '退出', '0:0:0:0:0:0:0:1', '2017-12-20 11:31:19');
-INSERT INTO `sys_oplog` VALUES ('943322925144997888', '943317340492136448', '登录', '0:0:0:0:0:0:0:1', '2017-12-20 11:31:26');
-INSERT INTO `sys_oplog` VALUES ('943323017541320704', '943317340492136448', '退出', '0:0:0:0:0:0:0:1', '2017-12-20 11:31:48');
-INSERT INTO `sys_oplog` VALUES ('943323055705292800', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-20 11:31:57');
-INSERT INTO `sys_oplog` VALUES ('943323830166749184', '916654989969981440', '退出', '0:0:0:0:0:0:0:1', '2017-12-20 11:35:01');
-INSERT INTO `sys_oplog` VALUES ('943323858671239168', '943317340492136448', '登录', '0:0:0:0:0:0:0:1', '2017-12-20 11:35:08');
-INSERT INTO `sys_oplog` VALUES ('943327094178316288', '943317340492136448', '退出', '0:0:0:0:0:0:0:1', '2017-12-20 11:48:00');
-INSERT INTO `sys_oplog` VALUES ('943327143415250944', '943317632851902464', '登录', '0:0:0:0:0:0:0:1', '2017-12-20 11:48:11');
-INSERT INTO `sys_oplog` VALUES ('943330876194816000', '943317340492136448', '登录', '0:0:0:0:0:0:0:1', '2017-12-20 12:03:01');
-INSERT INTO `sys_oplog` VALUES ('943330900022657024', '943317340492136448', '退出', '0:0:0:0:0:0:0:1', '2017-12-20 12:03:07');
-INSERT INTO `sys_oplog` VALUES ('943330934973792256', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-20 12:03:15');
-INSERT INTO `sys_oplog` VALUES ('943331027047153664', '916654989969981440', '退出', '0:0:0:0:0:0:0:1', '2017-12-20 12:03:37');
-INSERT INTO `sys_oplog` VALUES ('943331052607242240', '943317632851902464', '登录', '0:0:0:0:0:0:0:1', '2017-12-20 12:03:43');
-INSERT INTO `sys_oplog` VALUES ('943331085268287488', '943317632851902464', '退出', '0:0:0:0:0:0:0:1', '2017-12-20 12:03:51');
-INSERT INTO `sys_oplog` VALUES ('943331127911776256', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-20 12:04:01');
-INSERT INTO `sys_oplog` VALUES ('943331233696317440', '916654989969981440', '退出', '0:0:0:0:0:0:0:1', '2017-12-20 12:04:27');
-INSERT INTO `sys_oplog` VALUES ('943331267875700736', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-20 12:04:35');
-INSERT INTO `sys_oplog` VALUES ('943331290994704384', '916654989969981440', '退出', '0:0:0:0:0:0:0:1', '2017-12-20 12:04:40');
-INSERT INTO `sys_oplog` VALUES ('943331319717298176', '943317340492136448', '登录', '0:0:0:0:0:0:0:1', '2017-12-20 12:04:47');
-INSERT INTO `sys_oplog` VALUES ('943331330710568960', '943317340492136448', '退出', '0:0:0:0:0:0:0:1', '2017-12-20 12:04:50');
-INSERT INTO `sys_oplog` VALUES ('943331374469742592', '943317632851902464', '登录', '0:0:0:0:0:0:0:1', '2017-12-20 12:05:00');
-INSERT INTO `sys_oplog` VALUES ('943331385932775424', '943317632851902464', '退出', '0:0:0:0:0:0:0:1', '2017-12-20 12:05:03');
-INSERT INTO `sys_oplog` VALUES ('943331424084164608', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-20 12:05:12');
-INSERT INTO `sys_oplog` VALUES ('943332067188408320', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-20 12:07:45');
-INSERT INTO `sys_oplog` VALUES ('943332093339893760', '916654989969981440', '退出', '0:0:0:0:0:0:0:1', '2017-12-20 12:07:51');
-INSERT INTO `sys_oplog` VALUES ('943332151523278848', '943317340492136448', '登录', '0:0:0:0:0:0:0:1', '2017-12-20 12:08:05');
-INSERT INTO `sys_oplog` VALUES ('943332166832488448', '943317340492136448', '退出', '0:0:0:0:0:0:0:1', '2017-12-20 12:08:09');
-INSERT INTO `sys_oplog` VALUES ('943332196263919616', '943317632851902464', '登录', '0:0:0:0:0:0:0:1', '2017-12-20 12:08:16');
-INSERT INTO `sys_oplog` VALUES ('943335010058895360', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-20 12:19:27');
-INSERT INTO `sys_oplog` VALUES ('943335040505348096', '916654989969981440', '退出', '0:0:0:0:0:0:0:1', '2017-12-20 12:19:34');
-INSERT INTO `sys_oplog` VALUES ('943335075867525120', '943317340492136448', '登录', '0:0:0:0:0:0:0:1', '2017-12-20 12:19:43');
-INSERT INTO `sys_oplog` VALUES ('943335088681123840', '943317340492136448', '退出', '0:0:0:0:0:0:0:1', '2017-12-20 12:19:46');
-INSERT INTO `sys_oplog` VALUES ('943335117533741056', '943317632851902464', '登录', '0:0:0:0:0:0:0:1', '2017-12-20 12:19:52');
-INSERT INTO `sys_oplog` VALUES ('943335132419325952', '943317632851902464', '退出', '0:0:0:0:0:0:0:1', '2017-12-20 12:19:56');
-INSERT INTO `sys_oplog` VALUES ('943335160374362112', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-20 12:20:03');
-INSERT INTO `sys_oplog` VALUES ('943335337382379520', '916654989969981440', '退出', '0:0:0:0:0:0:0:1', '2017-12-20 12:20:45');
-INSERT INTO `sys_oplog` VALUES ('943335395687399424', '943317340492136448', '登录', '0:0:0:0:0:0:0:1', '2017-12-20 12:20:59');
-INSERT INTO `sys_oplog` VALUES ('943335575421714432', '943317340492136448', '退出', '0:0:0:0:0:0:0:1', '2017-12-20 12:21:42');
-INSERT INTO `sys_oplog` VALUES ('943373232466034688', '943317340492136448', '登录', '0:0:0:0:0:0:0:1', '2017-12-20 14:51:20');
-INSERT INTO `sys_oplog` VALUES ('943373372484485120', '943317340492136448', '退出', '0:0:0:0:0:0:0:1', '2017-12-20 14:51:53');
-INSERT INTO `sys_oplog` VALUES ('943373400439521280', '943317632851902464', '登录', '0:0:0:0:0:0:0:1', '2017-12-20 14:52:00');
-INSERT INTO `sys_oplog` VALUES ('943373461747662848', '943317632851902464', '退出', '0:0:0:0:0:0:0:1', '2017-12-20 14:52:14');
-INSERT INTO `sys_oplog` VALUES ('943373500901490688', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-20 14:52:24');
-INSERT INTO `sys_oplog` VALUES ('943373726278221824', '916654989969981440', '退出', '0:0:0:0:0:0:0:1', '2017-12-20 14:53:18');
-INSERT INTO `sys_oplog` VALUES ('943373761640398848', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-20 14:53:26');
-INSERT INTO `sys_oplog` VALUES ('943374937454804992', '916654989969981440', '退出', '0:0:0:0:0:0:0:1', '2017-12-20 14:58:06');
-INSERT INTO `sys_oplog` VALUES ('943374964839415808', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-20 14:58:13');
-INSERT INTO `sys_oplog` VALUES ('943375068103180288', '916654989969981440', '退出', '0:0:0:0:0:0:0:1', '2017-12-20 14:58:37');
-INSERT INTO `sys_oplog` VALUES ('943375110864109568', '943317340492136448', '登录', '0:0:0:0:0:0:0:1', '2017-12-20 14:58:48');
-INSERT INTO `sys_oplog` VALUES ('943375139964190720', '943317340492136448', '退出', '0:0:0:0:0:0:0:1', '2017-12-20 14:58:55');
-INSERT INTO `sys_oplog` VALUES ('943376576639139840', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-20 15:04:37');
-INSERT INTO `sys_oplog` VALUES ('943377291960909824', '916654989969981440', '退出', '0:0:0:0:0:0:0:1', '2017-12-20 15:07:28');
-INSERT INTO `sys_oplog` VALUES ('943377319790116864', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-20 15:07:34');
-INSERT INTO `sys_oplog` VALUES ('943377359317237760', '916654989969981440', '退出', '0:0:0:0:0:0:0:1', '2017-12-20 15:07:44');
-INSERT INTO `sys_oplog` VALUES ('943377389130350592', '943317340492136448', '登录', '0:0:0:0:0:0:0:1', '2017-12-20 15:07:51');
-INSERT INTO `sys_oplog` VALUES ('943377397569290240', '943317340492136448', '退出', '0:0:0:0:0:0:0:1', '2017-12-20 15:07:53');
-INSERT INTO `sys_oplog` VALUES ('943377440321830912', '943317632851902464', '登录', '0:0:0:0:0:0:0:1', '2017-12-20 15:08:03');
-INSERT INTO `sys_oplog` VALUES ('943377459133284352', '943317632851902464', '退出', '0:0:0:0:0:0:0:1', '2017-12-20 15:08:08');
-INSERT INTO `sys_oplog` VALUES ('943377485821640704', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-20 15:08:14');
-INSERT INTO `sys_oplog` VALUES ('943377547079450624', '916654989969981440', '退出', '0:0:0:0:0:0:0:1', '2017-12-20 15:08:28');
-INSERT INTO `sys_oplog` VALUES ('943377614528053248', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-20 15:08:45');
-INSERT INTO `sys_oplog` VALUES ('943386387820838912', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-20 15:43:36');
-INSERT INTO `sys_oplog` VALUES ('943386716335505408', '916654989969981440', '退出', '0:0:0:0:0:0:0:1', '2017-12-20 15:44:55');
-INSERT INTO `sys_oplog` VALUES ('943386753421541376', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-20 15:45:03');
-INSERT INTO `sys_oplog` VALUES ('943386991054028800', '916654989969981440', '退出', '0:0:0:0:0:0:0:1', '2017-12-20 15:46:00');
-INSERT INTO `sys_oplog` VALUES ('943387020527403008', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-20 15:46:07');
-INSERT INTO `sys_oplog` VALUES ('943387406340456448', '916654989969981440', '退出', '0:0:0:0:0:0:0:1', '2017-12-20 15:47:39');
-INSERT INTO `sys_oplog` VALUES ('943387436535250944', '943317340492136448', '登录', '0:0:0:0:0:0:0:1', '2017-12-20 15:47:46');
-INSERT INTO `sys_oplog` VALUES ('943387464158937088', '943317340492136448', '退出', '0:0:0:0:0:0:0:1', '2017-12-20 15:47:53');
-INSERT INTO `sys_oplog` VALUES ('943387491224780800', '943317766646005760', '登录', '0:0:0:0:0:0:0:1', '2017-12-20 15:47:59');
-INSERT INTO `sys_oplog` VALUES ('943387499131043840', '943317766646005760', '退出', '0:0:0:0:0:0:0:1', '2017-12-20 15:48:01');
-INSERT INTO `sys_oplog` VALUES ('943387529514582016', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-20 15:48:08');
-INSERT INTO `sys_oplog` VALUES ('943389567472369664', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-20 15:56:14');
-INSERT INTO `sys_oplog` VALUES ('943402186522492928', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-20 16:46:23');
-INSERT INTO `sys_oplog` VALUES ('943402369901658112', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-20 16:47:07');
-INSERT INTO `sys_oplog` VALUES ('943408704588349440', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-20 17:12:17');
-INSERT INTO `sys_oplog` VALUES ('943408715258658816', '916654989969981440', '退出', '0:0:0:0:0:0:0:1', '2017-12-20 17:12:20');
-INSERT INTO `sys_oplog` VALUES ('943408746636247040', '943317766646005760', '登录', '0:0:0:0:0:0:0:1', '2017-12-20 17:12:27');
-INSERT INTO `sys_oplog` VALUES ('943408812134498304', '943317766646005760', '退出', '0:0:0:0:0:0:0:1', '2017-12-20 17:12:43');
-INSERT INTO `sys_oplog` VALUES ('943408818501451776', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-20 17:12:44');
-INSERT INTO `sys_oplog` VALUES ('943411170335784960', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-20 17:22:05');
-INSERT INTO `sys_oplog` VALUES ('943412634248544256', '916654989969981440', '退出', '0:0:0:0:0:0:0:1', '2017-12-20 17:27:54');
-INSERT INTO `sys_oplog` VALUES ('943412639533367296', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-20 17:27:55');
-INSERT INTO `sys_oplog` VALUES ('943414028535857152', '916654989969981440', '退出', '0:0:0:0:0:0:0:1', '2017-12-20 17:33:26');
-INSERT INTO `sys_oplog` VALUES ('943414033761959936', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-20 17:33:28');
-INSERT INTO `sys_oplog` VALUES ('943414065714167808', '916654989969981440', '退出', '0:0:0:0:0:0:0:1', '2017-12-20 17:33:35');
-INSERT INTO `sys_oplog` VALUES ('943414089831415808', '943317632851902464', '登录', '0:0:0:0:0:0:0:1', '2017-12-20 17:33:41');
-INSERT INTO `sys_oplog` VALUES ('943414242210480128', '943317632851902464', '退出', '0:0:0:0:0:0:0:1', '2017-12-20 17:34:17');
-INSERT INTO `sys_oplog` VALUES ('943414299643084800', '943317340492136448', '登录', '0:0:0:0:0:0:0:1', '2017-12-20 17:34:31');
-INSERT INTO `sys_oplog` VALUES ('943414312137916416', '943317340492136448', '退出', '0:0:0:0:0:0:0:1', '2017-12-20 17:34:34');
-INSERT INTO `sys_oplog` VALUES ('943414318441955328', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-20 17:34:35');
-INSERT INTO `sys_oplog` VALUES ('943414904574967808', '916654989969981440', '退出', '0:0:0:0:0:0:0:1', '2017-12-20 17:36:55');
-INSERT INTO `sys_oplog` VALUES ('943414909197090816', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-20 17:36:56');
-INSERT INTO `sys_oplog` VALUES ('943436724724301824', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-20 19:03:38');
-INSERT INTO `sys_oplog` VALUES ('943438910334173184', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-20 19:12:19');
-INSERT INTO `sys_oplog` VALUES ('943441160997699584', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-20 19:21:15');
-INSERT INTO `sys_oplog` VALUES ('943452658675482624', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-20 20:06:57');
-INSERT INTO `sys_oplog` VALUES ('943458530734637056', '916654989969981440', '退出', '0:0:0:0:0:0:0:1', '2017-12-20 20:30:16');
-INSERT INTO `sys_oplog` VALUES ('943458536799600640', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-20 20:30:18');
-INSERT INTO `sys_oplog` VALUES ('943461032746024960', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-20 20:40:13');
-INSERT INTO `sys_oplog` VALUES ('943461116871180288', '916654989969981440', '退出', '0:0:0:0:0:0:0:1', '2017-12-20 20:40:33');
-INSERT INTO `sys_oplog` VALUES ('943461122407661568', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-20 20:40:34');
-INSERT INTO `sys_oplog` VALUES ('943466307565649920', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-20 21:01:11');
-INSERT INTO `sys_oplog` VALUES ('943466907128823808', '916654989969981440', '退出', '0:0:0:0:0:0:0:1', '2017-12-20 21:03:34');
-INSERT INTO `sys_oplog` VALUES ('943466913105707008', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-20 21:03:35');
-INSERT INTO `sys_oplog` VALUES ('943466951739441152', '916654989969981440', '退出', '0:0:0:0:0:0:0:1', '2017-12-20 21:03:44');
-INSERT INTO `sys_oplog` VALUES ('943467444574355456', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-20 21:05:42');
-INSERT INTO `sys_oplog` VALUES ('943476621296271360', '916654989969981440', '退出', '0:0:0:0:0:0:0:1', '2017-12-20 21:42:10');
-INSERT INTO `sys_oplog` VALUES ('943477056753106944', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-20 21:43:53');
-INSERT INTO `sys_oplog` VALUES ('943501753003802624', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-20 23:22:02');
-INSERT INTO `sys_oplog` VALUES ('943508603875098624', '916654989969981440', '退出', '0:0:0:0:0:0:0:1', '2017-12-20 23:49:15');
-INSERT INTO `sys_oplog` VALUES ('944163653232361472', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-22 19:12:11');
-INSERT INTO `sys_oplog` VALUES ('944163756642926592', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-22 19:12:35');
-INSERT INTO `sys_oplog` VALUES ('944164092808003584', '916654989969981440', '登录', '127.0.0.1', '2017-12-22 19:13:56');
-INSERT INTO `sys_oplog` VALUES ('944168220720365568', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-22 19:30:20');
-INSERT INTO `sys_oplog` VALUES ('944172329716416512', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-22 19:46:39');
-INSERT INTO `sys_oplog` VALUES ('944172389808209920', '916654989969981440', '退出', '0:0:0:0:0:0:0:1', '2017-12-22 19:46:54');
-INSERT INTO `sys_oplog` VALUES ('944172911571238912', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-22 19:48:58');
-INSERT INTO `sys_oplog` VALUES ('944173583234498560', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-22 19:51:38');
-INSERT INTO `sys_oplog` VALUES ('944174308240916480', '916654989969981440', '登录', '127.0.0.1', '2017-12-22 19:54:31');
-INSERT INTO `sys_oplog` VALUES ('944178123103010816', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-22 20:09:41');
-INSERT INTO `sys_oplog` VALUES ('944178829277003776', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-22 20:12:29');
-INSERT INTO `sys_oplog` VALUES ('944179292550463488', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-22 20:14:20');
-INSERT INTO `sys_oplog` VALUES ('944183805801922560', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-22 20:32:16');
-INSERT INTO `sys_oplog` VALUES ('944184458410459136', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-22 20:34:51');
-INSERT INTO `sys_oplog` VALUES ('944186173721411584', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-22 20:41:40');
-INSERT INTO `sys_oplog` VALUES ('944189262880833536', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-22 20:53:57');
-INSERT INTO `sys_oplog` VALUES ('944190841667190784', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-22 21:00:13');
-INSERT INTO `sys_oplog` VALUES ('944199542687924224', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-22 21:34:48');
-INSERT INTO `sys_oplog` VALUES ('944201083851374592', '916654989969981440', '登录', '127.0.0.1', '2017-12-22 21:40:55');
-INSERT INTO `sys_oplog` VALUES ('944201736761901056', '916654989969981440', '登录', '127.0.0.1', '2017-12-22 21:43:31');
-INSERT INTO `sys_oplog` VALUES ('944206686388748288', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-22 22:03:11');
-INSERT INTO `sys_oplog` VALUES ('944207337982263296', '916654989969981440', '登录', '127.0.0.1', '2017-12-22 22:05:46');
-INSERT INTO `sys_oplog` VALUES ('944217001994223616', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-22 22:44:10');
-INSERT INTO `sys_oplog` VALUES ('944222427695546368', '916654989969981440', '退出', '127.0.0.1', '2017-12-22 23:05:44');
-INSERT INTO `sys_oplog` VALUES ('944222463024168960', '943317632851902464', '登录', '127.0.0.1', '2017-12-22 23:05:52');
-INSERT INTO `sys_oplog` VALUES ('944222539586994176', '943317632851902464', '通过 cookie 登录', '127.0.0.1', '2017-12-22 23:06:10');
-INSERT INTO `sys_oplog` VALUES ('944222549691072512', '943317632851902464', '退出', '127.0.0.1', '2017-12-22 23:06:13');
-INSERT INTO `sys_oplog` VALUES ('944566560087867392', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-23 21:53:11');
-INSERT INTO `sys_oplog` VALUES ('944569508180262912', '916654989969981440', '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2017-12-23 22:04:54');
-INSERT INTO `sys_oplog` VALUES ('944570035542687744', '916654989969981440', '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2017-12-23 22:07:00');
-INSERT INTO `sys_oplog` VALUES ('944570645306408960', '916654989969981440', '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2017-12-23 22:09:25');
-INSERT INTO `sys_oplog` VALUES ('944571143132545024', '916654989969981440', '退出', '0:0:0:0:0:0:0:1', '2017-12-23 22:11:24');
-INSERT INTO `sys_oplog` VALUES ('944571182579974144', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-23 22:11:33');
-INSERT INTO `sys_oplog` VALUES ('944571492035723264', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-23 22:12:47');
-INSERT INTO `sys_oplog` VALUES ('944572275712065536', '916654989969981440', '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2017-12-23 22:15:54');
-INSERT INTO `sys_oplog` VALUES ('944591998726176768', '916654989969981440', '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2017-12-23 23:34:16');
-INSERT INTO `sys_oplog` VALUES ('944592219350761472', '916654989969981440', '退出', '0:0:0:0:0:0:0:1', '2017-12-23 23:35:09');
-INSERT INTO `sys_oplog` VALUES ('944592263927824384', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-23 23:35:20');
-INSERT INTO `sys_oplog` VALUES ('944595930181533696', '916654989969981440', '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2017-12-23 23:49:54');
-INSERT INTO `sys_oplog` VALUES ('944788816164552704', '916654989969981440', '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2017-12-24 12:36:21');
-INSERT INTO `sys_oplog` VALUES ('944797632142770176', '916654989969981440', '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2017-12-24 13:11:23');
-INSERT INTO `sys_oplog` VALUES ('944846908734570496', '916654989969981440', '退出', '0:0:0:0:0:0:0:1', '2017-12-24 16:27:12');
-INSERT INTO `sys_oplog` VALUES ('944846943933169664', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-24 16:27:20');
-INSERT INTO `sys_oplog` VALUES ('944923367847231488', '916654989969981440', '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2017-12-24 21:31:01');
-INSERT INTO `sys_oplog` VALUES ('944970538990698496', '916654989969981440', '退出', '0:0:0:0:0:0:0:1', '2017-12-25 00:38:27');
-INSERT INTO `sys_oplog` VALUES ('944970579566395392', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-25 00:38:37');
-INSERT INTO `sys_oplog` VALUES ('944970665704816640', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-25 00:38:58');
-INSERT INTO `sys_oplog` VALUES ('944972372438417408', '916654989969981440', '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2017-12-25 00:45:44');
-INSERT INTO `sys_oplog` VALUES ('944972388712316928', '916654989969981440', '退出', '0:0:0:0:0:0:0:1', '2017-12-25 00:45:48');
-INSERT INTO `sys_oplog` VALUES ('944972418806448128', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-25 00:45:56');
-INSERT INTO `sys_oplog` VALUES ('944972496375906304', '916654989969981440', '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2017-12-25 00:46:14');
-INSERT INTO `sys_oplog` VALUES ('944975153895309312', '916654989969981440', '退出', '0:0:0:0:0:0:0:1', '2017-12-25 00:56:48');
-INSERT INTO `sys_oplog` VALUES ('944975894139633664', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-25 00:59:44');
-INSERT INTO `sys_oplog` VALUES ('945284687117418496', '916654989969981440', '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2017-12-25 21:26:46');
-INSERT INTO `sys_oplog` VALUES ('945284928445087744', '916654989969981440', '退出', '0:0:0:0:0:0:0:1', '2017-12-25 21:27:44');
-INSERT INTO `sys_oplog` VALUES ('945284954529464320', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-25 21:27:50');
-INSERT INTO `sys_oplog` VALUES ('945297072360259584', '916654989969981440', '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2017-12-25 22:15:59');
-INSERT INTO `sys_oplog` VALUES ('945300234907418624', '916654989969981440', '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2017-12-25 22:28:33');
-INSERT INTO `sys_oplog` VALUES ('945457397944549376', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-26 08:53:04');
-INSERT INTO `sys_oplog` VALUES ('945467973286494208', '916654989969981440', '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2017-12-26 09:35:05');
-INSERT INTO `sys_oplog` VALUES ('945485761992458240', '916654989969981440', '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2017-12-26 10:45:46');
-INSERT INTO `sys_oplog` VALUES ('945489943306698752', '916654989969981440', '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2017-12-26 11:02:23');
-INSERT INTO `sys_oplog` VALUES ('945491449258967040', '916654989969981440', '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2017-12-26 11:08:22');
-INSERT INTO `sys_oplog` VALUES ('945492002886123520', '916654989969981440', '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2017-12-26 11:10:34');
-INSERT INTO `sys_oplog` VALUES ('945495031878254592', '916654989969981440', '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2017-12-26 11:22:36');
-INSERT INTO `sys_oplog` VALUES ('945510552912789504', '916654989969981440', '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2017-12-26 12:24:17');
-INSERT INTO `sys_oplog` VALUES ('945511541212446720', '916654989969981440', '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2017-12-26 12:28:12');
-INSERT INTO `sys_oplog` VALUES ('945520764226895872', '916654989969981440', '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2017-12-26 13:04:51');
-INSERT INTO `sys_oplog` VALUES ('945545505482473472', '916654989969981440', '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2017-12-26 14:43:10');
-INSERT INTO `sys_oplog` VALUES ('945553400735465472', '916654989969981440', '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2017-12-26 15:14:32');
-INSERT INTO `sys_oplog` VALUES ('945554150463111168', '916654989969981440', '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2017-12-26 15:17:31');
-INSERT INTO `sys_oplog` VALUES ('945555593060417536', '916654989969981440', '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2017-12-26 15:23:15');
-INSERT INTO `sys_oplog` VALUES ('945555986007982080', '916654989969981440', '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2017-12-26 15:24:49');
-INSERT INTO `sys_oplog` VALUES ('945558860838469632', '916654989969981440', '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2017-12-26 15:36:14');
-INSERT INTO `sys_oplog` VALUES ('945559191739695104', '916654989969981440', '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2017-12-26 15:37:33');
-INSERT INTO `sys_oplog` VALUES ('945561730891644928', '916654989969981440', '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2017-12-26 15:47:38');
-INSERT INTO `sys_oplog` VALUES ('945562043350515712', '916654989969981440', '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2017-12-26 15:48:53');
-INSERT INTO `sys_oplog` VALUES ('945562475850366976', '916654989969981440', '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2017-12-26 15:50:36');
-INSERT INTO `sys_oplog` VALUES ('945562802779586560', '916654989969981440', '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2017-12-26 15:51:54');
-INSERT INTO `sys_oplog` VALUES ('945563069344382976', '916654989969981440', '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2017-12-26 15:52:58');
-INSERT INTO `sys_oplog` VALUES ('945563368289206272', '916654989969981440', '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2017-12-26 15:54:09');
-INSERT INTO `sys_oplog` VALUES ('945564202452385792', '916654989969981440', '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2017-12-26 15:57:28');
-INSERT INTO `sys_oplog` VALUES ('945807554603122688', '916654989969981440', '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2017-12-27 08:04:27');
-INSERT INTO `sys_oplog` VALUES ('945856479435423744', '916654989969981440', '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2017-12-27 11:18:52');
-INSERT INTO `sys_oplog` VALUES ('945857645917503488', '916654989969981440', '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2017-12-27 11:23:30');
-INSERT INTO `sys_oplog` VALUES ('945891951733899264', '916654989969981440', '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2017-12-27 13:39:49');
-INSERT INTO `sys_oplog` VALUES ('945893344821641216', '916654989969981440', '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2017-12-27 13:45:21');
-INSERT INTO `sys_oplog` VALUES ('945893377767899136', '916654989969981440', '退出', '0:0:0:0:0:0:0:1', '2017-12-27 13:45:29');
-INSERT INTO `sys_oplog` VALUES ('945893441412268032', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-27 13:45:44');
-INSERT INTO `sys_oplog` VALUES ('945893536060932096', '916654989969981440', '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2017-12-27 13:46:07');
-INSERT INTO `sys_oplog` VALUES ('945893681058021376', '916654989969981440', '退出', '0:0:0:0:0:0:0:1', '2017-12-27 13:46:42');
-INSERT INTO `sys_oplog` VALUES ('945930084940775424', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-27 16:11:21');
-INSERT INTO `sys_oplog` VALUES ('946261076230537216', '916654989969981440', '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2017-12-28 14:06:35');
-INSERT INTO `sys_oplog` VALUES ('946261194694459392', '916654989969981440', '退出', '0:0:0:0:0:0:0:1', '2017-12-28 14:07:04');
-INSERT INTO `sys_oplog` VALUES ('946261290358145024', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-28 14:07:26');
-INSERT INTO `sys_oplog` VALUES ('946267957367930880', '916654989969981440', '退出', '0:0:0:0:0:0:0:1', '2017-12-28 14:33:56');
-INSERT INTO `sys_oplog` VALUES ('946268475452555264', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-28 14:36:00');
-INSERT INTO `sys_oplog` VALUES ('946269331858128896', '916654989969981440', '退出', '0:0:0:0:0:0:0:1', '2017-12-28 14:39:24');
-INSERT INTO `sys_oplog` VALUES ('946269976552013824', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-28 14:41:57');
-INSERT INTO `sys_oplog` VALUES ('946270365301080064', '916654989969981440', '退出', '0:0:0:0:0:0:0:1', '2017-12-28 14:43:30');
-INSERT INTO `sys_oplog` VALUES ('946270505483108352', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2017-12-28 14:44:04');
+INSERT INTO `sys_oplog` VALUES ('978507882259546112', '916654989969981440', '退出', '0:0:0:0:0:0:0:1', '2018-03-27 13:43:53');
+INSERT INTO `sys_oplog` VALUES ('978507920457072640', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2018-03-27 13:44:02');
+INSERT INTO `sys_oplog` VALUES ('979261362326732800', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2018-03-29 15:37:57');
 
 -- ----------------------------
 -- Table structure for `sys_org`
@@ -4477,16 +4011,13 @@ CREATE TABLE `sys_role` (
   `create_time` datetime DEFAULT NULL,
   `sort` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8 COMMENT='角色表';
+) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8 COMMENT='角色表';
 
 -- ----------------------------
 -- Records of sys_role
 -- ----------------------------
 INSERT INTO `sys_role` VALUES ('3', '管理员', '分配所有权限', '2017-10-07 21:22:34', '0');
-INSERT INTO `sys_role` VALUES ('24', '员工', '普通员工办公权限', '2017-12-20 11:12:45', '2');
-INSERT INTO `sys_role` VALUES ('25', '部门主管', '部门领导普通审批', '2017-12-20 11:12:55', '3');
-INSERT INTO `sys_role` VALUES ('26', '仓库', '仓库管理人员', '2017-12-20 11:13:00', '4');
-INSERT INTO `sys_role` VALUES ('27', '子管理员', '部分管理权限', '2017-12-20 11:12:35', '1');
+INSERT INTO `sys_role` VALUES ('28', '普通职员', '具备修改密码、阅读小说等权限', '2018-03-25 19:34:02', '1');
 
 -- ----------------------------
 -- Table structure for `sys_role_menu`
@@ -4496,7 +4027,7 @@ CREATE TABLE `sys_role_menu` (
   `role_id` int(11) NOT NULL,
   `menu_id` int(11) NOT NULL,
   PRIMARY KEY (`role_id`,`menu_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='角色权限中间表';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='角色权限中间表， 只存放有效的menuid（url有效的menu）';
 
 -- ----------------------------
 -- Records of sys_role_menu
@@ -4515,13 +4046,8 @@ INSERT INTO `sys_role_menu` VALUES ('3', '87');
 INSERT INTO `sys_role_menu` VALUES ('3', '88');
 INSERT INTO `sys_role_menu` VALUES ('3', '89');
 INSERT INTO `sys_role_menu` VALUES ('3', '91');
-INSERT INTO `sys_role_menu` VALUES ('24', '60');
-INSERT INTO `sys_role_menu` VALUES ('27', '58');
-INSERT INTO `sys_role_menu` VALUES ('27', '59');
-INSERT INTO `sys_role_menu` VALUES ('27', '60');
-INSERT INTO `sys_role_menu` VALUES ('27', '70');
-INSERT INTO `sys_role_menu` VALUES ('27', '73');
-INSERT INTO `sys_role_menu` VALUES ('27', '74');
+INSERT INTO `sys_role_menu` VALUES ('28', '60');
+INSERT INTO `sys_role_menu` VALUES ('28', '91');
 
 -- ----------------------------
 -- Table structure for `sys_user`
@@ -4545,9 +4071,8 @@ CREATE TABLE `sys_user` (
 -- Records of sys_user
 -- ----------------------------
 INSERT INTO `sys_user` VALUES ('916654989969981440', 'admin', '3d4f2bf07dc1be38b20cd6e46949a1071f9d0e3d', '管理员', '75', '916432779@qq.com', '15238002477', '0', '2017-12-20 14:54:50');
-INSERT INTO `sys_user` VALUES ('943317340492136448', 'zhangsan', '3d4f2bf07dc1be38b20cd6e46949a1071f9d0e3d', '张三', '76', 'zc@mail.com', '15238002478', '0', '2017-12-20 11:09:46');
-INSERT INTO `sys_user` VALUES ('943317632851902464', 'lisi', '3d4f2bf07dc1be38b20cd6e46949a1071f9d0e3d', '李四', '78', null, '15268888888', '0', '2017-12-20 11:10:24');
-INSERT INTO `sys_user` VALUES ('943317766646005760', 'wangwu', '3d4f2bf07dc1be38b20cd6e46949a1071f9d0e3d', '王五', '79', '1@mail.com', '1', '0', '2017-12-20 11:10:56');
+INSERT INTO `sys_user` VALUES ('977871609484279808', 'tom', '3d4f2bf07dc1be38b20cd6e46949a1071f9d0e3d', 'tom', '75', null, null, '0', '2018-03-25 19:35:34');
+INSERT INTO `sys_user` VALUES ('977871690539204608', 'jack', '3d4f2bf07dc1be38b20cd6e46949a1071f9d0e3d', '111111', '76', null, null, '0', '2018-03-25 19:36:55');
 
 -- ----------------------------
 -- Table structure for `sys_user_role`
@@ -4563,9 +4088,8 @@ CREATE TABLE `sys_user_role` (
 -- Records of sys_user_role
 -- ----------------------------
 INSERT INTO `sys_user_role` VALUES ('916654989969981440', '3');
-INSERT INTO `sys_user_role` VALUES ('943317340492136448', '24');
-INSERT INTO `sys_user_role` VALUES ('943317632851902464', '24');
-INSERT INTO `sys_user_role` VALUES ('943317632851902464', '27');
+INSERT INTO `sys_user_role` VALUES ('977871609484279808', '28');
+INSERT INTO `sys_user_role` VALUES ('977871690539204608', '28');
 
 -- ----------------------------
 -- Procedure structure for `task_pro_test`

@@ -1,8 +1,7 @@
 package com.hxkj.websocket.handler;
 
 import com.hxkj.system.model.SysUser;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.log4j.Logger;
 
 import javax.websocket.*;
 import javax.websocket.server.ServerEndpoint;
@@ -13,7 +12,7 @@ import java.util.concurrent.ConcurrentHashMap;
 @ServerEndpoint("/websocket")
 public class WebSocketServer {
 
-    private final static Logger LOG = LoggerFactory.getLogger(WebSocketServer.class);
+    private final static Logger LOG = Logger.getLogger(WebSocketServer.class);
 
     //  session id 和 当前登录的用户id
     public static Map<String, String> sIdMUid = new ConcurrentHashMap<>();
@@ -28,11 +27,11 @@ public class WebSocketServer {
     @OnOpen
     public void onOpen(Session session) {
         // 输出默认信息
-        LOG.debug("==basicRemote: {} ", session.getBasicRemote());
-        LOG.debug("==maxTextMessageBufferSize: {} ", session.getMaxTextMessageBufferSize());
-        LOG.debug("==maxBinaryMessageBufferSize: {} ", session.getMaxBinaryMessageBufferSize());
+        LOG.debug("==basicRemote:   " + session.getBasicRemote());
+        LOG.debug("==maxTextMessageBufferSize: " + session.getMaxTextMessageBufferSize());
+        LOG.debug("==maxBinaryMessageBufferSize:  " + session.getMaxBinaryMessageBufferSize());
         session.setMaxIdleTimeout(10);  // 设置 无操作超时时间为10秒， 默认为0 表示不自动超时
-        LOG.debug("==maxIdleTimeout: {}", session.getMaxIdleTimeout());
+        LOG.debug("==maxIdleTimeout: " + session.getMaxIdleTimeout());
 
         // url参数
         String queryString = session.getQueryString();
@@ -40,7 +39,7 @@ public class WebSocketServer {
 
         SysUser sysUser = SysUser.dao.findById(userId);
         if (sysUser != null) {
-            LOG.info("{} -- 上线了", sysUser.getName());
+            LOG.info(sysUser.getName() + " -- 上线了");
             broadcast(sysUser.getName() + "---上线了");
             sIdMUid.put(session.getId(), userId);
             sIdMSession.put(session.getId(), session);
@@ -68,7 +67,7 @@ public class WebSocketServer {
         SysUser sysUser = SysUser.dao.findById(userId);
 
         if (sysUser != null) {
-            LOG.debug("{} --下线了", sysUser.getName());
+            LOG.debug(sysUser.getName() + "  --下线了");
             broadcast(sysUser.getName() + " ---下线了");
         }
 
@@ -83,7 +82,7 @@ public class WebSocketServer {
      */
     @OnMessage // 一个 endpoint 只能有一个该方法注解
     public void onMessage(String requestJson, Session session) {
-        LOG.debug(" get a Message: {}", requestJson);
+        LOG.debug(" get a Message: " + requestJson);
         // 广播
         broadcast(requestJson);
     }
@@ -112,7 +111,7 @@ public class WebSocketServer {
         SysUser sysUser = SysUser.dao.findById(userId);
 
         if (sysUser != null) {
-            LOG.debug("{} --发生异常下线了", sysUser.getName());
+            LOG.debug(sysUser.getName() + " --发生异常下线了");
             broadcast(sysUser.getName() + " ---发生异常下线了");
         }
     }

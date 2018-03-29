@@ -67,7 +67,7 @@
 <div id="mainLayout" class="easyui-layout" fit="true" border="none">
     <div class="head" data-options="region:'north'"
          border="false">
-        <span class="head-text">my_CURD</span>
+        <span class="   head-text">my_CURD</span>
         <span class="head-menu">
                 你好，${(session.system_user.name)!} &nbsp;
                 &nbsp;
@@ -95,8 +95,9 @@
         <div id="tabGroup"  > </div>
         <div id="tabsMenu" class="easyui-menu">
             <div data-options="name:1">关闭</div>
-            <div data-options="name:2">关闭其他</div>
+            <div data-options="name:2">关闭其它</div>
             <div data-options="name:3">关闭所有</div>
+            <div class="menu-sep"></div>
             <div data-options="name:4">打开新页面</div>
         </div>
     </div>
@@ -144,10 +145,10 @@
                         console.log(inputVal);
                         $('#permissionTree').tree({
                             filter: function (q, node) {
-                                return node.text.indexOf(inputVal) >= 0;
+                                return  node.text.indexOf(inputVal) >= 0 ;
                             }
                         });
-                        if (inputVal == null || inputVal == undefined || $.trim(inputVal) == "") {
+                        if ($.trim(inputVal) == "" || inputVal == null || inputVal == undefined ) {
                             $('#tt').tree('doFilter', '');
                         } else {
                             $('#permissionTree').tree('doFilter', inputVal);

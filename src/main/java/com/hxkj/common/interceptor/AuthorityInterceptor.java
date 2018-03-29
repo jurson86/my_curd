@@ -7,8 +7,7 @@ import com.jfinal.aop.Interceptor;
 import com.jfinal.aop.Invocation;
 import com.jfinal.kit.JsonKit;
 import com.jfinal.kit.StrKit;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.log4j.Logger;
 
 import java.util.List;
 
@@ -18,17 +17,17 @@ import java.util.List;
  */
 public class AuthorityInterceptor implements Interceptor {
 
-    private final static Logger LOG = LoggerFactory.getLogger(AuthorityInterceptor.class);
+    private final static Logger LOG = Logger.getLogger(AuthorityInterceptor.class);
 
 
     public void intercept(Invocation inv) {
         String actionKey = inv.getActionKey();
         List<SysMenu> ownSysMenus = inv.getController().getSessionAttr(Constant.OWN_MENU);
-        LOG.debug("permission menu: {}", JsonKit.toJson(ownSysMenus));
+        LOG.debug("permission menu: " + JsonKit.toJson(ownSysMenus));
         for (SysMenu sysMenu : ownSysMenus) {
             // 拥有权限
             if (StrKit.notBlank(sysMenu.getUrl()) && !sysMenu.getUrl().equals("/") && actionKey.startsWith(sysMenu.getUrl())) {
-                LOG.debug("{} == {}, have this permission. ", actionKey, sysMenu.getUrl());
+                LOG.debug(actionKey + " 等于 " + sysMenu.getUrl() + ", 拥有权限. ");
                 inv.invoke();
                 return;
             }

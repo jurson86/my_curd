@@ -1,8 +1,7 @@
 package com.hxkj.common.util.email;
 
 import com.jfinal.kit.StrKit;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.log4j.Logger;
 
 import javax.activation.DataHandler;
 import javax.activation.FileDataSource;
@@ -20,7 +19,7 @@ import java.util.concurrent.Callable;
  */
 public class SendMailProcess implements Callable<Boolean> {
 
-    private final static Logger LOG = LoggerFactory.getLogger(ToolMail.class);
+    private final static Logger LOG = Logger.getLogger(ToolMail.class);
 
     private MailType sendType;            // 发送邮件的类型：text 、html
     private String host;                  // 发送邮件的服务器的IP
@@ -144,11 +143,11 @@ public class SendMailProcess implements Callable<Boolean> {
             Transport.send(mailMessage);
             flag = true;
         } catch (MessagingException e) {
-            LOG.error("发送邮件异常：" + e.getMessage(), e);
+            LOG.error("发送邮件异常：", e);
         } catch (UnsupportedEncodingException e) {
-            LOG.error("发送邮件异常：" + e.getMessage(), e);
+            LOG.error("发送邮件异常：", e);
         } catch (UnsupportedOperationException e) {
-            LOG.error("发送邮件异常：" + e.getMessage(), e);
+            LOG.error("发送邮件异常：", e);
         }
 
         return flag;

@@ -4,8 +4,7 @@ package com.hxkj.common.util;
 import com.hxkj.common.constant.Constant;
 import com.jfinal.kit.PropKit;
 import com.jfinal.kit.StrKit;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.log4j.Logger;
 
 import javax.servlet.ServletInputStream;
 import javax.servlet.http.Cookie;
@@ -23,7 +22,7 @@ import java.util.Map;
  */
 public abstract class ToolWeb {
 
-    private final static Logger LOG = LoggerFactory.getLogger(ToolWeb.class);
+    private final static Logger LOG = Logger.getLogger(ToolWeb.class);
 
     /**
      * 获取客户端IP地址

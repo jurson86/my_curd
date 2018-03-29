@@ -1,7 +1,6 @@
 package com.hxkj.common.util.email;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.log4j.Logger;
 
 import java.util.List;
 import java.util.concurrent.ExecutionException;
@@ -19,7 +18,7 @@ import java.util.regex.Pattern;
  * 2. tomcat服务器加上启动参数 -Djava.net.preferIPv4Stack=true
  */
 public class ToolMail {
-    private static final Logger LOG = LoggerFactory.getLogger(ToolMail.class);
+    private static final Logger LOG = Logger.getLogger(ToolMail.class);
 
     /*针对发送者 使用163 邮箱*/
     private final static String host = "smtp.163.com";               // 发送邮件的服务器的IP

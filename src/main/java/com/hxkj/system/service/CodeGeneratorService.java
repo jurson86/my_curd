@@ -7,8 +7,7 @@ import com.jfinal.kit.PathKit;
 import com.jfinal.kit.Prop;
 import com.jfinal.kit.PropKit;
 import com.jfinal.kit.StrKit;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.log4j.Logger;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -21,7 +20,7 @@ import java.util.Map;
  */
 public class CodeGeneratorService {
 
-    private final static Logger LOG = LoggerFactory.getLogger(CodeGeneratorService.class);
+    private final static Logger LOG = Logger.getLogger(CodeGeneratorService.class);
     private String tplDir;                      // 模板目录
     private String[] templates;                 //模板文件名 s
     private String[] paths;                     //生成的文件地址 s
@@ -93,7 +92,7 @@ public class CodeGeneratorService {
                     fileName = toOutPath(moduleName, this.paths[i] + File.separator + moduleName) + fileNameWrapers[i].replaceAll("@tableName@", table.getTableNameCamel());
                 }
                 fileName = fileName.replaceAll("\\\\", "/");
-                LOG.debug("fileName: {}", fileName);
+                LOG.debug("fileName:  " + fileName);
                 ToolFreeMarker.makeHtml(tplDir, templates[i], content, fileName);
                 outPathList.add(fileName);
             }

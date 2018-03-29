@@ -1,7 +1,7 @@
 package com.hxkj.common.util;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
+import org.apache.log4j.Logger;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -13,7 +13,7 @@ import java.io.ObjectOutputStream;
  */
 public abstract class ToolSerialize {
 
-    private final static Logger LOG = LoggerFactory.getLogger(ToolSerialize.class);
+    private final static Logger LOG = Logger.getLogger(ToolSerialize.class);
 
     /**
      * 序列化
@@ -32,7 +32,7 @@ public abstract class ToolSerialize {
             byte[] bytes = baos.toByteArray();
             return bytes;
         } catch (Exception e) {
-            LOG.error("序列化异常：{},{}", e.getMessage(), e);
+            LOG.error("序列化异常: ", e);
             e.printStackTrace();
         }
         return null;
@@ -52,7 +52,7 @@ public abstract class ToolSerialize {
             ObjectInputStream ois = new ObjectInputStream(bais);
             return ois.readObject();
         } catch (Exception e) {
-            LOG.error("序列化异常：{},{}", e.getMessage(), e);
+            LOG.error("序列化异常： ", e);
             e.printStackTrace();
         }
         return null;

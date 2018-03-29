@@ -4,7 +4,6 @@ import com.alibaba.druid.filter.stat.StatFilter;
 import com.alibaba.druid.wall.WallFilter;
 import com.hxkj.common.constant.Constant;
 import com.hxkj.common.interceptor.AuthorityInterceptor;
-import com.hxkj.common.slf4j.Slf4jLogFactory;
 import com.hxkj.system.model.SysUser;
 import com.hxkj.websocket.controller.WebsocketController;
 import com.hxkj.websocket.handler.WebSocketHandler;
@@ -18,7 +17,6 @@ import com.jfinal.plugin.druid.DruidStatViewHandler;
 import com.jfinal.plugin.druid.IDruidStatViewAuth;
 import com.jfinal.render.ViewType;
 import com.jfinal.template.Engine;
-
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -39,9 +37,6 @@ public class AppConfig extends JFinalConfig {
         me.setMaxPostSize(10 * 1024 * 1000);  // 10M
         me.setBaseDownloadPath("download");
         me.setViewType(ViewType.FREE_MARKER);
-
-        // 统一框架和业务的日志工具（虽然最终还是使用的log4j)
-        me.setLogFactory(new Slf4jLogFactory());
         //设置404渲染视图
         //me.setError404View();
         //设置json工厂

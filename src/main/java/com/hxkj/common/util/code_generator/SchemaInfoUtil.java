@@ -7,8 +7,7 @@ import com.jfinal.plugin.activerecord.dialect.Dialect;
 import com.jfinal.plugin.activerecord.dialect.MysqlDialect;
 import com.jfinal.plugin.activerecord.generator.TypeMapping;
 import com.jfinal.plugin.druid.DruidPlugin;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.log4j.Logger;
 
 import javax.sql.DataSource;
 import java.sql.*;
@@ -21,7 +20,7 @@ import java.util.Map;
  * 数据库表信息 转换
  */
 public class SchemaInfoUtil {
-    private final static Logger LOG = LoggerFactory.getLogger(SchemaInfoUtil.class);
+    private final static Logger LOG = Logger.getLogger(SchemaInfoUtil.class);
     private Dialect dialect;
     private DataSource ds;
     private TypeMapping typeMapping;
@@ -119,14 +118,14 @@ public class SchemaInfoUtil {
                     table.setColumnList(columns);
                 }
             }
-        } catch (SQLException var21) {
-            throw new RuntimeException(var21);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         } finally {
             if (conn != null) {
                 try {
                     conn.close();
-                } catch (SQLException var20) {
-                    LOG.error(var20.getMessage(), var20);
+                } catch (SQLException e) {
+                    LOG.error(e.getMessage(), e);
                 }
             }
         }

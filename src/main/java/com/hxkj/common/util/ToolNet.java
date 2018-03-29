@@ -5,8 +5,7 @@ import org.apache.commons.exec.DefaultExecutor;
 import org.apache.commons.exec.PumpStreamHandler;
 import org.apache.commons.io.output.ByteArrayOutputStream;
 import org.apache.commons.net.telnet.TelnetClient;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.log4j.Logger;
 
 import java.io.IOException;
 import java.net.InetAddress;
@@ -16,7 +15,7 @@ import java.net.UnknownHostException;
 
 public abstract class ToolNet {
 
-    private final static Logger LOG = LoggerFactory.getLogger(ToolNet.class);
+    private final static Logger LOG = Logger.getLogger(ToolNet.class);
 
     /**
      * 本机IP

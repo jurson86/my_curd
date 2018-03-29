@@ -3,8 +3,7 @@ package com.hxkj.common.util.image;
 import com.sun.image.codec.jpeg.JPEGCodec;
 import com.sun.image.codec.jpeg.JPEGEncodeParam;
 import com.sun.image.codec.jpeg.JPEGImageEncoder;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.log4j.Logger;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -22,7 +21,7 @@ public abstract class ImageResize {
     public static final MediaTracker tracker = new MediaTracker(new Component() {
         private static final long serialVersionUID = 1234162663955668507L;
     });
-    private final static Logger LOG = LoggerFactory.getLogger(ImageResize.class);
+    private final static Logger LOG = Logger.getLogger(ImageResize.class);
 
     /**
      * @param oldPath 原图像

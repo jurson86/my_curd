@@ -1,15 +1,11 @@
 package com.hxkj.common.util;
 
-
+/**
+ * 格式化 json 字符串工具
+ * （使用js格式化json字符串更加方便）
+ */
 public abstract class ToolFormatJson {
 
-    public static void main(String[] args) {
-        String jsonStr = "{\"id\":\"1\",\"name\":\"a1\",\"obj\":{\"id\":11,\"name\":\"a11\",\"array\":[{\"id\":111,\"name\":\"a111\"},{\"id\":112,\"name\":\"a112\"}]}}";
-        String fotmatStr = ToolFormatJson.format(jsonStr);
-        // fotmatStr = fotmatStr.replaceAll("\n", "<br/>");
-        // fotmatStr = fotmatStr.replaceAll("\t", "    ");
-        System.out.println(fotmatStr);
-    }
 
     /**
      * 得到格式化json数据 退格用\t 换行用\r

@@ -5,8 +5,8 @@ var layerTools = layerTools || {};
 (function () {
     /*配置layer初始化配置*/
     layer.config({
-        shift: -1, /*0-6的动画形式，-1不开启*/
-        shade: 0.05  /*遮罩透明度*/
+        shift: 0, /*0-6的动画形式，-1不开启*/
+        shade: 0.15  /*遮罩透明度*/
     });
 
     /**
@@ -27,6 +27,7 @@ var layerTools = layerTools || {};
         var index = layer.open({
             skin: 'layui-layer-molv', /*官方样式*/
             type: 2,
+            offset:['68px','250px'],
             title: ['<i class="fa ' + faCls + '"></i>&nbsp;&nbsp;' + title, 'background:#2196F3; line-height:30px;height:30px;padding: 0 10px'],
             maxmin: true,
             shadeClose: true,
@@ -58,6 +59,7 @@ var layerTools = layerTools || {};
     layerTools.layerDialog = function (area, title, content, btn, yesCallBack, cancelCallBack) {
         var index = layer.open({
             type: 1,
+            offset:['68px','250px'],
             skin: 'layui-layer-lan', /*官方主题*/
             shadeClose: true,
             area: area ? area : "",
@@ -116,7 +118,8 @@ var layerTools = layerTools || {};
         layer.confirm(msg, {
             icon: icon,
             title: [title, 'background:#2196F3; color:white; line-height:30px;height:30px;padding: 0 10px'],
-            btn: ['确定', '取消']
+            btn: ['确定', '取消'],
+            offset:['68px','200px']
         }, function () {
             if (yesFun != null) {
                 yesFun();

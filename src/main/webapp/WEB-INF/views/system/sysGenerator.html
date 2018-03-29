@@ -132,15 +132,6 @@
     }
 
 
-    function editModel() {
-        var row = $("#dg").treegrid("getSelected");
-        if (row != null) {
-            layerTools.layerIframe('fa-pencil', '编辑', '${ctx!}/sysRole/newModel?id=' + row.id, '600px', '350px')
-        } else {
-            layerTools.layerMsg('请选择一行数据进行编辑');
-        }
-    }
-
 
     //条件查询
     function queryModel() {

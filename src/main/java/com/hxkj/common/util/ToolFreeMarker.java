@@ -8,8 +8,7 @@ import freemarker.template.DefaultObjectWrapper;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
 import org.apache.commons.io.FileUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.log4j.Logger;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -23,7 +22,7 @@ import java.util.Map;
 public abstract class ToolFreeMarker {
 
 
-    private final static Logger LOG = LoggerFactory.getLogger(ToolFreeMarker.class);
+    private final static Logger LOG = Logger.getLogger(ToolFreeMarker.class);
 
     public static void main(String[] args) {
 

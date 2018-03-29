@@ -72,6 +72,7 @@
 </script>
 <table id="dg" class="easyui-datagrid"
        url="${ctx!}/sysNews/query"
+       data-options="onDblClickRow:editModel"
        toolbar="#tb" rownumbers="true" border="false"
        fit="true" pagination="true" singleSelect="true"
        data-options="onDblClickRow:viewModel"
