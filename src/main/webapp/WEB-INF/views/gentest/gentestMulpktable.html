@@ -6,7 +6,7 @@
 
     // 新增 model
     function newModel() {
-        layerTools.layerIframe('fa-plus', '新建', '${ctx!}/gentestMulpktable/newModel', '800px', '500px')
+        layerTools.layerIframe('fa-plus', '新建', '${ctx!}/gentestMulpktable/newModel', '500px', '500px')
     }
 
     // 编辑 model
@@ -17,7 +17,7 @@
             params += 'id=' + row.id + '&';
             params += 'id2=' + row.id2 + '&';
             params += 'id3=' + row.id3;
-            layerTools.layerIframe('fa-pencil', '编辑', '${ctx!}/gentestMulpktable/newModel?' + params, '800px', '500px')
+            layerTools.layerIframe('fa-pencil', '编辑', '${ctx!}/gentestMulpktable/newModel?' + params, '500px', '500px')
         } else {
             layerTools.layerMsg('请选择一行数据进行编辑');
         }

@@ -6,7 +6,7 @@
 
     // 新增 model
     function newModel() {
-        layerTools.layerIframe('fa-plus','新建', '${ctx!}/gentestBook/newModel', '800px', '500px')
+        layerTools.layerIframe('fa-plus','新建', '${ctx!}/gentestBook/newModel', '500px', '500px')
     }
 
     // 编辑 model
@@ -15,7 +15,7 @@
         if (row != null) {
             var params="";
             params += 'id='+row.id;
-            layerTools.layerIframe('fa-pencil','编辑', '${ctx!}/gentestBook/newModel?' + params, '800px', '500px')
+            layerTools.layerIframe('fa-pencil','编辑', '${ctx!}/gentestBook/newModel?' + params, '500px', '500px')
         } else {
             layerTools.layerMsg('请选择一行数据进行编辑');
         }

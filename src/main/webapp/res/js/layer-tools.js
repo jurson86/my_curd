@@ -27,7 +27,7 @@ var layerTools = layerTools || {};
         var index = layer.open({
             skin: 'layui-layer-molv', /*官方样式*/
             type: 2,
-            offset:['68px','250px'],
+            offset:['30px','30px'],
             title: ['<i class="fa ' + faCls + '"></i>&nbsp;&nbsp;' + title, 'background:#2196F3; line-height:30px;height:30px;padding: 0 10px'],
             maxmin: true,
             shadeClose: true,
@@ -59,7 +59,7 @@ var layerTools = layerTools || {};
     layerTools.layerDialog = function (area, title, content, btn, yesCallBack, cancelCallBack) {
         var index = layer.open({
             type: 1,
-            offset:['68px','250px'],
+            offset:['30px','30px'],
             skin: 'layui-layer-lan', /*官方主题*/
             shadeClose: true,
             area: area ? area : "",
@@ -119,7 +119,7 @@ var layerTools = layerTools || {};
             icon: icon,
             title: [title, 'background:#2196F3; color:white; line-height:30px;height:30px;padding: 0 10px'],
             btn: ['确定', '取消'],
-            offset:['68px','200px']
+            offset:['30px','100px']
         }, function () {
             if (yesFun != null) {
                 yesFun();
