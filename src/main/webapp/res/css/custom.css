@@ -100,3 +100,7 @@ form>table{
     right: 6px !important;
     top: 8px !important;
 }
+/*为了部分边不重合*/
+.btNone{
+    border-top: none
+}

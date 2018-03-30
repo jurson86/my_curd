@@ -83,12 +83,11 @@
 
 <div id="nestLayout" class="easyui-layout" fit="true">
     <div data-options="region:'east' " title="角色列表"
-         split="true" collapsed="true" tools="#treeTB"
+         split="true" collapsed="true" tools="#treeTB" headerCls="btNone"
          style="width: 300px;">
         <ul id="allRoleTree" class="easyui-tree"></ul>
     </div>
-    <div data-options="region:'center' " border="false" split="true">
-
+    <div data-options="region:'center' "  split="true" style="border-top: none">
         <table id="dg" class="easyui-datagrid  "
                data-options="onDblClickRow:editModel"
                toolbar="#tb" rownumbers="true" singleSelect="true" border="false"

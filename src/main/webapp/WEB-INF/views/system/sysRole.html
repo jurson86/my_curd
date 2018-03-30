@@ -93,10 +93,10 @@
 <div id="nestLayout" class="easyui-layout" fit="true">
     <div data-options="region:'east' " title="权限树"
          split="true" collapsed="true" tools="#treeTB"
-         style="width: 300px;">
+         style="width: 300px;" headerCls="btNone" >
         <ul id="allMenuTree" class="easyui-tree"></ul>
     </div>
-    <div data-options="region:'center' " border="false" split="true">
+    <div data-options="region:'center' "   split="true" style="border-top: none">
 
         <table id="dg" class="easyui-datagrid  "
                data-options="onDblClickRow:editModel"
