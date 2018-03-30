@@ -6,8 +6,7 @@ var layerTools = layerTools || {};
     /*配置layer初始化配置*/
     layer.config({
         shift: 0, /*0-6的动画形式，-1不开启*/
-        shade: 0.15,  /*遮罩透明度*/
-        offset:'30px'
+        shade: 0.15 /*遮罩透明度*/
     });
 
     /**
@@ -32,6 +31,7 @@ var layerTools = layerTools || {};
             maxmin: true,
             shadeClose: true,
             area: [width, height],
+            offset:'30px',
             content: [url],
             cancel: function () {
                 // 取消按钮点击 之前调用回调函数
@@ -62,6 +62,7 @@ var layerTools = layerTools || {};
             skin: 'layui-layer-lan', /*官方主题*/
             shadeClose: true,
             area: area ? area : "",
+            offset:'30px',
             title: [title, 'background:#607D8B; line-height:30px;height:30px;padding: 0 10px'],
             closeBtn: 1, /*显示关闭按钮*/
             content: content,
@@ -116,6 +117,7 @@ var layerTools = layerTools || {};
     layerTools.confirm = function (icon, title, msg, yesFun, noFun) {
         layer.confirm(msg, {
             icon: icon,
+            offset:['30px','200px'],
             title: [title, 'background:#2196F3; color:white; line-height:30px;height:30px;padding: 0 10px'],
             btn: ['确定', '取消']
         }, function () {

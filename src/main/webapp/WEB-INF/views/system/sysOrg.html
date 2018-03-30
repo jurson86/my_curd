@@ -101,14 +101,14 @@
     </div>
 
     <div data-options="region:'west' " split="true"  style="width:500px;border-top: none;">
-        <table id="tt" border="false"    data-options="onDblClickRow:editModel" ></table>
+        <table id="tt" border="false"  data-options="onDblClickRow:editModel" ></table>
         <div id="tt-tb">
             <a onclick="newModel()" class="easyui-linkbutton" data-options="iconCls:'icon-add',plain:true"> 新增</a>
             <a onclick="editModel()" class="easyui-linkbutton" data-options="iconCls:'icon-edit',plain:true">编辑</a>
             <a onclick="deleteModel()" class="easyui-linkbutton" data-options="iconCls:'icon-remove',plain:true">删除</a>
             <span id="enterSpan" class="searchInputArea">
-                  <a href="#" class="easyui-linkbutton" data-options="plain:true"  onclick="javascript:$('#tt').treegrid('expandAll')">展开</a>
-                  <a href="#" class="easyui-linkbutton" data-options="plain:true"  onclick="javascript:$('#tt').treegrid('collapseAll');">关闭</a>
+                  <a href="#" class="easyui-linkbutton"   onclick="javascript:$('#tt').treegrid('expandAll')">展开</a>
+                  <a href="#" class="easyui-linkbutton"   onclick="javascript:$('#tt').treegrid('collapseAll');">关闭</a>
                   <input id="orgName" prompt="机构名" class="easyui-textbox" style="width:150px">
                   <a onclick="queryModel()" class="easyui-linkbutton"  data-options="iconCls:'icon-search',plain:true">搜索</a>
             </span>
