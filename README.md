@@ -34,7 +34,7 @@ s {
     21px 21px #4e5965, 22px 22px #4e5965, 23px 23px #4e5965, 24px 24px #4e5965, 25px 25px #4e5965;
 }
 </style>
-
+<p class="s">Good</p>
 <p align="center">
   <a href="https://github.com/qinyou/my_curd">
    <img alt="mycurd-Logo" src="./preview_img/gitlogo.png">
