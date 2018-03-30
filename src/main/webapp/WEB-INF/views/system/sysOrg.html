@@ -55,13 +55,13 @@
 </script>
 </head>
 <body>
-<div id="nestLayout" class="easyui-layout" fit="true">
+<div id="nestLayout" class="easyui-layout" fit="true"   >
     <div data-options="region:'center' "
          split="true" border="false" collapsed="false">
 
         <div id="nestLayout2" class="easyui-layout" fit="true">
             <div data-options="region:'north' "
-                 split="true" collapsed="false" style="height:50px; background-color:#f1f1f1">
+                 split="true" collapsed="false" style="height:60px;border-top: none;">
                 <table class=" pure-table pure-table-horizontal" style="margin: 10px auto">
                     <tr>
                         <td><span style="font-weight: bold">机构地址：</span></td>
@@ -100,17 +100,17 @@
 
     </div>
 
-    <div data-options="region:'west' " split="true" border="false" style="width:500px;">
+    <div data-options="region:'west' " split="true"  style="width:500px;border-top: none;">
         <table id="tt" border="false"    data-options="onDblClickRow:editModel" ></table>
         <div id="tt-tb">
             <a onclick="newModel()" class="easyui-linkbutton" data-options="iconCls:'icon-add',plain:true"> 新增</a>
             <a onclick="editModel()" class="easyui-linkbutton" data-options="iconCls:'icon-edit',plain:true">编辑</a>
             <a onclick="deleteModel()" class="easyui-linkbutton" data-options="iconCls:'icon-remove',plain:true">删除</a>
             <span id="enterSpan" class="searchInputArea">
-                  <a href="#" class="easyui-linkbutton" onclick="javascript:$('#tt').treegrid('expandAll')">展开</a>
-                  <a href="#" class="easyui-linkbutton" onclick="javascript:$('#tt').treegrid('collapseAll');">关闭</a>
-                <input id="orgName" prompt="机构名" class="easyui-textbox" style="width:150px">
-                <a onclick="queryModel()" class="easyui-linkbutton" iconCls="icon-search">搜索</a>
+                  <a href="#" class="easyui-linkbutton" data-options="plain:true"  onclick="javascript:$('#tt').treegrid('expandAll')">展开</a>
+                  <a href="#" class="easyui-linkbutton" data-options="plain:true"  onclick="javascript:$('#tt').treegrid('collapseAll');">关闭</a>
+                  <input id="orgName" prompt="机构名" class="easyui-textbox" style="width:150px">
+                  <a onclick="queryModel()" class="easyui-linkbutton"  data-options="iconCls:'icon-search',plain:true">搜索</a>
             </span>
         </div>
     </div>

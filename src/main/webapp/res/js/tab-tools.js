@@ -14,6 +14,7 @@ var TabTools = {
     },
     /*tab 右键菜单处理逻辑*/
     contextMenufun: function (tabsObj, menu, type) {
+        var that = this;
         var allTabs = tabsObj.tabs("tabs");
         var allTabTitle = [];
         $.each(allTabs, function (i, n) {
@@ -24,6 +25,10 @@ var TabTools = {
         });
         var curTabTitle = $(menu).data("tabTitle");
         switch (type) {
+            case 0:
+                tabsControl.tabs("select", curTabTitle);
+                that.refreshTab(tabsControl, {tabTitle: curTabTitle});
+                break;
             case 1:
                 //关闭当前
                 tabsObj.tabs("close", curTabTitle);
