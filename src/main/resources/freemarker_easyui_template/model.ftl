@@ -21,6 +21,6 @@ public class ${(table.tableNameCamelFirstUp)!} extends Base${table.tableNameCame
         }
 
         return this.paginate(pageNumber,pageSize,sqlSelect,sqlExceptSelect);
-    };
+    }
 
 }

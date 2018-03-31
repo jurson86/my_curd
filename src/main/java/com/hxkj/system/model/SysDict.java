@@ -23,6 +23,4 @@ public class SysDict extends BaseSysDict<SysDict> implements java.io.Serializabl
         return this.paginate(pageNumber, pageSize, sqlSelect, sqlExceptSelect);
     }
 
-    ;
-
 }

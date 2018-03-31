@@ -130,13 +130,15 @@ public class SendMailProcess implements Callable<Boolean> {
             multipart.addBodyPart(mbp);
 
             // 邮件附件
-            for (String attachFile : this.attachFileNames) {
-                MimeBodyPart mbpTemp = new MimeBodyPart();
-                FileDataSource fds = new FileDataSource(attachFile);         //得到数据源
-                mbpTemp.setDataHandler(new DataHandler(fds));                //得到附件本身并至入BodyPart
-                String filename = MimeUtility.encodeText(fds.getName());     // 解决附件名乱码
-                mbpTemp.setFileName(filename);                               //得到文件名同样至入BodyPart
-                multipart.addBodyPart(mbpTemp);
+            if(this.attachFileNames!=null){
+                for (String attachFile : this.attachFileNames) {
+                    MimeBodyPart mbpTemp = new MimeBodyPart();
+                    FileDataSource fds = new FileDataSource(attachFile);         //得到数据源
+                    mbpTemp.setDataHandler(new DataHandler(fds));                //得到附件本身并至入BodyPart
+                    String filename = MimeUtility.encodeText(fds.getName());     // 解决附件名乱码
+                    mbpTemp.setFileName(filename);                               //得到文件名同样至入BodyPart
+                    multipart.addBodyPart(mbpTemp);
+                }
             }
 
             mailMessage.setContent(multipart);

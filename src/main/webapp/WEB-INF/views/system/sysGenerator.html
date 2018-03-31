@@ -14,24 +14,20 @@
         right: 10px;
         top: 10px;
     }
-
     .pure-button {
         padding: 5px 8px;
         margin: 5px 2px;
     }
-
     .button-success {
         color: white;
         border-radius: 4px;
         text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
         background: rgb(28, 184, 65); /* this is a green */
     }
-
     .CodeMirror {
         border: 1px solid #263238;
         height: auto;
     }
-
     .CodeMirror-scroll {
         height: auto;
         overflow-y: hidden;
@@ -195,7 +191,7 @@
             url: "${ctx!}/sysGenerator/query?fullFlag=true",  // url 放在dom上又调用该方法可能造成请求两次
             view: detailview,
             detailFormatter:function(index,row){
-                return '<div style="border: 1px solid #cce6ff;padding:0px;position:relative;"><table class="ddv"></table></div>';
+                return '<div style="padding:0px;position:relative;"><table style="border-top: none;border-right: none;  " class="ddv"></table></div>';
             },
             onExpandRow: function(index,row){
                 var ddv = $(this).datagrid('getRowDetail',index).find('table.ddv');

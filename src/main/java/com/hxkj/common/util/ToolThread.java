@@ -15,8 +15,7 @@ public abstract class ToolThread {
             .build();
 
     /**
-     * 任务处理线程池
-     * 固定大小线程池
+     *  固定大小的线程池
      */
     private static final ExecutorService pool = new ThreadPoolExecutor(10, 10,
             0L, TimeUnit.MILLISECONDS,
@@ -24,8 +23,7 @@ public abstract class ToolThread {
 
 
     /**
-     * 运行新线程 无返回值
-     *
+     * 运行线程
      * @param command
      */
     public static void execute(Runnable command) {
@@ -34,8 +32,7 @@ public abstract class ToolThread {
 
 
     /**
-     * 运行新线程 返回布尔值
-     *
+     * 运行线程，并返回线程处理结果
      * @param command
      * @return
      */
