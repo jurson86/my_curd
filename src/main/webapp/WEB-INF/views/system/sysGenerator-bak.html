@@ -1,5 +1,4 @@
 <#include "/WEB-INF/views/common/common.html"/> <@layout>
-<script src="${ctx!}/res/easyui153/extension/datagrid-detailview.js"></script>
 <link rel="stylesheet" href="${ctx!}/res/layer/theme/default/layer.css">
 <link rel="stylesheet" href="${ctx!}/res/codemirror/codemirror.css">
 <link rel="stylesheet" href="${ctx!}/res/codemirror/material.css">
@@ -152,7 +151,14 @@
 
 
 </script>
+
 <div id="nestLayout" class="easyui-layout" fit="true">
+    <div data-options="region:'east' " title="列信息"
+         split="true" collapsed="true" headerCls="btNone"
+         style="width: 40%;">
+        <table id="rdg" class="easyui-datagrid" fit="true" border="false" fitColumns="true" rownumbers="true"
+               singleSelect="true"></table>
+    </div>
     <div data-options="region:'center' "  split="true" style="border-top: none">
         <table id="dg" class="easyui-datagrid  "
                toolbar="#tb" rownumbers="true" border="false" fitColumns="true"
@@ -181,49 +187,32 @@
 <script src="${ctx!}/res/js/layer-tools.js"></script>
 <script>
     $(function () {
+
         // enter监听查询
         $("#enterSpan").on("keydown", function (e) {
             if (e.keyCode == 13) {
                 queryModel();
             }
         })
-    });
-</script>
-<script type="text/javascript">
-    $(function(){
-        $('#dg').datagrid({
-            url: "${ctx!}/sysGenerator/query?fullFlag=true",  // url 放在dom上又调用该方法可能造成请求两次
-            view: detailview,
-            detailFormatter:function(index,row){
-                return '<div style="border: 1px solid #cce6ff;padding:0px;position:relative;"><table class="ddv"></table></div>';
-            },
-            onExpandRow: function(index,row){
-                var ddv = $(this).datagrid('getRowDetail',index).find('table.ddv');
-                ddv.datagrid({
-                    fitColumns:true,
-                    singleSelect:true,
-                    rownumbers:true,
-                    loadMsg:'加载列信息ing...',
-                    height:'auto',
+
+        $("#dg").datagrid({
+            url: "${ctx!}/sysGenerator/query?fullFlag=true",  // 放在dom 中会导致请求两次
+            onSelect: function (index, row) {
+                $('#rdg').datagrid({
                     data: row.columnList,
                     columns: [[
-                        {field: 'columnName', title: '列名', width: 50},
-                        {field: 'columnDBType', title: '列类型DB', width: 50},
-                        {field: 'columnJavaType', title: '列类型Java', width: 50},
-                        {field: 'columnComment', title: '列注释', width: 100}
-                    ]],
-                    onResize:function(){
-                        $('#dg').datagrid('fixDetailRowHeight',index);
-                    },
-                    onLoadSuccess:function(){
-                        setTimeout(function(){
-                            $('#dg').datagrid('fixDetailRowHeight',index);
-                        },0);
-                    }
+                        {field: 'columnName', title: '列名', width: 100},
+                        {field: 'columnComment', title: '列注释', width: 100},
+                        {field: 'columnDBType', title: '列类型DB', width: 100},
+                        {field: 'columnJavaType', title: '列类型Java', width: 100}
+                    ]]
                 });
-                $('#dg').datagrid('fixDetailRowHeight',index);
+                $("#nestLayout").layout("expand", "east");
+            },
+            onUnselect: function (index, row) {
+                $("#nestLayout").layout("collapse", "east");
             }
-        });
+        })
     });
 </script>
 </@layout>
