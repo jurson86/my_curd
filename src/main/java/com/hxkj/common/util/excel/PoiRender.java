@@ -1,18 +1,3 @@
-/**
- * Copyright (c) 2011-2013, kidzhou 周磊 (zhouleib1412@gmail.com)
- * <p>
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- * <p>
- * http://www.apache.org/licenses/LICENSE-2.0
- * <p>
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
 package com.hxkj.common.util.excel;
 
 import com.jfinal.render.Render;
@@ -35,6 +20,32 @@ public class PoiRender extends Render {
     private String[] columns = new String[]{};
     private String fileName = "file1.xls";
     private int headerRow;
+
+    public PoiRender headerRow(int headerRow) {
+        this.headerRow = headerRow;
+        return this;
+    }
+
+    public PoiRender columns(String... columns) {
+        this.columns = columns;
+        return this;
+    }
+
+    public PoiRender sheetName(String sheetName) {
+        this.sheetName = sheetName;
+        return this;
+    }
+
+    public PoiRender cellWidth(int cellWidth) {
+        this.cellWidth = cellWidth;
+        return this;
+    }
+
+    public PoiRender fileName(String fileName) {
+        this.fileName = fileName;
+        return this;
+    }
+
 
     public PoiRender(List<?> data) {
         this.data = data;
@@ -74,28 +85,4 @@ public class PoiRender extends Render {
         return this;
     }
 
-    public PoiRender headerRow(int headerRow) {
-        this.headerRow = headerRow;
-        return this;
-    }
-
-    public PoiRender columns(String... columns) {
-        this.columns = columns;
-        return this;
-    }
-
-    public PoiRender sheetName(String sheetName) {
-        this.sheetName = sheetName;
-        return this;
-    }
-
-    public PoiRender cellWidth(int cellWidth) {
-        this.cellWidth = cellWidth;
-        return this;
-    }
-
-    public PoiRender fileName(String fileName) {
-        this.fileName = fileName;
-        return this;
-    }
 }

@@ -17,10 +17,6 @@ import java.util.*;
 public class ExcelHelper {
     private static ExcelHelper helper = null;
 
-    private ExcelHelper() {
-
-    }
-
     public static synchronized ExcelHelper getInstanse() {
         if (helper == null) {
             helper = new ExcelHelper();
@@ -28,9 +24,10 @@ public class ExcelHelper {
         return helper;
     }
 
-    /*
+    /**
      * 获取文件扩展名
-     *
+     * @param filename
+     * @return
      */
     public static String getExtensionName(String filename) {
         if ((filename != null) && (filename.length() > 0)) {
@@ -42,41 +39,9 @@ public class ExcelHelper {
         return filename;
     }
 
-    /**
-     * 将Excel文件导入到list对象
-     *
-     * @param head 文件头信息
-     * @param file 导入的数据源
-     * @param cls  保存当前数据的对象
-     * @return
-     */
-    public List importToObjectList(ExcelHead head, File file, Class cls) {
-        List contents = null;
-        FileInputStream fis;
-        // 根据excel生成list类型的数据
-        List<List> rows;
-        try {
-            fis = new FileInputStream(file);
-            rows = excelFileConvertToList("G://testa.xls");
-
-            // 删除头信息
-            for (int i = 0; i < head.getRowCount(); i++) {
-                rows.remove(0);
-            }
-
-            // 将表结构转换成Map
-            Map<Integer, String> excelHeadMap = convertExcelHeadToMap(head.getColumns());
-            // 构建为对象
-            contents = buildDataObject(excelHeadMap, head.getColumnsConvertMap(), rows, cls);
-        } catch (FileNotFoundException ex) {
-            ex.printStackTrace();
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
-        return contents;
-    }
 
     /**
+     * 导出数据到文件
      * @param head
      * @param modelFile
      * @param outputFile
@@ -92,7 +57,6 @@ public class ExcelHelper {
             Sheet sheet = wb.getSheetAt(0);
             // 生成导出数据
             buildExcelData(sheet, head, dataList);
-
             // 导出到文件中
             FileOutputStream fileOut = new FileOutputStream(outputFile);
             wb.write(fileOut);
@@ -108,13 +72,11 @@ public class ExcelHelper {
 
     /**
      * 将报表结构转换成Map
-     *
      * @param excelColumns
      */
     private Map<Integer, String> convertExcelHeadToMap(List<ExcelColumn> excelColumns) {
         Map<Integer, String> excelHeadMap = new HashMap<Integer, String>();
         for (ExcelColumn excelColumn : excelColumns) {
-
             if (StringUtil.isEmpty(excelColumn.getFieldName())) {
                 continue;
             } else {
@@ -172,7 +134,8 @@ public class ExcelHelper {
     }
 
     /**
-     * @param filename
+     * 单sheet excel文件转换为list
+     * @param filename 文件全名
      * @return
      * @throws Exception
      */
@@ -186,18 +149,13 @@ public class ExcelHelper {
             wb = WorkbookFactory.create(new FileInputStream(filename));
         }
 
-
         Sheet sheet = wb.getSheetAt(0);
-
         List<List> rows = new ArrayList<List>();
         for (Row row : sheet) {
-
             List<Object> cells = new ArrayList<Object>();
             for (Cell cell : row) {
                 Object obj = null;
-
                 CellReference cellRef = new CellReference(row.getRowNum(), cell.getColumnIndex());
-
                 switch (cell.getCellType()) {
                     case Cell.CELL_TYPE_STRING:
                         obj = cell.getRichStringCellValue().getString();
@@ -225,60 +183,6 @@ public class ExcelHelper {
         return rows;
     }
 
-    /**
-     * @param filename
-     * @param inputStream
-     * @return
-     * @throws Exception
-     */
-    public List<List> excelFileConvertToList(String filename, FileInputStream inputStream) throws Exception {
-        Workbook wb = null;
-        // 此处为兼容2003 与2oo7
-        String ext = getExtensionName(filename);
-        if (ext.toLowerCase().equals("xlsx")) {
-            wb = new XSSFWorkbook(inputStream);
-        } else {
-            wb = WorkbookFactory.create(inputStream);
-        }
-
-
-        Sheet sheet = wb.getSheetAt(0);
-
-        List<List> rows = new ArrayList<List>();
-        for (Row row : sheet) {
-
-            List<Object> cells = new ArrayList<Object>();
-            for (Cell cell : row) {
-                Object obj = null;
-
-                CellReference cellRef = new CellReference(row.getRowNum(), cell.getColumnIndex());
-
-                switch (cell.getCellType()) {
-                    case Cell.CELL_TYPE_STRING:
-                        obj = cell.getRichStringCellValue().getString();
-                        break;
-                    case Cell.CELL_TYPE_NUMERIC:
-                        if (DateUtil.isCellDateFormatted(cell)) {
-                            obj = new JDateTime(cell.getDateCellValue());
-                        } else {
-                            obj = cell.getNumericCellValue();
-                        }
-                        break;
-                    case Cell.CELL_TYPE_BOOLEAN:
-                        obj = cell.getBooleanCellValue();
-                        break;
-                    case Cell.CELL_TYPE_FORMULA:
-                        obj = cell.getNumericCellValue();
-                        break;
-                    default:
-                        obj = null;
-                }
-                cells.add(obj);
-            }
-            rows.add(cells);
-        }
-        return rows;
-    }
 
     /**
      * 根据Excel生成数据对象
