@@ -1,10 +1,5 @@
-<p align="center">
-  <a href="https://github.com/qinyou/my_curd">
-   <img alt="mycurd-Logo" src="./preview_img/gitlogo.png">
-  </a>
-</p>
-
-
+### my_CURD
+---
 ### 简介 | Intro  
 
 表格型内容管理系统，内置代码生成器，可用于业务逻辑快速开发。
