@@ -1,6 +1,5 @@
 package com.hxkj.common.util.email;
 
-import com.hxkj.common.util.ToolThread;
 import org.apache.log4j.Logger;
 
 import java.util.Arrays;

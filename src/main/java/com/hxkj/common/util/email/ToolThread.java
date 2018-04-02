@@ -1,4 +1,4 @@
-package com.hxkj.common.util;
+package com.hxkj.common.util.email;
 
 import com.google.common.util.concurrent.ThreadFactoryBuilder;
 import org.apache.log4j.Logger;
@@ -10,7 +10,7 @@ public abstract class ToolThread {
     private final static Logger log = Logger.getLogger(ToolThread.class);
 
     private static ThreadFactory threadFactory = new ThreadFactoryBuilder()
-            .setNameFormat("Thread-Pool-%d")  //运行的每个任务线程名格式化
+            .setNameFormat("Email-TP-%d")  //运行的每个任务线程名格式化
             .setDaemon(true)                  //运行的每个任务线程设置为守护线程
             .build();
 
