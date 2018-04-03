@@ -98,7 +98,6 @@ public class SendMailProcess implements Callable<Boolean> {
         Session sendMailSession = Session.getInstance(pro, authenticator);
         try {
             Message mailMessage = new MimeMessage(sendMailSession);
-
             // 邮件信息
             Address from = new InternetAddress(this.from);
             mailMessage.setFrom(from);

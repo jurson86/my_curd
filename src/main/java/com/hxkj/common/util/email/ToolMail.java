@@ -18,12 +18,25 @@ public class ToolMail {
     private static final Logger LOG = Logger.getLogger(ToolMail.class);
 
     /*针对发送者 使用163 邮箱*/
+  /*
     private final static String host = "smtp.163.com";               // 发送邮件的服务器的IP
+    private final static  String host="localhost";
     private final static String port = "25";                         // 发送邮件的服务器的端口
     private final static boolean validate = true;                    // 是否需要身份验证
     private final static String from = "15238002477@163.com";
     private final static String userName = "15238002477@163.com";
     private final static String password = "wrong_pass";
+  */
+
+
+    /*使用hMailServer 搭建的本地 邮件服务器*/
+    /*没有反向解析可能被邮件接收方识别为垃圾邮件*/
+    private final static  String host="localhost";
+    private final static String port = "25";                         // 发送邮件的服务器的端口 smtp
+    private final static boolean validate = true;                    // 是否需要身份验证
+    private final static String from = "chuang@hengxing.com";
+    private final static String userName = "chuang@hengxing.com";
+    private final static String password = "111111";
 
     /**
      * 判断文本是否文HTML文本
@@ -50,7 +63,7 @@ public class ToolMail {
     }
 
     public static void main(String[] args) {
-        List<String> to = Arrays.asList("rthlCompany@163.com","916432779@qq.com");
+        List<String> to = Arrays.asList("rthlCompany@163.com","916432779@qq.com");   // 163 识别为 垃圾邮件， qq 邮箱不识别为垃圾邮件
         String subject = "邮件重置密码";
         String content = "<h1>张闯 is a good guy</h1>";
         boolean flag = sendEmailAsync(to,subject,content,null);
