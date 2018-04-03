@@ -21,6 +21,6 @@ my_CURD
 - 将 `my_curd.sql` 导入数据库
 - 启动项目，用户名：admin 密码：111111
  
-### 依赖
+### 依赖 | Dependencies
 - jFinal3.3、druid、fastjson、log4j、 poi、httpcomponents、jodd、Freemarker、pinyin4j、javax.mail等
 - easyui1.5.3、pure.css、ckeditor、layer等
