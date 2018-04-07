@@ -30,13 +30,12 @@ public class WebSocketServer {
         LOG.debug("==basicRemote:   " + session.getBasicRemote());
         LOG.debug("==maxTextMessageBufferSize: " + session.getMaxTextMessageBufferSize());
         LOG.debug("==maxBinaryMessageBufferSize:  " + session.getMaxBinaryMessageBufferSize());
-        session.setMaxIdleTimeout(10);  // 设置 无操作超时时间为10秒， 默认为0 表示不自动超时
+        //session.setMaxIdleTimeout(10);  // 设置 无操作超时时间为10秒， 默认为0 表示不自动超时
         LOG.debug("==maxIdleTimeout: " + session.getMaxIdleTimeout());
 
         // url参数
         String queryString = session.getQueryString();
         String userId = queryString.split("=")[1];
-
         SysUser sysUser = SysUser.dao.findById(userId);
         if (sysUser != null) {
             LOG.info(sysUser.getName() + " -- 上线了");
@@ -65,9 +64,8 @@ public class WebSocketServer {
         sIdMSession.remove(sessionId);
         sIdMUid.remove(sessionId);
         SysUser sysUser = SysUser.dao.findById(userId);
-
         if (sysUser != null) {
-            LOG.debug(sysUser.getName() + "  --下线了");
+            LOG.info(sysUser.getName() + "  --下线了");
             broadcast(sysUser.getName() + " ---下线了");
         }
 
@@ -82,7 +80,7 @@ public class WebSocketServer {
      */
     @OnMessage // 一个 endpoint 只能有一个该方法注解
     public void onMessage(String requestJson, Session session) {
-        LOG.debug(" get a Message: " + requestJson);
+        LOG.info(" get a Message: " + requestJson);
         // 广播
         broadcast(requestJson);
     }
@@ -119,7 +117,6 @@ public class WebSocketServer {
 
     /**
      * 广播通知所有在线客户
-     *
      * @param message
      */
     public void broadcast(String message) {

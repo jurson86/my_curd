@@ -4,6 +4,7 @@ import com.hxkj.common.util.BaseController;
 import com.hxkj.common.util.ToolString;
 import com.hxkj.read.service.NovelService;
 import com.jfinal.kit.StrKit;
+import org.omg.PortableInterceptor.Interceptor;
 
 import java.io.IOException;
 import java.util.Map;
@@ -16,13 +17,12 @@ public class NovelController extends BaseController {
     }
 
     public void query() {
-        Integer pageNumber = getParaToInt("page") == null ? 1 : getParaToInt("page");
-        Integer limit = getParaToInt("rows") == null ? 20 : getParaToInt("rows");
-        Integer start = (pageNumber - 1) * limit;
-
+        Integer pageNumber = getParaToInt("page",1);
+        Integer limit = getParaToInt("rows",20) ;
+        Integer start = (pageNumber - 1) * limit;  // 数据接口错误，返回的行数多（前两页)
         String keyword = getPara("keyword");
         if (StrKit.isBlank(keyword)) {
-            String category = StrKit.isBlank(getPara("category")) ? "gender=male&major=都市" : getPara("category");
+            String category = getPara("category","gender=male&major=都市");
             renderJson(NovelService.category(category, start, limit));
         } else {
             renderJson(NovelService.fuzzySearch(keyword, start, limit));
