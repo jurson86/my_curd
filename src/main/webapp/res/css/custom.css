@@ -100,9 +100,15 @@ form>table{
     right: 6px !important;
     top: 8px !important;
 }
+.pure-table{
+    background-color: white;
+}
 
 
 /*为了部分边不重合*/
 .btNone{
-    border-top: none
+    border-top: none;
+}
+.grayBg{
+    background-color: #f5f5f5;
 }

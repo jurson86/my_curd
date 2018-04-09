@@ -196,17 +196,17 @@
             onExpandRow: function(index,row){
                 var ddv = $(this).datagrid('getRowDetail',index).find('table.ddv');
                 ddv.datagrid({
-                    fitColumns:true,
+                    fitColumns:false,
                     singleSelect:true,
                     rownumbers:true,
                     loadMsg:'加载列信息ing...',
                     height:'auto',
                     data: row.columnList,
                     columns: [[
-                        {field: 'columnName', title: '列名', width: 50},
-                        {field: 'columnDBType', title: '列类型DB', width: 50},
-                        {field: 'columnJavaType', title: '列类型Java', width: 50},
-                        {field: 'columnComment', title: '列注释', width: 100}
+                        {field: 'columnName', title: '列名', width: 150},
+                        {field: 'columnDBType', title: '列类型DB', width: 150},
+                        {field: 'columnJavaType', title: '列类型Java', width: 150},
+                        {field: 'columnComment', title: '列注释', width: 200}
                     ]],
                     onResize:function(){
                         $('#dg').datagrid('fixDetailRowHeight',index);

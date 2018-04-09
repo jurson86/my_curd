@@ -6,7 +6,7 @@ var layerTools = layerTools || {};
     /*配置layer初始化配置*/
     layer.config({
         shift: 0, /*0-6的动画形式，-1不开启*/
-        shade: 0.15 /*遮罩透明度*/
+        shade: 0.1 /*遮罩透明度*/
     });
 
     /**
