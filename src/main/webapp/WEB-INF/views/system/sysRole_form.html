@@ -1,11 +1,12 @@
 <#include "/WEB-INF/views/common/common.html"/>
 <@layout>
 <link rel="stylesheet" href="${ctx!}/res/pure/tables-min.css">
+<script src="${ctx!}/res/js/util.js"></script>
 <script>
     function saveAction() {
         var url;
         var idVal = $("#id").val();
-        if ($.trim(idVal) == "" || idVal == undefined || idVal == null) {
+        if (isEmpty(idVal)) {
             url = '${ctx!}/sysRole/addAction';
         } else {
             url = '${ctx!}/sysRole/updateAction';
@@ -34,29 +35,27 @@
         <tr>
             <td>角色名：</td>
             <td>
-                <input name="roleName" id="roleName" value="${(sysRole.roleName)!}">
+                <input name="roleName" id="roleName" value="${(sysRole.roleName)!}" class="easyui-textbox"  data-options="required:true">
             </td>
         </tr>
         <tr>
             <td>角色描述：</td>
             <td>
-                <input name="roleDesc" value="${(sysRole.roleDesc)!}" type="text" class="easyui-textbox"
-                       data-options="required:true">
+                <input name="roleDesc" value="${(sysRole.roleDesc)!}"   class="easyui-textbox" data-options="required:true">
             </td>
         </tr>
         <tr>
             <td>排序：</td>
             <td>
-                <input name="sort" value="${(sysRole.sort)!}" type="text" class="easyui-numberbox"
-                       data-options="required:true,precision:0">
+                <input name="sort" value="${(sysRole.sort)!}"  class="easyui-numberbox" data-options="required:true,precision:0">
             </td>
         </tr>
         </tbody>
     </table>
 </form>
 <div id="toolbars" style="text-align:center; margin-top: 20px;">
-    <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-save'" onclick="saveAction()">确定</a>
-    <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-cancel'"
+    <a href="#" class="easyui-linkbutton" data-options="iconCls:'e-icon fa fa-save'" onclick="saveAction()">确定</a>
+    <a href="#" class="easyui-linkbutton" data-options="iconCls:'e-icon fa fa-close'"
        onclick="parent.layer.close(parent.layer.getFrameIndex(window.name));">取消</a>
 </div>
 </@layout>

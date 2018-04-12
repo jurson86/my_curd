@@ -61,16 +61,16 @@
 </table>
 
 <div id="tb">
-    <a onclick="deleteModel()" class="easyui-linkbutton" data-options="iconCls:'icon-remove',plain:true">删除</a>
-    <a onclick="exportToExcel()" class="easyui-linkbutton" data-options="iconCls:'icon-excel',plain:true">导出xls</a>
-    <a onclick="exportToCsv()" class="easyui-linkbutton" data-options="iconCls:'icon-csv',plain:true">导出csv</a>
+    <a onclick="deleteModel()" class="easyui-linkbutton" data-options="iconCls:'e-icon fa fa-trash-o',plain:true">删除</a>
+    <a onclick="exportToExcel()" class="easyui-linkbutton" data-options="iconCls:'e-icon fa fa-file-excel-o',plain:true">导出xls</a>
+    <a onclick="exportToCsv()" class="easyui-linkbutton" data-options="iconCls:'e-icon fa fa-file-text-o',plain:true">导出csv</a>
     <span id="enterSpan" class="searchInputArea">
           <form id="exportForm" name="exportForm" method="post" target="_blank">
                <!--使用form 提交表单，用于导出excel文件，post提交避免参数乱码 -->
                <input id="username" prompt="操作人" name="search_LIKE_su.name" class="easyui-textbox" style="width:120px; ">
                <input id="opContent" prompt="内容" name="search_LIKE_so.op_content" class="easyui-textbox" style="width:120px">
                <input id="ip" prompt="ip地址" name="search_LIKE_so.ip" class="easyui-textbox" style="width:120px">
-               <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-search',plain:true" onclick="queryModel()">搜索</a>
+               <a href="#" class="easyui-linkbutton" data-options="iconCls:'e-icon fa fa-search',plain:true" onclick="queryModel()">搜索</a>
           </form>
 
     </span>

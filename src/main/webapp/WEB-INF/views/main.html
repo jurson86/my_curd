@@ -44,18 +44,18 @@
     // 全屏切换函数
     function fullScreenToggle(obj) {
         fullScreen();
-        if ($(obj).hasClass('icon-fullScreen')) {
-            $(obj).removeClass('icon-fullScreen')
-                .addClass('icon-noFullScreen')
-                .attr('iconCls', 'icon-noFullScreen')
+        if ($(obj).hasClass('fa-expand')) {
+            $(obj).removeClass('fa-expand')
+                .addClass('fa-compress')
+                .attr('iconCls', 'fa-compress')
                 .attr('title', '退出全屏');
             //$("#mainLayout").layout("collapse", "north");
             //$("#mainLayout").layout("collapse", "west");
         } else {
             exitFullScreen();
-            $(obj).removeClass('icon-noFullScreen')
-                .addClass('icon-fullScreen')
-                .attr('iconCls', 'icon-fullScreen')
+            $(obj).removeClass('fa-compress')
+                .addClass('fa-expand')
+                .attr('iconCls', 'fa-expand')
                 .attr('title', '全屏');
             //$("#mainLayout").layout("expand", "north");
             //$("#mainLayout").layout("expand", "west");
@@ -67,7 +67,7 @@
 <div id="mainLayout" class="easyui-layout" fit="true" border="false">
     <div class="head" data-options="region:'north'"
          border="false">
-        <span class="   head-text">my_CURD</span>
+        <span class="head-text">my_CURD</span>
         <span class="head-menu">
                 你好，${(session.system_user.name)!} &nbsp;
                 &nbsp;
@@ -88,11 +88,11 @@
         </ul>
     </div>
     <div id="leftTB">
-        <a id="fstButton" href="#" iconCls="icon-fullScreen" onclick="fullScreenToggle(this)" title="全屏"></a>
+        <span id="fstButton" class="e-icon fa fa-expand" onclick="fullScreenToggle(this)" title="全屏"></span>
     </div>
     <div data-options="region:'center'" border="false" >
         <!-- pill="true" narrow="true" plain="true" tab 可选样式-->
-        <div id="tabGroup"   pill="true"  narrow="true" plain="true" > </div>
+        <div id="tabGroup"   pill="false"  narrow="false" plain="false" ></div>
         <div id="tabsMenu" class="easyui-menu">
             <div data-options="name:0">刷新</div>
             <div class="menu-sep"></div>

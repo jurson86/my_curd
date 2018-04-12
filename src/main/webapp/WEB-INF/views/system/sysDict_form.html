@@ -1,10 +1,11 @@
 <#include "/WEB-INF/views/common/common.html"/><@layout>
 <link rel="stylesheet" href="${ctx!}/res/pure/tables-min.css">
+<script src="${ctx!}/res/js/util.js"></script>
 <script>
     function saveAction() {
         var url;
         var idVal = $("#id").val();
-        if ($.trim(idVal) == "" || idVal == undefined || idVal == null) {
+        if (isEmpty(idVal)) {
             url = '${ctx!}/sysDict/addAction';
         } else {
             url = '${ctx!}/sysDict/updateAction';
@@ -34,30 +35,27 @@
         <tr>
             <td>类型：</td>
             <td>
-                <input name="dictType" value="${(sysDict.dictType)!}" type="text" class="easyui-textbox"
-                       data-options="required:true">
+                <input name="dictType" value="${(sysDict.dictType)!}"  class="easyui-textbox" data-options="required:true">
             </td>
         </tr>
         <tr>
             <td>键：</td>
             <td>
-                <input name="dictKey" value="${(sysDict.dictKey)!}" type="text" class="easyui-textbox"
-                       data-options="required:true">
+                <input name="dictKey" value="${(sysDict.dictKey)!}"   class="easyui-textbox"  data-options="required:true">
             </td>
         </tr>
         <tr>
             <td>值：</td>
             <td>
-                <input name="dictValue" value="${(sysDict.dictValue)!}" type="text" class="easyui-textbox"
-                       data-options="required:true">
+                <input name="dictValue" value="${(sysDict.dictValue)!}"   class="easyui-textbox" data-options="required:true">
             </td>
         </tr>
         </tbody>
     </table>
 </form>
 <div id="toolbars" style="text-align:center; margin-top: 20px;">
-    <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-save'" onclick="saveAction()">确定</a>
-    <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-cancel'"
+    <a href="#" class="easyui-linkbutton" data-options="iconCls:'e-icon fa fa-save'" onclick="saveAction()">确定</a>
+    <a href="#" class="easyui-linkbutton" data-options="iconCls:'e-icon fa fa-close'"
        onclick="parent.layer.close(parent.layer.getFrameIndex(window.name));">取消</a>
 </div>
 <script src="${ctx!}/res/js/easyui-tree-tools.js"></script>

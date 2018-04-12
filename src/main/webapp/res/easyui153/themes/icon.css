@@ -1,20 +1,8 @@
 .icon-blank{
 	background:url('icons/blank.gif') no-repeat center center;
 }
-.icon-add{
-	background:url('cus-icons/add.png') no-repeat center center;
-}
-.icon-edit{
-	background:url('cus-icons/edit.png') no-repeat center center;
-}
 .icon-clear{
 	background:url('icons/clear.png') no-repeat center center;
-}
-.icon-remove{
-	background:url('cus-icons/remove.png') no-repeat center center;
-}
-.icon-save{
-	background:url('cus-icons/save.png') no-repeat center center;
 }
 .icon-cut{
 	background:url('icons/cut.png') no-repeat center center;
@@ -25,20 +13,8 @@
 .icon-no{
 	background:url('icons/no.png') no-repeat center center;
 }
-.icon-cancel{
-	background:url('cus-icons/cancel.png') no-repeat center center;
-}
 .icon-reload{
 	background:url('icons/reload.png') no-repeat center center;
-}
-.icon-search{
-	background:url('cus-icons/search.png') no-repeat center center;
-}
-.icon-print{
-	background:url('cus-icons/print.png') no-repeat center center;
-}
-.icon-help{
-	background:url('cus-icons/tip.png') no-repeat center center;
 }
 .icon-undo{
 	background:url('icons/undo.png') no-repeat center center;
@@ -95,30 +71,6 @@
 	background:url('icons/large_chart.png') no-repeat center center;
 }
 
-
-.icon-download{
-	background:url('cus-icons/download.png') no-repeat center center;
-}
-
-.icon-excel{
-	background:url('cus-icons/excel.png') no-repeat center center;
-}
-
-.icon-csv{
-	background:url('cus-icons/CSV.png') no-repeat center center;
-}
-
-.icon-generator{
-	background:url('cus-icons/codegen.png') no-repeat center center;
-}
-.icon-genTool{
-	background:url('cus-icons/genTool.png') no-repeat center center;
-}
-.icon-json{
-	background:url('cus-icons/json.png') no-repeat center center;
-}
-
-
 .icon-druid{
 	background:url('cus-icons/druid.png') no-repeat center center;
 }
@@ -168,14 +120,6 @@
 
 .icon-system{
 	background:url('cus-icons/system.png') no-repeat center center;
-}
-
-.icon-fullScreen{
-	background:url('cus-icons/fullScreen.png') no-repeat center center;
-}
-
-.icon-noFullScreen{
-	background:url('cus-icons/noFullScreen.png') no-repeat center center;
 }
 
 

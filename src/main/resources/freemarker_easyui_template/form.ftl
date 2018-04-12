@@ -1,15 +1,16 @@
 <#noparse><#include "/WEB-INF/views/common/common.html"/><@layout></#noparse>
 <link rel="stylesheet" href="<#noparse>${ctx!}</#noparse>/res/pure/tables-min.css">
+<script src="<#noparse>${ctx!}</#noparse>/res/js/util.js"></script>
 <script>
     function saveAction() {
         var url;
         var pkVAry =[];
         <#list table.tablePrimaryKeys as pk>
-            var ${(pk)!}Val = $("#${(pk)!}").val();
-            pkVAry.push(${(pk)!}Val);
+        var ${(pk)!}Val = $("#${(pk)!}").val();
+        pkVAry.push(${(pk)!}Val);
         </#list>
 
-        if ($.trim(pkVAry[0]) == "" || pkVAry[0] == undefined || pkVAry[0] == null) {
+        if (isEmpty(pkVAry[0])) {
             url = '<#noparse>${ctx!}</#noparse>/${(table.tableNameCamel)!}/addAction';
         } else {
             url = '<#noparse>${ctx!}</#noparse>/${(table.tableNameCamel)!}/updateAction';
@@ -43,7 +44,7 @@
             <tr>
                 <td><#if (col.columnComment)?? && col.columnComment != "" >${(col.columnComment)!}<#else>${(col.columnName)!}</#if>：</td>
                 <td>
-                    <input name="${(col.columnNameCamel)!}" value="<#noparse>${(</#noparse>${(table.tableNameCamel)!}.${(col.columnNameCamel)!}<#noparse>)!}</#noparse>" type="text" class="easyui-textbox"  data-options="required:true">
+                    <input name="${(col.columnNameCamel)!}" value="<#noparse>${(</#noparse>${(table.tableNameCamel)!}.${(col.columnNameCamel)!}<#noparse>)!}</#noparse>"   class="easyui-textbox"  data-options="required:true">
                 </td>
             </tr>
                     </#if>
@@ -52,8 +53,8 @@
     </table>
 </form>
 <div id="toolbars" style="text-align:center; margin-top: 20px;">
-    <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-save'" onclick="saveAction()">确定</a>
-    <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-cancel'"
+    <a href="#" class="easyui-linkbutton" data-options="iconCls:'e-icon fa fa-save'" onclick="saveAction()">确定</a>
+    <a href="#" class="easyui-linkbutton" data-options="iconCls:'e-icon fa fa-close'"
        onclick="parent.layer.close(parent.layer.getFrameIndex(window.name));">取消</a>
 </div>
 <#noparse></@layout></#noparse>

@@ -1,6 +1,7 @@
 <#include "/WEB-INF/views/common/common.html"/>
 <@layout>
 <link rel="stylesheet" href="${ctx!}/res/pure/tables-min.css">
+<script src="${ctx!}/res/js/util.js"></script>
 <style>
     .tree-folder {
         background: url('${ctx!}/res/easyui153/themes/cus-icons/org.png') no-repeat center center;
@@ -18,7 +19,7 @@
     function saveAction() {
         var url;
         var idVal = $("#id").val();
-        if ($.trim(idVal) == "" || idVal == undefined || idVal == null) {
+        if (isEmpty(idVal)) {
             url = '${ctx!}/sysOrg/addAction';
         } else {
             url = '${ctx!}/sysOrg/updateAction';
@@ -52,21 +53,21 @@
         <tr>
             <td>机构名：</td>
             <td>
-                <input name="orgName" value="${(sysOrg.orgName)!}" type="text" class="easyui-textbox"
+                <input name="orgName" value="${(sysOrg.orgName)!}"  class="easyui-textbox"
                        data-options="required:true" style="width: 220px;">
             </td>
         </tr>
         <tr>
             <td>机构地址：</td>
             <td>
-                <input style="width: 220px;height: 80px" name="orgAddress" value="${(sysOrg.orgAddress)!}" type="text"
+                <input style="width: 220px;height: 80px" name="orgAddress" value="${(sysOrg.orgAddress)!}"
                        class="easyui-textbox" data-options="multiline:true">
             </td>
         </tr>
         <tr>
             <td>机构备注：</td>
             <td>
-                <input style="width: 220px;height: 80px" name="orgRemark" value="${(sysOrg.orgRemark)!}" type="text"
+                <input style="width: 220px;height: 80px" name="orgRemark" value="${(sysOrg.orgRemark)!}"
                        class="easyui-textbox" data-options="multiline:true">
             </td>
         </tr>
@@ -74,7 +75,7 @@
         <tr>
             <td>排序：</td>
             <td>
-                <input name="sort" value="${(sysOrg.sort)!}" type="text" class="easyui-numberbox"
+                <input name="sort" value="${(sysOrg.sort)!}"   class="easyui-numberbox"
                        data-options="required:true,precision:0" style="width: 220px;">
             </td>
         </tr>
@@ -83,8 +84,8 @@
     </table>
 </form>
 <div id="toolbars" style="text-align:center; margin-top: 20px;">
-    <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-save'" onclick="saveAction()">确定</a>
-    <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-cancel'"
+    <a href="#" class="easyui-linkbutton" data-options="iconCls:'e-icon fa fa-save'" onclick="saveAction()">确定</a>
+    <a href="#" class="easyui-linkbutton" data-options="iconCls:'e-icon fa fa-close'"
        onclick="parent.layer.close(parent.layer.getFrameIndex(window.name));">取消</a>
 </div>
 <script src="${ctx!}/res/js/easyui-tree-tools.js"></script>

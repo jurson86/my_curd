@@ -107,9 +107,9 @@
         </table>
 
         <div id="tb">
-            <a onclick="newModel()" href="#" class="easyui-linkbutton" iconCls="icon-add" plain="true">新增</a>
-            <a onclick="editModel()" href="#" class="easyui-linkbutton" iconCls="icon-edit" plain="true">编辑</a>
-            <a onclick="deleteModel()" href="#" class="easyui-linkbutton  " iconCls="icon-remove" plain="true">删除</a>
+            <a onclick="newModel()" href="#" class="easyui-linkbutton" iconCls="e-icon fa fa-plus-square-o" plain="true">新增</a>
+            <a onclick="editModel()" href="#" class="easyui-linkbutton" iconCls="e-icon fa fa-pencil-square-o" plain="true">编辑</a>
+            <a onclick="deleteModel()" href="#" class="easyui-linkbutton  " iconCls="e-icon fa fa-trash-o" plain="true">删除</a>
             <span id="enterSpan" class="searchInputArea">
 					<input id="username" prompt="登录名" class="easyui-textbox" style="width:120px">
                     <input id="name" prompt="姓名" class="easyui-textbox" style="width:120px">
@@ -122,11 +122,11 @@
                              <option value="0">正常</option>
                              <option value="1">无效</option>
                     </select>
-					<a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-search',plain:true" onclick="queryModel()">搜索</a>
+					<a href="#" class="easyui-linkbutton" data-options="iconCls:'e-icon fa fa-search',plain:true" onclick="queryModel()">搜索</a>
             </span>
         </div>
         <div id="treeTB">
-            <a href="#" iconCls="icon-save" onclick="giveRoles()" title="赋予角色" style="margin-right: 20px;" ></a>
+            <span   iconCls="e-icon fa fa-save" onclick="giveRoles()" title="赋予角色" style="margin-right: 20px; border-radius: 1px" ></span>
         </div>
     </div>
 </div>

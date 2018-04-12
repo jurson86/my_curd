@@ -5,7 +5,6 @@
     function newModel() {
         layerTools.layerIframe('fa-plus', '新建', '${ctx!}/sysMenu/newModel', '600px', '400px')
     }
-
     function editModel() {
         var node = $("#tt").treegrid("getSelected");
         if (node != null) {
@@ -14,7 +13,6 @@
             layerTools.layerMsg('请选择一行数据进行编辑');
         }
     }
-
     function deleteModel() {
         var node = $("#tt").treegrid("getSelected");
         if (node != null) {
@@ -31,7 +29,6 @@
             layerTools.layerMsg('请选择一行进行删除');
         }
     }
-
     function queryModel() {
         var queryParams = {
             search_LIKE_name: $("#menuName").textbox("getValue")
@@ -44,13 +41,13 @@
 <body>
 <table   data-options="onDblClickRow:editModel"  id="tt" border="false"></table>
 <div id="tt-tb">
-    <a onclick="newModel()" class="easyui-linkbutton" data-options="iconCls:'icon-add',plain:true"> 新增</a>
-    <a onclick="editModel()" class="easyui-linkbutton" data-options="iconCls:'icon-edit',plain:true">编辑</a>
-    <a onclick="deleteModel()" class="easyui-linkbutton" data-options="iconCls:'icon-remove',plain:true">删除</a>
+    <a onclick="newModel()" class="easyui-linkbutton" data-options="iconCls:'e-icon fa fa-plus-square-o',plain:true"> 新增</a>
+    <a onclick="editModel()" class="easyui-linkbutton" data-options="iconCls:'e-icon fa fa-pencil-square-o',plain:true">编辑</a>
+    <a onclick="deleteModel()" class="easyui-linkbutton" data-options="iconCls:'e-icon fa fa-trash-o',plain:true">删除</a>
 
     <span id="enterSpan" class="searchInputArea">
       	<input id="menuName" prompt="菜单名" class="easyui-textbox" style="width:150px">
-	    <a onclick="queryModel()" class="easyui-linkbutton" data-options="iconCls:'icon-search',plain:true">搜索</a>
+	    <a onclick="queryModel()" class="easyui-linkbutton" data-options="iconCls:'e-icon fa fa-search',plain:true">搜索</a>
     </span>
 </div>
 <script src="${ctx!}/res/js/easyui-tree-tools.js"></script>

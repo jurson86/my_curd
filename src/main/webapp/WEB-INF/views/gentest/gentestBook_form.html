@@ -1,5 +1,6 @@
 <#include "/WEB-INF/views/common/common.html"/><@layout>
 <link rel="stylesheet" href="${ctx!}/res/pure/tables-min.css">
+<script src="${ctx!}/res/js/util.js"></script>
 <script>
     function saveAction() {
         var url;
@@ -7,7 +8,7 @@
         var idVal = $("#id").val();
         pkVAry.push(idVal);
 
-        if ($.trim(pkVAry[0]) == "" || pkVAry[0] == undefined || pkVAry[0] == null) {
+        if (isEmpty(pkVAry[0])) {
             url = '${ctx!}/gentestBook/addAction';
         } else {
             url = '${ctx!}/gentestBook/updateAction';
@@ -35,37 +36,33 @@
         <tr>
             <td>书名：</td>
             <td>
-                <input name="title" value="${(gentestBook.title)!}" type="text" class="easyui-textbox"
-                       data-options="required:true">
+                <input name="title" value="${(gentestBook.title)!}"  class="easyui-textbox" data-options="required:true">
             </td>
         </tr>
         <tr>
             <td>简介：</td>
             <td>
-                <input name="info" value="${(gentestBook.info)!}" type="text" class="easyui-textbox"
-                       data-options="required:true">
+                <input name="info" value="${(gentestBook.info)!}"   class="easyui-textbox"  data-options="required:true">
             </td>
         </tr>
         <tr>
             <td>作者：</td>
             <td>
-                <input name="author" value="${(gentestBook.author)!}" type="text" class="easyui-textbox"
-                       data-options="required:true">
+                <input name="author" value="${(gentestBook.author)!}"   class="easyui-textbox" data-options="required:true">
             </td>
         </tr>
         <tr>
             <td>create_time：</td>
             <td>
-                <input name="createTime" value="${(gentestBook.createTime)!}" type="text" class="easyui-datetimebox"
-                       data-options="required:true">
+                <input name="createTime" value="${(gentestBook.createTime)!}"  class="easyui-datetimebox" data-options="required:true">
             </td>
         </tr>
         </tbody>
     </table>
 </form>
 <div id="toolbars" style="text-align:center; margin-top: 20px;">
-    <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-save'" onclick="saveAction()">确定</a>
-    <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-cancel'"
+    <a href="#" class="easyui-linkbutton" data-options="iconCls:'e-icon fa fa-save'" onclick="saveAction()">确定</a>
+    <a href="#" class="easyui-linkbutton" data-options="iconCls:'e-icon fa fa-close'"
        onclick="parent.layer.close(parent.layer.getFrameIndex(window.name));">取消</a>
 </div>
 </@layout>

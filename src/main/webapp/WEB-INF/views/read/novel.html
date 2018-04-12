@@ -54,10 +54,6 @@
         }
         return row.majorCate+" * "+row.minorCate;
     }
-    function  titleFormat(val,row) {
-        return "<b>"+val+"</b>";
-    }
-
     function rowOperate(rowData){
         rowData.cover = decodeURIComponent(rowData.cover).replace("/agent/","");
         rowData.shortIntro="<p class='datagrid-p'>"+rowData.shortIntro.replace("\n","<p class='datagrid-p'>");
@@ -77,7 +73,7 @@
        pageSize="40"  >
     <thead>
     <tr>
-        <th field="title" width="50" formatter="titleFormat">书名</th>
+        <th field="title" width="50">书名</th>
         <th field="author" width="50">作者</th>
         <th field="minorCate" width="50" formatter="cateformat">分类</th>
         <th field="lastChapter" width="300">最新章</th>
@@ -85,13 +81,13 @@
     </thead>
 </table>
 <div id="tb">
-    <a onclick="downloadModel()" href="#" class="easyui-linkbutton" iconCls="icon-download" plain="true">下载</a>
+    <a onclick="downloadModel()" href="#" class="easyui-linkbutton" iconCls="e-icon fa  fa-download" plain="true">下载</a>
     <span id="enterSpan"   class="searchInputArea" >
          <input id="category" prompt="类型" class="easyui-combobox" style="width:120px; "
                 data-options="url:'${ctx!}/sysDict/queryDictData?type=category&fields=dict_key as text, dict_value as value'">
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           <input id="fuzzyQuery" prompt="模糊查询" class="easyui-textbox" style="width:120px; ">
-          <a href="#" class="easyui-linkbutton" iconCls="icon-search" onclick="queryModel()">搜索</a>
+          <a href="#" class="easyui-linkbutton" iconCls="e-icon fa fa-search" plain="true" onclick="queryModel()">搜索</a>
     </span>
 </div>
 <script src="${ctx!}/res/layer/layer.js"></script>

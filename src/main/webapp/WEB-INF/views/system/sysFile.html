@@ -108,9 +108,9 @@
 </table>
 
 <div id="tb">
-    <a onclick="newModel()" href="#" class="easyui-linkbutton" iconCls="icon-add" plain="true">新增</a>
-    <a onclick="editModel()" href="#" class="easyui-linkbutton" iconCls="icon-edit" plain="true">编辑</a>
-    <a onclick="deleteModel()" href="#" class="easyui-linkbutton  " iconCls="icon-remove" plain="true">删除</a>
+    <a onclick="newModel()" href="#" class="easyui-linkbutton" iconCls="e-icon fa fa-plus-square-o" plain="true">新增</a>
+    <a onclick="editModel()" href="#" class="easyui-linkbutton" iconCls="e-icon fa fa-pencil-square-o" plain="true">编辑</a>
+    <a onclick="deleteModel()" href="#" class="easyui-linkbutton  " iconCls="e-icon fa fa-trash-o" plain="true">删除</a>
     <span id="enterSpan" class="searchInputArea">
           <input id="fileType" prompt="文件类型" class="easyui-combobox"
                  data-options="valueField:'value', multiple:true,textField:'label',url:'${ctx!}/sysFile/fileTypeData'">
@@ -122,7 +122,7 @@
           <input id="timeStart" prompt="时间起" class="easyui-datetimebox" style="width:150px; ">
           ~
           <input id="timeEnd" prompt="时间止" class="easyui-datetimebox" style="width:150px; ">
-          <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-search',plain:true" onclick="queryModel()">搜索</a>
+          <a href="#" class="easyui-linkbutton" data-options="iconCls:'e-icon fa fa-search',plain:true" onclick="queryModel()">搜索</a>
     </span>
 </div>
 <script src="${ctx!}/res/layer/layer.js"></script>

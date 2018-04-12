@@ -20,7 +20,6 @@ public class ToolMail {
     /*针对发送者 使用163 邮箱*/
   /*
     private final static String host = "smtp.163.com";               // 发送邮件的服务器的IP
-    private final static  String host="localhost";
     private final static String port = "25";                         // 发送邮件的服务器的端口
     private final static boolean validate = true;                    // 是否需要身份验证
     private final static String from = "15238002477@163.com";
@@ -34,9 +33,9 @@ public class ToolMail {
     private final static  String host="localhost";
     private final static String port = "25";                         // 发送邮件的服务器的端口 smtp
     private final static boolean validate = true;                    // 是否需要身份验证
-    private final static String from = "chuang@hengxing.com";
-    private final static String userName = "chuang@hengxing.com";
-    private final static String password = "111111";
+    private final static String from = "chuang@hx002132.com";
+    private final static String userName = "chuang@hx002132.com";
+    private final static String password = "123456";
 
     /**
      * 判断文本是否文HTML文本

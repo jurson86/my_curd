@@ -1,6 +1,7 @@
 <#include "/WEB-INF/views/common/common.html"/>
 <@layout>
 <link rel="stylesheet" href="${ctx!}/res/pure/tables-min.css">
+<script src="${ctx!}/res/js/util.js"></script>
 <style>
     .tree-folder {
         background: url('${ctx!}/res/easyui153/themes/cus-icons/org.png') no-repeat center center;
@@ -18,7 +19,7 @@
     function saveAction() {
         var url;
         var idVal = $("#id").val();
-        if ($.trim(idVal) == "" || idVal == undefined || idVal == null) {
+        if (isEmpty(idVal)) {
             url = '${ctx!}/sysUser/addAction';
         } else {
             url = '${ctx!}/sysUser/updateAction';
@@ -48,12 +49,12 @@
         <tr>
             <td>登录名：</td>
             <td>
-                <input name="username" value="${(sysUser.username)!}" type="text" class="easyui-textbox"
+                <input name="username" value="${(sysUser.username)!}"   class="easyui-textbox"
                        data-options="required:true" style="width: 180px;">
             </td>
             <td>密码：</td>
             <td>
-                <input name="password" value="${(sysUser.password)!}" type="text" class="easyui-textbox"
+                <input name="password" value="${(sysUser.password)!}"   class="easyui-textbox"
                        data-options="required:true" style="width: 180px;">
             </td>
         </tr>
@@ -61,7 +62,7 @@
         <tr>
             <td>姓名：</td>
             <td>
-                <input name="name" value="${(sysUser.name)!}" type="text" class="easyui-textbox"
+                <input name="name" value="${(sysUser.name)!}"   class="easyui-textbox"
                        data-options="required:true" style="width: 180px;">
             </td>
             <td>部门：</td>
@@ -73,11 +74,11 @@
         <tr>
             <td>电话：</td>
             <td>
-                <input name="phone" value="${(sysUser.phone)!}" type="text" class="easyui-textbox" style="width: 180px;">
+                <input name="phone" value="${(sysUser.phone)!}"   class="easyui-textbox" style="width: 180px;">
             </td>
             <td>邮箱：</td>
             <td>
-                <input name="email" value="${(sysUser.email)!}" type="text" class="easyui-textbox" style="width: 180px;">
+                <input name="email" value="${(sysUser.email)!}"   class="easyui-textbox" style="width: 180px;">
             </td>
         </tr>
 
@@ -100,8 +101,8 @@
     </table>
 </form>
 <div id="toolbars" style="text-align:center; margin-top: 20px;">
-    <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-save'" onclick="saveAction()">确定</a>
-    <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-cancel'"
+    <a href="#" class="easyui-linkbutton" data-options="iconCls:'e-icon fa fa-save'" onclick="saveAction()">确定</a>
+    <a href="#" class="easyui-linkbutton" data-options="iconCls:'e-icon fa fa-close'"
        onclick="parent.layer.close(parent.layer.getFrameIndex(window.name));">取消</a>
 </div>
 <script src="${ctx!}/res/js/easyui-tree-tools.js"></script>
