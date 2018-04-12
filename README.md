@@ -2,7 +2,7 @@ my_CURD
 ===
 
 ### 简介 | Intro  
-表格型内容管理系统，内置代码生成器，可用于业务逻辑快速开发。[系统截图](https://github.com/qinyou/my_curd/wiki/%E7%B3%BB%E7%BB%9F%E6%88%AA%E5%9B%BE)
+表格型内容管理系统，内置代码生成器，可用于业务逻辑快速开发。 
 
 ### 优点 | Advantages  
 - **轻量**：Jfinal、Easyui、Mysql。
