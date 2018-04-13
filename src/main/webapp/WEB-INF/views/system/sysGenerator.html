@@ -87,7 +87,7 @@
             }
         });
     }
-
+    
     function jsonView() {
         var rows = $("#dg").treegrid("getSelections");
         if (rows.length != 0) {
@@ -97,7 +97,7 @@
             var formatJSONStr = JSON.stringify(obj, null, "\t");
             var content = '<div id="cm"  ></div>'
                 + ' <button id="editAfterGen"  onclick="genCode()"  class="pure-button button-success" >代码生成</button>';
-            layerTools.layerDialog(['500px', '60%'], '<i class="fa fa-code"></i>&nbsp;&nbsp;&nbsp;&nbsp;' + '代码生成（可修改json控制生成的代码)', content)
+            layerTools.layerDialog(['500px', '600px'], '<i class="fa fa-code"></i>&nbsp;&nbsp;&nbsp;&nbsp;' + '代码生成（可修改json控制生成的代码)', content)
             myCodeMirror = CodeMirror(document.getElementById('cm'), {
                 value: formatJSONStr,
                 lineNumbers: true,

@@ -13,6 +13,8 @@ import com.jfinal.kit.StrKit;
 import com.jfinal.plugin.activerecord.Db;
 import com.jfinal.plugin.activerecord.Page;
 import com.jfinal.plugin.activerecord.Record;
+import com.jfinal.plugin.ehcache.CacheInterceptor;
+import com.jfinal.plugin.redis.RedisInterceptor;
 
 import java.util.List;
 
@@ -38,7 +40,6 @@ public class SysDictController extends BaseController {
         int pageSize = getAttr("pageSize");
         String where = getAttr(Constant.SEARCH_SQL);
         Page<SysDict> sysDictPage = SysDict.dao.page(pageNumber, pageSize, where);
-
         renderDatagrid(sysDictPage);
     }
 
@@ -46,13 +47,13 @@ public class SysDictController extends BaseController {
     /**
      * 打开新增或者修改弹出框
      */
+
     public void newModel() {
         String id = getPara("id");
         if (id != null) {
             SysDict sysDict = SysDict.dao.findById(id);
             setAttr("sysDict", sysDict);
         }
-
         render("system/sysDict_form.html");
     }
 
@@ -61,7 +62,6 @@ public class SysDictController extends BaseController {
      * 增加
      */
     public void addAction() {
-
         SysDict sysDict = getBean(SysDict.class, "");
         boolean saveFlag = sysDict.save();
         if (saveFlag) {
@@ -69,7 +69,6 @@ public class SysDictController extends BaseController {
         } else {
             renderText(Constant.ADD_FAIL);
         }
-
     }
 
     /**
