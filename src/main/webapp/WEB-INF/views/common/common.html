@@ -22,6 +22,16 @@
         <!--easyui 页面渲染遮罩-->
         <script src="${ctx!}/res/js/base-loading.js" type="text/javascript" charset="utf-8"></script>
         <#nested>
+        <script>
+            /*列表表格 搜索过滤监听*/
+            $(function () {
+                $("#enterSpan").on("keydown", function (e) {
+                    if (e.keyCode == 13) {
+                        queryModel();
+                    }
+                })
+            });
+        </script>
          </body>
     </html>
     </#compress>

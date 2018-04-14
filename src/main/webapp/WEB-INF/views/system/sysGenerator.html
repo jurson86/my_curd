@@ -168,23 +168,13 @@
             <a onclick="jsonView()" href="#" class="easyui-linkbutton" iconCls="e-icon fa fa-code" plain="true">代码生成</a>
             <span id="enterSpan" class="searchInputArea">
 					<input id="tableName" prompt="表名" class="easyui-textbox" style="width:150px">
-					<a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-search',plain:true" onclick="queryModel()">过滤</a>
+					<a href="#" class="easyui-linkbutton" data-options="iconCls:'e-icon fa fa-search',plain:true" onclick="queryModel()">过滤</a>
             </span>
         </div>
     </div>
 </div>
 <script src="${ctx!}/res/layer/layer.js"></script>
 <script src="${ctx!}/res/js/layer-tools.js"></script>
-<script>
-    $(function () {
-        // enter监听查询
-        $("#enterSpan").on("keydown", function (e) {
-            if (e.keyCode == 13) {
-                queryModel();
-            }
-        })
-    });
-</script>
 <script type="text/javascript">
     $(function(){
         $('#dg').datagrid({

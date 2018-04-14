@@ -47,7 +47,6 @@
         queryParams['keyword'] = $("#fuzzyQuery").textbox("getValue");
         $('#dg').datagrid('load', queryParams);
     }
-
     function cateformat(val,row){
         if(row.majorCate == undefined || row.minorCate == undefined){
             return row.cat;

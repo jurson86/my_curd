@@ -91,14 +91,6 @@
 </div>
 <script src="<#noparse>${ctx!}</#noparse>/res/layer/layer.js"></script>
 <script src="<#noparse>${ctx!}</#noparse>/res/js/layer-tools.js"></script>
-<script>
-    // enter监听查询
-    $("#enterSpan").on("keydown",function(e){
-        if(e.keyCode==13){
-            queryModel();
-        }
-    })
-</script>
 <#noparse>
 </@layout>
 </#noparse>

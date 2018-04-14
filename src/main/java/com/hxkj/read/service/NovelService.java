@@ -239,7 +239,7 @@ public class NovelService {
                 Integer stepTwoCode = (Integer) stepTwoMap.get("code");
                 if (stepTwoCode == 1) {
                     JSONObject cObj = (JSONObject) stepTwoMap.get("chapterDetail");
-                    sb.append("第 " + count + " 章 \n" + chapterObj.getString("title") + " \n" + cObj.getString("body") + " \n");
+                    sb.append( chapterObj.getString("title") + "(" + count +") \n" + cObj.getString("body") + " \n");
                     System.out.println("count: " + count + chapterObj.getString("title"));
                     count++;
                 }
@@ -277,7 +277,7 @@ public class NovelService {
                 if (stepTwoCode == 1) {
                     try {
                         JSONObject cObj = (JSONObject) stepTwoMap.get("chapterDetail");
-                        FileUtils.write(txtFile, "第 " + count + " 章 \n" + chapterObj.getString("title") + " \n" + cObj.getString("body") + " \n", "UTF-8", true);
+                        FileUtils.write(txtFile,  chapterObj.getString("title") + "(" + count +") \n" + cObj.getString("body") + " \n", "UTF-8", true);
                         System.out.println("count: " + count + chapterObj.getString("title"));
                         count++;
                     } catch (IOException e) {
@@ -335,7 +335,7 @@ public class NovelService {
                 int count = 1;
                 while (it2.hasNext()) {
                     JSONObject jsonObject = (JSONObject) it2.next();
-                    sb.append("第 " + (count) + " 章 \n" + jsonObject.getString("title") + " \n" + jsonObject.getString("body") + " \n");
+                    sb.append(jsonObject.getString("title") + "(" + count +") \n" + jsonObject.getString("body") + " \n");
                     //System.out.println("count: " + count + jsonObject.getString("title"));
                     count++;
                 }
@@ -388,7 +388,7 @@ public class NovelService {
                 while (it2.hasNext()) {
                     JSONObject jsonObject = (JSONObject) it2.next();
                     try {
-                        FileUtils.write(txtFile, "第 " + (count + 1) + " 章 \n" + jsonObject.getString("title") + " \n" + jsonObject.getString("body") + " \n", "UTF-8", true);
+                        FileUtils.write(txtFile, jsonObject.getString("title") + "(" + (count + 1) +") \n" + jsonObject.getString("body") + " \n", "UTF-8", true);
                         count++;
                     } catch (IOException e) {
                         e.printStackTrace();

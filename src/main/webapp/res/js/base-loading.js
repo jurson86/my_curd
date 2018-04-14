@@ -9,8 +9,8 @@ var Loadimagerul = "/res/image/loading.gif";
 
 //在页面未加载完毕之前显示的loading Html自定义内容
 var _LoadingHtml = '<div id="loadingDiv" style="position:absolute;left:0;width:100%;height:' 
-+ _PageHeight + 'px;top:0;background:#EEEEEE;opacity:1;filter:alpha(opacity=80);z-index:10000;"><div style="position: absolute; cursor1: wait; left: ' 
-+ _LoadingLeft + 'px; top:' + _LoadingTop + 'px; width:100px;; height: 57px; line-height: 57px; padding-left: 50px; padding-right: 5px; background:  url(' + Loadimagerul + ') no-repeat scroll 5px 12px;  color: #696969; font-family:\'Microsoft YaHei\';">玩命加载中...</div></div>';
++ _PageHeight + 'px;top:0;background:white;opacity:1;filter:alpha(opacity=80);z-index:10000;"><div style="position: absolute; cursor1: wait; left: '
++ _LoadingLeft + 'px; top:' + _LoadingTop + 'px; width:100px;; height: 57px; line-height: 57px; padding-left: 50px; padding-right: 5px; background:  url(' + Loadimagerul + ') no-repeat scroll 5px 12px;  color: #696969 ;">加载中...</div></div>';
 //console.log(_LoadingHtml);
 //呈现loading效果
 document.write(_LoadingHtml);

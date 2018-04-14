@@ -47,7 +47,7 @@
     //条件查询
     function queryModel() {
         var queryParams = {};
-        queryParams['search_LIKE_test'] = $("#test").textbox("getValue");
+        queryParams['search_LIKE_v'] = $("#v").textbox("getValue");
         $('#dg').datagrid('load', queryParams);
     }
 </script>
@@ -74,18 +74,10 @@
     <a onclick="editModel()" href="#" class="easyui-linkbutton" iconCls="e-icon fa fa-pencil-square-o" plain="true">编辑</a>
     <a onclick="deleteModel()" href="#" class="easyui-linkbutton  " iconCls="e-icon fa fa-trash-o" plain="true">删除</a>
     <span id="enterSpan" class="searchInputArea">
-          <input id="test" prompt="test" class="easyui-textbox" style="width:120px; ">
+          <input id="v" prompt="test" class="easyui-textbox" style="width:120px; ">
           <a href="#" class="easyui-linkbutton" data-options="iconCls:'e-icon fa fa-search',plain:true" onclick="queryModel()">搜索</a>
     </span>
 </div>
 <script src="${ctx!}/res/layer/layer.js"></script>
 <script src="${ctx!}/res/js/layer-tools.js"></script>
-<script>
-    // enter监听查询
-    $("#enterSpan").on("keydown", function (e) {
-        if (e.keyCode == 13) {
-            queryModel();
-        }
-    })
-</script>
 </@layout>

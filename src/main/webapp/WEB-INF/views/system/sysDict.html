@@ -1,6 +1,7 @@
 <#include "/WEB-INF/views/common/common.html"/> <@layout>
 <link rel="stylesheet" href="${ctx!}/res/layer/theme/default/layer.css">
 </head>
+</head>
 <body>
 <script type="text/javascript">
 
@@ -59,7 +60,6 @@
     </tr>
     </thead>
 </table>
-
 <div id="tb">
     <a onclick="newModel()" href="#" class="easyui-linkbutton" iconCls="e-icon fa fa-plus-square-o" plain="true">新增</a>
     <a onclick="editModel()" href="#" class="easyui-linkbutton" iconCls="e-icon fa fa-pencil-square-o" plain="true">编辑</a>
@@ -71,12 +71,4 @@
 </div>
 <script src="${ctx!}/res/layer/layer.js"></script>
 <script src="${ctx!}/res/js/layer-tools.js"></script>
-<script>
-    // enter监听查询
-    $("#enterSpan").on("keydown",function(e){
-        if(e.keyCode==13){
-            queryModel();
-        }
-    })
-</script>
 </@layout>

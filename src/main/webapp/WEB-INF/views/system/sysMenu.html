@@ -54,15 +54,6 @@
 <script src="${ctx!}/res/layer/layer.js"></script>
 <script src="${ctx!}/res/js/layer-tools.js"></script>
 <script type="text/javascript" charset="utf-8">
-
-    // enter监听查询
-    $("#enterSpan").on("keydown",function(e){
-        if(e.keyCode==13){
-            queryModel();
-        }
-    })
-
-
     ;(function () {
         var easyTree = new EasyTree();
         $("#tt").treegrid({
