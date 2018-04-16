@@ -115,7 +115,6 @@ public abstract class ToolWeb {
      * @param response
      * @param content
      * @param contentType
-     * @author 董华健 2012-9-14 下午8:04:01
      */
     public static void outPage(HttpServletResponse response, String content, String contentType) {
         try {
