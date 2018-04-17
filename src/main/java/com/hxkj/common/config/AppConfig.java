@@ -39,8 +39,6 @@ public class AppConfig extends JFinalConfig {
         me.setViewType(ViewType.FREE_MARKER);
         //设置404渲染视图
         //me.setError404View();
-        //设置json工厂
-        //me.setJsonFactory(FastJsonFactory.me());  // json 驼峰，但是 record 等不能正常转换
         // json日期格式
         me.setJsonDatePattern("yyyy-MM-dd HH:mm:ss");
     }

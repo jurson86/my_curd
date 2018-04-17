@@ -32,13 +32,10 @@ public class AuthorityInterceptor implements Interceptor {
                 return;
             }
         }
-
         //没有权限
         BaseController baseController = (BaseController) inv.getController();
         baseController.addOpLog("访问无权限路径[" + actionKey + "]");
-
         inv.getController().render("/WEB-INF/views/common/no_permission.html");
-
     }
 
 }
