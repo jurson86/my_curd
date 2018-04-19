@@ -1,5 +1,6 @@
 /**
  * layer 弹出层 封装
+ * 弹窗组件和layer 耦合太深并不好，这个文件更应该是 弹窗-tools.js，内部具体封装弹窗工具
  */
 var layerTools = layerTools || {};
 (function () {

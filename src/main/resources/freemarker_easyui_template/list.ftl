@@ -64,6 +64,7 @@
        data-options="onDblClickRow:editModel"
        toolbar="#tb" rownumbers="true" border="false"
        fit="true"    fitColumns="true"
+       striped="true"
        pagination="true" singleSelect="true"
        pageSize="40" pageList="[20,40]">
     <thead>
