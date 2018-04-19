@@ -1,5 +1,6 @@
 :not(.fa){
-    font-family:  "Arial","Microsoft YaHei","黑体","宋体",sans-serif !important;
+    font-family: "Helvetica Neue",Helvetica,Arial,"Microsoft Yahei","Hiragino Sans GB","Heiti SC","WenQuanYi Micro Hei",sans-serif  !important;
+    /*font-family:  "Arial","Microsoft YaHei","黑体","宋体",sans-serif !important;*/
 }
 
 /*main header*/
