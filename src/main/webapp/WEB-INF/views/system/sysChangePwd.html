@@ -73,6 +73,9 @@
                 layerTools.layerMsg(data, function () {
                     window.location.reload();
                 });
+            },
+            error:function(x,h,r){
+                layerTools.AlertErrorMsg();
             }
         })
     });

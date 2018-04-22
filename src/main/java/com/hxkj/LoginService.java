@@ -6,24 +6,26 @@ import java.util.*;
 
 
 public class LoginService {
-    private List<SysMenu> allMenuList;
-    private List<SysMenu> userMenuList;
 
     /**
      * 获得用户菜单
      */
     public List<SysMenu> getUserMenu(String roleIds) {
+        // 所有菜单
+        List<SysMenu> allMenuList = SysMenu.dao.findAll();
+        // 数据用户的菜单（叶子，不包含非叶子）
+        List<SysMenu> userMenuList = SysMenu.dao.findByRoleIds(roleIds);
 
-        allMenuList = SysMenu.dao.findAll();
-        userMenuList = SysMenu.dao.findByRoleIds(roleIds);
+        // 放入必须的 非叶子节点
         Set<SysMenu> chainSet = new HashSet<SysMenu>();
         for (SysMenu menu : userMenuList) {
             chainSet.add(menu);
             getPChain(allMenuList, menu, chainSet);
         }
+
         //排序
-        List<SysMenu> chainList = new ArrayList<SysMenu>(chainSet);
-        Collections.sort(chainList, new Comparator<SysMenu>() {
+        userMenuList= new ArrayList<SysMenu>(chainSet);
+        Collections.sort(userMenuList, new Comparator<SysMenu>() {
             public int compare(SysMenu o1, SysMenu o2) {
                 if (o1.get("sort") == null || o2.get("sort") == null
                         || o1.getInt("sort") < o2.getInt("sort")) {
@@ -32,15 +34,7 @@ public class LoginService {
                 return 0;
             }
         });
-
-        // 每一个菜单都拥有当前菜单的所有子菜单
-        //formatSubMenu(chainList);
-
-        List<SysMenu> result = new ArrayList<SysMenu>();
-        for (SysMenu menu : chainList) {
-            result.add(menu);
-        }
-        return result;
+        return userMenuList;
     }
 
     /**

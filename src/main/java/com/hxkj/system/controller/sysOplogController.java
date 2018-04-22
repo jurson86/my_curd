@@ -2,13 +2,12 @@ package com.hxkj.system.controller;
 
 import com.hxkj.common.constant.Constant;
 import com.hxkj.common.util.BaseController;
-import com.hxkj.common.util.SearchSql;
+import com.hxkj.common.util.search.SearchSql;
 import com.hxkj.common.util.ToolString;
 import com.hxkj.common.util.csv.CsvRender;
 import com.hxkj.common.util.excel.PoiRender;
 import com.hxkj.system.model.SysOplog;
 import com.jfinal.aop.Before;
-import com.jfinal.plugin.activerecord.ActiveRecordException;
 import com.jfinal.plugin.activerecord.Db;
 import com.jfinal.plugin.activerecord.Page;
 import com.jfinal.plugin.activerecord.tx.Tx;
@@ -68,12 +67,10 @@ public class sysOplogController extends BaseController {
     public void deleteAction() {
         String ids = getPara("ids");
         ids = "'" + ids.replace(",", "','") + "'";
-        try {
-            String deleteSql = "delete from sys_oplog where id  in ( " + ids + " ) ";
-            Db.update(deleteSql);
-            renderText(Constant.DELETE_SUCCESS);
-        } catch (ActiveRecordException e) {
-            renderText(Constant.DELETE_FAIL);
-        }
+        String deleteSql = "delete from sys_oplog where id  in ( " + ids + " ) ";
+        Db.update(deleteSql);
+        //int x = 1/0;  // 异常测试回滚
+        renderText(Constant.DELETE_SUCCESS);
     }
+
 }

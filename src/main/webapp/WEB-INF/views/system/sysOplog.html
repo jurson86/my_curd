@@ -27,7 +27,7 @@
                     layerTools.layerMsg(data, function () {
                         $('#dg').datagrid('reload');
                     });
-                }, "text");
+                }, "text").error(function(){layerTools.AlertErrorMsg(); });
             });
         } else {
             layerTools.layerMsg('请选择记录进行删除');

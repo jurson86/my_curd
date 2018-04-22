@@ -3,7 +3,7 @@ package com.hxkj.system.controller;
 import com.hxkj.common.constant.Constant;
 import com.hxkj.common.util.BaseController;
 import com.hxkj.common.util.Identities;
-import com.hxkj.common.util.SearchSql;
+import com.hxkj.common.util.search.SearchSql;
 import com.hxkj.system.model.SysRole;
 import com.hxkj.system.model.SysUser;
 import com.hxkj.system.model.SysUserRole;
@@ -77,18 +77,13 @@ public class SysUserController extends BaseController {
     @Before(Tx.class)
     public void deleteAction() {
         String id = getPara("id");
-        try {
-            // 用户表
-            String deleteSql = "delete from sys_user where id = ?";
-            Db.update(deleteSql, id);
-            //用户角色表
-            deleteSql = "delete from sys_user_role where user_id = ?";
-            Db.update(deleteSql, id);
-            renderText(Constant.DELETE_SUCCESS);
-        } catch (ActiveRecordException e) {
-            e.printStackTrace();
-            renderText(Constant.DELETE_FAIL);
-        }
+        // 用户表
+        String deleteSql = "delete from sys_user where id = ?";
+        Db.update(deleteSql, id);
+        //用户角色表
+        deleteSql = "delete from sys_user_role where user_id = ?";
+        Db.update(deleteSql, id);
+        renderText(Constant.DELETE_SUCCESS);
     }
 
 
@@ -99,21 +94,16 @@ public class SysUserController extends BaseController {
     public void giveRole() {
         String userId = getPara("userId");
         String roleIdstr = getPara("roleIds");
-        try {
-            String deleteSql = "delete from  sys_user_role where user_id = ?";
-            Db.update(deleteSql, userId);
-            String[] roleIds = roleIdstr.split(";");
-            for (int i = 0; i < roleIds.length; i++) {
-                SysUserRole sysUserRole = new SysUserRole();
-                sysUserRole.setUserId(userId);
-                sysUserRole.setRoleId(Integer.parseInt(roleIds[i]));
-                sysUserRole.save();
-            }
-            renderText("赋予角色成功");
-        } catch (ActiveRecordException e) {
-            e.printStackTrace();
-            renderText("赋予角色失败");
+        String deleteSql = "delete from  sys_user_role where user_id = ?";
+        Db.update(deleteSql, userId);
+        String[] roleIds = roleIdstr.split(";");
+        for (int i = 0; i < roleIds.length; i++) {
+            SysUserRole sysUserRole = new SysUserRole();
+            sysUserRole.setUserId(userId);
+            sysUserRole.setRoleId(Integer.parseInt(roleIds[i]));
+            sysUserRole.save();
         }
+        renderText("赋予角色成功");
 
     }
 

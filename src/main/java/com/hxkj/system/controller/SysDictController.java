@@ -3,7 +3,7 @@ package com.hxkj.system.controller;
 import com.google.common.base.Preconditions;
 import com.hxkj.common.constant.Constant;
 import com.hxkj.common.util.BaseController;
-import com.hxkj.common.util.SearchSql;
+import com.hxkj.common.util.search.SearchSql;
 import com.hxkj.common.util.ToolFormatJson;
 import com.hxkj.system.model.SysDict;
 import com.jfinal.aop.Before;
@@ -13,8 +13,6 @@ import com.jfinal.kit.StrKit;
 import com.jfinal.plugin.activerecord.Db;
 import com.jfinal.plugin.activerecord.Page;
 import com.jfinal.plugin.activerecord.Record;
-import com.jfinal.plugin.ehcache.CacheInterceptor;
-import com.jfinal.plugin.redis.RedisInterceptor;
 
 import java.util.List;
 

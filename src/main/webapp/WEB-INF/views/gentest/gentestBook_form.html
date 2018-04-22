@@ -21,7 +21,8 @@
             },
             success: function (data) {
                 parent.layerTools.layerMsg(data, function () {
-                    parent.window.location.reload();
+                    parent.$("#dg").datagrid("reload");
+                    parent.layer.close(parent.layer.getFrameIndex(window.name));
                 });
             }
         });

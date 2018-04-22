@@ -2,13 +2,12 @@ package com.hxkj.system.controller;
 
 import com.hxkj.common.constant.Constant;
 import com.hxkj.common.util.BaseController;
-import com.hxkj.common.util.SearchSql;
+import com.hxkj.common.util.search.SearchSql;
 import com.hxkj.system.model.SysMenu;
 import com.hxkj.system.model.SysRole;
 import com.hxkj.system.model.SysRoleMenu;
 import com.jfinal.aop.Before;
 import com.jfinal.kit.StrKit;
-import com.jfinal.plugin.activerecord.ActiveRecordException;
 import com.jfinal.plugin.activerecord.Db;
 import com.jfinal.plugin.activerecord.Page;
 import com.jfinal.plugin.activerecord.tx.Tx;
@@ -72,21 +71,16 @@ public class SysRoleController extends BaseController {
     @Before(Tx.class)
     public void deleteAction() {
         Integer id = getParaToInt("id");
-        try {
-            // 角色表
-            String deleteSql = "delete from sys_role where id = ?";
-            Db.update(deleteSql, id);
-            // 角色 菜单中间表
-            deleteSql = "delete from sys_role_menu where role_id = ?";
-            Db.update(deleteSql, id);
-            //用户角色表
-            deleteSql = "delete from sys_user_role where role_id = ?";
-            Db.update(deleteSql, id);
-            renderText(Constant.DELETE_SUCCESS);
-        } catch (ActiveRecordException e) {
-            e.printStackTrace();
-            renderText(Constant.DELETE_FAIL);
-        }
+        // 角色表
+        String deleteSql = "delete from sys_role where id = ?";
+        Db.update(deleteSql, id);
+        // 角色 菜单中间表
+        deleteSql = "delete from sys_role_menu where role_id = ?";
+        Db.update(deleteSql, id);
+        //用户角色表
+        deleteSql = "delete from sys_user_role where role_id = ?";
+        Db.update(deleteSql, id);
+        renderText(Constant.DELETE_SUCCESS);
     }
 
 
@@ -97,23 +91,18 @@ public class SysRoleController extends BaseController {
     public void givePermission() {
         Integer roleId = getParaToInt("roleId");
         String permissIds = getPara("permissIds");
-        try {
-            String deleteSql = "delete from  sys_role_menu where role_id = ?";
-            Db.update(deleteSql, roleId);
-            if (StrKit.notBlank(permissIds)) {
-                String[] menuIds = permissIds.split(";");
-                for (int i = 0; i < menuIds.length; i++) {
-                    SysRoleMenu sysRoleMenu = new SysRoleMenu();
-                    sysRoleMenu.setRoleId(roleId);
-                    sysRoleMenu.setMenuId(Integer.parseInt(menuIds[i]));
-                    sysRoleMenu.save();
-                }
+        String deleteSql = "delete from  sys_role_menu where role_id = ?";
+        Db.update(deleteSql, roleId);
+        if (StrKit.notBlank(permissIds)) {
+            String[] menuIds = permissIds.split(";");
+            for (int i = 0; i < menuIds.length; i++) {
+                SysRoleMenu sysRoleMenu = new SysRoleMenu();
+                sysRoleMenu.setRoleId(roleId);
+                sysRoleMenu.setMenuId(Integer.parseInt(menuIds[i]));
+                sysRoleMenu.save();
             }
-            renderText("赋权成功");
-        } catch (ActiveRecordException e) {
-            e.printStackTrace();
-            renderText("赋权失败");
         }
+        renderText("赋权成功");
     }
 
 

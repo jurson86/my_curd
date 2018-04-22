@@ -1,6 +1,7 @@
 <#include "/WEB-INF/views/common/common.html"/>
 <@layout>
 <link rel="stylesheet" href="${ctx!}/res/pure/buttons-min.css">
+<link rel="stylesheet" href="${ctx!}/res/layer/theme/default/layer.css">
 <script>
     /*main 页面不可被 iframe 嵌套，如果被嵌套跳转到到登录页面*/
     if(top.location!=self.location){
@@ -65,21 +66,15 @@
 </head>
 <body>
 <div id="mainLayout" class="easyui-layout" fit="true" border="false">
-    <div class="head" data-options="region:'north'"
-         border="false">
+    <div class="head" data-options="region:'north'" border="false">
         <span class="head-text">my_CURD</span>
         <span class="head-menu">
-                你好，${(session.system_user.name)!} &nbsp;
-                &nbsp;
-                (${(session.system_user_roles)!} )
-                &nbsp;
-                &nbsp;
-                <a class="pure-button pure-button-primary" href="${ctx!}/logout">
-                    <i class="fa fa-sign-out"></i>&nbsp;&nbsp;退出
-                </a>
-			</span>
+            你好，${(session.system_user.name)!} &nbsp;&nbsp;(${(session.system_user_roles)!} )&nbsp;&nbsp;
+            <a class="pure-button pure-button-primary" href="${ctx!}/logout">
+                <i class="fa fa-sign-out"></i>&nbsp;&nbsp;退出
+            </a>
+        </span>
     </div>
-    <!--background-color: #f7f7f7-->
     <div data-options="region:'west',split:false" title="功能导航" headerCls="btNone grayBg" bodyCls="grayBg" style=" width:200px;" tools="#leftTB">
         <div class="input-control">
             <input type="text" id="filterInput" placeholder="输入关键字、Enter过滤">
@@ -106,6 +101,8 @@
 </div>
 <script src="${ctx!}/res/js/easyui-tree-tools.js"></script>
 <script src="${ctx!}/res/js/tab-tools.js"></script>
+<script src="${ctx!}/res/layer/layer.js"></script>
+<script src="${ctx!}/res/js/layer-tools.js"></script>
 <script>
     ;(function () {
         var MainPage = {

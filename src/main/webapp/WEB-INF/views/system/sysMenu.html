@@ -22,7 +22,7 @@
                     layerTools.layerMsg(data, function () {
                         $('#tt').treegrid('reload');
                     });
-                }, "text");
+                }, "text").error(function(){ layerTools.AlertErrorMsg(); });
             });
 
         } else {

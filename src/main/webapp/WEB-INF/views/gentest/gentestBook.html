@@ -32,7 +32,7 @@
                     layerTools.layerMsg(data, function () {
                         $('#dg').datagrid('reload');
                     });
-                }, "text");
+                }, "text").error(function(){ layerTools.AlertErrorMsg(); });
             });
 
         } else {

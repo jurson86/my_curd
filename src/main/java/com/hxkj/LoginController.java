@@ -44,10 +44,13 @@ public class LoginController extends BaseController {
         String password = getCookie(passwordKey);
         LOG.debug("username from cookie: " + username);
         LOG.debug("password from cookie:+" + password);
-        if (username != null && password != null) {
+
+        //cookie username password 存在
+        if (StrKit.notBlank(username) && StrKit.notBlank(password)) {
             SysUser sysUser = SysUser.dao.findByUsernameAndPassword(username, password);
-            // 用户名密码正确且未被禁用
+            //cookie username password 有效
             if (sysUser != null && !sysUser.getDisabled().equals("1")) {
+                //session 中放入登录用户信息
                 setSessionAttr(Constant.SYSTEM_USER, sysUser);
                 setSessionAttr(Constant.SYSTEM_USER_NAME, sysUser.getName());
                 SysUserRole sysUserRole = SysUserRole.dao.findRolesByUserId(sysUser.getId());
@@ -67,13 +70,14 @@ public class LoginController extends BaseController {
     }
 
     /**
-     * 登录Action
+     * 登录表单提交地址
      */
     @Before(Tx.class)
     public void action() {
-
         String username = getPara("username");
         String password = getPara("password");
+
+        /*username password 无效*/
 
         if (StrKit.isBlank(username)) {
             setAttr("errMsg", "请填写用户名。");
@@ -106,20 +110,21 @@ public class LoginController extends BaseController {
             return;
         }
 
+        /*username password 有效*/
+
         String remember = getPara("remember");
-        // 记住密码 && cookie 不存在
+
+        //如果选中了记住密码且cookie信息不存在，生成新的cookie 信息
         if ("on".equals(remember) && getCookie(usernameKey) == null) {
             setCookie(usernameKey, username, 60 * 60 * 24 * 1); // 1天
             setCookie(passwordKey, password, 60 * 60 * 24 * 1);
         }
 
+        /*session 中存入当前用户信息*/
         //登录用户信息
         setSessionAttr(Constant.SYSTEM_USER, sysUser);
-
         //为了 druid session 监控用
         setSessionAttr(Constant.SYSTEM_USER_NAME, sysUser.getName());
-
-
         // 用户角色
         SysUserRole sysUserRole = SysUserRole.dao.findRolesByUserId(sysUser.getId());
         if (sysUserRole != null) {

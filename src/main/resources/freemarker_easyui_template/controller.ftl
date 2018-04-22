@@ -6,7 +6,7 @@ import com.jfinal.plugin.activerecord.Page;
 import com.hxkj.common.constant.Constant;
 import com.hxkj.common.util.BaseController;
 import com.hxkj.common.util.Identities;
-import com.hxkj.common.util.SearchSql;
+import com.hxkj.common.util.search.SearchSql;
 import ${(basePackageName)!}.${(moduleName)!}.model.${(table.tableNameCamelFirstUp)!};
 
 /**

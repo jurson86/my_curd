@@ -2,12 +2,11 @@ package com.hxkj.system.controller;
 
 import com.hxkj.common.constant.Constant;
 import com.hxkj.common.util.BaseController;
-import com.hxkj.common.util.SearchSql;
+import com.hxkj.common.util.search.SearchSql;
 import com.hxkj.system.model.SysOrg;
 import com.hxkj.system.model.SysUser;
 import com.jfinal.aop.Before;
 import com.jfinal.kit.StrKit;
-import com.jfinal.plugin.activerecord.ActiveRecordException;
 import com.jfinal.plugin.activerecord.Db;
 import com.jfinal.plugin.activerecord.Page;
 import com.jfinal.plugin.activerecord.Record;
@@ -98,24 +97,19 @@ public class SysOrgController extends BaseController {
     }
 
 
-    /**
-     * 1: 删除当前结构和子组织机构
-     * 2： 当前机构和子组织机构的 人员 orgId 设置为null
-     */
+
     @Before(Tx.class)
     public void deleteAction() {
         Integer id = getParaToInt("id");
-        try {
-            Record record = Db.findFirst("select getChildLst(?,'sys_org') as childrenIds ", id);
-            String childrenIds = record.getStr("childrenIds");  // 子、孙 id
-            String deleteSql = "delete from sys_org where  id  in (" + childrenIds + ")";
-            Db.update(deleteSql);
-            String updateSql = "update sys_user set org_id = null where  org_id in (" + childrenIds + ")";
-            Db.update(updateSql);
-            renderText(Constant.DELETE_SUCCESS);
-        } catch (ActiveRecordException e) {
-            renderText(Constant.DELETE_FAIL);
-        }
+        // 删除当前结构和子孙组织机构
+        Record record = Db.findFirst("select getChildLst(?,'sys_org') as childrenIds ", id);
+        String childrenIds = record.getStr("childrenIds");  // 子、孙 id
+        String deleteSql = "delete from sys_org where  id  in (" + childrenIds + ")";
+        Db.update(deleteSql);
+        // 当前机构和子组织机构的 人员 orgId 设置为null
+        String updateSql = "update sys_user set org_id = null where  org_id in (" + childrenIds + ")";
+        Db.update(updateSql);
+        renderText(Constant.DELETE_SUCCESS);
     }
 
 

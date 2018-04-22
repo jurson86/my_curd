@@ -23,6 +23,4 @@ public class GentestMulpktable extends BaseGentestMulpktable<GentestMulpktable> 
         return this.paginate(pageNumber, pageSize, sqlSelect, sqlExceptSelect);
     }
 
-    ;
-
 }

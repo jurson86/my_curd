@@ -1,4 +1,4 @@
-package com.hxkj.common.util;
+package com.hxkj.common.util.search;
 
 import com.hxkj.common.constant.Constant;
 import com.jfinal.aop.Interceptor;

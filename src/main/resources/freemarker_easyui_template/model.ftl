@@ -19,7 +19,7 @@ public class ${(table.tableNameCamelFirstUp)!} extends Base${table.tableNameCame
         if (StrKit.notBlank(where)) {
             sqlExceptSelect += " where " + where;
         }
-
+        /*jfinal paginate 函数使用 select count() 语句，该函数在百万级别数据效率非常低，数据量大不应该使用jfinal分页封装 */
         return this.paginate(pageNumber,pageSize,sqlSelect,sqlExceptSelect);
     }
 

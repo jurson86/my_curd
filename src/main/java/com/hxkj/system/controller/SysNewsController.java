@@ -3,7 +3,7 @@ package com.hxkj.system.controller;
 import com.hxkj.common.constant.Constant;
 import com.hxkj.common.util.BaseController;
 import com.hxkj.common.util.Identities;
-import com.hxkj.common.util.SearchSql;
+import com.hxkj.common.util.search.SearchSql;
 import com.hxkj.system.model.SysNews;
 import com.hxkj.system.model.SysUser;
 import com.jfinal.aop.Before;

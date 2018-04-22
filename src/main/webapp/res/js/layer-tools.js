@@ -91,6 +91,11 @@ var layerTools = layerTools || {};
      * @param fun 回调函数
      */
     layerTools.layerMsg = function (msg, fun) {
+        /*easyui form submit 没有 error500 监听，后台发生500 错误会跳转到500.html页面，此处判断包含html标签认为发生500错误*/
+        if(msg.indexOf('<')>=0){
+            layerTools.AlertErrorMsg();
+            return;
+        }
         layer.msg(msg, {time: 1000}, fun);
     }
 
@@ -130,6 +135,25 @@ var layerTools = layerTools || {};
                 noFun();
             }
             layer.close(index);
+        });
+    }
+
+
+    layerTools.AlertErrorMsg = function(title,msg){
+        title = title?title:'悄悄告诉你';
+        msg = msg ? msg:'系统发生严重错误了哥们！赶紧联系管理员。';
+        var mlayer;
+        if(top.location!=self.location){
+            mlayer = parent.layer;
+        }else{
+            mlayer = layer;
+        }
+        mlayer.alert(msg, {
+            icon: 5,
+            title: [title, 'background:#e74b3b; color:white; line-height:30px;height:30px;padding: 0 10px'],
+            btn: [],
+            shadeClose: true,
+            resize:false,
         });
     }
 })();

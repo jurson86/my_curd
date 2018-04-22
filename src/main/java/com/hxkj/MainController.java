@@ -14,14 +14,13 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * 管理主面板
- * 去掉权限拦截器
+ * 主界面
  */
 @Clear(AuthorityInterceptor.class)
 public class MainController extends BaseController {
 
     /**
-     * 操作面板页面
+     * 主界面首页
      */
     @Before(SessionInViewInterceptor.class)
     public void index() {
@@ -30,12 +29,11 @@ public class MainController extends BaseController {
 
 
     /**
-     * 用户权限数据
+     * 左侧权限树 数据
      */
     public void permissionTree() {
         List<SysMenu> ownSysMenus = getSessionAttr(Constant.OWN_MENU);
         List<Map<String, Object>> maps = new ArrayList<Map<String, Object>>();
-
         // 简单的json格式数据，树形结构由前端 js算法处理
         if (ownSysMenus != null) {
             for (SysMenu sysMenu : ownSysMenus) {
@@ -47,7 +45,6 @@ public class MainController extends BaseController {
                 map.put("text", sysMenu.getName());
                 maps.add(map);
             }
-
         }
         renderJson(maps);
     }

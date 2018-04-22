@@ -38,7 +38,7 @@
                     layerTools.layerMsg(data, function () {
                         $('#tt').treegrid('reload');
                     });
-                }, "text");
+                }, "text").error(function(){ layerTools.AlertErrorMsg(); });
             });
         } else {
             layerTools.layerMsg('请选择一行进行删除');

@@ -23,6 +23,4 @@ public class SysNews extends BaseSysNews<SysNews> implements java.io.Serializabl
         return this.paginate(pageNumber, pageSize, sqlSelect, sqlExceptSelect);
     }
 
-    ;
-
 }

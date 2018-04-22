@@ -1,4 +1,4 @@
-package com.hxkj.common.util;
+package com.hxkj.common.util.search;
 
 import com.jfinal.kit.StrKit;
 

@@ -19,10 +19,7 @@ public class GentestBook extends BaseGentestBook<GentestBook> implements java.io
         if (StrKit.notBlank(where)) {
             sqlExceptSelect += " where " + where;
         }
-
         return this.paginate(pageNumber, pageSize, sqlSelect, sqlExceptSelect);
     }
-
-    ;
 
 }

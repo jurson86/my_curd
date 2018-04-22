@@ -37,8 +37,11 @@ public class AppConfig extends JFinalConfig {
         me.setMaxPostSize(10 * 1024 * 1000);  // 10M
         me.setBaseDownloadPath("download");
         me.setViewType(ViewType.FREE_MARKER);
-        //设置404渲染视图
-        //me.setError404View();
+
+        me.setError403View(Constant.VIEW_PATH+"common/403.html");
+        me.setError404View(Constant.VIEW_PATH+"common/404.html");
+        me.setError500View(Constant.VIEW_PATH+"common/500.html");
+
         // json日期格式
         me.setJsonDatePattern("yyyy-MM-dd HH:mm:ss");
     }

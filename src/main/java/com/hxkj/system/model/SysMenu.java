@@ -32,7 +32,11 @@ public class SysMenu extends BaseSysMenu<SysMenu> {
     public List<SysMenu> findByRoleIds(String roleIds) {
         List<SysMenu> result = new ArrayList<SysMenu>();
         if (StrKit.notBlank(roleIds)) {
-            result = find("select distinct b.* from sys_role_menu a join sys_menu b on a.menu_id=b.id where a.role_id in(" + roleIds + ")");
+            result = find("select distinct b.*" +
+                    " from sys_role_menu a" +
+                    " join sys_menu b" +
+                    " on a.menu_id=b.id" +
+                    " where a.role_id in(" + roleIds + ")");
         }
         return result;
     }

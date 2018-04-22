@@ -3,7 +3,7 @@ package com.hxkj.gentest.controller;
 import com.hxkj.common.constant.Constant;
 import com.hxkj.common.util.BaseController;
 import com.hxkj.common.util.Identities;
-import com.hxkj.common.util.SearchSql;
+import com.hxkj.common.util.search.SearchSql;
 import com.hxkj.gentest.model.GentestBook;
 import com.jfinal.aop.Before;
 import com.jfinal.plugin.activerecord.Page;

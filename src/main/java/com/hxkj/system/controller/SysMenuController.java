@@ -1,12 +1,10 @@
 package com.hxkj.system.controller;
 
-
 import com.hxkj.common.constant.Constant;
 import com.hxkj.common.util.BaseController;
-import com.hxkj.common.util.SearchSql;
+import com.hxkj.common.util.search.SearchSql;
 import com.hxkj.system.model.SysMenu;
 import com.jfinal.aop.Before;
-import com.jfinal.plugin.activerecord.ActiveRecordException;
 import com.jfinal.plugin.activerecord.Db;
 import com.jfinal.plugin.activerecord.Record;
 import com.jfinal.plugin.activerecord.tx.Tx;
@@ -15,7 +13,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 
 /**
  * 系统菜单管理
@@ -52,6 +49,9 @@ public class SysMenuController extends BaseController {
 
     public void addAction() {
         SysMenu sysMenu = getBean(SysMenu.class, "");
+        if(sysMenu.getPid()==null){
+            sysMenu.setPid(0);
+        }
         boolean saveFlag = sysMenu.save();
         if (saveFlag) {
             renderText(Constant.ADD_SUCCESS);
@@ -63,7 +63,9 @@ public class SysMenuController extends BaseController {
 
     public void updateAction() {
         SysMenu sysMenu = getBean(SysMenu.class, "");
-
+        if(sysMenu.getPid()==null){
+            sysMenu.setPid(0);
+        }
         boolean updateFlag = sysMenu.update();
         if (updateFlag) {
             renderText(Constant.UPDATE_SUCCESS);
@@ -77,24 +79,21 @@ public class SysMenuController extends BaseController {
     @Before(Tx.class)
     public void deleteAction() {
         Integer id = getParaToInt("id");
-        try {
-            Record record = Db.findFirst("select getChildLst(?,'sys_menu') as childrenIds ", id);
-            String childrenIds = record.getStr("childrenIds");  // 子、孙 id
-            // 删除相应 角色菜单
-            String deleteSql = "delete from sys_menu where id in (" + childrenIds + ")";
-            Db.update(deleteSql);
-            // 删除角色菜单关联数据
-            deleteSql = "delete from sys_role_menu where menu_id in (" + childrenIds + ") ";
-            Db.update(deleteSql);
-            renderText(Constant.DELETE_SUCCESS);
-        } catch (ActiveRecordException e) {
-            e.printStackTrace();
-            renderText(Constant.DELETE_FAIL);
-        }
+
+        //删除当前菜单节点以及子孙节点
+        Record record = Db.findFirst("select getChildLst(?,'sys_menu') as childrenIds ", id);
+        String childrenIds = record.getStr("childrenIds");  // 子、孙 id
+        String deleteSql = "delete from sys_menu where id in (" + childrenIds + ")";
+        Db.update(deleteSql);
+
+        //删除当前菜单节点以及子节点 关联的 角色关系
+        deleteSql = "delete from sys_role_menu where menu_id in (" + childrenIds + ") ";
+        Db.update(deleteSql);
+        renderText(Constant.DELETE_SUCCESS);
     }
 
     /**
-     * 全部菜单
+     * 所有菜单
      */
     public void allMenu() {
         List<SysMenu> sysMenus = SysMenu.dao.findAll();
