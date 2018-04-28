@@ -1,6 +1,5 @@
 package com.hxkj.common.util;
 
-
 import org.apache.log4j.Logger;
 
 import java.io.ByteArrayInputStream;

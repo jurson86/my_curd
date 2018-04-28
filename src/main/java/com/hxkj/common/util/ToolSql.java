@@ -10,12 +10,12 @@ import java.util.StringTokenizer;
  * SQL格式化处理
  */
 
-public abstract class ToolFormatSql {
+public abstract class ToolSql {
 
     /**
      * sql格式化方法
      */
-    public static String format(String sql) {
+    public static String formatSql(String sql) {
         String sqlTemp = sql.toLowerCase().trim();
         if (sqlTemp.startsWith("select")
                 || sqlTemp.startsWith("update")

@@ -4,11 +4,9 @@ import com.google.common.base.Preconditions;
 import com.hxkj.common.constant.Constant;
 import com.hxkj.common.util.BaseController;
 import com.hxkj.common.util.search.SearchSql;
-import com.hxkj.common.util.ToolFormatJson;
 import com.hxkj.system.model.SysDict;
 import com.jfinal.aop.Before;
 import com.jfinal.aop.Clear;
-import com.jfinal.kit.JsonKit;
 import com.jfinal.kit.StrKit;
 import com.jfinal.plugin.activerecord.Db;
 import com.jfinal.plugin.activerecord.Page;
@@ -100,18 +98,11 @@ public class SysDictController extends BaseController {
      */
     @Clear
     public void queryDictData() {
-        String format = getPara("formatFlag"); // json 是否格式化(有改参数返回的json经过格式化)
-
         String fields = getPara("fields");  //查询的字段 例如dict_key as label, dict_value as value
         String type = getPara("type");      // 字典字段类型
         Preconditions.checkNotNull(fields, "fields字段信息不能为空");
         String strWhere = StrKit.notBlank(type) ? " where  dict_type = '" + type + "'" : "";
         List<Record> codeData = Db.find("select " + fields + " from  sys_dict" + strWhere);
-        String jsonStr = JsonKit.toJson(codeData);
-
-        if (StrKit.notBlank(format)) {
-            jsonStr = ToolFormatJson.format(jsonStr);
-        }
-        renderJson(jsonStr);
+        renderJson(codeData);
     }
 }

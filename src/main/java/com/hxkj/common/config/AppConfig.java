@@ -9,6 +9,8 @@ import com.hxkj.websocket.controller.WebsocketController;
 import com.hxkj.websocket.handler.WebSocketHandler;
 import com.jfinal.config.*;
 import com.jfinal.ext.handler.ContextPathHandler;
+import com.jfinal.json.FastJson;
+import com.jfinal.json.MixedJsonFactory;
 import com.jfinal.kit.PropKit;
 import com.jfinal.plugin.activerecord.ActiveRecordPlugin;
 import com.jfinal.plugin.activerecord.dialect.MysqlDialect;
@@ -42,7 +44,9 @@ public class AppConfig extends JFinalConfig {
         me.setError404View(Constant.VIEW_PATH+"common/404.html");
         me.setError500View(Constant.VIEW_PATH+"common/500.html");
 
-        // json日期格式
+
+        //object to jsonstr  use Jfinaljson  ,  jsonstr to Object use  fastjson
+        me.setJsonFactory(MixedJsonFactory.me());
         me.setJsonDatePattern("yyyy-MM-dd HH:mm:ss");
     }
 

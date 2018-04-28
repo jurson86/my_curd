@@ -60,7 +60,6 @@ public abstract class ToolNet {
         if (os.toLowerCase().indexOf("windows") == -1) {
             encode = "UTF-8";
         }
-
         try {
             String command = "ping " + ip;
             ByteArrayOutputStream outputStream = new ByteArrayOutputStream();

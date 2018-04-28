@@ -324,9 +324,7 @@ public abstract class ToolWeb {
     }
 
     /**
-     * 根据配置文件 效验Referer有效性
-     * （防止资源外链）
-     *
+     * 根据配置文件 效验Referer有效性（防止资源外链）
      * @return
      */
     public static boolean authReferer(HttpServletRequest request) {

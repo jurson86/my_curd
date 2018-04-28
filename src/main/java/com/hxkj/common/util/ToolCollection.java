@@ -8,18 +8,14 @@ public class ToolCollection {
 
     /**
      * 分割List
-     *
      * @param list     待分割的list
      * @param pageSize 每段list的大小
-     * @return List<<List<T>>
+     * @return
      */
     public static <T> List<List<T>> splitList(List<T> list, int pageSize) {
         int listSize = list.size();
         int page = (listSize + (pageSize - 1)) / pageSize;
-
         List<List<T>> listArray = new ArrayList<List<T>>();
-
-
         for (int i = 0; i < page; i++) {
             List<T> subList = new ArrayList<T>();
             for (int j = 0; j < listSize; j++) {
