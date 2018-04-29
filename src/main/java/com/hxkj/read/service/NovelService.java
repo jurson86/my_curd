@@ -4,9 +4,12 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.hxkj.common.util.ToolRandom;
+import com.jfinal.kit.HttpKit;
 import org.apache.commons.io.FileUtils;
+import org.apache.http.NameValuePair;
 import org.apache.http.client.fluent.Content;
 import org.apache.http.client.fluent.Request;
+import org.apache.http.message.BasicNameValuePair;
 import org.apache.log4j.Logger;
 
 import java.io.File;
@@ -407,4 +410,6 @@ public class NovelService {
         map.put("path", txtFile.getAbsolutePath());
         return map;
     }
+
+
 }

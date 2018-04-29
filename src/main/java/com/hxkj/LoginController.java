@@ -2,6 +2,7 @@ package com.hxkj;
 
 import com.hxkj.common.constant.Constant;
 import com.hxkj.common.interceptor.AuthorityInterceptor;
+import com.hxkj.common.interceptor.readJsonInterceptor;
 import com.hxkj.common.util.BaseController;
 import com.hxkj.system.model.SysMenu;
 import com.hxkj.system.model.SysUser;
@@ -10,10 +11,7 @@ import com.jfinal.aop.Before;
 import com.jfinal.aop.Clear;
 import com.jfinal.aop.Duang;
 import com.jfinal.core.ActionKey;
-import com.jfinal.kit.HashKit;
-import com.jfinal.kit.Prop;
-import com.jfinal.kit.PropKit;
-import com.jfinal.kit.StrKit;
+import com.jfinal.kit.*;
 import com.jfinal.plugin.activerecord.tx.Tx;
 import jodd.util.URLDecoder;
 import org.apache.log4j.Logger;
@@ -161,7 +159,7 @@ public class LoginController extends BaseController {
     // 无用
     @ActionKey("/captcha")
     public void captcha() {
-        renderCaptcha();
+       renderCaptcha();
     }
 
     // 无用
@@ -172,4 +170,10 @@ public class LoginController extends BaseController {
         renderQrCode(text, 200, 200);
     }
 
+    // 无用
+    @Before(readJsonInterceptor.class)
+    @ActionKey("/api/json")
+    public void json(){
+       renderText("over");
+    }
 }

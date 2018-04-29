@@ -9,7 +9,6 @@ import com.hxkj.websocket.controller.WebsocketController;
 import com.hxkj.websocket.handler.WebSocketHandler;
 import com.jfinal.config.*;
 import com.jfinal.ext.handler.ContextPathHandler;
-import com.jfinal.json.FastJson;
 import com.jfinal.json.MixedJsonFactory;
 import com.jfinal.kit.PropKit;
 import com.jfinal.plugin.activerecord.ActiveRecordPlugin;
@@ -45,7 +44,8 @@ public class AppConfig extends JFinalConfig {
         me.setError500View(Constant.VIEW_PATH+"common/500.html");
 
 
-        //object to jsonstr  use Jfinaljson  ,  jsonstr to Object use  fastjson
+        //jfinaljson 和 fastjson 混合，jfinaljson 不依赖get 方法，可以model 转换为jsonstr
+        // fastjson 方便将字符串 转换为jsonobject
         me.setJsonFactory(MixedJsonFactory.me());
         me.setJsonDatePattern("yyyy-MM-dd HH:mm:ss");
     }

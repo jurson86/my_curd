@@ -42,25 +42,38 @@ public class LoginFilter implements Filter {
         String contextPath = request.getContextPath();
         req.setAttribute("ctx", contextPath);
 
-        // 不拦截 登录、静态资源
-        if (!curUrl.endsWith("login/index")
-                && !curUrl.endsWith("login/action")
-                && !curUrl.startsWith(contextPath + "/res")) {
+        // 不拦截登录页面 静态资源 数据接口页面
+        /*
+           if (!curUrl.startsWith(contextPath + "/login")
+                    && !curUrl.startsWith(contextPath + "/res")
+                    && !curUrl.startsWith(contextPath + "/api")) {
+                if (session.getAttribute(Constant.SYSTEM_USER) == null) {
+                    response.sendRedirect(request.getContextPath() + "/login/index");
+                    return;
+                }
+                if (curUrl.equals(contextPath) || curUrl.equals(contextPath + "/index")) {
+                    response.sendRedirect(request.getContextPath() + "/main");
+                    return;
+                }
+            }
+        */
 
-            // 登录，跳转到登录界面
+        // 可能比上面注释的效率更好
+        if( curUrl.startsWith(contextPath + "/res")
+                || curUrl.startsWith(contextPath + "/api")
+                ||  curUrl.startsWith(contextPath + "/login")  ){
+            LOG.debug("loginFilter不拦截："+curUrl);
+        }else{
             if (session.getAttribute(Constant.SYSTEM_USER) == null) {
                 response.sendRedirect(request.getContextPath() + "/login/index");
                 return;
             }
-
-            // 当前路径为 contextPath 或者 contextPath+"index" 时 跳转到  main
             if (curUrl.equals(contextPath) || curUrl.equals(contextPath + "/index")) {
                 response.sendRedirect(request.getContextPath() + "/main");
                 return;
             }
         }
 
-        // 静态资源、非登录肉有、已登录 通过
         filterChain.doFilter(req, res);
     }
 
