@@ -1,6 +1,10 @@
 package com.hxkj.common.constant;
 
+/**
+ * 系统的全部常量
+ */
 public class Constant {
+
     // 当前系统登录的 用户
     public final static String SYSTEM_USER = "system_user";
     public final static String SYSTEM_USER_NAME = "system_user_name";

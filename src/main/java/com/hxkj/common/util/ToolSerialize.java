@@ -13,6 +13,7 @@ import java.io.ObjectOutputStream;
 public abstract class ToolSerialize {
 
     private final static Logger LOG = Logger.getLogger(ToolSerialize.class);
+    private ToolSerialize(){}
 
     /**
      * 序列化

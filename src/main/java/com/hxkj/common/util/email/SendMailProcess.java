@@ -72,7 +72,6 @@ public class SendMailProcess implements Callable<Boolean> {
         prop.put("mail.smtp.host", this.host);
         prop.put("mail.smtp.port", this.port);
         prop.put("mail.smtp.auth", validate ? "true" : "false");
-
         // 针对 发送者 是 google 邮箱
         if (this.host.contains("smtp.gmail.com")) {
             prop.setProperty("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
@@ -80,7 +79,6 @@ public class SendMailProcess implements Callable<Boolean> {
             prop.setProperty("mail.smtp.port", "465");
             prop.setProperty("mail.smtp.socketFactory.port", "465");
         }
-
         return prop;
     }
 
@@ -89,7 +87,6 @@ public class SendMailProcess implements Callable<Boolean> {
         boolean flag = false;
         MailAuthenticator authenticator = null;
         Properties pro = getProperties();
-
         // 需要身份认证
         if (this.validate) {
             authenticator = new MailAuthenticator(this.userName, this.password);
@@ -111,9 +108,7 @@ public class SendMailProcess implements Callable<Boolean> {
             mailMessage.setRecipients(Message.RecipientType.TO, tos);
             mailMessage.setSubject(this.subject);
             mailMessage.setSentDate(new Date());
-
             Multipart multipart = new MimeMultipart();
-
             // 邮件内容
             // html 或者 text 邮件
             MimeBodyPart mbp = new MimeBodyPart();
@@ -125,9 +120,7 @@ public class SendMailProcess implements Callable<Boolean> {
             } else {
                 throw new UnsupportedOperationException("邮件类型只可以未MailType.HTML 或者 MailType.TEXT");
             }
-
             multipart.addBodyPart(mbp);
-
             // 邮件附件
             if(this.attachFileNames!=null){
                 for (String attachFile : this.attachFileNames) {
@@ -139,7 +132,6 @@ public class SendMailProcess implements Callable<Boolean> {
                     multipart.addBodyPart(mbpTemp);
                 }
             }
-
             mailMessage.setContent(multipart);
             Transport.send(mailMessage);
             flag = true;

@@ -16,6 +16,7 @@ import java.net.UnknownHostException;
 public abstract class ToolNet {
 
     private final static Logger LOG = Logger.getLogger(ToolNet.class);
+    private ToolNet(){}
 
     /**
      * 本机IP

@@ -13,11 +13,8 @@ import java.io.FileOutputStream;
  * 图片水印处理
  */
 public abstract class ImageWatermark {
-
-
     /**
      * 把图片印刷到图片上
-     *
      * @param pressImg  -- 水印文件
      * @param targetImg -- 目标文件
      * @param x
@@ -51,7 +48,6 @@ public abstract class ImageWatermark {
 
     /**
      * 打印文字水印图片，右下角计算坐标
-     *
      * @param pressText --文字
      * @param targetImg -- 目标图片
      * @param fontName  -- 字体名
@@ -61,8 +57,7 @@ public abstract class ImageWatermark {
      * @param x         -- 偏移量
      * @param y
      */
-    public static void pressText(String pressText, String targetImg,
-                                 String fontName, int fontStyle, int color, int fontSize, int x, int y) {
+    public static void pressText(String pressText, String targetImg,String fontName, int fontStyle, int color, int fontSize, int x, int y) {
         try {
             File _file = new File(targetImg);
             Image src = ImageIO.read(_file);
@@ -83,11 +78,4 @@ public abstract class ImageWatermark {
             System.out.println(e);
         }
     }
-
-    public static void main(String[] args) {
-        //图片水印处理
-        //pressImage("D:/194122749129953.jpg", "D:/aaa.jpg", 20, 20);//前面的图片印刷到后面的图片
-        pressText("http://www.4bu4.com", "d:/sago.jpg", "", 11, 11, 20, 300, 20);//右下角是坐标定点
-    }
-
 }

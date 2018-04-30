@@ -12,14 +12,8 @@ import java.util.List;
 import java.util.Map;
 
 
-public class BaseController extends Controller {
+public abstract class BaseController extends Controller {
 
-
-    /**
-     * 返回 datagrid 数据
-     *
-     * @param pageData
-     */
     protected void renderDatagrid(Page<?> pageData) {
         Map<String, Object> datagrid = new HashMap<String, Object>();
         datagrid.put("rows", pageData.getList());

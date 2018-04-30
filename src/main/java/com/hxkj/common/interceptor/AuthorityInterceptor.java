@@ -19,7 +19,6 @@ public class AuthorityInterceptor implements Interceptor {
 
     private final static Logger LOG = Logger.getLogger(AuthorityInterceptor.class);
 
-
     public void intercept(Invocation inv) {
         String actionKey = inv.getActionKey();
         List<SysMenu> ownSysMenus = inv.getController().getSessionAttr(Constant.OWN_MENU);
@@ -32,7 +31,7 @@ public class AuthorityInterceptor implements Interceptor {
                 return;
             }
         }
-        //没有权限
+        // 没有权限
         BaseController baseController = (BaseController) inv.getController();
         baseController.addOpLog("访问无权限路径[" + actionKey + "]");
         inv.getController().render("/WEB-INF/views/common/no_permission.html");

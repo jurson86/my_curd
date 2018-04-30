@@ -15,6 +15,7 @@ import java.util.*;
 public abstract class ToolDateTime {
 
     private static final Logger LOG = Logger.getLogger(ToolDateTime.class);
+    private ToolDateTime(){}
 
     public static final String pattern_ym = "yyyy-MM"; // pattern_ym
     public static final int pattern_ym_length = 7;

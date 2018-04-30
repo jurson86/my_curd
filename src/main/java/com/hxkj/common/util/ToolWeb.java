@@ -23,6 +23,7 @@ import java.util.Map;
 public abstract class ToolWeb {
 
     private final static Logger LOG = Logger.getLogger(ToolWeb.class);
+    private ToolWeb(){}
 
     /**
      * 获取客户端IP地址

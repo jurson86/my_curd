@@ -18,8 +18,7 @@ public abstract class ImageTailor {
 
 
     /**
-     * 裁剪
-     *
+     * 图片裁剪
      * @param srcPath  源图片路径名称如:c:/1.jpg
      * @param savePath 剪切图片存放路径名称.如:c:/2.jpg
      * @param x        剪切点x坐标
@@ -30,7 +29,6 @@ public abstract class ImageTailor {
      */
     public static void cut(String srcPath, String savePath, int x, int y, int width, int height) {
         String houZhui = srcPath.substring(srcPath.lastIndexOf(".") + 1);// 后缀
-
         FileInputStream is = null;
         ImageInputStream iis = null;
         try {
@@ -81,7 +79,6 @@ public abstract class ImageTailor {
                     e.printStackTrace();
                 }
             }
-
             if (iis != null) {
                 try {
                     iis.close();
@@ -90,11 +87,6 @@ public abstract class ImageTailor {
                 }
             }
         }
-    }
-
-
-    public static void main(String[] args) throws Exception {
-        ImageTailor.cut("d:/sago.jpg", "d:/sago2.jpg", 100, 100, 100, 100);
     }
 
 }

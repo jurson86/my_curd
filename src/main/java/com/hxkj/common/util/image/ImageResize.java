@@ -17,18 +17,18 @@ import java.io.*;
  * 图像尺寸缩放
  */
 public abstract class ImageResize {
-
-    public static final MediaTracker tracker = new MediaTracker(new Component() {
+    private final static Logger LOG = Logger.getLogger(ImageResize.class);
+    private static final MediaTracker tracker = new MediaTracker(new Component() {
         private static final long serialVersionUID = 1234162663955668507L;
     });
-    private final static Logger LOG = Logger.getLogger(ImageResize.class);
+
 
     /**
+     * 图片缩放
      * @param oldPath 原图像
      * @param newPath 压缩后的图像
      * @param width   图像宽
      * @param format  图片格式 jpg, jpeg, png, gif(非动画)
-     * @throws IOException
      */
     public static void resize(String oldPath, String newPath, int width, String format) {
         File originalFile = new File(oldPath);
@@ -207,10 +207,6 @@ public abstract class ImageResize {
                 LOG.error(e.getMessage());
             }
         }
-    }
-
-    public static void main(String[] args) {
-        ImageResize.resize("K:\\1.jpg", "K:\\2.jpeg", 200, "jpeg");
     }
 
 }

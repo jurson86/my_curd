@@ -19,9 +19,7 @@ public class LoginFilter implements Filter {
     private final static Logger LOG = Logger.getLogger(LoginFilter.class);
 
     @Override
-    public void init(FilterConfig filterConfig) throws ServletException {
-
-    }
+    public void init(FilterConfig filterConfig) throws ServletException {}
 
     public void doFilter(ServletRequest req, ServletResponse res, FilterChain filterChain)
             throws IOException, ServletException {
@@ -30,15 +28,12 @@ public class LoginFilter implements Filter {
 
         HttpServletRequest request = (HttpServletRequest) req;
         HttpServletResponse response = (HttpServletResponse) res;
-
         // 有则返回，无则创建；
         HttpSession session = request.getSession();
-
         // 当前路径
         String curUrl = UrlUtil.formatUrl(request.getRequestURI());
-        LOG.info("curl:" + curUrl);
-
-        //上下文路径
+        LOG.debug("curl:" + curUrl);
+        // 上下文路径
         String contextPath = request.getContextPath();
         req.setAttribute("ctx", contextPath);
 
@@ -79,7 +74,5 @@ public class LoginFilter implements Filter {
 
 
     @Override
-    public void destroy() {
-
-    }
+    public void destroy() {}
 }

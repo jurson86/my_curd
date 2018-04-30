@@ -13,15 +13,13 @@ public class Column {
     private String columnNameCamel;
     @JSONField(ordinal = 2)
     private String columnNameCamelFirstUp;
-
     @JSONField(ordinal = 3)
     private String columnComment;
     @JSONField(ordinal = 4)
     private String columnDBType;
     @JSONField(ordinal = 5)
     private String columnJavaType;
-
-    private Boolean isPrimaryKey;
+    private Boolean primaryKey;
 
 
     public String getColumnName() {
@@ -73,10 +71,10 @@ public class Column {
     }
 
     public Boolean getPrimaryKey() {
-        return isPrimaryKey;
+        return primaryKey;
     }
 
     public void setPrimaryKey(Boolean primaryKey) {
-        isPrimaryKey = primaryKey;
+        this.primaryKey = primaryKey;
     }
 }

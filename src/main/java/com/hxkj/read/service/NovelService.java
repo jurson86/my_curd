@@ -4,12 +4,9 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.hxkj.common.util.ToolRandom;
-import com.jfinal.kit.HttpKit;
 import org.apache.commons.io.FileUtils;
-import org.apache.http.NameValuePair;
 import org.apache.http.client.fluent.Content;
 import org.apache.http.client.fluent.Request;
-import org.apache.http.message.BasicNameValuePair;
 import org.apache.log4j.Logger;
 
 import java.io.File;
@@ -24,10 +21,9 @@ import java.util.concurrent.Executors;
 
 public class NovelService {
 
-
     private final static Logger LOG = Logger.getLogger(NovelService.class);
-    public static String charset = "UTF-8";
-    public static String[] userAgents = {
+    private final static String charset = "UTF-8";
+    private  static String[] userAgents = {
             "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36", "" +
             "Mozilla/5.0 (iPhone; CPU iPhone OS 9_1 like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Version/9.0 Mobile/13B143 Safari/601.1",
             "Mozilla/5.0 (iPhone; CPU iPhone OS 9_1 like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Version/9.0 Mobile/13B143 Safari/601.1",
@@ -35,7 +31,7 @@ public class NovelService {
             "Mozilla/5.0 (Linux; Android 5.0; SM-G900P Build/LRX21T) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Mobile Safari/537.36",
             "Mozilla/5.0 (iPad; CPU OS 9_1 like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Version/9.0 Mobile/13B143 Safari/601.1"
     };
-
+    private NovelService(){}
 
     /**
      * 模糊查询
@@ -47,8 +43,8 @@ public class NovelService {
     public static Map<String, Object> fuzzySearch(String keyword, Integer start, Integer limit) {
         Map<String, Object> map = new HashMap<String, Object>();
         try {
-            String url = "http://api.zhuishushenqi.com/book/fuzzy-search?query=" + keyword +
-                    "&start=" + start + "&limit=" + limit;
+            String url = "http://api.zhuishushenqi.com/book/fuzzy-search?query="
+                    + keyword + "&start=" + start + "&limit=" + limit;
             LOG.debug("fuzzySearch url:  " + url);
             Content content = Request.Get(url)
                     .setHeader("User-Agent", userAgents[ToolRandom.number(0, 6)])
@@ -242,7 +238,7 @@ public class NovelService {
                 Integer stepTwoCode = (Integer) stepTwoMap.get("code");
                 if (stepTwoCode == 1) {
                     JSONObject cObj = (JSONObject) stepTwoMap.get("chapterDetail");
-                    sb.append( chapterObj.getString("title") + "(" + count +") \n" + cObj.getString("body") + " \n");
+                    sb.append(chapterObj.getString("title") + "(" + count + ") \n" + cObj.getString("body") + " \n");
                     System.out.println("count: " + count + chapterObj.getString("title"));
                     count++;
                 }
@@ -280,7 +276,7 @@ public class NovelService {
                 if (stepTwoCode == 1) {
                     try {
                         JSONObject cObj = (JSONObject) stepTwoMap.get("chapterDetail");
-                        FileUtils.write(txtFile,  chapterObj.getString("title") + "(" + count +") \n" + cObj.getString("body") + " \n", "UTF-8", true);
+                        FileUtils.write(txtFile, chapterObj.getString("title") + "(" + count + ") \n" + cObj.getString("body") + " \n", "UTF-8", true);
                         System.out.println("count: " + count + chapterObj.getString("title"));
                         count++;
                     } catch (IOException e) {
@@ -338,7 +334,7 @@ public class NovelService {
                 int count = 1;
                 while (it2.hasNext()) {
                     JSONObject jsonObject = (JSONObject) it2.next();
-                    sb.append(jsonObject.getString("title") + "(" + count +") \n" + jsonObject.getString("body") + " \n");
+                    sb.append(jsonObject.getString("title") + "(" + count + ") \n" + jsonObject.getString("body") + " \n");
                     //System.out.println("count: " + count + jsonObject.getString("title"));
                     count++;
                 }
@@ -354,7 +350,6 @@ public class NovelService {
         map.put("content", sb);
         return map;
     }
-
 
 
     public static Map<String, Object> saveToTxtQuick(String nid, File txtFile) {
@@ -391,7 +386,7 @@ public class NovelService {
                 while (it2.hasNext()) {
                     JSONObject jsonObject = (JSONObject) it2.next();
                     try {
-                        FileUtils.write(txtFile, jsonObject.getString("title") + "(" + (count + 1) +") \n" + jsonObject.getString("body") + " \n", "UTF-8", true);
+                        FileUtils.write(txtFile, jsonObject.getString("title") + "(" + (count + 1) + ") \n" + jsonObject.getString("body") + " \n", "UTF-8", true);
                         count++;
                     } catch (IOException e) {
                         e.printStackTrace();

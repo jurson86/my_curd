@@ -10,9 +10,9 @@ import com.jfinal.plugin.activerecord.ActiveRecordPlugin;
  */
 public class MappingKit {
 
+    private MappingKit(){}
 
     public static void mapping(ActiveRecordPlugin arp) {
-
         // sys 模块
         arp.addMapping("sys_menu", "id", SysMenu.class);
         arp.addMapping("sys_oplog", "id", SysOplog.class);

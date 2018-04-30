@@ -6,6 +6,7 @@ import java.util.UUID;
  * 随机数类
  */
 public abstract class ToolRandom {
+    private ToolRandom(){}
 
     // 定义验证码字符.去除了O、I、l、、等容易混淆的字母
     public static final char leterAry[] = {
