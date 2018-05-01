@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-
 /**
  * 登录拦截器（放置在 Jfinal 拦截器之前的 filter)
  * 使用filter比jfinal interceptor 更方便定制
