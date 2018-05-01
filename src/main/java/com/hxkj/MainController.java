@@ -15,6 +15,7 @@ import java.util.Map;
 
 /**
  * 主界面
+ * @author zhangchuang
  */
 @Clear(AuthorityInterceptor.class)
 public class MainController extends BaseController {
@@ -29,7 +30,7 @@ public class MainController extends BaseController {
 
 
     /**
-     * 左侧权限树 数据
+     * 左侧菜单树 数据
      */
     public void permissionTree() {
         List<SysMenu> ownSysMenus = getSessionAttr(Constant.OWN_MENU);

@@ -1,3 +1,4 @@
+<!-- 生成时间： ${generateDate!} -->
 <#noparse><#include "/WEB-INF/views/common/common.html"/> <@layout></#noparse>
 <link rel="stylesheet" href="<#noparse>${ctx!}</#noparse>/res/layer/theme/default/layer.css">
 </head>

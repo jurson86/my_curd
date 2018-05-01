@@ -7,6 +7,7 @@ import com.jfinal.plugin.activerecord.ActiveRecordPlugin;
 
 /**
  * 数据库表 MappingKit
+ * @author  zhangchuang
  */
 public class MappingKit {
 

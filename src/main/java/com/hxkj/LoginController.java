@@ -20,19 +20,16 @@ import java.util.List;
 
 /**
  * 登录控制器
+ * @author  zhangchuang
  */
 @Clear({AuthorityInterceptor.class})
 public class LoginController extends BaseController {
 
     private final static Logger LOG = Logger.getLogger(LoginController.class);
-    private final static String usernameKey;
-    private final static String passwordKey;
-
-    static {
-        Prop prop = PropKit.use("config.properties");
-        usernameKey = prop.get("cookie_username_key");
-        passwordKey = prop.get("cookie_password_key");
-    }
+    // username cookie key
+    private final static String usernameKey = PropKit.use("config.properties").get("cookie_username_key");
+    // password cookie key
+    private final static String passwordKey = PropKit.use("config.properties").get("cookie_password_key");
 
     /**
      * 登录页面
@@ -42,13 +39,12 @@ public class LoginController extends BaseController {
         String password = getCookie(passwordKey);
         LOG.debug("username from cookie: " + username);
         LOG.debug("password from cookie:+" + password);
-
-        //cookie username password 存在
+        // cookie username password 存在
         if (StrKit.notBlank(username) && StrKit.notBlank(password)) {
             SysUser sysUser = SysUser.dao.findByUsernameAndPassword(username, password);
-            //cookie username password 有效
+            // cookie username password 有效
             if (sysUser != null && !sysUser.getDisabled().equals("1")) {
-                //session 中放入登录用户信息
+                // session 中放入登录用户信息
                 setSessionAttr(Constant.SYSTEM_USER, sysUser);
                 setSessionAttr(Constant.SYSTEM_USER_NAME, sysUser.getName());
                 SysUserRole sysUserRole = SysUserRole.dao.findRolesByUserId(sysUser.getId());
@@ -56,7 +52,7 @@ public class LoginController extends BaseController {
                     setSessionAttr(Constant.SYSTEM_USER_ROLES, sysUserRole.get("roleNames"));
                     setSessionAttr(Constant.SYSTEM_USER_ROLES, sysUserRole.get("roleNames"));
                     LoginService loginService = Duang.duang(LoginService.class);
-                    List<SysMenu> userMenus = loginService.getUserMenu(sysUserRole.get("roleIds"));
+                    List<SysMenu> userMenus = loginService.buildTreeUserMenu(sysUserRole.get("roleIds"));
                     setSessionAttr(Constant.OWN_MENU, userMenus);
                 }
                 addOpLog("通过 cookie 登录");
@@ -75,7 +71,7 @@ public class LoginController extends BaseController {
         String username = getPara("username");
         String password = getPara("password");
 
-        /*username password 无效*/
+        /* username password 无效 */
 
         if (StrKit.isBlank(username)) {
             setAttr("errMsg", "请填写用户名。");
@@ -108,7 +104,7 @@ public class LoginController extends BaseController {
             return;
         }
 
-        /*username password 有效*/
+        /* username password 有效 */
 
         String remember = getPara("remember");
 
@@ -119,9 +115,9 @@ public class LoginController extends BaseController {
         }
 
         /*session 中存入当前用户信息*/
-        //登录用户信息
+        // 登录用户信息
         setSessionAttr(Constant.SYSTEM_USER, sysUser);
-        //为了 druid session 监控用
+        // 为了 druid session 监控用
         setSessionAttr(Constant.SYSTEM_USER_NAME, sysUser.getName());
         // 用户角色
         SysUserRole sysUserRole = SysUserRole.dao.findRolesByUserId(sysUser.getId());
@@ -129,7 +125,7 @@ public class LoginController extends BaseController {
             // 角色名称（显示用)
             setSessionAttr(Constant.SYSTEM_USER_ROLES, sysUserRole.get("roleNames"));
             LoginService loginService = Duang.duang(LoginService.class);
-            List<SysMenu> userMenus = loginService.getUserMenu(sysUserRole.get("roleIds"));
+            List<SysMenu> userMenus = loginService.buildTreeUserMenu(sysUserRole.get("roleIds"));
             setSessionAttr(Constant.OWN_MENU, userMenus);
         }
 

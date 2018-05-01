@@ -11,6 +11,8 @@ import ${(basePackageName)!}.${(moduleName)!}.model.${(table.tableNameCamelFirst
 
 /**
  * ${(table.tableNameCamelFirstUp)!} 控制器
+ * @author
+ * @date ${generateDate!}
  */
 public class ${(table.tableNameCamelFirstUp)!}Controller extends BaseController{
 

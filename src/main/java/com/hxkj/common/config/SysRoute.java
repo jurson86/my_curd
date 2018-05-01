@@ -8,7 +8,8 @@ import com.jfinal.config.Routes;
 
 
 /**
- * sys 模块 路由
+ * 系统主模块 路由
+ * @author zhangchuang
  */
 public class SysRoute extends Routes {
 

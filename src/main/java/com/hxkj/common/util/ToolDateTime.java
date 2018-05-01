@@ -17,17 +17,18 @@ public abstract class ToolDateTime {
     private static final Logger LOG = Logger.getLogger(ToolDateTime.class);
     private ToolDateTime(){}
 
-    public static final String pattern_ym = "yyyy-MM"; // pattern_ym
+    public static final String pattern_ym = "yyyy-MM";
     public static final int pattern_ym_length = 7;
-    public static final String pattern_ymd = "yyyy-MM-dd"; // pattern_ymd
+    public static final String pattern_ymd = "yyyy-MM-dd";
     public static final int pattern_ymd_length = 10;
-    public static final String pattern_ymd_hm = "yyyy-MM-dd HH:mm"; // pattern_ymd hm
+    public static final String pattern_ymd_hm = "yyyy-MM-dd HH:mm";
     public static final int pattern_ymd_hm_length = 16;
-    public static final String pattern_ymd_hms = "yyyy-MM-dd HH:mm:ss"; // pattern_ymd time
+    public static final String pattern_ymd_hms = "yyyy-MM-dd HH:mm:ss";
     public static final int pattern_ymd_hms_length = 19;
-    public static final String pattern_ymd_hms_s = "yyyy-MM-dd HH:mm:ss:SSS"; // pattern_ymd timeMillisecond
+    public static final String pattern_ymd_hms_s = "yyyy-MM-dd HH:mm:ss:SSS";
     public static final int pattern_ymd_hms_s_length = 23;
 
+    // SimpleDateformat 线程不安全
 
     /**
      * 获得当前时间时间戳

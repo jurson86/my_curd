@@ -18,7 +18,7 @@ public abstract class ToolRandom {
     public static final char numberAry[] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9'};
 
 
-    private static final Random random = new Random();
+
 
     /**
      * 生成验证码
@@ -79,6 +79,7 @@ public abstract class ToolRandom {
      * @return
      */
     public static int number(int min, int max) {
+        Random random = new Random();
         return min + random.nextInt(max - min);
     }
 
@@ -88,6 +89,7 @@ public abstract class ToolRandom {
      * @return
      */
     public static int number(int number) {
+        Random random = new Random();
         return random.nextInt(number);
     }
 
@@ -97,6 +99,7 @@ public abstract class ToolRandom {
      */
     public static int[] getRandomRgb() {
         int[] rgb = new int[3];
+        Random random = new Random();
         for (int i = 0; i < 3; i++) {
             rgb[i] = random.nextInt(255);
         }

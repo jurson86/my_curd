@@ -21,14 +21,15 @@ import com.jfinal.template.Engine;
 
 import javax.servlet.http.HttpServletRequest;
 
+/**
+ * Jfinal框架 配置
+ * @author zhangcuang
+ */
 public class AppConfig extends JFinalConfig {
-
-    public static void main(String[] args) {
-        //JFinal.start("WebRoot", 80, "/");
-    }
 
     /**
      * 配置JFinal常量
+     * @param me 常量集合
      */
     @Override
     public void configConstant(Constants me) {
@@ -38,30 +39,38 @@ public class AppConfig extends JFinalConfig {
         me.setMaxPostSize(10 * 1024 * 1000);  // 10M
         me.setBaseDownloadPath("download");
         me.setViewType(ViewType.FREE_MARKER);
-
         me.setError403View(Constant.VIEW_PATH+"common/403.html");
         me.setError404View(Constant.VIEW_PATH+"common/404.html");
         me.setError500View(Constant.VIEW_PATH+"common/500.html");
 
-
-        //jfinaljson 和 fastjson 混合，jfinaljson 不依赖get 方法，可以model 转换为jsonstr
-        // fastjson 方便将字符串 转换为jsonobject
+        // jfinaljson 和 fastjson 混合
         me.setJsonFactory(MixedJsonFactory.me());
         me.setJsonDatePattern("yyyy-MM-dd HH:mm:ss");
     }
 
+    /**
+     * 配置JFinal路由
+     * @param me 路由集合
+     */
     @Override
     public void configRoute(Routes me) {
-        me.add(new SysRoute());     // system 模块 路由
-        me.add(new GentestRoute()); // 代码生成测试 模块 路由
-        me.add(new ReadRoute());    // 阅读路由
-
+        // system
+        me.add(new SysRoute());
+        // 代码生成测试
+        me.add(new GentestRoute());
+        // 阅读
+        me.add(new ReadRoute());
         // websocket 入口
         me.add("/ws", WebsocketController.class, Constant.VIEW_PATH);
     }
 
+    /**
+     * 配置 插件
+     * @param me 插件集合
+     */
     @Override
     public void configPlugin(Plugins me) {
+        // druid 数据库连接池插件
         DruidPlugin dbPlugin = new DruidPlugin(PropKit.get("jdbcUrl"), PropKit.get("user"), PropKit.get("password"));
         // druid 监控
         dbPlugin.addFilter(new StatFilter());
@@ -69,6 +78,7 @@ public class AppConfig extends JFinalConfig {
         wall.setDbType("mysql");
         dbPlugin.addFilter(wall);
 
+        // ActiveRecord 插件
         ActiveRecordPlugin arp = new ActiveRecordPlugin(dbPlugin);
         arp.setShowSql(PropKit.getBoolean("devMode"));
         arp.setDialect(new MysqlDialect());
@@ -77,14 +87,22 @@ public class AppConfig extends JFinalConfig {
         me.add(arp);
     }
 
+    /**
+     * 配置 jfinal interceptor
+     * @param me interceptor集合
+     */
     @Override
     public void configInterceptor(Interceptors me) {
-        me.addGlobalActionInterceptor(new AuthorityInterceptor());// 权限拦截器
+        // 权限拦截器
+        me.addGlobalActionInterceptor(new AuthorityInterceptor());
     }
 
+    /**
+     * 配置 jfinal handler
+     * @param me handler集合
+     */
     @Override
     public void configHandler(Handlers me) {
-
         // 处理 websocket 请求
         me.add(new WebSocketHandler("^/websocket"));
 
@@ -94,7 +112,6 @@ public class AppConfig extends JFinalConfig {
         // druid 监控（只允许admin查看）
         DruidStatViewHandler dvh = new DruidStatViewHandler("/druid", new IDruidStatViewAuth() {
             public boolean isPermitted(HttpServletRequest request) {
-                // 这里只是简单的判断访问者是否登录，还可以做更加细致的权限控制
                 SysUser user = (SysUser) request.getSession().getAttribute(Constant.SYSTEM_USER);
                 if (user == null) {
                     return false;
@@ -106,18 +123,9 @@ public class AppConfig extends JFinalConfig {
     }
 
     @Override
-    public void afterJFinalStart() {
-
-    }
-
+    public void afterJFinalStart() {}
     @Override
-    public void beforeJFinalStop() {
-
-    }
-
+    public void beforeJFinalStop() {}
     @Override
-    public void configEngine(Engine me) {
-    }
-
-
+    public void configEngine(Engine me) {}
 }

@@ -4,8 +4,10 @@ import com.jfinal.plugin.activerecord.IBean;
 import com.jfinal.plugin.activerecord.Model;
 
 /**
-* Generated code
-*/
+ * base model generated code
+ * @author
+ * @date ${generateDate!}
+ */
 @SuppressWarnings("serial")
 public abstract class Base${(table.tableNameCamelFirstUp)!}<M extends Base${(table.tableNameCamelFirstUp)!}<M>> extends Model<M> implements IBean {
 
