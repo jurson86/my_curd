@@ -17,6 +17,9 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+/**
+ * 代码生成器控制器
+ */
 public class SysGeneratorController extends BaseController {
 
     public static SchemaInfoUtil schemaInfoUtil;

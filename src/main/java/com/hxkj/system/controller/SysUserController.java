@@ -9,7 +9,6 @@ import com.hxkj.system.model.SysUser;
 import com.hxkj.system.model.SysUserRole;
 import com.jfinal.aop.Before;
 import com.jfinal.kit.HashKit;
-import com.jfinal.plugin.activerecord.ActiveRecordException;
 import com.jfinal.plugin.activerecord.Db;
 import com.jfinal.plugin.activerecord.Page;
 import com.jfinal.plugin.activerecord.tx.Tx;
@@ -19,6 +18,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * 系统用户 控制器
+ */
 public class SysUserController extends BaseController {
 
     public void index() {

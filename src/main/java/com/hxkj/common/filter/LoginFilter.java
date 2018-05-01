@@ -37,23 +37,6 @@ public class LoginFilter implements Filter {
         String contextPath = request.getContextPath();
         req.setAttribute("ctx", contextPath);
 
-        // 不拦截登录页面 静态资源 数据接口页面
-        /*
-           if (!curUrl.startsWith(contextPath + "/login")
-                    && !curUrl.startsWith(contextPath + "/res")
-                    && !curUrl.startsWith(contextPath + "/api")) {
-                if (session.getAttribute(Constant.SYSTEM_USER) == null) {
-                    response.sendRedirect(request.getContextPath() + "/login/index");
-                    return;
-                }
-                if (curUrl.equals(contextPath) || curUrl.equals(contextPath + "/index")) {
-                    response.sendRedirect(request.getContextPath() + "/main");
-                    return;
-                }
-            }
-        */
-
-        // 可能比上面注释的效率更好
         if( curUrl.startsWith(contextPath + "/res")
                 || curUrl.startsWith(contextPath + "/api")
                 ||  curUrl.startsWith(contextPath + "/login")  ){

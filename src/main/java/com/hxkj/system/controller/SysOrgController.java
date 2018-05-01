@@ -17,7 +17,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-
+/**
+ * 组织机构 控制器
+ */
 public class SysOrgController extends BaseController {
 
     public void index() {
