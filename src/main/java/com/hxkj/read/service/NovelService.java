@@ -19,11 +19,18 @@ import java.util.Map;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+/**
+ * 追书神器 api
+ * TODO 提高代码质量
+ */
 public class NovelService {
 
     private final static Logger LOG = Logger.getLogger(NovelService.class);
+
+    // 请求编码
     private final static String charset = "UTF-8";
-    private  static String[] userAgents = {
+    // UA
+    private final static String[] userAgents = {
             "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36", "" +
             "Mozilla/5.0 (iPhone; CPU iPhone OS 9_1 like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Version/9.0 Mobile/13B143 Safari/601.1",
             "Mozilla/5.0 (iPhone; CPU iPhone OS 9_1 like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Version/9.0 Mobile/13B143 Safari/601.1",
@@ -33,22 +40,37 @@ public class NovelService {
     };
     private NovelService(){}
 
+
     /**
-     * 模糊查询
+     * Get 请求代理
+     * @param url
+     * @return
+     * @throws IOException
+     */
+    public static String getProxy(String url) throws IOException {
+        LOG.debug(url);
+        Content content = Request.Get(url)
+                .setHeader("User-Agent", userAgents[ToolRandom.number(0,userAgents.length)])
+                .execute().returnContent();
+        String resStr = content.asString(Charset.forName(charset));
+        LOG.debug(resStr);
+        return resStr;
+    }
+
+
+    /**
+     * 关键字模糊查询小说
      * @param keyword
      * @param start
      * @param limit
+     * @return
      */
     public static Map<String, Object> fuzzySearch(String keyword, Integer start, Integer limit) {
+        String url = "http://api.zhuishushenqi.com/book/fuzzy-search?query="
+                + keyword + "&start=" + start + "&limit=" + limit;
         Map<String, Object> map = new HashMap<String, Object>();
         try {
-            String url = "http://api.zhuishushenqi.com/book/fuzzy-search?query="
-                    + keyword + "&start=" + start + "&limit=" + limit;
-            LOG.debug("fuzzySearch url:  " + url);
-            Content content = Request.Get(url)
-                    .setHeader("User-Agent", userAgents[ToolRandom.number(0, 6)])
-                    .execute().returnContent();
-            String jsonStr = content.asString(Charset.forName(charset));
+            String jsonStr = getProxy(url);
             JSONObject jsonObject = JSON.parseObject(jsonStr);
             if (!jsonObject.getBoolean("ok")) {
                 map.put("code", -1);
@@ -64,7 +86,7 @@ public class NovelService {
                 }
                 map.put("rows", jsonObject.get("books"));
             }
-        } catch (Exception e) {
+        } catch (IOException e) {
             LOG.error(e.getMessage());
             map.put("code", -1);
             map.put("message", e.getMessage());
@@ -88,11 +110,7 @@ public class NovelService {
                     category +
                     "&type=hot" +
                     "&start=" + start + "&limit=" + limit;
-            LOG.debug("category url: " + url);
-            Content content = Request.Get(url)
-                    .setHeader("User-Agent", userAgents[ToolRandom.number(0, 6)])
-                    .execute().returnContent();
-            String jsonStr = content.asString(Charset.forName(charset));
+            String jsonStr = getProxy(url);
             JSONObject jsonObject = JSON.parseObject(jsonStr);
             if (!jsonObject.getBoolean("ok")) {
                 map.put("code", -1);
@@ -127,10 +145,7 @@ public class NovelService {
         Map<String, Object> map = new HashMap<String, Object>();
         try {
             String url = "http://api.zhuishushenqi.com/book/" + nid;
-            LOG.debug("novel url:+" + url);
-            Content content = Request.Get(url).setHeader("User-Agent", userAgents[ToolRandom.number(0, 6)])
-                    .execute().returnContent();
-            String jsonStr = content.asString(Charset.forName(charset));
+            String jsonStr = getProxy(url);
             JSONObject jsonObject = JSON.parseObject(jsonStr);
             if (!jsonObject.getBoolean("ok")) {
                 map.put("code", -1);
@@ -157,11 +172,7 @@ public class NovelService {
         Map<String, Object> map = new HashMap<String, Object>();
         try {
             String url = "http://api.zhuishushenqi.com/mix-atoc/" + nid + "?view=chapters";
-            LOG.debug("chapters url: " + url);
-            Content content = Request.Get(url)
-                    .setHeader("User-Agent", userAgents[ToolRandom.number(0, 6)])
-                    .execute().returnContent();
-            String jsonStr = content.asString(Charset.forName(charset));
+            String jsonStr = getProxy(url);
             JSONObject jsonObject = JSON.parseObject(jsonStr);
             if (!jsonObject.getBoolean("ok")) {
                 map.put("code", -1);
@@ -190,11 +201,7 @@ public class NovelService {
         try {
             url = URLEncoder.encode(url, "utf-8");
             String dUrl = "http://chapter2.zhuishushenqi.com/chapter/" + url;
-            LOG.debug("chapter url: " + dUrl);
-            Content content = Request.Get(dUrl)
-                    .setHeader("User-Agent", userAgents[ToolRandom.number(0, 6)])
-                    .execute().returnContent();
-            String jsonStr = content.asString(Charset.forName(charset));
+            String jsonStr =getProxy(url);
             JSONObject jsonObject = JSON.parseObject(jsonStr);
             if (!jsonObject.getBoolean("ok")) {
                 map.put("code", -1);

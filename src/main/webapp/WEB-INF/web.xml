@@ -14,7 +14,7 @@
         <!--不拦截资源文件、druid监控相关 -->
         <init-param>
             <param-name>exclusions</param-name>
-            <param-value>*.js,*.gif,*.jpg,*.png,*.css,*.ico,/druid/*,/res/*</param-value>
+            <param-value>*.js,*.gif,*.jpg,*.jpeg,*.png,*.css,*.ico,/druid/*,/res/*</param-value>
         </init-param>
         <!--session 用户名key,value 为字符串类型-->
         <init-param>
@@ -59,4 +59,5 @@
     <session-config>
         <session-timeout>30</session-timeout>
     </session-config>
+
 </web-app>
