@@ -40,6 +40,17 @@
             layerTools.layerMsg('请先选择一行数据');
         }
     }
+
+    // 查看章节列表
+    function chapters(){
+        var row = $("#dg").treegrid("getSelected");
+        if (row != null) {
+            layerTools.layerIframe('fa-reorder', row.title+" - "+row.author, '${ctx!}/novel/chapters/' + row._id, '400px', '70%')
+        } else {
+            layerTools.layerMsg('请先选择一行数据');
+        }
+    }
+
     //条件查询
     function queryModel() {
         var queryParams = {};
@@ -82,6 +93,7 @@
 </table>
 <div id="tb">
     <a onclick="downloadModel()" href="#" class="easyui-linkbutton" iconCls="e-icon fa  fa-download" plain="true">下载</a>
+    <a onclick="chapters()" href="#" class="easyui-linkbutton" iconCls="e-icon fa  fa-reorder" plain="true">章节</a>
     <span id="enterSpan"   class="searchInputArea" >
          <input id="category" prompt="类型" class="easyui-combobox" style="width:120px; "
                 data-options="url:'${ctx!}/sysDict/queryDictData?type=category&fields=dict_key as text, dict_value as value'">

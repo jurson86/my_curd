@@ -201,7 +201,7 @@ public class NovelService {
         try {
             url = URLEncoder.encode(url, "utf-8");
             String dUrl = "http://chapter2.zhuishushenqi.com/chapter/" + url;
-            String jsonStr =getProxy(url);
+            String jsonStr =getProxy(dUrl);
             JSONObject jsonObject = JSON.parseObject(jsonStr);
             if (!jsonObject.getBoolean("ok")) {
                 map.put("code", -1);
@@ -411,5 +411,10 @@ public class NovelService {
         return map;
     }
 
+    public static void main(String[] args) {
+        String url = "http://book.my716.com/getBooks.aspx?method=content&bookId=857518&chapterFile=U_945800_201606292115049884_1388_83.txt";
+        Map detail = chapter(url);
+        System.out.println(JSON.toJSONString(detail));
+    }
 
 }

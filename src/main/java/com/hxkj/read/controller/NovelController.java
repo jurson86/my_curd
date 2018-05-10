@@ -1,5 +1,6 @@
 package com.hxkj.read.controller;
 
+import com.alibaba.fastjson.JSONObject;
 import com.hxkj.common.util.BaseController;
 import com.hxkj.common.util.ToolString;
 import com.hxkj.read.service.NovelService;
@@ -26,22 +27,52 @@ public class NovelController extends BaseController {
         }
     }
 
+    /**
+     * 小说 详情
+     */
     public void novelDetail() {
         String nid = getPara(0);
         renderJson(NovelService.novel(nid));
     }
 
-    public void chapterList() {
+    /**
+     * 章节列表页面
+     */
+    public void chapters(){
+        setAttr("id",getPara(0));
+        render("read/chapters.html");
+    }
+
+
+    /**
+     * 章节列表数据
+     */
+    public void chaptersQuery() {
         String nid = getPara(0);
         renderJson(NovelService.chapters(nid));
     }
 
+
+    /**
+     * 章节详情
+     */
     public void chapterDetail() {
-        String url = getPara(0);
-        renderJson(NovelService.chapter(url));
+        String url = getPara("url");
+        Map<String, Object> detailMap = NovelService.chapter(url);
+        String body = "获取章节错误！:( ";
+        if((Integer)detailMap.get("code")==1){
+            JSONObject chapterDetail = (JSONObject)detailMap.get("chapterDetail");
+            body = chapterDetail.getString("body");
+        }
+        setAttr("content",body);
+        render("read/chapter.html");
     }
 
 
+    /**
+     * 下载
+     * @throws IOException
+     */
     public void download() throws IOException {
         String nid = getPara("nid");
         String title = getPara("title");
