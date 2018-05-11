@@ -411,10 +411,18 @@ public class NovelService {
         return map;
     }
 
+
     public static void main(String[] args) {
-        String url = "http://book.my716.com/getBooks.aspx?method=content&bookId=857518&chapterFile=U_945800_201606292115049884_1388_83.txt";
-        Map detail = chapter(url);
-        System.out.println(JSON.toJSONString(detail));
+        // 发送异常邮件测试
+        int x;
+        for(int i=0;i<10;i++){
+            try{
+                x = i/0;
+                System.out.println(x);
+            }catch (Exception e){
+                LOG.error("index: "+i,e);
+            }
+        }
     }
 
 }

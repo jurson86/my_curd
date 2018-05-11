@@ -172,4 +172,11 @@ public class LoginController extends BaseController {
     public void json(){
        renderText("over");
     }
+
+    //无用 异常测试
+    @ActionKey("/error")
+    public void error(){
+        int x = 1/0;
+        renderText("异常了....");
+    }
 }

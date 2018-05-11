@@ -10,4 +10,5 @@ jfinalide.properties
 /out
 *.iml
 /target
+/log
 /admin.iml
