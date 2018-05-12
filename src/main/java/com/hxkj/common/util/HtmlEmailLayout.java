@@ -8,7 +8,7 @@ import org.apache.log4j.spi.LoggingEvent;
 
 import java.util.Date;
 
-public class ErrorEmailLayout extends Layout {
+public class HtmlEmailLayout extends Layout {
 
     protected final int BUF_SIZE = 256;
     protected final int MAX_CAPACITY = 1024;
@@ -59,12 +59,7 @@ public class ErrorEmailLayout extends Layout {
         sbuf.append("</p>");
 
         sbuf.append("<p style=\"font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; Margin-bottom: 15px;\">");
-        sbuf.append("<strong>Time: </strong>");
-        sbuf.append(event.timeStamp - LoggingEvent.getStartTime());
-        String escapedThread = Transform.escapeTags(event.getThreadName());
-        sbuf.append(",&nbsp;&nbsp;<strong>Thread: </strong>");
-        sbuf.append(escapedThread);
-        sbuf.append(",&nbsp;&nbsp;<strong>Level: </strong>");
+        sbuf.append("<strong>Level: </strong>");
         if (event.getLevel().equals(Level.DEBUG)) {
             sbuf.append("<font color=\"#339933\">");
             sbuf.append(Transform.escapeTags(String.valueOf(event.getLevel())));
@@ -76,6 +71,12 @@ public class ErrorEmailLayout extends Layout {
         } else {
             sbuf.append(Transform.escapeTags(String.valueOf(event.getLevel())));
         }
+        sbuf.append(",&nbsp;&nbsp; <strong>Time: </strong>");
+        sbuf.append(event.timeStamp - LoggingEvent.getStartTime());
+        String escapedThread = Transform.escapeTags(event.getThreadName());
+        sbuf.append(",&nbsp;&nbsp;<strong>Thread: </strong>");
+        sbuf.append(escapedThread);
+
         sbuf.append("</p>");
 
         String escapedLogger = Transform.escapeTags(event.getLoggerName());
@@ -105,7 +106,7 @@ public class ErrorEmailLayout extends Layout {
 
         String[] s = event.getThrowableStrRep();
         if (s != null) {
-            sbuf.append("<strong>Throwable: </strong><br/><p style=\"color:red;font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; Margin-bottom: 15px;\">");
+            sbuf.append("<strong>Throwable: </strong><br/><p style=\"color:#993300;font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; Margin-bottom: 15px;\">");
             appendThrowableAsHTML(s, sbuf);
             sbuf.append("</p>");
         }
