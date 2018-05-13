@@ -2,7 +2,7 @@ package com.hxkj;
 
 import com.hxkj.common.constant.Constant;
 import com.hxkj.common.interceptor.AuthorityInterceptor;
-import com.hxkj.common.interceptor.readJsonInterceptor;
+import com.hxkj.common.interceptor.ReadJsonInterceptor;
 import com.hxkj.common.util.BaseController;
 import com.hxkj.system.model.SysMenu;
 import com.hxkj.system.model.SysUser;
@@ -167,7 +167,7 @@ public class LoginController extends BaseController {
     }
 
     // 无用
-    @Before(readJsonInterceptor.class)
+    @Before(ReadJsonInterceptor.class)
     @ActionKey("/api/json")
     public void json(){
        renderText("over");

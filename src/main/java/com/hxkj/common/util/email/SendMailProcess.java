@@ -19,7 +19,7 @@ import java.util.concurrent.Callable;
  */
 public class SendMailProcess implements Callable<Boolean> {
 
-    private final static Logger LOG = Logger.getLogger(ToolMail.class);
+    private final static Logger LOG = Logger.getLogger(SendMailProcess.class);
 
     private MailType sendType;            // 发送邮件的类型：text 、html
     private String host;                  // 发送邮件的服务器的IP
