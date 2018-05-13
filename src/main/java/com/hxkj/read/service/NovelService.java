@@ -415,13 +415,14 @@ public class NovelService {
     public static void main(String[] args) {
         // 发送异常邮件测试
         int x;
-        for(int i=0;i<10;i++){
-            try{
-                x = i/0;
+        for(int i=0;i<3;i++){
+           try{
+                x = i/i;
                 System.out.println(x);
             }catch (Exception e){
                 LOG.error("index: "+i,e);
             }
+            LOG.info("good morning: "+i);
         }
     }
 
