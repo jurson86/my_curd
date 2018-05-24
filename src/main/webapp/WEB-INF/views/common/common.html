@@ -13,13 +13,12 @@
         <#--子iframe页 并不是需要下面所有的cssjs文件，统一使用一个父页面不是很合适-->
         <link rel="stylesheet" type="text/css" href="${ctx!}/res/easyui1.5.4.5/themes/metro/easyui.css">
         <link rel="stylesheet" type="text/css" href="${ctx!}/res/easyui1.5.4.5/themes/icon.css">
-        <script type="text/javascript" src="${ctx!}/res/easyui1.5.4.5/jquery.min.js"></script>
-        <script type="text/javascript" src="${ctx!}/res/easyui1.5.4.5/jquery.easyui.min.js"></script>
-        <script src="${ctx!}/res/easyui1.5.4.5/locale/easyui-lang-zh_CN.js"></script>
         <link rel="stylesheet" href="${ctx!}/res/font-awesome/css/font-awesome.min.css">
         <!--自定义样式-->
         <link rel="stylesheet" href="${ctx!}/res/css/custom.css">
-        <!--easyui 页面渲染遮罩-->
+        <script type="text/javascript" src="${ctx!}/res/easyui1.5.4.5/jquery.min.js"></script>
+        <script type="text/javascript" src="${ctx!}/res/easyui1.5.4.5/jquery.easyui.min.js"></script>
+        <script src="${ctx!}/res/easyui1.5.4.5/locale/easyui-lang-zh_CN.js"></script>
         <script src="${ctx!}/res/js/base-loading.js" type="text/javascript" charset="utf-8"></script>
         <#nested>
         <script>
@@ -29,7 +28,7 @@
                     if (e.keyCode == 13) {
                         queryModel();
                     }
-                })
+                });
             });
         </script>
          </body>

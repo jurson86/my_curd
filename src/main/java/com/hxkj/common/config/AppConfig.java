@@ -16,8 +16,10 @@ import com.jfinal.plugin.activerecord.dialect.MysqlDialect;
 import com.jfinal.plugin.druid.DruidPlugin;
 import com.jfinal.plugin.druid.DruidStatViewHandler;
 import com.jfinal.plugin.druid.IDruidStatViewAuth;
+import com.jfinal.render.FreeMarkerRender;
 import com.jfinal.render.ViewType;
 import com.jfinal.template.Engine;
+
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -47,6 +49,7 @@ public class AppConfig extends JFinalConfig {
         me.setJsonFactory(MixedJsonFactory.me());
         me.setJsonDatePattern("yyyy-MM-dd HH:mm:ss");
     }
+
 
     /**
      * 配置JFinal路由

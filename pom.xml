@@ -65,6 +65,7 @@
             <version>${jfinal.version}</version>
         </dependency>
 
+
         <!--二维码-->
         <dependency>
             <groupId>com.google.zxing</groupId>
