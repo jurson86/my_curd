@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50719
 File Encoding         : 65001
 
-Date: 2018-04-22 19:16:07
+Date: 2018-06-03 23:30:53
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -13727,10 +13727,10 @@ INSERT INTO `gentest_mulpktable` VALUES ('943468568341643264', '9434685683416432
 DROP TABLE IF EXISTS `sys_dict`;
 CREATE TABLE `sys_dict` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT 'id',
-  `dict_type` varchar(50) NOT NULL DEFAULT '' COMMENT '类型',
-  `dict_key` varchar(50) NOT NULL DEFAULT '' COMMENT '键',
-  `dict_value` varchar(100) NOT NULL DEFAULT '' COMMENT '值',
-  `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '创建时间',
+  `dict_type` varchar(50) NOT NULL COMMENT '类型',
+  `dict_key` varchar(50) NOT NULL COMMENT '键',
+  `dict_value` varchar(100) NOT NULL COMMENT '值',
+  `create_time` datetime NOT NULL COMMENT '创建时间',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=170 DEFAULT CHARSET=utf8 COMMENT='数据字典';
 
@@ -13909,33 +13909,6 @@ CREATE TABLE `sys_file` (
 -- ----------------------------
 -- Records of sys_file
 -- ----------------------------
-INSERT INTO `sys_file` VALUES ('54', '916654989969981440', 'upload/image/20180311200658_385.gif', 'box_factory-7bcdffc0.gif', 'gif', '机械生产气息动图', '2018-03-11 20:06:58');
-INSERT INTO `sys_file` VALUES ('55', '916654989969981440', 'upload/image/20180311200728_565.jpg', 'hf.jpg', 'jpg', '', '2018-03-11 20:07:28');
-INSERT INTO `sys_file` VALUES ('57', '916654989969981440', 'upload/image/20180311200758_613.jpg', 'timg.jpg', 'jpg', 'Krystal', '2018-03-11 20:07:59');
-INSERT INTO `sys_file` VALUES ('58', '916654989969981440', 'upload/image/20180325195549_426.jpg', '821144604.jpg', 'jpg', '漫威黑豹', '2018-03-25 19:55:49');
-INSERT INTO `sys_file` VALUES ('60', '916654989969981440', 'upload/image/20180325210626_114.jpg', 'images.jpg', 'jpg', '', '2018-03-25 21:06:26');
-INSERT INTO `sys_file` VALUES ('61', '916654989969981440', 'upload/image/20180325213748_974.jpg', 'v2-6b5a00db13634eb5b051eb769fe9ffed_hd.jpg', 'jpg', '', '2018-03-25 21:37:48');
-INSERT INTO `sys_file` VALUES ('67', '916654989969981440', 'upload/image/20180330135903_84.jpg', 'timg (1).jpg', 'jpg', '', '2018-03-30 13:59:03');
-INSERT INTO `sys_file` VALUES ('68', '916654989969981440', 'upload/image/20180330135910_867.jpg', 'timg (2).jpg', 'jpg', '', '2018-03-30 13:59:10');
-INSERT INTO `sys_file` VALUES ('69', '916654989969981440', 'upload/image/20180330135917_805.jpg', 'timg (3).jpg', 'jpg', '', '2018-03-30 13:59:17');
-INSERT INTO `sys_file` VALUES ('70', '916654989969981440', 'upload/image/20180330135924_186.jpg', 'zmh.jpg', 'jpg', '', '2018-03-30 13:59:24');
-INSERT INTO `sys_file` VALUES ('71', '916654989969981440', 'upload/image/20180330135932_503.jpg', 'hgnulxsa0ad.jpg', 'jpg', '', '2018-03-30 13:59:32');
-INSERT INTO `sys_file` VALUES ('72', '916654989969981440', 'upload/image/20180330135940_402.gif', 'loading-pen-55826b24a0.gif', 'gif', '', '2018-03-30 13:59:40');
-INSERT INTO `sys_file` VALUES ('73', '916654989969981440', 'upload/image/20180330135951_75.jpg', '42bOOOPICcd_1024.jpg', 'jpg', '', '2018-03-30 13:59:51');
-INSERT INTO `sys_file` VALUES ('74', '916654989969981440', 'upload/image/20180330140007_320.jpg', 'IMG_20180119_083940.jpg', 'jpg', '', '2018-03-30 14:00:07');
-INSERT INTO `sys_file` VALUES ('75', '916654989969981440', 'upload/image/20180330140018_399.jpg', 'IMG_20180118_085952.jpg', 'jpg', '', '2018-03-30 14:00:18');
-INSERT INTO `sys_file` VALUES ('76', '916654989969981440', 'upload/image/20180330140028_102.jpg', '20140927222406_7724.jpg', 'jpg', '', '2018-03-30 14:00:28');
-INSERT INTO `sys_file` VALUES ('77', '916654989969981440', 'upload/image/20180330140036_400.jpg', '16bOOOPIC92_1024.jpg', 'jpg', '', '2018-03-30 14:00:36');
-INSERT INTO `sys_file` VALUES ('81', '916654989969981440', 'upload/image/20180330140707_258.jpg', '8f02381001e93901a0faf24971ec54e737d1962d.jpg', 'jpg', '', '2018-03-30 14:07:07');
-INSERT INTO `sys_file` VALUES ('82', '916654989969981440', 'upload/image/20180330140726_818.jpg', '22db0fa1cd11728b8de0f255c2fcc3cec1fd2cd0.jpg', 'jpg', '', '2018-03-30 14:07:26');
-INSERT INTO `sys_file` VALUES ('83', '916654989969981440', 'upload/image/20180330141128_549.jpg', '75c3837adab44aed3affc193b91c8701a08bfb74.jpg', 'jpg', '', '2018-03-30 14:11:28');
-INSERT INTO `sys_file` VALUES ('84', '916654989969981440', 'upload/image/20180330141136_157.jpg', '395bd0380cd79123f9c4ea03a7345982b3b780f9.jpg', 'jpg', '', '2018-03-30 14:11:36');
-INSERT INTO `sys_file` VALUES ('85', '916654989969981440', 'upload/image/20180330141144_368.jpg', '1606521190ef76c637da845c9716fdfaae51679d.jpg', 'jpg', '', '2018-03-30 14:11:44');
-INSERT INTO `sys_file` VALUES ('86', '916654989969981440', 'upload/image/20180330141152_501.jpg', '1606521190ef76c6205f9d5c9716fdfaae516710.jpg', 'jpg', '', '2018-03-30 14:11:52');
-INSERT INTO `sys_file` VALUES ('87', '916654989969981440', 'upload/image/20180330141204_934.jpg', 'c395901f95cad1c819748350753e6709cb3d51d2.jpg', 'jpg', '', '2018-03-30 14:12:04');
-INSERT INTO `sys_file` VALUES ('88', '916654989969981440', 'upload/image/20180330141211_967.jpg', 'eceb5c24b899a90155ab3d4117950a7b0308f503.jpg', 'jpg', '', '2018-03-30 14:12:11');
-INSERT INTO `sys_file` VALUES ('89', '916654989969981440', 'upload/image/20180330141222_268.jpg', 'edcc3f82b9014a90ff7d39caa3773912b21bee66.jpg', 'jpg', '', '2018-03-30 14:12:22');
-INSERT INTO `sys_file` VALUES ('90', '916654989969981440', 'upload/image/20180330141230_135.jpg', 'f4d39d381f30e924a751e24646086e061c95f728.jpg', 'jpg', '', '2018-03-30 14:12:30');
 
 -- ----------------------------
 -- Table structure for `sys_menu`
@@ -13943,38 +13916,42 @@ INSERT INTO `sys_file` VALUES ('90', '916654989969981440', 'upload/image/2018033
 DROP TABLE IF EXISTS `sys_menu`;
 CREATE TABLE `sys_menu` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) DEFAULT NULL,
-  `url` varchar(255) DEFAULT NULL,
-  `icon` varchar(255) DEFAULT NULL,
-  `sort` int(11) DEFAULT NULL,
-  `pid` int(11) DEFAULT NULL,
+  `name` varchar(255) DEFAULT NULL COMMENT '菜单名称',
+  `url` varchar(255) DEFAULT NULL COMMENT '菜单地址',
+  `icon` varchar(20) DEFAULT NULL COMMENT '图片图标',
+  `iconfont` varchar(20) DEFAULT NULL COMMENT '字体图标',
+  `sort` int(11) DEFAULT NULL COMMENT '排序号',
+  `pid` int(11) DEFAULT NULL COMMENT '父id',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=95 DEFAULT CHARSET=utf8 COMMENT='菜单表（权限表）';
+) ENGINE=InnoDB AUTO_INCREMENT=98 DEFAULT CHARSET=utf8 COMMENT='菜单表（权限表）';
 
 -- ----------------------------
 -- Records of sys_menu
 -- ----------------------------
-INSERT INTO `sys_menu` VALUES ('5', '系统管理', '/', 'icon-system', '3', '0');
-INSERT INTO `sys_menu` VALUES ('6', '菜单', '/sysMenu', 'icon-menu', '0', '82');
-INSERT INTO `sys_menu` VALUES ('23', '角色', '/sysRole', 'icon-role', '2', '82');
-INSERT INTO `sys_menu` VALUES ('58', '组织', '/sysOrg', 'icon-orgm', '4', '82');
-INSERT INTO `sys_menu` VALUES ('59', '用户', '/sysUser', 'icon-user', '3', '82');
-INSERT INTO `sys_menu` VALUES ('60', '修改密码', '/sysChangePassword', 'icon-password', '5', '5');
-INSERT INTO `sys_menu` VALUES ('61', 'druid监控', '/druid', 'icon-druid', '2', '84');
-INSERT INTO `sys_menu` VALUES ('70', '系统日志', '/sysOplog', 'icon-log', '1', '84');
-INSERT INTO `sys_menu` VALUES ('73', '文件', '/sysFile', 'icon-file', '1', '85');
-INSERT INTO `sys_menu` VALUES ('74', '字典', '/sysDict', 'icon-code', '1', '83');
-INSERT INTO `sys_menu` VALUES ('75', '代码生成', '/sysGenerator', null, '10', '5');
-INSERT INTO `sys_menu` VALUES ('82', '权限控制', '/', null, '1', '5');
-INSERT INTO `sys_menu` VALUES ('83', '基础数据', '/', null, '2', '5');
-INSERT INTO `sys_menu` VALUES ('84', '系统监控', '/', null, '3', '5');
-INSERT INTO `sys_menu` VALUES ('85', '内容管理', '/', null, '4', '5');
-INSERT INTO `sys_menu` VALUES ('86', '代码生成测试', '/', null, '1', '0');
-INSERT INTO `sys_menu` VALUES ('87', '普通表', '/gentestBook', null, '1', '86');
-INSERT INTO `sys_menu` VALUES ('88', '三主键表', '/gentestMulpktable', null, '2', '86');
-INSERT INTO `sys_menu` VALUES ('89', '文章', '/sysNews', null, '2', '85');
-INSERT INTO `sys_menu` VALUES ('90', '阅读', '/', null, '0', '0');
-INSERT INTO `sys_menu` VALUES ('91', '小说', '/novel', null, '1', '90');
+INSERT INTO `sys_menu` VALUES ('5', '管理后台', '/', 'icon-system', null, '3', '0');
+INSERT INTO `sys_menu` VALUES ('6', '菜单', '/sysMenu', 'icon-menu', null, '0', '82');
+INSERT INTO `sys_menu` VALUES ('23', '角色', '/sysRole', 'icon-role', null, '2', '82');
+INSERT INTO `sys_menu` VALUES ('58', '组织', '/sysOrg', 'icon-orgm', null, '4', '82');
+INSERT INTO `sys_menu` VALUES ('59', '用户', '/sysUser', 'icon-user', null, '3', '82');
+INSERT INTO `sys_menu` VALUES ('60', '修改密码', '/userPassword', 'icon-password', null, '1', '95');
+INSERT INTO `sys_menu` VALUES ('61', 'druid监控', '/druid', 'icon-druid', null, '2', '84');
+INSERT INTO `sys_menu` VALUES ('70', '系统日志', '/sysOplog', 'icon-log', null, '1', '84');
+INSERT INTO `sys_menu` VALUES ('73', '文件', '/sysFile', 'icon-file', null, '1', '85');
+INSERT INTO `sys_menu` VALUES ('74', '字典', '/sysDict', 'icon-code', null, '1', '83');
+INSERT INTO `sys_menu` VALUES ('75', '代码生成', '/sysGenerator', null, null, '10', '5');
+INSERT INTO `sys_menu` VALUES ('82', '权限控制', '/', null, null, '1', '5');
+INSERT INTO `sys_menu` VALUES ('83', '基础数据', '/', null, null, '2', '5');
+INSERT INTO `sys_menu` VALUES ('84', '系统监控', '/', null, null, '3', '5');
+INSERT INTO `sys_menu` VALUES ('85', '内容管理', '/', null, null, '4', '0');
+INSERT INTO `sys_menu` VALUES ('86', '代码生成测试', '/', null, null, '1', '0');
+INSERT INTO `sys_menu` VALUES ('87', '普通表', '/gentestBook', null, null, '1', '86');
+INSERT INTO `sys_menu` VALUES ('88', '三主键表', '/gentestMulpktable', null, null, '2', '86');
+INSERT INTO `sys_menu` VALUES ('89', '文章', '/sysNews', null, null, '2', '85');
+INSERT INTO `sys_menu` VALUES ('90', '工具', '/', null, null, '0', '0');
+INSERT INTO `sys_menu` VALUES ('91', '看小说', '/novel', null, 'fa-handsome', '1', '90');
+INSERT INTO `sys_menu` VALUES ('95', '个人中心', '/', null, null, '100', '0');
+INSERT INTO `sys_menu` VALUES ('96', '个人信息', '/userInfo', null, null, '2', '95');
+INSERT INTO `sys_menu` VALUES ('97', '通讯录', '/contacts', null, null, '2', '90');
 
 -- ----------------------------
 -- Table structure for `sys_news`
@@ -13986,7 +13963,7 @@ CREATE TABLE `sys_news` (
   `tags` varchar(100) DEFAULT NULL,
   `content` text,
   `user_id` varchar(32) DEFAULT NULL,
-  `create_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `create_time` datetime DEFAULT NULL COMMENT '创建或更新时间',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -14008,13 +13985,45 @@ CREATE TABLE `sys_oplog` (
   `user_id` varchar(32) DEFAULT NULL,
   `op_content` varchar(255) DEFAULT NULL,
   `ip` varchar(100) DEFAULT NULL,
-  `create_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `create_time` datetime DEFAULT NULL COMMENT '创建或者更新时间',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='操作日志表';
 
 -- ----------------------------
 -- Records of sys_oplog
 -- ----------------------------
+INSERT INTO `sys_oplog` VALUES ('1003236896668647424', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2018-06-03 19:28:10');
+INSERT INTO `sys_oplog` VALUES ('1003258457245089792', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2018-06-03 20:53:50');
+INSERT INTO `sys_oplog` VALUES ('1003259597835730944', '916654989969981440', '退出', '0:0:0:0:0:0:0:1', '2018-06-03 20:58:22');
+INSERT INTO `sys_oplog` VALUES ('1003259626390552576', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2018-06-03 20:58:29');
+INSERT INTO `sys_oplog` VALUES ('1003260209117790208', '916654989969981440', '退出', '0:0:0:0:0:0:0:1', '2018-06-03 21:00:48');
+INSERT INTO `sys_oplog` VALUES ('1003260227899883520', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2018-06-03 21:00:52');
+INSERT INTO `sys_oplog` VALUES ('1003260463942729728', '916654989969981440', '退出', '0:0:0:0:0:0:0:1', '2018-06-03 21:01:48');
+INSERT INTO `sys_oplog` VALUES ('1003260498222776320', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2018-06-03 21:01:57');
+INSERT INTO `sys_oplog` VALUES ('1003268873190899712', '916654989969981440', '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-06-03 21:35:13');
+INSERT INTO `sys_oplog` VALUES ('1003269254033702912', '916654989969981440', '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-06-03 21:36:44');
+INSERT INTO `sys_oplog` VALUES ('1003269666983903232', '916654989969981440', '3d4f2bf07dc1be38b20cd6e46949a1071f9d0e3d 修改为新密码：7c4a8d09ca3762af61e59520943dc26494f8941b', '0:0:0:0:0:0:0:1', '2018-06-03 21:38:23');
+INSERT INTO `sys_oplog` VALUES ('1003269683614318592', '916654989969981440', '退出', '0:0:0:0:0:0:0:1', '2018-06-03 21:38:27');
+INSERT INTO `sys_oplog` VALUES ('1003269709283459072', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2018-06-03 21:38:33');
+INSERT INTO `sys_oplog` VALUES ('1003270457656344576', '916654989969981440', '退出', '0:0:0:0:0:0:0:1', '2018-06-03 21:41:31');
+INSERT INTO `sys_oplog` VALUES ('1003273173812117504', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2018-06-03 21:52:19');
+INSERT INTO `sys_oplog` VALUES ('1003273268926349312', '916654989969981440', '退出', '0:0:0:0:0:0:0:1', '2018-06-03 21:52:41');
+INSERT INTO `sys_oplog` VALUES ('1003273296361291776', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2018-06-03 21:52:48');
+INSERT INTO `sys_oplog` VALUES ('1003275364136386560', '916654989969981440', '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-06-03 22:01:01');
+INSERT INTO `sys_oplog` VALUES ('1003277304677269504', '916654989969981440', '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-06-03 22:08:44');
+INSERT INTO `sys_oplog` VALUES ('1003279049331572736', '916654989969981440', '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-06-03 22:15:40');
+INSERT INTO `sys_oplog` VALUES ('1003279888582443008', '916654989969981440', '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-06-03 22:19:00');
+INSERT INTO `sys_oplog` VALUES ('1003280248197873664', '916654989969981440', '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-06-03 22:20:25');
+INSERT INTO `sys_oplog` VALUES ('1003281308467593216', '916654989969981440', '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-06-03 22:24:38');
+INSERT INTO `sys_oplog` VALUES ('1003281923566469120', '916654989969981440', '退出', '0:0:0:0:0:0:0:1', '2018-06-03 22:27:05');
+INSERT INTO `sys_oplog` VALUES ('1003281953111146496', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2018-06-03 22:27:12');
+INSERT INTO `sys_oplog` VALUES ('1003282648698716160', '916654989969981440', '退出', '0:0:0:0:0:0:0:1', '2018-06-03 22:29:58');
+INSERT INTO `sys_oplog` VALUES ('1003282699584012288', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2018-06-03 22:30:10');
+INSERT INTO `sys_oplog` VALUES ('1003283705046761472', '916654989969981440', '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-06-03 22:34:10');
+INSERT INTO `sys_oplog` VALUES ('1003288089038159872', '916654989969981440', '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-06-03 22:51:35');
+INSERT INTO `sys_oplog` VALUES ('1003288422183337984', '916654989969981440', '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-06-03 22:52:54');
+INSERT INTO `sys_oplog` VALUES ('1003295390948130816', '916654989969981440', '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-06-03 23:20:36');
+INSERT INTO `sys_oplog` VALUES ('1003296096014827520', '916654989969981440', '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-06-03 23:23:24');
 INSERT INTO `sys_oplog` VALUES ('978507882259546112', '916654989969981440', '退出', '0:0:0:0:0:0:0:1', '2018-03-27 13:43:53');
 INSERT INTO `sys_oplog` VALUES ('978507920457072640', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2018-03-27 13:44:02');
 INSERT INTO `sys_oplog` VALUES ('979261362326732800', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2018-03-29 15:37:57');
@@ -14224,9 +14233,9 @@ DROP TABLE IF EXISTS `sys_role`;
 CREATE TABLE `sys_role` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `role_name` varchar(255) DEFAULT NULL COMMENT '角色名称',
-  `role_desc` varchar(255) DEFAULT NULL,
-  `create_time` datetime DEFAULT NULL,
-  `sort` int(11) DEFAULT NULL,
+  `role_desc` varchar(255) DEFAULT NULL COMMENT '角色描述',
+  `create_time` datetime DEFAULT NULL COMMENT '创建时间或者更新时间',
+  `sort` int(11) DEFAULT NULL COMMENT '排序号',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8 COMMENT='角色表';
 
@@ -14263,6 +14272,8 @@ INSERT INTO `sys_role_menu` VALUES ('3', '87');
 INSERT INTO `sys_role_menu` VALUES ('3', '88');
 INSERT INTO `sys_role_menu` VALUES ('3', '89');
 INSERT INTO `sys_role_menu` VALUES ('3', '91');
+INSERT INTO `sys_role_menu` VALUES ('3', '96');
+INSERT INTO `sys_role_menu` VALUES ('3', '97');
 INSERT INTO `sys_role_menu` VALUES ('28', '60');
 INSERT INTO `sys_role_menu` VALUES ('28', '91');
 
@@ -14272,14 +14283,14 @@ INSERT INTO `sys_role_menu` VALUES ('28', '91');
 DROP TABLE IF EXISTS `sys_user`;
 CREATE TABLE `sys_user` (
   `id` varchar(32) NOT NULL,
-  `username` varchar(50) DEFAULT NULL,
-  `password` varchar(120) DEFAULT NULL,
-  `name` varchar(50) DEFAULT NULL,
+  `username` varchar(50) DEFAULT NULL COMMENT '用户名',
+  `password` varchar(120) DEFAULT NULL COMMENT '密码',
+  `name` varchar(50) DEFAULT NULL COMMENT '真实姓名',
   `org_id` int(11) DEFAULT NULL COMMENT '部门id',
-  `email` varchar(100) DEFAULT NULL,
-  `phone` varchar(12) DEFAULT NULL,
+  `email` varchar(100) DEFAULT NULL COMMENT '邮箱地址',
+  `phone` varchar(12) DEFAULT NULL COMMENT '手机号',
   `disabled` varchar(2) DEFAULT '0' COMMENT '是否禁用0 未禁用 1禁用',
-  `create_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `create_time` datetime DEFAULT NULL COMMENT '创建或者更新时间',
   PRIMARY KEY (`id`),
   KEY `sys_user_org_id` (`org_id`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='系统用户表';
@@ -14287,7 +14298,7 @@ CREATE TABLE `sys_user` (
 -- ----------------------------
 -- Records of sys_user
 -- ----------------------------
-INSERT INTO `sys_user` VALUES ('916654989969981440', 'admin', '3d4f2bf07dc1be38b20cd6e46949a1071f9d0e3d', '管理员', '75', '916432779@qq.com', '15238002477', '0', '2017-12-20 14:54:50');
+INSERT INTO `sys_user` VALUES ('916654989969981440', 'admin', '7c4a8d09ca3762af61e59520943dc26494f8941b', '张闯', '75', '916432779@qq.com', '1523800246', '0', '2017-12-20 14:54:50');
 INSERT INTO `sys_user` VALUES ('977871609484279808', 'tom', '3d4f2bf07dc1be38b20cd6e46949a1071f9d0e3d', 'tom', '75', null, null, '0', '2018-03-25 19:35:34');
 INSERT INTO `sys_user` VALUES ('977871690539204608', 'jack', '3d4f2bf07dc1be38b20cd6e46949a1071f9d0e3d', '111111', '76', null, null, '0', '2018-03-25 19:36:55');
 
