@@ -87,7 +87,7 @@ public class PoiKit {
         } else {
             for (int j = 0, lenJ = columns.length; j < lenJ; j++) {
                 cell = row.createCell(j);
-                String value ;
+                String value;
                 if (model.get(columns[j]) == null) {
                     value = "";
                 } else {
@@ -108,7 +108,7 @@ public class PoiKit {
             int columnIndex = 0;
             for (String key : keys) {
                 cell = row.createCell(columnIndex);
-                String value ;
+                String value;
                 if (record.get(key) == null) {
                     value = "";
                 } else {
@@ -156,8 +156,8 @@ public class PoiKit {
 
         HSSFWorkbook wb = new HSSFWorkbook();
         HSSFSheet sheet = wb.createSheet(sheetName);
-        HSSFRow row ;
-        HSSFCell cell ;
+        HSSFRow row;
+        HSSFCell cell;
         if (headers.length > 0) {
             row = sheet.createRow(0);
             if (headerRow <= 0) {

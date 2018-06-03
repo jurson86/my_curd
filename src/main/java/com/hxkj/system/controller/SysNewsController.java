@@ -10,6 +10,8 @@ import com.jfinal.aop.Before;
 import com.jfinal.kit.StrKit;
 import com.jfinal.plugin.activerecord.Page;
 
+import java.util.Date;
+
 /**
  * SysNews 控制器
  */
@@ -57,6 +59,7 @@ public class SysNewsController extends BaseController {
         sysNews.set("tags", StrKit.join(getParaValues("tags"), ","));
         SysUser sysUser = getSessionUser();
         sysNews.set("user_id", sysUser.getId());
+        sysNews.setCreateTime(new Date());
         boolean saveFlag = sysNews.save();
         if (saveFlag) {
             renderText(Constant.ADD_SUCCESS);
@@ -87,6 +90,7 @@ public class SysNewsController extends BaseController {
         sysNews.set("tags", StrKit.join(getParaValues("tags"), ","));
         SysUser sysUser = getSessionUser();
         sysNews.set("user_id", sysUser.getId());
+        sysNews.setCreateTime(new Date());
         boolean updateFlag = sysNews.update();
         if (updateFlag) {
             renderText(Constant.UPDATE_SUCCESS);

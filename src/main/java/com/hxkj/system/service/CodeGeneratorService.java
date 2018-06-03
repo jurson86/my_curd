@@ -15,7 +15,8 @@ import java.util.*;
 
 /**
  * 通过json生成代码文件
- * @author  zhangchuang
+ *
+ * @author zhangchuang
  * @date 2017-12-18
  */
 public class CodeGeneratorService {
@@ -35,82 +36,6 @@ public class CodeGeneratorService {
     public CodeGeneratorService() {
         init();
     }
-
-    /**
-     * 生成代码 文件
-     * @param moduleName 
-     * @param tables
-     * @return
-     */
-    public List<String> generate(String moduleName, List<Table> tables) {
-        List<String> outPathList = new ArrayList<String>();
-        for (Table table : tables) {
-            Map<String, Object> content = new HashMap<String, Object>();
-            content.put("moduleName", moduleName);
-            content.put("basePackageName", this.basePackageName);
-            content.put("table", table);
-            content.put("generateDate", ToolDateTime.format(new Date(),ToolDateTime.pattern_ymd_hms));
-            for (int i = 0; i < this.templates.length; i++) {
-                String fileName;
-                // .java 文件 使用 首字母大写的驼峰, 非java 文件使用驼峰命名
-                if (fileNameWrapers[i].endsWith(".java")) {
-                    fileName = toOutPath(moduleName, this.paths[i]) + fileNameWrapers[i].replaceAll("@tableName@", table.getTableNameCamelFirstUp());
-                } else {
-                    fileName = toOutPath(moduleName, this.paths[i] + File.separator + moduleName) + fileNameWrapers[i].replaceAll("@tableName@", table.getTableNameCamel());
-                }
-                fileName = fileName.replaceAll("\\\\", "/");
-                LOG.debug("fileName:  " + fileName);
-                ToolFreeMarker.makeHtml(tplDir, templates[i], content, fileName);
-                outPathList.add(fileName);
-            }
-        }
-        return outPathList;
-    }
-
-
-    /**
-     * 配置初始化以及配置有效性检查
-     */
-    private  void init(){
-        Prop prop = PropKit.use("generator.properties");
-        this.tplDir = prop.get("tplDir");
-        this.basePackageName = prop.get("basePackageName");
-        this.templates = prop.get("templates").split(";");
-        this.paths = prop.get("paths").split(";");
-        this.fileNameWrapers = prop.get("fileNameWrapers").split(";");
-        if (StrKit.isBlank(basePackageName)) {
-            throw new IllegalArgumentException("配置文件错误： basePackageName");
-        }
-        if (StrKit.isBlank(tplDir)) {
-            throw new IllegalArgumentException("配置文件出错： tplDir");
-        }
-        this.tplDir = PathKit.getRootClassPath() + "/" + this.tplDir;
-
-        if (this.templates.length != this.paths.length || this.templates.length != this.fileNameWrapers.length || this.paths.length != this.fileNameWrapers.length) {
-            throw new IllegalArgumentException("配置文件出错： templates、paths、fileNameWrapers 个数不匹配");
-        }
-    }
-
-
-    /**
-     * 处理代码生成生成文件路径
-     * @param moduleName
-     * @param out
-     * @return
-     */
-    private String toOutPath(String moduleName, String out) {
-        String basePath = PathKit.getRootClassPath() + File.separator;
-        String pathStr = out;
-        String outPath = basePath + "out" + File.separator
-                + (this.basePackageName + "." + moduleName).replace(".", File.separator) + File.separator
-                + pathStr + File.separator;
-        File file = new File(outPath);
-        if (!file.exists()) {
-            file.mkdirs();
-        }
-        return outPath;
-    }
-
 
     public static void main(String[] args) {
         CodeGeneratorService service = new CodeGeneratorService();
@@ -161,6 +86,81 @@ public class CodeGeneratorService {
         Table table = JSON.parseObject(jsonStr, Table.class);
         tables.add(table);
         service.generate("bus", tables);
+    }
+
+    /**
+     * 生成代码 文件
+     *
+     * @param moduleName
+     * @param tables
+     * @return
+     */
+    public List<String> generate(String moduleName, List<Table> tables) {
+        List<String> outPathList = new ArrayList<String>();
+        for (Table table : tables) {
+            Map<String, Object> content = new HashMap<String, Object>();
+            content.put("moduleName", moduleName);
+            content.put("basePackageName", this.basePackageName);
+            content.put("table", table);
+            content.put("generateDate", ToolDateTime.format(new Date(), ToolDateTime.pattern_ymd_hms));
+            for (int i = 0; i < this.templates.length; i++) {
+                String fileName;
+                // .java 文件 使用 首字母大写的驼峰, 非java 文件使用驼峰命名
+                if (fileNameWrapers[i].endsWith(".java")) {
+                    fileName = toOutPath(moduleName, this.paths[i]) + fileNameWrapers[i].replaceAll("@tableName@", table.getTableNameCamelFirstUp());
+                } else {
+                    fileName = toOutPath(moduleName, this.paths[i] + File.separator + moduleName) + fileNameWrapers[i].replaceAll("@tableName@", table.getTableNameCamel());
+                }
+                fileName = fileName.replaceAll("\\\\", "/");
+                LOG.debug("fileName:  " + fileName);
+                ToolFreeMarker.makeHtml(tplDir, templates[i], content, fileName);
+                outPathList.add(fileName);
+            }
+        }
+        return outPathList;
+    }
+
+    /**
+     * 配置初始化以及配置有效性检查
+     */
+    private void init() {
+        Prop prop = PropKit.use("generator.properties");
+        this.tplDir = prop.get("tplDir");
+        this.basePackageName = prop.get("basePackageName");
+        this.templates = prop.get("templates").split(";");
+        this.paths = prop.get("paths").split(";");
+        this.fileNameWrapers = prop.get("fileNameWrapers").split(";");
+        if (StrKit.isBlank(basePackageName)) {
+            throw new IllegalArgumentException("配置文件错误： basePackageName");
+        }
+        if (StrKit.isBlank(tplDir)) {
+            throw new IllegalArgumentException("配置文件出错： tplDir");
+        }
+        this.tplDir = PathKit.getRootClassPath() + "/" + this.tplDir;
+
+        if (this.templates.length != this.paths.length || this.templates.length != this.fileNameWrapers.length || this.paths.length != this.fileNameWrapers.length) {
+            throw new IllegalArgumentException("配置文件出错： templates、paths、fileNameWrapers 个数不匹配");
+        }
+    }
+
+    /**
+     * 处理代码生成生成文件路径
+     *
+     * @param moduleName
+     * @param out
+     * @return
+     */
+    private String toOutPath(String moduleName, String out) {
+        String basePath = PathKit.getRootClassPath() + File.separator;
+        String pathStr = out;
+        String outPath = basePath + "out" + File.separator
+                + (this.basePackageName + "." + moduleName).replace(".", File.separator) + File.separator
+                + pathStr + File.separator;
+        File file = new File(outPath);
+        if (!file.exists()) {
+            file.mkdirs();
+        }
+        return outPath;
     }
 
 

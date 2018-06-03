@@ -13,10 +13,7 @@ import com.jfinal.plugin.activerecord.Db;
 import com.jfinal.plugin.activerecord.Page;
 import com.jfinal.plugin.activerecord.tx.Tx;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * 系统用户 控制器
@@ -51,6 +48,7 @@ public class SysUserController extends BaseController {
         sysUser.setId(Identities.uuid2());
         String password = HashKit.sha1(sysUser.getPassword());
         sysUser.setPassword(password);
+        sysUser.setCreateTime(new Date());
         boolean saveFlag = sysUser.save();
         if (saveFlag) {
             renderText(Constant.ADD_SUCCESS);
@@ -68,6 +66,7 @@ public class SysUserController extends BaseController {
             password = HashKit.sha1(password);   // 加密后为40位字符
             sysUser.setPassword(password);
         }
+        sysUser.setCreateTime(new Date());
         boolean updateFlag = sysUser.update();
         if (updateFlag) {
             renderText(Constant.UPDATE_SUCCESS);

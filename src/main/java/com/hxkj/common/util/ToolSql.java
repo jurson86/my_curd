@@ -12,7 +12,9 @@ import java.util.StringTokenizer;
 
 public abstract class ToolSql {
 
-    private ToolSql(){}
+    private ToolSql() {
+    }
+
     /**
      * sql格式化方法
      */

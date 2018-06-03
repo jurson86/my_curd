@@ -6,13 +6,15 @@ import java.util.List;
 
 /**
  * sys_user_role 用户角色中间表  model
- * @author  zhangchuang
+ *
+ * @author zhangchuang
  */
 public class SysUserRole extends BaseSysUserRole<SysUserRole> {
     public static final SysUserRole dao = new SysUserRole().dao();
 
     /**
      * 根据用户id 查询 用户角色
+     *
      * @param userId
      * @return
      */
@@ -29,6 +31,7 @@ public class SysUserRole extends BaseSysUserRole<SysUserRole> {
 
     /**
      * 根据 userid 查询
+     *
      * @param userId
      * @return
      */

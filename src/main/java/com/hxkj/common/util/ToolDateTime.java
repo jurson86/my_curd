@@ -14,9 +14,6 @@ import java.util.*;
  */
 public abstract class ToolDateTime {
 
-    private static final Logger LOG = Logger.getLogger(ToolDateTime.class);
-    private ToolDateTime(){}
-
     public static final String pattern_ym = "yyyy-MM";
     public static final int pattern_ym_length = 7;
     public static final String pattern_ymd = "yyyy-MM-dd";
@@ -27,6 +24,9 @@ public abstract class ToolDateTime {
     public static final int pattern_ymd_hms_length = 19;
     public static final String pattern_ymd_hms_s = "yyyy-MM-dd HH:mm:ss:SSS";
     public static final int pattern_ymd_hms_s_length = 23;
+    private static final Logger LOG = Logger.getLogger(ToolDateTime.class);
+    private ToolDateTime() {
+    }
 
     // SimpleDateformat 线程不安全
 

@@ -15,6 +15,7 @@ import java.io.FileOutputStream;
 public abstract class ImageWatermark {
     /**
      * 把图片印刷到图片上
+     *
      * @param pressImg  -- 水印文件
      * @param targetImg -- 目标文件
      * @param x
@@ -48,6 +49,7 @@ public abstract class ImageWatermark {
 
     /**
      * 打印文字水印图片，右下角计算坐标
+     *
      * @param pressText --文字
      * @param targetImg -- 目标图片
      * @param fontName  -- 字体名
@@ -57,7 +59,7 @@ public abstract class ImageWatermark {
      * @param x         -- 偏移量
      * @param y
      */
-    public static void pressText(String pressText, String targetImg,String fontName, int fontStyle, int color, int fontSize, int x, int y) {
+    public static void pressText(String pressText, String targetImg, String fontName, int fontStyle, int color, int fontSize, int x, int y) {
         try {
             File _file = new File(targetImg);
             Image src = ImageIO.read(_file);

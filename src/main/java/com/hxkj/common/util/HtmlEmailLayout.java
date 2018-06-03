@@ -10,32 +10,29 @@ import java.util.Date;
 
 public class HtmlEmailLayout extends Layout {
 
-    protected final int BUF_SIZE = 256;
-    protected final int MAX_CAPACITY = 1024;
-
-    static String TRACE_PREFIX = "<br>&nbsp;&nbsp;&nbsp;&nbsp;";
-    private StringBuffer sbuf = new StringBuffer(BUF_SIZE);
     public static final String LOCATION_INFO_OPTION = "LocationInfo";
     public static final String TITLE_OPTION = "Title";
+    static String TRACE_PREFIX = "<br>&nbsp;&nbsp;&nbsp;&nbsp;";
+    protected final int BUF_SIZE = 256;
+    protected final int MAX_CAPACITY = 1024;
     boolean locationInfo = false;
-
     String title = "Log4J Log Messages";
-
-    public void setLocationInfo(boolean flag) {
-        locationInfo = flag;
-    }
+    private StringBuffer sbuf = new StringBuffer(BUF_SIZE);
 
     public boolean getLocationInfo() {
         return locationInfo;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setLocationInfo(boolean flag) {
+        locationInfo = flag;
     }
-
 
     public String getTitle() {
         return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public String getContentType() {

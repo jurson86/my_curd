@@ -9,13 +9,15 @@ import java.util.List;
 
 /**
  * sys_oplog 操作日志表  model
- * @author  zhangchuang
+ *
+ * @author zhangchuang
  */
 public class SysOplog extends BaseSysOplog<SysOplog> {
     public static final SysOplog dao = new SysOplog().dao();
 
     /**
      * 分页查询
+     *
      * @param pageNumber
      * @param pageSize
      * @param where
@@ -34,6 +36,7 @@ public class SysOplog extends BaseSysOplog<SysOplog> {
 
     /**
      * 条件查询
+     *
      * @param where
      * @return
      */

@@ -6,7 +6,8 @@ import java.util.List;
 
 /**
  * sys_role_menu 角色菜单中间表  model
- * @author  zhangchuang
+ *
+ * @author zhangchuang
  */
 public class SysRoleMenu extends BaseSysRoleMenu<SysRoleMenu> {
     public static final SysRoleMenu dao = new SysRoleMenu().dao();
@@ -14,6 +15,7 @@ public class SysRoleMenu extends BaseSysRoleMenu<SysRoleMenu> {
 
     /**
      * 根据 roleid 字段查询
+     *
      * @param roleId
      * @return
      */

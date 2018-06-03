@@ -6,12 +6,14 @@ import java.util.*;
 
 /**
  * 登录工具
- * @author  zhangchuang
+ *
+ * @author zhangchuang
  */
 public class LoginService {
 
     /**
      * 构造树形菜单格式数据
+     *
      * @param roleIds 角色id数字数组，以逗号分隔
      * @return 菜单列表
      */
@@ -27,7 +29,7 @@ public class LoginService {
             getPChain(allMenuList, menu, chainSet);
         }
         //排序
-        userMenuList= new ArrayList<SysMenu>(chainSet);
+        userMenuList = new ArrayList<SysMenu>(chainSet);
         Collections.sort(userMenuList, new Comparator<SysMenu>() {
             public int compare(SysMenu o1, SysMenu o2) {
                 if (o1.get("sort") == null || o2.get("sort") == null
@@ -42,8 +44,9 @@ public class LoginService {
 
     /**
      * 获取 所有 父亲（祖）菜单
-     * @param list 所有的菜单
-     * @param menu 要获取父菜单的菜单
+     *
+     * @param list      所有的菜单
+     * @param menu      要获取父菜单的菜单
      * @param chainlist 已经放入当前菜单的 set
      */
     private void getPChain(Collection<SysMenu> list, SysMenu menu, Set<SysMenu> chainlist) {

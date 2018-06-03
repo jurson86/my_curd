@@ -30,7 +30,7 @@ public class ToolMail {
 
     /*使用hMailServer 搭建的本地 邮件服务器*/
     /*没有反向解析可能被邮件接收方识别为垃圾邮件*/
-    private final static  String host="localhost";
+    private final static String host = "localhost";
     private final static String port = "25";                         // 发送邮件的服务器的端口 smtp
     private final static boolean validate = true;                    // 是否需要身份验证
     private final static String from = "chuang@hx002132.com";
@@ -39,6 +39,7 @@ public class ToolMail {
 
     /**
      * 判断文本是否文HTML文本
+     *
      * @param content
      * @return
      */
@@ -48,7 +49,7 @@ public class ToolMail {
         return matcher.find();
     }
 
-    public static  boolean sendEmailAsync(List<String> to, String subject, String content, String[] attachFileNames){
+    public static boolean sendEmailAsync(List<String> to, String subject, String content, String[] attachFileNames) {
         boolean flag = false;
         LOG.debug("发送邮件到：" + to.toString());
         SendMailProcess process;
@@ -57,15 +58,15 @@ public class ToolMail {
         } else {
             process = new SendMailProcess(MailType.TEXT, host, port, validate, userName, password, from, to, subject, content, attachFileNames);
         }
-        flag =  ToolThread.submit(process);
-        return  flag;
+        flag = ToolThread.submit(process);
+        return flag;
     }
 
     public static void main(String[] args) {
-        List<String> to = Arrays.asList("rthlCompany@163.com","916432779@qq.com");   // 163 识别为 垃圾邮件， qq 邮箱不识别为垃圾邮件
+        List<String> to = Arrays.asList("rthlCompany@163.com", "916432779@qq.com");   // 163 识别为 垃圾邮件， qq 邮箱不识别为垃圾邮件
         String subject = "邮件重置密码";
         String content = "<h1>张闯 is a good guy</h1>";
-        boolean flag = sendEmailAsync(to,subject,content,null);
+        boolean flag = sendEmailAsync(to, subject, content, null);
         System.out.println(flag);
         System.out.println("over");
     }

@@ -16,21 +16,21 @@ import com.jfinal.plugin.activerecord.dialect.MysqlDialect;
 import com.jfinal.plugin.druid.DruidPlugin;
 import com.jfinal.plugin.druid.DruidStatViewHandler;
 import com.jfinal.plugin.druid.IDruidStatViewAuth;
-import com.jfinal.render.FreeMarkerRender;
 import com.jfinal.render.ViewType;
 import com.jfinal.template.Engine;
-
 
 import javax.servlet.http.HttpServletRequest;
 
 /**
  * Jfinal框架 配置
+ *
  * @author zhangcuang
  */
 public class AppConfig extends JFinalConfig {
 
     /**
      * 配置JFinal常量
+     *
      * @param me 常量集合
      */
     @Override
@@ -41,9 +41,9 @@ public class AppConfig extends JFinalConfig {
         me.setMaxPostSize(10 * 1024 * 1000);  // 10M
         me.setBaseDownloadPath("download");
         me.setViewType(ViewType.FREE_MARKER);
-        me.setError403View(Constant.VIEW_PATH+"common/403.html");
-        me.setError404View(Constant.VIEW_PATH+"common/404.html");
-        me.setError500View(Constant.VIEW_PATH+"common/500.html");
+        me.setError403View(Constant.VIEW_PATH + "common/403.html");
+        me.setError404View(Constant.VIEW_PATH + "common/404.html");
+        me.setError500View(Constant.VIEW_PATH + "common/500.html");
 
         // jfinaljson 和 fastjson 混合
         me.setJsonFactory(MixedJsonFactory.me());
@@ -53,22 +53,25 @@ public class AppConfig extends JFinalConfig {
 
     /**
      * 配置JFinal路由
+     *
      * @param me 路由集合
      */
     @Override
     public void configRoute(Routes me) {
-        // system
+        // 管理员 权限路由
         me.add(new SysRoute());
+        // 普通用户路由
+        me.add(new OrdinaryUserRoute());
         // 代码生成测试
         me.add(new GentestRoute());
-        // 阅读
-        me.add(new ReadRoute());
+
         // websocket 入口
         me.add("/ws", WebsocketController.class, Constant.VIEW_PATH);
     }
 
     /**
      * 配置 插件
+     *
      * @param me 插件集合
      */
     @Override
@@ -92,6 +95,7 @@ public class AppConfig extends JFinalConfig {
 
     /**
      * 配置 jfinal interceptor
+     *
      * @param me interceptor集合
      */
     @Override
@@ -102,6 +106,7 @@ public class AppConfig extends JFinalConfig {
 
     /**
      * 配置 jfinal handler
+     *
      * @param me handler集合
      */
     @Override
@@ -126,9 +131,14 @@ public class AppConfig extends JFinalConfig {
     }
 
     @Override
-    public void afterJFinalStart() {}
+    public void afterJFinalStart() {
+    }
+
     @Override
-    public void beforeJFinalStop() {}
+    public void beforeJFinalStop() {
+    }
+
     @Override
-    public void configEngine(Engine me) {}
+    public void configEngine(Engine me) {
+    }
 }

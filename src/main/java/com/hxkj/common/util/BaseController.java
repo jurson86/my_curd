@@ -7,6 +7,7 @@ import com.jfinal.core.Controller;
 import com.jfinal.plugin.activerecord.Page;
 import com.jfinal.plugin.activerecord.Record;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -94,6 +95,7 @@ public abstract class BaseController extends Controller {
         sysOplog.setUserId((String) getSessionUser().get("id"));
         sysOplog.setOpContent(opContent);
         sysOplog.setIp(getRemoteAddress());
+        sysOplog.setCreateTime(new Date());
         sysOplog.save();
     }
 

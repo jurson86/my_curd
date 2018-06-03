@@ -7,11 +7,13 @@ import com.jfinal.plugin.activerecord.ActiveRecordPlugin;
 
 /**
  * 数据库表 MappingKit
- * @author  zhangchuang
+ *
+ * @author zhangchuang
  */
 public class MappingKit {
 
-    private MappingKit(){}
+    private MappingKit() {
+    }
 
     public static void mapping(ActiveRecordPlugin arp) {
         // sys 模块

@@ -1,9 +1,9 @@
-package com.hxkj.read.controller;
+package com.hxkj.ordinaryUser.controller;
 
 import com.alibaba.fastjson.JSONObject;
 import com.hxkj.common.util.BaseController;
 import com.hxkj.common.util.ToolString;
-import com.hxkj.read.service.NovelService;
+import com.hxkj.ordinaryUser.service.NovelService;
 import com.jfinal.kit.StrKit;
 
 import java.io.IOException;
@@ -11,16 +11,16 @@ import java.util.Map;
 
 public class NovelController extends BaseController {
     public void index() {
-        render("read/novel.html");
+        render("ordinaryUser/novel.html");
     }
 
     public void query() {
-        Integer pageNumber = getParaToInt("page",1);
-        Integer limit = getParaToInt("rows",20) ;
+        Integer pageNumber = getParaToInt("page", 1);
+        Integer limit = getParaToInt("rows", 20);
         Integer start = (pageNumber - 1) * limit;  // 数据接口错误，返回的行数多（前两页)
         String keyword = getPara("keyword");
         if (StrKit.isBlank(keyword)) {
-            String category = getPara("category","gender=male&major=玄幻");
+            String category = getPara("category", "gender=male&major=玄幻");
             renderJson(NovelService.category(category, start, limit));
         } else {
             renderJson(NovelService.fuzzySearch(keyword, start, limit));
@@ -38,9 +38,9 @@ public class NovelController extends BaseController {
     /**
      * 章节列表页面
      */
-    public void chapters(){
-        setAttr("id",getPara(0));
-        render("read/chapters.html");
+    public void chapters() {
+        setAttr("id", getPara(0));
+        render("ordinaryUser/chapters.html");
     }
 
 
@@ -60,17 +60,18 @@ public class NovelController extends BaseController {
         String url = getPara("url");
         Map<String, Object> detailMap = NovelService.chapter(url);
         String body = "获取章节错误！:( ";
-        if((Integer)detailMap.get("code")==1){
-            JSONObject chapterDetail = (JSONObject)detailMap.get("chapterDetail");
+        if ((Integer) detailMap.get("code") == 1) {
+            JSONObject chapterDetail = (JSONObject) detailMap.get("chapterDetail");
             body = chapterDetail.getString("body");
         }
-        setAttr("content",body);
-        render("read/chapter.html");
+        setAttr("content", body);
+        render("ordinaryUser/chapter.html");
     }
 
 
     /**
      * 下载
+     *
      * @throws IOException
      */
     public void download() throws IOException {

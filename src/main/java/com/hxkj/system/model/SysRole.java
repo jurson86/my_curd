@@ -8,13 +8,15 @@ import java.util.List;
 
 /**
  * sys_role 角色表  model
- * @author  zhangchuang
+ *
+ * @author zhangchuang
  */
 public class SysRole extends BaseSysRole<SysRole> {
     public static final SysRole dao = new SysRole().dao();
 
     /**
      * 查询所有
+     *
      * @return
      */
     public List<SysRole> findAll() {
@@ -24,6 +26,7 @@ public class SysRole extends BaseSysRole<SysRole> {
 
     /**
      * 分页查询
+     *
      * @param pageNumber
      * @param pageSize
      * @param where

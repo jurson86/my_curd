@@ -8,7 +8,8 @@ import java.util.List;
 
 /**
  * sys_menu 菜单表  model
- * @author  zhangchuang
+ *
+ * @author zhangchuang
  */
 public class SysMenu extends BaseSysMenu<SysMenu> {
     public static final SysMenu dao = new SysMenu().dao();
@@ -24,6 +25,7 @@ public class SysMenu extends BaseSysMenu<SysMenu> {
 
     /**
      * 通过 角色ids (数字数组，逗号分隔字符串) 查询菜单
+     *
      * @param roleIds
      * @return
      */
@@ -42,6 +44,7 @@ public class SysMenu extends BaseSysMenu<SysMenu> {
 
     /**
      * 查询菜单
+     *
      * @param where 查询条件
      * @return
      */

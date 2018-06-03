@@ -6,7 +6,8 @@ import com.jfinal.plugin.activerecord.Page;
 
 /**
  * sys_news 文章表  model
- * @author  zhangchuang
+ *
+ * @author zhangchuang
  */
 public class SysNews extends BaseSysNews<SysNews> implements java.io.Serializable {
 
@@ -14,6 +15,7 @@ public class SysNews extends BaseSysNews<SysNews> implements java.io.Serializabl
 
     /**
      * 分页查询
+     *
      * @param pageNumber
      * @param pageSize
      * @param where

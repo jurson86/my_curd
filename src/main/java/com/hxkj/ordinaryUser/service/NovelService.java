@@ -1,4 +1,4 @@
-package com.hxkj.read.service;
+package com.hxkj.ordinaryUser.service;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
@@ -38,11 +38,14 @@ public class NovelService {
             "Mozilla/5.0 (Linux; Android 5.0; SM-G900P Build/LRX21T) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Mobile Safari/537.36",
             "Mozilla/5.0 (iPad; CPU OS 9_1 like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Version/9.0 Mobile/13B143 Safari/601.1"
     };
-    private NovelService(){}
+
+    private NovelService() {
+    }
 
 
     /**
      * Get 请求代理
+     *
      * @param url
      * @return
      * @throws IOException
@@ -50,7 +53,7 @@ public class NovelService {
     public static String getProxy(String url) throws IOException {
         LOG.debug(url);
         Content content = Request.Get(url)
-                .setHeader("User-Agent", userAgents[ToolRandom.number(0,userAgents.length)])
+                .setHeader("User-Agent", userAgents[ToolRandom.number(0, userAgents.length)])
                 .execute().returnContent();
         String resStr = content.asString(Charset.forName(charset));
         LOG.debug(resStr);
@@ -60,6 +63,7 @@ public class NovelService {
 
     /**
      * 关键字模糊查询小说
+     *
      * @param keyword
      * @param start
      * @param limit
@@ -98,6 +102,7 @@ public class NovelService {
 
     /**
      * 小说分类
+     *
      * @param category
      * @param start
      * @param limit
@@ -201,7 +206,7 @@ public class NovelService {
         try {
             url = URLEncoder.encode(url, "utf-8");
             String dUrl = "http://chapter2.zhuishushenqi.com/chapter/" + url;
-            String jsonStr =getProxy(dUrl);
+            String jsonStr = getProxy(dUrl);
             JSONObject jsonObject = JSON.parseObject(jsonStr);
             if (!jsonObject.getBoolean("ok")) {
                 map.put("code", -1);
@@ -415,14 +420,14 @@ public class NovelService {
     public static void main(String[] args) {
         // 发送异常邮件测试
         int x;
-        for(int i=0;i<3;i++){
-           try{
-                x = i/i;
+        for (int i = 0; i < 3; i++) {
+            try {
+                x = i / i;
                 System.out.println(x);
-            }catch (Exception e){
-                LOG.error("index: "+i,e);
+            } catch (Exception e) {
+                LOG.error("index: " + i, e);
             }
-            LOG.info("good morning: "+i);
+            LOG.info("good morning: " + i);
         }
     }
 

@@ -74,13 +74,14 @@
                     }
                 }
                 // tree json 构建
-                data = easyTree.treeDataBuild(data, 'id', 'pid', 'name,url,icon,sort,iconCls');
+                data = easyTree.treeDataBuild(data, 'id', 'pid', 'name,url,icon,iconfont,sort,iconCls');
                 return data;
             },
             columns: [[
                 {field: 'name', title: '菜单名', width: 200},
                 {field: 'url', title: '菜单地址', width: 200},
                 {field: 'icon', title: '图标', width: 150},
+                {field: 'iconfont', title: '字体图标', width: 150},
                 {field: 'sort', title: '排序', width: 80}
             ]]
         });

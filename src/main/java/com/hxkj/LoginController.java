@@ -11,7 +11,9 @@ import com.jfinal.aop.Before;
 import com.jfinal.aop.Clear;
 import com.jfinal.aop.Duang;
 import com.jfinal.core.ActionKey;
-import com.jfinal.kit.*;
+import com.jfinal.kit.HashKit;
+import com.jfinal.kit.PropKit;
+import com.jfinal.kit.StrKit;
 import com.jfinal.plugin.activerecord.tx.Tx;
 import jodd.util.URLDecoder;
 import org.apache.log4j.Logger;
@@ -20,7 +22,8 @@ import java.util.List;
 
 /**
  * 登录控制器
- * @author  zhangchuang
+ *
+ * @author zhangchuang
  */
 @Clear({AuthorityInterceptor.class})
 public class LoginController extends BaseController {
@@ -155,7 +158,7 @@ public class LoginController extends BaseController {
     // 无用
     @ActionKey("/captcha")
     public void captcha() {
-       renderCaptcha();
+        renderCaptcha();
     }
 
     // 无用
@@ -169,14 +172,14 @@ public class LoginController extends BaseController {
     // 无用
     @Before(ReadJsonInterceptor.class)
     @ActionKey("/api/json")
-    public void json(){
-       renderText("over");
+    public void json() {
+        renderText("over");
     }
 
     //无用 异常测试
     @ActionKey("/error")
-    public void error(){
-        int x = 1/0;
+    public void error() {
+        int x = 1 / 0;
         renderText("异常了....");
     }
 }

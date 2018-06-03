@@ -1,4 +1,4 @@
-package com.hxkj.system.controller;
+package com.hxkj.ordinaryUser.controller;
 
 import com.hxkj.common.constant.Constant;
 import com.hxkj.common.util.BaseController;
@@ -10,20 +10,16 @@ import com.jfinal.kit.StrKit;
 import com.jfinal.plugin.activerecord.Db;
 import com.jfinal.plugin.activerecord.Page;
 import com.jfinal.plugin.activerecord.Record;
-import com.jfinal.plugin.activerecord.tx.Tx;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-/**
- * 组织机构 控制器
- */
-public class SysOrgController extends BaseController {
+public class ContactsController extends BaseController {
 
     public void index() {
-        render("system/sysOrg.html");
+        render("ordinaryUser/contacts.html");
     }
 
 
@@ -42,14 +38,14 @@ public class SysOrgController extends BaseController {
         String where = getAttr(Constant.SEARCH_SQL);
         Integer id = getParaToInt("orgId");
 
-        String sqlSelect = " select * ";
-        String sqlExceptSelect = " from sys_user  ";
+        String sqlSelect = " select a.* , b.org_name ";
+        String sqlExceptSelect = " from sys_user a left join sys_org b on a.org_id = b.id ";
 
         if (id != null) {
             Record record = Db.findFirst("select getChildLst(?,'sys_org') as childrenIds ", id);
             String childrenIds = record.getStr("childrenIds");  // 子、孙 id
             if (StrKit.notBlank(childrenIds)) {
-                sqlExceptSelect += " where  org_id  in  (" + childrenIds + ")";
+                sqlExceptSelect += " where  a.org_id  in  (" + childrenIds + ")";
             }
 
             if (StrKit.notBlank(where)) {
@@ -62,55 +58,10 @@ public class SysOrgController extends BaseController {
 
         }
 
-        sqlExceptSelect += " order by create_time ";
+        sqlExceptSelect += " order by a.create_time ";
         Page<SysUser> sysUsers = SysUser.dao.paginate(pageNumber, pageSize, sqlSelect, sqlExceptSelect);
 
         renderDatagrid(sysUsers);
-    }
-
-
-    public void newModel() {
-        Integer id = getParaToInt("id");
-        if (id != null) {
-            SysOrg sysOrg = SysOrg.dao.findById(id);
-            setAttr("sysOrg", sysOrg);
-        }
-        render("system/sysOrg_form.html");
-    }
-
-    public void addAction() {
-        SysOrg sysOrg = getBean(SysOrg.class, "");
-        boolean saveFlag = sysOrg.save();
-        if (saveFlag) {
-            renderText(Constant.ADD_SUCCESS);
-        } else {
-            renderText(Constant.ADD_FAIL);
-        }
-    }
-
-    public void updateAction() {
-        SysOrg sysOrg = getBean(SysOrg.class, "");
-        boolean updateFlag = sysOrg.update();
-        if (updateFlag) {
-            renderText(Constant.UPDATE_SUCCESS);
-        } else {
-            renderText(Constant.UPDATE_FAIL);
-        }
-    }
-
-
-    @Before(Tx.class)
-    public void deleteAction() {
-        Integer id = getParaToInt("id");
-        // 删除当前结构和子孙组织机构
-        Record record = Db.findFirst("select getChildLst(?,'sys_org') as childrenIds ", id);
-        String childrenIds = record.getStr("childrenIds");  // 子、孙 id
-        String deleteSql = "delete from sys_org where  id  in (" + childrenIds + ")";
-        Db.update(deleteSql);
-        // 当前机构和子组织机构的 人员 orgId 设置为null
-        String updateSql = "update sys_user set org_id = null where  org_id in (" + childrenIds + ")";
-        Db.update(updateSql);
-        renderText(Constant.DELETE_SUCCESS);
     }
 
 
@@ -127,6 +78,4 @@ public class SysOrgController extends BaseController {
         }
         renderJson(maps);
     }
-
-
 }

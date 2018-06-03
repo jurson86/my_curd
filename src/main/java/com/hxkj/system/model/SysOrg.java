@@ -7,13 +7,15 @@ import java.util.List;
 
 /**
  * sys_org 组织机构表  model
- * @author  zhangchuang
+ *
+ * @author zhangchuang
  */
 public class SysOrg extends BaseSysOrg<SysOrg> {
     public static final SysOrg dao = new SysOrg().dao();
 
     /**
      * 条件查询
+     *
      * @param where
      * @return
      */

@@ -33,8 +33,6 @@ import java.util.regex.Pattern;
  * 字符串处理常用方法
  */
 public abstract class ToolString {
-    private ToolString(){}
-
     /**
      * 常用正则表达式：匹配非负整数（正整数 + 0）
      */
@@ -165,6 +163,8 @@ public abstract class ToolString {
     public final static String encoding = "UTF-8";
     public final static Pattern referer_pattern = Pattern.compile("@([^@^\\s^:]{1,})([\\s\\:\\,\\;]{0,1})");//@.+?[\\s:]
     private static final Log log = Log.getLog(ToolString.class);
+    private ToolString() {
+    }
 
     /**
      * 验证字符串是否匹配指定正则表达式
@@ -349,6 +349,7 @@ public abstract class ToolString {
 
     /**
      * 汉字拼音全拼
+     *
      * @param src
      * @return
      */
@@ -381,6 +382,7 @@ public abstract class ToolString {
 
     /**
      * 汉字拼音首字母
+     *
      * @param str
      * @return
      */
@@ -401,6 +403,7 @@ public abstract class ToolString {
 
     /**
      * 特殊字符转义，避免XSS
+     *
      * @param content
      * @return
      */
@@ -410,6 +413,7 @@ public abstract class ToolString {
 
     /**
      * 特殊字符转义，避免XSS
+     *
      * @param content
      * @return
      */
@@ -419,6 +423,7 @@ public abstract class ToolString {
 
     /**
      * 富文本内容处理返回纯文本
+     *
      * @param unsafe
      * @return
      */
@@ -429,6 +434,7 @@ public abstract class ToolString {
 
     /**
      * 富文本内容处理返回安全文本
+     *
      * @param unsafe
      * @return
      */

@@ -1,20 +1,19 @@
-package com.hxkj.system.controller;
+package com.hxkj.ordinaryUser.controller;
 
 import com.hxkj.common.util.BaseController;
 import com.hxkj.system.model.SysUser;
 import com.jfinal.aop.Before;
-import com.jfinal.ext.interceptor.SessionInViewInterceptor;
 import com.jfinal.kit.HashKit;
 import com.jfinal.plugin.activerecord.tx.Tx;
 
-/**
- * 修改密码
- */
-public class SysChangePasswordController extends BaseController {
+public class UserPasswordController extends BaseController {
 
-    @Before(SessionInViewInterceptor.class)
+    private final static String INDEX = "ordinaryUser/userPass.html";
+
     public void index() {
-        render("system/sysChangePwd.html");
+        SysUser sysUser = getSessionUser();
+        setAttr("sysUser", sysUser);
+        render(INDEX);
     }
 
     @Before(Tx.class)
@@ -47,6 +46,5 @@ public class SysChangePasswordController extends BaseController {
         } else {
             renderText("修改密码失败");
         }
-
     }
 }

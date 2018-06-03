@@ -6,13 +6,15 @@ import com.jfinal.plugin.activerecord.Page;
 
 /**
  * sys_user 用户表  model
- * @author  zhangchuang
+ *
+ * @author zhangchuang
  */
 public class SysUser extends BaseSysUser<SysUser> {
     public static final SysUser dao = new SysUser().dao();
 
     /**
      * 根据用户名查询
+     *
      * @param username
      * @return
      */
@@ -30,17 +32,25 @@ public class SysUser extends BaseSysUser<SysUser> {
 
     /**
      * 根据用户名密码查询
+     *
      * @param username
      * @param password
      * @return
      */
     public SysUser findByUsernameAndPassword(String username, String password) {
-        String sql = "select * from sys_user where username = ? and password = ?";
+        String sql = "SELECT"
+                + " su.*,"
+                + " so.org_name AS orgName, "
+                + " so.id as orgId "
+                + " FROM sys_user su"
+                + " LEFT JOIN sys_org so ON su.org_id = so.id"
+                + " where username = ? and password = ?   ";
         return findFirst(sql, username, password);
     }
 
     /**
      * 分页查询
+     *
      * @param pageNumber
      * @param pageSize
      * @param where

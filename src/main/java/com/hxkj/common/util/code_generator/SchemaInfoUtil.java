@@ -45,6 +45,7 @@ public class SchemaInfoUtil {
 
     /**
      * 数据库表信息
+     *
      * @param fullInfoFlag true 查询表的同时查询列集合信息
      * @return
      */

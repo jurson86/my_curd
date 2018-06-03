@@ -6,7 +6,8 @@ import com.jfinal.plugin.activerecord.Page;
 
 /**
  * sys_dict 字典枚举值表  model
- * @author  zhangchuang
+ *
+ * @author zhangchuang
  */
 public class SysDict extends BaseSysDict<SysDict> implements java.io.Serializable {
 
@@ -14,9 +15,10 @@ public class SysDict extends BaseSysDict<SysDict> implements java.io.Serializabl
 
     /**
      * 分页查询
+     *
      * @param pageNumber
      * @param pageSize
-     * @param where 查询条件
+     * @param where      查询条件
      * @return
      */
     public Page<SysDict> page(int pageNumber, int pageSize, String where) {

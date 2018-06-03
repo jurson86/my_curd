@@ -8,6 +8,8 @@ import java.util.UUID;
  */
 public class Identities {
 
+    private static SecureRandom random = new SecureRandom();
+
     /**
      * 封装JDK自带的UUID, 通过Random数字生成,中间有-分割
      */
@@ -21,8 +23,6 @@ public class Identities {
     public static String uuid2() {
         return IdGentral.get().nextId() + "";
     }
-
-    private static SecureRandom random = new SecureRandom();
 
     /**
      * 使用SecureRandom随机生成Long.

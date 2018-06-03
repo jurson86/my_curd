@@ -21,6 +21,14 @@ public class PoiRender extends Render {
     private String fileName = "file1.xls";
     private int headerRow;
 
+    public PoiRender(List<?> data) {
+        this.data = data;
+    }
+
+    public static PoiRender me(List<?> data) {
+        return new PoiRender(data);
+    }
+
     public PoiRender headerRow(int headerRow) {
         this.headerRow = headerRow;
         return this;
@@ -44,15 +52,6 @@ public class PoiRender extends Render {
     public PoiRender fileName(String fileName) {
         this.fileName = fileName;
         return this;
-    }
-
-
-    public PoiRender(List<?> data) {
-        this.data = data;
-    }
-
-    public static PoiRender me(List<?> data) {
-        return new PoiRender(data);
     }
 
     @Override

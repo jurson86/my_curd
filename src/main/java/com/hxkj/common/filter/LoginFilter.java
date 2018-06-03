@@ -18,7 +18,8 @@ public class LoginFilter implements Filter {
     private final static Logger LOG = Logger.getLogger(LoginFilter.class);
 
     @Override
-    public void init(FilterConfig filterConfig) throws ServletException {}
+    public void init(FilterConfig filterConfig) throws ServletException {
+    }
 
     public void doFilter(ServletRequest req, ServletResponse res, FilterChain filterChain)
             throws IOException, ServletException {
@@ -36,11 +37,11 @@ public class LoginFilter implements Filter {
         String contextPath = request.getContextPath();
         req.setAttribute("ctx", contextPath);
 
-        if( curUrl.startsWith(contextPath + "/res")
+        if (curUrl.startsWith(contextPath + "/res")
                 || curUrl.startsWith(contextPath + "/api")
-                ||  curUrl.startsWith(contextPath + "/login")  ){
-            LOG.debug("loginFilter不拦截："+curUrl);
-        }else{
+                || curUrl.startsWith(contextPath + "/login")) {
+            LOG.debug("loginFilter不拦截：" + curUrl);
+        } else {
             if (session.getAttribute(Constant.SYSTEM_USER) == null) {
                 response.sendRedirect(request.getContextPath() + "/login/index");
                 return;
@@ -56,5 +57,6 @@ public class LoginFilter implements Filter {
 
 
     @Override
-    public void destroy() {}
+    public void destroy() {
+    }
 }

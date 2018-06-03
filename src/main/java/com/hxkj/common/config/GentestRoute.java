@@ -7,6 +7,7 @@ import com.jfinal.config.Routes;
 
 /**
  * 代码生成测试模块 路由
+ *
  * @author zhangchuang
  */
 public class GentestRoute extends Routes {

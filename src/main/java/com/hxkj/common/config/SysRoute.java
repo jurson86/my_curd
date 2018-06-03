@@ -9,6 +9,7 @@ import com.jfinal.config.Routes;
 
 /**
  * 系统主模块 路由
+ *
  * @author zhangchuang
  */
 public class SysRoute extends Routes {
@@ -33,8 +34,6 @@ public class SysRoute extends Routes {
         //用户管理
         add("/sysUser", SysUserController.class, Constant.VIEW_PATH);
 
-        // 修改密码
-        add("/sysChangePassword", SysChangePasswordController.class, Constant.VIEW_PATH);
 
         // 系统日志
         add("/sysOplog", sysOplogController.class, Constant.VIEW_PATH);

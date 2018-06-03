@@ -25,6 +25,7 @@ public abstract class ImageResize {
 
     /**
      * 图片缩放
+     *
      * @param oldPath 原图像
      * @param newPath 压缩后的图像
      * @param width   图像宽

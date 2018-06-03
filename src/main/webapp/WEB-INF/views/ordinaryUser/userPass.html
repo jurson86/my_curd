@@ -33,13 +33,13 @@
             <fieldset>
                 <div class="pure-control-group">
                     <label for="username">登录名</label>
-                    <input id="username" type="text" placeholder="登录名" value="${(session.system_user.username)!}"
+                    <input id="username" type="text" placeholder="登录名" value="${(sysUser.username)!}"
                            readonly>
                 </div>
 
                 <div class="pure-control-group">
                     <label for="name">姓名</label>
-                    <input id="name" type="text" placeholder="姓名" value="${(session.system_user.name)!}" readonly>
+                    <input id="name" type="text" placeholder="姓名" value="${(sysUser.name)!}" readonly>
                 </div>
 
                 <div class="pure-control-group">
@@ -52,7 +52,7 @@
                     <input id="newPwd" name="newPwd" type="password" placeholder="新密码">
                 </div>
                 <div class="pure-controls">
-                    <button id="subBtn" type="button" class="pure-button pure-button-primary">提交</button>
+                    <button id="subBtn" type="button" class="pure-button pure-button-primary">修改</button>
                 </div>
             </fieldset>
         </form>
@@ -65,7 +65,7 @@
 <script>
     $("#subBtn").click(function () {
         $.ajax({
-            url: '${ctx!}/sysChangePassword/changePwdAction',
+            url: '${ctx!}/userPassword/changePwdAction',
             data: $("form").serialize(),
             type: 'POST',
             dataType: 'text',

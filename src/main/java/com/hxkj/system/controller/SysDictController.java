@@ -12,6 +12,7 @@ import com.jfinal.plugin.activerecord.Db;
 import com.jfinal.plugin.activerecord.Page;
 import com.jfinal.plugin.activerecord.Record;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -59,6 +60,7 @@ public class SysDictController extends BaseController {
      */
     public void addAction() {
         SysDict sysDict = getBean(SysDict.class, "");
+        sysDict.setCreateTime(new Date());
         boolean saveFlag = sysDict.save();
         if (saveFlag) {
             renderText(Constant.ADD_SUCCESS);
@@ -85,6 +87,7 @@ public class SysDictController extends BaseController {
      */
     public void updateAction() {
         SysDict sysDict = getBean(SysDict.class, "");
+        sysDict.setCreateTime(new Date());
         boolean updateFlag = sysDict.update();
         if (updateFlag) {
             renderText(Constant.UPDATE_SUCCESS);

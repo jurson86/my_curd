@@ -49,7 +49,7 @@ public class SysMenuController extends BaseController {
 
     public void addAction() {
         SysMenu sysMenu = getBean(SysMenu.class, "");
-        if(sysMenu.getPid()==null){
+        if (sysMenu.getPid() == null) {
             sysMenu.setPid(0);
         }
         boolean saveFlag = sysMenu.save();
@@ -63,7 +63,7 @@ public class SysMenuController extends BaseController {
 
     public void updateAction() {
         SysMenu sysMenu = getBean(SysMenu.class, "");
-        if(sysMenu.getPid()==null){
+        if (sysMenu.getPid() == null) {
             sysMenu.setPid(0);
         }
         boolean updateFlag = sysMenu.update();

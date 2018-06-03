@@ -6,7 +6,8 @@ import com.jfinal.plugin.activerecord.Page;
 
 /**
  * sys_file 文件表 model
- * @author  zhangchuang
+ *
+ * @author zhangchuang
  */
 public class SysFile extends BaseSysFile<SysFile> implements java.io.Serializable {
 
@@ -18,9 +19,10 @@ public class SysFile extends BaseSysFile<SysFile> implements java.io.Serializabl
 
     /**
      * 分页查询
+     *
      * @param pageNumber
      * @param pageSize
-     * @param where 查询条件
+     * @param where      查询条件
      * @return
      */
     public Page<SysFile> page(int pageNumber, int pageSize, String where) {

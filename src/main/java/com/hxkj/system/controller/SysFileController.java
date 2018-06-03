@@ -154,6 +154,7 @@ public class SysFileController extends BaseController {
      */
     public void updateAction() {
         SysFile sysFile = getBean(SysFile.class, "");
+        sysFile.setCreateTime(new Date());
         boolean updateFlag = sysFile.update();
         if (updateFlag) {
             renderText(Constant.UPDATE_SUCCESS);
@@ -164,7 +165,7 @@ public class SysFileController extends BaseController {
 
 
     /**
-     * 系统运输上传的文件类型，供combobox 使用
+     * 系统允许上传的文件类型，供combobox 使用
      */
     public void fileTypeData() {
         Prop prop = PropKit.use("config.properties");

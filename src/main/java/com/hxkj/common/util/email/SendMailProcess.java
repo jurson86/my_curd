@@ -122,7 +122,7 @@ public class SendMailProcess implements Callable<Boolean> {
             }
             multipart.addBodyPart(mbp);
             // 邮件附件
-            if(this.attachFileNames!=null){
+            if (this.attachFileNames != null) {
                 for (String attachFile : this.attachFileNames) {
                     MimeBodyPart mbpTemp = new MimeBodyPart();
                     FileDataSource fds = new FileDataSource(attachFile);         //得到数据源

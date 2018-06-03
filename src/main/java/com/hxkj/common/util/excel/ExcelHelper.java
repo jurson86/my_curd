@@ -26,6 +26,7 @@ public class ExcelHelper {
 
     /**
      * 获取文件扩展名
+     *
      * @param filename
      * @return
      */
@@ -42,6 +43,7 @@ public class ExcelHelper {
 
     /**
      * 导出数据到文件
+     *
      * @param head
      * @param modelFile
      * @param outputFile
@@ -72,6 +74,7 @@ public class ExcelHelper {
 
     /**
      * 将报表结构转换成Map
+     *
      * @param excelColumns
      */
     private Map<Integer, String> convertExcelHeadToMap(List<ExcelColumn> excelColumns) {
@@ -135,6 +138,7 @@ public class ExcelHelper {
 
     /**
      * 单sheet excel文件转换为list
+     *
      * @param filename 文件全名
      * @return
      * @throws Exception

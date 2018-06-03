@@ -43,6 +43,14 @@ public abstract class BaseSysMenu<M extends BaseSysMenu<M>> extends Model<M> imp
         set("icon", icon);
     }
 
+    public String getIconfont() {
+        return get("iconfont");
+    }
+
+    public void setIconfont(String icon) {
+        set("iconfont", icon);
+    }
+
     public Integer getSort() {
         return get("sort");
     }
