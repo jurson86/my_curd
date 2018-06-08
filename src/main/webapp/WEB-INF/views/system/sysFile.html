@@ -86,7 +86,7 @@
 </script>
 <table id="dg" class="easyui-datagrid"
        url="${ctx!}/sysFile/query"
-       toolbar="#tb" rownumbers="true" border="false"
+       toolbar="#tb" rownumbers="false" border="false"
        fit="true" pagination="true" singleSelect="true"
        fitColumns="true"
        striped="true"
@@ -134,7 +134,7 @@
     // 图片格式化
     function fView(val, row) {
         if ('png,jpg,jpeg,gif,bmp'.indexOf(row.type) >= 0) {
-            return '<a target="_blank" href="' + ctx + row.path + '"><img height="40px" src="' + ctx + row.path + '" alt="' + row.original_filename + '"/></a>'
+            return '<a target="_blank" href="' + ctx + row.path + '"><img width="40px" src="' + ctx + row.path + '" alt="' + row.original_filename + '"/></a>'
         } else if ('pdf,html,txt,xml'.indexOf(row.type) >= 0) {
             return '<a class="pure-button button-success" target="_blank" href="' + ctx + row.path + '"><i class="fa fa-eye"></i></a>';
         } else if ('swf,flv,mp3,wav,wma,wmv,mid,avi,mpg,asf,rm,rmvb,mp4'.indexOf(row.type) >= 0) {
@@ -142,8 +142,6 @@
         } else {
             return '<a class="pure-button button-black" target="_blank" href="' + ctx + row.path + '"><i class="fa fa-download"></i></a>'
         }
-        ;
-
     }
 
     function redFormat(val, row) {

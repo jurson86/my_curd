@@ -43,9 +43,11 @@
         <#list table.columnList as col>
                    <#if !(col.primaryKey)>
             <tr>
-                <td><#if (col.columnComment)?? && col.columnComment != "" >${(col.columnComment)!}<#else>${(col.columnName)!}</#if>：</td>
                 <td>
-                    <input name="${(col.columnNameCamel)!}" value="<#noparse>${(</#noparse>${(table.tableNameCamel)!}.${(col.columnNameCamel)!}<#noparse>)!}</#noparse>"   class="easyui-textbox"  data-options="required:true">
+                    <#if (col.columnComment)?? && col.columnComment != "" >${(col.columnComment)!}<#else>${(col.columnName)!}</#if>:
+                </td>
+                <td>
+                    <input name="${(col.columnNameCamel)!}" value="<#noparse>${(</#noparse>${(table.tableNameCamel)!}.${(col.columnNameCamel)!}<#noparse>)!}</#noparse>" class="easyui-textbox"  data-options="required:true">
                 </td>
             </tr>
                     </#if>
