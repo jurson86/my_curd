@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50719
 File Encoding         : 65001
 
-Date: 2018-06-03 23:30:53
+Date: 2018-06-10 19:03:31
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -3690,7 +3690,7 @@ INSERT INTO `gentest_book` VALUES ('0060670424154BEC8AE8E184401E5E67', 'Steel Ma
 INSERT INTO `gentest_book` VALUES ('0061B0B911F14828B7A1ADC1D62F83A4', 'Sophia Goff', 'Curae pharetra Vivamus molestie Vestibulum quam vestibulum sociis metus fringilla', 'Evangeline', '2018-04-23 00:00:00');
 INSERT INTO `gentest_book` VALUES ('008974433B9C4FB4B30DA33B2FFD8F6C', 'Rama Haley', 'a Suspendisse nonummy ipsum nisl ante suscipit erat felis Integer', 'Zoe', '2018-04-27 00:00:00');
 INSERT INTO `gentest_book` VALUES ('0097D5BA09AA4E1086B535A56AA896DE', 'Inga Dillard', 'Integer cursus consequat sapien vulputate metus faucibus Sed inceptos Curabitur', 'Eric', '2018-04-26 00:00:00');
-INSERT INTO `gentest_book` VALUES ('00A9E437039B410AB8AF5E0A50C65FBA', 'Cleo Collins', 'diam mollis risus accumsan netus enim mauris natoque semper tincidunt', 'Demetria', '2018-04-15 00:00:00');
+INSERT INTO `gentest_book` VALUES ('00A9E437039B410AB8AF5E0A50C65FBA', 'Cleo Collins', 'diam mollis risus accumsan netus enim mauris natoque semper tincidunt', 'Demetria', '2018-04-15 04:00:00');
 INSERT INTO `gentest_book` VALUES ('00AB0531858440A88CB420ADE548F3CE', 'Dillon Gutierrez', 'ipsum erat massa lobortis congue faucibus taciti sed congue ante', 'Risa', '2018-04-15 00:00:00');
 INSERT INTO `gentest_book` VALUES ('00B37893DFE7419B902C3ECB6BD8F9FA', 'Quentin Mcgee', 'nulla parturient morbi ligula hendrerit Sed eu tellus semper nulla', 'Owen', '2018-04-18 00:00:00');
 INSERT INTO `gentest_book` VALUES ('00B8B543AC0D4DAEA6151E59619059FB', 'Gregory Hayden', 'aliquet Etiam Lorem fringilla tempor posuere Vestibulum ante conubia velit', 'Cullen', '2018-04-27 00:00:00');
@@ -13904,11 +13904,12 @@ CREATE TABLE `sys_file` (
   `remark` varchar(255) DEFAULT NULL COMMENT '文件备注',
   `create_time` datetime DEFAULT NULL COMMENT '上传时间',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=91 DEFAULT CHARSET=utf8 COMMENT='文件表';
+) ENGINE=InnoDB AUTO_INCREMENT=92 DEFAULT CHARSET=utf8 COMMENT='文件表';
 
 -- ----------------------------
 -- Records of sys_file
 -- ----------------------------
+INSERT INTO `sys_file` VALUES ('91', '916654989969981440', 'upload/image/20180608134015_644.jpg', 'u=832101073,2523374224&fm=27&gp=0.jpg', 'jpg', '头像', '2018-06-08 13:40:15');
 
 -- ----------------------------
 -- Table structure for `sys_menu`
@@ -14001,10 +14002,8 @@ INSERT INTO `sys_oplog` VALUES ('1003260227899883520', '916654989969981440', '�
 INSERT INTO `sys_oplog` VALUES ('1003260463942729728', '916654989969981440', '退出', '0:0:0:0:0:0:0:1', '2018-06-03 21:01:48');
 INSERT INTO `sys_oplog` VALUES ('1003260498222776320', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2018-06-03 21:01:57');
 INSERT INTO `sys_oplog` VALUES ('1003268873190899712', '916654989969981440', '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-06-03 21:35:13');
-INSERT INTO `sys_oplog` VALUES ('1003269254033702912', '916654989969981440', '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-06-03 21:36:44');
 INSERT INTO `sys_oplog` VALUES ('1003269666983903232', '916654989969981440', '3d4f2bf07dc1be38b20cd6e46949a1071f9d0e3d 修改为新密码：7c4a8d09ca3762af61e59520943dc26494f8941b', '0:0:0:0:0:0:0:1', '2018-06-03 21:38:23');
 INSERT INTO `sys_oplog` VALUES ('1003269683614318592', '916654989969981440', '退出', '0:0:0:0:0:0:0:1', '2018-06-03 21:38:27');
-INSERT INTO `sys_oplog` VALUES ('1003269709283459072', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2018-06-03 21:38:33');
 INSERT INTO `sys_oplog` VALUES ('1003270457656344576', '916654989969981440', '退出', '0:0:0:0:0:0:0:1', '2018-06-03 21:41:31');
 INSERT INTO `sys_oplog` VALUES ('1003273173812117504', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2018-06-03 21:52:19');
 INSERT INTO `sys_oplog` VALUES ('1003273268926349312', '916654989969981440', '退出', '0:0:0:0:0:0:0:1', '2018-06-03 21:52:41');
@@ -14014,16 +14013,28 @@ INSERT INTO `sys_oplog` VALUES ('1003277304677269504', '916654989969981440', '�
 INSERT INTO `sys_oplog` VALUES ('1003279049331572736', '916654989969981440', '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-06-03 22:15:40');
 INSERT INTO `sys_oplog` VALUES ('1003279888582443008', '916654989969981440', '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-06-03 22:19:00');
 INSERT INTO `sys_oplog` VALUES ('1003280248197873664', '916654989969981440', '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-06-03 22:20:25');
-INSERT INTO `sys_oplog` VALUES ('1003281308467593216', '916654989969981440', '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-06-03 22:24:38');
 INSERT INTO `sys_oplog` VALUES ('1003281923566469120', '916654989969981440', '退出', '0:0:0:0:0:0:0:1', '2018-06-03 22:27:05');
 INSERT INTO `sys_oplog` VALUES ('1003281953111146496', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2018-06-03 22:27:12');
 INSERT INTO `sys_oplog` VALUES ('1003282648698716160', '916654989969981440', '退出', '0:0:0:0:0:0:0:1', '2018-06-03 22:29:58');
 INSERT INTO `sys_oplog` VALUES ('1003282699584012288', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2018-06-03 22:30:10');
-INSERT INTO `sys_oplog` VALUES ('1003283705046761472', '916654989969981440', '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-06-03 22:34:10');
 INSERT INTO `sys_oplog` VALUES ('1003288089038159872', '916654989969981440', '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-06-03 22:51:35');
-INSERT INTO `sys_oplog` VALUES ('1003288422183337984', '916654989969981440', '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-06-03 22:52:54');
-INSERT INTO `sys_oplog` VALUES ('1003295390948130816', '916654989969981440', '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-06-03 23:20:36');
-INSERT INTO `sys_oplog` VALUES ('1003296096014827520', '916654989969981440', '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-06-03 23:23:24');
+INSERT INTO `sys_oplog` VALUES ('1003312410599096320', '916654989969981440', '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-06-04 00:28:13');
+INSERT INTO `sys_oplog` VALUES ('1003318259878985728', '977871609484279808', '登录', '0:0:0:0:0:0:0:1', '2018-06-04 00:51:28');
+INSERT INTO `sys_oplog` VALUES ('1003493212737765376', '977871609484279808', '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-06-04 12:26:40');
+INSERT INTO `sys_oplog` VALUES ('1003495988620427264', '916654989969981440', '退出', '0:0:0:0:0:0:0:1', '2018-06-04 12:37:42');
+INSERT INTO `sys_oplog` VALUES ('1003610366258708480', '916654989969981440', '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-06-04 20:12:12');
+INSERT INTO `sys_oplog` VALUES ('1003678821905334272', '916654989969981440', '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-06-05 00:44:13');
+INSERT INTO `sys_oplog` VALUES ('1003863629163921408', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2018-06-05 12:58:34');
+INSERT INTO `sys_oplog` VALUES ('1004698641341874176', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2018-06-07 20:16:37');
+INSERT INTO `sys_oplog` VALUES ('1004944944672014336', '916654989969981440', '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-06-08 12:35:20');
+INSERT INTO `sys_oplog` VALUES ('1004948598024044544', '916654989969981440', '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-06-08 12:49:51');
+INSERT INTO `sys_oplog` VALUES ('1004958466957115392', '916654989969981440', '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-06-08 13:29:04');
+INSERT INTO `sys_oplog` VALUES ('1004958994139185152', '916654989969981440', '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-06-08 13:31:10');
+INSERT INTO `sys_oplog` VALUES ('1004969526183329792', '916654989969981440', '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-06-08 14:13:01');
+INSERT INTO `sys_oplog` VALUES ('1004970248891269120', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2018-06-08 14:15:53');
+INSERT INTO `sys_oplog` VALUES ('1005018550076702720', '916654989969981440', '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-06-08 17:27:49');
+INSERT INTO `sys_oplog` VALUES ('1005063115143905280', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2018-06-08 20:24:54');
+INSERT INTO `sys_oplog` VALUES ('1005762426810925056', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2018-06-10 18:43:43');
 INSERT INTO `sys_oplog` VALUES ('978507882259546112', '916654989969981440', '退出', '0:0:0:0:0:0:0:1', '2018-03-27 13:43:53');
 INSERT INTO `sys_oplog` VALUES ('978507920457072640', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2018-03-27 13:44:02');
 INSERT INTO `sys_oplog` VALUES ('979261362326732800', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2018-03-29 15:37:57');
@@ -14172,7 +14183,6 @@ INSERT INTO `sys_oplog` VALUES ('988010388282933248', '977871609484279808', '访
 INSERT INTO `sys_oplog` VALUES ('988010434621603840', '977871609484279808', '访问无权限路径[/gentestBook/addAction]', '0:0:0:0:0:0:0:1', '2018-04-22 19:03:38');
 INSERT INTO `sys_oplog` VALUES ('988010568197603328', '977871609484279808', '访问无权限路径[/gentestBook/addAction]', '0:0:0:0:0:0:0:1', '2018-04-22 19:04:10');
 INSERT INTO `sys_oplog` VALUES ('988010569137127424', '977871609484279808', '访问无权限路径[/gentestBook/addAction]', '0:0:0:0:0:0:0:1', '2018-04-22 19:04:10');
-INSERT INTO `sys_oplog` VALUES ('988010570911318016', '977871609484279808', '访问无权限路径[/gentestBook/addAction]', '0:0:0:0:0:0:0:1', '2018-04-22 19:04:11');
 INSERT INTO `sys_oplog` VALUES ('988010572022808576', '977871609484279808', '访问无权限路径[/gentestBook/addAction]', '0:0:0:0:0:0:0:1', '2018-04-22 19:04:11');
 INSERT INTO `sys_oplog` VALUES ('988010574539390976', '977871609484279808', '访问无权限路径[/gentestBook/addAction]', '0:0:0:0:0:0:0:1', '2018-04-22 19:04:11');
 INSERT INTO `sys_oplog` VALUES ('988010575684435968', '977871609484279808', '访问无权限路径[/gentestBook/addAction]', '0:0:0:0:0:0:0:1', '2018-04-22 19:04:12');
@@ -14192,7 +14202,6 @@ INSERT INTO `sys_oplog` VALUES ('988012197605015552', '977871609484279808', '访
 INSERT INTO `sys_oplog` VALUES ('988012393625812992', '977871609484279808', '访问无权限路径[/gentestBook/addAction]', '0:0:0:0:0:0:0:1', '2018-04-22 19:11:25');
 INSERT INTO `sys_oplog` VALUES ('988012396788318208', '977871609484279808', '访问无权限路径[/gentestBook/addAction]', '0:0:0:0:0:0:0:1', '2018-04-22 19:11:26');
 INSERT INTO `sys_oplog` VALUES ('988012398356987904', '977871609484279808', '访问无权限路径[/gentestBook/addAction]', '0:0:0:0:0:0:0:1', '2018-04-22 19:11:26');
-INSERT INTO `sys_oplog` VALUES ('988012399330066432', '977871609484279808', '访问无权限路径[/gentestBook/addAction]', '0:0:0:0:0:0:0:1', '2018-04-22 19:11:27');
 INSERT INTO `sys_oplog` VALUES ('988012400303144960', '977871609484279808', '访问无权限路径[/gentestBook/addAction]', '0:0:0:0:0:0:0:1', '2018-04-22 19:11:27');
 INSERT INTO `sys_oplog` VALUES ('988012401188143104', '977871609484279808', '访问无权限路径[/gentestBook/addAction]', '0:0:0:0:0:0:0:1', '2018-04-22 19:11:27');
 INSERT INTO `sys_oplog` VALUES ('988012737105756160', '977871609484279808', '访问无权限路径[/gentestBook/addAction]', '0:0:0:0:0:0:0:1', '2018-04-22 19:12:47');
@@ -14276,6 +14285,8 @@ INSERT INTO `sys_role_menu` VALUES ('3', '96');
 INSERT INTO `sys_role_menu` VALUES ('3', '97');
 INSERT INTO `sys_role_menu` VALUES ('28', '60');
 INSERT INTO `sys_role_menu` VALUES ('28', '91');
+INSERT INTO `sys_role_menu` VALUES ('28', '96');
+INSERT INTO `sys_role_menu` VALUES ('28', '97');
 
 -- ----------------------------
 -- Table structure for `sys_user`
