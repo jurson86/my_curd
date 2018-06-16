@@ -25,6 +25,7 @@ public abstract class ToolDateTime {
     public static final String pattern_ymd_hms_s = "yyyy-MM-dd HH:mm:ss:SSS";
     public static final int pattern_ymd_hms_s_length = 23;
     private static final Logger LOG = Logger.getLogger(ToolDateTime.class);
+
     private ToolDateTime() {
     }
 

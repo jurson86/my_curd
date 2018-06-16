@@ -163,6 +163,7 @@ public abstract class ToolString {
     public final static String encoding = "UTF-8";
     public final static Pattern referer_pattern = Pattern.compile("@([^@^\\s^:]{1,})([\\s\\:\\,\\;]{0,1})");//@.+?[\\s:]
     private static final Log log = Log.getLog(ToolString.class);
+
     private ToolString() {
     }
 

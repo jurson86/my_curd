@@ -3,6 +3,7 @@ package com.hxkj.system.controller;
 import com.alibaba.fastjson.JSON;
 import com.hxkj.common.constant.Constant;
 import com.hxkj.common.util.BaseController;
+import com.hxkj.common.util.FileTool;
 import com.hxkj.common.util.search.SearchSql;
 import com.hxkj.system.model.SysFile;
 import com.hxkj.system.model.SysUser;
@@ -11,6 +12,7 @@ import com.jfinal.kit.PathKit;
 import com.jfinal.kit.Prop;
 import com.jfinal.kit.PropKit;
 import com.jfinal.plugin.activerecord.Page;
+import com.jfinal.plugin.activerecord.tx.Tx;
 import com.jfinal.render.JsonRender;
 import com.jfinal.upload.UploadFile;
 import org.apache.commons.io.FileUtils;
@@ -41,9 +43,10 @@ public class SysFileController extends BaseController {
     public void query() {
         int pageNumber = getAttr("pageNumber");
         int pageSize = getAttr("pageSize");
+        String sort = getPara("sort");
+        String order = getPara("order");
         String where = getAttr(Constant.SEARCH_SQL);
-        Page<SysFile> sysFilePage = SysFile.dao.page(pageNumber, pageSize, where);
-
+        Page<SysFile> sysFilePage = SysFile.dao.page(pageNumber, pageSize,sort,order, where);
         renderDatagrid(sysFilePage);
     }
 
@@ -111,6 +114,8 @@ public class SysFileController extends BaseController {
                 sysFile.setUserId(sysUser.getId());
                 sysFile.setOriginalFilename(orginFilename);
                 sysFile.setPath(relativePath);
+                sysFile.setMime(FileTool.getMime(savefile.getAbsolutePath()));
+                sysFile.setSize(FileUtils.sizeOfAsBigInteger(savefile));
                 sysFile.setRemark(getPara("remark"));
                 sysFile.setType(fileSuf);
                 sysFile.setCreateTime(new Date());
@@ -133,18 +138,37 @@ public class SysFileController extends BaseController {
     /**
      * 删除
      */
+    @Before(Tx.class)
     public void deleteAction() {
-        String id = getPara("id");
-        SysFile sysFile = SysFile.dao.findById(id);
-        String filePath = PathKit.getWebRootPath() + File.separator + sysFile.getPath();
-        Boolean delflag = sysFile.delete();
-        if (delflag) {
-            File file = new File(filePath);
-            if (file.exists()) {
-                file.delete();
+        boolean opFlag  = true;
+        String ids = getPara("ids");
+        List<SysFile> sysFiles;
+        if(ids.contains(",")){
+            sysFiles = SysFile.dao.findByIds(ids);
+        }else{
+            SysFile sysFile = SysFile.dao.findById(ids);
+            sysFiles = new ArrayList<SysFile>();
+            sysFiles.add(sysFile);
+        }
+        // 记录删除
+        for(SysFile sysFile: sysFiles){
+            opFlag = sysFile.delete();
+            // 失败一次 立刻回滚（正常情况不该是异常)
+            if(!opFlag){
+                throw  new RuntimeException("删除文件失败异常，文件ids:"+ids);
             }
+        }
+        // 文件删除
+        File tempFile;
+        for(SysFile sysFile:sysFiles){
+            tempFile= new File(PathKit.getWebRootPath() + File.separator + sysFile.getPath());
+            if (tempFile.exists()) {
+                tempFile.delete();
+            }
+        }
+        if(opFlag){
             renderText(Constant.DELETE_SUCCESS);
-        } else {
+        }else{
             renderText(Constant.DELETE_FAIL);
         }
     }

@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50719
 File Encoding         : 65001
 
-Date: 2018-06-10 19:03:31
+Date: 2018-06-17 00:24:41
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -3686,9 +3686,6 @@ INSERT INTO `gentest_book` VALUES ('004CC1CD40AF4707BF381B5A13E5B469', 'Cadman A
 INSERT INTO `gentest_book` VALUES ('004FA7D03A0D49539C56915B2DAD53D6', 'Price Campbell', 'litora ad sodales non velit pulvinar faucibus Nam penatibus laoreet', 'Cade', '2018-04-22 00:00:00');
 INSERT INTO `gentest_book` VALUES ('00589078610B4182AC186F606318112B', 'Gillian Arnold', 'Nulla arcu Cum in ultrices vehicula Mauris a et hendrerit', 'Macaulay', '2018-04-17 00:00:00');
 INSERT INTO `gentest_book` VALUES ('005971999A704E3893459C21B3262E47', 'Tanner Atkins', 'Pellentesque nibh primis nonummy ultrices velit aptent interdum Nulla Proin', 'Clarke', '2018-04-17 00:00:00');
-INSERT INTO `gentest_book` VALUES ('0060670424154BEC8AE8E184401E5E67', 'Steel Martinez', 'nibh tempor pulvinar elit tempus Class hendrerit Cum sollicitudin iaculis', 'Ignatius', '2018-04-15 00:00:00');
-INSERT INTO `gentest_book` VALUES ('0061B0B911F14828B7A1ADC1D62F83A4', 'Sophia Goff', 'Curae pharetra Vivamus molestie Vestibulum quam vestibulum sociis metus fringilla', 'Evangeline', '2018-04-23 00:00:00');
-INSERT INTO `gentest_book` VALUES ('008974433B9C4FB4B30DA33B2FFD8F6C', 'Rama Haley', 'a Suspendisse nonummy ipsum nisl ante suscipit erat felis Integer', 'Zoe', '2018-04-27 00:00:00');
 INSERT INTO `gentest_book` VALUES ('0097D5BA09AA4E1086B535A56AA896DE', 'Inga Dillard', 'Integer cursus consequat sapien vulputate metus faucibus Sed inceptos Curabitur', 'Eric', '2018-04-26 00:00:00');
 INSERT INTO `gentest_book` VALUES ('00A9E437039B410AB8AF5E0A50C65FBA', 'Cleo Collins', 'diam mollis risus accumsan netus enim mauris natoque semper tincidunt', 'Demetria', '2018-04-15 04:00:00');
 INSERT INTO `gentest_book` VALUES ('00AB0531858440A88CB420ADE548F3CE', 'Dillon Gutierrez', 'ipsum erat massa lobortis congue faucibus taciti sed congue ante', 'Risa', '2018-04-15 00:00:00');
@@ -13896,20 +13893,57 @@ INSERT INTO `sys_dict` VALUES ('169', 'category', '女频-莉莉', 'gender=femal
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_file`;
 CREATE TABLE `sys_file` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `user_id` varchar(32) DEFAULT NULL,
+  `save_id` varchar(32) DEFAULT NULL COMMENT '某个表主键',
   `path` varchar(255) DEFAULT NULL COMMENT '文件路径',
   `original_filename` varchar(100) DEFAULT NULL COMMENT '文件原名',
-  `type` varchar(30) DEFAULT NULL COMMENT '文件类型',
+  `mime` varchar(30) DEFAULT NULL COMMENT 'mime类型',
+  `type` varchar(30) DEFAULT NULL COMMENT '文件类型（文件后缀）',
+  `size` bigint(20) unsigned DEFAULT NULL COMMENT '文件大小(B)',
   `remark` varchar(255) DEFAULT NULL COMMENT '文件备注',
   `create_time` datetime DEFAULT NULL COMMENT '上传时间',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=92 DEFAULT CHARSET=utf8 COMMENT='文件表';
+  PRIMARY KEY (`id`),
+  KEY `sys_file_user_id` (`user_id`),
+  KEY `sys_file_save_id` (`save_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=137 DEFAULT CHARSET=utf8 COMMENT='文件表';
 
 -- ----------------------------
 -- Records of sys_file
 -- ----------------------------
-INSERT INTO `sys_file` VALUES ('91', '916654989969981440', 'upload/image/20180608134015_644.jpg', 'u=832101073,2523374224&fm=27&gp=0.jpg', 'jpg', '头像', '2018-06-08 13:40:15');
+INSERT INTO `sys_file` VALUES ('103', '916654989969981440', null, 'upload/image/20180616212949_209.jpg', '547d1adec8596.jpg', 'image/jpeg', 'jpg', '65736', '', '2018-06-16 21:29:49');
+INSERT INTO `sys_file` VALUES ('104', '916654989969981440', null, 'upload/image/20180616223747_209.jpg', 'u=832101073,2523374224&fm=27&gp=0.jpg', 'image/jpeg', 'jpg', '5721', '', '2018-06-16 22:37:47');
+INSERT INTO `sys_file` VALUES ('105', '916654989969981440', null, 'upload/image/20180616223754_917.jpg', '547d1adec8596.jpg', 'image/jpeg', 'jpg', '65736', '', '2018-06-16 22:37:54');
+INSERT INTO `sys_file` VALUES ('106', '916654989969981440', null, 'upload/image/20180616223802_242.jpg', '3741a1c90118c083d1ded0d39778b7f8.jpg', 'image/jpeg', 'jpg', '1319704', '', '2018-06-16 22:38:02');
+INSERT INTO `sys_file` VALUES ('107', '916654989969981440', null, 'upload/image/20180616223808_614.jpg', '3c50ab7db3d99b9483c6f4948d8741ee.jpg', 'image/jpeg', 'jpg', '104977', '', '2018-06-16 22:38:08');
+INSERT INTO `sys_file` VALUES ('108', '916654989969981440', null, 'upload/image/20180616223816_455.jpg', '1T04943M-8.jpg', 'image/jpeg', 'jpg', '467970', '', '2018-06-16 22:38:16');
+INSERT INTO `sys_file` VALUES ('109', '916654989969981440', null, 'upload/image/20180616223823_764.jpg', '0ea1ef95059ff8ba8f4a2652fd6b4b89.jpg', 'image/jpeg', 'jpg', '856681', '', '2018-06-16 22:38:23');
+INSERT INTO `sys_file` VALUES ('110', '916654989969981440', null, 'upload/image/20180616223831_930.jpg', '0ea1ef95059ff8ba8f4a2652fd6b4b89.jpg', 'image/jpeg', 'jpg', '856681', '', '2018-06-16 22:38:31');
+INSERT INTO `sys_file` VALUES ('111', '916654989969981440', null, 'upload/file/20180616223901_451.pdf', '深入浅出MySQL全文.pdf', 'application/pdf', 'pdf', '4605215', '', '2018-06-16 22:39:01');
+INSERT INTO `sys_file` VALUES ('112', '916654989969981440', null, 'upload/file/20180616224230_330.pdf', 'Apache_Shiro参考手册中文版.pdf', 'application/pdf', 'pdf', '1176809', '', '2018-06-16 22:42:30');
+INSERT INTO `sys_file` VALUES ('113', '916654989969981440', null, 'upload/file/20180616224244_226.pdf', '阿里巴巴Java开发手册（纪念版）.pdf', 'application/pdf', 'pdf', '1257689', '', '2018-06-16 22:42:44');
+INSERT INTO `sys_file` VALUES ('114', '916654989969981440', null, 'upload/image/20180617001710_218.png', 'trianglify.png', 'image/png', 'png', '295048', '', '2018-06-17 00:17:10');
+INSERT INTO `sys_file` VALUES ('115', '916654989969981440', null, 'upload/image/20180617001729_557.png', 'trianglify (1).png', 'image/png', 'png', '309974', '', '2018-06-17 00:17:29');
+INSERT INTO `sys_file` VALUES ('116', '916654989969981440', null, 'upload/image/20180617001737_554.png', 'trianglify (2).png', 'image/png', 'png', '319689', '', '2018-06-17 00:17:37');
+INSERT INTO `sys_file` VALUES ('117', '916654989969981440', null, 'upload/image/20180617001745_814.png', 'trianglify (3).png', 'image/png', 'png', '309988', '', '2018-06-17 00:17:45');
+INSERT INTO `sys_file` VALUES ('118', '916654989969981440', null, 'upload/image/20180617001752_824.png', 'trianglify (4).png', 'image/png', 'png', '312278', '', '2018-06-17 00:17:52');
+INSERT INTO `sys_file` VALUES ('119', '916654989969981440', null, 'upload/image/20180617001800_155.png', 'trianglify (5).png', 'image/png', 'png', '312895', '', '2018-06-17 00:18:00');
+INSERT INTO `sys_file` VALUES ('120', '916654989969981440', null, 'upload/image/20180617001808_729.png', 'trianglify (6).png', 'image/png', 'png', '309415', '', '2018-06-17 00:18:08');
+INSERT INTO `sys_file` VALUES ('121', '916654989969981440', null, 'upload/image/20180617001818_238.png', 'trianglify (7).png', 'image/png', 'png', '305413', '', '2018-06-17 00:18:18');
+INSERT INTO `sys_file` VALUES ('122', '916654989969981440', null, 'upload/image/20180617001828_856.png', 'trianglify (8).png', 'image/png', 'png', '310424', '', '2018-06-17 00:18:28');
+INSERT INTO `sys_file` VALUES ('123', '916654989969981440', null, 'upload/image/20180617001858_305.png', 'trianglify (9).png', 'image/png', 'png', '318637', '', '2018-06-17 00:18:58');
+INSERT INTO `sys_file` VALUES ('125', '916654989969981440', null, 'upload/image/20180617002016_786.png', 'trianglify (10).png', 'image/png', 'png', '306443', '', '2018-06-17 00:20:16');
+INSERT INTO `sys_file` VALUES ('126', '916654989969981440', null, 'upload/image/20180617002026_509.png', 'trianglify (11).png', 'image/png', 'png', '304307', '', '2018-06-17 00:20:26');
+INSERT INTO `sys_file` VALUES ('127', '916654989969981440', null, 'upload/image/20180617002037_643.png', 'trianglify (12).png', 'image/png', 'png', '309411', '', '2018-06-17 00:20:37');
+INSERT INTO `sys_file` VALUES ('128', '916654989969981440', null, 'upload/image/20180617002049_838.png', 'trianglify (13).png', 'image/png', 'png', '298778', '', '2018-06-17 00:20:49');
+INSERT INTO `sys_file` VALUES ('129', '916654989969981440', null, 'upload/image/20180617002100_299.png', 'trianglify (14).png', 'image/png', 'png', '307253', '', '2018-06-17 00:21:00');
+INSERT INTO `sys_file` VALUES ('130', '916654989969981440', null, 'upload/image/20180617002112_34.png', 'trianglify (15).png', 'image/png', 'png', '398480', '', '2018-06-17 00:21:12');
+INSERT INTO `sys_file` VALUES ('131', '916654989969981440', null, 'upload/image/20180617002121_597.png', 'trianglify (16).png', 'image/png', 'png', '396777', '', '2018-06-17 00:21:21');
+INSERT INTO `sys_file` VALUES ('132', '916654989969981440', null, 'upload/image/20180617002133_748.png', 'trianglify (17).png', 'image/png', 'png', '397793', '', '2018-06-17 00:21:33');
+INSERT INTO `sys_file` VALUES ('133', '916654989969981440', null, 'upload/image/20180617002142_366.png', 'trianglify (18).png', 'image/png', 'png', '305349', '', '2018-06-17 00:21:42');
+INSERT INTO `sys_file` VALUES ('134', '916654989969981440', null, 'upload/image/20180617002152_885.png', 'trianglify (19).png', 'image/png', 'png', '431595', '', '2018-06-17 00:21:52');
+INSERT INTO `sys_file` VALUES ('135', '916654989969981440', null, 'upload/image/20180617002202_454.png', 'trianglify (20).png', 'image/png', 'png', '425678', '', '2018-06-17 00:22:02');
+INSERT INTO `sys_file` VALUES ('136', '916654989969981440', null, 'upload/image/20180617002213_984.png', 'trianglify.png', 'image/png', 'png', '295048', '', '2018-06-17 00:22:13');
 
 -- ----------------------------
 -- Table structure for `sys_menu`
@@ -14035,6 +14069,28 @@ INSERT INTO `sys_oplog` VALUES ('1004970248891269120', '916654989969981440', '�
 INSERT INTO `sys_oplog` VALUES ('1005018550076702720', '916654989969981440', '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-06-08 17:27:49');
 INSERT INTO `sys_oplog` VALUES ('1005063115143905280', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2018-06-08 20:24:54');
 INSERT INTO `sys_oplog` VALUES ('1005762426810925056', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2018-06-10 18:43:43');
+INSERT INTO `sys_oplog` VALUES ('1006943580419260416', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2018-06-14 00:57:12');
+INSERT INTO `sys_oplog` VALUES ('1006947768784125952', '916654989969981440', '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-06-14 01:13:50');
+INSERT INTO `sys_oplog` VALUES ('1007960079464398848', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2018-06-16 20:16:24');
+INSERT INTO `sys_oplog` VALUES ('1007961106049662976', '916654989969981440', '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-06-16 20:20:29');
+INSERT INTO `sys_oplog` VALUES ('1007961682359615488', '916654989969981440', '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-06-16 20:22:46');
+INSERT INTO `sys_oplog` VALUES ('1007965583339159552', '916654989969981440', '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-06-16 20:38:16');
+INSERT INTO `sys_oplog` VALUES ('1007965837904052224', '916654989969981440', '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-06-16 20:39:17');
+INSERT INTO `sys_oplog` VALUES ('1007966359478337536', '916654989969981440', '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-06-16 20:41:21');
+INSERT INTO `sys_oplog` VALUES ('1007968881030987776', '916654989969981440', '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-06-16 20:51:23');
+INSERT INTO `sys_oplog` VALUES ('1007969407093178368', '916654989969981440', '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-06-16 20:53:28');
+INSERT INTO `sys_oplog` VALUES ('1007971142062833664', '916654989969981440', '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-06-16 21:00:22');
+INSERT INTO `sys_oplog` VALUES ('1007971647107366912', '916654989969981440', '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-06-16 21:02:22');
+INSERT INTO `sys_oplog` VALUES ('1007974971839873024', '916654989969981440', '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-06-16 21:15:35');
+INSERT INTO `sys_oplog` VALUES ('1007988500500316160', '916654989969981440', '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-06-16 22:09:20');
+INSERT INTO `sys_oplog` VALUES ('1007990598344376320', '916654989969981440', '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-06-16 22:17:40');
+INSERT INTO `sys_oplog` VALUES ('1007995371479105536', '916654989969981440', '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-06-16 22:36:38');
+INSERT INTO `sys_oplog` VALUES ('1007998666113286144', '916654989969981440', '退出', '0:0:0:0:0:0:0:1', '2018-06-16 22:49:44');
+INSERT INTO `sys_oplog` VALUES ('1007999186286673920', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2018-06-16 22:51:48');
+INSERT INTO `sys_oplog` VALUES ('1008001414837829632', '916654989969981440', '退出', '0:0:0:0:0:0:0:1', '2018-06-16 23:00:39');
+INSERT INTO `sys_oplog` VALUES ('1008003584987496448', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2018-06-16 23:09:17');
+INSERT INTO `sys_oplog` VALUES ('1008005096534966272', '916654989969981440', '退出', '0:0:0:0:0:0:0:1', '2018-06-16 23:15:17');
+INSERT INTO `sys_oplog` VALUES ('1008019248250880000', '916654989969981440', '登录', '192.168.1.112', '2018-06-17 00:11:31');
 INSERT INTO `sys_oplog` VALUES ('978507882259546112', '916654989969981440', '退出', '0:0:0:0:0:0:0:1', '2018-03-27 13:43:53');
 INSERT INTO `sys_oplog` VALUES ('978507920457072640', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2018-03-27 13:44:02');
 INSERT INTO `sys_oplog` VALUES ('979261362326732800', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2018-03-29 15:37:57');
