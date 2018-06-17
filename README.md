@@ -21,7 +21,8 @@ my_CURD
 - 等待maven构建完成
 - 配置 `config.properties` 文件里的数据库连接信息
 - 将 `my_curd.sql` 导入数据库
-- 启动项目，用户名：admin 密码：111111
+- 启动项目，用户名：admin 密码：111111 或者 123456
+- 注意修改log4j.properties 中配置的 邮箱账号
  
 ### 依赖 | Dependencies
 - jFinal3.3、druid、fastjson、log4j、 poi、httpcomponents、jodd、Freemarker、pinyin4j、javax.mail等
