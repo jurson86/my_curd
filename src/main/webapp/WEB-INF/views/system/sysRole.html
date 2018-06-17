@@ -4,13 +4,13 @@
 <body>
 <script type="text/javascript">
     function newModel() {
-        layerTools.layerIframe('fa-plus', '新建', '${ctx!}/sysRole/newModel', '600px', '350px')
+        layerTools.layerIframe('fa-plus', '新建', '${ctx!}/sysRole/newModel', '600px', '350px');
     }
 
     function editModel() {
         var row = $("#dg").treegrid("getSelected");
         if (row != null) {
-            layerTools.layerIframe('fa-pencil', '编辑', '${ctx!}/sysRole/newModel?id=' + row.id, '600px', '350px')
+            layerTools.layerIframe('fa-pencil', '编辑', '${ctx!}/sysRole/newModel?id=' + row.id, '600px', '350px');
         } else {
             layerTools.layerMsg('请选择一行数据进行编辑');
         }
@@ -31,17 +31,12 @@
             layerTools.layerMsg('请选择一行进行删除');
         }
     }
-
-
-    //条件查询
     function queryModel() {
         var queryParams = {
             search_LIKE_role_name: $("#roleName").textbox("getValue"),
         };
         $('#dg').datagrid('load', queryParams);
     }
-
-
     /*数组去重*/
     Array.prototype.unique = function () {
         var res = [];
@@ -53,11 +48,8 @@
             }
         }
         return res;
-    }
-
-    /**
-     *  角色 分配权限
-     */
+    };
+    /*分配权限*/
     function givePermission() {
         var checkedNodes = $("#allMenuTree").tree("getChecked");
 
@@ -74,18 +66,12 @@
             }
         }
 
-       // return;
-        // 去重
-        //alert(JSON.stringify(permissIds));
-        //permissIds = permissIds.unique();
-        // alert(JSON.stringify(permissIds));
         $.post('${ctx!}/sysRole/givePermission', {
             roleId: roleRow.id,
             permissIds: permissIds.join(";")
         }, function (result) {
             layerTools.layerMsg(result);
         }, 'text').error(function(){ layerTools.AlertErrorMsg(); });
-
     }
 
 </script>
@@ -143,7 +129,7 @@
                     $("#allMenuTree").tree({
                         data: data,
                         checkbox: true
-                    })
+                    });
                     $("#nestLayout").layout("expand", "east");
                 });
             },

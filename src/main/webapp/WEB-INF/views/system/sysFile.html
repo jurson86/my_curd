@@ -10,24 +10,20 @@
 </head>
 <body>
 <script type="text/javascript">
-
-    // 新增 model
     function newModel() {
-        layerTools.layerIframe('fa-plus', '新建', '${ctx!}/sysFile/newModel', '550px', '350px')
+        layerTools.layerIframe('fa-plus', '新建', '${ctx!}/sysFile/newModel', '550px', '350px');
     }
 
-    // 编辑 model
     function editModel() {
         var rows = $("#dg").datagrid("getSelections");
         if (rows.length==1) {
             var row = rows[0];
-            layerTools.layerIframe('fa-pencil', '编辑', '${ctx!}/sysFile/newModel?id=' + row.id, '550px', '320px')
+            layerTools.layerIframe('fa-pencil', '编辑', '${ctx!}/sysFile/newModel?id=' + row.id, '550px', '320px');
         } else {
             layerTools.layerMsg('请选择一行数据进行编辑');
         }
     }
 
-    // 删除 model
     function deleteModel() {
         var rows = $("#dg").datagrid("getSelections");
         if (rows.length!=0) {
@@ -35,7 +31,7 @@
                 var idAry =[];
                 rows.forEach(function (row) {
                     idAry.push(row.id);
-                })
+                });
                 $.post('${ctx!}/sysFile/deleteAction?ids=' +idAry.splice(',') , function (data) {
                     layerTools.layerMsg(data, function () {
                         $('#dg').datagrid('reload');
@@ -48,7 +44,6 @@
         }
     }
 
-    //条件查询
     function queryModel() {
         var queryParams = {};
         queryParams['search_LIKE_sf.original_filename'] = $("#originalFilename").textbox("getValue");
@@ -60,7 +55,6 @@
         if ($("#fileType").combobox("getValues").length != 0) {
             queryParams['search_IN_sf.type'] = "('" + $("#fileType").combobox("getValues").join("','") + "')";
         }
-
         $('#dg').datagrid('load', queryParams);
     }
 </script>
@@ -113,7 +107,7 @@
 <script>
     var ctx = '${ctx!}/';
 
-    // 图片格式化
+    /* 图片格式化*/
     function fView(val, row) {
         if ('png,jpg,jpeg,gif,bmp'.indexOf(row.type) >= 0) {
             return '<a target="_blank" href="' + ctx + row.path + '"><img height="25px" src="' + ctx + row.path + '" alt="' + row.original_filename + '"/></a>'
@@ -126,7 +120,7 @@
         }
     }
     function pathFormat(val, row) {
-        //var ctx  = '${ctx!}/';
+        /*var ctx  = '${ctx!}/';*/
         var curHref = window.document.location.href;
         var curPathname = window.document.location.pathname;
         var firstPos = curHref.indexOf(curPathname);
@@ -135,8 +129,8 @@
     }
     function sizeFmt(val) {
         if(val!=null){
-            // window 的 舍去精度方法很智能，此处只是四舍五入
-            val = (val/1024).toFixed(2); // B -> KB
+            /* window 的 舍去精度方法很智能，此处只是四舍五入*/
+            val = (val/1024).toFixed(2); /* B -> KB*/
         }
         return val;
     }

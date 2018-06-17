@@ -32,14 +32,10 @@
         }
     }
 
-
-    //条件查询
     function queryModel() {
         var queryParams = {};
         queryParams['search_LIKE_su.username'] = $("#username").textbox("getValue");
         queryParams['search_LIKE_su.name'] = $("#name").textbox("getValue");
-        //queryParams['search_LIKE_su.phone']=$("#phone").textbox("getValue");
-        //queryParams['search_LIKE_su.email']=$("#email").textbox("getValue");
         queryParams['search_LIKE_so.org_name'] = $("#orgName").textbox("getValue");
         queryParams['search_EQ_su.disabled'] = $("#disabled").combobox('getValue');
         $('#dg').datagrid('load', queryParams);
@@ -67,8 +63,6 @@
         for (var i = 0; i < checkedNodes.length; i++) {
             roleIds.push(checkedNodes[i].id);
         }
-
-        //alert(JSON.stringify(roleIds));
 
         $.post('${ctx!}/sysUser/giveRole', {
             userId: userRow.id,
@@ -153,7 +147,7 @@
                     $("#allRoleTree").tree({
                         data: data,
                         checkbox: true
-                    })
+                    });
                     $("#nestLayout").layout("expand", "east");
                 });
             },

@@ -148,6 +148,8 @@ public class LoginController extends BaseController {
         removeSessionAttr(Constant.SYSTEM_USER_ROLES);
         removeSessionAttr(Constant.OWN_MENU);
 
+        getSession().invalidate();// 当前session 失效
+
         // 清理 cookie （记住密码信息）
         setCookie(usernameKey, null, 0);
         setCookie(passwordKey, null, 0);

@@ -3,13 +3,9 @@
 </head>
 <body>
 <script type="text/javascript">
-
-    // 新增 model
     function newModel() {
         layerTools.layerIframe('fa-plus', '新建', '${ctx!}/sysDict/newModel', '500px', '300px')
     }
-
-    // 编辑 model
     function editModel() {
         var row = $("#dg").treegrid("getSelected");
         if (row != null) {
@@ -18,8 +14,6 @@
             layerTools.layerMsg('请选择一行数据进行编辑');
         }
     }
-
-    // 删除 model
     function deleteModel() {
         var row = $("#dg").datagrid("getSelected");
         if (row != null) {
@@ -35,8 +29,6 @@
             layerTools.layerMsg('请选择一行进行删除');
         }
     }
-
-    //条件查询
     function queryModel() {
         var queryParams = {};
         queryParams['search_LIKE_dict_type'] = $("#type").textbox("getValue");

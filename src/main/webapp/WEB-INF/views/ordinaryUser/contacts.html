@@ -21,9 +21,7 @@
         var queryParams = {
             search_LIKE_org_name: $("#orgName").textbox("getValue")
         };
-        //alert(JSON.stringify(queryParams));
         $('#tt').treegrid('load', queryParams);
-
         var qp = {};
         qp['search_LIKE_a.name'] = $("#name").textbox("getValue");
         $('#dg').datagrid('load', qp);

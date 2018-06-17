@@ -32,7 +32,7 @@
             },
             success: function (data) {
                 parent.layerTools.layerMsg(data, function () {
-                    //parent.window.location.reload();
+                    /*parent.window.location.reload();*/
                     parent.$("#dg").datagrid("reload");
                     parent.layer.close(parent.layer.getFrameIndex(window.name));
                 });
@@ -95,7 +95,7 @@
             <script>
                 ;(function () {
                     var disabledVal = '${(sysUser.disabled)!}';
-                    $("#disabled").val(disabledVal); // select 必须如此使用
+                    $("#disabled").val(disabledVal); /* select 必须如此使用*/
                 })();
             </script>
         </tr>
@@ -115,10 +115,8 @@
             url: '${ctx!}/sysOrg/allOrg',
             value: '${(sysUser.orgId)!}',
             loadFilter: function (data, parent) {
-                // 数据处理
-                //console.log(JSON.stringify(data));
+                /* 数据处理*/
                 data = easyTree.treeDataBuild(data, "id", "pid", "text,open");
-                // console.log(data);
                 return data;
             }
         });

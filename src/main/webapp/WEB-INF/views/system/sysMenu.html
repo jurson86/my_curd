@@ -16,7 +16,6 @@
     function deleteModel() {
         var node = $("#tt").treegrid("getSelected");
         if (node != null) {
-
             layerTools.confirm(3, '删除', '您确定要删除选中的记录吗?', function () {
                 $.post('${ctx}/sysMenu/deleteAction?id=' + node.id, function (data) {
                     layerTools.layerMsg(data, function () {
@@ -24,7 +23,6 @@
                     });
                 }, "text").error(function(){ layerTools.AlertErrorMsg(); });
             });
-
         } else {
             layerTools.layerMsg('请选择一行进行删除');
         }
@@ -33,7 +31,6 @@
         var queryParams = {
             search_LIKE_name: $("#menuName").textbox("getValue")
         };
-        //alert(JSON.stringify(queryParams));
         $('#tt').treegrid('load', queryParams);
     }
 </script>
@@ -65,15 +62,14 @@
             rownumbers: true,
             toolbar: '#tt-tb',
             loadFilter: function (data) {
-
-                // 为了显示图标
+                /* 为了显示图标*/
                 for (var i = 0; i < data.length; i++) {
                     if (data[i].icon != null) {
-                        //console.log(data[i].icon);
+                        /*console.log(data[i].icon);*/
                         data[i].iconCls = data[i].icon;
                     }
                 }
-                // tree json 构建
+                /* tree json 构建 */
                 data = easyTree.treeDataBuild(data, 'id', 'pid', 'name,url,icon,iconfont,sort,iconCls');
                 return data;
             },

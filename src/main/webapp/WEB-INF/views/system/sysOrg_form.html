@@ -96,14 +96,12 @@
             url: '${ctx!}/sysOrg/allOrg',
             value: '${(sysOrg.pid)!}',
             loadFilter: function (data, parent) {
-                // 数据处理
-                //console.log(JSON.stringify(data));
+                /*数据处理*/
                 data = easyTree.treeDataBuild(data, "id", "pid", "text,open");
-                // console.log(data);
                 return data;
             },
             onLoadSuccess:function(){
-                // 移除自身和 子
+                /* 移除自身和 子*/
                 var sid ='${(sysOrg.id)!}';
                 if($.trim(sid)!=""){
                     console.log('remove tree node :'+sid);

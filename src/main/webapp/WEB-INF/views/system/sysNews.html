@@ -3,25 +3,21 @@
 </head>
 <body>
 <script type="text/javascript">
-
-    // 新增 model
     function newModel() {
-        layerTools.layerIframe('fa-plus','新建', '${ctx!}/sysNews/newModel', '242mm', '90%')
+        layerTools.layerIframe('fa-plus','新建', '${ctx!}/sysNews/newModel', '242mm', '90%');
     }
 
-    // 编辑 model
     function editModel() {
         var row = $("#dg").treegrid("getSelected");
         if (row != null) {
             var params="";
             params += 'id='+row.id;
-            layerTools.layerIframe('fa-pencil','编辑', '${ctx!}/sysNews/newModel?' + params, '242mm', '90%')
+            layerTools.layerIframe('fa-pencil','编辑', '${ctx!}/sysNews/newModel?' + params, '242mm', '90%');
         } else {
             layerTools.layerMsg('请选择一行数据进行编辑');
         }
     }
 
-    // 删除 model
     function deleteModel() {
         var row = $("#dg").datagrid("getSelected");
         if (row != null) {
@@ -34,13 +30,11 @@
                     });
                 }, "text").error(function(){ layerTools.AlertErrorMsg(); });
             });
-
         } else {
             layerTools.layerMsg('请选择一行进行删除');
         }
     }
 
-    //条件查询
     function queryModel() {
         var queryParams = {};
         queryParams['search_LIKE_sn.title'] = $("#title").textbox("getValue");
@@ -48,18 +42,15 @@
         $('#dg').datagrid('load', queryParams);
     }
 
-
-    //打印
     function printModel(){
         var row = $("#dg").datagrid("getSelected");
         if (row != null) {
-            layerTools.layerIframe('fa-print','打印', '${ctx!}/sysNews/viewContent?id='+row.id, '241mm', '90%')
+            layerTools.layerIframe('fa-print','打印', '${ctx!}/sysNews/viewContent?id='+row.id, '241mm', '90%');
         } else {
             layerTools.layerMsg('请选择一行数据');
         }
     }
 
-    // 查看
     function viewModel(){
         var row = $("#dg").datagrid("getSelected");
         if (row != null) {

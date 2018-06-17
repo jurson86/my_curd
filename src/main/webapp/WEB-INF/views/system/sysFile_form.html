@@ -29,7 +29,7 @@
                     data = JSON.parse(data);
                     if (data.error == 0) {
                         parent.layerTools.layerMsg("上传成功", function () {
-                            //parent.window.location.reload();
+                            /*parent.window.location.reload();*/
                             parent.$("#dg").datagrid("reload");
                             parent.layer.close(parent.layer.getFrameIndex(window.name));
                         });

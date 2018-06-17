@@ -12,8 +12,7 @@
         document.exportForm.action="${ctx!}/sysOplog/exportToExcel";
         document.exportForm.submit();
     }
-
-
+    
     function deleteModel() {
         var rows = $("#dg").datagrid("getSelections");
         if (rows != null) {
@@ -33,8 +32,6 @@
             layerTools.layerMsg('请选择记录进行删除');
         }
     }
-
-    //条件查询
     function queryModel() {
         var queryParams = {};
         queryParams['search_LIKE_su.name'] = $("#username").textbox("getValue");

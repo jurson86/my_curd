@@ -41,17 +41,17 @@
         }
     }
 
-    // 查看章节列表
+    /* 查看章节列表*/
     function chapters(){
         var row = $("#dg").treegrid("getSelected");
         if (row != null) {
-            layerTools.layerIframe('fa-reorder', row.title+" - "+row.author, '${ctx!}/novel/chapters/' + row._id, '400px', '70%')
+            layerTools.layerIframe('fa-reorder', row.title+" - "+row.author, '${ctx!}/novel/chapters/' + row._id, '400px', '70%');
         } else {
             layerTools.layerMsg('请先选择一行数据');
         }
     }
 
-    //条件查询
+    /*条件查询*/
     function queryModel() {
         var queryParams = {};
         queryParams['category'] = $("#category").combobox("getValue");
@@ -105,12 +105,6 @@
 <script src="${ctx!}/res/layer/layer.js"></script>
 <script src="${ctx!}/res/js/layer-tools.js"></script>
 <script>
-    // enter监听查询
-    $("#enterSpan").on("keydown",function(e){
-        if(e.keyCode==13){
-            queryModel();
-        }
-    })
     $('#dg').datagrid({
         url:'${ctx!}/novel/query',
         view: detailview,

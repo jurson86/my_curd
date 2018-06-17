@@ -35,21 +35,21 @@
     }
 </style>
 <script>
-    Date.prototype.Format = function (fmt) { //author: meizz
+    Date.prototype.Format = function (fmt) {
         var o = {
-            "M+": this.getMonth() + 1, //月份
-            "d+": this.getDate(), //日
-            "h+": this.getHours(), //小时
-            "m+": this.getMinutes(), //分
-            "s+": this.getSeconds(), //秒
-            "q+": Math.floor((this.getMonth() + 3) / 3), //季度
-            "S": this.getMilliseconds() //毫秒
+            "M+": this.getMonth() + 1,
+            "d+": this.getDate(),
+            "h+": this.getHours(),
+            "m+": this.getMinutes(),
+            "s+": this.getSeconds(),
+            "q+": Math.floor((this.getMonth() + 3) / 3),
+            "S": this.getMilliseconds()
         };
         if (/(y+)/.test(fmt)) fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
         for (var k in o)
             if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
         return fmt;
-    }
+    };
 </script>
 </head>
 <body>
@@ -97,7 +97,7 @@
             var formatJSONStr = JSON.stringify(obj, null, "\t");
             var content = '<div id="cm"  ></div>'
                 + ' <button id="editAfterGen"  onclick="genCode()"  class="pure-button button-success" >代码生成</button>';
-            layerTools.layerDialog(['500px', '600px'], '<i class="fa fa-code"></i>&nbsp;&nbsp;&nbsp;&nbsp;' + '代码生成（可修改json控制生成的代码)', content)
+            layerTools.layerDialog(['500px', '600px'], '<i class="fa fa-code"></i>&nbsp;&nbsp;&nbsp;&nbsp;' + '代码生成（可修改json控制生成的代码)', content);
             myCodeMirror = CodeMirror(document.getElementById('cm'), {
                 value: formatJSONStr,
                 lineNumbers: true,
@@ -108,29 +108,26 @@
             });
 
             $('.layui-layer-content').niceScroll({
-                cursorcolor: "#dcdee0", //滚动条的颜色
-                cursoropacitymax: 0, //滚动条的透明度，从0-1（隐藏）
-                touchbehavior: false, //使光标拖动滚动像在台式电脑触摸设备
-                cursorwidth: "8px", //滚动条的宽度
-                cursorborder: "0", // 游标边框css定义
-                cursorborderradius: "5px", //以像素为光标边界半径  圆角
-                autohidemode: true, //是否隐藏滚动条  true的时候默认不显示滚动条，当鼠标经过的时候显示滚动条
-                zindex: "auto", //给滚动条设置z-index值
+                cursorcolor: "#dcdee0", /*滚动条的颜色*/
+                cursoropacitymax: 0, /*滚动条的透明度，从0-1（隐藏）*/
+                touchbehavior: false, /*使光标拖动滚动像在台式电脑触摸设备*/
+                cursorwidth: "8px", /*滚动条的宽度*/
+                cursorborder: "0", /* 游标边框css定义*/
+                cursorborderradius: "5px", /*以像素为光标边界半径  圆角*/
+                autohidemode: true, /*是否隐藏滚动条  true的时候默认不显示滚动条，当鼠标经过的时候显示滚动条*/
+                zindex: "auto", /*给滚动条设置z-index值*/
                 railpadding: {
                     top: 0,
                     right: -4,
                     left: 0,
                     bottom: 0
-                }, //滚动条的位置
+                }, /*滚动条的位置*/
             });
         } else {
             layerTools.layerMsg('请至少选择一行数据');
         }
     }
 
-
-
-    //条件查询
     function queryModel() {
         var tableName = $("#tableName").textbox("getValue");
         $('#dg').datagrid({
@@ -178,7 +175,7 @@
 <script type="text/javascript">
     $(function(){
         $('#dg').datagrid({
-            url: "${ctx!}/sysGenerator/query?fullFlag=true",  // url 放在dom上又调用该方法可能造成请求两次
+            url: "${ctx!}/sysGenerator/query?fullFlag=true",  /*url 放在dom上又调用该方法可能造成请求两次*/
             view: detailview,
             detailFormatter:function(index,row){
                 return '<div style="padding:0px;position:relative;"><table style="border-top: none;border-right: none;  " class="ddv"></table></div>';

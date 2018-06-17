@@ -5,12 +5,12 @@
 <body>
 <script type="text/javascript">
 
-    // 新增 model
+    /*新增 model*/
     function newModel() {
-        layerTools.layerIframe('fa-plus','新建', '<#noparse>${ctx!}</#noparse>/${(table.tableNameCamel)!}/newModel', '800px', '500px')
+        layerTools.layerIframe('fa-plus','新建', '<#noparse>${ctx!}</#noparse>/${(table.tableNameCamel)!}/newModel', '800px', '500px');
     }
 
-    // 编辑 model
+    /*编辑 model*/
     function editModel() {
         var row = $("#dg").treegrid("getSelected");
         if (row != null) {
@@ -22,13 +22,13 @@
             params += '${pk}='+row.${pk};
                 </#if>
             </#list>
-            layerTools.layerIframe('fa-pencil','编辑', '<#noparse>${ctx!}</#noparse>/${(table.tableNameCamel)!}/newModel?' + params, '800px', '500px')
+            layerTools.layerIframe('fa-pencil','编辑', '<#noparse>${ctx!}</#noparse>/${(table.tableNameCamel)!}/newModel?' + params, '800px', '500px');
         } else {
             layerTools.layerMsg('请选择一行数据进行编辑');
         }
     }
 
-    // 删除 model
+    /*删除 model*/
     function deleteModel() {
         var row = $("#dg").datagrid("getSelected");
         if (row != null) {
@@ -53,7 +53,7 @@
         }
     }
 
-    //条件查询
+    /*条件查询*/
     function queryModel() {
         var queryParams = {};
         queryParams['search_LIKE_test'] = $("#test").textbox("getValue");

@@ -97,12 +97,12 @@
                     open:true
                 };
                 data.push(x);
-                // 数据处理
+                /* 数据处理*/
                 data = easyTree.treeDataBuild(data, "id", "pid", "text,open,iconCls");
                 return data;
             },
             onLoadSuccess:function(){
-                // 移除自身和自身子节点
+                /* 移除自身和自身子节点*/
                 var sid ='${(sysMenu.id)!}';
                 if($.trim(sid)!=""){
                     console.log('remove tree node :'+sid);

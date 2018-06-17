@@ -3,13 +3,9 @@
 </head>
 <body>
 <script type="text/javascript">
-
-    // 新增 model
     function newModel() {
-        layerTools.layerIframe('fa-plus', '新建', '${ctx!}/gentestMulpktable/newModel', '500px', '500px')
+        layerTools.layerIframe('fa-plus', '新建', '${ctx!}/gentestMulpktable/newModel', '500px', '500px');
     }
-
-    // 编辑 model
     function editModel() {
         var row = $("#dg").treegrid("getSelected");
         if (row != null) {
@@ -17,13 +13,11 @@
             params += 'id=' + row.id + '&';
             params += 'id2=' + row.id2 + '&';
             params += 'id3=' + row.id3;
-            layerTools.layerIframe('fa-pencil', '编辑', '${ctx!}/gentestMulpktable/newModel?' + params, '500px', '500px')
+            layerTools.layerIframe('fa-pencil', '编辑', '${ctx!}/gentestMulpktable/newModel?' + params, '500px', '500px');
         } else {
             layerTools.layerMsg('请选择一行数据进行编辑');
         }
     }
-
-    // 删除 model
     function deleteModel() {
         var row = $("#dg").datagrid("getSelected");
         if (row != null) {
@@ -38,13 +32,10 @@
                     });
                 }, "text").error(function(){ layerTools.AlertErrorMsg(); });
             });
-
         } else {
             layerTools.layerMsg('请选择一行进行删除');
         }
     }
-
-    //条件查询
     function queryModel() {
         var queryParams = {};
         queryParams['search_LIKE_v'] = $("#v").textbox("getValue");
