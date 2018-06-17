@@ -40,25 +40,13 @@
             }
         }
     }
-
-    // 全屏切换函数
-    function fullScreenToggle(obj) {
-        fullScreen();
-        if ($(obj).hasClass('fa-expand')) {
-            $(obj).removeClass('fa-expand')
-                .addClass('fa-compress')
-                .attr('iconCls', 'fa-compress')
-                .attr('title', '退出全屏');
-            //$("#mainLayout").layout("collapse", "north");
-            //$("#mainLayout").layout("collapse", "west");
-        } else {
+    function fullScreenToggleNew(obj) {
+        if ($(obj).hasClass('full')) {
             exitFullScreen();
-            $(obj).removeClass('fa-compress')
-                .addClass('fa-expand')
-                .attr('iconCls', 'fa-expand')
-                .attr('title', '全屏');
-            //$("#mainLayout").layout("expand", "north");
-            //$("#mainLayout").layout("expand", "west");
+            $(obj).removeClass('full').attr('title', '点击全屏');
+        } else {
+            fullScreen();
+            $(obj).addClass('full').attr('title', '点击退出全屏');
         }
     }
 </script>
@@ -66,7 +54,7 @@
 <body>
 <div id="mainLayout" class="easyui-layout" fit="true" border="false">
     <div class="head" data-options="region:'north'" border="false">
-        <span class="head-text">my_CURD</span>
+        <span class="head-text" onclick="fullScreenToggleNew(this)" title="点击全屏" >my_CURD</span>
         <span class="head-menu">
             你好，${(session.system_user.name)!} &nbsp;&nbsp;(${(session.system_user_roles)!} )&nbsp;&nbsp;
             <a class="pure-button pure-button-primary" href="${ctx!}/logout">
@@ -74,15 +62,12 @@
             </a>
         </span>
     </div>
-    <div data-options="region:'west',split:false" title="功能导航" headerCls="btNone grayBg" bodyCls="grayBg" style=" width:200px;" tools="#leftTB">
+    <div data-options="region:'west',split:false" title="功能导航" headerCls="btNone grayBg" bodyCls="grayBg" style=" width:200px;">
         <div class="input-control">
             <input type="text" id="filterInput" placeholder="输入关键字、Enter过滤">
         </div>
         <ul id="permissionTree">
         </ul>
-    </div>
-    <div id="leftTB">
-        <span id="fstButton" class="e-icon fa fa-expand" onclick="fullScreenToggle(this)" title="全屏"></span>
     </div>
     <div data-options="region:'center'" border="false" >
         <!-- pill="true" narrow="true" plain="true" tab 可选样式-->
