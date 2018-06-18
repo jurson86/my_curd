@@ -106,7 +106,7 @@ public abstract class ToolWeb {
         Map<String, String> map = new HashMap<String, String>();
         Enumeration<String> enume = request.getParameterNames();
         while (enume.hasMoreElements()) {
-            String name = (String) enume.nextElement();
+            String name = enume.nextElement();
             map.put(name, request.getParameter(name));
         }
         return map;
@@ -180,7 +180,7 @@ public abstract class ToolWeb {
         BufferedReader bufferedReader = null;
         try {
             request.setCharacterEncoding(ToolString.encoding);
-            inputStream = (ServletInputStream) request.getInputStream();
+            inputStream = request.getInputStream();
             inputStreamReader = new InputStreamReader(inputStream, ToolString.encoding);
             bufferedReader = new BufferedReader(inputStreamReader);
             String line = null;
@@ -283,7 +283,7 @@ public abstract class ToolWeb {
         Map<String, Cookie> cookieMap = ToolWeb.readCookieMap(request);
         // 判断cookie集合中是否有我们像要的cookie对象 如果有返回它的值
         if (cookieMap.containsKey(name)) {
-            Cookie cookie = (Cookie) cookieMap.get(name);
+            Cookie cookie = cookieMap.get(name);
             return cookie.getValue();
         } else {
             return null;
@@ -301,7 +301,7 @@ public abstract class ToolWeb {
         Map<String, Cookie> cookieMap = ToolWeb.readCookieMap(request);
         // 判断cookie集合中是否有我们像要的cookie对象 如果有返回它的值
         if (cookieMap.containsKey(name)) {
-            Cookie cookie = (Cookie) cookieMap.get(name);
+            Cookie cookie = cookieMap.get(name);
             return cookie;
         } else {
             return null;

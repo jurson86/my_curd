@@ -80,7 +80,7 @@ public class SysFileController extends BaseController {
         if (uploadFile != null) {
             String orginFilename = uploadFile.getOriginalFileName();                                    // 文件原名
             String fileSuf = orginFilename.substring(orginFilename.lastIndexOf(".") + 1).toLowerCase(); // 文件后缀
-            if (!Arrays.<String>asList(limitFileTypes.split(",")).contains(fileSuf)) {
+            if (!Arrays.asList(limitFileTypes.split(",")).contains(fileSuf)) {
                 result.put("error", 1);
                 result.put("message", "只允许后缀为:<br/>" + extMap.get("image") + "<br/>" + extMap.get("media") + "<br/>" + extMap.get("file") + "<br/>格式文件");
                 uploadFile.getFile().delete();

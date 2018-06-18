@@ -55,7 +55,7 @@ public class SendMailProcess implements Callable<Boolean> {
 
 
     @Override
-    public Boolean call() throws Exception {
+    public Boolean call() {
         boolean flag;
         flag = sendEmail();
         return flag;

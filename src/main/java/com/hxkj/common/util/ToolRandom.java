@@ -72,7 +72,7 @@ public abstract class ToolRandom {
      */
     public static String getUuidNoUnderline() {
         String uuid = UUID.randomUUID().toString();
-        return uuid.toString().replace("-", "");
+        return uuid.replace("-", "");
     }
 
     /**

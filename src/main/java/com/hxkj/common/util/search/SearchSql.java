@@ -57,7 +57,7 @@ public class SearchSql implements Interceptor {
             prefix = "";
         }
         while (paramNames != null && paramNames.hasMoreElements()) {
-            String paramName = (String) paramNames.nextElement();
+            String paramName = paramNames.nextElement();
             if ("".equals(prefix) || paramName.startsWith(prefix)) {
                 String unprefixed = paramName.substring(prefix.length());
                 String[] values = request.getParameterValues(paramName);
@@ -104,10 +104,10 @@ public class SearchSql implements Interceptor {
                         sb.append(" <='").append(filter.value).append("'");
                         break;
                     case GTES:
-                        sb.append(" >=").append(filter.value).append("");
+                        sb.append(" >=").append(filter.value);
                         break;
                     case LTES:
-                        sb.append(" <=").append(filter.value).append("");
+                        sb.append(" <=").append(filter.value);
                         break;
                     case NEQ:
                         sb.append(" !='").append(filter.value).append("'");

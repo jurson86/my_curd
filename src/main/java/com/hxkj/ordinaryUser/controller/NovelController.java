@@ -72,9 +72,8 @@ public class NovelController extends BaseController {
     /**
      * 下载
      *
-     * @throws IOException
      */
-    public void download() throws IOException {
+    public void download() {
         String nid = getPara("nid");
         String title = getPara("title");
         if (StrKit.isBlank(nid)) {

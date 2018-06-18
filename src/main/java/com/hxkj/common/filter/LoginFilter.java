@@ -18,7 +18,7 @@ public class LoginFilter implements Filter {
     private final static Logger LOG = Logger.getLogger(LoginFilter.class);
 
     @Override
-    public void init(FilterConfig filterConfig) throws ServletException {
+    public void init(FilterConfig filterConfig) {
     }
 
     public void doFilter(ServletRequest req, ServletResponse res, FilterChain filterChain)

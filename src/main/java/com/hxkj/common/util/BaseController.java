@@ -92,7 +92,7 @@ public abstract class BaseController extends Controller {
     public void addOpLog(String opContent) {
         SysOplog sysOplog = new SysOplog();
         sysOplog.setId(Identities.uuid2());
-        sysOplog.setUserId((String) getSessionUser().get("id"));
+        sysOplog.setUserId(getSessionUser().get("id"));
         sysOplog.setOpContent(opContent);
         sysOplog.setIp(getRemoteAddress());
         sysOplog.setCreateTime(new Date());

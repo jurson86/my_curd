@@ -44,7 +44,7 @@ public class CsvUtil {
      */
     @SuppressWarnings({"unchecked", "rawtypes"})
     public static String createCSV(List headers, List data, List columns) {
-        StringBuffer strOut = new StringBuffer("");
+        StringBuffer strOut = new StringBuffer();
         if (null != headers && !headers.isEmpty()) { // 如果文本不为空则添加到csv字符串中
             listToCSV(strOut, headers);
         }
@@ -175,7 +175,7 @@ public class CsvUtil {
             if (obj instanceof Boolean) {
                 content = ((Boolean) obj).toString();
             } else if (obj instanceof Calendar) {
-                content = ((Calendar) obj).toString();
+                content = obj.toString();
             } else if (obj instanceof Timestamp) {
                 content = new SimpleDateFormat("yyyy-MM-dd HH:mm").format(new Date(((Timestamp) obj).getTime()));
             } else if (obj instanceof Date) {
@@ -251,7 +251,7 @@ public class CsvUtil {
             StringBuffer sb = new StringBuffer();
             int start = 0;
             while (found != -1) {
-                sb.append(original.substring(start, found));
+                sb.append(original, start, found);
                 sb.append(replace);
                 start = found + len;
                 found = original.indexOf(pattern, start);

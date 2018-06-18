@@ -140,11 +140,11 @@ class StringTemplateLoader implements TemplateLoader {
         }
     }
 
-    public void closeTemplateSource(Object templateSource) throws IOException {
+    public void closeTemplateSource(Object templateSource) {
         ((StringReader) templateSource).close();
     }
 
-    public Object findTemplateSource(String name) throws IOException {
+    public Object findTemplateSource(String name) {
         return new StringReader(template);
     }
 
@@ -152,7 +152,7 @@ class StringTemplateLoader implements TemplateLoader {
         return 0;
     }
 
-    public Reader getReader(Object templateSource, String encoding) throws IOException {
+    public Reader getReader(Object templateSource, String encoding) {
         return (Reader) templateSource;
     }
 
