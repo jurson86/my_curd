@@ -40,41 +40,6 @@
             -o-background-size: cover;
             background-position: center 0;
         }
-        .bg2{
-            background: url("${ctx!}/res/image/bg/bg2.svg");
-            background-repeat: no-repeat;
-            background-size: cover;
-            -webkit-background-size: cover;
-            -o-background-size: cover;
-            background-position: center 0;
-        }
-        .bg3{
-            background: url("${ctx!}/res/image/bg/bg3.svg");
-            background-repeat: no-repeat;
-            background-size: cover;
-            -webkit-background-size: cover;
-            -o-background-size: cover;
-            background-position: center 0;
-        }
-        .bg4{
-            background: linear-gradient(90deg, #1CB5E0 0%, #000851 100%);
-        }
-        .bg5{
-            background: linear-gradient(90deg, #00C9FF 0%, #92FE9D 100%);
-        }
-        .bg6{
-            background: linear-gradient(90deg, #3F2B96 0%, #A8C0FF 100%);
-        }
-        .bg7{
-            background: linear-gradient(90deg, #4b6cb7 0%, #182848 100%);
-        }
-        .bg8{
-            background: linear-gradient(90deg, #00d2ff 0%, #3a47d5 100%);
-        }
-        .bg9{
-            background: linear-gradient(90deg, #efd5ff 0%, #515ada 100%);
-        }
-
         .form-signin {
             opacity: .7;
             padding: 15px 35px 45px;
@@ -154,16 +119,6 @@
     if (top.location != self.location) {
         top.location = "${ctx!}/login";
     }
-
-    /*自动切换背景图*/
-    ;(function () {
-        var body = document.getElementById('body');
-        var bgAry = ['bg1','bg2','bg3','bg4','bg5','bg6','bg7','bg8','bg9'];
-        setInterval(function () {
-            body.classList.remove( body.classList[0]);
-            body.classList.add(bgAry[Math.floor((Math.random()*bgAry.length))]);
-        },10000)
-    })();
 </script>
 </body>
 </html>
