@@ -61,6 +61,10 @@ public class LoginController extends BaseController {
                 addOpLog("通过 cookie 登录");
                 redirect("/main");
                 return;
+            }else{
+                // 清理 cookie （记住密码信息）
+                setCookie(usernameKey, null, 0);
+                setCookie(passwordKey, null, 0);
             }
         }
         render("login.html");
