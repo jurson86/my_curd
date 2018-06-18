@@ -1,0 +1,101 @@
+<!-- 生成时间： 2018-06-18 18:25:03 -->
+<#include "/WEB-INF/views/common/common.html"/> <@layout>
+<link rel="stylesheet" href="${ctx!}/res/layer/theme/default/layer.css">
+</head>
+<body>
+<script type="text/javascript">
+
+    /*新增 model*/
+    function newModel() {
+        layerTools.layerIframe('fa-plus','新建', '${ctx!}/markdown/newModel', '1000px', '95%');
+    }
+
+    /*编辑 model*/
+    function editModel() {
+        var rows = $("#dg").treegrid("getSelections");
+        if (rows.length==1) {
+            layerTools.layerIframe('fa-pencil','编辑', '${ctx!}/markdown/newModel?id=' + rows[0].id, '1000px', '95%');
+        } else {
+            layerTools.layerMsg('请选择一行数据进行编辑');
+        }
+    }
+
+    /*删除 model*/
+    function deleteModel() {
+        var rows = $("#dg").datagrid("getSelections");
+        if (rows.length!=0) {
+            layerTools.confirm(3, '删除', '您确定要删除选中的'+rows.length+'条记录吗?', function () {
+                var ids = [];
+                rows.forEach(function (row) {
+                    ids.push(row.id);
+                });
+                $.post('${ctx!}/markdown/deleteAction?ids=' + ids.join(','), function (data) {
+                    layerTools.layerMsg(data, function () {
+                        $('#dg').datagrid('reload');
+                    });
+                }, "text").error(function(){ layerTools.AlertErrorMsg(); });
+            });
+
+        } else {
+            layerTools.layerMsg('请至少选择一行进行删除');
+        }
+    }
+
+    /*条件查询*/
+    function queryModel() {
+        var queryParams = {};
+        queryParams['search_LIKE_title'] = $("#title").textbox("getValue");
+        $('#dg').datagrid('load', queryParams);
+    }
+
+    function previewModel(){
+        var rows = $("#dg").datagrid("getSelections");
+        if (rows.length==1) {
+           window.open('${ctx!}/markdown/preview?id='+rows[0].id,'_blank');
+        } else {
+            layerTools.layerMsg('请选择一行数据');
+        }
+    }
+</script>
+<table id="dg" class="easyui-datagrid"
+       url="${ctx!}/markdown/query"
+       data-options="onDblClickRow:editModel"
+       toolbar="#tb" rownumbers="true" border="false"
+       fit="true"    fitColumns="true"
+       striped="true"
+       pagination="true" ctrlSelect="true"
+       pageSize="40" pageList="[20,40]">
+    <thead>
+    <tr>
+           <th data-options="field:'id',checkbox:true"></th>
+            <th field="title" width="200">标题</th>
+            <th field="tags" width="200">标签</th>
+            <th field="open" width="100" formatter="openFmt">状态</th>
+            <th field="create_time" width="200">最后修改时间</th>
+    </tr>
+    </thead>
+</table>
+
+<div id="tb">
+    <a onclick="newModel()" href="#" class="easyui-linkbutton" iconCls="e-icon fa fa-plus-square-o" plain="true">新增</a>
+    <a onclick="editModel()" href="#" class="easyui-linkbutton" iconCls="e-icon fa fa-pencil-square-o" plain="true">编辑</a>
+    <a onclick="deleteModel()" href="#" class="easyui-linkbutton  " iconCls="e-icon fa fa-trash-o" plain="true">删除</a>
+    <a onclick="previewModel()" href="#" class="easyui-linkbutton  " iconCls="e-icon fa fa-print" plain="true">查看</a>
+    <span id="enterSpan" class="searchInputArea">
+          <input id="title" prompt="标题" class="easyui-textbox" style="width:120px; ">
+          <a href="#" class="easyui-linkbutton" data-options="iconCls:'e-icon fa fa-search',plain:true" onclick="queryModel()">搜索</a>
+    </span>
+</div>
+<script src="${ctx!}/res/layer/layer.js"></script>
+<script src="${ctx!}/res/js/layer-tools.js"></script>
+<script>
+    function openFmt(val) {
+        if(val=='1'){
+            return '公开';
+        }
+        if(val=='0'){
+            return '私有';
+        }
+    }
+</script>
+</@layout>

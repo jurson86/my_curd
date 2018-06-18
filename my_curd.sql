@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50719
 File Encoding         : 65001
 
-Date: 2018-06-17 00:24:41
+Date: 2018-06-18 23:03:29
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -3670,45 +3670,6 @@ CREATE TABLE `gentest_book` (
 -- ----------------------------
 -- Records of gentest_book
 -- ----------------------------
-INSERT INTO `gentest_book` VALUES ('0000E14FDD8646F98FD69610E8D5312D', 'Raja Lawrence', 'lacinia accumsan Ut fames lectus egestas sollicitudin viverra suscipit montes', 'Raymond', '2018-04-20 00:00:00');
-INSERT INTO `gentest_book` VALUES ('00061238182849A8AB7CEBD31A16F186', 'Ingrid Chavez', 'felis neque mi justo sociis nascetur suscipit tincidunt urna iaculis', 'Dale', '2018-04-21 00:00:00');
-INSERT INTO `gentest_book` VALUES ('000CD59509F9476397058A29644D32F4', 'Tobias Cole2', 'lacus vitae senectus ornare dis Aenean leo vitae fames dignissim', 'Richard', '2018-04-26 00:00:00');
-INSERT INTO `gentest_book` VALUES ('0013599CE36A49C8A7BA2F532D65D8F1', 'Cherokee Rios', 'quis Phasellus gravida facilisis vitae accumsan non id natoque imperdiet', 'Magee', '2018-04-23 00:00:00');
-INSERT INTO `gentest_book` VALUES ('001C1FF5F0814F47A131D2590641392E', 'Audrey Lowe', 'penatibus ac rutrum litora elementum ut Vestibulum cursus augue iaculis', 'Hollee', '2018-04-17 00:00:00');
-INSERT INTO `gentest_book` VALUES ('0021C66F131B4C2EBC4D16367F031CF5', 'Kirby Figueroa', 'taciti tempor purus accumsan tempus id netus consequat auctor Nunc', 'Alden', '2018-04-29 00:00:00');
-INSERT INTO `gentest_book` VALUES ('002AEDC6ADE345428AC83E3E5F519124', 'Perry Cooley', 'Pellentesque lacus neque massa dui Nam ac pede litora nulla', 'Macy', '2018-04-25 00:00:00');
-INSERT INTO `gentest_book` VALUES ('002EB773A9C743E4966CB473F1645093', 'Jenna Huber', 'pretium ridiculus ut diam tristique Cum faucibus consequat consectetuer Curae', 'Herrod', '2018-04-23 00:00:00');
-INSERT INTO `gentest_book` VALUES ('003B58B520E54F2B8AD7D140BDD218B6', 'Baker Sanchez', 'nostra Integer nec consequat turpis eget cubilia nonummy dictum Class', 'Halla', '2018-04-26 00:00:00');
-INSERT INTO `gentest_book` VALUES ('00474C07586D40B5AD7FB846542A29F5', 'Wing Sheppard', 'eu sit congue tempor Curae habitant in ultricies pede bibendum', 'Gwendolyn', '2018-04-15 00:00:00');
-INSERT INTO `gentest_book` VALUES ('004A56A6246D4DEBAA2AED327E2C4B4A', 'Kato Colon', 'penatibus ultricies ultricies Lorem ligula condimentum felis risus Phasellus mus', 'Florence', '2018-04-28 00:00:00');
-INSERT INTO `gentest_book` VALUES ('004B1A5279E14115B514092F23D61081', 'Xyla Everett', 'leo semper mattis interdum ridiculus Etiam nisi Ut torquent pretium', 'Lars', '2018-04-26 00:00:00');
-INSERT INTO `gentest_book` VALUES ('004CC1CD40AF4707BF381B5A13E5B469', 'Cadman Alexander', 'faucibus per blandit interdum conubia ornare auctor molestie eu senectus', 'Sarah', '2018-04-24 00:00:00');
-INSERT INTO `gentest_book` VALUES ('004FA7D03A0D49539C56915B2DAD53D6', 'Price Campbell', 'litora ad sodales non velit pulvinar faucibus Nam penatibus laoreet', 'Cade', '2018-04-22 00:00:00');
-INSERT INTO `gentest_book` VALUES ('00589078610B4182AC186F606318112B', 'Gillian Arnold', 'Nulla arcu Cum in ultrices vehicula Mauris a et hendrerit', 'Macaulay', '2018-04-17 00:00:00');
-INSERT INTO `gentest_book` VALUES ('005971999A704E3893459C21B3262E47', 'Tanner Atkins', 'Pellentesque nibh primis nonummy ultrices velit aptent interdum Nulla Proin', 'Clarke', '2018-04-17 00:00:00');
-INSERT INTO `gentest_book` VALUES ('0097D5BA09AA4E1086B535A56AA896DE', 'Inga Dillard', 'Integer cursus consequat sapien vulputate metus faucibus Sed inceptos Curabitur', 'Eric', '2018-04-26 00:00:00');
-INSERT INTO `gentest_book` VALUES ('00A9E437039B410AB8AF5E0A50C65FBA', 'Cleo Collins', 'diam mollis risus accumsan netus enim mauris natoque semper tincidunt', 'Demetria', '2018-04-15 04:00:00');
-INSERT INTO `gentest_book` VALUES ('00AB0531858440A88CB420ADE548F3CE', 'Dillon Gutierrez', 'ipsum erat massa lobortis congue faucibus taciti sed congue ante', 'Risa', '2018-04-15 00:00:00');
-INSERT INTO `gentest_book` VALUES ('00B37893DFE7419B902C3ECB6BD8F9FA', 'Quentin Mcgee', 'nulla parturient morbi ligula hendrerit Sed eu tellus semper nulla', 'Owen', '2018-04-18 00:00:00');
-INSERT INTO `gentest_book` VALUES ('00B8B543AC0D4DAEA6151E59619059FB', 'Gregory Hayden', 'aliquet Etiam Lorem fringilla tempor posuere Vestibulum ante conubia velit', 'Cullen', '2018-04-27 00:00:00');
-INSERT INTO `gentest_book` VALUES ('00B94B55D5F44806849725F88FC06F31', 'Dante Prince', 'Proin litora lorem dignissim Vivamus neque auctor nulla consequat scelerisque', 'Kevyn', '2018-04-23 00:00:00');
-INSERT INTO `gentest_book` VALUES ('00C9DE7D3BB54692887ED5EA21F40D5A', 'Driscoll Deleon', 'volutpat venenatis vestibulum consequat sed tempor nonummy felis tincidunt tortor', 'Raya', '2018-04-19 00:00:00');
-INSERT INTO `gentest_book` VALUES ('00CBAC3CED3A4A8AB0D1F93CECEF57F2', 'Steel Logan', 'faucibus eros cubilia egestas vulputate faucibus dignissim natoque diam enim', 'Ishmael', '2018-04-24 00:00:00');
-INSERT INTO `gentest_book` VALUES ('00CCA94AF4CF4D63A78DED7BDCB406D5', 'Malik Petty', 'montes condimentum eleifend interdum pharetra sed parturient quis gravida Nunc', 'Risa', '2018-04-16 00:00:00');
-INSERT INTO `gentest_book` VALUES ('00D13B81A3C54C9AB7C83B0AA6BCCAE4', 'Joel Sears', 'lectus Curabitur montes mattis vestibulum dictum sapien ultrices pretium penatibus', 'Emily', '2018-04-27 00:00:00');
-INSERT INTO `gentest_book` VALUES ('00D42C5356B6481693BFAECE89720C22', 'Kyla Colon', 'fermentum porttitor sem dis facilisi facilisi a ut sed Cum', 'Finn', '2018-04-15 00:00:00');
-INSERT INTO `gentest_book` VALUES ('00E102E0F61A47468D1E191C831FC1A0', 'Orlando Ryan', 'velit pretium odio eu faucibus torquent montes tempor quam euismod', 'Damian', '2018-04-29 00:00:00');
-INSERT INTO `gentest_book` VALUES ('00F5594CC7A5457683EB61C2877C3F10', 'Gwendolyn Humphrey', 'Duis feugiat aptent facilisis turpis rhoncus rutrum Nulla Morbi Proin', 'Azalia', '2018-04-24 00:00:00');
-INSERT INTO `gentest_book` VALUES ('0105C43ABEED4A328D1EBEA80660A6AE', 'Dacey Thornton', 'habitant ornare lacinia convallis inceptos malesuada quis pharetra condimentum odio', 'Ainsley', '2018-04-23 00:00:00');
-INSERT INTO `gentest_book` VALUES ('0109B2879F244F7E89376DEE3B85CEE5', 'Palmer Oconnor', 'Cras vehicula tempus ut inceptos lectus ad non sollicitudin Curae', 'Jamal', '2018-04-17 00:00:00');
-INSERT INTO `gentest_book` VALUES ('0126887AB7C44AD38C2C88F61B623E19', 'Amena English', 'risus per adipiscing arcu laoreet est commodo mus torquent Nullam', 'Griffith', '2018-04-23 00:00:00');
-INSERT INTO `gentest_book` VALUES ('012915F6108D450DA0EE05FEC5E60D78', 'Hammett Cantrell', 'pharetra Phasellus aliquam Suspendisse ac Nulla nisi eu aptent non', 'Larissa', '2018-04-18 00:00:00');
-INSERT INTO `gentest_book` VALUES ('0134F7741E104554A231520A294D147A', 'Leandra Delgado', 'commodo sollicitudin lacinia facilisi aptent nisl Phasellus faucibus scelerisque vulputate', 'Suki', '2018-04-26 00:00:00');
-INSERT INTO `gentest_book` VALUES ('0137FF34FE5643509886A7360A13747E', 'Elmo Camacho', 'senectus justo accumsan enim ac aptent nulla diam porta consequat', 'Upton', '2018-04-17 00:00:00');
-INSERT INTO `gentest_book` VALUES ('01394809D4DA4AD1BBE07F3BD906DACB', 'Ezekiel Zimmerman', 'penatibus Nam libero montes augue sollicitudin vehicula senectus pretium Aliquam', 'Chester', '2018-04-29 00:00:00');
-INSERT INTO `gentest_book` VALUES ('0139646BA705480EAEA0EEA5BD81BFDB', 'Fitzgerald Walker', 'Integer Mauris pellentesque libero hymenaeos malesuada odio ante porttitor massa', 'Jasper', '2018-04-24 00:00:00');
-INSERT INTO `gentest_book` VALUES ('014934B6CA214DA4BB84612D3CF2EE9B', 'Hector Bauer', 'In amet dignissim convallis pulvinar magna tortor habitant dis venenatis', 'Latifah', '2018-04-27 00:00:00');
-INSERT INTO `gentest_book` VALUES ('014D0C23BD994401A7D6DF4DA7570C2D', 'Baker Sweeney', 'morbi lacus quam massa venenatis erat Integer pharetra est Donec', 'Jacob', '2018-04-17 00:00:00');
 INSERT INTO `gentest_book` VALUES ('015C08033DA94D9B8DDE6686EF101F14', 'Megan Petty', 'netus elementum purus dui metus Nulla cursus aliquet porta massa', 'Allen', '2018-04-23 00:00:00');
 INSERT INTO `gentest_book` VALUES ('015C799499E24B3DA9BDB5710865087C', 'Hammett Giles', 'nulla ullamcorper neque suscipit eget nibh Nunc penatibus ullamcorper at', 'Jarrod', '2018-04-28 00:00:00');
 INSERT INTO `gentest_book` VALUES ('01603DDA14C64E539F6EA6A48567C43E', 'Jayme Owen', 'ligula mi justo et fermentum taciti vitae auctor pulvinar sit', 'Kiona', '2018-04-22 00:00:00');
@@ -13719,6 +13680,26 @@ INSERT INTO `gentest_mulpktable` VALUES ('943468550721372160', '9434685507213721
 INSERT INTO `gentest_mulpktable` VALUES ('943468568341643264', '943468568341643265', '943468568341643266', '44');
 
 -- ----------------------------
+-- Table structure for `markdown`
+-- ----------------------------
+DROP TABLE IF EXISTS `markdown`;
+CREATE TABLE `markdown` (
+  `id` varchar(32) NOT NULL,
+  `title` varchar(255) DEFAULT NULL,
+  `tags` varchar(100) DEFAULT NULL,
+  `content` text,
+  `user_id` varchar(32) DEFAULT NULL,
+  `open` varchar(1) DEFAULT '1' COMMENT '是否公开 1公开,0不公开',
+  `create_time` datetime DEFAULT NULL COMMENT '创建或更新时间',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='markdown 文档';
+
+-- ----------------------------
+-- Records of markdown
+-- ----------------------------
+INSERT INTO `markdown` VALUES ('1008726224068935680', 'CSS Protips ', '11', 'PHAgYWxpZ249ImNlbnRlciI+CiAgPGltZyBzcmM9Imh0dHBzOi8vcmF3Z2l0LmNvbS9BbGxUaGluZ3NTbWl0dHkvY3NzLXByb3RpcHMvbWFzdGVyL21lZGlhL2xvZ28uc3ZnIiB3aWR0aD0iMjAwIiBhbHQ9ImxpZ2h0IGJ1bGIgaWNvbiI+CjwvcD4KCiMgQ1NTIFByb3RpcHMgWyFbQXdlc29tZV0oaHR0cHM6Ly9jZG4ucmF3Z2l0LmNvbS9zaW5kcmVzb3JodXMvYXdlc29tZS9kNzMwNWYzOGQyOWZlZDc4ZmE4NTY1MmUzYTYzZTE1NGRkOGU4ODI5L21lZGlhL2JhZGdlLnN2ZyldKGh0dHBzOi8vZ2l0aHViLmNvbS9zaW5kcmVzb3JodXMvYXdlc29tZSkKCkEgY29sbGVjdGlvbiBvZiB0aXBzIHRvIGhlbHAgdGFrZSB5b3VyIENTUyBza2lsbHMgcHJvLgoKPiBGb3Igb3RoZXIgZ3JlYXQgbGlzdHMgY2hlY2sgb3V0IFtAc2luZHJlc29yaHVzXShodHRwczovL2dpdGh1Yi5jb20vc2luZHJlc29yaHVzLykncyBjdXJhdGVkIGxpc3Qgb2YgW2F3ZXNvbWUgbGlzdHNdKGh0dHBzOi8vZ2l0aHViLmNvbS9zaW5kcmVzb3JodXMvYXdlc29tZS8pLgoKCiMjIFRhYmxlIG9mIENvbnRlbnRzCgoqIFtQcm90aXBzXSgjcHJvdGlwcykKKiBbU3VwcG9ydF0oI3N1cHBvcnQpCiogW1RyYW5zbGF0aW9uc10oI3RyYW5zbGF0aW9ucykKKiBbQ29udHJpYnV0aW9uIEd1aWRlbGluZXNdKENPTlRSSUJVVElORy5tZCkKCgojIyBQcm90aXBzCgoxLiBbVXNlIGEgQ1NTIFJlc2V0XSgjdXNlLWEtY3NzLXJlc2V0KQoxLiBbSW5oZXJpdCBgYm94LXNpemluZ2BdKCNpbmhlcml0LWJveC1zaXppbmcpCjEuIFtVc2UgYHVuc2V0YCBJbnN0ZWFkIG9mIFJlc2V0dGluZyBBbGwgUHJvcGVydGllc10oI3VzZS11bnNldC1pbnN0ZWFkLW9mLXJlc2V0dGluZy1hbGwtcHJvcGVydGllcykKMS4gW1VzZSBgOm5vdCgpYCB0byBBcHBseS9VbmFwcGx5IEJvcmRlcnMgb24gTmF2aWdhdGlvbl0oI3VzZS1ub3QtdG8tYXBwbHl1bmFwcGx5LWJvcmRlcnMtb24tbmF2aWdhdGlvbikKMS4gW0FkZCBgbGluZS1oZWlnaHRgIHRvIGBib2R5YF0oI2FkZC1saW5lLWhlaWdodC10by1ib2R5KQoxLiBbVmVydGljYWxseS1DZW50ZXIgQW55dGhpbmddKCN2ZXJ0aWNhbGx5LWNlbnRlci1hbnl0aGluZykKMS4gW0NvbW1hLVNlcGFyYXRlZCBMaXN0c10oI2NvbW1hLXNlcGFyYXRlZC1saXN0cykKMS4gW1NlbGVjdCBJdGVtcyBVc2luZyBOZWdhdGl2ZSBgbnRoLWNoaWxkYF0oI3NlbGVjdC1pdGVtcy11c2luZy1uZWdhdGl2ZS1udGgtY2hpbGQpCjEuIFtVc2UgU1ZHIGZvciBJY29uc10oI3VzZS1zdmctZm9yLWljb25zKQoxLiBbVXNlIHRoZSAiTG9ib3RvbWl6ZWQgT3dsIiBTZWxlY3Rvcl0oI3VzZS10aGUtbG9ib3RvbWl6ZWQtb3dsLXNlbGVjdG9yKQoxLiBbVXNlIGBtYXgtaGVpZ2h0YCBmb3IgUHVyZSBDU1MgU2xpZGVyc10oI3VzZS1tYXgtaGVpZ2h0LWZvci1wdXJlLWNzcy1zbGlkZXJzKQoxLiBbRXF1YWwtV2lkdGggVGFibGUgQ2VsbHNdKCNlcXVhbC13aWR0aC10YWJsZS1jZWxscykKMS4gW0dldCBSaWQgb2YgTWFyZ2luIEhhY2tzIFdpdGggRmxleGJveF0oI2dldC1yaWQtb2YtbWFyZ2luLWhhY2tzLXdpdGgtZmxleGJveCkKMS4gW1VzZSBBdHRyaWJ1dGUgU2VsZWN0b3JzIHdpdGggRW1wdHkgTGlua3NdKCN1c2UtYXR0cmlidXRlLXNlbGVjdG9ycy13aXRoLWVtcHR5LWxpbmtzKQoxLiBbU3R5bGUgIkRlZmF1bHQiIExpbmtzXSgjc3R5bGUtZGVmYXVsdC1saW5rcykKMS4gW0NvbnNpc3RlbnQgVmVydGljYWwgUmh5dGhtXSgjY29uc2lzdGVudC12ZXJ0aWNhbC1yaHl0aG0pCjEuIFtJbnRyaW5zaWMgUmF0aW8gQm94ZXNdKCNpbnRyaW5zaWMtcmF0aW8tYm94ZXMpCjEuIFtTdHlsZSBCcm9rZW4gSW1hZ2VzXSgjc3R5bGUtYnJva2VuLWltYWdlcykKMS4gW1VzZSBgcmVtYCBmb3IgR2xvYmFsIFNpemluZzsgVXNlIGBlbWAgZm9yIExvY2FsIFNpemluZ10oI3VzZS1yZW0tZm9yLWdsb2JhbC1zaXppbmctdXNlLWVtLWZvci1sb2NhbC1zaXppbmcpCjEuIFtIaWRlIEF1dG9wbGF5IFZpZGVvcyBUaGF0IEFyZW4ndCBNdXRlZF0oI2hpZGUtYXV0b3BsYXktdmlkZW9zLXRoYXQtYXJlbnQtbXV0ZWQpCjEuIFtVc2UgYDpyb290YCBmb3IgRmxleGlibGUgVHlwZV0oI3VzZS1yb290LWZvci1mbGV4aWJsZS10eXBlKQoxLiBbU2V0IGBmb250LXNpemVgIG9uIEZvcm0gRWxlbWVudHMgZm9yIGEgQmV0dGVyIE1vYmlsZSBFeHBlcmllbmNlXSgjc2V0LWZvbnQtc2l6ZS1vbi1mb3JtLWVsZW1lbnRzLWZvci1hLWJldHRlci1tb2JpbGUtZXhwZXJpZW5jZSkKMS4gW1VzZSBQb2ludGVyIEV2ZW50cyB0byBDb250cm9sIE1vdXNlIEV2ZW50c10oI3VzZS1wb2ludGVyLWV2ZW50cy10by1jb250cm9sLW1vdXNlLWV2ZW50cykKCgojIyMgVXNlIGEgQ1NTIFJlc2V0CgpDU1MgcmVzZXRzIGhlbHAgZW5mb3JjZSBzdHlsZSBjb25zaXN0ZW5jeSBhY3Jvc3MgZGlmZmVyZW50IGJyb3dzZXJzIHdpdGggYSBjbGVhbiBzbGF0ZSBmb3Igc3R5bGluZyBlbGVtZW50cy4gWW91IGNhbiB1c2UgYSBDU1MgcmVzZXQgbGlicmFyeSBsaWtlIFtOb3JtYWxpemVdKGh0dHA6Ly9uZWNvbGFzLmdpdGh1Yi5pby9ub3JtYWxpemUuY3NzLyksIF9ldCBhbC5fLCBvciB5b3UgY2FuIHVzZSBhIG1vcmUgc2ltcGxpZmllZCByZXNldCBhcHByb2FjaDoKCmBgYGNzcwoqIHsKICBib3gtc2l6aW5nOiBib3JkZXItYm94OwogIG1hcmdpbjogMDsKICBwYWRkaW5nOiAwOwp9CmBgYAoKTm93IGVsZW1lbnRzIHdpbGwgYmUgc3RyaXBwZWQgb2YgbWFyZ2lucyBhbmQgcGFkZGluZywgYW5kIGBib3gtc2l6aW5nYCBsZXRzIHlvdSBtYW5hZ2UgbGF5b3V0cyB3aXRoIHRoZSBDU1MgYm94IG1vZGVsLgoKIyMjIyBbRGVtb10oaHR0cDovL2NvZGVwZW4uaW8vQWxsVGhpbmdzU21pdHR5L3Blbi9ra3JrTEwpCgoqKk5vdGU6KiogSWYgeW91IGZvbGxvdyB0aGUgW0luaGVyaXQgYGJveC1zaXppbmdgXSgjaW5oZXJpdC1ib3gtc2l6aW5nKSB0aXAgYmVsb3cgeW91IG1pZ2h0IG9wdCB0byBub3QgaW5jbHVkZSB0aGUgYGJveC1zaXppbmdgIHByb3BlcnR5IGluICB5b3VyIENTUyByZXNldC4KCjxzdXA+W2JhY2sgdG8gdGFibGUgb2YgY29udGVudHNdKCN0YWJsZS1vZi1jb250ZW50cyk8L3N1cD4KCgojIyMgSW5oZXJpdCBgYm94LXNpemluZ2AKCkxldCBgYm94LXNpemluZ2AgYmUgaW5oZXJpdGVkIGZyb20gYGh0bWxgOgoKYGBgY3NzCmh0bWwgewogIGJveC1zaXppbmc6IGJvcmRlci1ib3g7Cn0KCiosICo6OmJlZm9yZSwgKjo6YWZ0ZXIgewogIGJveC1zaXppbmc6IGluaGVyaXQ7Cn0KYGBgCgpUaGlzIG1ha2VzIGl0IGVhc2llciB0byBjaGFuZ2UgYGJveC1zaXppbmdgIGluIHBsdWdpbnMgb3Igb3RoZXIgY29tcG9uZW50cyB0aGF0IGxldmVyYWdlIG90aGVyIGJlaGF2aW9yLgoKPHN1cD5bYmFjayB0byB0YWJsZSBvZiBjb250ZW50c10oI3RhYmxlLW9mLWNvbnRlbnRzKTwvc3VwPgoKCiMjIyBVc2UgYHVuc2V0YCBJbnN0ZWFkIG9mIFJlc2V0dGluZyBBbGwgUHJvcGVydGllcwoKV2hlbiByZXNldHRpbmcgYW4gZWxlbWVudCdzIHByb3BlcnRpZXMsIGl0J3Mgbm90IG5lY2Vzc2FyeSB0byByZXNldCBlYWNoIGluZGl2aWR1YWwgcHJvcGVydHk6CgpgYGBjc3MKYnV0dG9uIHsKICBiYWNrZ3JvdW5kOiBub25lOwogIGJvcmRlcjogbm9uZTsKICBjb2xvcjogaW5oZXJpdDsKICBmb250OiBpbmhlcml0OwogIG91dGxpbmU6IG5vbmU7CiAgcGFkZGluZzogMDsKfQpgYGAKCllvdSBjYW4gc3BlY2lmeSBhbGwgb2YgYW4gZWxlbWVudCdzIHByb3BlcnRpZXMgdXNpbmcgdGhlIGBhbGxgIHNob3J0aGFuZC4gU2V0dGluZyB0aGUgdmFsdWUgdG8gYHVuc2V0YCBjaGFuZ2VzIGFuIGVsZW1lbnQncyBwcm9wZXJ0aWVzIHRvIHRoZWlyIGluaXRpYWwgdmFsdWVzOgoKYGBgY3NzCmJ1dHRvbiB7CiAgYWxsOiB1bnNldDsKfQpgYGAKCioqTm90ZToqKiB0aGUgYGFsbGAgc2hvcnRoYW5kIGlzbid0IHN1cHBvcnRlZCBpbiBJRTExIGFuZCBpcyBjdXJyZW50bHkgdW5kZXIgY29uc2lkZXJhdGlvbiBmb3Igc3VwcG9ydCBpbiBFZGdlLiBgdW5zZXRgIGlzbid0IHN1cHBvcnRlZCBpbiBJRTExLgoKPHN1cD5bYmFjayB0byB0YWJsZSBvZiBjb250ZW50c10oI3RhYmxlLW9mLWNvbnRlbnRzKTwvc3VwPgoKCiMjIyBVc2UgYDpub3QoKWAgdG8gQXBwbHkvVW5hcHBseSBCb3JkZXJzIG9uIE5hdmlnYXRpb24KCkluc3RlYWQgb2YgcHV0dGluZyBvbiB0aGUgYm9yZGVyLi4uCgpgYGBjc3MKLyogYWRkIGJvcmRlciAqLwoubmF2IGxpIHsKICBib3JkZXItcmlnaHQ6IDFweCBzb2xpZCAjNjY2Owp9CmBgYAoKLi4uYW5kIHRoZW4gdGFraW5nIGl0IG9mZiB0aGUgbGFzdCBlbGVtZW50Li4uCgpgYGBjc3MKLyogcmVtb3ZlIGJvcmRlciAqLwoubmF2IGxpOmxhc3QtY2hpbGQgewogIGJvcmRlci1yaWdodDogbm9uZTsKfQpgYGAKCi4uLnVzZSB0aGUgYDpub3QoKWAgcHNldWRvLWNsYXNzIHRvIG9ubHkgYXBwbHkgdG8gdGhlIGVsZW1lbnRzIHlvdSB3YW50OgoKYGBgY3NzCi5uYXYgbGk6bm90KDpsYXN0LWNoaWxkKSB7CiAgYm9yZGVyLXJpZ2h0OiAxcHggc29saWQgIzY2NjsKfQpgYGAKClN1cmUsIHlvdSBjYW4gdXNlIGAubmF2IGxpICsgbGlgLCBidXQgd2l0aCBgOm5vdCgpYCB0aGUgaW50ZW50IGlzIHZlcnkgY2xlYXIgYW5kIHRoZSBDU1Mgc2VsZWN0b3IgZGVmaW5lcyB0aGUgYm9yZGVyIHRoZSB3YXkgYSBodW1hbiB3b3VsZCBkZXNjcmliZSBpdC4KCiMjIyMgW0RlbW9dKGh0dHA6Ly9jb2RlcGVuLmlvL0FsbFRoaW5nc1NtaXR0eS9wZW4vTGt5bXZPKQoKPHN1cD5bYmFjayB0byB0YWJsZSBvZiBjb250ZW50c10oI3RhYmxlLW9mLWNvbnRlbnRzKTwvc3VwPgoKCiMjIyBBZGQgYGxpbmUtaGVpZ2h0YCB0byBgYm9keWAKCllvdSBkb24ndCBuZWVkIHRvIGFkZCBgbGluZS1oZWlnaHRgIHRvIGVhY2ggYDxwPmAsIGA8aCo+YCwgX2V0IGFsXy4gc2VwYXJhdGVseS4gSW5zdGVhZCwgYWRkIGl0IHRvIGBib2R5YDoKCmBgYGNzcwpib2R5IHsKICBsaW5lLWhlaWdodDogMS41Owp9CmBgYAoKVGhpcyB3YXkgdGV4dHVhbCBlbGVtZW50cyBjYW4gaW5oZXJpdCBmcm9tIGBib2R5YCBlYXNpbHkuCgojIyMjIFtEZW1vXShodHRwOi8vY29kZXBlbi5pby9BbGxUaGluZ3NTbWl0dHkvcGVuL1ZqYmRZZCkKCjxzdXA+W2JhY2sgdG8gdGFibGUgb2YgY29udGVudHNdKCN0YWJsZS1vZi1jb250ZW50cyk8L3N1cD4KCgojIyMgVmVydGljYWxseS1DZW50ZXIgQW55dGhpbmcKCk5vLCBpdCdzIG5vdCBibGFjayBtYWdpYywgeW91IHJlYWxseSBjYW4gY2VudGVyIGVsZW1lbnRzIHZlcnRpY2FsbHk6CgpgYGBjc3MKaHRtbCwgYm9keSB7CiAgaGVpZ2h0OiAxMDAlOwogIG1hcmdpbjogMDsKfQoKYm9keSB7CiAgLXdlYmtpdC1hbGlnbi1pdGVtczogY2VudGVyOwogIC1tcy1mbGV4LWFsaWduOiBjZW50ZXI7CiAgYWxpZ24taXRlbXM6IGNlbnRlcjsKICBkaXNwbGF5OiAtd2Via2l0LWZsZXg7CiAgZGlzcGxheTogZmxleDsKfQpgYGAKCldhbnQgdG8gY2VudGVyIHNvbWV0aGluZyBlbHNlPyBWZXJ0aWNhbGx5LCBob3Jpem9udGFsbHkuLi5hbnl0aGluZywgYW55dGltZSwgYW55d2hlcmU/IENTUy1Ucmlja3MgaGFzIFthIG5pY2Ugd3JpdGUtdXBdKGh0dHBzOi8vY3NzLXRyaWNrcy5jb20vY2VudGVyaW5nLWNzcy1jb21wbGV0ZS1ndWlkZS8pIG9uIGRvaW5nIGFsbCBvZiB0aGF0LgoKKipOb3RlOioqIFdhdGNoIGZvciBzb21lIFtidWdneSBiZWhhdmlvcl0oaHR0cHM6Ly9naXRodWIuY29tL3BoaWxpcHdhbHRvbi9mbGV4YnVncyMzLW1pbi1oZWlnaHQtb24tYS1mbGV4LWNvbnRhaW5lci13b250LWFwcGx5LXRvLWl0cy1mbGV4LWl0ZW1zKSB3aXRoIGZsZXhib3ggaW4gSUUxMS4KCiMjIyMgW0RlbW9dKGh0dHA6Ly9jb2RlcGVuLmlvL0FsbFRoaW5nc1NtaXR0eS9wZW4vR3FtR3FaKQoKPHN1cD5bYmFjayB0byB0YWJsZSBvZiBjb250ZW50c10oI3RhYmxlLW9mLWNvbnRlbnRzKTwvc3VwPgoKCiMjIyBDb21tYS1TZXBhcmF0ZWQgTGlzdHMKCk1ha2UgbGlzdCBpdGVtcyBsb29rIGxpa2UgYSByZWFsLCBjb21tYS1zZXBhcmF0ZWQgbGlzdDoKCmBgYGNzcwp1bCA+IGxpOm5vdCg6bGFzdC1jaGlsZCk6OmFmdGVyIHsKICBjb250ZW50OiAiLCI7Cn0KYGBgCgpVc2UgdGhlIGA6bm90KClgIHBzZXVkby1jbGFzcyBhbmQgbm8gY29tbWEgd2lsbCBiZSBhZGRlZCB0byB0aGUgbGFzdCBpdGVtLgoKKipOb3RlOioqIFRoaXMgdGlwIG1heSBub3QgYmUgaWRlYWwgZm9yIGFjY2Vzc2liaWxpdHksIHNwZWNpZmljYWxseSBzY3JlZW4gcmVhZGVycy4gQW5kIGNvcHkvcGFzdGUgZnJvbSB0aGUgYnJvd3NlciBkb2Vzbid0IHdvcmsgd2l0aCBDU1MtZ2VuZXJhdGVkIGNvbnRlbnQuIFByb2NlZWQgd2l0aCBjYXV0aW9uLgoKPHN1cD5bYmFjayB0byB0YWJsZSBvZiBjb250ZW50c10oI3RhYmxlLW9mLWNvbnRlbnRzKTwvc3VwPgoKCiMjIyBTZWxlY3QgSXRlbXMgVXNpbmcgTmVnYXRpdmUgYG50aC1jaGlsZGAKClVzZSBuZWdhdGl2ZSBgbnRoLWNoaWxkYCBpbiBDU1MgdG8gc2VsZWN0IGl0ZW1zIDEgdGhyb3VnaCBuLgoKYGBgY3NzCmxpIHsKICBkaXNwbGF5OiBub25lOwp9CgovKiBzZWxlY3QgaXRlbXMgMSB0aHJvdWdoIDMgYW5kIGRpc3BsYXkgdGhlbSAqLwpsaTpudGgtY2hpbGQoLW4rMykgewogIGRpc3BsYXk6IGJsb2NrOwp9CmBgYAoKT3IsIHNpbmNlIHlvdSd2ZSBhbHJlYWR5IGxlYXJuZWQgYSBsaXR0bGUgYWJvdXQgW3VzaW5nIGA6bm90KClgXSgjdXNlLW5vdC10by1hcHBseXVuYXBwbHktYm9yZGVycy1vbi1uYXZpZ2F0aW9uKSwgdHJ5OgoKYGBgY3NzCi8qIHNlbGVjdCBhbGwgaXRlbXMgZXhjZXB0IHRoZSBmaXJzdCAzIGFuZCBkaXNwbGF5IHRoZW0gKi8KbGk6bm90KDpudGgtY2hpbGQoLW4rMykpIHsKICBkaXNwbGF5OiBibG9jazsKfQpgYGAKCiMjIyMgW0RlbW9dKGh0dHA6Ly9jb2RlcGVuLmlvL0FsbFRoaW5nc1NtaXR0eS9wZW4vV3hqS1pwKQoKPHN1cD5bYmFjayB0byB0YWJsZSBvZiBjb250ZW50c10oI3RhYmxlLW9mLWNvbnRlbnRzKTwvc3VwPgoKCiMjIyBVc2UgU1ZHIGZvciBJY29ucwoKVGhlcmUncyBubyByZWFzb24gbm90IHRvIHVzZSBTVkcgZm9yIGljb25zOgoKYGBgY3NzCi5sb2dvIHsKICBiYWNrZ3JvdW5kOiB1cmwoImxvZ28uc3ZnIik7Cn0KYGBgCgpTVkcgc2NhbGVzIHdlbGwgZm9yIGFsbCByZXNvbHV0aW9uIHR5cGVzIGFuZCBpcyBzdXBwb3J0ZWQgaW4gYWxsIGJyb3dzZXJzIFtiYWNrIHRvIElFOV0oaHR0cDovL2Nhbml1c2UuY29tLyNzZWFyY2g9c3ZnKS4gRGl0Y2ggeW91ciAucG5nLCAuanBnLCBvciAuZ2lmLWppZi13aGF0ZXYgZmlsZXMuCgoqKk5vdGU6KiogSWYgeW91IGhhdmUgU1ZHIGljb24tb25seSBidXR0b25zIGZvciBzaWdodGVkIHVzZXJzIGFuZCB0aGUgU1ZHIGZhaWxzIHRvIGxvYWQsIHRoaXMgd2lsbCBoZWxwIG1haW50YWluIGFjY2Vzc2liaWxpdHk6CgpgYGBjc3MKLm5vLXN2ZyAuaWNvbi1vbmx5OjphZnRlciB7CiAgY29udGVudDogYXR0cihhcmlhLWxhYmVsKTsKfQpgYGAKCjxzdXA+W2JhY2sgdG8gdGFibGUgb2YgY29udGVudHNdKCN0YWJsZS1vZi1jb250ZW50cyk8L3N1cD4KCgojIyMgVXNlIHRoZSAiTG9ib3RvbWl6ZWQgT3dsIiBTZWxlY3RvcgoKSXQgbWF5IGhhdmUgYSBzdHJhbmdlIG5hbWUgYnV0IHVzaW5nIHRoZSB1bml2ZXJzYWwgc2VsZWN0b3IgKGAqYCkgd2l0aCB0aGUgYWRqYWNlbnQgc2libGluZyBzZWxlY3RvciAoYCtgKSBjYW4gcHJvdmlkZSBhIHBvd2VyZnVsIENTUyBjYXBhYmlsaXR5OgoKYGBgY3NzCiogKyAqIHsKICBtYXJnaW4tdG9wOiAxLjVlbTsKfQpgYGAKCkluIHRoaXMgZXhhbXBsZSwgYWxsIGVsZW1lbnRzIGluIHRoZSBmbG93IG9mIHRoZSBkb2N1bWVudCB0aGF0IGZvbGxvdyBvdGhlciBlbGVtZW50cyB3aWxsIHJlY2VpdmUgYG1hcmdpbi10b3A6IDEuNWVtYC4KCkZvciBtb3JlIG9uIHRoZSAibG9ib3RvbWl6ZWQgb3dsIiBzZWxlY3RvciwgcmVhZCBbSGV5ZG9uIFBpY2tlcmluZydzIHBvc3RdKGh0dHA6Ly9hbGlzdGFwYXJ0LmNvbS9hcnRpY2xlL2F4aW9tYXRpYy1jc3MtYW5kLWxvYm90b21pemVkLW93bHMpIG9uICpBIExpc3QgQXBhcnQqLgoKIyMjIyBbRGVtb10oaHR0cDovL2NvZGVwZW4uaW8vQWxsVGhpbmdzU21pdHR5L3Blbi9nclJ2V3EpCgo8c3VwPltiYWNrIHRvIHRhYmxlIG9mIGNvbnRlbnRzXSgjdGFibGUtb2YtY29udGVudHMpPC9zdXA+CgoKIyMjIFVzZSBgbWF4LWhlaWdodGAgZm9yIFB1cmUgQ1NTIFNsaWRlcnMKCkltcGxlbWVudCBDU1Mtb25seSBzbGlkZXJzIHVzaW5nIGBtYXgtaGVpZ2h0YCB3aXRoIG92ZXJmbG93IGhpZGRlbjoKCmBgYGNzcwouc2xpZGVyIHsKICBtYXgtaGVpZ2h0OiAyMDBweDsKICBvdmVyZmxvdy15OiBoaWRkZW47CiAgd2lkdGg6IDMwMHB4Owp9Cgouc2xpZGVyOmhvdmVyIHsKICBtYXgtaGVpZ2h0OiA2MDBweDsKICBvdmVyZmxvdy15OiBzY3JvbGw7Cn0KYGBgCgpUaGUgZWxlbWVudCBleHBhbmRzIHRvIHRoZSBgbWF4LWhlaWdodGAgdmFsdWUgb24gaG92ZXIgYW5kIHRoZSBzbGlkZXIgZGlzcGxheXMgYXMgYSByZXN1bHQgb2YgdGhlIG92ZXJmbG93LgoKPHN1cD5bYmFjayB0byB0YWJsZSBvZiBjb250ZW50c10oI3RhYmxlLW9mLWNvbnRlbnRzKTwvc3VwPgoKCiMjIyBFcXVhbC1XaWR0aCBUYWJsZSBDZWxscwoKVGFibGVzIGNhbiBiZSBhIHBhaW4gdG8gd29yayB3aXRoLiBUcnkgdXNpbmcgYHRhYmxlLWxheW91dDogZml4ZWRgIHRvIGtlZXAgY2VsbHMgYXQgZXF1YWwgd2lkdGg6CgpgYGBjc3MKLmNhbGVuZGFyIHsKICB0YWJsZS1sYXlvdXQ6IGZpeGVkOwp9CmBgYAoKUGFpbi1mcmVlIHRhYmxlIGxheW91dHMuCgojIyMjIFtEZW1vXShodHRwOi8vY29kZXBlbi5pby9BbGxUaGluZ3NTbWl0dHkvcGVuL2pBTEFMbSkKCjxzdXA+W2JhY2sgdG8gdGFibGUgb2YgY29udGVudHNdKCN0YWJsZS1vZi1jb250ZW50cyk8L3N1cD4KCgojIyMgR2V0IFJpZCBvZiBNYXJnaW4gSGFja3MgV2l0aCBGbGV4Ym94CgpXaGVuIHdvcmtpbmcgd2l0aCBjb2x1bW4gZ3V0dGVycyB5b3UgY2FuIGdldCByaWQgb2YgYG50aC1gLCBgZmlyc3QtYCwgYW5kIGBsYXN0LWNoaWxkYCBoYWNrcyBieSB1c2luZyBmbGV4Ym94J3MgYHNwYWNlLWJldHdlZW5gIHByb3BlcnR5OgoKYGBgY3NzCi5saXN0IHsKICBkaXNwbGF5OiBmbGV4OwogIGp1c3RpZnktY29udGVudDogc3BhY2UtYmV0d2VlbjsKfQoKLmxpc3QgLnBlcnNvbiB7CiAgZmxleC1iYXNpczogMjMlOwp9CmBgYAoKTm93IGNvbHVtbiBndXR0ZXJzIGFsd2F5cyBhcHBlYXIgZXZlbmx5LXNwYWNlZC4KCjxzdXA+W2JhY2sgdG8gdGFibGUgb2YgY29udGVudHNdKCN0YWJsZS1vZi1jb250ZW50cyk8L3N1cD4KCgojIyMgVXNlIEF0dHJpYnV0ZSBTZWxlY3RvcnMgd2l0aCBFbXB0eSBMaW5rcwoKRGlzcGxheSBsaW5rcyB3aGVuIHRoZSBgPGE+YCBlbGVtZW50IGhhcyBubyB0ZXh0IHZhbHVlIGJ1dCB0aGUgYGhyZWZgIGF0dHJpYnV0ZSBoYXMgYSBsaW5rOgoKYGBgY3NzCmFbaHJlZl49Imh0dHAiXTplbXB0eTo6YmVmb3JlIHsKICBjb250ZW50OiBhdHRyKGhyZWYpOwp9CmBgYAoKVGhhdCdzIHByZXR0eSBjb252ZW5pZW50LgoKIyMjIyBbRGVtb10oaHR0cDovL2NvZGVwZW4uaW8vQWxsVGhpbmdzU21pdHR5L3Blbi96QnpYUngpCgo8c3VwPltiYWNrIHRvIHRhYmxlIG9mIGNvbnRlbnRzXSgjdGFibGUtb2YtY29udGVudHMpPC9zdXA+CgoKIyMjIFN0eWxlICJEZWZhdWx0IiBMaW5rcwoKQWRkIGEgc3R5bGUgZm9yICJkZWZhdWx0IiBsaW5rczoKCmBgYGNzcwphW2hyZWZdOm5vdChbY2xhc3NdKSB7CiAgY29sb3I6ICMwMDgwMDA7CiAgdGV4dC1kZWNvcmF0aW9uOiB1bmRlcmxpbmU7Cn0KYGBgCgpOb3cgbGlua3MgdGhhdCBhcmUgaW5zZXJ0ZWQgdmlhIGEgQ01TLCB3aGljaCBkb24ndCB1c3VhbGx5IGhhdmUgYSBgY2xhc3NgIGF0dHJpYnV0ZSwgd2lsbCBoYXZlIGEgZGlzdGluY3Rpb24gd2l0aG91dCBnZW5lcmljYWxseSBhZmZlY3RpbmcgdGhlIGNhc2NhZGUuCgo8c3VwPltiYWNrIHRvIHRhYmxlIG9mIGNvbnRlbnRzXSgjdGFibGUtb2YtY29udGVudHMpPC9zdXA+CgoKIyMjIENvbnNpc3RlbnQgVmVydGljYWwgUmh5dGhtCgpVc2UgYSB1bml2ZXJzYWwgc2VsZWN0b3IgKGAqYCkgd2l0aGluIGFuIGVsZW1lbnQgdG8gY3JlYXRlIGEgY29uc2lzdGVudCB2ZXJ0aWNhbCByaHl0aG06CgpgYGBjc3MKLmludHJvID4gKiB7CiAgbWFyZ2luLWJvdHRvbTogMS4yNXJlbTsKfQpgYGAKCkNvbnNpc3RlbnQgdmVydGljYWwgcmh5dGhtIHByb3ZpZGVzIGEgdmlzdWFsIGFlc3RoZXRpYyB0aGF0IG1ha2VzIGNvbnRlbnQgZmFyIG1vcmUgcmVhZGFibGUuCgo8c3VwPltiYWNrIHRvIHRhYmxlIG9mIGNvbnRlbnRzXSgjdGFibGUtb2YtY29udGVudHMpPC9zdXA+CgoKIyMjIEludHJpbnNpYyBSYXRpbyBCb3hlcwoKVG8gY3JlYXRlIGEgYm94IHdpdGggYW4gaW50cmluc2ljIHJhdGlvLCBhbGwgeW91IG5lZWQgdG8gZG8gaXMgYXBwbHkgdG9wIG9yIGJvdHRvbSBwYWRkaW5nIHRvIGEgZGl2OgoKYGBgY3NzCi5jb250YWluZXIgewogIGhlaWdodDogMDsKICBwYWRkaW5nLWJvdHRvbTogMjAlOwogIHBvc2l0aW9uOiByZWxhdGl2ZTsKfQoKLmNvbnRhaW5lciBkaXYgewogIGJvcmRlcjogMnB4IGRhc2hlZCAjZGRkOwogIGhlaWdodDogMTAwJTsKICBsZWZ0OiAwOwogIHBvc2l0aW9uOiBhYnNvbHV0ZTsKICB0b3A6IDA7CiAgd2lkdGg6IDEwMCU7Cn0KYGBgCgpVc2luZyAyMCUgZm9yIHBhZGRpbmcgbWFrZXMgdGhlIGhlaWdodCBvZiB0aGUgYm94IGVxdWFsIHRvIDIwJSBvZiBpdHMgd2lkdGguIE5vIG1hdHRlciB0aGUgd2lkdGggb2YgdGhlIHZpZXdwb3J0LCB0aGUgY2hpbGQgZGl2IHdpbGwga2VlcCBpdHMgYXNwZWN0IHJhdGlvICgxMDAlIC8gMjAlID0gNToxKS4KCiMjIyMgW0RlbW9dKGh0dHA6Ly9jb2RlcGVuLmlvL0FsbFRoaW5nc1NtaXR0eS9wZW4vakFMWnZFKQoKPHN1cD5bYmFjayB0byB0YWJsZSBvZiBjb250ZW50c10oI3RhYmxlLW9mLWNvbnRlbnRzKTwvc3VwPgoKCiMjIyBTdHlsZSBCcm9rZW4gSW1hZ2VzCgpNYWtlIGJyb2tlbiBpbWFnZXMgbW9yZSBhZXN0aGV0aWNhbGx5LXBsZWFzaW5nIHdpdGggYSBsaXR0bGUgYml0IG9mIENTUzoKCmBgYGNzcwppbWcgewogIGRpc3BsYXk6IGJsb2NrOwogIGZvbnQtZmFtaWx5OiBIZWx2ZXRpY2EsIEFyaWFsLCBzYW5zLXNlcmlmOwogIGZvbnQtd2VpZ2h0OiAzMDA7CiAgaGVpZ2h0OiBhdXRvOwogIGxpbmUtaGVpZ2h0OiAyOwogIHBvc2l0aW9uOiByZWxhdGl2ZTsKICB0ZXh0LWFsaWduOiBjZW50ZXI7CiAgd2lkdGg6IDEwMCU7Cn0KYGBgCgpOb3cgYWRkIHBzZXVkby1lbGVtZW50cyBydWxlcyB0byBkaXNwbGF5IGEgdXNlciBtZXNzYWdlIGFuZCBVUkwgcmVmZXJlbmNlIG9mIHRoZSBicm9rZW4gaW1hZ2U6CgpgYGBjc3MKaW1nOjpiZWZvcmUgewogIGNvbnRlbnQ6ICJXZSdyZSBzb3JyeSwgdGhlIGltYWdlIGJlbG93IGlzIGJyb2tlbiA6KCI7CiAgZGlzcGxheTogYmxvY2s7CiAgbWFyZ2luLWJvdHRvbTogMTBweDsKfQoKaW1nOjphZnRlciB7CiAgY29udGVudDogIih1cmw6ICIgYXR0cihzcmMpICIpIjsKICBkaXNwbGF5OiBibG9jazsKICBmb250LXNpemU6IDEycHg7Cn0KYGBgCgpMZWFybiBtb3JlIGFib3V0IHN0eWxpbmcgZm9yIHRoaXMgcGF0dGVybiBpbiBbSXJlIEFkZXJpbm9rdW5dKGh0dHBzOi8vZ2l0aHViLmNvbS9pcmVhZGUvKSdzIFtvcmlnaW5hbCBwb3N0XShodHRwOi8vYml0c29mY28uZGUvc3R5bGluZy1icm9rZW4taW1hZ2VzLykuCgo8c3VwPltiYWNrIHRvIHRhYmxlIG9mIGNvbnRlbnRzXSgjdGFibGUtb2YtY29udGVudHMpPC9zdXA+CgoKIyMjIFVzZSBgcmVtYCBmb3IgR2xvYmFsIFNpemluZzsgVXNlIGBlbWAgZm9yIExvY2FsIFNpemluZwoKQWZ0ZXIgc2V0dGluZyB0aGUgYmFzZSBmb250IHNpemUgYXQgdGhlIHJvb3QgKGBodG1sIHsgZm9udC1zaXplOiAxMDAlOyB9YCksIHNldCB0aGUgZm9udCBzaXplIGZvciB0ZXh0dWFsIGVsZW1lbnRzIHRvIGBlbWA6CgpgYGBjc3MKaDIgewogIGZvbnQtc2l6ZTogMmVtOwp9CgpwIHsKICBmb250LXNpemU6IDFlbTsKfQpgYGAKClRoZW4gc2V0IHRoZSBmb250LXNpemUgZm9yIG1vZHVsZXMgdG8gYHJlbWA6CgpgYGBjc3MKYXJ0aWNsZSB7CiAgZm9udC1zaXplOiAxLjI1cmVtOwp9Cgphc2lkZSAubW9kdWxlIHsKICBmb250LXNpemU6IC45cmVtOwp9CmBgYAoKTm93IGVhY2ggbW9kdWxlIGJlY29tZXMgY29tcGFydG1lbnRhbGl6ZWQgYW5kIGVhc2llciB0byBzdHlsZSwgbW9yZSBtYWludGFpbmFibGUsIGFuZCBmbGV4aWJsZS4KCjxzdXA+W2JhY2sgdG8gdGFibGUgb2YgY29udGVudHNdKCN0YWJsZS1vZi1jb250ZW50cyk8L3N1cD4KCgojIyMgSGlkZSBBdXRvcGxheSBWaWRlb3MgVGhhdCBBcmVuJ3QgTXV0ZWQKClRoaXMgaXMgYSBncmVhdCB0cmljayBmb3IgYSBjdXN0b20gdXNlciBzdHlsZXNoZWV0LiBBdm9pZCBvdmVybG9hZGluZyBhIHVzZXIgd2l0aCBzb3VuZCBmcm9tIGEgdmlkZW8gdGhhdCBhdXRvcGxheXMgd2hlbiB0aGUgcGFnZSBpcyBsb2FkZWQuIElmIHRoZSBzb3VuZCBpc24ndCBtdXRlZCwgZG9uJ3Qgc2hvdyB0aGUgdmlkZW86CgpgYGBjc3MKdmlkZW9bYXV0b3BsYXldOm5vdChbbXV0ZWRdKSB7CiAgZGlzcGxheTogbm9uZTsKfQpgYGAKCk9uY2UgYWdhaW4sIHdlJ3JlIHRha2luZyBhZHZhbnRhZ2Ugb2YgdXNpbmcgdGhlIFtgOm5vdCgpYF0oI3VzZS1ub3QtdG8tYXBwbHl1bmFwcGx5LWJvcmRlcnMtb24tbmF2aWdhdGlvbikgcHNldWRvLWNsYXNzLgoKPHN1cD5bYmFjayB0byB0YWJsZSBvZiBjb250ZW50c10oI3RhYmxlLW9mLWNvbnRlbnRzKTwvc3VwPgoKCiMjIyBVc2UgYDpyb290YCBmb3IgRmxleGlibGUgVHlwZQoKVGhlIHR5cGUgZm9udCBzaXplIGluIGEgcmVzcG9uc2l2ZSBsYXlvdXQgc2hvdWxkIGJlIGFibGUgdG8gYWRqdXN0IHdpdGggZWFjaCB2aWV3cG9ydC4gWW91IGNhbiBjYWxjdWxhdGUgdGhlIGZvbnQgc2l6ZSBiYXNlZCBvbiB0aGUgdmlld3BvcnQgaGVpZ2h0IGFuZCB3aWR0aCB1c2luZyBgOnJvb3RgOgoKYGBgY3NzCjpyb290IHsKICBmb250LXNpemU6IGNhbGMoMXZ3ICsgMXZoICsgLjV2bWluKTsKfQpgYGAKCk5vdyB5b3UgY2FuIHV0aWxpemUgdGhlIGByb290IGVtYCB1bml0IGJhc2VkIG9uIHRoZSB2YWx1ZSBjYWxjdWxhdGVkIGJ5IGA6cm9vdGA6CgpgYGBjc3MKYm9keSB7CiAgZm9udDogMXJlbS8xLjYgc2Fucy1zZXJpZjsKfQpgYGAKCiMjIyMgW0RlbW9dKGh0dHA6Ly9jb2RlcGVuLmlvL0FsbFRoaW5nc1NtaXR0eS9wZW4vWEtnT2tSKQoKPHN1cD5bYmFjayB0byB0YWJsZSBvZiBjb250ZW50c10oI3RhYmxlLW9mLWNvbnRlbnRzKTwvc3VwPgoKCiMjIyBTZXQgYGZvbnQtc2l6ZWAgb24gRm9ybSBFbGVtZW50cyBmb3IgYSBCZXR0ZXIgTW9iaWxlIEV4cGVyaWVuY2UKClRvIGF2b2lkIG1vYmlsZSBicm93c2VycyAoaU9TIFNhZmFyaSwgX2V0IGFsXy4pIGZyb20gem9vbWluZyBpbiBvbiBIVE1MIGZvcm0gZWxlbWVudHMgd2hlbiBhIGA8c2VsZWN0PmAgZHJvcC1kb3duIGlzIHRhcHBlZCwgYWRkIGBmb250LXNpemVgIHRvIHRoZSBzZWxlY3RvciBydWxlOgoKYGBgY3NzCmlucHV0W3R5cGU9InRleHQiXSwKaW5wdXRbdHlwZT0ibnVtYmVyIl0sCnNlbGVjdCwKdGV4dGFyZWEgewogIGZvbnQtc2l6ZTogMTZweDsKfQpgYGAKCjpkYW5jZXI6Cgo8c3VwPltiYWNrIHRvIHRhYmxlIG9mIGNvbnRlbnRzXSgjdGFibGUtb2YtY29udGVudHMpPC9zdXA+CgoKIyMjIFVzZSBQb2ludGVyIEV2ZW50cyB0byBDb250cm9sIE1vdXNlIEV2ZW50cwoKW1BvaW50ZXIgZXZlbnRzXShodHRwczovL2RldmVsb3Blci5tb3ppbGxhLm9yZy9lbi1VUy9kb2NzL1dlYi9DU1MvcG9pbnRlci1ldmVudHMpIGFsbG93IHlvdSB0byBzcGVjaWZpeSBob3cgdGhlIG1vdXNlIGludGVyYWN0cyB3aXRoIHRoZSBlbGVtZW50IGl0J3MgdG91Y2hpbmcuIFRvIGRpc2FibGUgdGhlIGRlZmF1bHQgcG9pbnRlciBldmVudCBvbiBhIGJ1dHRvbiwgZm9yIGluc3RhbmNlOgoKYGBgY3NzCi5idXR0b24tZGlzYWJsZWQgewogIG9wYWNpdHk6IC41OwogIHBvaW50ZXItZXZlbnRzOiBub25lOwp9CmBgYAoKSXQncyB0aGF0IHNpbXBsZS4KCjxzdXA+W2JhY2sgdG8gdGFibGUgb2YgY29udGVudHNdKCN0YWJsZS1vZi1jb250ZW50cyk8L3N1cD4KCgojIyBTdXBwb3J0CgpDdXJyZW50IHZlcnNpb25zIG9mIENocm9tZSwgRmlyZWZveCwgU2FmYXJpLCBPcGVyYSwgRWRnZSwgYW5kIElFMTEuCgo8c3VwPltiYWNrIHRvIHRhYmxlIG9mIGNvbnRlbnRzXSgjdGFibGUtb2YtY29udGVudHMpPC9zdXA+CgoKIyMgVHJhbnNsYXRpb25zCgoqIFvnroDkvZPkuK3mloddKGh0dHBzOi8vZ2l0aHViLmNvbS9BbGxUaGluZ3NTbWl0dHkvY3NzLXByb3RpcHMvdHJlZS9tYXN0ZXIvdHJhbnNsYXRpb25zL3poLUNOKQoqIFvmraPpq5TkuK3mloddKGh0dHBzOi8vZ2l0aHViLmNvbS9BbGxUaGluZ3NTbWl0dHkvY3NzLXByb3RpcHMvdHJlZS9tYXN0ZXIvdHJhbnNsYXRpb25zL3poLVRXKQoqIFtEZXV0c2NoZV0oaHR0cHM6Ly9naXRodWIuY29tL0FsbFRoaW5nc1NtaXR0eS9jc3MtcHJvdGlwcy90cmVlL21hc3Rlci90cmFuc2xhdGlvbnMvZGUtREUpCiogW0VzcGHDsW9sXShodHRwczovL2dpdGh1Yi5jb20vQWxsVGhpbmdzU21pdHR5L2Nzcy1wcm90aXBzL3RyZWUvbWFzdGVyL3RyYW5zbGF0aW9ucy9lcy1FUykKKiBbRnJhbsOnYWlzXShodHRwczovL2dpdGh1Yi5jb20vQWxsVGhpbmdzU21pdHR5L2Nzcy1wcm90aXBzL3RyZWUvbWFzdGVyL3RyYW5zbGF0aW9ucy9mci1GUikKKiBb4KqX4KuB4Kqc4Kqw4Kq+4Kqk4KuAXShodHRwczovL2dpdGh1Yi5jb20vQWxsVGhpbmdzU21pdHR5L2Nzcy1wcm90aXBzL3RyZWUvbWFzdGVyL3RyYW5zbGF0aW9ucy9ndS1JTkQpCiogW0l0YWxpYW5vXShodHRwczovL2dpdGh1Yi5jb20vQWxsVGhpbmdzU21pdHR5L2Nzcy1wcm90aXBzL3RyZWUvbWFzdGVyL3RyYW5zbGF0aW9ucy9pdC1JVCkKKiBb5pel5pys6KqeXShodHRwczovL2dpdGh1Yi5jb20vQWxsVGhpbmdzU21pdHR5L2Nzcy1wcm90aXBzL3RyZWUvbWFzdGVyL3RyYW5zbGF0aW9ucy9qYS1KUCkKKiBb7ZWc6rWt7Ja0XShodHRwczovL2dpdGh1Yi5jb20vQWxsVGhpbmdzU21pdHR5L2Nzcy1wcm90aXBzL3RyZWUvbWFzdGVyL3RyYW5zbGF0aW9ucy9rby1LUikKKiBbUG9sc2tpZV0oaHR0cHM6Ly9naXRodWIuY29tL0FsbFRoaW5nc1NtaXR0eS9jc3MtcHJvdGlwcy90cmVlL21hc3Rlci90cmFuc2xhdGlvbnMvcGwtUEwpCiogW1BvcnR1Z3XDqnMgZG8gQnJhc2lsXShodHRwczovL2dpdGh1Yi5jb20vQWxsVGhpbmdzU21pdHR5L2Nzcy1wcm90aXBzL3RyZWUvbWFzdGVyL3RyYW5zbGF0aW9ucy9wdC1CUikKKiBbUG9ydHVndcOqcyBkbyBFdXJvcGVdKGh0dHBzOi8vZ2l0aHViLmNvbS9BbGxUaGluZ3NTbWl0dHkvY3NzLXByb3RpcHMvdHJlZS9tYXN0ZXIvdHJhbnNsYXRpb25zL3B0LVBUKQoqIFvQoNGD0YHRgdC60LjQuV0oaHR0cHM6Ly9naXRodWIuY29tL0FsbFRoaW5nc1NtaXR0eS9jc3MtcHJvdGlwcy90cmVlL21hc3Rlci90cmFuc2xhdGlvbnMvcnUtUlUpCgo8c3VwPltiYWNrIHRvIHRhYmxlIG9mIGNvbnRlbnRzXSgjdGFibGUtb2YtY29udGVudHMpPC9zdXA+', '916654989969981440', '1', '2018-06-18 23:00:47');
+
+-- ----------------------------
 -- Table structure for `sys_dict`
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_dict`;
@@ -13734,46 +13715,6 @@ CREATE TABLE `sys_dict` (
 -- ----------------------------
 -- Records of sys_dict
 -- ----------------------------
-INSERT INTO `sys_dict` VALUES ('14', 'mblb', '码表类别', 'mblb', '2017-12-15 23:27:02');
-INSERT INTO `sys_dict` VALUES ('15', 'mblb', '标准体系', 'standard', '2017-12-15 23:20:37');
-INSERT INTO `sys_dict` VALUES ('16', 'standard', '产品标准', 'Q', '2017-12-15 23:20:37');
-INSERT INTO `sys_dict` VALUES ('17', 'standard', '技术标准', 'J', '2017-12-15 23:20:37');
-INSERT INTO `sys_dict` VALUES ('18', 'standard', '管理标准', 'G', '2017-12-15 23:20:37');
-INSERT INTO `sys_dict` VALUES ('19', 'standard', '工作标准', 'Z', '2017-12-15 23:20:37');
-INSERT INTO `sys_dict` VALUES ('21', 'mblb', '备用2', '4', '2017-12-15 23:20:37');
-INSERT INTO `sys_dict` VALUES ('22', 'mblb', '备用3', '3', '2017-12-15 23:20:37');
-INSERT INTO `sys_dict` VALUES ('23', 'mblb', '部门编号', 'orgid', '2017-12-15 23:20:37');
-INSERT INTO `sys_dict` VALUES ('24', 'orgid', '企管中心', 'HXQG', '2017-12-15 23:20:37');
-INSERT INTO `sys_dict` VALUES ('25', 'orgid', '经营部', 'HXQG-JY', '2017-12-15 23:20:37');
-INSERT INTO `sys_dict` VALUES ('26', 'orgid', '人力资源', 'HXQG-RL', '2017-12-15 23:20:37');
-INSERT INTO `sys_dict` VALUES ('27', 'orgid', '行政部', 'HXQG-XZ', '2017-12-15 23:20:37');
-INSERT INTO `sys_dict` VALUES ('28', 'orgid', '财务中心', 'HXCW', '2017-12-15 23:20:37');
-INSERT INTO `sys_dict` VALUES ('29', 'orgid', '证券部', 'HXCW-ZQ', '2017-12-15 23:20:37');
-INSERT INTO `sys_dict` VALUES ('30', 'orgid', '融资部', 'HXCW-RZ', '2017-12-15 23:20:37');
-INSERT INTO `sys_dict` VALUES ('31', 'orgid', '财务部', 'HXCW-CW', '2017-12-15 23:20:37');
-INSERT INTO `sys_dict` VALUES ('32', 'mblb', '产品标准', 'cpbz', '2017-12-15 23:20:37');
-INSERT INTO `sys_dict` VALUES ('33', 'cpbz', 'GB/T3428-2012', 'GBT34282012', '2017-12-15 23:20:37');
-INSERT INTO `sys_dict` VALUES ('34', 'cpbz', 'GB/T3428-2002', 'GBT34282002', '2017-12-15 23:20:37');
-INSERT INTO `sys_dict` VALUES ('35', 'cpbz', 'GB/T1179-2008', 'GBT11792008', '2017-12-15 23:20:37');
-INSERT INTO `sys_dict` VALUES ('36', 'cpbz', 'YB/T5004-2012', 'YBT50042012', '2017-12-15 23:20:37');
-INSERT INTO `sys_dict` VALUES ('37', 'cpbz', 'YB/T5004-2001', 'YBT50042001', '2017-12-15 23:20:37');
-INSERT INTO `sys_dict` VALUES ('38', 'cpbz', 'YB/T184-2000', 'YBT1842000', '2017-12-15 23:20:37');
-INSERT INTO `sys_dict` VALUES ('39', 'cpbz', 'ASTM498-A', 'ASTM498A', '2017-12-15 23:20:37');
-INSERT INTO `sys_dict` VALUES ('40', 'cpbz', 'ASTM232', 'ASTM232', '2017-12-15 23:20:37');
-INSERT INTO `sys_dict` VALUES ('41', 'cpbz', 'BS183', 'BS183', '2017-12-15 23:20:37');
-INSERT INTO `sys_dict` VALUES ('42', 'cpbz', 'IEC61089-1991', 'IEC61089-1991', '2017-12-15 23:20:37');
-INSERT INTO `sys_dict` VALUES ('43', 'cpbz', 'EN50189-2000', 'EN501892000', '2017-12-15 23:20:37');
-INSERT INTO `sys_dict` VALUES ('44', 'cpbz', 'BS4565-1990', 'BS45651990', '2017-12-15 23:20:37');
-INSERT INTO `sys_dict` VALUES ('45', 'cpbz', 'ASTMA363-2003', 'ASTMA3632003', '2017-12-15 23:20:37');
-INSERT INTO `sys_dict` VALUES ('46', 'cpbz', 'YB/T183-2000', 'YBT1832000', '2017-12-15 23:20:37');
-INSERT INTO `sys_dict` VALUES ('47', 'cpbz', 'ASTMA475', 'ASTMA475', '2017-12-15 23:20:37');
-INSERT INTO `sys_dict` VALUES ('48', 'cpbz', 'GB1200-88', 'GB120088', '2017-12-15 23:20:37');
-INSERT INTO `sys_dict` VALUES ('49', 'cpbz', 'IEC60888-1987', 'IEC60888-1987', '2017-12-15 23:20:37');
-INSERT INTO `sys_dict` VALUES ('50', 'cpbz', '强度', 'QD', '2017-12-15 23:20:37');
-INSERT INTO `sys_dict` VALUES ('51', 'cpbz', 'BS215', 'BS215', '2017-12-15 23:20:37');
-INSERT INTO `sys_dict` VALUES ('52', 'cpbz', 'GB/T20492-2006', 'GBT204922006', '2017-12-15 23:20:37');
-INSERT INTO `sys_dict` VALUES ('53', 'cpbz', 'EN50282-2011', 'EN50282-2011', '2017-12-15 23:20:37');
-INSERT INTO `sys_dict` VALUES ('54', 'mblb', '付款类型', 'payment', '2017-12-15 23:20:37');
 INSERT INTO `sys_dict` VALUES ('55', 'payment', '现金', '0', '2017-12-15 23:20:37');
 INSERT INTO `sys_dict` VALUES ('56', 'payment', '电汇', '1', '2017-12-15 23:20:37');
 INSERT INTO `sys_dict` VALUES ('57', 'payment', '银兑', '2', '2017-12-15 23:20:37');
@@ -13911,17 +13852,7 @@ CREATE TABLE `sys_file` (
 -- ----------------------------
 -- Records of sys_file
 -- ----------------------------
-INSERT INTO `sys_file` VALUES ('103', '916654989969981440', null, 'upload/image/20180616212949_209.jpg', '547d1adec8596.jpg', 'image/jpeg', 'jpg', '65736', '', '2018-06-16 21:29:49');
-INSERT INTO `sys_file` VALUES ('104', '916654989969981440', null, 'upload/image/20180616223747_209.jpg', 'u=832101073,2523374224&fm=27&gp=0.jpg', 'image/jpeg', 'jpg', '5721', '', '2018-06-16 22:37:47');
-INSERT INTO `sys_file` VALUES ('105', '916654989969981440', null, 'upload/image/20180616223754_917.jpg', '547d1adec8596.jpg', 'image/jpeg', 'jpg', '65736', '', '2018-06-16 22:37:54');
-INSERT INTO `sys_file` VALUES ('106', '916654989969981440', null, 'upload/image/20180616223802_242.jpg', '3741a1c90118c083d1ded0d39778b7f8.jpg', 'image/jpeg', 'jpg', '1319704', '', '2018-06-16 22:38:02');
-INSERT INTO `sys_file` VALUES ('107', '916654989969981440', null, 'upload/image/20180616223808_614.jpg', '3c50ab7db3d99b9483c6f4948d8741ee.jpg', 'image/jpeg', 'jpg', '104977', '', '2018-06-16 22:38:08');
-INSERT INTO `sys_file` VALUES ('108', '916654989969981440', null, 'upload/image/20180616223816_455.jpg', '1T04943M-8.jpg', 'image/jpeg', 'jpg', '467970', '', '2018-06-16 22:38:16');
-INSERT INTO `sys_file` VALUES ('109', '916654989969981440', null, 'upload/image/20180616223823_764.jpg', '0ea1ef95059ff8ba8f4a2652fd6b4b89.jpg', 'image/jpeg', 'jpg', '856681', '', '2018-06-16 22:38:23');
-INSERT INTO `sys_file` VALUES ('110', '916654989969981440', null, 'upload/image/20180616223831_930.jpg', '0ea1ef95059ff8ba8f4a2652fd6b4b89.jpg', 'image/jpeg', 'jpg', '856681', '', '2018-06-16 22:38:31');
-INSERT INTO `sys_file` VALUES ('111', '916654989969981440', null, 'upload/file/20180616223901_451.pdf', '深入浅出MySQL全文.pdf', 'application/pdf', 'pdf', '4605215', '', '2018-06-16 22:39:01');
-INSERT INTO `sys_file` VALUES ('112', '916654989969981440', null, 'upload/file/20180616224230_330.pdf', 'Apache_Shiro参考手册中文版.pdf', 'application/pdf', 'pdf', '1176809', '', '2018-06-16 22:42:30');
-INSERT INTO `sys_file` VALUES ('113', '916654989969981440', null, 'upload/file/20180616224244_226.pdf', '阿里巴巴Java开发手册（纪念版）.pdf', 'application/pdf', 'pdf', '1257689', '', '2018-06-16 22:42:44');
+INSERT INTO `sys_file` VALUES ('104', '916654989969981440', null, 'upload/image/20180616223747_209.jpg', 'u=832101073,2523374224&fm=27&gp=0.jpg', 'image/jpeg', 'jpg', '5721', 'good morning', '2018-06-18 20:15:37');
 INSERT INTO `sys_file` VALUES ('114', '916654989969981440', null, 'upload/image/20180617001710_218.png', 'trianglify.png', 'image/png', 'png', '295048', '', '2018-06-17 00:17:10');
 INSERT INTO `sys_file` VALUES ('115', '916654989969981440', null, 'upload/image/20180617001729_557.png', 'trianglify (1).png', 'image/png', 'png', '309974', '', '2018-06-17 00:17:29');
 INSERT INTO `sys_file` VALUES ('116', '916654989969981440', null, 'upload/image/20180617001737_554.png', 'trianglify (2).png', 'image/png', 'png', '319689', '', '2018-06-17 00:17:37');
@@ -13958,7 +13889,7 @@ CREATE TABLE `sys_menu` (
   `sort` int(11) DEFAULT NULL COMMENT '排序号',
   `pid` int(11) DEFAULT NULL COMMENT '父id',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=98 DEFAULT CHARSET=utf8 COMMENT='菜单表（权限表）';
+) ENGINE=InnoDB AUTO_INCREMENT=99 DEFAULT CHARSET=utf8 COMMENT='菜单表（权限表）';
 
 -- ----------------------------
 -- Records of sys_menu
@@ -13987,14 +13918,15 @@ INSERT INTO `sys_menu` VALUES ('91', '看小说', '/novel', null, 'fa-handsome',
 INSERT INTO `sys_menu` VALUES ('95', '个人中心', '/', null, null, '100', '0');
 INSERT INTO `sys_menu` VALUES ('96', '个人信息', '/userInfo', null, null, '2', '95');
 INSERT INTO `sys_menu` VALUES ('97', '通讯录', '/contacts', null, null, '2', '90');
+INSERT INTO `sys_menu` VALUES ('98', 'MD编辑器', '/markdown', null, null, '3', '90');
 
 -- ----------------------------
 -- Table structure for `sys_news`
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_news`;
 CREATE TABLE `sys_news` (
-  `id` varchar(255) NOT NULL,
-  `title` varchar(255) DEFAULT NULL,
+  `id` varchar(32) NOT NULL,
+  `title` varchar(100) DEFAULT NULL,
   `tags` varchar(100) DEFAULT NULL,
   `content` text,
   `user_id` varchar(32) DEFAULT NULL,
@@ -14091,6 +14023,67 @@ INSERT INTO `sys_oplog` VALUES ('1008001414837829632', '916654989969981440', '�
 INSERT INTO `sys_oplog` VALUES ('1008003584987496448', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2018-06-16 23:09:17');
 INSERT INTO `sys_oplog` VALUES ('1008005096534966272', '916654989969981440', '退出', '0:0:0:0:0:0:0:1', '2018-06-16 23:15:17');
 INSERT INTO `sys_oplog` VALUES ('1008019248250880000', '916654989969981440', '登录', '192.168.1.112', '2018-06-17 00:11:31');
+INSERT INTO `sys_oplog` VALUES ('1008023901243965440', '916654989969981440', '通过 cookie 登录', '192.168.1.112', '2018-06-17 00:30:00');
+INSERT INTO `sys_oplog` VALUES ('1008025450691166208', '916654989969981440', '退出', '192.168.1.112', '2018-06-17 00:36:10');
+INSERT INTO `sys_oplog` VALUES ('1008025482165223424', '916654989969981440', '登录', '192.168.1.112', '2018-06-17 00:36:17');
+INSERT INTO `sys_oplog` VALUES ('1008025575161331712', '916654989969981440', '通过 cookie 登录', '192.168.1.112', '2018-06-17 00:36:39');
+INSERT INTO `sys_oplog` VALUES ('1008167579111391232', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2018-06-17 10:00:56');
+INSERT INTO `sys_oplog` VALUES ('1008176589541736448', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2018-06-17 10:36:44');
+INSERT INTO `sys_oplog` VALUES ('1008181033943695360', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2018-06-17 10:54:24');
+INSERT INTO `sys_oplog` VALUES ('1008183252432715776', '916654989969981440', '退出', '0:0:0:0:0:0:0:1', '2018-06-17 11:03:13');
+INSERT INTO `sys_oplog` VALUES ('1008189097446998016', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2018-06-17 11:26:26');
+INSERT INTO `sys_oplog` VALUES ('1008208058511261696', '916654989969981440', '退出', '0:0:0:0:0:0:0:1', '2018-06-17 12:41:47');
+INSERT INTO `sys_oplog` VALUES ('1008298358344777728', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2018-06-17 18:40:36');
+INSERT INTO `sys_oplog` VALUES ('1008301512570437632', '916654989969981440', '退出', '0:0:0:0:0:0:0:1', '2018-06-17 18:53:08');
+INSERT INTO `sys_oplog` VALUES ('1008301733815779328', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2018-06-17 18:54:01');
+INSERT INTO `sys_oplog` VALUES ('1008301920252592128', '916654989969981440', '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-06-17 18:54:45');
+INSERT INTO `sys_oplog` VALUES ('1008302175056560128', '916654989969981440', '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-06-17 18:55:46');
+INSERT INTO `sys_oplog` VALUES ('1008302411971821568', '916654989969981440', '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-06-17 18:56:43');
+INSERT INTO `sys_oplog` VALUES ('1008302864663052288', '916654989969981440', '退出', '0:0:0:0:0:0:0:1', '2018-06-17 18:58:30');
+INSERT INTO `sys_oplog` VALUES ('1008302928198369280', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2018-06-17 18:58:46');
+INSERT INTO `sys_oplog` VALUES ('1008306266272956416', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2018-06-17 19:12:01');
+INSERT INTO `sys_oplog` VALUES ('1008306315094654976', '916654989969981440', '退出', '0:0:0:0:0:0:0:1', '2018-06-17 19:12:13');
+INSERT INTO `sys_oplog` VALUES ('1008306341225168896', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2018-06-17 19:12:19');
+INSERT INTO `sys_oplog` VALUES ('1008309084702638080', '916654989969981440', '退出', '0:0:0:0:0:0:0:1', '2018-06-17 19:23:13');
+INSERT INTO `sys_oplog` VALUES ('1008319385372196864', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2018-06-17 20:04:09');
+INSERT INTO `sys_oplog` VALUES ('1008335953527308288', '916654989969981440', '退出', '0:0:0:0:0:0:0:1', '2018-06-17 21:09:59');
+INSERT INTO `sys_oplog` VALUES ('1008341972986888192', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2018-06-17 21:33:55');
+INSERT INTO `sys_oplog` VALUES ('1008569651652722688', '916654989969981440', '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-06-18 12:38:37');
+INSERT INTO `sys_oplog` VALUES ('1008606635205066752', '916654989969981440', '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-06-18 15:05:35');
+INSERT INTO `sys_oplog` VALUES ('1008614595578822656', '916654989969981440', '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-06-18 15:37:13');
+INSERT INTO `sys_oplog` VALUES ('1008620509320970240', '916654989969981440', '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-06-18 16:00:43');
+INSERT INTO `sys_oplog` VALUES ('1008633977881231360', '916654989969981440', '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-06-18 16:54:14');
+INSERT INTO `sys_oplog` VALUES ('1008633995585388544', '916654989969981440', '退出', '0:0:0:0:0:0:0:1', '2018-06-18 16:54:18');
+INSERT INTO `sys_oplog` VALUES ('1008634302289674240', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2018-06-18 16:55:31');
+INSERT INTO `sys_oplog` VALUES ('1008645429828517888', '916654989969981440', '退出', '0:0:0:0:0:0:0:1', '2018-06-18 17:39:44');
+INSERT INTO `sys_oplog` VALUES ('1008645550095990784', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2018-06-18 17:40:13');
+INSERT INTO `sys_oplog` VALUES ('1008654382088060928', '916654989969981440', '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-06-18 18:15:19');
+INSERT INTO `sys_oplog` VALUES ('1008657639065780224', '916654989969981440', '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-06-18 18:28:15');
+INSERT INTO `sys_oplog` VALUES ('1008657867621793792', '916654989969981440', '退出', '0:0:0:0:0:0:0:1', '2018-06-18 18:29:10');
+INSERT INTO `sys_oplog` VALUES ('1008657890170372096', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2018-06-18 18:29:15');
+INSERT INTO `sys_oplog` VALUES ('1008658114435612672', '916654989969981440', '退出', '0:0:0:0:0:0:0:1', '2018-06-18 18:30:09');
+INSERT INTO `sys_oplog` VALUES ('1008658135369383936', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2018-06-18 18:30:14');
+INSERT INTO `sys_oplog` VALUES ('1008658291171000320', '916654989969981440', '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-06-18 18:30:51');
+INSERT INTO `sys_oplog` VALUES ('1008658313459531776', '916654989969981440', '退出', '0:0:0:0:0:0:0:1', '2018-06-18 18:30:56');
+INSERT INTO `sys_oplog` VALUES ('1008658338365308928', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2018-06-18 18:31:02');
+INSERT INTO `sys_oplog` VALUES ('1008682582704914432', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2018-06-18 20:07:22');
+INSERT INTO `sys_oplog` VALUES ('1008683317282734080', '916654989969981440', '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-06-18 20:10:17');
+INSERT INTO `sys_oplog` VALUES ('1008684259268886528', '916654989969981440', '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-06-18 20:14:02');
+INSERT INTO `sys_oplog` VALUES ('1008684573061545984', '916654989969981440', '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-06-18 20:15:17');
+INSERT INTO `sys_oplog` VALUES ('1008685162461921280', '916654989969981440', '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-06-18 20:17:37');
+INSERT INTO `sys_oplog` VALUES ('1008685338618494976', '916654989969981440', '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-06-18 20:18:19');
+INSERT INTO `sys_oplog` VALUES ('1008686767248769024', '916654989969981440', '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-06-18 20:24:00');
+INSERT INTO `sys_oplog` VALUES ('1008700842166976512', '916654989969981440', '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-06-18 21:19:56');
+INSERT INTO `sys_oplog` VALUES ('1008701217607516160', '916654989969981440', '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-06-18 21:21:25');
+INSERT INTO `sys_oplog` VALUES ('1008707517779279872', '916654989969981440', '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-06-18 21:46:27');
+INSERT INTO `sys_oplog` VALUES ('1008709241919242240', '916654989969981440', '退出', '0:0:0:0:0:0:0:1', '2018-06-18 21:53:18');
+INSERT INTO `sys_oplog` VALUES ('1008709264715284480', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2018-06-18 21:53:24');
+INSERT INTO `sys_oplog` VALUES ('1008714138836271104', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2018-06-18 22:12:46');
+INSERT INTO `sys_oplog` VALUES ('1008717900082577408', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2018-06-18 22:27:43');
+INSERT INTO `sys_oplog` VALUES ('1008720565793456128', '916654989969981440', '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-06-18 22:38:18');
+INSERT INTO `sys_oplog` VALUES ('1008721025745027072', '916654989969981440', '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-06-18 22:40:08');
+INSERT INTO `sys_oplog` VALUES ('1008726523219279872', '916654989969981440', '退出', '0:0:0:0:0:0:0:1', '2018-06-18 23:01:59');
+INSERT INTO `sys_oplog` VALUES ('1008726545298096128', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2018-06-18 23:02:04');
 INSERT INTO `sys_oplog` VALUES ('978507882259546112', '916654989969981440', '退出', '0:0:0:0:0:0:0:1', '2018-03-27 13:43:53');
 INSERT INTO `sys_oplog` VALUES ('978507920457072640', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2018-03-27 13:44:02');
 INSERT INTO `sys_oplog` VALUES ('979261362326732800', '916654989969981440', '登录', '0:0:0:0:0:0:0:1', '2018-03-29 15:37:57');
@@ -14339,6 +14332,7 @@ INSERT INTO `sys_role_menu` VALUES ('3', '89');
 INSERT INTO `sys_role_menu` VALUES ('3', '91');
 INSERT INTO `sys_role_menu` VALUES ('3', '96');
 INSERT INTO `sys_role_menu` VALUES ('3', '97');
+INSERT INTO `sys_role_menu` VALUES ('3', '98');
 INSERT INTO `sys_role_menu` VALUES ('28', '60');
 INSERT INTO `sys_role_menu` VALUES ('28', '91');
 INSERT INTO `sys_role_menu` VALUES ('28', '96');

@@ -1,0 +1,106 @@
+<@compress single_line=true>
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>md</title>
+    <link rel="stylesheet" href="${ctx!}/res/pure/pure-min.css">
+    <!--[if lte IE 8]>
+    <link rel="stylesheet" href="${ctx!}/res/pure/grids-responsive-old-ie-min.css">
+    <![endif]-->
+    <!--[if gt IE 8]><!-->
+    <link rel="stylesheet" href="${ctx!}/res/pure/grids-responsive-min.css">
+    <!--<![endif]-->
+    <!--[if lt IE 9]>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.js"></script>
+    <![endif]-->
+    <link rel="stylesheet" href="${ctx!}/res/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="${ctx!}/res/css/custom.css">
+    <link rel="stylesheet" href="${ctx!}/res/layer/theme/default/layer.css">
+    <link rel="stylesheet" href="${ctx!}/res/md/simplemde/dist/simplemde.min.css">
+    <script src="${ctx!}/res/js/base-loading.js" type="text/javascript" charset="utf-8"></script>
+</head>
+<body style="padding: 10px 10px 5px">
+<form class="pure-form f">
+    <fieldset>
+        <legend>Markdown 编辑器实例</legend>
+        <input type="hidden" id="id" name="id" value="${(markdown.id)!}">
+        <input id="title" type="text" placeholder="标题" value="${(markdown.title)!}">
+        <input id="tags" type="text" placeholder="标签,多个之间逗号分隔" value="${(markdown.tags)!}">
+        <select id="open" style="height: 2.4em;"  >
+            <option selected value="1">公开</option>
+            <option value="0">私有</option>
+        </select>
+        <button id="subBtn" type="button" class="pure-button pure-button-primary">提交</button>
+    </fieldset>
+</form>
+<textarea id="editor" ></textarea>
+<script type="text/javascript" src="${ctx!}/res/easyui1.5.4.5/jquery.min.js"></script>
+<script src="${ctx!}/res/md/simplemde/dist/simplemde.min.js"></script>
+<script src="${ctx!}/res/layer/layer.js"></script>
+<script src="${ctx!}/res/js/layer-tools.js"></script>
+<script src="${ctx!}/res/js/util.js"></script>
+<script src="${ctx!}/res/js/base64.min.js"></script>
+<script>
+    var simplemde = new SimpleMDE({
+        autoDownloadFontAwesome:false,
+        placeholder:'请输入文本',
+        element: $("#editor")[0],
+        initialValue:'${(markdown.content)!}'==''?'':Base64.decode('${(markdown.content)!}')
+    });
+    if('${(markdown.open)!}'!=''){
+        $('#open').val('${(markdown.open)!}');
+    }
+
+
+    $("#subBtn").click(function () {
+        var title = $('#title').val();
+        if(isEmpty(title)){
+            layerTools.layerMsg('请输入标题!');
+            return;
+        }
+        var tags = $('#tags').val();
+        if(isEmpty(tags)){
+            layerTools.layerMsg('请至少输入一个标签!');
+            return;
+        }
+        var mdVal = simplemde.value();
+        if(isEmpty(mdVal)){
+            layerTools.layerMsg('请输入内容!');
+            return;
+        }
+        var open = $('#open').val();
+        var url;
+        var data ={};
+        var id = $('#id').val();
+        if (isEmpty(id)){
+            url = '${ctx!}/markdown/addAction';
+        }else{
+            url = '${ctx!}/markdown/updateAction';
+            data.id = id;
+        }
+        data.title = title;
+        data.tags =tags;
+        data.open = open;
+        data.content = mdVal;
+        $.ajax({
+            url: url,
+            data:data,
+            type: 'POST',
+            dataType: 'text',
+            success: function (data) {
+                layerTools.layerMsg(data, function () {
+                    parent.$("#dg").datagrid("reload");
+                    parent.layer.close(parent.layer.getFrameIndex(window.name));
+                });
+            },
+            error: function (x, h, r) {
+                layerTools.AlertErrorMsg();
+            }
+        })
+    });
+</script>
+</body>
+</html>
+</@compress>

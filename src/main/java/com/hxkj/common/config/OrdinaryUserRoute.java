@@ -1,10 +1,7 @@
 package com.hxkj.common.config;
 
 import com.hxkj.common.constant.Constant;
-import com.hxkj.ordinaryUser.controller.ContactsController;
-import com.hxkj.ordinaryUser.controller.NovelController;
-import com.hxkj.ordinaryUser.controller.UserInfoController;
-import com.hxkj.ordinaryUser.controller.UserPasswordController;
+import com.hxkj.ordinaryUser.controller.*;
 import com.jfinal.config.Routes;
 
 /**
@@ -22,5 +19,8 @@ public class OrdinaryUserRoute extends Routes {
 
         // 通讯录
         add("/contacts", ContactsController.class, Constant.VIEW_PATH);
+
+        // markdown 编辑器
+        add("/markdown", MarkdownController.class, Constant.VIEW_PATH);
     }
 }

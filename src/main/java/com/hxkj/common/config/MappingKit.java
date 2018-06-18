@@ -2,6 +2,7 @@ package com.hxkj.common.config;
 
 import com.hxkj.gentest.model.GentestBook;
 import com.hxkj.gentest.model.GentestMulpktable;
+import com.hxkj.ordinaryUser.model.Markdown;
 import com.hxkj.system.model.*;
 import com.jfinal.plugin.activerecord.ActiveRecordPlugin;
 
@@ -27,6 +28,7 @@ public class MappingKit {
         arp.addMapping("sys_dict", "id", SysDict.class);
         arp.addMapping("sys_file", "id", SysFile.class);
         arp.addMapping("sys_news", "id", SysNews.class);
+        arp.addMapping("markdown", "id", Markdown.class);
 
         // 代码生成测试表
         arp.addMapping("gentest_book", "id", GentestBook.class);
