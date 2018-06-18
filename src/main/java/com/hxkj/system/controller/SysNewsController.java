@@ -8,7 +8,9 @@ import com.hxkj.system.model.SysNews;
 import com.hxkj.system.model.SysUser;
 import com.jfinal.aop.Before;
 import com.jfinal.kit.StrKit;
+import com.jfinal.plugin.activerecord.Db;
 import com.jfinal.plugin.activerecord.Page;
+import com.jfinal.plugin.activerecord.tx.Tx;
 
 import java.util.Date;
 
@@ -72,14 +74,17 @@ public class SysNewsController extends BaseController {
     /**
      * 删除
      */
+    @Before(Tx.class)
     public void deleteAction() {
-        String id = getPara("id");
-        Boolean delflag = SysNews.dao.deleteById(id);
-        if (delflag) {
-            renderText(Constant.DELETE_SUCCESS);
-        } else {
-            renderText(Constant.DELETE_FAIL);
+        String ids = getPara("ids");
+        if(ids.contains(",")){
+            ids = "'" + ids.replace(",", "','") + "'";
+            String deleteSql = "delete from sys_news where id  in ( " + ids + " ) ";
+            Db.update(deleteSql);
+        }else{
+           SysNews.dao.deleteById(ids);
         }
+        renderText(Constant.DELETE_SUCCESS);
     }
 
     /**

@@ -6,7 +6,9 @@ import com.hxkj.common.util.Identities;
 import com.hxkj.common.util.search.SearchSql;
 import com.hxkj.gentest.model.GentestBook;
 import com.jfinal.aop.Before;
+import com.jfinal.plugin.activerecord.Db;
 import com.jfinal.plugin.activerecord.Page;
+import com.jfinal.plugin.activerecord.tx.Tx;
 
 /**
  * GentestBook 控制器
@@ -65,16 +67,19 @@ public class GentestBookController extends BaseController {
     }
 
     /**
-     * 删除
+     * 批量删除
      */
+    @Before(Tx.class)
     public void deleteAction() {
-        String id = getPara("id");
-        Boolean delflag = GentestBook.dao.deleteById(id);
-        if (delflag) {
-            renderText(Constant.DELETE_SUCCESS);
-        } else {
-            renderText(Constant.DELETE_FAIL);
+        String ids = getPara("ids");
+        if(ids.contains(",")){
+            ids = "'" + ids.replace(",", "','") + "'";
+            String deleteSql = "delete from gentest_book where id  in ( " + ids + " ) ";
+            Db.update(deleteSql);
+        }else{
+            GentestBook.dao.deleteById(ids);
         }
+        renderText(Constant.DELETE_SUCCESS);
     }
 
     /**

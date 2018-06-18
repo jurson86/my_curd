@@ -11,6 +11,7 @@ import com.jfinal.kit.StrKit;
 import com.jfinal.plugin.activerecord.Db;
 import com.jfinal.plugin.activerecord.Page;
 import com.jfinal.plugin.activerecord.Record;
+import com.jfinal.plugin.activerecord.tx.Tx;
 
 import java.util.Date;
 import java.util.List;
@@ -72,14 +73,17 @@ public class SysDictController extends BaseController {
     /**
      * 删除
      */
+    @Before(Tx.class)
     public void deleteAction() {
-        String id = getPara("id");
-        Boolean delflag = SysDict.dao.deleteById(id);
-        if (delflag) {
-            renderText(Constant.DELETE_SUCCESS);
-        } else {
-            renderText(Constant.DELETE_FAIL);
+        String ids = getPara("ids");
+        if(ids.contains(",")){
+            String deleteSql = "delete from sys_dict where id  in ( " + ids + " ) ";
+            Db.update(deleteSql);
+        }else{
+            SysDict.dao.deleteById(ids);
         }
+        // 执行不出错 即认为 删除成功
+        renderText(Constant.DELETE_SUCCESS);
     }
 
     /**

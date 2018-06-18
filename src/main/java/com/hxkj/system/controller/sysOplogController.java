@@ -45,9 +45,13 @@ public class sysOplogController extends BaseController {
         String[] columns = new String[]{"user_name", "op_content", "ip", "create_time"};
         String[] headers = new String[]{"操作人", "日志内容", "IP地址", "操作时间"};
 
-        render(PoiRender.me(sysOplogs).fileName(ToolString.toUtf8String("操作日志.xls")).sheetName("操作日志统计").columns(columns).headers(headers).cellWidth(3500).headerRow(1));
-
-
+        render(PoiRender.me(sysOplogs)
+                .fileName(ToolString.toUtf8String("操作日志.xls"))
+                .sheetName("操作日志统计")
+                .columns(columns)
+                .headers(headers)
+                .cellWidth(3500)
+                .headerRow(1));
     }
 
     @Before(SearchSql.class)
@@ -66,10 +70,13 @@ public class sysOplogController extends BaseController {
     @Before(Tx.class)
     public void deleteAction() {
         String ids = getPara("ids");
-        ids = "'" + ids.replace(",", "','") + "'";
-        String deleteSql = "delete from sys_oplog where id  in ( " + ids + " ) ";
-        Db.update(deleteSql);
-        //int x = 1/0;  // 异常测试回滚
+        if(ids.contains(",")){
+            ids = "'" + ids.replace(",", "','") + "'";
+            String deleteSql = "delete from sys_oplog where id  in ( " + ids + " ) ";
+            Db.update(deleteSql);
+        }else{
+            SysOplog.dao.deleteById(ids);
+        }
         renderText(Constant.DELETE_SUCCESS);
     }
 

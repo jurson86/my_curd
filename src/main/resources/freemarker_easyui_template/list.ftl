@@ -70,9 +70,12 @@
        pageSize="40" pageList="[20,40]">
     <thead>
     <tr>
+        <!--
+        默认没有批量删除
         <#list table.tablePrimaryKeys as pk>
-            <th data-options="field:'${(pk)!}',checkbox:true"></th>
+          <th data-options="field:'${(pk)!}',checkbox:true"></th>
         </#list>
+        -->
         <#list table.columnList as col>
         <#if !(col.primaryKey)>
             <th field="${(col.columnName)!}" width="100"><#if (col.columnComment)?? && col.columnComment != "">${(col.columnComment)!}<#else>${(col.columnName)!}</#if></th>

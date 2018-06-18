@@ -15,8 +15,8 @@
     
     function deleteModel() {
         var rows = $("#dg").datagrid("getSelections");
-        if (rows != null) {
-            layerTools.confirm(3, '删除', '您确定要删除选中的记录吗?', function () {
+        if (rows.length!=0) {
+            layerTools.confirm(3, '删除', '您确定要删除选中的'+rows.length+'条的记录吗?', function () {
                 var ids = [];
                 for (x in rows) {
                     ids.push(rows[x].id);
@@ -29,7 +29,7 @@
                 }, "text").error(function(){layerTools.AlertErrorMsg(); });
             });
         } else {
-            layerTools.layerMsg('请选择记录进行删除');
+            layerTools.layerMsg('请至少选择一条记录进行删除');
         }
     }
     function queryModel() {
@@ -44,9 +44,9 @@
        url="${ctx!}/sysOplog/query"
        toolbar="#tb" rownumbers="true" border="false"
        fit="true" pagination="true"
+       ctrlSelect="true"
        striped="true"
-       pageSize="40" pageList="[20,40]"
->
+       pageSize="40" pageList="[20,40]">
     <thead>
     <tr>
         <th data-options="field:'id',checkbox:true"></th>
@@ -70,7 +70,6 @@
                <input id="ip" prompt="ip地址" name="search_LIKE_so.ip" class="easyui-textbox" style="width:120px">
                <a href="#" class="easyui-linkbutton" data-options="iconCls:'e-icon fa fa-search',plain:true" onclick="queryModel()">搜索</a>
           </form>
-
     </span>
 </div>
 <script src="${ctx!}/res/layer/layer.js"></script>

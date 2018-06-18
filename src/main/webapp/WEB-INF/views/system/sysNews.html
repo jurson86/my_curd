@@ -8,30 +8,30 @@
     }
 
     function editModel() {
-        var row = $("#dg").treegrid("getSelected");
-        if (row != null) {
-            var params="";
-            params += 'id='+row.id;
-            layerTools.layerIframe('fa-pencil','编辑', '${ctx!}/sysNews/newModel?' + params, '242mm', '90%');
+        var rows = $("#dg").treegrid("getSelections");
+        if (rows.length==1) {
+            layerTools.layerIframe('fa-pencil','编辑', '${ctx!}/sysNews/newModel?id=' + rows[0].id, '242mm', '90%');
         } else {
             layerTools.layerMsg('请选择一行数据进行编辑');
         }
     }
 
     function deleteModel() {
-        var row = $("#dg").datagrid("getSelected");
-        if (row != null) {
-            var params="";
-             params += 'id='+row.id;
-            layerTools.confirm(3, '删除', '您确定要删除选中的记录吗?', function () {
-                $.post('${ctx!}/sysNews/deleteAction?' + params, function (data) {
+        var rows = $("#dg").datagrid("getSelections");
+        if (rows.length!=0) {
+            layerTools.confirm(3, '删除', '您确定要删除选中的'+rows.length+'条记录吗?', function () {
+                var ids = [];
+                rows.forEach(function(row){
+                    ids.push(row.id);
+                });
+                $.post('${ctx!}/sysNews/deleteAction?ids=' + ids.join(','), function (data) {
                     layerTools.layerMsg(data, function () {
                         $('#dg').datagrid('reload');
                     });
                 }, "text").error(function(){ layerTools.AlertErrorMsg(); });
             });
         } else {
-            layerTools.layerMsg('请选择一行进行删除');
+            layerTools.layerMsg('请至少选择一行进行删除');
         }
     }
 
@@ -43,18 +43,18 @@
     }
 
     function printModel(){
-        var row = $("#dg").datagrid("getSelected");
-        if (row != null) {
-            layerTools.layerIframe('fa-print','打印', '${ctx!}/sysNews/viewContent?id='+row.id, '241mm', '90%');
+        var rows = $("#dg").datagrid("getSelections");
+        if (rows.length==1) {
+            layerTools.layerIframe('fa-print','打印', '${ctx!}/sysNews/viewContent?id='+rows[0].id, '241mm', '90%');
         } else {
             layerTools.layerMsg('请选择一行数据');
         }
     }
 
     function viewModel(){
-        var row = $("#dg").datagrid("getSelected");
-        if (row != null) {
-            var url ='${ctx!}/sysNews/viewContent?id='+row.id;
+        var rows = $("#dg").datagrid("getSelections");
+        if (rows.length==1) {
+            var url ='${ctx!}/sysNews/viewContent?id='+rows[0].id;
             window.open(url, "_blank");
         } else {
             layerTools.layerMsg('请选择一行数据');
@@ -66,7 +66,7 @@
        data-options="onDblClickRow:editModel"
        toolbar="#tb" rownumbers="true" border="false"
        striped="true"
-       fit="true" pagination="true" singleSelect="true"
+       fit="true" pagination="true" ctrlSelect="true"
        data-options="onDblClickRow:viewModel"
        pageSize="40" pageList="[20,40]">
     <thead>

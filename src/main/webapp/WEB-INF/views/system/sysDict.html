@@ -7,18 +7,22 @@
         layerTools.layerIframe('fa-plus', '新建', '${ctx!}/sysDict/newModel', '500px', '300px')
     }
     function editModel() {
-        var row = $("#dg").treegrid("getSelected");
-        if (row != null) {
-            layerTools.layerIframe('fa-pencil', '编辑', '${ctx!}/sysDict/newModel?id=' + row.id, '500px', '300px');
+        var rows= $("#dg").treegrid("getSelections");
+        if (rows.length==1) {
+            layerTools.layerIframe('fa-pencil', '编辑', '${ctx!}/sysDict/newModel?id=' + rows[0].id, '500px', '300px');
         } else {
             layerTools.layerMsg('请选择一行数据进行编辑');
         }
     }
     function deleteModel() {
-        var row = $("#dg").datagrid("getSelected");
-        if (row != null) {
-            layerTools.confirm(3, '删除', '您确定要删除选中的记录吗?', function () {
-                $.post('${ctx!}/sysDict/deleteAction?id=' + row.id, function (data) {
+        var rows = $("#dg").datagrid("getSelections");
+        if (rows.length!=0) {
+            layerTools.confirm(3, '删除', '您确定要删除选中的'+rows.length+'条记录吗?', function () {
+                var ids = [];
+                rows.forEach(function(row){
+                   ids.push(row.id);
+                });
+                $.post('${ctx!}/sysDict/deleteAction?ids=' + ids.join(','), function (data) {
                     layerTools.layerMsg(data, function () {
                         $('#dg').datagrid('reload');
                     });
@@ -26,7 +30,7 @@
             });
 
         } else {
-            layerTools.layerMsg('请选择一行进行删除');
+            layerTools.layerMsg('请至少选择一行进行删除');
         }
     }
     function queryModel() {
@@ -39,7 +43,8 @@
        url="${ctx!}/sysDict/query"
        data-options="onDblClickRow:editModel"
        toolbar="#tb" rownumbers="true" border="false"
-       fit="true" pagination="true" singleSelect="true"
+       fit="true" pagination="true"
+       ctrlSelect="true"
        striped="true"
        pageSize="40" pageList="[20,40]">
     <thead>
