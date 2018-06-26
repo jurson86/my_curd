@@ -5,7 +5,7 @@
 
 CKEDITOR.editorConfig = function( config ) {
 	 config.language = 'zh-cn';
-     config.height = 450;
+     config.height = 300;
      config.width = 'auto';
     config.forcePasteAsPlainText = false;
     config.pasteFromWordRemoveFontStyles = false;

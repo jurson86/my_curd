@@ -1,0 +1,53 @@
+<!-- 生成时间： 2018-06-24 20:51:04 -->
+<#include "/WEB-INF/views/common/common.html"/><@layout>
+<link rel="stylesheet" href="${ctx!}/res/pure/tables-min.css">
+<script src="${ctx!}/res/js/util.js"></script>
+<script>
+    function saveAction() {
+        var url;
+        var pidVal = $('#pid').val();
+        if (isEmpty(pidVal)) {
+            url = '${ctx!}/dataProvince/addAction';
+        } else {
+            url = '${ctx!}/dataProvince/updateAction';
+        }
+
+        $('#modelForm').form('submit', {
+            url: url,
+            onSubmit: function() {
+                return $(this).form('validate');
+            },
+            success: function (data) {
+                parent.layerTools.layerMsg(data, function () {
+                    /* parent.window.location.reload();*/
+                    parent.$("#dg").datagrid("reload");
+                    parent.layer.close(parent.layer.getFrameIndex(window.name));
+                });
+            }
+        });
+    }
+</script>
+</head>
+<body style="padding: 10px 30px; ">
+<form id="modelForm" method="POST">
+    <table class=" pure-table pure-table-horizontal">
+        <input id="pid" name="pid"
+               type="hidden" value="${(dataProvince.pid)!}">
+        <tbody>
+            <tr>
+                <td>
+                    省份名称:
+                </td>
+                <td>
+                    <input name="pname" value="${(dataProvince.pname)!}" class="easyui-textbox"  data-options="required:true">
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</form>
+<div id="toolbars" style="text-align:center; margin-top: 20px;">
+    <a href="#" class="easyui-linkbutton" data-options="iconCls:'e-icon fa fa-save'" onclick="saveAction()">确定</a>
+    <a href="#" class="easyui-linkbutton" data-options="iconCls:'e-icon fa fa-close'"
+       onclick="parent.layer.close(parent.layer.getFrameIndex(window.name));">取消</a>
+</div>
+</@layout>

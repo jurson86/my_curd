@@ -1,0 +1,81 @@
+<!-- 生成时间： 2018-06-24 20:51:04 -->
+<#include "/WEB-INF/views/common/common.html"/> <@layout>
+<link rel="stylesheet" href="${ctx!}/res/layer/theme/default/layer.css">
+</head>
+<body>
+<script type="text/javascript">
+
+    /*新增 model*/
+    function newModel() {
+        layerTools.layerIframe('fa-plus','新建', '${ctx!}/dataCounty/newModel', '400px', '400px');
+    }
+
+    /*编辑 model*/
+    function editModel() {
+        var rows = $("#dg").treegrid("getSelections");
+        if (rows.length==1) {
+            var row = rows[0];
+            layerTools.layerIframe('fa-pencil','编辑', '${ctx!}/dataCounty/newModel?oid=' + row.oid, '400px', '400px');
+        } else {
+            layerTools.layerMsg('请选择一行数据进行编辑');
+        }
+    }
+
+    /*删除 model*/
+    function deleteModel() {
+        var rows = $("#dg").datagrid("getSelections");
+        if (rows.length!=0) {
+            var oidAry =[];
+            rows.forEach(function (row) {
+                oidAry.push(row.oid);
+            });
+            layerTools.confirm(3, '删除', '您确定要删除选中的'+rows.length+'条记录吗?', function () {
+                $.post('${ctx!}/dataCounty/deleteAction?oids='+oidAry.splice(',') , function (data) {
+                    layerTools.layerMsg(data, function () {
+                        $('#dg').datagrid('reload');
+                    });
+                }, "text").error(function(){ layerTools.AlertErrorMsg(); });
+            });
+
+        } else {
+            layerTools.layerMsg('请至少选择一行进行删除');
+        }
+    }
+
+    /*条件查询*/
+    function queryModel() {
+        var queryParams = {};
+        queryParams['search_LIKE_test'] = $("#test").textbox("getValue");
+        $('#dg').datagrid('load', queryParams);
+    }
+</script>
+<table id="dg" class="easyui-datagrid"
+       url="${ctx!}/dataCounty/query"
+       data-options="onDblClickRow:editModel"
+       toolbar="#tb" rownumbers="true" border="false"
+       fit="true"    fitColumns="false"
+       striped="true"
+       pagination="true"
+       ctrlSelect="true"
+       pageSize="40" pageList="[20,40]">
+    <thead>
+    <tr>
+        <th data-options="field:'oid',checkbox:true"></th>
+        <th field="oname" width="200">县/区名称</th>
+        <th field="cname" width="200">归属市</th>
+    </tr>
+    </thead>
+</table>
+
+<div id="tb">
+    <a onclick="newModel()" href="#" class="easyui-linkbutton" iconCls="e-icon fa fa-plus-square-o" plain="true">新增</a>
+    <a onclick="editModel()" href="#" class="easyui-linkbutton" iconCls="e-icon fa fa-pencil-square-o" plain="true">编辑</a>
+    <a onclick="deleteModel()" href="#" class="easyui-linkbutton  " iconCls="e-icon fa fa-trash-o" plain="true">删除</a>
+    <span id="enterSpan" class="searchInputArea">
+          <input id="test" prompt="test" class="easyui-textbox" style="width:120px; ">
+          <a href="#" class="easyui-linkbutton" data-options="iconCls:'e-icon fa fa-search',plain:true" onclick="queryModel()">搜索</a>
+    </span>
+</div>
+<script src="${ctx!}/res/layer/layer.js"></script>
+<script src="${ctx!}/res/js/layer-tools.js"></script>
+</@layout>

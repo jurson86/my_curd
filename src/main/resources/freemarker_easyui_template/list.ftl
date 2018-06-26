@@ -12,17 +12,11 @@
 
     /*编辑 model*/
     function editModel() {
-        var row = $("#dg").treegrid("getSelected");
-        if (row != null) {
-            var params="";
-            <#list table.tablePrimaryKeys as pk>
-                <#if pk_has_next>
-            params += '${pk}='+row.${pk}+'&';
-                <#else>
-            params += '${pk}='+row.${pk};
-                </#if>
-            </#list>
-            layerTools.layerIframe('fa-pencil','编辑', '<#noparse>${ctx!}</#noparse>/${(table.tableNameCamel)!}/newModel?' + params, '800px', '500px');
+        var rows = $("#dg").treegrid("getSelections");
+        if (rows.length==1) {
+            var row = rows[0];
+            /*有且只有一个主键*/
+            layerTools.layerIframe('fa-pencil','编辑', '<#noparse>${ctx!}</#noparse>/${(table.tableNameCamel)!}/newModel?${(table.tablePrimaryKeys[0])!}=' + row.${(table.tablePrimaryKeys[0])!}, '800px', '500px');
         } else {
             layerTools.layerMsg('请选择一行数据进行编辑');
         }
@@ -30,18 +24,15 @@
 
     /*删除 model*/
     function deleteModel() {
-        var row = $("#dg").datagrid("getSelected");
-        if (row != null) {
-            var params="";
-            <#list table.tablePrimaryKeys as pk>
-                <#if pk_has_next>
-            params += '${pk}='+row.${pk}+'&';
-                <#else>
-             params += '${pk}='+row.${pk};
-                </#if>
-            </#list>
-            layerTools.confirm(3, '删除', '您确定要删除选中的记录吗?', function () {
-                $.post('<#noparse>${ctx!}</#noparse>/${(table.tableNameCamel)!}/deleteAction?' + params, function (data) {
+        var rows = $("#dg").datagrid("getSelections");
+        if (rows.length!=0) {
+            /*有且只有一个主键*/
+            var ${(table.tablePrimaryKeys[0])!}Ary =[];
+            rows.forEach(function (row) {
+                ${(table.tablePrimaryKeys[0])!}Ary.push(row.${(table.tablePrimaryKeys[0])!});
+            });
+            layerTools.confirm(3, '删除', '您确定要删除选中的'+rows.length+'条记录吗?', function () {
+                $.post('<#noparse>${ctx!}</#noparse>/${(table.tableNameCamel)!}/deleteAction?${(table.tablePrimaryKeys[0])!}s='+${(table.tablePrimaryKeys[0])!}Ary.splice(',') , function (data) {
                     layerTools.layerMsg(data, function () {
                         $('#dg').datagrid('reload');
                     });
@@ -49,7 +40,7 @@
             });
 
         } else {
-            layerTools.layerMsg('请选择一行进行删除');
+            layerTools.layerMsg('请至少选择一行进行删除');
         }
     }
 
@@ -66,19 +57,16 @@
        toolbar="#tb" rownumbers="true" border="false"
        fit="true"    fitColumns="true"
        striped="true"
-       pagination="true" singleSelect="true"
+       pagination="true"
+       ctrlSelect="true"
        pageSize="40" pageList="[20,40]">
     <thead>
     <tr>
-        <!--
-        默认没有批量删除
-        <#list table.tablePrimaryKeys as pk>
-          <th data-options="field:'${(pk)!}',checkbox:true"></th>
-        </#list>
-        -->
+        <!--有且只有一个主键-->
+        <th data-options="field:'${(table.tablePrimaryKeys[0])!}',checkbox:true"></th>
         <#list table.columnList as col>
         <#if !(col.primaryKey)>
-            <th field="${(col.columnName)!}" width="100"><#if (col.columnComment)?? && col.columnComment != "">${(col.columnComment)!}<#else>${(col.columnName)!}</#if></th>
+        <th field="${(col.columnName)!}" width="100"><#if (col.columnComment)?? && col.columnComment != "">${(col.columnComment)!}<#else>${(col.columnName)!}</#if></th>
         </#if>
          </#list>
     </tr>

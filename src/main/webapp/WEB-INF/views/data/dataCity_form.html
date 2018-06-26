@@ -1,0 +1,66 @@
+<!-- 生成时间： 2018-06-24 20:51:04 -->
+<#include "/WEB-INF/views/common/common.html"/><@layout>
+<link rel="stylesheet" href="${ctx!}/res/pure/tables-min.css">
+<script src="${ctx!}/res/js/util.js"></script>
+<script>
+    function saveAction() {
+        var url;
+
+        /*有且只有一个主键*/
+        var cidVal = $('#cid').val();
+
+        if (isEmpty(cidVal)) {
+            url = '${ctx!}/dataCity/addAction';
+        } else {
+            url = '${ctx!}/dataCity/updateAction';
+        }
+
+        $('#modelForm').form('submit', {
+            url: url,
+            onSubmit: function() {
+                return $(this).form('validate');
+            },
+            success: function (data) {
+                parent.layerTools.layerMsg(data, function () {
+                    /* parent.window.location.reload();*/
+                    parent.$("#dg").datagrid("reload");
+                    parent.layer.close(parent.layer.getFrameIndex(window.name));
+                });
+            }
+        });
+    }
+</script>
+</head>
+<body style="padding: 10px 30px; ">
+<form id="modelForm" method="POST">
+    <table class=" pure-table pure-table-horizontal">
+        <input id="cid" name="cid"
+               type="hidden" value="${(dataCity.cid)!}">
+        <tbody>
+            <tr>
+                <td>
+                    省份:
+                </td>
+                <td>
+                    <input name="pid" value="${(dataCity.pid)!}"
+                           class="easyui-combobox"
+                           data-options="valueField:'pid',textField:'pname',url:'${ctx!}/dataProvince/provinceData'">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    市名称:
+                </td>
+                <td>
+                    <input name="cname" value="${(dataCity.cname)!}" class="easyui-textbox"  data-options="required:true">
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</form>
+<div id="toolbars" style="text-align:center; margin-top: 20px;">
+    <a href="#" class="easyui-linkbutton" data-options="iconCls:'e-icon fa fa-save'" onclick="saveAction()">确定</a>
+    <a href="#" class="easyui-linkbutton" data-options="iconCls:'e-icon fa fa-close'"
+       onclick="parent.layer.close(parent.layer.getFrameIndex(window.name));">取消</a>
+</div>
+</@layout>

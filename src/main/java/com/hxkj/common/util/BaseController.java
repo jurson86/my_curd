@@ -1,8 +1,8 @@
 package com.hxkj.common.util;
 
+import com.hxkj.auth.model.AuthUser;
 import com.hxkj.common.constant.Constant;
-import com.hxkj.system.model.SysOplog;
-import com.hxkj.system.model.SysUser;
+import com.hxkj.sys.model.SysOplog;
 import com.jfinal.core.Controller;
 import com.jfinal.plugin.activerecord.Page;
 import com.jfinal.plugin.activerecord.Record;
@@ -80,8 +80,8 @@ public abstract class BaseController extends Controller {
      *
      * @return
      */
-    protected SysUser getSessionUser() {
-        return getSessionAttr(Constant.SYSTEM_USER);
+    protected AuthUser getSessionUser() {
+        return getSessionAttr(Constant.AUTH_USER);
     }
 
     /**
@@ -91,7 +91,7 @@ public abstract class BaseController extends Controller {
      */
     public void addOpLog(String opContent) {
         SysOplog sysOplog = new SysOplog();
-        sysOplog.setId(Identities.uuid2());
+        sysOplog.setId(Identities.id());
         sysOplog.setUserId(getSessionUser().get("id"));
         sysOplog.setOpContent(opContent);
         sysOplog.setIp(getRemoteAddress());

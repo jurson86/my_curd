@@ -1,6 +1,6 @@
 package com.hxkj.websocket.handler;
 
-import com.hxkj.system.model.SysUser;
+import com.hxkj.auth.model.AuthUser;
 import org.apache.log4j.Logger;
 
 import javax.websocket.*;
@@ -36,10 +36,10 @@ public class WebSocketServer {
         // url参数
         String queryString = session.getQueryString();
         String userId = queryString.split("=")[1];
-        SysUser sysUser = SysUser.dao.findById(userId);
-        if (sysUser != null) {
-            LOG.info(sysUser.getName() + " -- 上线了");
-            broadcast(sysUser.getName() + "---上线了");
+        AuthUser authUser = AuthUser.dao.findById(userId);
+        if (authUser != null) {
+            LOG.info(authUser.getName() + " -- 上线了");
+            broadcast(authUser.getName() + "---上线了");
             sIdMUid.put(session.getId(), userId);
             sIdMSession.put(session.getId(), session);
         } else {
@@ -63,10 +63,10 @@ public class WebSocketServer {
         String userId = sIdMUid.get(sessionId); // 保证存在
         sIdMSession.remove(sessionId);
         sIdMUid.remove(sessionId);
-        SysUser sysUser = SysUser.dao.findById(userId);
-        if (sysUser != null) {
-            LOG.info(sysUser.getName() + "  --下线了");
-            broadcast(sysUser.getName() + " ---下线了");
+        AuthUser authUser = AuthUser.dao.findById(userId);
+        if (authUser != null) {
+            LOG.info(authUser.getName() + "  --下线了");
+            broadcast(authUser.getName() + " ---下线了");
         }
 
     }
@@ -106,11 +106,11 @@ public class WebSocketServer {
         String userId = sIdMUid.get(sessionId); // 保证存在
         sIdMSession.remove(sessionId);
         sIdMUid.remove(sessionId);
-        SysUser sysUser = SysUser.dao.findById(userId);
+        AuthUser authUser = AuthUser.dao.findById(userId);
 
-        if (sysUser != null) {
-            LOG.debug(sysUser.getName() + " --发生异常下线了");
-            broadcast(sysUser.getName() + " ---发生异常下线了");
+        if (authUser != null) {
+            LOG.debug(authUser.getName() + " --发生异常下线了");
+            broadcast(authUser.getName() + " ---发生异常下线了");
         }
     }
 

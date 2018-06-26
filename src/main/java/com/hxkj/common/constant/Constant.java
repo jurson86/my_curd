@@ -6,11 +6,11 @@ package com.hxkj.common.constant;
 public class Constant {
 
     // 当前系统登录的 用户
-    public final static String SYSTEM_USER = "system_user";
-    public final static String SYSTEM_USER_NAME = "system_user_name";
+    public final static String AUTH_USER = "auth_user";
+    public final static String AUTH_USER_NAME = "auth_user_name";
 
     // 当前登录用户的角色
-    public final static String SYSTEM_USER_ROLES = "system_user_roles";
+    public final static String AUTH_USER_ROLES = "auth_user_roles";
 
     //views 视图 相对路径
     public final static String VIEW_PATH = "/WEB-INF/views/";

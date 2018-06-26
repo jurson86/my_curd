@@ -1,0 +1,67 @@
+<#include "/WEB-INF/views/common/common.html"/><@layout>
+<link rel="stylesheet" href="${ctx!}/res/pure/tables-min.css">
+<script src="${ctx!}/res/ckeditor/ckeditor.js"></script>
+<link rel="stylesheet" href="${ctx!}/res/ckeditor/config.js">
+<script src="${ctx!}/res/js/util.js"></script>
+<style>
+    #cke_content{
+        border:none !important;
+    }
+</style>
+<script>
+    function saveAction() {
+        var url;
+        var idVal = $("#id").val();
+        if (isEmpty(idVal)) {
+            url = '${ctx!}/cmsArticle/addAction';
+        } else {
+            url = '${ctx!}/cmsArticle/updateAction';
+        }
+        $('#modelForm').form('submit', {
+            url: url,
+            onSubmit: function() {
+                return $(this).form('validate');
+            },
+            success: function (data) {
+                parent.layerTools.layerMsg(data, function () {
+                    parent.$("#dg").datagrid("reload");
+                    parent.layer.close(parent.layer.getFrameIndex(window.name));
+                });
+            }
+        });
+    }
+</script>
+</head>
+<body style="padding: 10px 0; ">
+<form id="modelForm" method="POST"  >
+    <table class=" pure-table pure-table-horizontal  "   >
+        <input id="id" name="id" type="hidden" value="${(cmsArticle.id)!}">
+        <input type="hidden" name="type" value="h">
+        <tbody>
+        <tr>
+            <td>
+                <input label="题目:" name="title" value="${(cmsArticle.title)!}"   class="easyui-textbox"   style="width:300px" data-options="required:true">
+            </td>
+            <td>
+                <input label="标签:" name="tags" value="${(cmsArticle.tags)!}"   class="easyui-textbox" style="width:300px;"  >
+            </td>
+        </tr>
+        <tr >
+            <td  style="padding: 0;" colspan="2" >
+                 <textarea name="content" id="content"    >
+                     ${(cmsArticleHtml.content)!}
+                  </textarea>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</form>
+<div id="toolbars" style="text-align:center; margin-top: 20px;">
+    <a href="#" class="easyui-linkbutton" data-options="iconCls:'e-icon fa fa-save'" onclick="saveAction()">确定</a>
+    <a href="#" class="easyui-linkbutton" data-options="iconCls:'e-icon fa fa-close'"
+       onclick="parent.layer.close(parent.layer.getFrameIndex(window.name));">取消</a>
+</div>
+<script>
+    CKEDITOR.replace( 'content' );
+</script>
+</@layout>

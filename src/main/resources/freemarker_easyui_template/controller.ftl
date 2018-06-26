@@ -1,7 +1,10 @@
 package ${(basePackageName)!}.${(moduleName)!}.controller;
 
 import com.jfinal.aop.Before;
+import com.jfinal.plugin.activerecord.Db;
 import com.jfinal.plugin.activerecord.Page;
+import com.jfinal.kit.StrKit;
+import com.jfinal.plugin.activerecord.tx.Tx;
 
 import com.hxkj.common.constant.Constant;
 import com.hxkj.common.util.BaseController;
@@ -10,7 +13,7 @@ import com.hxkj.common.util.search.SearchSql;
 import ${(basePackageName)!}.${(moduleName)!}.model.${(table.tableNameCamelFirstUp)!};
 
 /**
- * ${(table.tableNameCamelFirstUp)!} 控制器
+ * ${(table.tableName)!} 控制器
  * @author
  * @date ${generateDate!}
  */
@@ -33,7 +36,6 @@ public class ${(table.tableNameCamelFirstUp)!}Controller extends BaseController{
             int pageSize=getAttr("pageSize");
             String where=getAttr(Constant.SEARCH_SQL);
             Page<${(table.tableNameCamelFirstUp)!}> ${(table.tableNameCamel)!}Page=${(table.tableNameCamelFirstUp)!}.dao.page(pageNumber,pageSize,where);
-
             renderDatagrid(${(table.tableNameCamel)!}Page);
         }
 
@@ -42,14 +44,12 @@ public class ${(table.tableNameCamelFirstUp)!}Controller extends BaseController{
          * 打开新增或者修改弹出框
          */
         public void newModel(){
-            <#list table.tablePrimaryKeys as pk>
-            String ${pk}=getPara("${pk}");
-            </#list>
-            if(<#list table.tablePrimaryKeys as pk><#if pk_has_next>${pk}!=null && <#else>${pk}!=null </#if></#list>){
-                ${(table.tableNameCamelFirstUp)!} ${(table.tableNameCamel)!}=${(table.tableNameCamelFirstUp)!}.dao.findById( <#list table.tablePrimaryKeys as pk> <#if pk_has_next>${pk} , <#else>${pk}</#if></#list>);
+            // 有且只有一个主键，且主键类型为 字符串，否则需要手动修改
+            String ${(table.tablePrimaryKeys[0])!}=getPara("${(table.tablePrimaryKeys[0])!}");
+            if(StrKit.notBlank(${(table.tablePrimaryKeys[0])!})){
+                ${(table.tableNameCamelFirstUp)!} ${(table.tableNameCamel)!}=${(table.tableNameCamelFirstUp)!}.dao.findById(${(table.tablePrimaryKeys[0])!});
                 setAttr("${(table.tableNameCamel)!}",${(table.tableNameCamel)!});
             }
-
             render("${(moduleName)!}/${(table.tableNameCamel)!}_form.html");
         }
 
@@ -59,31 +59,29 @@ public class ${(table.tableNameCamelFirstUp)!}Controller extends BaseController{
          */
         public void addAction(){
             ${(table.tableNameCamelFirstUp)!} ${(table.tableNameCamel)!}=getBean(${(table.tableNameCamelFirstUp)!}.class,"");
-            <#list table.tablePrimaryKeys as pk>
-            ${(table.tableNameCamel)!}.set("${pk}",Identities.uuid2());
-            </#list>
+            ${(table.tableNameCamel)!}.set("${(table.tablePrimaryKeys[0])!}",Identities.id());
             boolean saveFlag=${(table.tableNameCamel)!}.save();
             if(saveFlag){
                 renderText(Constant.ADD_SUCCESS);
             }else{
                 renderText(Constant.ADD_FAIL);
             }
-
         }
 
         /**
          * 删除
          */
+        @Before(Tx.class)
         public void deleteAction(){
-            <#list table.tablePrimaryKeys as pk>
-            String ${pk}=getPara("${pk}");
-            </#list>
-            Boolean delflag=${(table.tableNameCamelFirstUp)!}.dao.deleteById( <#list table.tablePrimaryKeys as pk> <#if pk_has_next>${pk} , <#else>${pk}</#if></#list>);
-            if(delflag){
-                renderText(Constant.DELETE_SUCCESS);
+            String ${(table.tablePrimaryKeys[0])!}s = getPara("${(table.tablePrimaryKeys[0])!}s");
+            if(${(table.tablePrimaryKeys[0])!}s.contains(",")){
+                ${(table.tablePrimaryKeys[0])!}s = ${(table.tablePrimaryKeys[0])!}s.replaceAll(",","','");
+                String deleteSql = "delete from ${(table.tableName)!} where ${(table.tablePrimaryKeys[0])!}  in ( '" + ${(table.tablePrimaryKeys[0])!}s + "' ) ";
+                Db.update(deleteSql);
             }else{
-                renderText(Constant.DELETE_FAIL);
+                ${(table.tableNameCamelFirstUp)!}.dao.deleteById(${(table.tablePrimaryKeys[0])!}s);
             }
+            renderText(Constant.DELETE_SUCCESS);
         }
 
         /**

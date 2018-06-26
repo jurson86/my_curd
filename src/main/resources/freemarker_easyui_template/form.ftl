@@ -5,13 +5,11 @@
 <script>
     function saveAction() {
         var url;
-        var pkVAry =[];
-        <#list table.tablePrimaryKeys as pk>
-        var ${(pk)!}Val = $("#${(pk)!}").val();
-        pkVAry.push(${(pk)!}Val);
-        </#list>
 
-        if (isEmpty(pkVAry[0])) {
+        /*有且只有一个主键*/
+        var ${(table.tablePrimaryKeys[0])!}Val = $('#${(table.tablePrimaryKeys[0])!}').val();
+
+        if (isEmpty(${(table.tablePrimaryKeys[0])!}Val)) {
             url = '<#noparse>${ctx!}</#noparse>/${(table.tableNameCamel)!}/addAction';
         } else {
             url = '<#noparse>${ctx!}</#noparse>/${(table.tableNameCamel)!}/updateAction';
@@ -36,9 +34,9 @@
 <body style="padding: 10px 30px; ">
 <form id="modelForm" method="POST">
     <table class=" pure-table pure-table-horizontal">
-        <#list table.tablePrimaryKeys as pk>
-            <input id="${(pk)!}" name="${(pk)!}" type="hidden" value="<#noparse>${(</#noparse>${(table.tableNameCamel)!}.${(pk)!}<#noparse>)!}</#noparse>">
-        </#list>
+        <!--有且只有一个主键-->
+        <input id="${(table.tablePrimaryKeys[0])!}" name="${(table.tablePrimaryKeys[0])!}"
+               type="hidden" value="<#noparse>${(</#noparse>${(table.tableNameCamel)!}.${(table.tablePrimaryKeys[0])!}<#noparse>)!}</#noparse>">
         <tbody>
         <#list table.columnList as col>
                    <#if !(col.primaryKey)>

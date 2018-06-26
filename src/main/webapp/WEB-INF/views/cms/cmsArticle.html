@@ -1,0 +1,108 @@
+<!-- 生成时间： 2018-06-25 19:59:08 -->
+<#include "/WEB-INF/views/common/common.html"/> <@layout>
+<link rel="stylesheet" href="${ctx!}/res/layer/theme/default/layer.css">
+</head>
+<body>
+<script type="text/javascript">
+
+    /*新增 model*/
+    function newModel() {
+        layerTools.layerIframe('fa-plus','新建', '${ctx!}/cmsArticle/newModel?type=${(type)!}', '960px', '600px');
+    }
+
+    /*编辑 model*/
+    function editModel() {
+        var rows = $("#dg").treegrid("getSelections");
+        if (rows.length==1) {
+            var row = rows[0];
+            layerTools.layerIframe('fa-pencil','编辑', '${ctx!}/cmsArticle/newModel?id=' + row.id, '960px', '600px');
+        } else {
+            layerTools.layerMsg('请选择一行数据进行编辑');
+        }
+    }
+
+    /*删除 model*/
+    function deleteModel() {
+        var rows = $("#dg").datagrid("getSelections");
+        if (rows.length!=0) {
+            var idAry =[];
+            rows.forEach(function (row) {
+                idAry.push(row.id);
+            });
+            layerTools.confirm(3, '删除', '您确定要删除选中的'+rows.length+'条记录吗?', function () {
+                $.post('${ctx!}/cmsArticle/deleteAction?ids='+idAry.splice(',') , function (data) {
+                    layerTools.layerMsg(data, function () {
+                        $('#dg').datagrid('reload');
+                    });
+                }, "text").error(function(){ layerTools.AlertErrorMsg(); });
+            });
+        } else {
+            layerTools.layerMsg('请至少选择一行进行删除');
+        }
+    }
+
+    /*条件查询*/
+    function queryModel() {
+        var queryParams = {};
+        queryParams['search_LIKE_a.title'] = $("#title").textbox("getValue");
+        queryParams['search_LIKE_a.tags'] = $("#tags").textbox("getValue");
+        $('#dg').datagrid('load', queryParams);
+    }
+
+    function viewModel(){
+        var rows = $("#dg").datagrid("getSelections");
+        if (rows.length==1) {
+            var url ='${ctx!}/cmsArticle/viewContent?id='+rows[0].id;
+            window.open(url, "_blank");
+        } else {
+            layerTools.layerMsg('请选择一行数据');
+        }
+    }
+</script>
+<table id="dg" class="easyui-datagrid"
+       url="${ctx!}/cmsArticle/query?search_EQ_a.type=${(type)!}"
+       data-options="onDblClickRow:editModel"
+       toolbar="#tb" rownumbers="true" border="false"
+       fit="true"    fitColumns="true"
+       striped="true"
+       pagination="true"
+       ctrlSelect="true"
+       pageSize="40" pageList="[20,40]">
+    <thead>
+    <tr>
+        <th data-options="field:'id',checkbox:true"></th>
+        <th field="title" width="150">标题</th>
+        <th field="tags" width="100">标签</th>
+        <th field="type" width="40" formatter="typeFmt">类型</th>
+        <th field="user_name" width="100">用户</th>
+        <th field="create_time" width="100">创建时间</th>
+        <th field="last_edit_time" width="100">最后更新时间</th>
+    </tr>
+    </thead>
+</table>
+
+<div id="tb">
+    <a onclick="newModel()" href="#" class="easyui-linkbutton" iconCls="e-icon fa fa-plus-square-o" plain="true">新增</a>
+    <a onclick="editModel()" href="#" class="easyui-linkbutton" iconCls="e-icon fa fa-pencil-square-o" plain="true">编辑</a>
+    <a onclick="deleteModel()" href="#" class="easyui-linkbutton  " iconCls="e-icon fa fa-trash-o" plain="true">删除</a>
+    <a onclick="viewModel()" href="#" class="easyui-linkbutton  " iconCls="e-icon fa fa-print" plain="true">查看</a>
+    <span id="enterSpan" class="searchInputArea">
+            <input id="title" prompt="标题" class="easyui-textbox" style="width:120px; ">
+            <input id="tags" prompt="关键字" class="easyui-textbox" style="width:120px; ">
+          <a href="#" class="easyui-linkbutton" data-options="iconCls:'e-icon fa fa-search',plain:true" onclick="queryModel()">搜索</a>
+    </span>
+</div>
+<script src="${ctx!}/res/layer/layer.js"></script>
+<script src="${ctx!}/res/js/layer-tools.js"></script>
+<script>
+    /*类型*/
+    function typeFmt(val) {
+        if(val=='m'){
+            return 'markdown';
+        }
+        if(val=='h'){
+            return 'html';
+        }
+    }
+</script>
+</@layout>

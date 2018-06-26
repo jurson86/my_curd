@@ -1,9 +1,11 @@
 package com.hxkj.common.config;
 
-import com.hxkj.gentest.model.GentestBook;
-import com.hxkj.gentest.model.GentestMulpktable;
-import com.hxkj.ordinaryUser.model.Markdown;
-import com.hxkj.system.model.*;
+import com.hxkj.auth.model.*;
+import com.hxkj.cms.model.CmsArticle;
+import com.hxkj.cms.model.CmsArticleHtml;
+import com.hxkj.cms.model.CmsArticleMd;
+import com.hxkj.data.model.*;
+import com.hxkj.sys.model.*;
 import com.jfinal.plugin.activerecord.ActiveRecordPlugin;
 
 /**
@@ -18,21 +20,25 @@ public class MappingKit {
 
     public static void mapping(ActiveRecordPlugin arp) {
         // sys 模块
-        arp.addMapping("sys_menu", "id", SysMenu.class);
         arp.addMapping("sys_oplog", "id", SysOplog.class);
-        arp.addMapping("sys_org", "id", SysOrg.class);
-        arp.addMapping("sys_role", "id", SysRole.class);
-        arp.addMapping("sys_role_menu", "menu_id,role_id", SysRoleMenu.class);
-        arp.addMapping("sys_user", "id", SysUser.class);
-        arp.addMapping("sys_user_role", "role_id,user_id", SysUserRole.class);
-        arp.addMapping("sys_dict", "id", SysDict.class);
-        arp.addMapping("sys_file", "id", SysFile.class);
-        arp.addMapping("sys_news", "id", SysNews.class);
-        arp.addMapping("markdown", "id", Markdown.class);
 
-        // 代码生成测试表
-        arp.addMapping("gentest_book", "id", GentestBook.class);
-        arp.addMapping("gentest_mulpktable", "id,id2,id3", GentestMulpktable.class);
+        arp.addMapping("data_dict", "id", DataDict.class);
+        arp.addMapping("data_file", "id", DataFile.class);
+        arp.addMapping("data_province", "pid", DataProvince.class);
+        arp.addMapping("data_city", "cid", DataCity.class);
+        arp.addMapping("data_county", "oid", DataCounty.class);
+
+        //arp.addMapping("sys_news", "id", SysNews.class);
+        arp.addMapping("cms_article", "id", CmsArticle.class);
+        arp.addMapping("cms_article_md", "id", CmsArticleMd.class);
+        arp.addMapping("cms_article_html", "id", CmsArticleHtml.class);
+
+        arp.addMapping("auth_menu", "id", AuthMenu.class);
+        arp.addMapping("auth_org", "id", AuthOrg.class);
+        arp.addMapping("auth_role", "id", AuthRole.class);
+        arp.addMapping("auth_role_menu", "menu_id,role_id", AuthRoleMenu.class);
+        arp.addMapping("auth_user", "id", AuthUser.class);
+        arp.addMapping("auth_user_role", "role_id,user_id", AuthUserRole.class);
     }
 }
 

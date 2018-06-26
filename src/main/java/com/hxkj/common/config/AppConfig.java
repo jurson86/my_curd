@@ -2,9 +2,10 @@ package com.hxkj.common.config;
 
 import com.alibaba.druid.filter.stat.StatFilter;
 import com.alibaba.druid.wall.WallFilter;
+import com.hxkj.auth.model.AuthUser;
 import com.hxkj.common.constant.Constant;
-import com.hxkj.common.interceptor.AuthorityInterceptor;
-import com.hxkj.system.model.SysUser;
+import com.hxkj.common.interceptor.LoginInterceptor;
+import com.hxkj.common.interceptor.PermissionInterceptor;
 import com.hxkj.websocket.controller.WebsocketController;
 import com.hxkj.websocket.handler.WebSocketHandler;
 import com.jfinal.config.*;
@@ -30,7 +31,6 @@ public class AppConfig extends JFinalConfig {
 
     /**
      * 配置JFinal常量
-     *
      * @param me 常量集合
      */
     @Override
@@ -38,7 +38,8 @@ public class AppConfig extends JFinalConfig {
         PropKit.use("config.properties");
         me.setDevMode(PropKit.getBoolean("devMode"));
         me.setBaseUploadPath("upload");
-        me.setMaxPostSize(10 * 1024 * 1000);  // 10M
+        // 10M
+        me.setMaxPostSize(10 * 1024 * 1000);
         me.setBaseDownloadPath("download");
         me.setViewType(ViewType.FREE_MARKER);
         me.setError403View(Constant.VIEW_PATH + "common/403.html");
@@ -53,25 +54,22 @@ public class AppConfig extends JFinalConfig {
 
     /**
      * 配置JFinal路由
-     *
      * @param me 路由集合
      */
     @Override
     public void configRoute(Routes me) {
-        // 管理员 权限路由
+        me.add(new AuthRoute());
+        me.add(new DataRoute());
         me.add(new SysRoute());
-        // 普通用户路由
-        me.add(new OrdinaryUserRoute());
-        // 代码生成测试
-        me.add(new GentestRoute());
-
+        me.add(new UserRoute());
+        me.add(new PlayRoute());
+        me.add(new cmsRoute());
         // websocket 入口
         me.add("/ws", WebsocketController.class, Constant.VIEW_PATH);
     }
 
     /**
      * 配置 插件
-     *
      * @param me 插件集合
      */
     @Override
@@ -95,32 +93,30 @@ public class AppConfig extends JFinalConfig {
 
     /**
      * 配置 jfinal interceptor
-     *
      * @param me interceptor集合
      */
     @Override
     public void configInterceptor(Interceptors me) {
+        // 登录拦截器
+        me.addGlobalActionInterceptor(new LoginInterceptor());
         // 权限拦截器
-        me.addGlobalActionInterceptor(new AuthorityInterceptor());
+        me.addGlobalActionInterceptor(new PermissionInterceptor());
     }
 
     /**
      * 配置 jfinal handler
-     *
      * @param me handler集合
      */
     @Override
     public void configHandler(Handlers me) {
         // 处理 websocket 请求
         me.add(new WebSocketHandler("^/websocket"));
-
         // 视图中添加应用contenxt
         me.add(new ContextPathHandler("ctx"));
-
         // druid 监控（只允许admin查看）
         DruidStatViewHandler dvh = new DruidStatViewHandler("/druid", new IDruidStatViewAuth() {
             public boolean isPermitted(HttpServletRequest request) {
-                SysUser user = (SysUser) request.getSession().getAttribute(Constant.SYSTEM_USER);
+                AuthUser user = (AuthUser) request.getSession().getAttribute(Constant.AUTH_USER);
                 if (user == null) {
                     return false;
                 }

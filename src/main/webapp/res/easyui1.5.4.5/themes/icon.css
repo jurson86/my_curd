@@ -89,21 +89,29 @@
 }
 
 .icon-orgm{
-	background:url('icons/cus-icons/orgm.png') no-repeat center center;
+	background:url('icons/cus-icons/orgm.png') no-repeat ;
+	-webkit-background-size: 16px 16px;
+	background-size: 16px 16px;
 }
 
 .icon-menu{
-	background:url('icons/cus-icons/menu.png') no-repeat center center;
+	background:url('icons/cus-icons/menu.png') no-repeat;
+	-webkit-background-size: 16px 16px;
+	background-size: 16px 16px;
 }
 
 
 .icon-role{
-	background:url('icons/cus-icons/role.png') no-repeat center center;
+	background:url('icons/cus-icons/role.png') no-repeat;
+	-webkit-background-size: 16px 16px;
+	background-size: 16px 16px;
 }
 
 
 .icon-user{
-	background:url('icons/cus-icons/user.png') no-repeat center center;
+	background:url('icons/cus-icons/user.png') no-repeat ;
+	-webkit-background-size: 16px 16px;
+	background-size: 16px 16px;
 }
 
 

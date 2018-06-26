@@ -112,7 +112,12 @@
             <version>2017.5</version>
         </dependency>
 
-
+        <!--markdown 解析-->
+        <dependency>
+            <groupId>com.vladsch.flexmark</groupId>
+            <artifactId>flexmark-all</artifactId>
+            <version>0.34.0</version>
+        </dependency>
 
 
 

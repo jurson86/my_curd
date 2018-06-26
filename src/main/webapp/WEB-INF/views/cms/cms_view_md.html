@@ -1,0 +1,50 @@
+<@compress single_line=true>
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>${(cmsArticle.title)!}</title>
+    <link rel="stylesheet" href="${ctx!}/res/pure/pure-min.css">
+    <!--[if lte IE 8]>
+    <link rel="stylesheet" href="${ctx!}/res/pure/grids-responsive-old-ie-min.css">
+    <![endif]-->
+    <!--[if gt IE 8]><!-->
+    <link rel="stylesheet" href="${ctx!}/res/pure/grids-responsive-min.css">
+    <!--<![endif]-->
+    <!--[if lt IE 9]>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.js"></script>
+    <![endif]-->
+    <link rel="stylesheet" href="${ctx!}/res/md/simplemde/github.min.css">
+    <style>
+        .markdown-body {
+            box-sizing: border-box;
+            min-width: 200px;
+            max-width: 980px;
+            margin: 0 auto;
+            padding: 45px;
+        }
+
+        @media (max-width: 767px) {
+            .markdown-body {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body >
+<article id="mdbody" class="markdown-body">
+    ${(cmsArticleHtml.content)!}
+</article>
+<script src="${ctx!}/res/md/simplemde/highlight.min.js"></script>
+<script type="text/javascript" src="${ctx!}/res/easyui1.5.4.5/jquery.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('pre code').each(function(i, block) {
+            hljs.highlightBlock(block);
+        });
+    });
+</script>
+</body>
+</html>
+</@compress>
