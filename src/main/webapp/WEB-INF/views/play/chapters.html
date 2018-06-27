@@ -9,7 +9,7 @@
 <script>
     function chapterDetail(link,title){
          link = encodeURIComponent(link);
-         parent.layerTools.layerIframe('fa-newspaper-o', title, '${ctx!}/novel/chapterDetail?url=' + link, '400px', '75%');
+         parent.popup.openIframe( title, '${ctx!}/novel/chapterDetail?url=' + link, '400px', '75%');
     }
 </script>
 </head>

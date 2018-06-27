@@ -43,7 +43,7 @@ public class AuthUser extends BaseAuthUser<AuthUser> implements java.io.Serializ
     public AuthUser findByUsernameAndPassword(String username, String password) {
         String sql = "SELECT"
                 + " su.*,"
-                + " so.org_name AS orgName, "
+                + " so.name AS orgName, "
                 + " so.id as orgId "
                 + " FROM auth_user su"
                 + " LEFT JOIN auth_org so ON su.org_id = so.id"

@@ -38,10 +38,13 @@
                     }
                 } catch (e) {
                     console.log(data);
-                    parent.popup.msg(data, function () {
-                        parent.$("#dg").datagrid("reload");
-                        parent.layer.close(parent.layer.getFrameIndex(window.name));
-                    });
+                    parent.popup.errMsg('上文文件错误','这个文件太大了哥们，系统允许最大上传10M');
+                    /*
+                    setTimeout(function () {
+                             parent.$("#dg").datagrid("reload");
+                             parent.layer.close(parent.layer.getFrameIndex(window.name));
+                    },1500);
+                    */
                 }
             },
             error:function(e){

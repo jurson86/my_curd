@@ -16,7 +16,6 @@ var layerSkin = {
 var popup = {
     /* 打开 iframe 弹窗*/
     openIframe: function (title, url, width, height, skin) {
-        console.log(width || '80%');
         layer.open({
             skin: skin || layerSkin.lan,
             type: 2,
