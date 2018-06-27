@@ -659,7 +659,8 @@ html #layuicss-layer {
 }
 
 .layui-layer-lan .layui-layer-title {
-    background: #4476A7;
+    /*background: #4476A7;*/
+    background:#398dee;
     color: #fff;
     border: none
 }

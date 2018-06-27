@@ -4,33 +4,33 @@
 <body>
 <script type="text/javascript">
     function newModel() {
-        layerTools.layerIframe('fa-plus', '新建', '${ctx!}/dataDict/newModel', '500px', '300px')
+        popup.openIframe('新建', '${ctx!}/dataDict/newModel', '500px', '300px')
     }
     function editModel() {
         var rows= $("#dg").treegrid("getSelections");
         if (rows.length==1) {
-            layerTools.layerIframe('fa-pencil', '编辑', '${ctx!}/dataDict/newModel?id=' + rows[0].id, '500px', '300px');
+            popup.openIframe('编辑', '${ctx!}/dataDict/newModel?id=' + rows[0].id, '500px', '300px');
         } else {
-            layerTools.layerMsg('请选择一行数据进行编辑');
+            popup.msg('请选择一行数据进行编辑');
         }
     }
     function deleteModel() {
         var rows = $("#dg").datagrid("getSelections");
         if (rows.length!=0) {
-            layerTools.confirm(3, '删除', '您确定要删除选中的'+rows.length+'条记录吗?', function () {
+            popup.openConfirm(3, '删除', '您确定要删除选中的'+rows.length+'条记录吗?', function () {
                 var ids = [];
                 rows.forEach(function(row){
                    ids.push(row.id);
                 });
                 $.post('${ctx!}/dataDict/deleteAction?ids=' + ids.join(','), function (data) {
-                    layerTools.layerMsg(data, function () {
+                    popup.msg(data, function () {
                         $('#dg').datagrid('reload');
                     });
-                }, "text").error(function(){ layerTools.AlertErrorMsg(); });
+                }, "text").error(function(){ popup.errMsg(); });
             });
 
         } else {
-            layerTools.layerMsg('请至少选择一行进行删除');
+            popup.msg('请至少选择一行进行删除');
         }
     }
     function queryModel() {
@@ -59,14 +59,14 @@
     </thead>
 </table>
 <div id="tb">
-    <a onclick="newModel()" href="#" class="easyui-linkbutton" iconCls="e-icon fa fa-plus-square-o" plain="true">新增</a>
-    <a onclick="editModel()" href="#" class="easyui-linkbutton" iconCls="e-icon fa fa-pencil-square-o" plain="true">编辑</a>
-    <a onclick="deleteModel()" href="#" class="easyui-linkbutton  " iconCls="e-icon fa fa-trash-o" plain="true">删除</a>
+    <a onclick="newModel()" href="#" class="easyui-linkbutton" iconCls="e-icon iconfont icon-font-add" plain="true">新增</a>
+    <a onclick="editModel()" href="#" class="easyui-linkbutton" iconCls="e-icon iconfont icon-font-edit" plain="true">编辑</a>
+    <a onclick="deleteModel()" href="#" class="easyui-linkbutton  " iconCls="e-icon iconfont icon-font-delete" plain="true">删除</a>
     <span id="enterSpan" class="searchInputArea">
           <input id="type" prompt="类型(dict_type)" class="easyui-textbox" style="width:120px; ">
-          <a href="#" class="easyui-linkbutton" data-options="iconCls:'e-icon fa fa-search',plain:true" onclick="queryModel()">搜索</a>
+          <a href="#" class="easyui-linkbutton" data-options="iconCls:'e-icon iconfont icon-font-search',plain:true" onclick="queryModel()">搜索</a>
     </span>
 </div>
 <script src="${ctx!}/res/layer/layer.js"></script>
-<script src="${ctx!}/res/js/layer-tools.js"></script>
+<script src="${ctx!}/res/js/popup-tools.js"></script>
 </@layout>

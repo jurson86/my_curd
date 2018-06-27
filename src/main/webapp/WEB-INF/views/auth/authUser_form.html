@@ -31,7 +31,7 @@
                 return $(this).form('validate');
             },
             success: function (data) {
-                parent.layerTools.layerMsg(data, function () {
+                parent.popup.msg(data, function () {
                     /*parent.window.location.reload();*/
                     parent.$("#dg").datagrid("reload");
                     parent.layer.close(parent.layer.getFrameIndex(window.name));
@@ -103,8 +103,8 @@
     </table>
 </form>
 <div id="toolbars" style="text-align:center; margin-top: 20px;">
-    <a href="#" class="easyui-linkbutton" data-options="iconCls:'e-icon fa fa-save'" onclick="saveAction()">确定</a>
-    <a href="#" class="easyui-linkbutton" data-options="iconCls:'e-icon fa fa-close'"
+    <a href="#" class="easyui-linkbutton" data-options="iconCls:'e-icon iconfont icon-font-save'" onclick="saveAction()">确定</a>
+    <a href="#" class="easyui-linkbutton" data-options="iconCls:'e-icon iconfont icon-font-cancel'"
        onclick="parent.layer.close(parent.layer.getFrameIndex(window.name));">取消</a>
 </div>
 <script src="${ctx!}/res/js/easyui-tree-tools.js"></script>

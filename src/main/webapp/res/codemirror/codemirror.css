@@ -1,11 +1,9 @@
 /* BASICS */
 
 .CodeMirror {
-  /* Set height, width, borders, and global font properties here */
-  font-family: Consolas 微软雅黑;
-  height:405px;
-  color: black;
-  direction: ltr;
+  height: auto;
+  font-size: 14px;
+  font-family: Consolas;
 }
 
 /* PADDING */

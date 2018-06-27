@@ -7,7 +7,7 @@
 
     /*新增 model*/
     function newModel() {
-        layerTools.layerIframe('fa-plus','新建', '<#noparse>${ctx!}</#noparse>/${(table.tableNameCamel)!}/newModel', '800px', '500px');
+        popup.openIframe('新建', '<#noparse>${ctx!}</#noparse>/${(table.tableNameCamel)!}/newModel', '800px', '500px');
     }
 
     /*编辑 model*/
@@ -16,9 +16,9 @@
         if (rows.length==1) {
             var row = rows[0];
             /*有且只有一个主键*/
-            layerTools.layerIframe('fa-pencil','编辑', '<#noparse>${ctx!}</#noparse>/${(table.tableNameCamel)!}/newModel?${(table.tablePrimaryKeys[0])!}=' + row.${(table.tablePrimaryKeys[0])!}, '800px', '500px');
+            popup.openIframe('编辑', '<#noparse>${ctx!}</#noparse>/${(table.tableNameCamel)!}/newModel?${(table.tablePrimaryKeys[0])!}=' + row.${(table.tablePrimaryKeys[0])!}, '800px', '500px');
         } else {
-            layerTools.layerMsg('请选择一行数据进行编辑');
+            popup.msg('请选择一行数据进行编辑');
         }
     }
 
@@ -31,16 +31,16 @@
             rows.forEach(function (row) {
                 ${(table.tablePrimaryKeys[0])!}Ary.push(row.${(table.tablePrimaryKeys[0])!});
             });
-            layerTools.confirm(3, '删除', '您确定要删除选中的'+rows.length+'条记录吗?', function () {
+            popup.openConfirm(3, '删除', '您确定要删除选中的'+rows.length+'条记录吗?', function () {
                 $.post('<#noparse>${ctx!}</#noparse>/${(table.tableNameCamel)!}/deleteAction?${(table.tablePrimaryKeys[0])!}s='+${(table.tablePrimaryKeys[0])!}Ary.splice(',') , function (data) {
-                    layerTools.layerMsg(data, function () {
+                    popup.msg(data, function () {
                         $('#dg').datagrid('reload');
                     });
-                }, "text").error(function(){ layerTools.AlertErrorMsg(); });
+                }, "text").error(function(){ popup.errMsg(); });
             });
 
         } else {
-            layerTools.layerMsg('请至少选择一行进行删除');
+            popup.msg('请至少选择一行进行删除');
         }
     }
 
@@ -74,16 +74,16 @@
 </table>
 
 <div id="tb">
-    <a onclick="newModel()" href="#" class="easyui-linkbutton" iconCls="e-icon fa fa-plus-square-o" plain="true">新增</a>
-    <a onclick="editModel()" href="#" class="easyui-linkbutton" iconCls="e-icon fa fa-pencil-square-o" plain="true">编辑</a>
-    <a onclick="deleteModel()" href="#" class="easyui-linkbutton  " iconCls="e-icon fa fa-trash-o" plain="true">删除</a>
+    <a onclick="newModel()" href="#" class="easyui-linkbutton" iconCls="e-icon iconfont icon-font-add" plain="true">新增</a>
+    <a onclick="editModel()" href="#" class="easyui-linkbutton" iconCls="e-icon iconfont icon-font-edit" plain="true">编辑</a>
+    <a onclick="deleteModel()" href="#" class="easyui-linkbutton  " iconCls="e-icon iconfont icon-font-delete" plain="true">删除</a>
     <span id="enterSpan" class="searchInputArea">
           <input id="test" prompt="test" class="easyui-textbox" style="width:120px; ">
-          <a href="#" class="easyui-linkbutton" data-options="iconCls:'e-icon fa fa-search',plain:true" onclick="queryModel()">搜索</a>
+          <a href="#" class="easyui-linkbutton" data-options="iconCls:'e-icon iconfont icon-font-search',plain:true" onclick="queryModel()">搜索</a>
     </span>
 </div>
 <script src="<#noparse>${ctx!}</#noparse>/res/layer/layer.js"></script>
-<script src="<#noparse>${ctx!}</#noparse>/res/js/layer-tools.js"></script>
+<script src="<#noparse>${ctx!}</#noparse>/res/js/popup-tools.js"></script>
 <#noparse>
 </@layout>
 </#noparse>

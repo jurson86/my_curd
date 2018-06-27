@@ -16,20 +16,20 @@
     function deleteModel() {
         var rows = $("#dg").datagrid("getSelections");
         if (rows.length!=0) {
-            layerTools.confirm(3, '删除', '您确定要删除选中的'+rows.length+'条的记录吗?', function () {
+            popup.openConfirm(3, '删除', '您确定要删除选中的'+rows.length+'条的记录吗?', function () {
                 var ids = [];
                 for (x in rows) {
                     ids.push(rows[x].id);
                 }
                 ids = ids.join(',');
                 $.post('${ctx}/sysOplog/deleteAction?ids=' + ids, function (data) {
-                    layerTools.layerMsg(data, function () {
+                    popup.msg(data, function () {
                         $('#dg').datagrid('reload');
                     });
-                }, "text").error(function(){layerTools.AlertErrorMsg(); });
+                }, "text").error(function(){popup.errMsg(); });
             });
         } else {
-            layerTools.layerMsg('请至少选择一条记录进行删除');
+            popup.msg('请至少选择一条记录进行删除');
         }
     }
     function queryModel() {
@@ -59,19 +59,19 @@
 </table>
 
 <div id="tb">
-    <a onclick="deleteModel()" class="easyui-linkbutton" data-options="iconCls:'e-icon fa fa-trash-o',plain:true">删除</a>
-    <a onclick="exportToExcel()" class="easyui-linkbutton" data-options="iconCls:'e-icon fa fa-file-excel-o',plain:true">导出xls</a>
-    <a onclick="exportToCsv()" class="easyui-linkbutton" data-options="iconCls:'e-icon fa fa-file-text-o',plain:true">导出csv</a>
+    <a onclick="deleteModel()" class="easyui-linkbutton" data-options="iconCls:'e-icon iconfont icon-font-delete',plain:true">删除</a>
+    <a onclick="exportToExcel()" class="easyui-linkbutton" data-options="iconCls:'e-icon iconfont icon-font-XLS',plain:true">导出xls</a>
+    <a onclick="exportToCsv()" class="easyui-linkbutton" data-options="iconCls:'e-icon iconfont icon-font-CSV',plain:true">导出csv</a>
     <span id="enterSpan" class="searchInputArea">
           <form id="exportForm" name="exportForm" method="post" target="_blank">
                <!--使用form 提交表单，用于导出excel文件，post提交避免参数乱码 -->
                <input id="username" prompt="操作人" name="search_LIKE_su.name" class="easyui-textbox" style="width:120px; ">
                <input id="opContent" prompt="内容" name="search_LIKE_so.op_content" class="easyui-textbox" style="width:120px">
                <input id="ip" prompt="ip地址" name="search_LIKE_so.ip" class="easyui-textbox" style="width:120px">
-               <a href="#" class="easyui-linkbutton" data-options="iconCls:'e-icon fa fa-search',plain:true" onclick="queryModel()">搜索</a>
+               <a href="#" class="easyui-linkbutton" data-options="iconCls:'e-icon iconfont icon-font-search',plain:true" onclick="queryModel()">搜索</a>
           </form>
     </span>
 </div>
 <script src="${ctx!}/res/layer/layer.js"></script>
-<script src="${ctx!}/res/js/layer-tools.js"></script>
+<script src="${ctx!}/res/js/popup-tools.js"></script>
 </@layout>

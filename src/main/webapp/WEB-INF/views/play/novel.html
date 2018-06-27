@@ -32,12 +32,12 @@
         if (row != null) {
             $("#nid").val(row._id);
             $("#ntitle").val(row.title);
-            layerTools.layerMsg("即将打开新tab下载小说，可能需要一点时间",function () {
+            popup.msg("即将打开新tab下载小说，可能需要一点时间",function () {
                 document.downloadForm.submit();
             });
 
         } else {
-            layerTools.layerMsg('请先选择一行数据');
+            popup.msg('请先选择一行数据');
         }
     }
 
@@ -45,9 +45,9 @@
     function chapters(){
         var row = $("#dg").treegrid("getSelected");
         if (row != null) {
-            layerTools.layerIframe('fa-reorder', row.title+" - "+row.author, '${ctx!}/novel/chapters/' + row._id, '400px', '70%');
+            popup.openIframe( row.title+" - "+row.author, '${ctx!}/novel/chapters/' + row._id, '400px', '70%');
         } else {
-            layerTools.layerMsg('请先选择一行数据');
+            popup.msg('请先选择一行数据');
         }
     }
 
@@ -92,18 +92,18 @@
     </thead>
 </table>
 <div id="tb">
-    <a onclick="downloadModel()" href="#" class="easyui-linkbutton" iconCls="e-icon fa  fa-download" plain="true">下载</a>
-    <a onclick="chapters()" href="#" class="easyui-linkbutton" iconCls="e-icon fa  fa-reorder" plain="true">章节</a>
+    <a onclick="downloadModel()" href="#" class="easyui-linkbutton" iconCls="e-icon iconfont icon-font-download" plain="true">下载</a>
+    <a onclick="chapters()" href="#" class="easyui-linkbutton" iconCls="e-icon iconfont icon-font-chapters" plain="true">章节</a>
     <span id="enterSpan"   class="searchInputArea" >
          <input id="category" prompt="类型" class="easyui-combobox" style="width:120px; "
                 data-options="url:'${ctx!}/sysDict/queryDictData?type=category&fields=dict_key as text, dict_value as value'">
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           <input id="fuzzyQuery" prompt="模糊查询" class="easyui-textbox" style="width:120px; ">
-          <a href="#" class="easyui-linkbutton" iconCls="e-icon fa fa-search" plain="true" onclick="queryModel()">搜索</a>
+          <a href="#" class="easyui-linkbutton" iconCls="e-icon iconfont icon-font-search" plain="true" onclick="queryModel()">搜索</a>
     </span>
 </div>
 <script src="${ctx!}/res/layer/layer.js"></script>
-<script src="${ctx!}/res/js/layer-tools.js"></script>
+<script src="${ctx!}/res/js/popup-tools.js"></script>
 <script>
     $('#dg').datagrid({
         url:'${ctx!}/novel/query',

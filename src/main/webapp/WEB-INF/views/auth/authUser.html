@@ -4,31 +4,31 @@
 <body>
 <script type="text/javascript">
     function newModel() {
-        layerTools.layerIframe('fa-plus', '新建', '${ctx!}/authUser/newModel', '800px', '450px')
+        popup.openIframe('新建', '${ctx!}/authUser/newModel', '800px', '450px')
     }
 
     function editModel() {
         var row = $("#dg").treegrid("getSelected");
         if (row != null) {
-            layerTools.layerIframe('fa-pencil', '编辑', '${ctx!}/authUser/newModel?id=' + row.id, '800px', '450px')
+            popup.openIframe('编辑', '${ctx!}/authUser/newModel?id=' + row.id, '800px', '450px')
         } else {
-            layerTools.layerMsg('请选择一行数据进行编辑');
+            popup.msg('请选择一行数据进行编辑');
         }
     }
 
     function deleteModel() {
         var row = $("#dg").datagrid("getSelected");
         if (row != null) {
-            layerTools.confirm(3, '删除', '您确定要删除选中的记录吗?', function () {
+            popup.openConfirm(3, '删除', '您确定要删除选中的记录吗?', function () {
                 $.post('${ctx}/authUser/deleteAction?id=' + row.id, function (data) {
-                    layerTools.layerMsg(data, function () {
+                    popup.msg(data, function () {
                         $('#dg').datagrid('reload');
                     });
-                }, "text").error(function(){ layerTools.AlertErrorMsg(); });
+                }, "text").error(function(){ popup.errMsg(); });
             });
 
         } else {
-            layerTools.layerMsg('请选择一行进行删除');
+            popup.msg('请选择一行进行删除');
         }
     }
 
@@ -48,13 +48,13 @@
         var checkedNodes = $("#allRoleTree").tree("getChecked");
 
         if (checkedNodes.length == 0) {
-            layerTools.layerMsg('请选择要分配的角色!');
+            popup.msg('请选择要分配的角色!');
             return;
         }
 
         var userRow = $("#dg").datagrid("getSelected");
         if (userRow == null) {
-            layerTools.layerMsg('请选择要分配角色的员工!');
+            popup.msg('请选择要分配角色的员工!');
             return;
         }
 
@@ -68,8 +68,8 @@
             userId: userRow.id,
             roleIds: roleIds.join(";")
         }, function (result) {
-            layerTools.layerMsg(result);
-        }, 'text');
+            popup.msg(result);
+        }, 'text').error(function(){ popup.errMsg(); });
 
     }
 
@@ -102,9 +102,9 @@
         </table>
 
         <div id="tb">
-            <a onclick="newModel()" href="#" class="easyui-linkbutton" iconCls="e-icon fa fa-plus-square-o" plain="true">新增</a>
-            <a onclick="editModel()" href="#" class="easyui-linkbutton" iconCls="e-icon fa fa-pencil-square-o" plain="true">编辑</a>
-            <a onclick="deleteModel()" href="#" class="easyui-linkbutton  " iconCls="e-icon fa fa-trash-o" plain="true">删除</a>
+            <a onclick="newModel()" href="#" class="easyui-linkbutton" iconCls="e-icon iconfont icon-font-add" plain="true">新增</a>
+            <a onclick="editModel()" href="#" class="easyui-linkbutton" iconCls="e-icon iconfont icon-font-edit" plain="true">编辑</a>
+            <a onclick="deleteModel()" href="#" class="easyui-linkbutton  " iconCls="e-icon iconfont icon-font-delete" plain="true">删除</a>
             <span id="enterSpan" class="searchInputArea">
 					<input id="username" prompt="登录名" class="easyui-textbox" style="width:120px">
                     <input id="name" prompt="姓名" class="easyui-textbox" style="width:120px">
@@ -117,17 +117,17 @@
                              <option value="0">正常</option>
                              <option value="1">无效</option>
                     </select>
-					<a href="#" class="easyui-linkbutton" data-options="iconCls:'e-icon fa fa-search',plain:true" onclick="queryModel()">搜索</a>
+					<a href="#" class="easyui-linkbutton" data-options="iconCls:'e-icon iconfont icon-font-search',plain:true" onclick="queryModel()">搜索</a>
             </span>
         </div>
         <div id="treeTB">
-            <span   iconCls="e-icon fa fa-save" onclick="giveRoles()" title="赋予角色" style="margin-right: 20px; border-radius: 1px" ></span>
+            <span   iconCls="e-icon iconfont icon-font-save" onclick="giveRoles()" title="赋予角色" style="margin-right: 20px; border-radius: 1px" ></span>
         </div>
     </div>
 </div>
 <script src="${ctx!}/res/js/easyui-tree-tools.js"></script>
 <script src="${ctx!}/res/layer/layer.js"></script>
-<script src="${ctx!}/res/js/layer-tools.js"></script>
+<script src="${ctx!}/res/js/popup-tools.js"></script>
 <script>
     function formatDisabled(val, row) {
         if (val == 0) {

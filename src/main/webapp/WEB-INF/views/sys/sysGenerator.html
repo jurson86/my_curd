@@ -1,32 +1,17 @@
 <#include "/WEB-INF/views/common/common.html"/> <@layout>
-<script src="${ctx!}/res/easyui1.5.4.5/extension/datagrid-detailview.js"></script>
 <link rel="stylesheet" href="${ctx!}/res/layer/theme/default/layer.css">
 <link rel="stylesheet" href="${ctx!}/res/codemirror/codemirror.css">
 <link rel="stylesheet" href="${ctx!}/res/codemirror/material.css">
+<link rel="stylesheet" href="${ctx!}/res/pure/buttons-min.css">
 <script src="${ctx!}/res/codemirror/codemirror.js"></script>
 <script src="${ctx!}/res/codemirror/javascript.js"></script>
-<script src="${ctx!}/res/codemirror/jquery.nicescroll.min.js"></script>
-<link rel="stylesheet" href="${ctx!}/res/pure/buttons-min.css">
+<script src="${ctx!}/res/easyui1.5.4.5/extension/datagrid-detailview.js"></script>
 <style>
-    #editAfterGen {
+    #generateBtn {
         position: absolute;
         z-index: 9999;
         right: 10px;
         top: 10px;
-    }
-    .pure-button {
-        padding: 5px 8px;
-        margin: 5px 2px;
-    }
-    .button-success {
-        color: white;
-        border-radius: 4px;
-        text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
-        background: rgb(28, 184, 65); /* this is a green */
-    }
-    .CodeMirror {
-        border: 1px solid #263238;
-        height: auto;
     }
     .CodeMirror-scroll {
         height: auto;
@@ -34,23 +19,6 @@
         overflow-x: auto;
     }
 </style>
-<script>
-    Date.prototype.Format = function (fmt) {
-        var o = {
-            "M+": this.getMonth() + 1,
-            "d+": this.getDate(),
-            "h+": this.getHours(),
-            "m+": this.getMinutes(),
-            "s+": this.getSeconds(),
-            "q+": Math.floor((this.getMonth() + 3) / 3),
-            "S": this.getMilliseconds()
-        };
-        if (/(y+)/.test(fmt)) fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
-        for (var k in o)
-            if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
-        return fmt;
-    };
-</script>
 </head>
 <body>
 <script type="text/javascript">
@@ -60,7 +28,7 @@
         try {
             jsonObj = JSON.parse(myCodeMirror.getValue())
         } catch (e) {
-            layerTools.layerMsg("json格式错误: " + e);
+            popup.msg("json格式错误: " + e);
             return;
         }
         $.ajax({
@@ -73,17 +41,17 @@
             success: function (data) {
                 if (data.state == 'ok') {
                     layer.alert("代码生成成功（文件路径可通过浏览器控制台查看）! ", {icon: 6});
-                    console.log("-----generateTime:" + new Date().Format("yyyy-MM-dd hh:mm:ss") + "-----moduleName:"+jsonObj.moduleName+"-----");
+                    console.log("-----generateTime:" + dateTool.dateformat(new Date(),"yyyy-MM-dd hh:mm:ss")+ "-----moduleName:"+jsonObj.moduleName+"-----");
                     for(var i=0;i<data.outputPaths.length;i++){
                         console.log(i+ " ========== "+data.outputPaths[i])
                     }
-                    $("#editAfterGen").attr("disabled", "disabled");
+                    $("#generateBtn").attr("disabled", "disabled");
                 } else {
-                    layerTools.layerMsg(data.msg);
+                    popup.msg(data.msg);
                 }
             },
             error: function (e) {
-                layerTools.AlertErrorMsg();
+                popup.errMsg();
             }
         });
     }
@@ -96,8 +64,8 @@
             obj.tables = rows;
             var formatJSONStr = JSON.stringify(obj, null, "\t");
             var content = '<div id="cm"  ></div>'
-                + ' <button id="editAfterGen"  onclick="genCode()"  class="pure-button button-success" >代码生成</button>';
-            layerTools.layerDialog(['500px', '600px'], '<i class="fa fa-code"></i>&nbsp;&nbsp;&nbsp;&nbsp;' + '代码生成（可修改json控制生成的代码)', content);
+                + ' <button id="generateBtn"  onclick="genCode()"  class="pure-button pure-button-primary" >代码生成</button>';
+            popup.openDOM('代码生成（可修改json控制生成的代码)', content,'450px', '600px',layerSkin.molv);
             myCodeMirror = CodeMirror(document.getElementById('cm'), {
                 value: formatJSONStr,
                 lineNumbers: true,
@@ -107,24 +75,8 @@
                 theme: "material"
             });
 
-            $('.layui-layer-content').niceScroll({
-                cursorcolor: "#dcdee0", /*滚动条的颜色*/
-                cursoropacitymax: 0, /*滚动条的透明度，从0-1（隐藏）*/
-                touchbehavior: false, /*使光标拖动滚动像在台式电脑触摸设备*/
-                cursorwidth: "8px", /*滚动条的宽度*/
-                cursorborder: "0", /* 游标边框css定义*/
-                cursorborderradius: "5px", /*以像素为光标边界半径  圆角*/
-                autohidemode: true, /*是否隐藏滚动条  true的时候默认不显示滚动条，当鼠标经过的时候显示滚动条*/
-                zindex: "auto", /*给滚动条设置z-index值*/
-                railpadding: {
-                    top: 0,
-                    right: -4,
-                    left: 0,
-                    bottom: 0
-                }, /*滚动条的位置*/
-            });
         } else {
-            layerTools.layerMsg('请至少选择一行数据');
+            popup.msg('请至少选择一行数据');
         }
     }
 
@@ -142,8 +94,6 @@
             }
         });
     }
-
-
 </script>
 <div id="nestLayout" class="easyui-layout" fit="true">
     <div data-options="region:'center' "  split="true" style="border-top: none">
@@ -162,20 +112,21 @@
             </thead>
         </table>
         <div id="tb">
-            <a onclick="jsonView()" href="#" class="easyui-linkbutton" iconCls="e-icon fa fa-code" plain="true">代码生成</a>
+            <a onclick="jsonView()" href="#" class="easyui-linkbutton" iconCls="e-icon iconfont icon-font-code" plain="true">代码生成</a>
             <span id="enterSpan" class="searchInputArea">
 					<input id="tableName" prompt="表名" class="easyui-textbox" style="width:150px">
-					<a href="#" class="easyui-linkbutton" data-options="iconCls:'e-icon fa fa-search',plain:true" onclick="queryModel()">过滤</a>
+					<a href="#" class="easyui-linkbutton" data-options="iconCls:'e-icon iconfont icon-font-search',plain:true" onclick="queryModel()">过滤</a>
             </span>
         </div>
     </div>
 </div>
+<script src="${ctx!}/res/js/util.js"></script>
 <script src="${ctx!}/res/layer/layer.js"></script>
-<script src="${ctx!}/res/js/layer-tools.js"></script>
+<script src="${ctx!}/res/js/popup-tools.js"></script>
 <script type="text/javascript">
     $(function(){
         $('#dg').datagrid({
-            url: "${ctx!}/sysGenerator/query?fullFlag=true",  /*url 放在dom上又调用该方法可能造成请求两次*/
+            url: "${ctx!}/sysGenerator/query?fullFlag=true",
             view: detailview,
             detailFormatter:function(index,row){
                 return '<div style="padding:0px;position:relative;"><table style="border-top: none;border-right: none;  " class="ddv"></table></div>';

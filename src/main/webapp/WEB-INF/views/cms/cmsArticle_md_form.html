@@ -20,7 +20,7 @@
     <link rel="stylesheet" href="${ctx!}/res/layer/theme/default/layer.css">
     <link rel="stylesheet" href="${ctx!}/res/md/simplemde/simplemde.min.css">
     <link rel="stylesheet" href="${ctx!}/res/md/simplemde/github.min.css">
-    <script src="${ctx!}/res/js/base-loading.js" ></script>
+    <script src="${ctx!}/res/js/loading_mask.js" ></script>
     <style>
         .CodeMirror {
             height: 300px;
@@ -41,7 +41,7 @@
 <script src="${ctx!}/res/md/simplemde/simplemde.min.js"></script>
 <script src="${ctx!}/res/md/simplemde/highlight.min.js"></script>
 <script src="${ctx!}/res/layer/layer.js"></script>
-<script src="${ctx!}/res/js/layer-tools.js"></script>
+<script src="${ctx!}/res/js/popup-tools.js"></script>
 <script src="${ctx!}/res/js/util.js"></script>
 <script src="${ctx!}/res/js/base64.min.js"></script>
 <script>
@@ -61,17 +61,17 @@
     $("#subBtn").click(function () {
         var title = $('#title').val();
         if(isEmpty(title)){
-            layerTools.layerMsg('请输入标题!');
+            popup.msg('请输入标题!');
             return;
         }
         var tags = $('#tags').val();
         if(isEmpty(tags)){
-            layerTools.layerMsg('请至少输入一个标签!');
+            popup.msg('请至少输入一个标签!');
             return;
         }
         var mdVal = simplemde.value();
         if(isEmpty(mdVal)){
-            layerTools.layerMsg('请输入内容!');
+            popup.msg('请输入内容!');
             return;
         }
 
@@ -94,13 +94,13 @@
             type: 'POST',
             dataType: 'text',
             success: function (data) {
-                layerTools.layerMsg(data, function () {
+                popup.msg(data, function () {
                     parent.$("#dg").datagrid("reload");
                     parent.layer.close(parent.layer.getFrameIndex(window.name));
                 });
             },
             error: function (x, h, r) {
-                layerTools.AlertErrorMsg();
+                popup.errMsg();
             }
         })
     });
