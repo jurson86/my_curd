@@ -142,21 +142,12 @@
 	-webkit-background-size: 16px 16px;
 	background-size: 16px 16px;
 }
-.icon-province{
-	background:url('icons/cus-icons/province.png') no-repeat ;
+.icon-data{
+	background:url('icons/cus-icons/data.png') no-repeat ;
 	-webkit-background-size: 16px 16px;
 	background-size: 16px 16px;
 }
-.icon-city{
-	background:url('icons/cus-icons/city.png') no-repeat ;
-	-webkit-background-size: 16px 16px;
-	background-size: 16px 16px;
-}
-.icon-county{
-	background:url('icons/cus-icons/county.png') no-repeat ;
-	-webkit-background-size: 16px 16px;
-	background-size: 16px 16px;
-}
+
 
 .icon-play{
 	background:url('icons/cus-icons/play.png') no-repeat ;

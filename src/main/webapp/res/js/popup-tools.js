@@ -31,7 +31,7 @@ var popup = {
     openDOM: function (title, content, width, height, skin) {
         layer.open({
             type: 1,
-            skin: skin || layerSkin.molv,
+            skin: skin || layerSkin.lan,
             shadeClose: true,
             area: [width || '80%', height || '90%'],
             offset: '30px',
