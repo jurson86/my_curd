@@ -1,5 +1,5 @@
 var loadingMask = {
-    loadingImg: "/res/image/loading-blue.gif",
+    loadingImg: "/res/image/loading.gif",
     loadingTxt:'加载中...',
     createMask:function(){
         const that = this;
@@ -12,8 +12,10 @@ var loadingMask = {
 
         var html =  '<div id="loadingDiv" style="position:absolute;left:0;width:100%;height:'
         + clientHeight + 'px;top:0;background:white;opacity:1;filter:alpha(opacity=80);z-index:10000;"><div style="position: absolute; cursor1: wait; left: '
-        + loadingLeft + 'px; top:' + loadingTop + 'px; width:100px;; height: 57px; line-height: 57px; padding-left: 50px; padding-right: 5px;' +
-        ' background:  url(' + that.loadingImg + ') no-repeat scroll 5px 8px;  color: #696969 ;"> '+that.loadingTxt+'</div></div>';
+        + loadingLeft + 'px; top:' + loadingTop + 'px; width:100px;height: 57px; line-height: 57px; padding-left: 50px; padding-right: 5px;' +
+        ' background:  url(' + that.loadingImg + ') no-repeat scroll 5px 8px;  color: #696969 ; "> '+that.loadingTxt+'</div></div>';
+
+        console.log("----maskhtml:\n"+html);
 
         document.write(html);
     },
@@ -27,7 +29,7 @@ var loadingMask = {
         that.createMask();
         document.onreadystatechange = function(){
             if (document.readyState == "complete") {
-                that.removeMask();
+               that.removeMask();
             }
         }
     }
