@@ -1,5 +1,6 @@
 package com.hxkj.common.util.excel;
 
+import com.jfinal.kit.StrKit;
 import jodd.bean.BeanUtil;
 import jodd.datetime.JDateTime;
 import jodd.util.StringUtil;
@@ -12,11 +13,15 @@ import java.io.*;
 import java.util.*;
 
 /**
- * Excel助手类
+ * Excel 工具类
  */
 public class ExcelHelper {
     private static ExcelHelper helper = null;
 
+    /**
+     * 获得单例的工具类
+     * @return
+     */
     public static synchronized ExcelHelper getInstanse() {
         if (helper == null) {
             helper = new ExcelHelper();
@@ -26,7 +31,6 @@ public class ExcelHelper {
 
     /**
      * 获取文件扩展名
-     *
      * @param filename
      * @return
      */
@@ -51,8 +55,8 @@ public class ExcelHelper {
      */
     public void exportExcelFile(ExcelHead head, File modelFile, File outputFile, List<?> dataList) {
         // 读取导出excel模板
-        InputStream inp = null;
-        Workbook wb = null;
+        InputStream inp ;
+        Workbook wb ;
         try {
             inp = new FileInputStream(modelFile);
             wb = WorkbookFactory.create(inp);
@@ -73,16 +77,13 @@ public class ExcelHelper {
     }
 
     /**
-     * 将报表结构转换成Map
-     *
+     *  获得 excelColumn 的 索引-字段名 map
      * @param excelColumns
      */
-    private Map<Integer, String> convertExcelHeadToMap(List<ExcelColumn> excelColumns) {
+    private Map<Integer, String> columnsIndexFieldMap(List<ExcelColumn> excelColumns) {
         Map<Integer, String> excelHeadMap = new HashMap<Integer, String>();
         for (ExcelColumn excelColumn : excelColumns) {
-            if (StringUtil.isEmpty(excelColumn.getFieldName())) {
-                continue;
-            } else {
+            if (StrKit.notBlank(excelColumn.getFieldName())) {
                 excelHeadMap.put(excelColumn.getIndex(), excelColumn.getFieldName());
             }
         }
@@ -99,7 +100,7 @@ public class ExcelHelper {
         Map<String, Map> excelHeadConvertMap = head.getColumnsConvertMap();
 
         // 将表结构转换成Map
-        Map<Integer, String> excelHeadMap = convertExcelHeadToMap(excelColumns);
+        Map<Integer, String> excelHeadMap = columnsIndexFieldMap(excelColumns);
 
         // 从第几行开始插入数据
         int startRow = head.getRowCount();
@@ -137,14 +138,13 @@ public class ExcelHelper {
     }
 
     /**
-     * 单sheet excel文件转换为list
-     *
+     * 将 excel文件第一个 sheet 转换成 list<list>, 行<列>
      * @param filename 文件全名
      * @return
-     * @throws Exception
+     * @throws Exception 文件不合法造成的异常
      */
     public List<List> excelFileConvertToList(String filename) throws Exception {
-        Workbook wb = null;
+        Workbook wb ;
         // 此处为兼容2003 与2oo7
         String ext = getExtensionName(filename);
         if (ext.toLowerCase().equals("xlsx")) {
@@ -152,20 +152,27 @@ public class ExcelHelper {
         } else {
             wb = WorkbookFactory.create(new FileInputStream(filename));
         }
-
+        // Sheet Row Cell 三种对象的关系很奇特
         Sheet sheet = wb.getSheetAt(0);
-        List<List> rows = new ArrayList<List>();
+        List<List> rows = new ArrayList<>();
+
+        // 遍历行
         for (Row row : sheet) {
-            List<Object> cells = new ArrayList<Object>();
+            List<Object> cells = new ArrayList<>();
+
+            // 遍历 行的单元格（列）
             for (Cell cell : row) {
                 Object obj = null;
+                // 根据 行号和 列 索引 获得 单元格 位置
                 CellReference cellRef = new CellReference(row.getRowNum(), cell.getColumnIndex());
+                // 单元格数据类型处理
                 switch (cell.getCellType()) {
                     case Cell.CELL_TYPE_STRING:
                         obj = cell.getRichStringCellValue().getString();
                         break;
                     case Cell.CELL_TYPE_NUMERIC:
                         if (DateUtil.isCellDateFormatted(cell)) {
+                            // 这个 date 为什么要包一层 JDateTime?
                             obj = new JDateTime(cell.getDateCellValue());
                         } else {
                             obj = cell.getNumericCellValue();

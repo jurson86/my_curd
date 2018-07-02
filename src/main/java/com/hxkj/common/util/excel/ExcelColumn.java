@@ -4,28 +4,16 @@ package com.hxkj.common.util.excel;
  * excel列信息
  */
 public class ExcelColumn {
-    /**
-     * 索引
-     */
+    //  索引
     private int index;
-
-    /**
-     * 字段名称
-     */
+    // 字段名称
     private String fieldName;
-
-    /**
-     * 字段显示名称
-     */
+    // 字段显示名称
     private String fieldDispName;
-
-    /**
-     * 字段类型
-     */
+    // 字段类型
     private int type;
 
     public ExcelColumn() {
-
     }
 
     public ExcelColumn(int index, String fieldName, String fieldDispName) {
