@@ -65,7 +65,7 @@
             var formatJSONStr = JSON.stringify(obj, null, "\t");
             var content = '<div id="cm"  ></div>'
                 + ' <button id="generateBtn"  onclick="genCode()"  class="pure-button pure-button-primary" >代码生成</button>';
-            popup.openDOM('代码生成（可修改json控制生成的代码)', content,'450px', '600px',layerSkin.molv);
+            popup.openDOM('代码生成（可修改json控制生成的代码)', content,'450px', '600px');
             myCodeMirror = CodeMirror(document.getElementById('cm'), {
                 value: formatJSONStr,
                 lineNumbers: true,
