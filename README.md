@@ -26,7 +26,7 @@ my_CURD
 - jFinal3.4、druid、fastjson、log4j、 poi、httpcomponents、jodd、Freemarker、pinyin4j、javax.mail等
 - easyui1.5.4.5、pure.css、ckeditor、layer、simplemde等
 
-### 预览 | Preview 
+### 预览
 ![登录](https://raw.githubusercontent.com/qinyou/my_curd/master/preview/login.png)
 ![菜单](https://raw.githubusercontent.com/qinyou/my_curd/master/preview/menu.png)
 ![角色](https://raw.githubusercontent.com/qinyou/my_curd/master/preview/role.png)
