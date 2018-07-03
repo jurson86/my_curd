@@ -1,6 +1,6 @@
 my_CURD
 ===
-[English README](https://github.com/qinyou/my_curd/EN_README.md)
+[English README](https://github.com/qinyou/my_curd/blob/master/EN_README.md)
 
 ### 简介
 表格型内容管理系统，内置代码生成器，可用于业务逻辑快速开发。 
