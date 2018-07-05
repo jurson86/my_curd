@@ -119,12 +119,14 @@ public class AuthUserController extends BaseController {
         String deleteSql = "delete from  auth_user_role where user_id = ?";
         Db.update(deleteSql, userId);
 
+        AuthUser authUser = getSessionUser();
         // 添加新的角色
         String[] roleIds = roleIdstr.split(";");
         for (int i = 0; i < roleIds.length; i++) {
             AuthUserRole authUserRole = new AuthUserRole();
             authUserRole.setUserId(userId);
             authUserRole.setRoleId(Long.parseLong(roleIds[i]));
+            authUserRole.setUser(authUser.getName());
             authUserRole.save();
         }
 

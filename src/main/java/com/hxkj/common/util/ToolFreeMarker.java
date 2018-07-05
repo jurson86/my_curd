@@ -62,7 +62,6 @@ public abstract class ToolFreeMarker {
     public static String render(String templateContent, Map<String, Object> paramMap) {
         StringWriter writer = new StringWriter();
         try {
-
             Configuration cfg = new Configuration(Configuration.VERSION_2_3_22);
             cfg.setTemplateLoader(new StringTemplateLoader(templateContent));
             cfg.setDefaultEncoding("UTF-8");

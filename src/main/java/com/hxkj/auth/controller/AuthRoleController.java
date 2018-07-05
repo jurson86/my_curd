@@ -1,5 +1,6 @@
 package com.hxkj.auth.controller;
 
+import com.hxkj.auth.model.AuthUser;
 import com.hxkj.common.constant.Constant;
 import com.hxkj.common.util.BaseController;
 import com.hxkj.common.util.search.SearchSql;
@@ -108,12 +109,14 @@ public class AuthRoleController extends BaseController {
         String deleteSql = "delete from  auth_role_menu where role_id = ?";
         Db.update(deleteSql, roleId);
 
+        AuthUser authUser = getSessionUser();
         if (StrKit.notBlank(permissIds)) {
             String[] menuIds = permissIds.split(";");
             for (int i = 0; i < menuIds.length; i++) {
                 AuthRoleMenu authRoleMenu = new AuthRoleMenu();
                 authRoleMenu.setRoleId(roleId);
                 authRoleMenu.setMenuId(Long.parseLong(menuIds[i]));
+                authRoleMenu.setUser(authUser.getName());
                 authRoleMenu.save();
             }
         }

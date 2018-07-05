@@ -17,4 +17,8 @@ public class Ck5Controller extends BaseController {
         render("cms/ck5_classic_form.html");
     }
 
+    public void renderZip(){
+
+    }
+
 }

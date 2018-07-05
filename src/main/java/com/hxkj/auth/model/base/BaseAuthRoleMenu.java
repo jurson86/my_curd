@@ -28,4 +28,11 @@ public abstract class BaseAuthRoleMenu<M extends BaseAuthRoleMenu<M>> extends Mo
        return get("menu_id");
    }
 
+    // 操作人
+    public void setUser(String user){
+        set("user",user);
+    }
+    public String getUser(){
+        return get("user");
+    }
 }

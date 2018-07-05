@@ -28,4 +28,12 @@ public abstract class BaseAuthUserRole<M extends BaseAuthUserRole<M>> extends Mo
        return get("role_id");
    }
 
+   // 操作人
+   public void setUser(String user){
+       set("user",user);
+   }
+   public String getUser(){
+      return get("user");
+   }
+
 }

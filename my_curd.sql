@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50719
 File Encoding         : 65001
 
-Date: 2018-06-27 20:11:37
+Date: 2018-07-05 19:59:29
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -30,34 +30,35 @@ CREATE TABLE `auth_menu` (
   `create_time` datetime DEFAULT NULL,
   `last_edit_time` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=utf8 COMMENT='菜单';
+) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=utf8 COMMENT='菜单';
 
 -- ----------------------------
 -- Records of auth_menu
 -- ----------------------------
-INSERT INTO `auth_menu` VALUES ('1', '权限管理', '/', 'icon-auth_manage', null, '1', '0', '2018-06-21 21:53:59', '2018-06-27 19:33:42');
+INSERT INTO `auth_menu` VALUES ('1', '权限管理', '/', 'icon-auth_manage', null, '6', '0', '2018-06-21 21:53:59', '2018-06-29 00:13:14');
 INSERT INTO `auth_menu` VALUES ('2', '菜单', '/authMenu', 'icon-menu', null, '1', '1', '2018-06-21 21:54:01', '2018-06-21 21:55:04');
 INSERT INTO `auth_menu` VALUES ('3', '角色', '/authRole', 'icon-role', null, '2', '1', '2018-06-21 21:54:04', '2018-06-21 21:55:20');
 INSERT INTO `auth_menu` VALUES ('4', '组织', '/authOrg', 'icon-orgm', null, '3', '1', '2018-06-21 21:54:07', '2018-06-21 21:55:32');
 INSERT INTO `auth_menu` VALUES ('5', '用户', '/authUser', 'icon-user', null, '4', '1', '2018-06-21 21:54:09', '2018-06-21 21:55:45');
-INSERT INTO `auth_menu` VALUES ('12', '系统工具', '/', 'icon-tool', null, '2', '0', '2018-06-21 22:30:47', '2018-06-27 19:42:26');
+INSERT INTO `auth_menu` VALUES ('12', '系统工具', '/', 'icon-tool', null, '5', '0', '2018-06-21 22:30:47', '2018-06-29 00:13:22');
 INSERT INTO `auth_menu` VALUES ('13', 'druid监控', '/druid', 'icon-druid', null, '1', '12', '2018-06-21 22:31:11', '2018-06-27 19:42:36');
 INSERT INTO `auth_menu` VALUES ('14', '代码生成器', '/sysGenerator', 'icon-code', null, '2', '12', '2018-06-24 19:29:07', '2018-06-27 19:42:45');
 INSERT INTO `auth_menu` VALUES ('15', '系统日志', '/sysOplog', 'icon-log', null, '3', '12', '2018-06-24 19:36:14', '2018-06-27 19:42:53');
 INSERT INTO `auth_menu` VALUES ('16', '基础数据', '/', 'icon-base_data', null, '3', '0', '2018-06-24 19:55:48', '2018-06-27 20:00:31');
 INSERT INTO `auth_menu` VALUES ('17', '文件', '/dataFile', 'icon-filee', null, '1', '16', '2018-06-24 19:56:10', '2018-06-27 20:00:22');
 INSERT INTO `auth_menu` VALUES ('18', '码表', '/dataDict', 'icon-dict', null, '2', '16', '2018-06-24 19:56:30', '2018-06-27 20:00:13');
-INSERT INTO `auth_menu` VALUES ('19', '省', '/dataProvince', 'icon-province', null, '3', '16', '2018-06-24 20:54:39', '2018-06-27 20:00:04');
-INSERT INTO `auth_menu` VALUES ('20', '市', '/dataCity', 'icon-city', null, '4', '16', '2018-06-24 20:55:12', '2018-06-27 19:59:55');
-INSERT INTO `auth_menu` VALUES ('21', '县/区', '/dataCounty', 'icon-county', null, '5', '16', '2018-06-24 20:55:39', '2018-06-27 19:59:46');
-INSERT INTO `auth_menu` VALUES ('22', '娱乐', '/', 'icon-play', null, '4', '0', '2018-06-25 18:59:05', '2018-06-27 20:02:20');
-INSERT INTO `auth_menu` VALUES ('23', '个人中心', '/', 'icon-cuser', null, '5', '0', '2018-06-25 19:12:47', '2018-06-27 20:04:46');
+INSERT INTO `auth_menu` VALUES ('19', '省', '/dataProvince', 'icon-data', null, '3', '16', '2018-06-24 20:54:39', '2018-06-29 00:10:29');
+INSERT INTO `auth_menu` VALUES ('20', '市', '/dataCity', 'icon-data', null, '4', '16', '2018-06-24 20:55:12', '2018-06-29 00:10:36');
+INSERT INTO `auth_menu` VALUES ('21', '县/区', '/dataCounty', 'icon-data', null, '5', '16', '2018-06-24 20:55:39', '2018-06-29 00:10:43');
+INSERT INTO `auth_menu` VALUES ('22', '娱乐', '/', 'icon-play', null, '1', '0', '2018-06-25 18:59:05', '2018-06-29 00:13:33');
+INSERT INTO `auth_menu` VALUES ('23', '个人中心', '/', 'icon-cuser', null, '2', '0', '2018-06-25 19:12:47', '2018-06-29 00:13:43');
 INSERT INTO `auth_menu` VALUES ('24', '修改密码', '/userPassword', 'icon-pass', null, '1', '23', '2018-06-25 19:17:51', '2018-06-27 20:04:54');
 INSERT INTO `auth_menu` VALUES ('25', '修改个人信息', '/userInfo', 'icon-uinfo', null, '2', '23', '2018-06-25 19:18:11', '2018-06-27 20:05:04');
 INSERT INTO `auth_menu` VALUES ('26', '看小说', '/novel', 'icon-read', null, '1', '22', '2018-06-25 19:27:31', '2018-06-27 20:02:27');
-INSERT INTO `auth_menu` VALUES ('27', '内容管理', '/', 'icon-cms', null, '6', '0', '2018-06-25 20:53:36', '2018-06-27 19:55:05');
+INSERT INTO `auth_menu` VALUES ('27', '内容管理', '/', 'icon-cms', null, '4', '0', '2018-06-25 20:53:36', '2018-06-29 00:14:02');
 INSERT INTO `auth_menu` VALUES ('28', '富文本编辑', '/cmsArticle/h', 'icon-rich', null, '1', '27', '2018-06-25 20:54:09', '2018-06-27 19:55:15');
 INSERT INTO `auth_menu` VALUES ('29', 'MD编辑', '/cmsArticle/m', 'icon-markdown', null, '2', '27', '2018-06-25 20:54:35', '2018-06-27 19:55:29');
+INSERT INTO `auth_menu` VALUES ('34', 'ck5_classic', '/ck5/classic', null, null, '3', '27', '2018-06-29 19:29:09', null);
 
 -- ----------------------------
 -- Table structure for `auth_org`
@@ -95,12 +96,15 @@ CREATE TABLE `auth_role` (
   `create_time` datetime DEFAULT NULL COMMENT '创建时间或者更新时间',
   `last_edit_time` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COMMENT='角色';
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COMMENT='角色';
 
 -- ----------------------------
 -- Records of auth_role
 -- ----------------------------
 INSERT INTO `auth_role` VALUES ('1', '管理员', '分配所有权限', '0', '2018-06-20 20:16:26', '2018-06-20 20:16:28');
+INSERT INTO `auth_role` VALUES ('7', '普通用户', '普通用户', '1', '2018-06-27 20:54:33', null);
+INSERT INTO `auth_role` VALUES ('8', '内容管理员', '内容cms用户', '2', '2018-06-27 20:54:52', null);
+INSERT INTO `auth_role` VALUES ('9', '基础数据维护', '基础数据维护', '3', '2018-06-27 20:55:21', null);
 
 -- ----------------------------
 -- Table structure for `auth_role_menu`
@@ -109,29 +113,42 @@ DROP TABLE IF EXISTS `auth_role_menu`;
 CREATE TABLE `auth_role_menu` (
   `role_id` int(11) unsigned NOT NULL,
   `menu_id` int(11) unsigned NOT NULL,
+  `user` varchar(30) DEFAULT NULL COMMENT '操作人',
   PRIMARY KEY (`role_id`,`menu_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='角色权限中间表';
 
 -- ----------------------------
 -- Records of auth_role_menu
 -- ----------------------------
-INSERT INTO `auth_role_menu` VALUES ('1', '2');
-INSERT INTO `auth_role_menu` VALUES ('1', '3');
-INSERT INTO `auth_role_menu` VALUES ('1', '4');
-INSERT INTO `auth_role_menu` VALUES ('1', '5');
-INSERT INTO `auth_role_menu` VALUES ('1', '13');
-INSERT INTO `auth_role_menu` VALUES ('1', '14');
-INSERT INTO `auth_role_menu` VALUES ('1', '15');
-INSERT INTO `auth_role_menu` VALUES ('1', '17');
-INSERT INTO `auth_role_menu` VALUES ('1', '18');
-INSERT INTO `auth_role_menu` VALUES ('1', '19');
-INSERT INTO `auth_role_menu` VALUES ('1', '20');
-INSERT INTO `auth_role_menu` VALUES ('1', '21');
-INSERT INTO `auth_role_menu` VALUES ('1', '24');
-INSERT INTO `auth_role_menu` VALUES ('1', '25');
-INSERT INTO `auth_role_menu` VALUES ('1', '26');
-INSERT INTO `auth_role_menu` VALUES ('1', '28');
-INSERT INTO `auth_role_menu` VALUES ('1', '29');
+INSERT INTO `auth_role_menu` VALUES ('1', '2', '张闯');
+INSERT INTO `auth_role_menu` VALUES ('1', '3', '张闯');
+INSERT INTO `auth_role_menu` VALUES ('1', '4', '张闯');
+INSERT INTO `auth_role_menu` VALUES ('1', '5', '张闯');
+INSERT INTO `auth_role_menu` VALUES ('1', '13', '张闯');
+INSERT INTO `auth_role_menu` VALUES ('1', '14', '张闯');
+INSERT INTO `auth_role_menu` VALUES ('1', '15', '张闯');
+INSERT INTO `auth_role_menu` VALUES ('1', '17', '张闯');
+INSERT INTO `auth_role_menu` VALUES ('1', '18', '张闯');
+INSERT INTO `auth_role_menu` VALUES ('1', '19', '张闯');
+INSERT INTO `auth_role_menu` VALUES ('1', '20', '张闯');
+INSERT INTO `auth_role_menu` VALUES ('1', '21', '张闯');
+INSERT INTO `auth_role_menu` VALUES ('1', '24', '张闯');
+INSERT INTO `auth_role_menu` VALUES ('1', '25', '张闯');
+INSERT INTO `auth_role_menu` VALUES ('1', '26', '张闯');
+INSERT INTO `auth_role_menu` VALUES ('1', '28', '张闯');
+INSERT INTO `auth_role_menu` VALUES ('1', '29', '张闯');
+INSERT INTO `auth_role_menu` VALUES ('1', '34', '张闯');
+INSERT INTO `auth_role_menu` VALUES ('7', '24', '张闯');
+INSERT INTO `auth_role_menu` VALUES ('7', '25', '张闯');
+INSERT INTO `auth_role_menu` VALUES ('7', '26', '张闯');
+INSERT INTO `auth_role_menu` VALUES ('8', '28', '张闯');
+INSERT INTO `auth_role_menu` VALUES ('8', '29', '张闯');
+INSERT INTO `auth_role_menu` VALUES ('8', '34', '张闯');
+INSERT INTO `auth_role_menu` VALUES ('9', '17', '张闯');
+INSERT INTO `auth_role_menu` VALUES ('9', '18', '张闯');
+INSERT INTO `auth_role_menu` VALUES ('9', '19', '张闯');
+INSERT INTO `auth_role_menu` VALUES ('9', '20', '张闯');
+INSERT INTO `auth_role_menu` VALUES ('9', '21', '张闯');
 
 -- ----------------------------
 -- Table structure for `auth_user`
@@ -151,13 +168,14 @@ CREATE TABLE `auth_user` (
   `last_edit_time` datetime DEFAULT NULL COMMENT '最后一次修改时间',
   PRIMARY KEY (`id`),
   KEY `auth_user_org_id` (`org_id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COMMENT='系统用户';
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COMMENT='系统用户';
 
 -- ----------------------------
 -- Records of auth_user
 -- ----------------------------
-INSERT INTO `auth_user` VALUES ('1', 'admin', '3d4f2bf07dc1be38b20cd6e46949a1071f9d0e3d', '张闯', '2', '15238002477@163.com', '15238002477', '2018-06-27 20:11:22', '0', '2018-06-21 22:09:36', '2018-06-21 22:12:33');
-INSERT INTO `auth_user` VALUES ('3', 'jack', '3d4f2bf07dc1be38b20cd6e46949a1071f9d0e3d', 'Jack', '3', 'jack@outlook.com', '123456', null, '0', '2018-06-21 22:14:44', '2018-06-21 22:42:37');
+INSERT INTO `auth_user` VALUES ('1', 'admin', '3d4f2bf07dc1be38b20cd6e46949a1071f9d0e3d', '张闯', '2', '15238002477@163.com', '15238002477', '2018-07-04 19:08:37', '0', '2018-06-21 22:09:36', '2018-06-21 22:12:33');
+INSERT INTO `auth_user` VALUES ('3', 'jack', '3d4f2bf07dc1be38b20cd6e46949a1071f9d0e3d', 'Jack', '3', 'jack@outlook.com', '123456', '2018-06-27 20:58:55', '0', '2018-06-21 22:14:44', '2018-06-21 22:42:37');
+INSERT INTO `auth_user` VALUES ('4', 'tom', '3d4f2bf07dc1be38b20cd6e46949a1071f9d0e3d', 'Tom', '3', 'tom@istek.net.cn', '18813848438', '2018-06-27 20:57:57', '0', '2018-06-27 20:57:01', '2018-06-27 20:57:24');
 
 -- ----------------------------
 -- Table structure for `auth_user_role`
@@ -166,13 +184,18 @@ DROP TABLE IF EXISTS `auth_user_role`;
 CREATE TABLE `auth_user_role` (
   `user_id` int(11) unsigned NOT NULL,
   `role_id` int(11) unsigned NOT NULL,
+  `user` varchar(30) DEFAULT NULL COMMENT '操作人',
   PRIMARY KEY (`user_id`,`role_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='用户角色中间表';
 
 -- ----------------------------
 -- Records of auth_user_role
 -- ----------------------------
-INSERT INTO `auth_user_role` VALUES ('1', '1');
+INSERT INTO `auth_user_role` VALUES ('1', '1', '张闯');
+INSERT INTO `auth_user_role` VALUES ('3', '7', '张闯');
+INSERT INTO `auth_user_role` VALUES ('3', '8', '张闯');
+INSERT INTO `auth_user_role` VALUES ('4', '7', '张闯');
+INSERT INTO `auth_user_role` VALUES ('4', '9', '张闯');
 
 -- ----------------------------
 -- Table structure for `cms_article`
@@ -3890,10 +3913,37 @@ CREATE TABLE `data_file` (
 -- ----------------------------
 -- Records of data_file
 -- ----------------------------
-INSERT INTO `data_file` VALUES ('461539278195785728', '1', null, 'upload/image/20180627143218_37.jpg', '14027794.jpg', 'image/jpeg', 'jpg', '38717', '', '2018-06-27 14:32:18');
-INSERT INTO `data_file` VALUES ('461539307664965632', '1', null, 'upload/image/20180627143225_631.jpg', '489cce92215fefb5f001e96f23ebc2dc.jpg', 'image/jpeg', 'jpg', '40077', '', '2018-06-27 14:32:25');
-INSERT INTO `data_file` VALUES ('461539342083424256', '1', null, 'upload/image/20180627143234_83.jpg', '800 (7).jpg', 'image/jpeg', 'jpg', '107587', '', '2018-06-27 14:32:34');
-INSERT INTO `data_file` VALUES ('461605061231902720', '1', null, 'upload/file/20180627185342_562.pdf', '阿里巴巴Java开发手册（纪念版）.pdf', 'application/pdf', 'pdf', '1257689', '', '2018-06-27 18:53:42');
+INSERT INTO `data_file` VALUES ('461634410345660416', '1', null, 'upload/image/20180627205020_907.png', '20180617002133_748.png', 'image/png', 'png', '397793', '', '2018-06-27 20:50:20');
+INSERT INTO `data_file` VALUES ('461634436560060416', '1', null, 'upload/image/20180627205026_972.jpg', '20180616223816_455.jpg', 'image/jpeg', 'jpg', '467970', '', '2018-06-27 20:50:26');
+INSERT INTO `data_file` VALUES ('461634462376001536', '1', null, 'upload/image/20180627205032_255.png', '20180617001729_557.png', 'image/png', 'png', '309974', '', '2018-06-27 20:50:32');
+INSERT INTO `data_file` VALUES ('461634492046508032', '1', null, 'upload/image/20180627205039_513.png', '20180617001737_554.png', 'image/png', 'png', '319689', '', '2018-06-27 20:50:39');
+INSERT INTO `data_file` VALUES ('461634525017931776', '1', null, 'upload/image/20180627205047_85.png', '20180617002100_299.png', 'image/png', 'png', '307253', '', '2018-06-27 20:50:47');
+INSERT INTO `data_file` VALUES ('461634557012082688', '1', null, 'upload/image/20180627205055_251.jpg', '20180616223747_209.jpg', 'image/jpeg', 'jpg', '5721', '', '2018-06-27 20:50:55');
+INSERT INTO `data_file` VALUES ('461634586640646144', '1', null, 'upload/image/20180627205102_298.png', '20180617002121_597.png', 'image/png', 'png', '396777', '', '2018-06-27 20:51:02');
+INSERT INTO `data_file` VALUES ('461634615447126016', '1', null, 'upload/image/20180627205109_757.jpg', '20180616212949_209.jpg', 'image/jpeg', 'jpg', '65736', '', '2018-06-27 20:51:09');
+INSERT INTO `data_file` VALUES ('461634716290777088', '1', null, 'upload/image/20180627205133_573.jpg', '20180616223802_242.jpg', 'image/jpeg', 'jpg', '1319704', '', '2018-06-27 20:51:33');
+INSERT INTO `data_file` VALUES ('461634834171691008', '1', null, 'upload/image/20180627205201_296.png', '20180617002152_885.png', 'image/png', 'png', '431595', '', '2018-06-27 20:52:01');
+INSERT INTO `data_file` VALUES ('461638468695490560', '1', null, 'upload/image/20180627210627_93.png', '20180617001800_155.png', 'image/png', 'png', '312895', '', '2018-06-27 21:06:27');
+INSERT INTO `data_file` VALUES ('461638518490267648', '1', null, 'upload/file/20180627210639_906.pdf', '阿里巴巴Java开发手册（纪念版）.pdf', 'application/pdf', 'pdf', '1257689', '', '2018-06-27 21:06:39');
+INSERT INTO `data_file` VALUES ('461638591383076864', '1', null, 'upload/image/20180627210657_109.png', 'role.png', 'image/png', 'png', '2498', '', '2018-06-27 21:06:57');
+INSERT INTO `data_file` VALUES ('461638623142346752', '1', null, 'upload/image/20180627210704_909.png', 'menu.png', 'image/png', 'png', '2879', '', '2018-06-27 21:07:04');
+INSERT INTO `data_file` VALUES ('462051061520138240', '1', null, 'upload/image/20180629002557_906.jpg', '14027794.jpg', 'image/jpeg', 'jpg', '50909', '', '2018-06-29 00:25:57');
+INSERT INTO `data_file` VALUES ('462051105338032128', '1', null, 'upload/image/20180629002608_120.png', 'preview.png', 'image/png', 'png', '208067', '', '2018-06-29 00:26:08');
+INSERT INTO `data_file` VALUES ('462051212087263232', '1', null, 'upload/file/20180629002633_81.xml', 'AutoResponder.xml', 'text/xml', 'xml', '222', '', '2018-06-29 00:26:33');
+INSERT INTO `data_file` VALUES ('462340015653912576', '1', null, 'upload/image/20180629193409_419.jpg', '0ea1ef95059ff8ba8f4a2652fd6b4b89.jpg', 'image/jpeg', 'jpg', '856681', null, '2018-06-29 19:34:09');
+INSERT INTO `data_file` VALUES ('462340459138646016', '1', null, 'upload/image/20180629193555_689.jpg', '14027794.jpg', 'image/jpeg', 'jpg', '42847', null, '2018-06-29 19:35:55');
+INSERT INTO `data_file` VALUES ('462340963746971648', '1', null, 'upload/image/20180629193755_711.png', 'preview.png', 'image/png', 'png', '208067', null, '2018-06-29 19:37:55');
+INSERT INTO `data_file` VALUES ('462344735537758208', '1', null, 'upload/image/20180629195254_178.jpg', 'u=832101073,2523374224&fm=27&gp=0.jpg', 'image/jpeg', 'jpg', '5721', null, '2018-06-29 19:52:54');
+INSERT INTO `data_file` VALUES ('462368234989944832', '1', null, 'upload/image/20180629212617_760.jpg', 'umbrellas-e935d5c582.jpg', 'image/jpeg', 'jpg', '51250', null, '2018-06-29 21:26:17');
+INSERT INTO `data_file` VALUES ('462368296281309184', '1', null, 'upload/image/20180629212632_905.jpg', '0ea1ef95059ff8ba8f4a2652fd6b4b89.jpg', 'image/jpeg', 'jpg', '856681', null, '2018-06-29 21:26:32');
+INSERT INTO `data_file` VALUES ('462375547830272000', '1', null, 'upload/image/20180629215521_701.png', 'preview.png', 'image/png', 'png', '208067', null, '2018-06-29 21:55:21');
+INSERT INTO `data_file` VALUES ('462399959795236864', '1', null, 'upload/image/20180629233221_786.jpg', '1T04943M-8.jpg', 'image/jpeg', 'jpg', '467970', null, '2018-06-29 23:32:21');
+INSERT INTO `data_file` VALUES ('463321116325183488', '1', null, 'upload/image/20180702123242_940.jpg', '1530335275638.jpg', 'image/jpeg', 'jpg', '171599', null, '2018-07-02 12:32:42');
+INSERT INTO `data_file` VALUES ('463415358259200000', '1', null, 'upload/image/20180702184711_17.jpg', 'umbrellas-e935d5c582.jpg', 'image/jpeg', 'jpg', '51250', null, '2018-07-02 18:47:11');
+INSERT INTO `data_file` VALUES ('463416571008647168', '1', null, 'upload/image/20180702185200_366.jpg', 'gg.jpg', 'image/jpeg', 'jpg', '118166', null, '2018-07-02 18:52:00');
+INSERT INTO `data_file` VALUES ('463416948948992000', '1', null, 'upload/image/20180702185330_294.jpg', 'gg2.jpg', 'image/jpeg', 'jpg', '108734', null, '2018-07-02 18:53:30');
+INSERT INTO `data_file` VALUES ('463417554770067456', '1', null, 'upload/image/20180702185554_993.jpg', 'gg2.jpg', 'image/jpeg', 'jpg', '221721', null, '2018-07-02 18:55:54');
+INSERT INTO `data_file` VALUES ('464155470660108288', '1', null, 'upload/image/20180704194807_337.jpg', 'gg2.jpg', 'image/jpeg', 'jpg', '221721', null, '2018-07-04 19:48:07');
 
 -- ----------------------------
 -- Table structure for `data_province`
@@ -3991,6 +4041,46 @@ INSERT INTO `sys_oplog` VALUES ('461623038853513216', '1', '退出', '0:0:0:0:0:
 INSERT INTO `sys_oplog` VALUES ('461623056201154560', '1', '登录', '0:0:0:0:0:0:0:1', '2018-06-27 20:05:13');
 INSERT INTO `sys_oplog` VALUES ('461624583699562496', '1', '退出', '0:0:0:0:0:0:0:1', '2018-06-27 20:11:17');
 INSERT INTO `sys_oplog` VALUES ('461624604851437568', '1', '登录', '0:0:0:0:0:0:0:1', '2018-06-27 20:11:22');
+INSERT INTO `sys_oplog` VALUES ('461634228321255424', '1', '登录', '0:0:0:0:0:0:0:1', '2018-06-27 20:49:36');
+INSERT INTO `sys_oplog` VALUES ('461636307605520384', '1', '退出', '0:0:0:0:0:0:0:1', '2018-06-27 20:57:52');
+INSERT INTO `sys_oplog` VALUES ('461636327725596672', '4', '登录', '0:0:0:0:0:0:0:1', '2018-06-27 20:57:57');
+INSERT INTO `sys_oplog` VALUES ('461636394805100544', '4', '访问无权限路径[/authMenu]', '0:0:0:0:0:0:0:1', '2018-06-27 20:58:13');
+INSERT INTO `sys_oplog` VALUES ('461636551244251136', '4', '退出', '0:0:0:0:0:0:0:1', '2018-06-27 20:58:50');
+INSERT INTO `sys_oplog` VALUES ('461636572920414208', '3', '登录', '0:0:0:0:0:0:0:1', '2018-06-27 20:58:55');
+INSERT INTO `sys_oplog` VALUES ('461636738125660160', '3', '访问无权限路径[/dataFile]', '0:0:0:0:0:0:0:1', '2018-06-27 20:59:35');
+INSERT INTO `sys_oplog` VALUES ('461636812943654912', '3', '退出', '0:0:0:0:0:0:0:1', '2018-06-27 20:59:53');
+INSERT INTO `sys_oplog` VALUES ('461636830471651328', '1', '登录', '0:0:0:0:0:0:0:1', '2018-06-27 20:59:57');
+INSERT INTO `sys_oplog` VALUES ('461636858732871680', '1', '退出', '0:0:0:0:0:0:0:1', '2018-06-27 21:00:03');
+INSERT INTO `sys_oplog` VALUES ('461636899967074304', '1', '登录', '0:0:0:0:0:0:0:1', '2018-06-27 21:00:13');
+INSERT INTO `sys_oplog` VALUES ('461637363479609344', '1', '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-06-27 21:02:04');
+INSERT INTO `sys_oplog` VALUES ('462047044664557568', '1', '登录', '0:0:0:0:0:0:0:1', '2018-06-29 00:09:59');
+INSERT INTO `sys_oplog` VALUES ('462047242161750016', '1', '退出', '0:0:0:0:0:0:0:1', '2018-06-29 00:10:46');
+INSERT INTO `sys_oplog` VALUES ('462047264840351744', '1', '登录', '0:0:0:0:0:0:0:1', '2018-06-29 00:10:52');
+INSERT INTO `sys_oplog` VALUES ('462048122634240000', '1', '退出', '0:0:0:0:0:0:0:1', '2018-06-29 00:14:16');
+INSERT INTO `sys_oplog` VALUES ('462048152824840192', '1', '登录', '0:0:0:0:0:0:0:1', '2018-06-29 00:14:24');
+INSERT INTO `sys_oplog` VALUES ('462329192688648192', '1', '登录', '0:0:0:0:0:0:0:1', '2018-06-29 18:51:09');
+INSERT INTO `sys_oplog` VALUES ('462338498351857664', '1', '登录', '0:0:0:0:0:0:0:1', '2018-06-29 19:28:07');
+INSERT INTO `sys_oplog` VALUES ('462338813293756416', '1', '退出', '0:0:0:0:0:0:0:1', '2018-06-29 19:29:22');
+INSERT INTO `sys_oplog` VALUES ('462338830037417984', '1', '登录', '0:0:0:0:0:0:0:1', '2018-06-29 19:29:26');
+INSERT INTO `sys_oplog` VALUES ('462339698665193472', '1', '访问无权限路径[/imgUpload]', '0:0:0:0:0:0:0:1', '2018-06-29 19:32:54');
+INSERT INTO `sys_oplog` VALUES ('462339969025835008', '1', '登录', '0:0:0:0:0:0:0:1', '2018-06-29 19:33:58');
+INSERT INTO `sys_oplog` VALUES ('462340434128011264', '1', '登录', '0:0:0:0:0:0:0:1', '2018-06-29 19:35:49');
+INSERT INTO `sys_oplog` VALUES ('462362485496741888', '1', '登录', '0:0:0:0:0:0:0:1', '2018-06-29 21:03:26');
+INSERT INTO `sys_oplog` VALUES ('462379703475372032', '1', '登录', '0:0:0:0:0:0:0:1', '2018-06-29 22:11:51');
+INSERT INTO `sys_oplog` VALUES ('462380026843627520', '1', '退出', '0:0:0:0:0:0:0:1', '2018-06-29 22:13:09');
+INSERT INTO `sys_oplog` VALUES ('462380048830169088', '1', '登录', '0:0:0:0:0:0:0:1', '2018-06-29 22:13:14');
+INSERT INTO `sys_oplog` VALUES ('463319591204945920', '1', '登录', '0:0:0:0:0:0:0:1', '2018-07-02 12:26:38');
+INSERT INTO `sys_oplog` VALUES ('463320671913508864', '1', '退出', '0:0:0:0:0:0:0:1', '2018-07-02 12:30:56');
+INSERT INTO `sys_oplog` VALUES ('463320723784466432', '1', '登录', '0:0:0:0:0:0:0:1', '2018-07-02 12:31:08');
+INSERT INTO `sys_oplog` VALUES ('463328397867614208', '1', '退出', '0:0:0:0:0:0:0:1', '2018-07-02 13:01:38');
+INSERT INTO `sys_oplog` VALUES ('463328450262859776', '1', '登录', '0:0:0:0:0:0:0:1', '2018-07-02 13:01:50');
+INSERT INTO `sys_oplog` VALUES ('463336134521389056', '1', '登录', '0:0:0:0:0:0:0:1', '2018-07-02 13:32:22');
+INSERT INTO `sys_oplog` VALUES ('463412520904818688', '1', '登录', '0:0:0:0:0:0:0:1', '2018-07-02 18:35:54');
+INSERT INTO `sys_oplog` VALUES ('463419461068652544', '1', '退出', '0:0:0:0:0:0:0:1', '2018-07-02 19:03:29');
+INSERT INTO `sys_oplog` VALUES ('463419805018357760', '1', '登录', '0:0:0:0:0:0:0:1', '2018-07-02 19:04:51');
+INSERT INTO `sys_oplog` VALUES ('463788781837746176', '1', '登录', '0:0:0:0:0:0:0:1', '2018-07-03 19:31:02');
+INSERT INTO `sys_oplog` VALUES ('463794217731227648', '1', '登录', '0:0:0:0:0:0:0:1', '2018-07-03 19:52:38');
+INSERT INTO `sys_oplog` VALUES ('464145529228492800', '1', '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-07-04 19:08:37');
 
 -- ----------------------------
 -- Function structure for `getChildIdList`
