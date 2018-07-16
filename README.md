@@ -24,7 +24,12 @@ my_CURD
  
 ### 依赖
 - jFinal3.4、druid、fastjson、log4j、 poi、httpcomponents、jodd、Freemarker、pinyin4j、javax.mail等
-- easyui1.5.4.5、pure.css、ckeditor、layer、simplemde等
+- easyui1.5.4.5、pure.css、ckeditor、layer、simplemde等 
+
+### 有时间的话可能会做 :smile:
+- [ ] oracle 数据库版本
+- [ ] 前台多种配色主题
+- [ ] 修改easyui源文件，移除未用到的css、js（强迫症发作的话）
 
 ### 预览
 ![登录](https://raw.githubusercontent.com/qinyou/my_curd/master/preview/login.png)
