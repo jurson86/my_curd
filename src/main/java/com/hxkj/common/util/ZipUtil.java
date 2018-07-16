@@ -12,7 +12,10 @@ import java.util.zip.ZipOutputStream;
 
 /**
  * 文件压缩方法
- * https://www.cnblogs.com/zeng1994/p/7862288.html
+ * https://www.cnblogs.com/zeng1994/p/7862288.html 有扩展
+ * 用途： 文件批量下载
+ *       1. 实际存在的文件批量下载
+ *       2. 批量处理数据，批量下载（例如发票xml导出, 多条数据根据模板生成xml后打包下载)
  * @author chuang
  * @date 2018-06-20 18:56:48
  */
@@ -80,8 +83,8 @@ public class ZipUtil {
 
     /**
      * 字符串输出 到  压缩文件中
-     * @param srcDatas
-     * @param srcFilenames
+     * @param srcDatas      文本数据集合
+     * @param srcFilenames  文件名集合
      * @param out
      * @throws RuntimeException
      */

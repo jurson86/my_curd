@@ -1,8 +1,5 @@
 package com.hxkj.common.util;
 
-import java.security.SecureRandom;
-import java.util.UUID;
-
 /**
  * 生成唯一性ID算法的工具类.
  */

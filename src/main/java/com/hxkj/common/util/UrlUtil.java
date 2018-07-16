@@ -6,6 +6,9 @@ import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
 
+/**
+ * 先前使用的url 处理工具，此时可废除
+ */
 public class UrlUtil {
 
     /**
