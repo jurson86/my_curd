@@ -56,10 +56,40 @@
     <div class="head" data-options="region:'north'" border="false">
         <span class="head-text" onclick="fullScreenToggleNew(this)" title="点击全屏" >my_CURD</span>
         <span class="head-menu">
-            你好，${(session.auth_user.name)!} &nbsp;&nbsp;(${(session.auth_user_roles)!} )&nbsp;&nbsp;
-            <a class="pure-button pure-button-primary" href="${ctx!}/logout">
-                <i class="fa fa-sign-out"></i>&nbsp;&nbsp;退出
+            你好, (${(session.auth_user_roles)!} )
+            <a id="opeMenu" class="pure-button pure-button-primary " >
+                ${(session.auth_user.name)!}
             </a>
+            <div id="opeMenuItem" style="width:100px;">
+                <div name="editInfo">修改个人信息</div>
+                <div name="changePwd">修改密码</div>
+                <div name="logout">退出</div>
+            </div>
+            <script>
+                ;(function(){
+                    function openEditInfoForm() {
+                        popup.openIframe('修改用户信息', '${ctx!}/userInfo', '560px', '400px');
+                    }
+                    function openChangePwdForm(){
+                        popup.openIframe('修改密码', '${ctx!}/userPassword', '560px', '400px');
+                    }
+                    function logout(){
+                        var logoutUrl = '${ctx!}/logout';
+                        window.location.href=logoutUrl;
+                    }
+
+                    var opeMenu = $('#opeMenu').menubutton({ menu: '#opeMenuItem' });
+                    $(opeMenu.menubutton('options').menu).menu({
+                        onClick: function (item) {
+                            switch (item.name){
+                                case 'editInfo':  openEditInfoForm() ;break;
+                                case 'changePwd': openChangePwdForm() ;break;
+                                case 'logout': logout() ;break;
+                            }
+                        }
+                    })
+                })();
+            </script>
         </span>
     </div>
     <div data-options="region:'west',split:false" title="功能导航" headerCls="btNone grayBg" bodyCls="grayBg" style=" width:200px;">
@@ -86,7 +116,7 @@
 <script src="${ctx!}/res/js/easyui-tree-tools.js"></script>
 <script src="${ctx!}/res/js/tab-tools.js"></script>
 <script src="${ctx!}/res/layer/layer.js"></script>
-<script src="${ctx!}/res/js/layer-tools.js"></script>
+<script src="${ctx!}/res/js/popup-tools.js"></script>
 <script>
     ;(function () {
         var MainPage = {

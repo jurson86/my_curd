@@ -2,7 +2,7 @@ package com.hxkj;
 
 import com.hxkj.common.constant.Constant;
 import com.hxkj.common.interceptor.PermissionInterceptor;
-import com.hxkj.common.util.BaseController;
+import com.hxkj.common.controller.BaseController;
 import com.hxkj.auth.model.AuthMenu;
 import com.jfinal.aop.Before;
 import com.jfinal.aop.Clear;

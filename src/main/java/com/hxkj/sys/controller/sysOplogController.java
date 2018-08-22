@@ -1,8 +1,8 @@
 package com.hxkj.sys.controller;
 
 import com.hxkj.common.constant.Constant;
-import com.hxkj.common.util.BaseController;
-import com.hxkj.common.util.ToolString;
+import com.hxkj.common.controller.BaseController;
+import com.hxkj.common.util.StringUtils;
 import com.hxkj.common.util.csv.CsvRender;
 import com.hxkj.common.util.excel.PoiRender;
 import com.hxkj.common.util.search.SearchSql;
@@ -46,7 +46,7 @@ public class sysOplogController extends BaseController {
         String[] headers = new String[]{"操作人", "日志内容", "IP地址", "操作时间"};
 
         render(PoiRender.me(sysOplogs)
-                .fileName(ToolString.toUtf8String("操作日志.xls"))
+                .fileName(StringUtils.urlEncode("操作日志.xls"))
                 .sheetName("操作日志统计")
                 .columns(columns)
                 .headers(headers)

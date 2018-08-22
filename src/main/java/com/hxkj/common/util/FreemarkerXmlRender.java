@@ -13,10 +13,10 @@ import java.util.Map;
 /**
  * 通过freemarker渲染xml
  */
-public class FreeMarkerXMLRender extends FreeMarkerRender {
+public class FreemarkerXmlRender extends FreeMarkerRender {
     private static final String CONTENT_TYPE = "text/xml; charset=" + getEncoding();
 
-    public FreeMarkerXMLRender(String view) {
+    public FreemarkerXmlRender(String view) {
         super(view);
     }
 

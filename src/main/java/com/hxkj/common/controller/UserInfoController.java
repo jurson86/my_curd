@@ -1,12 +1,12 @@
-package com.hxkj.user.controller;
+package com.hxkj.common.controller;
 
 import com.hxkj.auth.model.AuthUser;
-import com.hxkj.common.util.BaseController;
-import com.hxkj.auth.model.AuthUser;
+import com.jfinal.aop.Clear;
 import com.jfinal.kit.StrKit;
 
+@Clear
 public class UserInfoController extends BaseController {
-    private final static String INDEX = "user/userInfo.html";
+    private final static String INDEX = "common/userInfo.html";
 
     public void index() {
         AuthUser authUser = getSessionUser();
@@ -14,7 +14,7 @@ public class UserInfoController extends BaseController {
         render(INDEX);
     }
 
-    public void changeInfoAction() {
+    public void editInfoAction() {
         String id = getPara("userId");
         if (StrKit.isBlank(id)) {
             renderText("参数错误");

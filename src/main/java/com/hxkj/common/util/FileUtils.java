@@ -7,13 +7,15 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-public class FileTool {
-    private static Logger LOG = Logger.getLogger(FileTool.class);
+/**
+ * 文件操作工具
+ */
+public class FileUtils {
+    private static Logger LOG = Logger.getLogger(FileUtils.class);
 
     /**
-     * 获得 文件的 MIME(contentType)类型
+     * 通过文件全路径 获得文件的 MIME(contentType)类型
      * jdk7
-     *
      * @param absolutePath 文件全路径
      * @return
      */
@@ -23,7 +25,6 @@ public class FileTool {
         try {
             contentType = Files.probeContentType(path);
         } catch (IOException e) {
-            e.printStackTrace();
             LOG.error(e.getMessage(), e);
         }
         return contentType;

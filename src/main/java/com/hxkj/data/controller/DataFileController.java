@@ -3,8 +3,8 @@ package com.hxkj.data.controller;
 import com.alibaba.fastjson.JSON;
 import com.hxkj.auth.model.AuthUser;
 import com.hxkj.common.constant.Constant;
-import com.hxkj.common.util.BaseController;
-import com.hxkj.common.util.FileTool;
+import com.hxkj.common.controller.BaseController;
+import com.hxkj.common.util.FileUtils;
 import com.hxkj.common.util.Identities;
 import com.hxkj.common.util.search.SearchSql;
 import com.hxkj.data.model.DataFile;
@@ -16,7 +16,6 @@ import com.jfinal.plugin.activerecord.Page;
 import com.jfinal.plugin.activerecord.tx.Tx;
 import com.jfinal.render.JsonRender;
 import com.jfinal.upload.UploadFile;
-import org.apache.commons.io.FileUtils;
 
 import java.io.File;
 import java.io.IOException;
@@ -104,7 +103,7 @@ public class DataFileController extends BaseController {
                 newFileName = pre + "/" + newFileName;
                 File savefile = new File(newFileName);
 
-                FileUtils.copyFile(uploadFile.getFile(), savefile);
+                org.apache.commons.io.FileUtils.copyFile(uploadFile.getFile(), savefile);
 
                 if (uploadFile.getFile().exists()) {
                     uploadFile.getFile().delete();
@@ -116,8 +115,8 @@ public class DataFileController extends BaseController {
                 dataFile.setUserId(authUser.getId());
                 dataFile.setOriginalFilename(orginFilename);
                 dataFile.setPath(relativePath);
-                dataFile.setMime(FileTool.getMime(savefile.getAbsolutePath()));
-                dataFile.setSize(FileUtils.sizeOfAsBigInteger(savefile));
+                dataFile.setMime(FileUtils.getMime(savefile.getAbsolutePath()));
+                dataFile.setSize(org.apache.commons.io.FileUtils.sizeOfAsBigInteger(savefile));
                 dataFile.setRemark(getPara("remark"));
                 dataFile.setType(fileSuf);
                 dataFile.setCreateTime(new Date());

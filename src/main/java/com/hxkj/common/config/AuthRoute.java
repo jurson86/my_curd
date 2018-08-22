@@ -10,6 +10,7 @@ import com.hxkj.common.constant.Constant;
 import com.jfinal.config.Routes;
 
 /**
+ * 权限管理模块
  * @author chuang
  * @date 2018-06-20 18:56:48
  */

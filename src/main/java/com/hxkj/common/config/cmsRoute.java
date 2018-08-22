@@ -7,7 +7,7 @@ import com.hxkj.common.constant.Constant;
 import com.jfinal.config.Routes;
 
 /**
- * 普通用户 路由
+ * cms 内容管理
  */
 public class cmsRoute extends Routes {
     @Override

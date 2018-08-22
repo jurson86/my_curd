@@ -7,7 +7,6 @@ import javax.activation.DataHandler;
 import javax.activation.FileDataSource;
 import javax.mail.*;
 import javax.mail.internet.*;
-import java.io.UnsupportedEncodingException;
 import java.util.Date;
 import java.util.List;
 import java.util.Properties;
@@ -18,42 +17,50 @@ import java.util.concurrent.Callable;
  * FutureTask<Boolean>  或者 直接调用
  */
 public class SendMailProcess implements Callable<Boolean> {
-
     private final static Logger LOG = Logger.getLogger(SendMailProcess.class);
 
-    private MailType sendType;            // 发送邮件的类型：text 、html
     private String host;                  // 发送邮件的服务器的IP
     private String port = "25";           // 发送邮件的服务器的端口
-    private boolean validate = false;     // 是否需要身份验证
     private String from;                  // 邮件发送者的地址
     private String userName;              // 登陆邮件发送服务器的用户名
     private String password;              // 登陆邮件发送服务器的密码
-    private List<String> to;              // 邮件接收者的地址
 
-    private String subject;               // 邮件标题
-    private String content;               // 邮件的文本内容
-    private String[] attachFileNames;     // 邮件附件的文件名
+    private List<String> to;              // 接收者地址
+    private String subject;               // 标题
+    private String content;               // 文本内容
+    private String[] attachFileNames;     // 附件文件名
 
-    public SendMailProcess(MailType sendType,
-                           String host, String port, boolean validate, String userName, String password,
-                           String from, List<String> to,
-                           String subject, String content, String[] attachFileNames) {
-        this.sendType = sendType;
-        this.host = host;
-        this.port = port;
-        this.from = from;
-        this.userName = userName;
-        this.password = password;
+    public SendMailProcess( List<String> to, String subject, String content, String[] attachFileNames) {
+
+        // 根据实际情况配置 发送者信息
+        // 本地配置 的 HMailServer, 无效的域名解析 可能被接收方当作垃圾邮件。
+        this.host = "localhost";
+        this.port = "25";
+        this.from = "zhangchuang@mail.synear.com";
+        this.userName = "zhangchuang@mail.synear.com";
+        this.password = "123456";
+
+        /* 网易 163 免费邮箱
+         this.host = "smtp.163.com";
+         this.port = "25";
+         this.from = "15238002477@163.com";
+         this.userName = "15238002477@163.com";
+         this.password = "wrong_password";
+         */
+
         this.to = to;
-        this.validate = validate;
         this.subject = subject;
         this.content = content;
         this.attachFileNames = attachFileNames;
+
         // tomcat服务器加上启动参数 -Djava.net.preferIPv4Stack=true
         System.setProperty("java.net.preferIPv4Stack", "true");
     }
 
-
+    /**
+     * FutureTask 调用发送邮件
+     * @return true 发送成功 false 发送失败
+     */
     @Override
     public Boolean call() {
         boolean flag;
@@ -63,41 +70,34 @@ public class SendMailProcess implements Callable<Boolean> {
 
 
     /**
-     * 一些配置属性  (针对发送邮箱）
-     *
-     * @return
+     * 发送邮件
+     * @return true 发送成功 false 发送失败
      */
-    public Properties getProperties() {
+    public boolean sendEmail() {
+        boolean flag = false;
+
         Properties prop = new Properties();
         prop.put("mail.smtp.host", this.host);
         prop.put("mail.smtp.port", this.port);
-        prop.put("mail.smtp.auth", validate ? "true" : "false");
-        // 针对 发送者 是 google 邮箱
+        prop.put("mail.smtp.auth",  "true" );
+        //发送者 为 google 邮箱
         if (this.host.contains("smtp.gmail.com")) {
             prop.setProperty("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
             prop.setProperty("mail.smtp.socketFactory.fallback", "false");
             prop.setProperty("mail.smtp.port", "465");
             prop.setProperty("mail.smtp.socketFactory.port", "465");
         }
-        return prop;
-    }
+        MailAuthenticator  authenticator = new MailAuthenticator(this.userName, this.password);
+        Session sendMailSession = Session.getInstance(prop, authenticator);
 
-
-    public boolean sendEmail() {
-        boolean flag = false;
-        MailAuthenticator authenticator = null;
-        Properties pro = getProperties();
-        // 需要身份认证
-        if (this.validate) {
-            authenticator = new MailAuthenticator(this.userName, this.password);
-        }
-
-        Session sendMailSession = Session.getInstance(pro, authenticator);
         try {
             Message mailMessage = new MimeMessage(sendMailSession);
-            // 邮件信息
+
+            // 发送者
             Address from = new InternetAddress(this.from);
             mailMessage.setFrom(from);
+
+            // 接收者
             Address[] tos = new InternetAddress[to.size()];
             for (int i = 0; i < to.size(); i++) {
                 String receive = to.get(i);
@@ -106,22 +106,17 @@ public class SendMailProcess implements Callable<Boolean> {
                 }
             }
             mailMessage.setRecipients(Message.RecipientType.TO, tos);
-            mailMessage.setSubject(this.subject);
-            mailMessage.setSentDate(new Date());
-            Multipart multipart = new MimeMultipart();
-            // 邮件内容
-            // html 或者 text 邮件
-            MimeBodyPart mbp = new MimeBodyPart();
-            if (this.sendType == MailType.HTML) {
-                mbp.setContent(this.content, "text/html; charset=utf-8");
 
-            } else if (this.sendType == MailType.TEXT) {
-                mbp.setText(this.content);
-            } else {
-                throw new UnsupportedOperationException("邮件类型只可以未MailType.HTML 或者 MailType.TEXT");
-            }
+            // 主题
+            mailMessage.setSubject(this.subject);
+            // 日期
+            mailMessage.setSentDate(new Date());
+
+            // 邮件html文本内容 和 附件
+            Multipart multipart = new MimeMultipart();
+            MimeBodyPart mbp = new MimeBodyPart();
+            mbp.setContent(this.content, "text/html; charset=utf-8");
             multipart.addBodyPart(mbp);
-            // 邮件附件
             if (this.attachFileNames != null) {
                 for (String attachFile : this.attachFileNames) {
                     MimeBodyPart mbpTemp = new MimeBodyPart();
@@ -133,16 +128,13 @@ public class SendMailProcess implements Callable<Boolean> {
                 }
             }
             mailMessage.setContent(multipart);
-            Transport.send(mailMessage);
-            flag = true;
-        } catch (MessagingException e) {
-            LOG.error("发送邮件异常：", e);
-        } catch (UnsupportedEncodingException e) {
-            LOG.error("发送邮件异常：", e);
-        } catch (UnsupportedOperationException e) {
-            LOG.error("发送邮件异常：", e);
-        }
 
+            Transport.send(mailMessage);
+
+            flag = true;
+        } catch (Exception e) {
+            LOG.error(e.getMessage(), e);
+        }
         return flag;
     }
 

@@ -12,7 +12,7 @@
 
     /*编辑 model*/
     function editModel() {
-        var rows = $("#dg").treegrid("getSelections");
+        var rows = $("#dg").datagrid("getSelections");
         if (rows.length==1) {
             var row = rows[0];
             /*有且只有一个主键*/

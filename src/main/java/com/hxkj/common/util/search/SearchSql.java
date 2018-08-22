@@ -12,14 +12,25 @@ import java.util.Enumeration;
 import java.util.Map;
 import java.util.TreeMap;
 
-
+/**
+ * 查询过滤器，将前端传递  固定格式字符串参数 解析为查询条件
+ * 仅 mysql 下测试
+ */
 public class SearchSql implements Interceptor {
+
+    // 查询字段前缀
     private final String prefix = "search_";
 
     public void intercept(Invocation ai) {
         Controller c = ai.getController();
+
+        // 获得 查询 参数
         Map<String, Object> searchParams = getParametersStartingWith(c.getRequest(), prefix);
+
+        // 获得 查询 所有的 查询 filter
         Map<String, SearchFilter> filters = SearchFilter.parse(searchParams);
+
+        // 根据 filter 获得 wheresql 语句
         String whereSql = buildFilter(filters.values());
         c.setAttr(Constant.SEARCH_SQL, whereSql);
 
@@ -46,7 +57,6 @@ public class SearchSql implements Interceptor {
 
     /**
      * 取得带相同前缀的Request Parameters, copy from spring WebUtils.
-     * <p>
      * 返回的结果的Parameter名已去除前缀.
      */
     private Map<String, Object> getParametersStartingWith(
@@ -84,6 +94,8 @@ public class SearchSql implements Interceptor {
                     sb.append(" and ");
                 }
                 sb.append(filter.fieldName);
+
+                // 此处 可能要根据数据库类型 修改
                 switch (filter.operator) {
                     case EQ:
                         sb.append(" ='").append(filter.value).append("'");
@@ -113,6 +125,7 @@ public class SearchSql implements Interceptor {
                         sb.append(" !='").append(filter.value).append("'");
                         break;
                     case IN:
+                        // 需要自己处理 (1,2,3) 还是 ('a','b','c'), 可直接由前端处理传递这样的参数
                         sb.append(" in ").append(filter.value);
                         break;
                 }

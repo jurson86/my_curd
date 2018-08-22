@@ -3,7 +3,7 @@ package com.hxkj.play.service;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import com.hxkj.common.util.ToolRandom;
+import com.hxkj.common.util.RandomUtils;
 import org.apache.commons.io.FileUtils;
 import org.apache.http.client.fluent.Content;
 import org.apache.http.client.fluent.Request;
@@ -11,6 +11,7 @@ import org.apache.log4j.Logger;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.Charset;
 import java.util.HashMap;
@@ -21,7 +22,6 @@ import java.util.concurrent.Executors;
 
 /**
  * 追书神器 api
- * TODO 提高代码质量
  */
 public class NovelService {
 
@@ -39,31 +39,36 @@ public class NovelService {
             "Mozilla/5.0 (iPad; CPU OS 9_1 like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Version/9.0 Mobile/13B143 Safari/601.1"
     };
 
-    private NovelService() {
-    }
+    private NovelService() {}
 
 
     /**
      * Get 请求代理
-     *
      * @param url
      * @return
-     * @throws IOException
      */
-    public static String getProxy(String url) throws IOException {
-        LOG.debug(url);
-        Content content = Request.Get(url)
-                .setHeader("User-Agent", userAgents[ToolRandom.number(0, userAgents.length)])
-                .execute().returnContent();
-        String resStr = content.asString(Charset.forName(charset));
-        LOG.debug(resStr);
+    public static String getProxy(String url) {
+        if(LOG.isDebugEnabled()){
+            LOG.debug(" ---- get url: "+url);
+        }
+        String resStr=null;
+        Content content;
+        try {
+            content = Request.Get(url)
+                    .setHeader("User-Agent", userAgents[RandomUtils.number(0, userAgents.length)])
+                    .execute()
+                    .returnContent();
+            resStr = content.asString(Charset.forName(charset));
+            LOG.debug(resStr);
+        } catch (IOException e) {
+            LOG.error(e.getMessage(),e);
+        }
         return resStr;
     }
 
 
     /**
      * 关键字模糊查询小说
-     *
      * @param keyword
      * @param start
      * @param limit
@@ -73,16 +78,19 @@ public class NovelService {
         String url = "http://api.zhuishushenqi.com/book/fuzzy-search?query="
                 + keyword + "&start=" + start + "&limit=" + limit;
         Map<String, Object> map = new HashMap<String, Object>();
-        try {
-            String jsonStr = getProxy(url);
+        String jsonStr = getProxy(url);
+        if(jsonStr==null){
+            map.put("code", -1);
+            map.put("message", "请求无响应数据");
+        }else{
             JSONObject jsonObject = JSON.parseObject(jsonStr);
             if (!jsonObject.getBoolean("ok")) {
-                map.put("code", -1);
                 map.put("message", jsonObject.getString("msg"));
+                map.put("code", -1);
             } else {
                 map.put("code", 1);
-                Integer total = jsonObject.getInteger("total");
                 // 允许翻1000 条
+                Integer total = jsonObject.getInteger("total");
                 if (total > 1000) {
                     map.put("total", 1000);
                 } else {
@@ -90,11 +98,8 @@ public class NovelService {
                 }
                 map.put("rows", jsonObject.get("books"));
             }
-        } catch (IOException e) {
-            LOG.error(e.getMessage());
-            map.put("code", -1);
-            map.put("message", e.getMessage());
         }
+
         return map;
 
     }
@@ -102,7 +107,6 @@ public class NovelService {
 
     /**
      * 小说分类
-     *
      * @param category
      * @param start
      * @param limit
@@ -110,12 +114,12 @@ public class NovelService {
      */
     public static Map<String, Object> category(String category, Integer start, Integer limit) {
         Map<String, Object> map = new HashMap<String, Object>();
-        try {
-            String url = "http://api.zhuishushenqi.com/book/by-categories?" +
-                    category +
-                    "&type=hot" +
-                    "&start=" + start + "&limit=" + limit;
-            String jsonStr = getProxy(url);
+        String url = "http://api.zhuishushenqi.com/book/by-categories?" + category +  "&type=hot" + "&start=" + start + "&limit=" + limit;
+        String jsonStr = getProxy(url);
+        if(jsonStr==null){
+            map.put("code", -1);
+            map.put("message", "请求无响应数据");
+        }else{
             JSONObject jsonObject = JSON.parseObject(jsonStr);
             if (!jsonObject.getBoolean("ok")) {
                 map.put("code", -1);
@@ -131,10 +135,6 @@ public class NovelService {
                 }
                 map.put("rows", jsonObject.get("books"));
             }
-        } catch (Exception e) {
-            LOG.error(e.getMessage());
-            map.put("code", -1);
-            map.put("message", e.getMessage());
         }
         return map;
 
@@ -148,9 +148,12 @@ public class NovelService {
      */
     public static Map<String, Object> novel(String nid) {
         Map<String, Object> map = new HashMap<String, Object>();
-        try {
-            String url = "http://api.zhuishushenqi.com/book/" + nid;
-            String jsonStr = getProxy(url);
+        String url = "http://api.zhuishushenqi.com/book/" + nid;
+        String jsonStr = getProxy(url);
+        if(jsonStr==null){
+            map.put("code", -1);
+            map.put("message", "请求无响应数据");
+        }else{
             JSONObject jsonObject = JSON.parseObject(jsonStr);
             if (!jsonObject.getBoolean("ok")) {
                 map.put("code", -1);
@@ -159,25 +162,23 @@ public class NovelService {
                 map.put("code", 1);
                 map.put("bookDetail", jsonObject);
             }
-        } catch (Exception e) {
-            LOG.error(e.getMessage());
-            map.put("code", -1);
-            map.put("message", e.getMessage());
         }
         return map;
     }
 
     /**
      * 章节列表
-     *
      * @param nid
      * @return
      */
     public static Map<String, Object> chapters(String nid) {
         Map<String, Object> map = new HashMap<String, Object>();
-        try {
-            String url = "http://api.zhuishushenqi.com/mix-atoc/" + nid + "?view=chapters";
-            String jsonStr = getProxy(url);
+        String url = "http://api.zhuishushenqi.com/mix-atoc/" + nid + "?view=chapters";
+        String jsonStr = getProxy(url);
+        if(jsonStr==null){
+            map.put("code", -1);
+            map.put("message", "请求无响应数据");
+        }else{
             JSONObject jsonObject = JSON.parseObject(jsonStr);
             if (!jsonObject.getBoolean("ok")) {
                 map.put("code", -1);
@@ -187,26 +188,30 @@ public class NovelService {
                 JSONObject jsonObjectTemp = (JSONObject) jsonObject.get("mixToc");
                 map.put("rows", jsonObjectTemp.get("chapters"));
             }
-        } catch (Exception e) {
-            LOG.error(e.getMessage());
-            map.put("code", -1);
-            map.put("message", e.getMessage());
         }
         return map;
     }
 
     /**
      * 章节详情
-     *
      * @param url
      * @return
      */
     public static Map<String, Object> chapter(String url) {
         Map<String, Object> map = new HashMap<String, Object>();
         try {
-            url = URLEncoder.encode(url, "utf-8");
-            String dUrl = "http://chapter2.zhuishushenqi.com/chapter/" + url;
-            String jsonStr = getProxy(dUrl);
+            url = URLEncoder.encode(url, charset);
+        } catch (UnsupportedEncodingException e) {
+            LOG.error(e.getMessage());
+            map.put("code", -1);
+            map.put("message", e.getMessage());
+        }
+        String dUrl = "http://chapter2.zhuishushenqi.com/chapter/" + url;
+        String jsonStr = getProxy(dUrl);
+        if(jsonStr==null){
+            map.put("code", -1);
+            map.put("message", "请求无响应数据");
+        }else{
             JSONObject jsonObject = JSON.parseObject(jsonStr);
             if (!jsonObject.getBoolean("ok")) {
                 map.put("code", -1);
@@ -215,35 +220,38 @@ public class NovelService {
                 map.put("code", 1);
                 map.put("chapterDetail", jsonObject.get("chapter"));
             }
-        } catch (Exception e) {
-            LOG.error(e.getMessage());
-            map.put("code", -1);
-            map.put("message", e.getMessage());
         }
         return map;
     }
 
     /**
-     * 小说文本放入 map
-     *
+     * 获得所有小说章节的文本，放入map 中
      * @param nid
      * @return
      */
     public static Map<String, Object> saveInMap(String nid) {
         Map<String, Object> map = new HashMap<String, Object>();
         StringBuilder sb = new StringBuilder();
+
+        // 章节列表
         Map<String, Object> stepOneMap = chapters(nid);
         Integer stepOneCode = (Integer) stepOneMap.get("code");
+
+        // 章节列表 获取失败
         if (stepOneCode == -1) {
             return stepOneMap;
         }
-        JSONArray jsonArray = (JSONArray) stepOneMap.get("rows");
 
+        JSONArray jsonArray = (JSONArray) stepOneMap.get("rows");
         Iterator it = jsonArray.iterator();
         int count = 1;
         while (it.hasNext()) {
             JSONObject chapterObj = (JSONObject) it.next();
+
+            // 可以免费阅读的章节
             if (!chapterObj.getBoolean("unreadble")) {
+
+                // 获得 章节 文本
                 Map<String, Object> stepTwoMap = chapter(chapterObj.getString("link"));
                 Integer stepTwoCode = (Integer) stepTwoMap.get("code");
                 if (stepTwoCode == 1) {
@@ -255,27 +263,30 @@ public class NovelService {
             }
         }
         map.put("code", 1);
+        // 小说所有章节的文本
         map.put("content", sb);
         return map;
     }
 
 
     /**
-     * 小说文本存入 文件中
-     *
+     * 获得所有小说章节的文本，放入 txt 文件 中
      * @param nid
      * @param txtFile
      * @return
      */
     public static Map<String, Object> saveToTxt(String nid, File txtFile) {
         Map<String, Object> map = new HashMap<String, Object>();
+
+        // 所有章节列表
         Map<String, Object> stepOneMap = chapters(nid);
         Integer stepOneCode = (Integer) stepOneMap.get("code");
         if (stepOneCode == -1) {
             return stepOneMap;
         }
-        JSONArray jsonArray = (JSONArray) stepOneMap.get("rows");
 
+        // 所有章节文本写入到文件中
+        JSONArray jsonArray = (JSONArray) stepOneMap.get("rows");
         Iterator it = jsonArray.iterator();
         int count = 1;
         while (it.hasNext()) {
@@ -296,6 +307,7 @@ public class NovelService {
                 }
             }
         }
+
         map.put("code", 1);
         map.put("path", txtFile.getAbsolutePath());
         return map;
@@ -303,8 +315,9 @@ public class NovelService {
 
 
     /**
-     * web 环境下应该使用 全局 的线程池, 使用Callable 而不是 Runnable
-     *
+     * 快速 获得所有小说章节的文本，放入map 中
+     * web 环境下 用户量少适用
+     * 线程池结合  CountDownLatch 效果更好
      * @param nid
      * @return
      */
@@ -312,14 +325,18 @@ public class NovelService {
         ExecutorService executorService = Executors.newFixedThreadPool(5);
         Map<String, Object> map = new HashMap<String, Object>();
         StringBuilder sb = new StringBuilder();
+
+        // 所有章节链接列表
         Map<String, Object> stepOneMap = chapters(nid);
         Integer stepOneCode = (Integer) stepOneMap.get("code");
         if (stepOneCode == -1) {
             return stepOneMap;
         }
+
+
         JSONArray jsonArray = (JSONArray) stepOneMap.get("rows");
         Iterator it = jsonArray.iterator();
-        // 创建任务，执行或者放入到线程池任务队列中
+        // 线程池运行 抓取任务
         while (it.hasNext()) {
             JSONObject jsonObject = (JSONObject) it.next();
             executorService.execute(new Runnable() {
@@ -345,11 +362,12 @@ public class NovelService {
                 while (it2.hasNext()) {
                     JSONObject jsonObject = (JSONObject) it2.next();
                     sb.append(jsonObject.getString("title") + "(" + count + ") \n" + jsonObject.getString("body") + " \n");
-                    //System.out.println("count: " + count + jsonObject.getString("title"));
                     count++;
                 }
                 break;
             }
+
+            // 限制检查频率
             try {
                 Thread.sleep(1000);
             } catch (InterruptedException e) {
@@ -362,6 +380,12 @@ public class NovelService {
     }
 
 
+    /**
+     * 快速 获得所有小说章节的文本，放入 txt 文件 中
+     * web 环境下 用户量少适用
+     * @param nid
+     * @return
+     */
     public static Map<String, Object> saveToTxtQuick(String nid, File txtFile) {
         Map<String, Object> map = new HashMap<String, Object>();
         ExecutorService executorService = Executors.newFixedThreadPool(5);
@@ -414,21 +438,6 @@ public class NovelService {
         map.put("code", 1);
         map.put("path", txtFile.getAbsolutePath());
         return map;
-    }
-
-
-    public static void main(String[] args) {
-        // 发送异常邮件测试
-        int x;
-        for (int i = 0; i < 3; i++) {
-            try {
-                x = i / i;
-                System.out.println(x);
-            } catch (Exception e) {
-                LOG.error("index: " + i, e);
-            }
-            LOG.info("good morning: " + i);
-        }
     }
 
 }

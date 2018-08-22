@@ -115,7 +115,7 @@
         <!--markdown 解析-->
         <dependency>
             <groupId>com.vladsch.flexmark</groupId>
-            <artifactId>flexmark-all</artifactId>
+            <artifactId>flexmark</artifactId>
             <version>0.34.0</version>
         </dependency>
 
@@ -261,6 +261,18 @@
                     <compilerArguments>
                         <extdirs>src/main/webapp/WEB-INF/lib</extdirs>
                     </compilerArguments>
+                </configuration>
+            </plugin>
+            <!-- jetty 应用热部署, IDEA 需要配合使用 ctrl + f9  -->
+            <plugin>
+                <groupId>org.eclipse.jetty</groupId>
+                <artifactId>jetty-maven-plugin</artifactId>
+                <version>9.3.11.v20160721</version>
+                <configuration>
+                    <scanIntervalSeconds>5</scanIntervalSeconds>
+                    <httpConnector>
+                        <port>80</port>
+                    </httpConnector>
                 </configuration>
             </plugin>
         </plugins>

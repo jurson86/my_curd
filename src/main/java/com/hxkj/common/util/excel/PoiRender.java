@@ -1,5 +1,6 @@
 package com.hxkj.common.util.excel;
 
+import com.hxkj.common.util.StringUtils;
 import com.jfinal.render.Render;
 import com.jfinal.render.RenderException;
 import org.apache.log4j.Logger;
@@ -8,7 +9,9 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.util.List;
 
-@SuppressWarnings("serial")
+/**
+ * POI render, jfinal excel 导出
+ */
 public class PoiRender extends Render {
 
     private final static String CONTENT_TYPE = "application/msexcel;charset=" + getEncoding();
@@ -57,7 +60,8 @@ public class PoiRender extends Render {
     @Override
     public void render() {
         response.reset();
-        response.setHeader("Content-disposition", "attachment; filename=" + fileName);
+        fileName = StringUtils.encodeFileName(request,fileName);
+        response.setHeader("Content-disposition", "attachment;" + fileName);
         response.setContentType(CONTENT_TYPE);
         OutputStream os = null;
         try {
@@ -65,6 +69,7 @@ public class PoiRender extends Render {
             PoiKit.with(data).sheetName(sheetName).headerRow(headerRow).headers(headers).columns(columns)
                     .cellWidth(cellWidth).export().write(os);
         } catch (Exception e) {
+            LOG.error(e.getMessage(),e);
             throw new RenderException(e);
         } finally {
             try {

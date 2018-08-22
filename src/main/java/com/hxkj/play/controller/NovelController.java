@@ -1,8 +1,8 @@
 package com.hxkj.play.controller;
 
 import com.alibaba.fastjson.JSONObject;
-import com.hxkj.common.util.BaseController;
-import com.hxkj.common.util.ToolString;
+import com.hxkj.common.controller.BaseController;
+import com.hxkj.common.util.StringUtils;
 import com.hxkj.play.service.NovelService;
 import com.jfinal.kit.StrKit;
 
@@ -92,7 +92,7 @@ public class NovelController extends BaseController {
         }
         StringBuilder sb = (StringBuilder) map.get("content");
         getResponse().setHeader("Accept-Ranges", "bytes");
-        getResponse().setHeader("Content-Disposition", "attachment;" + ToolString.encodeFileName(getRequest(), title + ".txt"));
+        getResponse().setHeader("Content-Disposition", "attachment;" + StringUtils.encodeFileName(getRequest(), title + ".txt"));
         renderText(sb.toString());
 
     }

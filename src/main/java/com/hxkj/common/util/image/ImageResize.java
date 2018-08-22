@@ -25,7 +25,6 @@ public abstract class ImageResize {
 
     /**
      * 图片缩放
-     *
      * @param oldPath 原图像
      * @param newPath 压缩后的图像
      * @param width   图像宽
@@ -82,13 +81,11 @@ public abstract class ImageResize {
                 fis.close();
             } catch (IOException e) {
                 LOG.error(e.getMessage());
-                e.printStackTrace();
             }
             try {
                 byteStream.close();
             } catch (IOException e) {
                 LOG.error(e.getMessage());
-                e.printStackTrace();
             }
         }
     }
@@ -102,7 +99,6 @@ public abstract class ImageResize {
         if (imageWidth < 1) {
             throw new IllegalArgumentException("image width " + imageWidth + " is out of range");
         }
-
         int imageHeight = image.getHeight(null);
         if (imageHeight < 1) {
             throw new IllegalArgumentException("image height " + imageHeight + " is out of range");
@@ -137,7 +133,6 @@ public abstract class ImageResize {
         if (outputHeight < 1) {
             throw new IllegalArgumentException("output image height " + outputHeight + " is out of range");
         }
-        // Get a buffered image from the image.
         BufferedImage bi = new BufferedImage(outputWidth, outputHeight, BufferedImage.TYPE_INT_RGB);
         Graphics2D biContext = bi.createGraphics();
         biContext.drawImage(outputImage, 0, 0, null);
@@ -148,7 +143,6 @@ public abstract class ImageResize {
 
     /**
      * 缩放gif图片
-     *
      * @param originalFile 原图片
      * @param resizedFile  缩放后的图片
      * @param newWidth     宽度
@@ -162,7 +156,6 @@ public abstract class ImageResize {
         FileOutputStream out = null;
         try {
             ImageIcon ii = new ImageIcon(originalFile.getCanonicalPath());
-
             Image i = ii.getImage();
             Image resizedImage = null;
             int iWidth = i.getWidth(null);
@@ -172,39 +165,30 @@ public abstract class ImageResize {
             } else {
                 resizedImage = i.getScaledInstance((newWidth * iWidth) / iHeight, newWidth, Image.SCALE_SMOOTH);
             }
-            // This code ensures that all the pixels in the image are loaded.
             Image temp = new ImageIcon(resizedImage).getImage();
-            // Create the buffered image.
             BufferedImage bufferedImage = new BufferedImage(temp.getWidth(null), temp.getHeight(null), BufferedImage.TYPE_INT_RGB);
-            // Copy image to buffered image.
             Graphics g = bufferedImage.createGraphics();
-            // Clear background and paint the image.
             g.setColor(Color.white);
             g.fillRect(0, 0, temp.getWidth(null), temp.getHeight(null));
             g.drawImage(temp, 0, 0, null);
             g.dispose();
-            // Soften.
             float softenFactor = 0.05f;
             float[] softenArray = {0, softenFactor, 0, softenFactor, 1 - (softenFactor * 4), softenFactor, 0, softenFactor, 0};
             Kernel kernel = new Kernel(3, 3, softenArray);
             ConvolveOp cOp = new ConvolveOp(kernel, ConvolveOp.EDGE_NO_OP, null);
             bufferedImage = cOp.filter(bufferedImage, null);
-            // Write the jpeg to a file.
             out = new FileOutputStream(resizedFile);
-            // Encodes image as a JPEG data stream
             JPEGImageEncoder encoder = JPEGCodec.createJPEGEncoder(out);
             JPEGEncodeParam param = encoder.getDefaultJPEGEncodeParam(bufferedImage);
             param.setQuality(quality, true);
             encoder.setJPEGEncodeParam(param);
             encoder.encode(bufferedImage);
         } catch (IOException e) {
-            e.printStackTrace();
             LOG.error(e.getMessage());
         } finally {
             try {
                 out.close();
             } catch (IOException e) {
-                e.printStackTrace();
                 LOG.error(e.getMessage());
             }
         }

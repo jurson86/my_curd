@@ -1,14 +1,15 @@
-package com.hxkj.user.controller;
+package com.hxkj.common.controller;
 
 import com.hxkj.auth.model.AuthUser;
-import com.hxkj.common.util.BaseController;
 import com.jfinal.aop.Before;
+import com.jfinal.aop.Clear;
 import com.jfinal.kit.HashKit;
 import com.jfinal.plugin.activerecord.tx.Tx;
 
+@Clear
 public class UserPasswordController extends BaseController {
 
-    private final static String INDEX = "user/userPass.html";
+    private final static String INDEX = "common/userPass.html";
 
     public void index() {
         AuthUser authUser = getSessionUser();

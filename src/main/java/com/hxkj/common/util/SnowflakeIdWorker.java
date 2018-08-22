@@ -13,8 +13,6 @@ package com.hxkj.common.util;
  * SnowFlake的优点是，整体上按照时间自增排序，并且整个分布式系统内不会产生ID碰撞(由数据中心ID和机器ID作区分)，并且效率较高，经测试，SnowFlake每秒能够产生26万ID左右。
  */
 public class SnowflakeIdWorker {
-
-    // ==============================Fields===========================================
     /**
      * 开始时间截 (2015-01-01)
      */
@@ -85,8 +83,6 @@ public class SnowflakeIdWorker {
      */
     private long lastTimestamp = -1L;
 
-    //==============================Constructors=====================================
-
     /**
      * 构造函数
      *
@@ -104,14 +100,13 @@ public class SnowflakeIdWorker {
         this.datacenterId = datacenterId;
     }
 
-    // ==============================Methods==========================================
 
     /**
      * 测试
      */
     public static void main(String[] args) {
         SnowflakeIdWorker idWorker = new SnowflakeIdWorker(0, 0);
-        for (int i = 0; i < 10000; i++) {
+        for (int i = 0; i < 1000000; i++) {
             long id = idWorker.nextId();
             //System.out.println(Long.toBinaryString(id));
             System.out.println(id);
@@ -158,7 +153,6 @@ public class SnowflakeIdWorker {
 
     /**
      * 阻塞到下一个毫秒，直到获得新的时间戳
-     *
      * @param lastTimestamp 上次生成ID的时间截
      * @return 当前时间戳
      */
@@ -170,11 +164,9 @@ public class SnowflakeIdWorker {
         return timestamp;
     }
 
-    //==============================Test=============================================
 
     /**
      * 返回以毫秒为单位的当前时间
-     *
      * @return 当前时间(毫秒)
      */
     protected long timeGen() {

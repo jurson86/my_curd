@@ -23,7 +23,7 @@ var popup = {
             maxmin: true,
             shadeClose: true,
             area: [width || '80%', height || '90%'],
-            offset: '30px',
+            offset: top.location==self.location ? 'auto':'30px',
             content: [url]
         });
     },
@@ -34,7 +34,7 @@ var popup = {
             skin: skin || layerSkin.lan,
             shadeClose: true,
             area: [width || '80%', height || '90%'],
-            offset: '30px',
+            offset: top.location==self.location ? 'auto':'30px',
             title: [title, 'line-height:30px;height:30px;padding: 0 10px'],
             closeBtn: 1, /*显示关闭按钮*/
             content: content
@@ -43,7 +43,7 @@ var popup = {
     openConfirm:function(icon, title, msg, yesFun, noFun){
         layer.confirm(msg, {
             icon: icon,
-            offset:['30px','200px'],
+            offset:top.location==self.location ? 'auto':['30px','200px'],
             title: [title, 'line-height:30px;height:30px;padding: 0 10px'],
             btn: ['确定', '取消']
         }, function () {
@@ -59,7 +59,7 @@ var popup = {
     },
     /*普通提示*/
     msg: function (msg,cbk) {
-        const that = this;
+        var that = this;
         /*easyui form submit 没有 error500 监听，后台发生500 错误会跳转到500.html页面，此处判断包含html标签认为发生500错误*/
         if (msg.indexOf('<') >= 0) {
             that.errMsg();

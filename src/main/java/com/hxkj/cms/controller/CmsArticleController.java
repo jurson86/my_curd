@@ -10,7 +10,7 @@ import com.jfinal.kit.StrKit;
 import com.jfinal.plugin.activerecord.tx.Tx;
 
 import com.hxkj.common.constant.Constant;
-import com.hxkj.common.util.BaseController;
+import com.hxkj.common.controller.BaseController;
 import com.hxkj.common.util.Identities;
 import com.hxkj.common.util.search.SearchSql;
 import com.hxkj.cms.model.CmsArticle;

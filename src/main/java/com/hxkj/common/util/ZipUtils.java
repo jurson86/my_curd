@@ -13,30 +13,25 @@ import java.util.zip.ZipOutputStream;
 /**
  * 文件压缩方法
  * https://www.cnblogs.com/zeng1994/p/7862288.html 有扩展
- * 用途： 文件批量下载
- *       1. 实际存在的文件批量下载
- *       2. 批量处理数据，批量下载（例如发票xml导出, 多条数据根据模板生成xml后打包下载)
  * @author chuang
  * @date 2018-06-20 18:56:48
  */
-public class ZipUtil {
+public class ZipUtils {
 
-    private final static Logger LOG = Logger.getLogger(ZipUtil.class);
+    private final static Logger LOG = Logger.getLogger(ZipUtils.class);
 
     private static final int BUFFER_SIZE = 2 * 1024;
 
     /**
      *
      * 压缩文件夹
-     *
      * @param srcDir           压缩文件夹路径
      * @param out              压缩文件输出流
-     * @param KeepDirStructure 是否保留原来的目录结构,true:保留目录结构;
+     * @param KeepDirStructure 是否保留原来的目录结构
+     *                         true:保留目录结构;
      *                         false:所有文件跑到压缩包根目录下(注意：不保留目录结构可能会出现同名文件,会压缩失败)
-     * @throws RuntimeException 压缩失败会抛出运行时异常
      */
-    public static void toZip(String srcDir, OutputStream out, boolean KeepDirStructure)
-            throws RuntimeException {
+    public static void toZip(String srcDir, OutputStream out, boolean KeepDirStructure){
         ZipOutputStream zos = null;
         try {
             zos = new ZipOutputStream(out);
@@ -44,21 +39,17 @@ public class ZipUtil {
             compress(sourceFile, zos, sourceFile.getName(), KeepDirStructure);
         } catch (Exception e) {
             LOG.error(e.getMessage(),e);
-            throw new RuntimeException("zip error from ZipUtils", e);
         } finally {
             close(zos);
         }
-
     }
 
     /**
      * 文件列表压缩
-     *
      * @param srcFiles 需要压缩的文件列表
      * @param out      压缩文件输出流
-     * @throws RuntimeException 压缩失败会抛出运行时异常
      */
-    public static void toZip(List<File> srcFiles, OutputStream out) throws RuntimeException {
+    public static void toZip(List<File> srcFiles, OutputStream out){
         ZipOutputStream zos = null;
         try {
             zos = new ZipOutputStream(out);
@@ -75,7 +66,6 @@ public class ZipUtil {
             }
         } catch (Exception e) {
             LOG.error(e.getMessage(),e);
-            throw new RuntimeException("zip error from ZipUtils", e);
         } finally {
             close(zos);
         }
@@ -88,7 +78,7 @@ public class ZipUtil {
      * @param out
      * @throws RuntimeException
      */
-    public static void toZip(List<String> srcDatas,List<String> srcFilenames, OutputStream out) throws RuntimeException {
+    public static void toZip(List<String> srcDatas,List<String> srcFilenames, OutputStream out){
         if(srcDatas==null || srcFilenames==null
                 || srcDatas.size()==0 || srcFilenames.size()==0
                 || srcDatas.size()!=srcFilenames.size()){
@@ -105,7 +95,6 @@ public class ZipUtil {
             }
         } catch (Exception e) {
             LOG.error(e.getMessage(),e);
-            throw new RuntimeException("zip error from ZipUtils", e);
         } finally {
             close(zos);
         }
@@ -115,7 +104,6 @@ public class ZipUtil {
 
     /**
      * 递归压缩方法
-     *
      * @param sourceFile       源文件
      * @param zos              zip输出流
      * @param name             压缩后的名称
@@ -169,7 +157,7 @@ public class ZipUtil {
      * 关闭输出流
      * @param out
      */
-    public  static  void close(OutputStream out){
+    private  static  void close(OutputStream out){
         if (out != null) {
             try {
                 out.close();

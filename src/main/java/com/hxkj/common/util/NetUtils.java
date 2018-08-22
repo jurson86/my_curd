@@ -13,49 +13,43 @@ import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
-public abstract class ToolNet {
+public abstract class NetUtils {
 
-    private final static Logger LOG = Logger.getLogger(ToolNet.class);
-
-    private ToolNet() {
-    }
-
+    private final static Logger LOG = Logger.getLogger(NetUtils.class);
     /**
      * 本机IP
-     *
      * @return
      */
     public static String ip() {
+        String ip = null;
         try {
             InetAddress addr = InetAddress.getLocalHost();
-            return addr.getHostAddress();
+            ip =  addr.getHostAddress();
         } catch (UnknownHostException e) {
-            e.printStackTrace();
+            LOG.error(e.getMessage(),e);
         }
-        return null;
+        return ip;
     }
 
     /**
      * 本机名称
-     *
      * @return
      */
     public static String name() {
+        String hostName = null;
         try {
             InetAddress addr = InetAddress.getLocalHost();
-            return addr.getHostName();
+            hostName = addr.getHostName();
         } catch (UnknownHostException e) {
             LOG.error(e.getMessage());
-            e.printStackTrace();
         }
-        return null;
+        return hostName;
     }
 
     /**
      * ping ip并返回结果
-     *
      * @param ip
-     * @return 描述apache-common-exec 示例
+     * @return 描述 apache-common-exec 示例
      */
     public static String ping(String ip) {
         String encode = "GBK";
@@ -84,7 +78,6 @@ public abstract class ToolNet {
 
     /**
      * 验证网络是否畅通
-     *
      * @param ip
      * @param port
      * @param timeout
@@ -106,7 +99,6 @@ public abstract class ToolNet {
                     tc.disconnect();
                 } catch (IOException e) {
                     LOG.error(e.getMessage());
-                    e.printStackTrace();
                 }
             }
         }
@@ -114,7 +106,6 @@ public abstract class ToolNet {
 
     /**
      * 验证网络是否畅通
-     *
      * @param ip
      * @param port
      * @param timeout
@@ -136,15 +127,9 @@ public abstract class ToolNet {
                     socket.close();
                 } catch (IOException e) {
                     LOG.error(e.getMessage());
-                    e.printStackTrace();
                 }
             }
         }
-    }
-
-    public static void main(String[] args) {
-        System.out.println(name());
-        System.out.println(ip());
     }
 
 }

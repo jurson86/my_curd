@@ -5,6 +5,8 @@ package com.hxkj.common.constant;
  */
 public class Constant {
 
+    public final static  String DEFAULT_ENCODEING = "UTF-8";
+
     // 当前系统登录的 用户
     public final static String AUTH_USER = "auth_user";
     public final static String AUTH_USER_NAME = "auth_user_name";
@@ -18,7 +20,10 @@ public class Constant {
     // 当前登录的用户的权限菜单
     public final static String OWN_MENU = "own_menu";
 
+    // 查询 过滤器 使用
     public final static String SEARCH_SQL = "search_sql";
+
+    // 部署服务器 域名（如有防盗链需求）
     public final static String DOMAIN_KEY = "domain_key";
 
     /*增、删、改 操作信息*/

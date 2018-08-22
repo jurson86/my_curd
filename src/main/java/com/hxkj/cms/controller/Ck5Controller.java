@@ -1,6 +1,6 @@
 package com.hxkj.cms.controller;
 
-import com.hxkj.common.util.BaseController;
+import com.hxkj.common.controller.BaseController;
 
 /**
  * ckeditor5 测试例子

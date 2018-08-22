@@ -7,14 +7,9 @@ import java.util.Set;
 import java.util.StringTokenizer;
 
 /**
- * SQL格式化处理
+ * SQL 字符串处理工具
  */
-
-public abstract class ToolSql {
-
-    private ToolSql() {
-    }
-
+public abstract class SqlUtils {
     /**
      * sql格式化方法
      */

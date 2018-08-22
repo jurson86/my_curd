@@ -1,8 +1,8 @@
 package com.hxkj.cms.controller;
 
 import com.hxkj.auth.model.AuthUser;
-import com.hxkj.common.util.BaseController;
-import com.hxkj.common.util.FileTool;
+import com.hxkj.common.controller.BaseController;
+import com.hxkj.common.util.FileUtils;
 import com.hxkj.common.util.Identities;
 import com.hxkj.data.model.DataFile;
 import com.jfinal.aop.Clear;
@@ -10,7 +10,6 @@ import com.jfinal.kit.PathKit;
 import com.jfinal.kit.Prop;
 import com.jfinal.kit.PropKit;
 import com.jfinal.upload.UploadFile;
-import org.apache.commons.io.FileUtils;
 import org.apache.log4j.Logger;
 
 import java.io.File;
@@ -50,7 +49,7 @@ public class ImgUploadController extends BaseController {
                 newFileName = pre + "/" + newFileName;
                 File newFile = new File(newFileName);
                 try{
-                    FileUtils.copyFile(uploadFile.getFile(), newFile);
+                    org.apache.commons.io.FileUtils.copyFile(uploadFile.getFile(), newFile);
                     if (uploadFile.getFile().exists()) {
                         uploadFile.getFile().delete();
                     }
@@ -61,8 +60,8 @@ public class ImgUploadController extends BaseController {
                     dataFile.setUserId(authUser.getId());
                     dataFile.setOriginalFilename(filename);
                     dataFile.setPath(relativePath);
-                    dataFile.setMime(FileTool.getMime(newFile.getAbsolutePath()));
-                    dataFile.setSize(FileUtils.sizeOfAsBigInteger(newFile));
+                    dataFile.setMime(FileUtils.getMime(newFile.getAbsolutePath()));
+                    dataFile.setSize(org.apache.commons.io.FileUtils.sizeOfAsBigInteger(newFile));
                     dataFile.setRemark(getPara("remark"));
                     dataFile.setType(filenameSuf);
                     dataFile.setCreateTime(new Date());

@@ -5,7 +5,7 @@ import com.hxkj.play.controller.NovelController;
 import com.jfinal.config.Routes;
 
 /**
- * 一些玩具
+ * 一些玩具，测试的功能
  * @author chuang
  * @date 2018-06-20 18:56:48
  */

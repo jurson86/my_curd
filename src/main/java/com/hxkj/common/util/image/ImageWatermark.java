@@ -2,6 +2,7 @@ package com.hxkj.common.util.image;
 
 import com.sun.image.codec.jpeg.JPEGCodec;
 import com.sun.image.codec.jpeg.JPEGImageEncoder;
+import org.apache.log4j.Logger;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -13,9 +14,11 @@ import java.io.FileOutputStream;
  * 图片水印处理
  */
 public abstract class ImageWatermark {
+
+    private final static  Logger LOG = Logger.getLogger(ImageWatermark.class);
+
     /**
      * 把图片印刷到图片上
-     *
      * @param pressImg  -- 水印文件
      * @param targetImg -- 目标文件
      * @param x
@@ -43,7 +46,7 @@ public abstract class ImageWatermark {
             encoder.encode(image);
             out.close();
         } catch (Exception e) {
-            e.printStackTrace();
+            LOG.error(e.getMessage(),e);
         }
     }
 
@@ -77,7 +80,7 @@ public abstract class ImageWatermark {
             encoder.encode(image);
             out.close();
         } catch (Exception e) {
-            System.out.println(e);
+            LOG.error(e.getMessage(),e);
         }
     }
 }

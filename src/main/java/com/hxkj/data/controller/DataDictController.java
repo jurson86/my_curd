@@ -2,7 +2,7 @@ package com.hxkj.data.controller;
 
 import com.google.common.base.Preconditions;
 import com.hxkj.common.constant.Constant;
-import com.hxkj.common.util.BaseController;
+import com.hxkj.common.controller.BaseController;
 import com.hxkj.common.util.search.SearchSql;
 import com.hxkj.data.model.DataDict;
 import com.jfinal.aop.Before;

@@ -1,9 +1,9 @@
 package com.hxkj.sys.service;
 
 import com.alibaba.fastjson.JSON;
-import com.hxkj.common.util.ToolDateTime;
-import com.hxkj.common.util.ToolFreeMarker;
-import com.hxkj.common.util.code_generator.Table;
+import com.hxkj.common.util.DateTimeUtils;
+import com.hxkj.common.util.FreemarkerUtils;
+import com.hxkj.common.util.codegenerator.Table;
 import com.jfinal.kit.PathKit;
 import com.jfinal.kit.Prop;
 import com.jfinal.kit.PropKit;
@@ -102,7 +102,7 @@ public class CodeGeneratorService {
             content.put("moduleName", moduleName);
             content.put("basePackageName", this.basePackageName);
             content.put("table", table);
-            content.put("generateDate", ToolDateTime.format(new Date(), ToolDateTime.pattern_ymd_hms));
+            content.put("generateDate", DateTimeUtils.format(new Date(), DateTimeUtils.pattern_ymd_hms));
             for (int i = 0; i < this.templates.length; i++) {
                 String fileName;
                 // .java 文件 使用 首字母大写的驼峰, 非java 文件使用驼峰命名
@@ -113,7 +113,7 @@ public class CodeGeneratorService {
                 }
                 fileName = fileName.replaceAll("\\\\", "/");
                 LOG.debug("fileName:  " + fileName);
-                ToolFreeMarker.makeHtml(tplDir, templates[i], content, fileName);
+                FreemarkerUtils.renderToFile(tplDir, templates[i], content, fileName);
                 outPathList.add(fileName);
             }
         }

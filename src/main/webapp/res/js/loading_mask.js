@@ -1,8 +1,8 @@
 var loadingMask = {
     loadingImg: "/res/image/loading.gif",
     loadingTxt:'加载中...',
-    createMask:function(){
-        const that = this;
+    createMask:function(){var
+         that = this;
 
         var clientHeight=document.documentElement.clientHeight;
         var clientWidth=document.documentElement.clientWidth;
@@ -15,7 +15,7 @@ var loadingMask = {
         + loadingLeft + 'px; top:' + loadingTop + 'px; width:100px;height: 57px; line-height: 57px; padding-left: 50px; padding-right: 5px;' +
         ' background:  url(' + that.loadingImg + ') no-repeat scroll 5px 8px;  color: #696969 ; "> '+that.loadingTxt+'</div></div>';
 
-        console.log("----maskhtml:\n"+html);
+        //console.log("----maskhtml:\n"+html);
 
         document.write(html);
     },
@@ -25,7 +25,7 @@ var loadingMask = {
     },
     /*外部调用*/
     bindInit:function(){
-        const that = this;
+        var that = this;
         that.createMask();
         document.onreadystatechange = function(){
             if (document.readyState == "complete") {

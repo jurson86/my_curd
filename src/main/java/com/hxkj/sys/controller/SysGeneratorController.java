@@ -3,9 +3,9 @@ package com.hxkj.sys.controller;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import com.hxkj.common.util.BaseController;
-import com.hxkj.common.util.code_generator.SchemaInfoUtil;
-import com.hxkj.common.util.code_generator.Table;
+import com.hxkj.common.controller.BaseController;
+import com.hxkj.common.util.codegenerator.TableMetaUtils;
+import com.hxkj.common.util.codegenerator.Table;
 import com.hxkj.sys.service.CodeGeneratorService;
 import com.jfinal.kit.LogKit;
 import com.jfinal.kit.Ret;
@@ -22,11 +22,12 @@ import java.util.List;
  */
 public class SysGeneratorController extends BaseController {
 
-    public static SchemaInfoUtil schemaInfoUtil;
+    public static TableMetaUtils schemaInfoUtil;
 
     static {
+        System.err.println("----------------------------------------config size:"+DbKit.getConfigSet().size());
         Config config = DbKit.getConfig();
-        schemaInfoUtil = new SchemaInfoUtil(config.getDialect(), config.getDataSource());
+        schemaInfoUtil = new TableMetaUtils(config.getDialect(), config.getDataSource());
     }
 
     public void index() {

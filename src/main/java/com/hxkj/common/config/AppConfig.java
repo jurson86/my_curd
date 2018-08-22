@@ -11,6 +11,7 @@ import com.hxkj.websocket.handler.WebSocketHandler;
 import com.jfinal.config.*;
 import com.jfinal.ext.handler.ContextPathHandler;
 import com.jfinal.json.MixedJsonFactory;
+import com.jfinal.kit.Prop;
 import com.jfinal.kit.PropKit;
 import com.jfinal.plugin.activerecord.ActiveRecordPlugin;
 import com.jfinal.plugin.activerecord.dialect.MysqlDialect;
@@ -35,12 +36,13 @@ public class AppConfig extends JFinalConfig {
      */
     @Override
     public void configConstant(Constants me) {
-        PropKit.use("config.properties");
-        me.setDevMode(PropKit.getBoolean("devMode"));
+        Prop configProp = PropKit.use("config.properties");
+        me.setDevMode(configProp.getBoolean("devMode"));
+
         me.setBaseUploadPath("upload");
-        // 10M
-        me.setMaxPostSize(10 * 1024 * 1000);
+        me.setMaxPostSize(10 * 1024 * 1000); // 10M
         me.setBaseDownloadPath("download");
+
         me.setViewType(ViewType.FREE_MARKER);
         me.setError403View(Constant.VIEW_PATH + "common/403.html");
         me.setError404View(Constant.VIEW_PATH + "common/404.html");
@@ -58,11 +60,19 @@ public class AppConfig extends JFinalConfig {
      */
     @Override
     public void configRoute(Routes me) {
+        // 权限管理
         me.add(new AuthRoute());
+        // 基础数据
         me.add(new DataRoute());
+        // 系统管理
         me.add(new SysRoute());
-        me.add(new UserRoute());
+
+        // 公共的，不需要权限控制的路由
+        me.add(new CommonRoute());
+
+        // 玩
         me.add(new PlayRoute());
+        // cms 管理
         me.add(new cmsRoute());
         // websocket 入口
         me.add("/ws", WebsocketController.class, Constant.VIEW_PATH);
@@ -74,21 +84,35 @@ public class AppConfig extends JFinalConfig {
      */
     @Override
     public void configPlugin(Plugins me) {
-        // druid 数据库连接池插件
-        DruidPlugin dbPlugin = new DruidPlugin(PropKit.get("jdbcUrl"), PropKit.get("user"), PropKit.get("password"));
-        // druid 监控
-        dbPlugin.addFilter(new StatFilter());
-        WallFilter wall = new WallFilter();
-        wall.setDbType("mysql");
-        dbPlugin.addFilter(wall);
+        Prop configProp = PropKit.use("config.properties");
+        Prop databaseProp = PropKit.use("database.properties");
 
-        // ActiveRecord 插件
-        ActiveRecordPlugin arp = new ActiveRecordPlugin(dbPlugin);
-        arp.setShowSql(PropKit.getBoolean("devMode"));
-        arp.setDialect(new MysqlDialect());
-        MappingKit.mapping(arp);
-        me.add(dbPlugin);
-        me.add(arp);
+        // my_curd 框架 数据源
+        DruidPlugin baseDruidPlugin = new DruidPlugin(databaseProp.get("base.jdbcUrl"), databaseProp.get("base.user"), databaseProp.get("base.password"));
+        // ... 更多的 数据源配置
+        baseDruidPlugin.addFilter(new StatFilter());
+        WallFilter wall = new WallFilter();
+        wall.setDbType(databaseProp.get("base.dbType"));
+        baseDruidPlugin.addFilter(wall);
+        me.add(baseDruidPlugin);
+        ActiveRecordPlugin baseArp = new ActiveRecordPlugin("mysql_base",baseDruidPlugin);
+        baseArp.setShowSql(configProp.getBoolean("devMode"));
+        baseArp.setDialect(new MysqlDialect());
+        MappingKit.mapping(baseArp);
+        me.add(baseArp);
+
+        // 业务数据源
+        DruidPlugin businessDruidPlugin = new DruidPlugin(databaseProp.get("business.jdbcUrl"), databaseProp.get("business.user"), databaseProp.get("business.password"));
+        // ... 更多的 数据源配置
+        businessDruidPlugin.addFilter(new StatFilter());
+        WallFilter businessWallFilter = new WallFilter();
+        businessWallFilter.setDbType(databaseProp.get("business.dbType"));
+        businessDruidPlugin.addFilter(businessWallFilter);
+        me.add(businessDruidPlugin);
+        ActiveRecordPlugin businessArp = new ActiveRecordPlugin("mysql_business",businessDruidPlugin);
+        businessArp.setShowSql(configProp.getBoolean("devMode"));
+        businessArp.setDialect(new MysqlDialect());
+        me.add(businessArp);
     }
 
     /**

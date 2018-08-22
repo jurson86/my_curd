@@ -1,12 +1,9 @@
-package com.hxkj.common.util.code_generator;
+package com.hxkj.common.util.codegenerator;
 
-import com.jfinal.kit.JsonKit;
 import com.jfinal.kit.StrKit;
-import com.jfinal.plugin.activerecord.DbKit;
 import com.jfinal.plugin.activerecord.dialect.Dialect;
 import com.jfinal.plugin.activerecord.dialect.MysqlDialect;
 import com.jfinal.plugin.activerecord.generator.TypeMapping;
-import com.jfinal.plugin.druid.DruidPlugin;
 import org.apache.log4j.Logger;
 
 import javax.sql.DataSource;
@@ -19,49 +16,43 @@ import java.util.Map;
 /**
  * 数据库表信息 转换
  */
-public class SchemaInfoUtil {
-    private final static Logger LOG = Logger.getLogger(SchemaInfoUtil.class);
+public class TableMetaUtils {
+    private final static Logger LOG = Logger.getLogger(TableMetaUtils.class);
+
     private Dialect dialect;
-    private DataSource ds;
+    private DataSource dataSource;
     private TypeMapping typeMapping;
 
-    public SchemaInfoUtil(Dialect dialect, DataSource ds) {
+    public TableMetaUtils(Dialect dialect, DataSource dataSource) {
         this.dialect = dialect;
-        this.ds = ds;
+        this.dataSource = dataSource;
         this.typeMapping = new TypeMapping();
     }
 
-    public static void main(String[] args) {
-        //注意 InformationSchema=true
-        DruidPlugin dp = new DruidPlugin("jdbc:mysql://127.0.0.1/my_curd?characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useInformationSchema=true", "root", "123456");
-        dp.start();
-        Dialect mysqlDialect = new MysqlDialect();
-        SchemaInfoUtil util = new SchemaInfoUtil(mysqlDialect, dp.getDataSource());
-        List<Table> tables = util.getAllTableInfo(true);
-        DbKit.getConfig().getDialect();
-        DbKit.getConfig().getDataSource();
-        System.out.println(JsonKit.toJson(tables));
-    }
 
     /**
      * 数据库表信息
-     *
-     * @param fullInfoFlag true 查询表的同时查询列集合信息
+     * @param columnFlag true 表包含列信息，false 不包含
      * @return
      */
-    public List<Table> getAllTableInfo(Boolean fullInfoFlag) {
+    public List<Table> getAllTableInfo(Boolean columnFlag) {
         List<Table> tables = new ArrayList<Table>();
         Connection conn = null;
         try {
-            conn = this.ds.getConnection();
+            conn = this.dataSource.getConnection();
             DatabaseMetaData dbMeta = conn.getMetaData();
             ResultSet rs = dbMeta.getTables(conn.getCatalog(), null, null, null);
             while (rs.next()) {
                 Table table = new Table();
+                //  表 名
                 table.setTableName(rs.getString("TABLE_NAME"));
+                // 表 备注
                 table.setTableComment(rs.getString("REMARKS"));
+                // 表 名 驼峰写法
                 table.setTableNameCamel(StrKit.toCamelCase(table.getTableName()));
+                // 表 名 驼峰写法 首字母大写
                 table.setTableNameCamelFirstUp(StrKit.firstCharToUpperCase(table.getTableNameCamel()));
+                // 查询表的主键信息
                 ResultSet pkrs = dbMeta.getPrimaryKeys(conn.getCatalog(), null, table.getTableName());
                 List<String> tablePrimaryKeys = new ArrayList<String>();
                 while (pkrs.next()) {
@@ -70,11 +61,16 @@ public class SchemaInfoUtil {
                 table.setTablePrimaryKeys(tablePrimaryKeys);
                 tables.add(table);
             }
-            if (fullInfoFlag) {
+            if (columnFlag) {
                 for (Table table : tables) {
                     //列 名字 和  java 类型映射关系
-                    Map<String, String> nameJavaTypeMap = new HashMap<String, String>();
+                    Map<String, String> nameJavaTypeMap = new HashMap<>();
+
+                    // 创建一个简单的
                     String sql = this.dialect.forTableBuilderDoBuild(table.getTableName());
+                    System.err.println(this.dialect instanceof MysqlDialect);
+                    System.err.println("------------------sql:"+sql);
+
                     Statement stm = conn.createStatement();
                     ResultSet rs4 = stm.executeQuery(sql);
                     ResultSetMetaData rsmd = rs4.getMetaData();

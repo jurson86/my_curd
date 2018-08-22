@@ -7,9 +7,8 @@ import com.jfinal.config.Routes;
 
 
 /**
- * 系统主模块 路由
- *
- * @author zhangchuang
+ *  系统运行开发相关的模块路由
+ *  @author zhangchuang
  */
 public class SysRoute extends Routes {
 

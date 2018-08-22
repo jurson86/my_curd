@@ -6,7 +6,6 @@ import com.jfinal.kit.PropKit;
 import com.jfinal.kit.StrKit;
 import org.apache.log4j.Logger;
 
-import javax.servlet.ServletInputStream;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -20,16 +19,11 @@ import java.util.Map;
 /**
  * WEB工具类
  */
-public abstract class ToolWeb {
-
-    private final static Logger LOG = Logger.getLogger(ToolWeb.class);
-
-    private ToolWeb() {
-    }
+public abstract class WebUtils {
+    private final static Logger LOG = Logger.getLogger(WebUtils.class);
 
     /**
      * 获取客户端IP地址
-     *
      * @param request
      * @return
      */
@@ -49,7 +43,6 @@ public abstract class ToolWeb {
 
     /**
      * 获取上下文URL全路径
-     *
      * @param request
      * @return
      */
@@ -68,7 +61,6 @@ public abstract class ToolWeb {
 
     /**
      * 获取完整请求路径(含内容路径及请求参数)
-     *
      * @param request
      * @return
      */
@@ -78,7 +70,6 @@ public abstract class ToolWeb {
 
     /**
      * 获取请求参数
-     *
      * @param request
      * @param name
      * @return
@@ -87,7 +78,7 @@ public abstract class ToolWeb {
         String value = request.getParameter(name);
         if (StrKit.notBlank(value)) {
             try {
-                return URLDecoder.decode(value, ToolString.encoding).trim();
+                return URLDecoder.decode(value, Constant.DEFAULT_ENCODEING).trim();
             } catch (UnsupportedEncodingException e) {
                 LOG.error("decode异常：" + value);
                 return value;
@@ -98,7 +89,6 @@ public abstract class ToolWeb {
 
     /**
      * 获取ParameterMap
-     *
      * @param request
      * @return
      */
@@ -114,22 +104,20 @@ public abstract class ToolWeb {
 
     /**
      * 输出servlet文本内容
-     *
      * @param response
      * @param content
      * @param contentType
      */
     public static void outPage(HttpServletResponse response, String content, String contentType) {
         try {
-            outPage(response, content.getBytes(ToolString.encoding), contentType); // char to byte 性能提升
+            outPage(response, content.getBytes(Constant.DEFAULT_ENCODEING), contentType);
         } catch (IOException e) {
-            e.printStackTrace();
+            LOG.error(e.getMessage(),e);
         }
     }
 
     /**
      * 输出servlet文本内容
-     *
      * @param response
      * @param content
      * @param contentType
@@ -139,38 +127,17 @@ public abstract class ToolWeb {
             contentType = "text/html; charset=UTF-8";
         }
         response.setContentType(contentType);
-        response.setCharacterEncoding(ToolString.encoding);
+        response.setCharacterEncoding(Constant.DEFAULT_ENCODEING);
         try {
-            response.getOutputStream().write(content);// char to byte 性能提升
+            response.getOutputStream().write(content);
         } catch (IOException e) {
-            e.printStackTrace();
+            LOG.error(e.getMessage(),e);
         }
     }
 
-    /**
-     * 输出CSV文件下载
-     *
-     * @param response
-     * @param content  CSV内容
-     */
-    public static void outDownCsv(HttpServletResponse response, String content) {
-        response.setContentType("application/download; charset=gb18030");
-        try {
-            response.setHeader("Content-Disposition", "attachment; filename=" + java.net.URLEncoder.encode(ToolDateTime.format(ToolDateTime.getDate(), ToolDateTime.pattern_ymd_hms_s) + ".csv", ToolString.encoding));
-        } catch (UnsupportedEncodingException e1) {
-            e1.printStackTrace();
-        }
-
-        try {
-            response.getOutputStream().write(content.getBytes(ToolString.encoding));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
 
     /**
      * 请求流转字符串
-     *
      * @param request
      * @return
      */
@@ -179,9 +146,9 @@ public abstract class ToolWeb {
         InputStreamReader inputStreamReader = null;
         BufferedReader bufferedReader = null;
         try {
-            request.setCharacterEncoding(ToolString.encoding);
+            request.setCharacterEncoding(Constant.DEFAULT_ENCODEING);
             inputStream = request.getInputStream();
-            inputStreamReader = new InputStreamReader(inputStream, ToolString.encoding);
+            inputStreamReader = new InputStreamReader(inputStream, Constant.DEFAULT_ENCODEING);
             bufferedReader = new BufferedReader(inputStreamReader);
             String line = null;
             StringBuilder sb = new StringBuilder();
@@ -221,7 +188,6 @@ public abstract class ToolWeb {
 
     /**
      * 添加cookie
-     *
      * @param request    HttpServletRequest
      * @param response   HttpServletResponse
      * @param domain     设置cookie所在域
@@ -280,7 +246,7 @@ public abstract class ToolWeb {
      * @return
      */
     public static String getCookieValueByName(HttpServletRequest request, String name) {
-        Map<String, Cookie> cookieMap = ToolWeb.readCookieMap(request);
+        Map<String, Cookie> cookieMap = WebUtils.readCookieMap(request);
         // 判断cookie集合中是否有我们像要的cookie对象 如果有返回它的值
         if (cookieMap.containsKey(name)) {
             Cookie cookie = cookieMap.get(name);
@@ -298,7 +264,7 @@ public abstract class ToolWeb {
      * @return
      */
     public static Cookie getCookieByName(HttpServletRequest request, String name) {
-        Map<String, Cookie> cookieMap = ToolWeb.readCookieMap(request);
+        Map<String, Cookie> cookieMap = WebUtils.readCookieMap(request);
         // 判断cookie集合中是否有我们像要的cookie对象 如果有返回它的值
         if (cookieMap.containsKey(name)) {
             Cookie cookie = cookieMap.get(name);
@@ -328,7 +294,6 @@ public abstract class ToolWeb {
 
     /**
      * 根据配置文件 效验Referer有效性（防止资源外链）
-     *
      * @return
      */
     public static boolean authReferer(HttpServletRequest request) {
