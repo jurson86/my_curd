@@ -1,12 +1,12 @@
 package com.hxkj.auth.controller;
 
+import com.hxkj.auth.model.AuthMenu;
+import com.hxkj.auth.model.AuthRole;
+import com.hxkj.auth.model.AuthRoleMenu;
 import com.hxkj.auth.model.AuthUser;
 import com.hxkj.common.constant.Constant;
 import com.hxkj.common.controller.BaseController;
 import com.hxkj.common.util.search.SearchSql;
-import com.hxkj.auth.model.AuthMenu;
-import com.hxkj.auth.model.AuthRole;
-import com.hxkj.auth.model.AuthRoleMenu;
 import com.jfinal.aop.Before;
 import com.jfinal.kit.StrKit;
 import com.jfinal.plugin.activerecord.Db;

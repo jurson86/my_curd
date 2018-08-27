@@ -19,6 +19,7 @@ public abstract class FreemarkerUtils {
 
     /**
      * 通过模板文本 和 数据 得到 渲染后的内容
+     *
      * @param templateContent 模板文件文本内容
      * @param paramMap        数据
      * @return
@@ -33,19 +34,20 @@ public abstract class FreemarkerUtils {
             Template template = cfg.getTemplate("");
             template.process(paramMap, writer);
         } catch (IOException e) {
-            LOG.error(e.getMessage(),e);
+            LOG.error(e.getMessage(), e);
         } catch (TemplateException e) {
-            LOG.error(e.getMessage(),e);
+            LOG.error(e.getMessage(), e);
         }
         return writer.toString();
     }
 
     /**
      * 通过模板和参数生成HTML文件
-     * @param tplDirectory  模板文件目录
-     * @param tlName        模板文件名字
-     * @param paramMap      数据
-     * @param filePath      生成存放路径
+     *
+     * @param tplDirectory 模板文件目录
+     * @param tlName       模板文件名字
+     * @param paramMap     数据
+     * @param filePath     生成存放路径
      */
     public static void renderToFile(String tplDirectory, String tlName, Map<String, Object> paramMap, String filePath) {
         FileOutputStream fileOutputStream = null;
@@ -66,22 +68,22 @@ public abstract class FreemarkerUtils {
             outputStreamWriter.close();
             fileOutputStream.close();
         } catch (IOException e) {
-            LOG.error(e.getMessage(),e);
+            LOG.error(e.getMessage(), e);
         } catch (TemplateException e) {
-            LOG.error(e.getMessage(),e);
+            LOG.error(e.getMessage(), e);
         } finally {
             if (null != fileOutputStream) {
                 try {
                     fileOutputStream.close();
                 } catch (IOException e) {
-                    LOG.error(e.getMessage(),e);
+                    LOG.error(e.getMessage(), e);
                 }
             }
             if (null != outputStreamWriter) {
                 try {
                     outputStreamWriter.close();
                 } catch (IOException e) {
-                    LOG.error(e.getMessage(),e);
+                    LOG.error(e.getMessage(), e);
                 }
             }
         }
@@ -90,21 +92,26 @@ public abstract class FreemarkerUtils {
 
 class StringTemplateLoader implements TemplateLoader {
     private String template;
+
     public StringTemplateLoader(String template) {
         this.template = template;
         if (template == null) {
             this.template = "";
         }
     }
+
     public void closeTemplateSource(Object templateSource) {
         ((StringReader) templateSource).close();
     }
+
     public Object findTemplateSource(String name) {
         return new StringReader(template);
     }
+
     public long getLastModified(Object templateSource) {
         return 0;
     }
+
     public Reader getReader(Object templateSource, String encoding) {
         return (Reader) templateSource;
     }

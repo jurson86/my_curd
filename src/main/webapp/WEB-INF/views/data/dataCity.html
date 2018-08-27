@@ -45,13 +45,14 @@
     /*条件查询*/
     function queryModel() {
         var queryParams = {};
-        queryParams['search_LIKE_test'] = $("#test").textbox("getValue");
+        queryParams['search_LIKE_cname'] = $("#cname").textbox("getValue");
+        queryParams['search_EQ_c.pid'] = $("#province").combobox("getValue");
         $('#dg').datagrid('load', queryParams);
     }
 </script>
 <table id="dg" class="easyui-datagrid"
        url="${ctx!}/dataCity/query"
-       data-options="onDblClickRow:editModel"
+       data-options="onDblClickRow:editModel,onLoadSuccess:onLoadSuccess"
        toolbar="#tb" rownumbers="true" border="false"
        fit="true"    fitColumns="false"
        striped="true"
@@ -61,8 +62,8 @@
     <thead>
     <tr>
             <th data-options="field:'cid',checkbox:true"></th>
-            <th field="cname" width="200">市名称</th>
             <th field="pname" width="200">归属省</th>
+            <th field="cname" width="200">市名称</th>
     </tr>
     </thead>
 </table>
@@ -72,10 +73,18 @@
     <a onclick="editModel()" href="#" class="easyui-linkbutton" iconCls="e-icon iconfont icon-font-edit" plain="true">编辑</a>
     <a onclick="deleteModel()" href="#" class="easyui-linkbutton  " iconCls="e-icon iconfont icon-font-delete" plain="true">删除</a>
     <span id="enterSpan" class="searchInputArea">
-          <input id="test" prompt="test" class="easyui-textbox" style="width:120px; ">
+          <input id="province" prompt="省份" name="province" class="easyui-combobox" data-options="valueField:'pid',textField:'pname',url:'${ctx!}/dataProvince/provinceData'">
+          <input id="cname" prompt="城市名称" class="easyui-textbox" style="width:120px; ">
           <a href="#" class="easyui-linkbutton" data-options="iconCls:'e-icon iconfont icon-font-search',plain:true" onclick="queryModel()">搜索</a>
     </span>
 </div>
 <script src="${ctx!}/res/layer/layer.js"></script>
 <script src="${ctx!}/res/js/popup-tools.js"></script>
+<script src="${ctx!}/res/js/autoMerge.js"></script>
+<script>
+    function onLoadSuccess() {
+        $(this).datagrid("autoMergeCells",['pname']);
+    }
+</script>
 </@layout>
+

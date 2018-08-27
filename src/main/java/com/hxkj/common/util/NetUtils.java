@@ -16,23 +16,26 @@ import java.net.UnknownHostException;
 public abstract class NetUtils {
 
     private final static Logger LOG = Logger.getLogger(NetUtils.class);
+
     /**
      * 本机IP
+     *
      * @return
      */
     public static String ip() {
         String ip = null;
         try {
             InetAddress addr = InetAddress.getLocalHost();
-            ip =  addr.getHostAddress();
+            ip = addr.getHostAddress();
         } catch (UnknownHostException e) {
-            LOG.error(e.getMessage(),e);
+            LOG.error(e.getMessage(), e);
         }
         return ip;
     }
 
     /**
      * 本机名称
+     *
      * @return
      */
     public static String name() {
@@ -48,6 +51,7 @@ public abstract class NetUtils {
 
     /**
      * ping ip并返回结果
+     *
      * @param ip
      * @return 描述 apache-common-exec 示例
      */
@@ -78,6 +82,7 @@ public abstract class NetUtils {
 
     /**
      * 验证网络是否畅通
+     *
      * @param ip
      * @param port
      * @param timeout
@@ -106,6 +111,7 @@ public abstract class NetUtils {
 
     /**
      * 验证网络是否畅通
+     *
      * @param ip
      * @param port
      * @param timeout

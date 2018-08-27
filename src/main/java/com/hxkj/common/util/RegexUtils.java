@@ -141,6 +141,7 @@ public abstract class RegexUtils {
 
     /**
      * 验证字符串是否匹配指定正则表达式
+     *
      * @param pattern
      * @param content
      * @return

@@ -4,13 +4,12 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.hxkj.common.controller.BaseController;
-import com.hxkj.common.util.codegenerator.TableMetaUtils;
 import com.hxkj.common.util.codegenerator.Table;
+import com.hxkj.common.util.codegenerator.TableMetaUtils;
 import com.hxkj.sys.service.CodeGeneratorService;
 import com.jfinal.kit.LogKit;
 import com.jfinal.kit.Ret;
 import com.jfinal.kit.StrKit;
-import com.jfinal.plugin.activerecord.Config;
 import com.jfinal.plugin.activerecord.DbKit;
 
 import java.util.ArrayList;
@@ -22,13 +21,7 @@ import java.util.List;
  */
 public class SysGeneratorController extends BaseController {
 
-    public static TableMetaUtils schemaInfoUtil;
-
-    static {
-        System.err.println("----------------------------------------config size:"+DbKit.getConfigSet().size());
-        Config config = DbKit.getConfig();
-        schemaInfoUtil = new TableMetaUtils(config.getDialect(), config.getDataSource());
-    }
+    private static final TableMetaUtils schemaInfoUtil = new TableMetaUtils(DbKit.getConfig().getDialect(), DbKit.getConfig().getDataSource());
 
     public void index() {
         render("sys/sysGenerator.html");
@@ -38,11 +31,12 @@ public class SysGeneratorController extends BaseController {
      * 数据库表数据
      */
     public void query() {
-        Boolean fullFlag = getParaToBoolean("fullFlag");
-        if (fullFlag == null) {
-            fullFlag = false;
+        // 是否 查询 完整的表信息 (包含列信息)
+        Boolean columnFlag = getParaToBoolean("fullFlag");
+        if (columnFlag == null) {
+            columnFlag = false;
         }
-        List<Table> tables = schemaInfoUtil.getAllTableInfo(fullFlag);
+        List<Table> tables = schemaInfoUtil.getAllTableInfo(columnFlag);
         renderJson(JSON.toJSONString(tables));
     }
 
@@ -78,9 +72,7 @@ public class SysGeneratorController extends BaseController {
                 Table table = jsonObjectTemp.toJavaObject(Table.class);
                 tables.add(table);
             }
-
-            CodeGeneratorService codeGeneratorService = new CodeGeneratorService();
-            List<String> outputPaths = codeGeneratorService.generate(moduleName, tables);
+            List<String> outputPaths = CodeGeneratorService.generate(moduleName, tables);
             ret.setOk();
             ret.put("outputPaths", outputPaths);
             renderJson(ret);

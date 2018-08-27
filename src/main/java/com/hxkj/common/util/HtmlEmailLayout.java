@@ -11,7 +11,8 @@ import java.util.Date;
 /**
  * 响应式的log4j 日志网页
  * 用于日志邮件显示（pc和mobile 显示都很赞)
- * @author  zhangchuang
+ *
+ * @author zhangchuang
  */
 public class HtmlEmailLayout extends Layout {
 

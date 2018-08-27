@@ -16,8 +16,8 @@ import java.io.*;
 /**
  * 图像尺寸缩放
  */
-public abstract class ImageResize {
-    private final static Logger LOG = Logger.getLogger(ImageResize.class);
+public abstract class ImgResizeUtils {
+    private final static Logger LOG = Logger.getLogger(ImgResizeUtils.class);
     private static final MediaTracker tracker = new MediaTracker(new Component() {
         private static final long serialVersionUID = 1234162663955668507L;
     });
@@ -25,6 +25,7 @@ public abstract class ImageResize {
 
     /**
      * 图片缩放
+     *
      * @param oldPath 原图像
      * @param newPath 压缩后的图像
      * @param width   图像宽
@@ -54,11 +55,13 @@ public abstract class ImageResize {
             Image inputImage = Toolkit.getDefaultToolkit().createImage(in);
             waitForImage(inputImage);
             int imageWidth = inputImage.getWidth(null);
-            if (imageWidth < 1)
+            if (imageWidth < 1) {
                 throw new IllegalArgumentException("image width " + imageWidth + " is out of range");
+            }
             int imageHeight = inputImage.getHeight(null);
-            if (imageHeight < 1)
+            if (imageHeight < 1) {
                 throw new IllegalArgumentException("image height " + imageHeight + " is out of range");
+            }
 
             int height = -1;
             double scaleW = (double) imageWidth / (double) width;
@@ -128,7 +131,6 @@ public abstract class ImageResize {
         if (outputWidth < 1) {
             throw new IllegalArgumentException("output image width " + outputWidth + " is out of range");
         }
-
         int outputHeight = outputImage.getHeight(null);
         if (outputHeight < 1) {
             throw new IllegalArgumentException("output image height " + outputHeight + " is out of range");
@@ -143,11 +145,11 @@ public abstract class ImageResize {
 
     /**
      * 缩放gif图片
+     *
      * @param originalFile 原图片
      * @param resizedFile  缩放后的图片
      * @param newWidth     宽度
      * @param quality      缩放比例 (等比例)
-     * @throws IOException
      */
     private static void resize(File originalFile, File resizedFile, int newWidth, float quality) {
         if (quality < 0 || quality > 1) {
@@ -184,12 +186,12 @@ public abstract class ImageResize {
             encoder.setJPEGEncodeParam(param);
             encoder.encode(bufferedImage);
         } catch (IOException e) {
-            LOG.error(e.getMessage());
+            LOG.error(e.getMessage(), e);
         } finally {
             try {
                 out.close();
             } catch (IOException e) {
-                LOG.error(e.getMessage());
+                LOG.error(e.getMessage(), e);
             }
         }
     }

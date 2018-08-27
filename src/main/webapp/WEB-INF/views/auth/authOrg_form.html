@@ -32,7 +32,8 @@
             },
             success: function (data) {
                 parent.popup.msg(data, function () {
-                    parent.window.location.reload();
+                    parent. $('#tt').treegrid("reload");
+                    parent.layer.close(parent.layer.getFrameIndex(window.name));
                 });
             }
         });

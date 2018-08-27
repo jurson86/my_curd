@@ -1,7 +1,6 @@
 package com.hxkj.auth.model;
 
 import com.hxkj.auth.model.base.BaseAuthUserRole;
-import org.omg.PortableInterceptor.Interceptor;
 
 import java.util.List;
 

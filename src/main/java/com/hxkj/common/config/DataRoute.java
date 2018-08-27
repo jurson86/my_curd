@@ -2,11 +2,11 @@ package com.hxkj.common.config;
 
 import com.hxkj.common.constant.Constant;
 import com.hxkj.data.controller.*;
-import com.hxkj.data.model.DataProvince;
 import com.jfinal.config.Routes;
 
 /**
  * 基础数据
+ *
  * @author chuang
  * @date 2018-06-20 18:56:48
  */

@@ -30,13 +30,15 @@ import javax.servlet.http.HttpServletRequest;
  */
 public class AppConfig extends JFinalConfig {
 
+    Prop configProp = PropKit.use("config.properties");
+
     /**
      * 配置JFinal常量
+     *
      * @param me 常量集合
      */
     @Override
     public void configConstant(Constants me) {
-        Prop configProp = PropKit.use("config.properties");
         me.setDevMode(configProp.getBoolean("devMode"));
 
         me.setBaseUploadPath("upload");
@@ -56,6 +58,7 @@ public class AppConfig extends JFinalConfig {
 
     /**
      * 配置JFinal路由
+     *
      * @param me 路由集合
      */
     @Override
@@ -64,12 +67,10 @@ public class AppConfig extends JFinalConfig {
         me.add(new AuthRoute());
         // 基础数据
         me.add(new DataRoute());
-        // 系统管理
+        // 系统运维管理
         me.add(new SysRoute());
-
         // 公共的，不需要权限控制的路由
         me.add(new CommonRoute());
-
         // 玩
         me.add(new PlayRoute());
         // cms 管理
@@ -80,62 +81,48 @@ public class AppConfig extends JFinalConfig {
 
     /**
      * 配置 插件
+     *
      * @param me 插件集合
      */
     @Override
     public void configPlugin(Plugins me) {
-        Prop configProp = PropKit.use("config.properties");
-        Prop databaseProp = PropKit.use("database.properties");
-
-        // my_curd 框架 数据源
-        DruidPlugin baseDruidPlugin = new DruidPlugin(databaseProp.get("base.jdbcUrl"), databaseProp.get("base.user"), databaseProp.get("base.password"));
-        // ... 更多的 数据源配置
-        baseDruidPlugin.addFilter(new StatFilter());
+        // 数据源 插件
+        DruidPlugin druidPlugin = new DruidPlugin(configProp.get("jdbc.url"), configProp.get("jdbc.user"), configProp.get("jdbc.password"));
+        druidPlugin.addFilter(new StatFilter());
         WallFilter wall = new WallFilter();
-        wall.setDbType(databaseProp.get("base.dbType"));
-        baseDruidPlugin.addFilter(wall);
-        me.add(baseDruidPlugin);
-        ActiveRecordPlugin baseArp = new ActiveRecordPlugin("mysql_base",baseDruidPlugin);
-        baseArp.setShowSql(configProp.getBoolean("devMode"));
-        baseArp.setDialect(new MysqlDialect());
-        MappingKit.mapping(baseArp);
-        me.add(baseArp);
+        wall.setDbType(configProp.get("jdbc.dbType"));
+        druidPlugin.addFilter(wall);
+        me.add(druidPlugin);
 
-        // 业务数据源
-        DruidPlugin businessDruidPlugin = new DruidPlugin(databaseProp.get("business.jdbcUrl"), databaseProp.get("business.user"), databaseProp.get("business.password"));
-        // ... 更多的 数据源配置
-        businessDruidPlugin.addFilter(new StatFilter());
-        WallFilter businessWallFilter = new WallFilter();
-        businessWallFilter.setDbType(databaseProp.get("business.dbType"));
-        businessDruidPlugin.addFilter(businessWallFilter);
-        me.add(businessDruidPlugin);
-        ActiveRecordPlugin businessArp = new ActiveRecordPlugin("mysql_business",businessDruidPlugin);
-        businessArp.setShowSql(configProp.getBoolean("devMode"));
-        businessArp.setDialect(new MysqlDialect());
-        me.add(businessArp);
+        // active record 插件
+        ActiveRecordPlugin activeRecordPlugin = new ActiveRecordPlugin(druidPlugin);
+        activeRecordPlugin.setShowSql(configProp.getBoolean("devMode"));
+        activeRecordPlugin.setDialect(new MysqlDialect());
+        MappingKit.mapping(activeRecordPlugin);
+        me.add(activeRecordPlugin);
     }
 
     /**
      * 配置 jfinal interceptor
+     *
      * @param me interceptor集合
      */
     @Override
     public void configInterceptor(Interceptors me) {
-        // 登录拦截器
         me.addGlobalActionInterceptor(new LoginInterceptor());
-        // 权限拦截器
         me.addGlobalActionInterceptor(new PermissionInterceptor());
     }
 
     /**
      * 配置 jfinal handler
+     *
      * @param me handler集合
      */
     @Override
     public void configHandler(Handlers me) {
         // 处理 websocket 请求
         me.add(new WebSocketHandler("^/websocket"));
-        // 视图中添加应用contenxt
+        // 视图中添加应用context
         me.add(new ContextPathHandler("ctx"));
         // druid 监控（只允许admin查看）
         DruidStatViewHandler dvh = new DruidStatViewHandler("/druid", new IDruidStatViewAuth() {

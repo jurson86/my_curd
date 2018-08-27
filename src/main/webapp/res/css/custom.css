@@ -122,6 +122,7 @@ form > table {
     font-weight: 500;
 }
 
+/* 输入表单label 样式 */
 .pure-table tr>td:nth-child(odd){
  background-color:#f5f5f5;
 }

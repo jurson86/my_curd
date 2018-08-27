@@ -48,6 +48,8 @@
     function queryModel() {
         var queryParams = {};
         queryParams['search_LIKE_test'] = $("#test").textbox("getValue");
+
+        /*load 从第一页加载，reload 重载本页，此处要用load*/
         $('#dg').datagrid('load', queryParams);
     }
 </script>

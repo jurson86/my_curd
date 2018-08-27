@@ -7,6 +7,7 @@ import com.jfinal.config.Routes;
 
 /**
  * 公共的，不需要权限控制的 模块路由
+ *
  * @author chuang
  * @date 2018-06-20 18:56:48
  */

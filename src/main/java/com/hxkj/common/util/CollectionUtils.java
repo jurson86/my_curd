@@ -8,6 +8,7 @@ public class CollectionUtils {
 
     /**
      * 分割List
+     *
      * @param list     待分割的list
      * @param pageSize 每段list的大小
      * @return

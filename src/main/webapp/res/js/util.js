@@ -34,6 +34,7 @@ Date.prototype.Format = function (fmt) {
 var dateTool={
     /* 时间字符串转日期 */
     strToDate:function(dateStr){
+        // 浏览器兼容,替换 - 为 /
         dateStr = dateStr.replace(/-/g,"/");
         return new Date(dateStr );
     },

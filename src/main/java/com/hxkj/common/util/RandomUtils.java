@@ -14,8 +14,10 @@ public abstract class RandomUtils {
             '3', '4', '5', '7', '8'};
     // 定义验证码数字
     public static final char numberAry[] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9'};
+
     /**
      * 生成验证码
+     *
      * @return
      */
     public static char getAuthCodeAllChar() {
@@ -24,6 +26,7 @@ public abstract class RandomUtils {
 
     /**
      * 生成指定长度的验证码
+     *
      * @param length
      * @return
      */
@@ -37,6 +40,7 @@ public abstract class RandomUtils {
 
     /**
      * 生成指定长度纯数字验证码，
+     *
      * @param length
      * @return
      */
@@ -50,6 +54,7 @@ public abstract class RandomUtils {
 
     /**
      * 获取UUID by jdk
+     *
      * @return
      */
     public static String getUuid() {
@@ -59,6 +64,7 @@ public abstract class RandomUtils {
 
     /**
      * 获取UUID by jdk
+     *
      * @return
      */
     public static String getUuidNoUnderline() {
@@ -68,6 +74,7 @@ public abstract class RandomUtils {
 
     /**
      * 生成 [min,max) 随机数
+     *
      * @param min
      * @param max
      * @return
@@ -79,6 +86,7 @@ public abstract class RandomUtils {
 
     /**
      * 产生0--number的随机数,不包括number
+     *
      * @param number
      * @return
      */
@@ -89,6 +97,7 @@ public abstract class RandomUtils {
 
     /**
      * 生成RGB随机数
+     *
      * @return
      */
     public static int[] getRandomRgb() {
@@ -102,6 +111,7 @@ public abstract class RandomUtils {
 
     /**
      * 生成RGB随机数
+     *
      * @return
      */
     public static String getRandomRgbStr() {

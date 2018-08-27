@@ -22,6 +22,7 @@ public abstract class BaseController extends Controller {
 
     /**
      * 根据 com.jfinal.plugin.activerecord.Page 对象生成 easyui datagrid 数据
+     *
      * @param pageData
      */
     protected void renderDatagrid(Page<?> pageData) {
@@ -33,6 +34,7 @@ public abstract class BaseController extends Controller {
 
     /**
      * 根据 集合类型 生成 easyui datagrid 数据
+     *
      * @param list
      * @param total
      */
@@ -42,6 +44,7 @@ public abstract class BaseController extends Controller {
 
     /**
      * 根据集合类型 生成 easyui datagrid 数据
+     *
      * @param list
      * @param total
      * @param footer
@@ -58,6 +61,7 @@ public abstract class BaseController extends Controller {
 
     /**
      * 根据 集合 生成 easyui datagrid 不分页数据
+     *
      * @param list
      */
     protected void renderDatagrid(List<Record> list) {
@@ -69,6 +73,7 @@ public abstract class BaseController extends Controller {
 
     /**
      * 成功操作 状态信息
+     *
      * @param msg
      */
     protected void renderSuccess(String msg) {
@@ -89,6 +94,7 @@ public abstract class BaseController extends Controller {
 
     /**
      * 失败操作 状态信息
+     *
      * @param msg
      */
     protected void renderFailed(String msg) {
@@ -110,6 +116,7 @@ public abstract class BaseController extends Controller {
 
     /**
      * 当前登录的系统用户
+     *
      * @return
      */
     protected AuthUser getSessionUser() {
@@ -118,6 +125,7 @@ public abstract class BaseController extends Controller {
 
     /**
      * 增加操作日志
+     *
      * @param opContent 操作内容
      */
     public void addOpLog(String opContent) {

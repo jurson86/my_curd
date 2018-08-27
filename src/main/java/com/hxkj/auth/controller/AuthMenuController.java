@@ -93,7 +93,7 @@ public class AuthMenuController extends BaseController {
         Long id = getParaToLong("id");
 
         //删除当前菜单节点以及子孙节点
-        Record record = Db.findFirst("select getChildIdList(?,'auth_menu') as childrenIds ", id);
+        Record record = Db.findFirst("select authMenuTreeIds(?) as childrenIds ", id);
         String childrenIds = record.getStr("childrenIds");  // 子、孙 id
         String deleteSql = "delete from auth_menu where id in (" + childrenIds + ")";
         Db.update(deleteSql);

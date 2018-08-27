@@ -2,13 +2,15 @@ package com.hxkj.common.config;
 
 
 import com.hxkj.common.constant.Constant;
-import com.hxkj.sys.controller.*;
+import com.hxkj.sys.controller.SysGeneratorController;
+import com.hxkj.sys.controller.sysOplogController;
 import com.jfinal.config.Routes;
 
 
 /**
- *  系统运行开发相关的模块路由
- *  @author zhangchuang
+ * 系统运行开发相关的模块路由
+ *
+ * @author zhangchuang
  */
 public class SysRoute extends Routes {
 

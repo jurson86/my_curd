@@ -32,10 +32,11 @@ import java.text.DecimalFormat;
  * 字符串处理常用方法
  */
 public abstract class StringUtils {
-    private  final static Logger LOG = Logger.getLogger(StringUtils.class);
+    private final static Logger LOG = Logger.getLogger(StringUtils.class);
 
     /**
      * double精度调整
+     *
      * @param doubleValue 需要调整的值123.454
      * @param format      目标样式".##"
      * @return
@@ -48,6 +49,7 @@ public abstract class StringUtils {
 
     /**
      * Url Base64编码
+     *
      * @param data 待编码数据
      * @return String 编码数据
      * @throws Exception
@@ -58,13 +60,14 @@ public abstract class StringUtils {
             byte[] b = Base64.encodeBase64URLSafe(data.getBytes(Constant.DEFAULT_ENCODEING));
             str = new String(b, Constant.DEFAULT_ENCODEING);
         } catch (UnsupportedEncodingException e) {
-            LOG.error(e.getMessage(),e);
+            LOG.error(e.getMessage(), e);
         }
         return str;
     }
 
     /**
      * Base64解码
+     *
      * @param data 待解码数据
      * @throws Exception
      */
@@ -74,13 +77,14 @@ public abstract class StringUtils {
             byte[] b = Base64.decodeBase64(data.getBytes(Constant.DEFAULT_ENCODEING));
             str = new String(b, Constant.DEFAULT_ENCODEING);
         } catch (UnsupportedEncodingException e) {
-            LOG.error(e.getMessage(),e);
+            LOG.error(e.getMessage(), e);
         }
         return str;
     }
 
     /**
      * URL编码
+     *
      * @param source
      * @return
      */
@@ -89,15 +93,15 @@ public abstract class StringUtils {
         try {
             result = URLEncoder.encode(source, Constant.DEFAULT_ENCODEING);
         } catch (UnsupportedEncodingException e) {
-            LOG.error(e.getMessage(),e);
+            LOG.error(e.getMessage(), e);
         }
         return result;
     }
 
 
-
     /**
      * 获取 对象 的类名称（不带包名）
+     *
      * @param bean
      * @return
      */
@@ -111,6 +115,7 @@ public abstract class StringUtils {
 
     /**
      * 中文文件 下载编码，多浏览器适配
+     *
      * @param request
      * @param fileName
      * @return
@@ -141,6 +146,7 @@ public abstract class StringUtils {
 
     /**
      * 汉字拼音全拼
+     *
      * @param src
      * @return
      */
@@ -165,13 +171,14 @@ public abstract class StringUtils {
             }
             return t4;
         } catch (BadHanyuPinyinOutputFormatCombination e) {
-            LOG.error(e.getMessage(),e);
+            LOG.error(e.getMessage(), e);
         }
         return t4;
     }
 
     /**
      * 汉字拼音首字母
+     *
      * @param str
      * @return
      */
@@ -192,6 +199,7 @@ public abstract class StringUtils {
 
     /**
      * html特殊字符 转义，避免XSS
+     *
      * @param content
      * @return
      */
@@ -201,6 +209,7 @@ public abstract class StringUtils {
 
     /**
      * html特殊字符转义 反转义，避免XSS
+     *
      * @param content
      * @return
      */
@@ -210,6 +219,7 @@ public abstract class StringUtils {
 
     /**
      * 富文本内容处理返回纯文本
+     *
      * @param unsafe
      * @return
      */
@@ -220,6 +230,7 @@ public abstract class StringUtils {
 
     /**
      * 富文本内容处理返回安全文本
+     *
      * @param unsafe
      * @return
      */
@@ -231,6 +242,7 @@ public abstract class StringUtils {
 
     /**
      * xml 字符串 格式美化
+     *
      * @param inputXML
      * @return
      */
@@ -242,7 +254,7 @@ public abstract class StringUtils {
             SAXReader reader = new SAXReader();
             document = reader.read(new StringReader(inputXML));
         } catch (DocumentException e) {
-            LOG.error(e.getMessage(),e);
+            LOG.error(e.getMessage(), e);
         }
 
         if (document != null) {
@@ -255,13 +267,13 @@ public abstract class StringUtils {
                 writer.flush();
                 requestXML = stringWriter.getBuffer().toString();
             } catch (IOException e) {
-                LOG.error(e.getMessage(),e);
+                LOG.error(e.getMessage(), e);
             } finally {
                 if (writer != null) {
                     try {
                         writer.close();
                     } catch (IOException e) {
-                        LOG.error(e.getMessage(),e);
+                        LOG.error(e.getMessage(), e);
                     }
                 }
             }

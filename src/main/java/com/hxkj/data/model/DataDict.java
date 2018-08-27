@@ -27,6 +27,7 @@ public class DataDict extends BaseDataDict<DataDict> implements java.io.Serializ
         if (StrKit.notBlank(where)) {
             sqlExceptSelect += " where " + where;
         }
+        sqlExceptSelect += " order by dict_type asc ";
         return this.paginate(pageNumber, pageSize, sqlSelect, sqlExceptSelect);
     }
 

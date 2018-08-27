@@ -2,7 +2,6 @@ package com.hxkj.common.util.codegenerator;
 
 import com.jfinal.kit.StrKit;
 import com.jfinal.plugin.activerecord.dialect.Dialect;
-import com.jfinal.plugin.activerecord.dialect.MysqlDialect;
 import com.jfinal.plugin.activerecord.generator.TypeMapping;
 import org.apache.log4j.Logger;
 
@@ -21,17 +20,18 @@ public class TableMetaUtils {
 
     private Dialect dialect;
     private DataSource dataSource;
-    private TypeMapping typeMapping;
+    // 符合 jfinal 特色 的数据库 java 类型映射
+    private TypeMapping typeMapping = new TypeMapping();
 
     public TableMetaUtils(Dialect dialect, DataSource dataSource) {
         this.dialect = dialect;
         this.dataSource = dataSource;
-        this.typeMapping = new TypeMapping();
     }
 
 
     /**
      * 数据库表信息
+     *
      * @param columnFlag true 表包含列信息，false 不包含
      * @return
      */
@@ -44,33 +44,24 @@ public class TableMetaUtils {
             ResultSet rs = dbMeta.getTables(conn.getCatalog(), null, null, null);
             while (rs.next()) {
                 Table table = new Table();
-                //  表 名
-                table.setTableName(rs.getString("TABLE_NAME"));
-                // 表 备注
-                table.setTableComment(rs.getString("REMARKS"));
-                // 表 名 驼峰写法
-                table.setTableNameCamel(StrKit.toCamelCase(table.getTableName()));
-                // 表 名 驼峰写法 首字母大写
-                table.setTableNameCamelFirstUp(StrKit.firstCharToUpperCase(table.getTableNameCamel()));
+                table.setTableName(rs.getString("TABLE_NAME"));  //  表 名
+                table.setTableComment(rs.getString("REMARKS"));   // 表 备注
+                table.setTableNameCamel(StrKit.toCamelCase(table.getTableName()));    // 表 名 驼峰写法
+                table.setTableNameCamelFirstUp(StrKit.firstCharToUpperCase(table.getTableNameCamel())); // 表 名 驼峰写法 首字母大写
                 // 查询表的主键信息
                 ResultSet pkrs = dbMeta.getPrimaryKeys(conn.getCatalog(), null, table.getTableName());
                 List<String> tablePrimaryKeys = new ArrayList<String>();
                 while (pkrs.next()) {
                     tablePrimaryKeys.add(pkrs.getString("COLUMN_NAME"));
                 }
-                table.setTablePrimaryKeys(tablePrimaryKeys);
+                table.setTablePrimaryKeys(tablePrimaryKeys); // 主键列表
                 tables.add(table);
             }
             if (columnFlag) {
                 for (Table table : tables) {
-                    //列 名字 和  java 类型映射关系
+                    // 获得 表 字段 与 java 类型的 映射
                     Map<String, String> nameJavaTypeMap = new HashMap<>();
-
-                    // 创建一个简单的
                     String sql = this.dialect.forTableBuilderDoBuild(table.getTableName());
-                    System.err.println(this.dialect instanceof MysqlDialect);
-                    System.err.println("------------------sql:"+sql);
-
                     Statement stm = conn.createStatement();
                     ResultSet rs4 = stm.executeQuery(sql);
                     ResultSetMetaData rsmd = rs4.getMetaData();
@@ -94,7 +85,8 @@ public class TableMetaUtils {
                         }
                     }
 
-                    List<Column> columns = new ArrayList<Column>();
+                    // 获得 表 相应的 列信息
+                    List<Column> columns = new ArrayList<>();
                     ResultSet rs2 = dbMeta.getColumns(conn.getCatalog(), null, table.getTableName(), null);
                     while (rs2.next()) {
                         Column column = new Column();
@@ -110,12 +102,13 @@ public class TableMetaUtils {
                             column.setPrimaryKey(false);
                         }
                         columns.add(column);
+
                     }
                     table.setColumnList(columns);
                 }
             }
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            LOG.error(e.getMessage(), e);
         } finally {
             if (conn != null) {
                 try {

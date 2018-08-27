@@ -7,12 +7,11 @@ import java.util.Map;
  * Excel头信息
  */
 public class ExcelHead {
-
     // 列信息
     private List<ExcelColumn> columns;
     // 需要转换的列
     private Map<String, Map> columnsConvertMap;
-   // 头部所占用的行数
+    // 头部所占用的行数
     private int rowCount;
     // 头部所占用的列数
     private int columnCount;

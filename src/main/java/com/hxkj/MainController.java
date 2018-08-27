@@ -1,9 +1,9 @@
 package com.hxkj;
 
-import com.hxkj.common.constant.Constant;
-import com.hxkj.common.interceptor.PermissionInterceptor;
-import com.hxkj.common.controller.BaseController;
 import com.hxkj.auth.model.AuthMenu;
+import com.hxkj.common.constant.Constant;
+import com.hxkj.common.controller.BaseController;
+import com.hxkj.common.interceptor.PermissionInterceptor;
 import com.jfinal.aop.Before;
 import com.jfinal.aop.Clear;
 import com.jfinal.ext.interceptor.SessionInViewInterceptor;
@@ -41,7 +41,7 @@ public class MainController extends BaseController {
             for (AuthMenu authMenu : ownAuthMenus) {
                 Map<String, Object> map = new HashMap<String, Object>();
                 map.put("id", authMenu.getId());
-                map.put("pid",authMenu.getPid());
+                map.put("pid", authMenu.getPid());
                 map.put("iconCls", authMenu.getIcon());
                 map.put("url", authMenu.getUrl());
                 map.put("text", authMenu.getName());

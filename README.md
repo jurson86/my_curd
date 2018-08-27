@@ -27,8 +27,6 @@ my_CURD
 - easyui1.5.4.5、pure.css、ckeditor、layer、simplemde等 
 
 ### 接下来要做
-
-- [ ] 多mysql数据源。权限管理 基础数据放到基础数据库，具体 业务放到 业务数据库。（mysql 业务数据量非常大时方便备份管理）
 - [ ] 集成 easyuipoi
 
 ### 预览

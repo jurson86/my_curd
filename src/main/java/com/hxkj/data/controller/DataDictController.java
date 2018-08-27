@@ -76,10 +76,10 @@ public class DataDictController extends BaseController {
     @Before(Tx.class)
     public void deleteAction() {
         String ids = getPara("ids");
-        if(ids.contains(",")){
+        if (ids.contains(",")) {
             String deleteSql = "delete from data_dict where id  in ( " + ids + " ) ";
             Db.update(deleteSql);
-        }else{
+        } else {
             DataDict.dao.deleteById(ids);
         }
         // 执行不出错 即认为 删除成功

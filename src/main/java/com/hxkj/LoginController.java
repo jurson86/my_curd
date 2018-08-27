@@ -4,10 +4,10 @@ import com.hxkj.auth.model.AuthMenu;
 import com.hxkj.auth.model.AuthUser;
 import com.hxkj.auth.model.AuthUserRole;
 import com.hxkj.common.constant.Constant;
+import com.hxkj.common.controller.BaseController;
 import com.hxkj.common.interceptor.LoginInterceptor;
 import com.hxkj.common.interceptor.PermissionInterceptor;
 import com.hxkj.common.interceptor.ReadJsonInterceptor;
-import com.hxkj.common.controller.BaseController;
 import com.jfinal.aop.Before;
 import com.jfinal.aop.Clear;
 import com.jfinal.aop.Duang;
@@ -24,9 +24,10 @@ import java.util.List;
 
 /**
  * 登录控制器
+ *
  * @author zhangchuang
  */
-@Clear({LoginInterceptor.class,PermissionInterceptor.class})
+@Clear({LoginInterceptor.class, PermissionInterceptor.class})
 public class LoginController extends BaseController {
 
     private final static Logger LOG = Logger.getLogger(LoginController.class);
@@ -66,7 +67,7 @@ public class LoginController extends BaseController {
                 addOpLog("通过 cookie 登录");
                 redirect("/main");
                 return;
-            }else{
+            } else {
                 // 清理 cookie （记住密码信息）
                 setCookie(usernameKey, null, 0);
                 setCookie(passwordKey, null, 0);
@@ -174,6 +175,7 @@ public class LoginController extends BaseController {
     public void captcha() {
         renderCaptcha();
     }
+
     // 无用
     @ActionKey("/qrcode")
     public void qrcode() {
@@ -181,12 +183,14 @@ public class LoginController extends BaseController {
         text = URLDecoder.decode(text, "UTF-8");
         renderQrCode(text, 200, 200);
     }
+
     // 无用
     @Before(ReadJsonInterceptor.class)
     @ActionKey("/api/json")
     public void json() {
         renderText("over");
     }
+
     //无用 异常测试
     @ActionKey("/error")
     public void error() {

@@ -70,11 +70,11 @@ public class sysOplogController extends BaseController {
     @Before(Tx.class)
     public void deleteAction() {
         String ids = getPara("ids");
-        if(ids.contains(",")){
+        if (ids.contains(",")) {
             ids = "'" + ids.replace(",", "','") + "'";
             String deleteSql = "delete from sys_oplog where id  in ( " + ids + " ) ";
             Db.update(deleteSql);
-        }else{
+        } else {
             SysOplog.dao.deleteById(ids);
         }
         renderText(Constant.DELETE_SUCCESS);

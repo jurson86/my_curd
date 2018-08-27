@@ -45,13 +45,14 @@
     /*条件查询*/
     function queryModel() {
         var queryParams = {};
-        queryParams['search_LIKE_test'] = $("#test").textbox("getValue");
+        queryParams['search_LIKE_oname'] = $("#oname").textbox("getValue");
+        queryParams['search_EQ_o.cid'] = $("#cid").combobox("getValue");
         $('#dg').datagrid('load', queryParams);
     }
 </script>
 <table id="dg" class="easyui-datagrid"
        url="${ctx!}/dataCounty/query"
-       data-options="onDblClickRow:editModel"
+       data-options="onDblClickRow:editModel,onLoadSuccess:onLoadSuccess"
        toolbar="#tb" rownumbers="true" border="false"
        fit="true"    fitColumns="false"
        striped="true"
@@ -61,8 +62,8 @@
     <thead>
     <tr>
         <th data-options="field:'oid',checkbox:true"></th>
-        <th field="oname" width="200">县/区名称</th>
         <th field="cname" width="200">归属市</th>
+        <th field="oname" width="200">县/区名称</th>
     </tr>
     </thead>
 </table>
@@ -72,10 +73,28 @@
     <a onclick="editModel()" href="#" class="easyui-linkbutton" iconCls="e-icon iconfont icon-font-edit" plain="true">编辑</a>
     <a onclick="deleteModel()" href="#" class="easyui-linkbutton  " iconCls="e-icon iconfont icon-font-delete" plain="true">删除</a>
     <span id="enterSpan" class="searchInputArea">
-          <input id="test" prompt="test" class="easyui-textbox" style="width:120px; ">
+          <input  prompt="省份" style="width:120px; " class="easyui-combobox"  data-options="valueField:'pid',textField:'pname',url:'${ctx!}/dataProvince/provinceData',onSelect:selectProvince">
+          <input id="cid" prompt="市"  style="width:120px; " class="easyui-combobox"  data-options="valueField:'cid',textField:'cname',url:'${ctx!}/dataCity/cityData'">
+          <input id="oname" prompt="县区" class="easyui-textbox" style="width:120px; ">
           <a href="#" class="easyui-linkbutton" data-options="iconCls:'e-icon iconfont icon-font-search',plain:true" onclick="queryModel()">搜索</a>
     </span>
 </div>
 <script src="${ctx!}/res/layer/layer.js"></script>
 <script src="${ctx!}/res/js/popup-tools.js"></script>
+<script src="${ctx!}/res/js/autoMerge.js"></script>
+<script>
+    /*选中省份后加载市数据*/
+    function selectProvince(record) {
+        $('#cid').combobox({
+            url:'${ctx!}/dataCity/cityData?pid='+record.pid,
+            valueField:'cid',
+            textField:'cname',
+            value:''
+        });
+    }
+
+    function onLoadSuccess() {
+        $(this).datagrid("autoMergeCells",['cname']);
+    }
+</script>
 </@layout>

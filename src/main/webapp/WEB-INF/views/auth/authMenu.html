@@ -36,7 +36,7 @@
 </script>
 </head>
 <body>
-<table   data-options="onDblClickRow:editModel"  id="tt" border="false"></table>
+<table  id="tt" ></table>
 <div id="tt-tb">
     <a onclick="newModel()" class="easyui-linkbutton" data-options="iconCls:'e-icon iconfont icon-font-add',plain:true"> 新增</a>
     <a onclick="editModel()" class="easyui-linkbutton" data-options="iconCls:'e-icon iconfont icon-font-edit',plain:true">编辑</a>
@@ -51,6 +51,7 @@
 <script src="${ctx!}/res/layer/layer.js"></script>
 <script src="${ctx!}/res/js/popup-tools.js"></script>
 <script type="text/javascript" charset="utf-8">
+
     ;(function () {
         var easyTree = new EasyTree();
         $("#tt").treegrid({
@@ -59,6 +60,9 @@
             idField: 'id',
             treeField: 'name',
             fit: true,
+            border:false,
+            lines:true,
+            animate:true,
             rownumbers: true,
             toolbar: '#tt-tb',
             loadFilter: function (data) {
@@ -81,7 +85,8 @@
                 {field: 'sort', title: '排序', width: 80},
                 {field: 'create_time', title: '创建时间', width: 150},
                 {field: 'last_edit_time', title: '最后修改时间', width: 150},
-            ]]
+            ]],
+            onDblClickRow:editModel
         });
     })();
 </script>

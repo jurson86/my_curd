@@ -60,7 +60,7 @@ public class PoiRender extends Render {
     @Override
     public void render() {
         response.reset();
-        fileName = StringUtils.encodeFileName(request,fileName);
+        fileName = StringUtils.encodeFileName(request, fileName);
         response.setHeader("Content-disposition", "attachment;" + fileName);
         response.setContentType(CONTENT_TYPE);
         OutputStream os = null;
@@ -69,7 +69,7 @@ public class PoiRender extends Render {
             PoiKit.with(data).sheetName(sheetName).headerRow(headerRow).headers(headers).columns(columns)
                     .cellWidth(cellWidth).export().write(os);
         } catch (Exception e) {
-            LOG.error(e.getMessage(),e);
+            LOG.error(e.getMessage(), e);
             throw new RenderException(e);
         } finally {
             try {
@@ -88,5 +88,4 @@ public class PoiRender extends Render {
         this.headers = headers;
         return this;
     }
-
 }

@@ -1,5 +1,13 @@
 <#include "/WEB-INF/views/common/common.html"/> <@layout>
 <link rel="stylesheet" href="${ctx!}/res/layer/theme/default/layer.css">
+<link rel="stylesheet" href="${ctx!}/res/pure/buttons-min.css">
+<style>
+    .pure-button{
+        margin: 3px 0;
+        background-color:#FFFFFF;
+        border: 1px solid lightgray;
+    }
+</style>
 </head>
 <body>
 <script type="text/javascript">
@@ -87,6 +95,7 @@
 
         <table id="dg" class="easyui-datagrid  "
                data-options="onDblClickRow:editModel"
+               url="${ctx!}/authRole/query"
                toolbar="#tb" rownumbers="true" singleSelect="true" border="false"
                fit="true" pagination="true">
             <thead>
@@ -96,6 +105,7 @@
                 <th field="sort" width="50">排序</th>
                 <th field="create_time" width="150">创建时间</th>
                 <th field="last_edit_time" width="150">最后修改时间</th>
+                <th field="id" width="100" align="center" formatter="operateFmt">操作</th>
             </tr>
             </thead>
         </table>
@@ -118,25 +128,22 @@
 <script src="${ctx!}/res/layer/layer.js"></script>
 <script src="${ctx!}/res/js/popup-tools.js"></script>
 <script>
-    $(function () {
-        var easyTree = new EasyTree();
-        $("#dg").datagrid({
-            url:"${ctx!}/authRole/query",
-            onSelect: function (index, row) {
-                var url = "${ctx!}/authRole/menuTreePermissionChecked?roleId=" + row.id;
-                $.getJSON(url, function (data) {
-                    data = easyTree.treeDataBuild(data, 'id', 'pid', 'text,state,checked,pid,iconCls');
-                    $("#allMenuTree").tree({
-                        data: data,
-                        checkbox: true
-                    });
-                    $("#nestLayout").layout("expand", "east");
-                });
-            },
-            onUnselect: function (index, row) {
-                $("#nestLayout").layout("collapse", "east");
-            }
-        })
-    });
+    function operateFmt(val){
+        return '<a class="pure-button" href="javascript:openPermissionPanel('+val+')">权限修改</a>'
+    }
+
+    /*打开角色侧栏*/
+    var easyTree = new EasyTree();
+    function openPermissionPanel(roleId){
+        var url = "${ctx!}/authRole/menuTreePermissionChecked?roleId=" + roleId;
+        $.getJSON(url, function (data) {
+            data = easyTree.treeDataBuild(data, 'id', 'pid', 'text,state,checked,pid,iconCls');
+            $("#allMenuTree").tree({
+                data: data,
+                checkbox: true
+            });
+            $("#nestLayout").layout("expand", "east");
+        });
+    }
 </script>
 </@layout>

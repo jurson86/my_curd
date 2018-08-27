@@ -13,6 +13,7 @@ import java.util.zip.ZipOutputStream;
 /**
  * 文件压缩方法
  * https://www.cnblogs.com/zeng1994/p/7862288.html 有扩展
+ *
  * @author chuang
  * @date 2018-06-20 18:56:48
  */
@@ -23,22 +24,23 @@ public class ZipUtils {
     private static final int BUFFER_SIZE = 2 * 1024;
 
     /**
-     *
      * 压缩文件夹
+     *
      * @param srcDir           压缩文件夹路径
      * @param out              压缩文件输出流
      * @param KeepDirStructure 是否保留原来的目录结构
      *                         true:保留目录结构;
      *                         false:所有文件跑到压缩包根目录下(注意：不保留目录结构可能会出现同名文件,会压缩失败)
      */
-    public static void toZip(String srcDir, OutputStream out, boolean KeepDirStructure){
+    public static void toZip(String srcDir, OutputStream out, boolean KeepDirStructure) {
         ZipOutputStream zos = null;
         try {
             zos = new ZipOutputStream(out);
             File sourceFile = new File(srcDir);
             compress(sourceFile, zos, sourceFile.getName(), KeepDirStructure);
         } catch (Exception e) {
-            LOG.error(e.getMessage(),e);
+            LOG.error(e.getMessage(), e);
+            throw new RuntimeException("压缩过程发生异常");
         } finally {
             close(zos);
         }
@@ -46,10 +48,11 @@ public class ZipUtils {
 
     /**
      * 文件列表压缩
+     *
      * @param srcFiles 需要压缩的文件列表
      * @param out      压缩文件输出流
      */
-    public static void toZip(List<File> srcFiles, OutputStream out){
+    public static void toZip(List<File> srcFiles, OutputStream out) {
         ZipOutputStream zos = null;
         try {
             zos = new ZipOutputStream(out);
@@ -65,7 +68,8 @@ public class ZipUtils {
                 in.close();
             }
         } catch (Exception e) {
-            LOG.error(e.getMessage(),e);
+            LOG.error(e.getMessage(), e);
+            throw new RuntimeException("压缩过程发生异常");
         } finally {
             close(zos);
         }
@@ -73,37 +77,39 @@ public class ZipUtils {
 
     /**
      * 字符串输出 到  压缩文件中
-     * @param srcDatas      文本数据集合
-     * @param srcFilenames  文件名集合
+     *
+     * @param srcDatas     文本数据集合
+     * @param srcFilenames 文件名集合
      * @param out
      * @throws RuntimeException
      */
-    public static void toZip(List<String> srcDatas,List<String> srcFilenames, OutputStream out){
-        if(srcDatas==null || srcFilenames==null
-                || srcDatas.size()==0 || srcFilenames.size()==0
-                || srcDatas.size()!=srcFilenames.size()){
+    public static void toZip(List<String> srcDatas, List<String> srcFilenames, OutputStream out) {
+        if (srcDatas == null || srcFilenames == null
+                || srcDatas.size() == 0 || srcFilenames.size() == 0
+                || srcDatas.size() != srcFilenames.size()) {
             throw new IllegalArgumentException();
         }
         ZipOutputStream zos = null;
         try {
             zos = new ZipOutputStream(out);
-            for(int i=0;i<srcDatas.size();i++){
+            for (int i = 0; i < srcDatas.size(); i++) {
                 zos.putNextEntry(new ZipEntry(srcFilenames.get(i)));
                 byte[] buf = srcDatas.get(i).getBytes(Charset.forName("UTF-8"));
                 zos.write(buf);
                 zos.closeEntry();
             }
         } catch (Exception e) {
-            LOG.error(e.getMessage(),e);
+            LOG.error(e.getMessage(), e);
+            throw new RuntimeException("压缩过程发生异常");
         } finally {
             close(zos);
         }
     }
 
 
-
     /**
      * 递归压缩方法
+     *
      * @param sourceFile       源文件
      * @param zos              zip输出流
      * @param name             压缩后的名称
@@ -155,34 +161,34 @@ public class ZipUtils {
 
     /**
      * 关闭输出流
+     *
      * @param out
      */
-    private  static  void close(OutputStream out){
+    private static void close(OutputStream out) {
         if (out != null) {
             try {
                 out.close();
             } catch (IOException e) {
-                LOG.error(e.getMessage(),e);
-                e.printStackTrace();
+                LOG.error(e.getMessage(), e);
             }
         }
     }
 
     public static void main(String[] args) throws FileNotFoundException {
         FileOutputStream out = new FileOutputStream(new File("D:/test.zip"));
-        List<String > srcDatas = new ArrayList<>();
+        List<String> srcDatas = new ArrayList<>();
         List<String> srcFilenames = new ArrayList<>();
-        for(int i=0;i<100;i++){
-            System.out.println("----"+i);
+        for (int i = 0; i < 100; i++) {
+            System.out.println("----" + i);
             StringBuilder stringBuilder = new StringBuilder();
-            for(int j=0;j<100;j++){
-                stringBuilder.append(j+"-中文测试-\r\n"+Identities.id()+"\r\n");
+            for (int j = 0; j < 100; j++) {
+                stringBuilder.append(j + "-中文测试-\r\n" + Identities.id() + "\r\n");
             }
             srcDatas.add(stringBuilder.toString());
-            srcFilenames.add(i+".log");
+            srcFilenames.add(i + ".log");
         }
 
-        toZip(srcDatas,srcFilenames,out);
+        toZip(srcDatas, srcFilenames, out);
         System.out.println("---over---");
     }
 }

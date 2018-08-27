@@ -1,5 +1,13 @@
 <#include "/WEB-INF/views/common/common.html"/> <@layout>
 <link rel="stylesheet" href="${ctx!}/res/layer/theme/default/layer.css">
+<link rel="stylesheet" href="${ctx!}/res/pure/buttons-min.css">
+<style>
+    .pure-button{
+        margin: 3px 0;
+        background-color:#FFFFFF;
+        border: 1px solid lightgray;
+    }
+</style>
 </head>
 <body>
 <script type="text/javascript">
@@ -82,21 +90,23 @@
         <ul id="allRoleTree" class="easyui-tree"></ul>
     </div>
     <div data-options="region:'center' "  split="true" style="border-top: none">
-        <table id="dg" class="easyui-datagrid  "
+        <table id="dg" class="easyui-datagrid  " url="${ctx!}/authUser/query"
                data-options="onDblClickRow:editModel"
+               multiSort="false"
                toolbar="#tb" rownumbers="true" singleSelect="true" border="false"
                fit="true" pagination="true">
             <thead>
             <tr>
-                <th field="username" width="100">登录名</th>
-                <th field="name" width="100">姓名</th>
+                <th sortable="true" field="username" width="100">登录名</th>
+                <th  field="name" width="100">姓名</th>
                 <th field="orgName" width="150">部门</th>
                 <th field="phone" width="150">电话</th>
                 <th field="email" width="150">邮箱</th>
                 <th field="disabled" width="50" formatter="formatDisabled">状态</th>
-                <th field="create_time" width="150">创建时间</th>
-                <th field="last_edit_time" width="150">最后修改时间</th>
-                <th field="last_login_time" width="150">最后登录时间</th>
+                <th sortable="true" field="create_time" width="150">创建时间</th>
+                <th sortable="true" field="last_edit_time" width="150">最后修改时间</th>
+                <th sortable="true" field="last_login_time" width="150">最后登录时间</th>
+                <th field="id" width="100" align="center" formatter="operateFmt">操作</th>
             </tr>
             </thead>
         </table>
@@ -137,25 +147,20 @@
         }
         return val;
     };
+    function operateFmt(val){
+        return '<a class="pure-button" href="javascript:openPermissionPanel('+val+')">角色修改</a>'
+    }
 
-    $(function () {
-        var easyTree = new EasyTree();
-        $("#dg").datagrid({
-            url:"${ctx!}/authUser/query",
-            onSelect: function (index, row) {
-                var url = "${ctx!}/authUser/roleListChecked?userId=" + row.id;
-                $.getJSON(url, function (data) {
-                    $("#allRoleTree").tree({
-                        data: data,
-                        checkbox: true
-                    });
-                    $("#nestLayout").layout("expand", "east");
-                });
-            },
-            onUnselect: function (index, row) {
-                $("#nestLayout").layout("collapse", "east");
-            }
-        })
-    });
+    /*打开角色侧栏*/
+    function openPermissionPanel(userId){
+        var url = "${ctx!}/authUser/roleListChecked?userId=" + userId;
+        $.getJSON(url, function (data) {
+            $("#allRoleTree").tree({
+                data: data,
+                checkbox: true
+            });
+            $("#nestLayout").layout("expand", "east");
+        });
+    }
 </script>
 </@layout>

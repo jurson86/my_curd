@@ -28,6 +28,7 @@ public abstract class DateTimeUtils {
 
     /**
      * 获得当前时间时间戳
+     *
      * @return
      */
     public static Timestamp getSqlTimestamp() {
@@ -36,6 +37,7 @@ public abstract class DateTimeUtils {
 
     /**
      * 获指定时间的时间戳
+     *
      * @param date
      * @return
      */
@@ -48,6 +50,7 @@ public abstract class DateTimeUtils {
 
     /**
      * 获得指定的时间戳
+     *
      * @param time
      * @return
      */
@@ -57,6 +60,7 @@ public abstract class DateTimeUtils {
 
     /**
      * 获得指定时间的时间戳
+     *
      * @param date
      * @param pattern
      * @return
@@ -73,6 +77,7 @@ public abstract class DateTimeUtils {
 
     /**
      * 获取当前时间
+     *
      * @return
      */
     public static Date getDate() {
@@ -81,6 +86,7 @@ public abstract class DateTimeUtils {
 
     /**
      * 获得当前日期 多长时间之后的日期
+     *
      * @param date
      * @param hour
      * @param minute
@@ -100,6 +106,7 @@ public abstract class DateTimeUtils {
 
     /**
      * 获取当前时间 long 类型值
+     *
      * @return
      */
     public static long getDateByTime() {
@@ -108,6 +115,7 @@ public abstract class DateTimeUtils {
 
     /**
      * 日期格式化
+     *
      * @param date
      * @param pattern
      * @return
@@ -120,6 +128,7 @@ public abstract class DateTimeUtils {
     /**
      * 指定时区 日期格式化
      * 可用于时区间 转换（例如date 是当前时间，timeZone指定哥本哈根，可以获得 哥本哈根当前时间）
+     *
      * @param date
      * @param pattern
      * @param timeZone
@@ -231,6 +240,7 @@ public abstract class DateTimeUtils {
 
     /**
      * 返回两个日期之间隔了多少小时
+     *
      * @param start
      * @param end
      * @return
@@ -242,6 +252,7 @@ public abstract class DateTimeUtils {
 
     /**
      * 返回两个日期之间隔了多少天
+     *
      * @param start
      * @param end
      * @return
@@ -253,6 +264,7 @@ public abstract class DateTimeUtils {
 
     /**
      * 得到某一天是星期几
+     *
      * @param date
      * @return String 星期几
      */
@@ -270,6 +282,7 @@ public abstract class DateTimeUtils {
 
     /**
      * 日期减去多少个小时
+     *
      * @param date
      * @param hourCount 多少个小时
      * @return
@@ -283,6 +296,7 @@ public abstract class DateTimeUtils {
 
     /**
      * 日期区间分割
+     *
      * @param start
      * @param end
      * @param splitCount
@@ -313,6 +327,7 @@ public abstract class DateTimeUtils {
 
     /**
      * 返回两个日期之间隔了多少天，包含开始、结束时间
+     *
      * @param start
      * @param end
      * @return
@@ -351,6 +366,7 @@ public abstract class DateTimeUtils {
 
     /**
      * 某个日期的 时分秒毫秒清零，向左或者向右偏移多少天
+     *
      * @param start
      * @param end
      * @return
@@ -369,6 +385,7 @@ public abstract class DateTimeUtils {
 
     /**
      * 获得某个日期最后时间（1毫秒之后为下一天开始）
+     *
      * @param start
      * @return
      */
@@ -385,6 +402,7 @@ public abstract class DateTimeUtils {
 
     /**
      * 某个时间 分秒毫秒清零，向左或者向右有偏移几分钟
+     *
      * @param start
      * @param end
      * @return
@@ -401,6 +419,7 @@ public abstract class DateTimeUtils {
 
     /**
      * 某个日期最后时间，1毫秒后为 下一分钟开始
+     *
      * @param end
      * @return
      */
@@ -415,6 +434,7 @@ public abstract class DateTimeUtils {
 
     /**
      * 根据年份和周得到周的开始和结束日期
+     *
      * @param year
      * @param week
      * @return
@@ -458,6 +478,7 @@ public abstract class DateTimeUtils {
 
     /**
      * 根据日期月份，获取月份的开始和结束日期
+     *
      * @param date
      * @return
      */

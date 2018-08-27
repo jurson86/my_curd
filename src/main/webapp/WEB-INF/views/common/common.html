@@ -20,7 +20,7 @@
         <script src="${ctx!}/res/js/loading_mask.js" ></script>
         <#nested>
         <script>
-            /*列表表格 搜索过滤监听*/
+            /* 列表表格 搜索过滤监听, 并不是所有页面都需要 */
             $(function () {
                 $("#enterSpan").on("keydown", function (e) {
                     if (e.keyCode == 13) {

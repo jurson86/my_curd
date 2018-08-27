@@ -13,10 +13,13 @@ import java.io.ObjectOutputStream;
 public abstract class SerializeUtils {
 
     private final static Logger LOG = Logger.getLogger(SerializeUtils.class);
-    private SerializeUtils() {}
+
+    private SerializeUtils() {
+    }
 
     /**
      * 序列化
+     *
      * @param object
      * @return
      */
@@ -37,6 +40,7 @@ public abstract class SerializeUtils {
 
     /**
      * 反序列化
+     *
      * @param bytes
      * @return
      */

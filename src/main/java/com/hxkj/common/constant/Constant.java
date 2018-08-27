@@ -5,7 +5,7 @@ package com.hxkj.common.constant;
  */
 public class Constant {
 
-    public final static  String DEFAULT_ENCODEING = "UTF-8";
+    public final static String DEFAULT_ENCODEING = "UTF-8";
 
     // 当前系统登录的 用户
     public final static String AUTH_USER = "auth_user";

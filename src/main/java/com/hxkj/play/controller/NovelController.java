@@ -70,7 +70,6 @@ public class NovelController extends BaseController {
 
     /**
      * 下载
-     *
      */
     public void download() {
         String nid = getPara("nid");

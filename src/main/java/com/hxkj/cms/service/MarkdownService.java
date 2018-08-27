@@ -4,17 +4,18 @@ import com.vladsch.flexmark.ast.Node;
 import com.vladsch.flexmark.html.HtmlRenderer;
 import com.vladsch.flexmark.parser.Parser;
 import com.vladsch.flexmark.util.options.MutableDataSet;
+
 /**
  * @author chuang
  * @date 2018-06-20 18:56:48
  */
 public class MarkdownService {
 
-    private final static  MutableDataSet options = new MutableDataSet();
+    private final static MutableDataSet options = new MutableDataSet();
     private final static Parser parser = Parser.builder(options).build();
-    private final static  HtmlRenderer renderer = HtmlRenderer.builder(options).build();
+    private final static HtmlRenderer renderer = HtmlRenderer.builder(options).build();
 
-    public final static String parse(String markdown){
+    public final static String parse(String markdown) {
         Node document = parser.parse(markdown);
         String html = renderer.render(document);
         return html;

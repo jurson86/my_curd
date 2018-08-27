@@ -39,19 +39,21 @@ public class NovelService {
             "Mozilla/5.0 (iPad; CPU OS 9_1 like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Version/9.0 Mobile/13B143 Safari/601.1"
     };
 
-    private NovelService() {}
+    private NovelService() {
+    }
 
 
     /**
      * Get 请求代理
+     *
      * @param url
      * @return
      */
     public static String getProxy(String url) {
-        if(LOG.isDebugEnabled()){
-            LOG.debug(" ---- get url: "+url);
+        if (LOG.isDebugEnabled()) {
+            LOG.debug(" ---- get url: " + url);
         }
-        String resStr=null;
+        String resStr = null;
         Content content;
         try {
             content = Request.Get(url)
@@ -61,7 +63,7 @@ public class NovelService {
             resStr = content.asString(Charset.forName(charset));
             LOG.debug(resStr);
         } catch (IOException e) {
-            LOG.error(e.getMessage(),e);
+            LOG.error(e.getMessage(), e);
         }
         return resStr;
     }
@@ -69,6 +71,7 @@ public class NovelService {
 
     /**
      * 关键字模糊查询小说
+     *
      * @param keyword
      * @param start
      * @param limit
@@ -79,10 +82,10 @@ public class NovelService {
                 + keyword + "&start=" + start + "&limit=" + limit;
         Map<String, Object> map = new HashMap<String, Object>();
         String jsonStr = getProxy(url);
-        if(jsonStr==null){
+        if (jsonStr == null) {
             map.put("code", -1);
             map.put("message", "请求无响应数据");
-        }else{
+        } else {
             JSONObject jsonObject = JSON.parseObject(jsonStr);
             if (!jsonObject.getBoolean("ok")) {
                 map.put("message", jsonObject.getString("msg"));
@@ -107,6 +110,7 @@ public class NovelService {
 
     /**
      * 小说分类
+     *
      * @param category
      * @param start
      * @param limit
@@ -114,12 +118,12 @@ public class NovelService {
      */
     public static Map<String, Object> category(String category, Integer start, Integer limit) {
         Map<String, Object> map = new HashMap<String, Object>();
-        String url = "http://api.zhuishushenqi.com/book/by-categories?" + category +  "&type=hot" + "&start=" + start + "&limit=" + limit;
+        String url = "http://api.zhuishushenqi.com/book/by-categories?" + category + "&type=hot" + "&start=" + start + "&limit=" + limit;
         String jsonStr = getProxy(url);
-        if(jsonStr==null){
+        if (jsonStr == null) {
             map.put("code", -1);
             map.put("message", "请求无响应数据");
-        }else{
+        } else {
             JSONObject jsonObject = JSON.parseObject(jsonStr);
             if (!jsonObject.getBoolean("ok")) {
                 map.put("code", -1);
@@ -150,10 +154,10 @@ public class NovelService {
         Map<String, Object> map = new HashMap<String, Object>();
         String url = "http://api.zhuishushenqi.com/book/" + nid;
         String jsonStr = getProxy(url);
-        if(jsonStr==null){
+        if (jsonStr == null) {
             map.put("code", -1);
             map.put("message", "请求无响应数据");
-        }else{
+        } else {
             JSONObject jsonObject = JSON.parseObject(jsonStr);
             if (!jsonObject.getBoolean("ok")) {
                 map.put("code", -1);
@@ -168,6 +172,7 @@ public class NovelService {
 
     /**
      * 章节列表
+     *
      * @param nid
      * @return
      */
@@ -175,10 +180,10 @@ public class NovelService {
         Map<String, Object> map = new HashMap<String, Object>();
         String url = "http://api.zhuishushenqi.com/mix-atoc/" + nid + "?view=chapters";
         String jsonStr = getProxy(url);
-        if(jsonStr==null){
+        if (jsonStr == null) {
             map.put("code", -1);
             map.put("message", "请求无响应数据");
-        }else{
+        } else {
             JSONObject jsonObject = JSON.parseObject(jsonStr);
             if (!jsonObject.getBoolean("ok")) {
                 map.put("code", -1);
@@ -194,6 +199,7 @@ public class NovelService {
 
     /**
      * 章节详情
+     *
      * @param url
      * @return
      */
@@ -208,10 +214,10 @@ public class NovelService {
         }
         String dUrl = "http://chapter2.zhuishushenqi.com/chapter/" + url;
         String jsonStr = getProxy(dUrl);
-        if(jsonStr==null){
+        if (jsonStr == null) {
             map.put("code", -1);
             map.put("message", "请求无响应数据");
-        }else{
+        } else {
             JSONObject jsonObject = JSON.parseObject(jsonStr);
             if (!jsonObject.getBoolean("ok")) {
                 map.put("code", -1);
@@ -226,6 +232,7 @@ public class NovelService {
 
     /**
      * 获得所有小说章节的文本，放入map 中
+     *
      * @param nid
      * @return
      */
@@ -271,6 +278,7 @@ public class NovelService {
 
     /**
      * 获得所有小说章节的文本，放入 txt 文件 中
+     *
      * @param nid
      * @param txtFile
      * @return
@@ -318,6 +326,7 @@ public class NovelService {
      * 快速 获得所有小说章节的文本，放入map 中
      * web 环境下 用户量少适用
      * 线程池结合  CountDownLatch 效果更好
+     *
      * @param nid
      * @return
      */
@@ -383,6 +392,7 @@ public class NovelService {
     /**
      * 快速 获得所有小说章节的文本，放入 txt 文件 中
      * web 环境下 用户量少适用
+     *
      * @param nid
      * @return
      */

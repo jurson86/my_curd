@@ -13,7 +13,8 @@ import java.util.List;
 
 
 /**
- * 权限拦截器
+ * 权限拦截器, 只拦截到 页面级
+ *
  * @author chuang
  * @date 2018-06-20 18:56:48
  */
@@ -24,11 +25,16 @@ public class PermissionInterceptor implements Interceptor {
     public void intercept(Invocation inv) {
         String controllerKey = inv.getControllerKey();
         List<AuthMenu> ownAuthMenus = inv.getController().getSessionAttr(Constant.OWN_MENU);
-        LOG.debug("permission menu: " + JsonKit.toJson(ownAuthMenus));
+
+        if (LOG.isDebugEnabled()) {
+            LOG.debug("permission menu: " + JsonKit.toJson(ownAuthMenus));
+        }
         for (AuthMenu authMenu : ownAuthMenus) {
             // 拥有权限
             if (StrKit.notBlank(authMenu.getUrl()) && !authMenu.getUrl().equals("/") && authMenu.getUrl().startsWith(controllerKey)) {
-                LOG.debug(controllerKey + " 拥有 " + authMenu.getUrl() + ", 拥有权限. ");
+                if (LOG.isDebugEnabled()) {
+                    LOG.debug(controllerKey + " 拥有 " + authMenu.getUrl() + ", 拥有权限. ");
+                }
                 inv.invoke();
                 return;
             }

@@ -134,8 +134,6 @@ public class PoiKit {
                     cell.setCellType(HSSFCell.CELL_TYPE_NUMERIC);
                 }
                 cell.setCellValue(value);
-
-
             }
         }
     }

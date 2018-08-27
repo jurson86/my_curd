@@ -46,7 +46,7 @@ public class DataFileController extends BaseController {
         String sort = getPara("sort");
         String order = getPara("order");
         String where = getAttr(Constant.SEARCH_SQL);
-        Page<DataFile> dataFilePage = DataFile.dao.page(pageNumber, pageSize,sort,order, where);
+        Page<DataFile> dataFilePage = DataFile.dao.page(pageNumber, pageSize, sort, order, where);
         renderDatagrid(dataFilePage);
     }
 
@@ -141,37 +141,37 @@ public class DataFileController extends BaseController {
      */
     @Before(Tx.class)
     public void deleteAction() {
-        boolean opFlag  = true;
+        boolean opFlag = true;
         String ids = getPara("ids");
         List<DataFile> dataFiles;
-        if(ids.contains(",")){
-            ids = ids.replaceAll(",","','");
-            ids="'"+ids+"'";
+        if (ids.contains(",")) {
+            ids = ids.replaceAll(",", "','");
+            ids = "'" + ids + "'";
             dataFiles = DataFile.dao.findByIds(ids);
-        }else{
+        } else {
             DataFile dataFile = DataFile.dao.findById(ids);
             dataFiles = new ArrayList<DataFile>();
             dataFiles.add(dataFile);
         }
         // 记录删除
-        for(DataFile dataFile: dataFiles){
+        for (DataFile dataFile : dataFiles) {
             opFlag = dataFile.delete();
             // 失败一次 立刻回滚（正常情况不该是异常)
-            if(!opFlag){
-                throw  new RuntimeException("删除文件失败异常，文件ids:"+ids);
+            if (!opFlag) {
+                throw new RuntimeException("删除文件失败异常，文件ids:" + ids);
             }
         }
         // 文件删除
         File tempFile;
-        for(DataFile dataFile:dataFiles){
-            tempFile= new File(PathKit.getWebRootPath() + File.separator + dataFile.getPath());
+        for (DataFile dataFile : dataFiles) {
+            tempFile = new File(PathKit.getWebRootPath() + File.separator + dataFile.getPath());
             if (tempFile.exists()) {
                 tempFile.delete();
             }
         }
-        if(opFlag){
+        if (opFlag) {
             renderText(Constant.DELETE_SUCCESS);
-        }else{
+        } else {
             renderText(Constant.DELETE_FAIL);
         }
     }

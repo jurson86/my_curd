@@ -16,6 +16,7 @@ public class FileUtils {
     /**
      * 通过文件全路径 获得文件的 MIME(contentType)类型
      * jdk7
+     *
      * @param absolutePath 文件全路径
      * @return
      */
@@ -28,6 +29,22 @@ public class FileUtils {
             LOG.error(e.getMessage(), e);
         }
         return contentType;
+    }
+
+    /**
+     * 获取文件 后缀
+     *
+     * @param filename 文件名
+     * @return
+     */
+    public static String getExtensionName(String filename) {
+        if ((filename != null) && (filename.length() > 0)) {
+            int dot = filename.lastIndexOf('.');
+            if ((dot > -1) && (dot < (filename.length() - 1))) {
+                return filename.substring(dot + 1);
+            }
+        }
+        return filename;
     }
 
 }

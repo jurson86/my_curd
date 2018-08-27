@@ -59,14 +59,18 @@ public class AuthUser extends BaseAuthUser<AuthUser> implements java.io.Serializ
      * @param where
      * @return
      */
-    public Page<AuthUser> page(int pageNumber, int pageSize, String where) {
+    public Page<AuthUser> page(int pageNumber, int pageSize, String sort, String order, String where) {
         String sqlSelect = " select su.*, so.name as orgName ";
         String sqlExceptSelect = " from auth_user su" +
                 " LEFT JOIN auth_org so on su.org_id = so.id ";
         if (StrKit.notBlank(where)) {
             sqlExceptSelect += " where " + where;
         }
-        sqlExceptSelect += "order by su.create_time";
+        if (StrKit.notBlank(sort) && StrKit.notBlank(order)) {
+            sqlExceptSelect += " order by su." + sort + " " + order;
+        } else {
+            sqlExceptSelect += "order by su.create_time";
+        }
         Page<AuthUser> authUsers = AuthUser.dao.paginate(pageNumber, pageSize, sqlSelect, sqlExceptSelect);
         return authUsers;
     }

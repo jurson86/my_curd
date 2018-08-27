@@ -30,7 +30,7 @@ public class SendMailProcess implements Callable<Boolean> {
     private String content;               // 文本内容
     private String[] attachFileNames;     // 附件文件名
 
-    public SendMailProcess( List<String> to, String subject, String content, String[] attachFileNames) {
+    public SendMailProcess(List<String> to, String subject, String content, String[] attachFileNames) {
 
         // 根据实际情况配置 发送者信息
         // 本地配置 的 HMailServer, 无效的域名解析 可能被接收方当作垃圾邮件。
@@ -59,6 +59,7 @@ public class SendMailProcess implements Callable<Boolean> {
 
     /**
      * FutureTask 调用发送邮件
+     *
      * @return true 发送成功 false 发送失败
      */
     @Override
@@ -71,6 +72,7 @@ public class SendMailProcess implements Callable<Boolean> {
 
     /**
      * 发送邮件
+     *
      * @return true 发送成功 false 发送失败
      */
     public boolean sendEmail() {
@@ -79,7 +81,7 @@ public class SendMailProcess implements Callable<Boolean> {
         Properties prop = new Properties();
         prop.put("mail.smtp.host", this.host);
         prop.put("mail.smtp.port", this.port);
-        prop.put("mail.smtp.auth",  "true" );
+        prop.put("mail.smtp.auth", "true");
         //发送者 为 google 邮箱
         if (this.host.contains("smtp.gmail.com")) {
             prop.setProperty("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
@@ -87,7 +89,7 @@ public class SendMailProcess implements Callable<Boolean> {
             prop.setProperty("mail.smtp.port", "465");
             prop.setProperty("mail.smtp.socketFactory.port", "465");
         }
-        MailAuthenticator  authenticator = new MailAuthenticator(this.userName, this.password);
+        MailAuthenticator authenticator = new MailAuthenticator(this.userName, this.password);
         Session sendMailSession = Session.getInstance(prop, authenticator);
 
         try {

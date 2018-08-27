@@ -9,7 +9,7 @@ import com.jfinal.kit.HttpKit;
 
 /**
  * 读取 客户端 post 请求 body json 对象 放入到 request 中
- * （不是 ajax datatype:'json")
+ * （ 不是 ajax datatype:'json" )
  */
 public class ReadJsonInterceptor implements Interceptor {
     @Override

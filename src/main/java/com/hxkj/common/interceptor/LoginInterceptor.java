@@ -22,8 +22,8 @@ public class LoginInterceptor implements Interceptor {
     public void intercept(Invocation invocation) {
         LOG.debug("do LoginInterceptor ");
 
-        HttpServletRequest request = (HttpServletRequest) invocation.getController().getRequest();
-        HttpServletResponse response = (HttpServletResponse) invocation.getController().getResponse();
+        HttpServletRequest request = invocation.getController().getRequest();
+        HttpServletResponse response = invocation.getController().getResponse();
         HttpSession session = request.getSession();
 
         // 未登录 跳转到登录页面

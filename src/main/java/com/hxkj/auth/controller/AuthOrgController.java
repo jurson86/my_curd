@@ -53,7 +53,7 @@ public class AuthOrgController extends BaseController {
 
         if (id != null) {
             // 根据组织机构查询 系统用户
-            Record record = Db.findFirst("select getChildIdList(?,'auth_org') as childrenIds ", id);
+            Record record = Db.findFirst("select authOrgTreeIds(?) as childrenIds ", id);
             String childrenIds = record.getStr("childrenIds");  // 子、孙 id
             if (StrKit.notBlank(childrenIds)) {
                 sqlExceptSelect += " where  org_id  in  (" + childrenIds + ")";
@@ -122,7 +122,7 @@ public class AuthOrgController extends BaseController {
     public void deleteAction() {
         Long id = getParaToLong("id");
         // 删除当前结构和子孙组织机构
-        Record record = Db.findFirst("select getChildIdList(?,'auth_org') as childrenIds ", id);
+        Record record = Db.findFirst("select authOrgTreeIds(?) as childrenIds ", id);
         String childrenIds = record.getStr("childrenIds");  // 子、孙 id
         String deleteSql = "delete from auth_org where  id  in (" + childrenIds + ")";
         Db.update(deleteSql);

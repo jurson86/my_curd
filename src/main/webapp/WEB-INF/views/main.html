@@ -155,10 +155,25 @@
                 $("#filterInput").on("keydown", function () {
                     if (event.keyCode == "13") {
                         var inputVal = $(this).val();
-                        console.log(inputVal);
+                        var aryTemp =[];
                         $('#permissionTree').tree({
                             filter: function (q, node) {
-                                return  node.text.indexOf(inputVal) >= 0 ;
+                                var flag =  node.text.indexOf(inputVal) >= 0;
+                                if(flag){
+                                    /* text 直接符合条件*/
+                                    var nodex =  $('#permissionTree').tree('find',node.id);
+                                    aryTemp =   $('#permissionTree').tree("getChildren",nodex.target);
+                                    return true;
+                                }else{
+                                    /* 符合条件节点的子孙节点 */
+                                  for(var i=0;i<aryTemp.length;i++){
+                                      if(aryTemp[i].id == node.id){
+                                          return true;
+                                      }
+                                  }
+                                  return false;
+                                }
+                                /*return  node.text.indexOf(inputVal) >= 0 ;*/
                             }
                         });
                         if ($.trim(inputVal) == "" || inputVal == null || inputVal == undefined ) {

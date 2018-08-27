@@ -1,11 +1,11 @@
 package com.hxkj.auth.controller;
 
-import com.hxkj.common.constant.Constant;
-import com.hxkj.common.controller.BaseController;
-import com.hxkj.common.util.search.SearchSql;
 import com.hxkj.auth.model.AuthRole;
 import com.hxkj.auth.model.AuthUser;
 import com.hxkj.auth.model.AuthUserRole;
+import com.hxkj.common.constant.Constant;
+import com.hxkj.common.controller.BaseController;
+import com.hxkj.common.util.search.SearchSql;
 import com.jfinal.aop.Before;
 import com.jfinal.kit.HashKit;
 import com.jfinal.plugin.activerecord.Db;
@@ -34,8 +34,10 @@ public class AuthUserController extends BaseController {
     public void query() {
         int pageNumber = getAttr("pageNumber");
         int pageSize = getAttr("pageSize");
+        String sort = getPara("sort");
+        String order = getPara("order");
         String where = getAttr(Constant.SEARCH_SQL);
-        Page<AuthUser> authUsers = AuthUser.dao.page(pageNumber, pageSize, where);
+        Page<AuthUser> authUsers = AuthUser.dao.page(pageNumber, pageSize, sort, order, where);
         renderDatagrid(authUsers);
     }
 

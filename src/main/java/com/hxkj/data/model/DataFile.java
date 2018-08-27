@@ -21,20 +21,22 @@ public class DataFile extends BaseDataFile<DataFile> implements java.io.Serializ
 
     /**
      * 根据 多个id 查询列表
+     *
      * @param ids
      * @return
      */
-    public List<DataFile> findByIds(String ids){
-        String sql = "select * from data_file where id in ("+ids+")";
+    public List<DataFile> findByIds(String ids) {
+        String sql = "select * from data_file where id in (" + ids + ")";
         return find(sql);
     }
 
     /**
      * 分页查询 可排序
+     *
      * @param pageNumber
      * @param pageSize
-     * @param sort  排序字段
-     * @param order 排序方式
+     * @param sort       排序字段
+     * @param order      排序方式
      * @param where
      * @return
      */
@@ -44,8 +46,8 @@ public class DataFile extends BaseDataFile<DataFile> implements java.io.Serializ
         if (StrKit.notBlank(where)) {
             sqlExceptSelect += " where " + where;
         }
-        if(StrKit.notBlank(sort) && StrKit.notBlank(order)){
-           sqlExceptSelect += " order by sf."+sort+" "+order;
+        if (StrKit.notBlank(sort) && StrKit.notBlank(order)) {
+            sqlExceptSelect += " order by sf." + sort + " " + order;
         }
         return this.paginate(pageNumber, pageSize, sqlSelect, sqlExceptSelect);
     }

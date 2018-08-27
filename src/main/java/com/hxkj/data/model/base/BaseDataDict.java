@@ -45,12 +45,14 @@ public abstract class BaseDataDict<M extends BaseDataDict<M>> extends Model<M> i
     public void setCreateTime(java.util.Date createTime) {
         set("create_time", createTime);
     }
+
+    public java.util.Date getLastEditTime() {
+        return get("last_edit_time");
+    }
+
     // last_edit_time  最后一次修改时间
     public void setLastEditTime(java.util.Date lastEditTime) {
         set("last_edit_time", lastEditTime);
-    }
-    public java.util.Date getLastEditTime() {
-        return get("last_edit_time");
     }
 
 }

@@ -24,6 +24,7 @@ public abstract class WebUtils {
 
     /**
      * 获取客户端IP地址
+     *
      * @param request
      * @return
      */
@@ -43,6 +44,7 @@ public abstract class WebUtils {
 
     /**
      * 获取上下文URL全路径
+     *
      * @param request
      * @return
      */
@@ -61,6 +63,7 @@ public abstract class WebUtils {
 
     /**
      * 获取完整请求路径(含内容路径及请求参数)
+     *
      * @param request
      * @return
      */
@@ -70,6 +73,7 @@ public abstract class WebUtils {
 
     /**
      * 获取请求参数
+     *
      * @param request
      * @param name
      * @return
@@ -89,6 +93,7 @@ public abstract class WebUtils {
 
     /**
      * 获取ParameterMap
+     *
      * @param request
      * @return
      */
@@ -104,6 +109,7 @@ public abstract class WebUtils {
 
     /**
      * 输出servlet文本内容
+     *
      * @param response
      * @param content
      * @param contentType
@@ -112,12 +118,13 @@ public abstract class WebUtils {
         try {
             outPage(response, content.getBytes(Constant.DEFAULT_ENCODEING), contentType);
         } catch (IOException e) {
-            LOG.error(e.getMessage(),e);
+            LOG.error(e.getMessage(), e);
         }
     }
 
     /**
      * 输出servlet文本内容
+     *
      * @param response
      * @param content
      * @param contentType
@@ -131,13 +138,14 @@ public abstract class WebUtils {
         try {
             response.getOutputStream().write(content);
         } catch (IOException e) {
-            LOG.error(e.getMessage(),e);
+            LOG.error(e.getMessage(), e);
         }
     }
 
 
     /**
      * 请求流转字符串
+     *
      * @param request
      * @return
      */
@@ -188,6 +196,7 @@ public abstract class WebUtils {
 
     /**
      * 添加cookie
+     *
      * @param request    HttpServletRequest
      * @param response   HttpServletResponse
      * @param domain     设置cookie所在域
@@ -294,6 +303,7 @@ public abstract class WebUtils {
 
     /**
      * 根据配置文件 效验Referer有效性（防止资源外链）
+     *
      * @return
      */
     public static boolean authReferer(HttpServletRequest request) {

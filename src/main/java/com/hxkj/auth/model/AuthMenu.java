@@ -1,10 +1,15 @@
 package com.hxkj.auth.model;
 
+import com.google.common.base.Joiner;
 import com.hxkj.auth.model.base.BaseAuthMenu;
 import com.jfinal.kit.StrKit;
+import com.jfinal.plugin.activerecord.Db;
+import com.jfinal.plugin.activerecord.Record;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * model table: auth_menu   菜单
@@ -54,11 +59,34 @@ public class AuthMenu extends BaseAuthMenu<AuthMenu> implements java.io.Serializ
     public List<AuthMenu> findWhere(String where) {
         String sqlSelect = " select * ";
         String sqlExceptSelect = " from auth_menu  ";
+
+        List<AuthMenu> authMenus;
+
         if (StrKit.notBlank(where)) {
             sqlExceptSelect += " where " + where;
+            authMenus = AuthMenu.dao.find(sqlSelect + sqlExceptSelect);
+
+            // 操作相当复杂，但是前台 treegrid filter 没有找到好方法 有子树没有父树
+            // 查询 相关子节点
+            Set<Long> idsUse = new HashSet<>();
+            for (AuthMenu authMenu : authMenus) {
+                idsUse.add(authMenu.getId());
+            }
+            Set<Long> ids = new HashSet<>();
+            for (Long id : idsUse) {
+                Record record = Db.findFirst("select authMenuTreeIds(?) as childrenIds ", id);
+                String[] idsAry = record.getStr("childrenIds").split(",");
+                for (String idsAryItem : idsAry) {
+                    ids.add(Long.parseLong(idsAryItem));
+                }
+            }
+            String allreferIds = Joiner.on(",").join(ids);
+            String sql = " select *  from auth_menu where id in (" + allreferIds + ")  order by   sort asc";
+            authMenus = AuthMenu.dao.find(sql);
+
+        } else {
+            authMenus = AuthMenu.dao.find(sqlSelect + sqlExceptSelect + " order by sort asc");
         }
-        sqlExceptSelect += " order by   sort asc ";
-        List<AuthMenu> authMenus = AuthMenu.dao.find(sqlSelect + sqlExceptSelect);
         return authMenus;
     }
 
