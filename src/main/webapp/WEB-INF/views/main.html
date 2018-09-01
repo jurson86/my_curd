@@ -54,7 +54,7 @@
 <body>
 <div id="mainLayout" class="easyui-layout" fit="true" border="false">
     <div class="head" data-options="region:'north'" border="false">
-        <span class="head-text" onclick="fullScreenToggleNew(this)" title="点击全屏" >my_CURD</span>
+        <span class="head-text" onclick="fullScreenToggleNew(this)" title="点击全屏" >my_curd</span>
         <span class="head-menu">
             你好, (${(session.auth_user_roles)!} )
             <a id="opeMenu" class="pure-button pure-button-primary " >
@@ -68,7 +68,7 @@
             <script>
                 ;(function(){
                     function openEditInfoForm() {
-                        popup.openIframe('修改用户信息', '${ctx!}/userInfo', '560px', '400px');
+                        popup.openIframe('修改用户信息', '${ctx!}/userInfo', '560px', '600px');
                     }
                     function openChangePwdForm(){
                         popup.openIframe('修改密码', '${ctx!}/userPassword', '560px', '400px');

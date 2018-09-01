@@ -1,11 +1,14 @@
 package com.hxkj.auth.controller;
 
 import com.hxkj.auth.model.AuthMenu;
+import com.hxkj.auth.model.AuthRoleMenu;
+import com.hxkj.auth.model.AuthUserRole;
 import com.hxkj.common.constant.Constant;
 import com.hxkj.common.controller.BaseController;
 import com.hxkj.common.util.search.SearchSql;
 import com.jfinal.aop.Before;
 import com.jfinal.plugin.activerecord.Db;
+import com.jfinal.plugin.activerecord.Page;
 import com.jfinal.plugin.activerecord.Record;
 import com.jfinal.plugin.activerecord.tx.Tx;
 
@@ -120,6 +123,47 @@ public class AuthMenuController extends BaseController {
             maps.add(map);
         }
         renderJson(maps);
+    }
+
+
+
+    /**
+     * 打开 菜单相关 的 角色页
+     */
+    public void openRolesModel(){
+        setAttr("menuId",getPara("id"));
+        render("auth/authMenu_role.html");
+    }
+
+
+    /**
+     * 角色 相关用户数据
+     */
+    @Before(SearchSql.class)
+    public void queryRoles(){
+        int pageNumber=getAttr("pageNumber");
+        int pageSize=getAttr("pageSize");
+        String where=getAttr(Constant.SEARCH_SQL);
+        Page<AuthRoleMenu> authUserRolePage=AuthRoleMenu.dao.pageWithRoleInfo(pageNumber,pageSize,where);
+        renderDatagrid(authUserRolePage);
+    }
+
+    /**
+     * 删除 角色菜单 关联记录
+     */
+    public void deleteRoleMenu(){
+        String roleId = getPara("roleId");
+        String menuId = getPara("menuId");
+        AuthRoleMenu authRoleMenu= AuthRoleMenu.dao.findById(menuId,roleId);
+        if(authRoleMenu==null){
+            renderText(Constant.DELETE_FAIL);
+            return;
+        }
+        if(authRoleMenu.delete()){
+            renderText(Constant.DELETE_SUCCESS);
+        }else{
+            renderText(Constant.DELETE_FAIL);
+        }
     }
 
 }

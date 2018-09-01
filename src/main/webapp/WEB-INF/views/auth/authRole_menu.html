@@ -1,0 +1,64 @@
+<#include "/WEB-INF/views/common/common.html"/> <@layout>
+<link rel="stylesheet" href="${ctx!}/res/layer/theme/default/layer.css">
+</head>
+<body style="background-color:#f5f5f5">
+<script type="text/javascript">
+    /*数组去重*/
+    Array.prototype.unique = function () {
+        var res = [];
+        var json = {};
+        for (var i = 0; i < this.length; i++) {
+            if (!json[this[i]]) {
+                res.push(this[i]);
+                json[this[i]] = 1;
+            }
+        }
+        return res;
+    };
+    /*分配权限*/
+    function givePermission() {
+        var checkedNodes = $("#allMenuTree").tree("getChecked");
+        var permissIds = [];
+        for (var i = 0; i < checkedNodes.length; i++) {
+            /* 只提交 叶子节点 */
+            if($("#allMenuTree").tree("isLeaf",checkedNodes[i].target)){
+                permissIds.push(checkedNodes[i].id);
+            }
+        }
+        $.post('${ctx!}/authRole/givePermission', {
+            roleId: '${roleId!}',
+            permissIds: permissIds.join(";")
+        }, function (result) {
+            popup.msg(result);
+        }, 'text').error(function(){ popup.errMsg(); });
+    }
+</script>
+<div id="toolbars" style=" text-align: right;padding-bottom: 5px; ">
+    <a href="#" class="easyui-linkbutton" data-options="iconCls:'e-icon iconfont icon-font-save'" onclick="givePermission()">授予权限</a>
+</div>
+<div style="height: 500px; overflow: scroll;background-color:#fff;border: 1px solid lightgray;">
+    <ul id="allMenuTree" class="easyui-tree"></ul>
+</div>
+<script src="${ctx!}/res/js/easyui-tree-tools.js"></script>
+<script src="${ctx!}/res/layer/layer.js"></script>
+<script src="${ctx!}/res/js/popup-tools.js"></script>
+<script>
+    /*打开角色侧栏*/
+    var easyTree = new EasyTree();
+    function openPermissionPanel(){
+        var url = "${ctx!}/authRole/menuTreePermissionChecked?roleId=${roleId!}";
+        $.getJSON(url, function (data) {
+            data = easyTree.treeDataBuild(data, 'id', 'pid', 'text,state,checked,pid,iconCls');
+            $("#allMenuTree").tree({
+                data: data,
+                checkbox: true,
+                lines:true
+            });
+            $("#nestLayout").layout("expand", "east");
+        });
+    }
+    $(function(){
+        openPermissionPanel();
+    });
+</script>
+</@layout>

@@ -16,7 +16,7 @@
     }
 
     function editModel() {
-        var row = $("#dg").treegrid("getSelected");
+        var row = $("#dg").datagrid("getSelected");
         if (row != null) {
             popup.openIframe('编辑', '${ctx!}/authUser/newModel?id=' + row.id, '800px', '450px')
         } else {
@@ -44,69 +44,44 @@
         var queryParams = {};
         queryParams['search_LIKE_su.username'] = $("#username").textbox("getValue");
         queryParams['search_LIKE_su.name'] = $("#name").textbox("getValue");
+        queryParams['search_LIKE_su.job'] = $("#job").textbox("getValue");
+        queryParams['search_EQ_su.job_level'] = $("#jobLevel").combobox("getValue");
         queryParams['search_LIKE_so.name'] = $("#orgName").textbox("getValue");
         queryParams['search_EQ_su.disabled'] = $("#disabled").combobox('getValue');
         $('#dg').datagrid('load', queryParams);
     }
 
-    /**
-     *  角色 分配权限
-     */
-    function giveRoles() {
-        var checkedNodes = $("#allRoleTree").tree("getChecked");
-
-        if (checkedNodes.length == 0) {
-            popup.msg('请选择要分配的角色!');
-            return;
+    /* 打开 修改角色 窗口 */
+    function openRoles(){
+        var row = $("#dg").datagrid("getSelected");
+        if (row != null) {
+            popup.openIframe('修改角色', '${ctx!}/authUser/openGiveRoleModel?id=' + row.id, '350px', '500px')
+        } else {
+            popup.msg('请选择一行数据进行操作');
         }
-
-        var userRow = $("#dg").datagrid("getSelected");
-        if (userRow == null) {
-            popup.msg('请选择要分配角色的员工!');
-            return;
-        }
-
-
-        var roleIds = [];
-        for (var i = 0; i < checkedNodes.length; i++) {
-            roleIds.push(checkedNodes[i].id);
-        }
-
-        $.post('${ctx!}/authUser/giveRole', {
-            userId: userRow.id,
-            roleIds: roleIds.join(";")
-        }, function (result) {
-            popup.msg(result);
-        }, 'text').error(function(){ popup.errMsg(); });
-
     }
-
 </script>
-
 <div id="nestLayout" class="easyui-layout" fit="true">
-    <div data-options="region:'east' " title="角色列表"
-         split="true" collapsed="true" tools="#treeTB" headerCls="btNone"
-         style="width: 300px;">
-        <ul id="allRoleTree" class="easyui-tree"></ul>
-    </div>
     <div data-options="region:'center' "  split="true" style="border-top: none">
         <table id="dg" class="easyui-datagrid  " url="${ctx!}/authUser/query"
                data-options="onDblClickRow:editModel"
-               multiSort="false"
+               multiSort="false"   pageSize="40" pageList="[20,40]"
                toolbar="#tb" rownumbers="true" singleSelect="true" border="false"
                fit="true" pagination="true">
             <thead>
             <tr>
                 <th sortable="true" field="username" width="100">登录名</th>
                 <th  field="name" width="100">姓名</th>
+                <th  field="gender" width="60" formatter="genderFmt">性别</th>
                 <th field="orgName" width="150">部门</th>
+                <th field="job" width="100">职务</th>
+                <th field="jobLevelName" width="100">职务级别</th>
                 <th field="phone" width="150">电话</th>
                 <th field="email" width="150">邮箱</th>
                 <th field="disabled" width="50" formatter="formatDisabled">状态</th>
                 <th sortable="true" field="create_time" width="150">创建时间</th>
                 <th sortable="true" field="last_edit_time" width="150">最后修改时间</th>
                 <th sortable="true" field="last_login_time" width="150">最后登录时间</th>
-                <th field="id" width="100" align="center" formatter="operateFmt">操作</th>
             </tr>
             </thead>
         </table>
@@ -115,12 +90,16 @@
             <a onclick="newModel()" href="#" class="easyui-linkbutton" iconCls="e-icon iconfont icon-font-add" plain="true">新增</a>
             <a onclick="editModel()" href="#" class="easyui-linkbutton" iconCls="e-icon iconfont icon-font-edit" plain="true">编辑</a>
             <a onclick="deleteModel()" href="#" class="easyui-linkbutton  " iconCls="e-icon iconfont icon-font-delete" plain="true">删除</a>
+            <a onclick="openRoles()" href="#" class="easyui-linkbutton  " iconCls="e-icon iconfont icon-font-edit" plain="true" >修改角色</a>
             <span id="enterSpan" class="searchInputArea">
 					<input id="username" prompt="登录名" class="easyui-textbox" style="width:120px">
                     <input id="name" prompt="姓名" class="easyui-textbox" style="width:120px">
                 <!--   <input id="phone" prompt="电话" class="easyui-textbox" style="width:80px">
                    <input id="email" prompt="邮箱" class="easyui-textbox" style="width:80px">-->
                     <input id="orgName" prompt="部门" class="easyui-textbox" style="width:120px">
+                    <input id="job" prompt="职务" class="easyui-textbox" style="width:120px">
+                    <input id="jobLevel" prompt="职务级别" class="easyui-combobox" style="width:120px; "
+                        data-options="url:'${ctx!}/dataDict/queryDictData?type=jobLevel&fields=dict_key as text, dict_value as value'">
                     <span style="margin-left: 20px;">  状态：</span>
                     <select class="easyui-combobox" id="disabled" label="" style="width:80px;">
                              <option value="" selected>所有状态</option>
@@ -130,15 +109,20 @@
 					<a href="#" class="easyui-linkbutton" data-options="iconCls:'e-icon iconfont icon-font-search',plain:true" onclick="queryModel()">搜索</a>
             </span>
         </div>
-        <div id="treeTB">
-            <span   iconCls="e-icon iconfont icon-font-save" onclick="giveRoles()" title="赋予角色" style="margin-right: 20px; border-radius: 1px" ></span>
-        </div>
     </div>
 </div>
-<script src="${ctx!}/res/js/easyui-tree-tools.js"></script>
 <script src="${ctx!}/res/layer/layer.js"></script>
 <script src="${ctx!}/res/js/popup-tools.js"></script>
 <script>
+    function genderFmt(val){
+        if (val == "1") {
+            val = '男';
+        } else {
+            val = '女';
+        }
+        return val;
+    };
+
     function formatDisabled(val, row) {
         if (val == 0) {
             val = '正常';
@@ -147,20 +131,5 @@
         }
         return val;
     };
-    function operateFmt(val){
-        return '<a class="pure-button" href="javascript:openPermissionPanel('+val+')">角色修改</a>'
-    }
-
-    /*打开角色侧栏*/
-    function openPermissionPanel(userId){
-        var url = "${ctx!}/authUser/roleListChecked?userId=" + userId;
-        $.getJSON(url, function (data) {
-            $("#allRoleTree").tree({
-                data: data,
-                checkbox: true
-            });
-            $("#nestLayout").layout("expand", "east");
-        });
-    }
 </script>
 </@layout>

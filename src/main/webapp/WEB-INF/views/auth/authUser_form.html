@@ -65,33 +65,58 @@
                 <input name="name" value="${(authUser.name)!}"   class="easyui-textbox"
                        data-options="required:true" style="width: 180px;">
             </td>
+
+            <td>性别：</td>
+            <td >
+                <select id="gender" class="easyui-combobox" name="gender" required="true" style="width:180px;">
+                    <option value="1">男</option>
+                    <option value="0">女</option>
+                </select>
+            </td>
+            <script>
+                ;(function () {
+                    var genderVal = '${(authUser.gender)!}';
+                    $("#gender").val(genderVal);
+                })();
+            </script>
+        </tr>
+        <tr>
             <td>部门：</td>
             <td>
                 <input name="orgId" id="orgId" style="width: 180px;">
             </td>
-        </tr>
 
+            <td>职务：</td>
+            <td>
+                <input name="job" value="${(authUser.job)!}"   class="easyui-textbox"
+                       data-options="required:true" style="width: 180px;">
+            </td>
+        </tr>
         <tr>
+            <td>职务级别：</td>
+            <td>
+                <input id="jobLevel" name="jobLevel"   class="easyui-combobox" style="width: 180px;"  value="${(authUser.jobLevel)!}"
+                       data-options="url:'${ctx!}/dataDict/queryDictData?type=jobLevel&fields=dict_key as text, dict_value as value',required:true">
+            </td>
+
             <td>电话：</td>
             <td>
                 <input name="phone" value="${(authUser.phone)!}"   class="easyui-textbox" style="width: 180px;">
             </td>
+        </tr>
+        <tr>
             <td>邮箱：</td>
             <td>
                 <input name="email" value="${(authUser.email)!}"   class="easyui-textbox" style="width: 180px;">
             </td>
-        </tr>
 
-        <tr>
             <td>状态：</td>
-            <td>
+            <td  >
                 <select id="disabled" class="easyui-combobox" name="disabled" style="width:180px;">
                     <option value="0">正常</option>
                     <option value="1">无效</option>
                 </select>
             </td>
-            <td></td>
-            <td></td>
             <script>
                 ;(function () {
                     var disabledVal = '${(authUser.disabled)!}';
@@ -114,6 +139,7 @@
         $("#orgId").combotree({
             url: '${ctx!}/authOrg/allOrg',
             value: '${(authUser.orgId)!}',
+            required:true,
             loadFilter: function (data, parent) {
                 /* 数据处理*/
                 data = easyTree.treeDataBuild(data, "id", "pid", "text,open");

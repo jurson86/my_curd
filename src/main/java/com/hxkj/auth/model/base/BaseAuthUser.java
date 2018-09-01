@@ -48,6 +48,28 @@ public abstract class BaseAuthUser<M extends BaseAuthUser<M>> extends Model<M> i
         set("name", name);
     }
 
+    public String getGender() {
+        return get("gender");
+    }
+
+    // gender  性别  1男 0女
+    public void setGender(String gender) {
+        set("gender", gender);
+    }
+
+
+
+    public String getAvatar() {
+        return get("avatar");
+    }
+
+    // avatar  头像
+    public void setAvatar(String avatar) {
+        set("avatar", avatar);
+    }
+
+
+
     public Integer getOrgId() {
         return get("org_id");
     }
@@ -73,6 +95,22 @@ public abstract class BaseAuthUser<M extends BaseAuthUser<M>> extends Model<M> i
     // phone  手机号
     public void setPhone(String phone) {
         set("phone", phone);
+    }
+
+    // job  职位
+    public void setJob(java.lang.String job) {
+        set("job", job);
+    }
+    public java.lang.String getJob() {
+        return get("job");
+    }
+
+    // job_level  职务级别
+    public void setJobLevel(java.lang.String jobLevel) {
+        set("job_level", jobLevel);
+    }
+    public java.lang.String getJobLevel() {
+        return get("job_level");
     }
 
     public java.util.Date getLastLoginTime() {

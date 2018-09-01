@@ -1,0 +1,76 @@
+<#include "/WEB-INF/views/common/common.html"/> <@layout>
+<link rel="stylesheet" href="${ctx!}/res/layer/theme/default/layer.css">
+</head>
+<body>
+<script type="text/javascript">
+    /*条件查询*/
+    function queryModel() {
+        var queryParams = {};
+        queryParams['search_LIKE_au.username'] = $("#username").textbox("getValue");
+        queryParams['search_LIKE_au.name'] = $("#name").textbox("getValue");
+        $('#dg').datagrid('load', queryParams);
+    }
+</script>
+<table id="dg" class="easyui-datagrid"
+       url="${ctx!}/authRole/queryUsers?search_EQ_aur.role_id=${roleId!}"
+       toolbar="#tb" rownumbers="true" border="false"
+       fit="true"    fitColumns="true"
+       striped="true"   pageSize="40" pageList="[20,40]"
+       pagination="true"
+       ctrlSelect="true" >
+    <thead>
+    <tr>
+        <th  width="50" data-options="field:'username'">登录名</th>
+        <th  width="50" data-options="field:'name'">姓名</th>
+        <th  width="50" data-options="field:'gender'" formatter="genderFmt">性别</th>
+        <th  width="100" data-options="field:'job'">职位</th>
+        <th  width="100" data-options="field:'org_name'">部门</th>
+        <th  width="50" data-options="field:'disabled'" formatter="formatDisabled">是否禁用</th>
+        <th field="ope_name" width="100">关联操作人</th>
+        <th field="user_id" width="100" formatter="deleteFmt">操作</th>
+    </tr>
+    </thead>
+</table>
+<div id="tb" style="text-align: center; padding: 5px">
+    <span id="enterSpan"  >
+      	 <input id="username" prompt="登录名" class="easyui-textbox" style="width:120px">
+         <input id="name" prompt="姓名" class="easyui-textbox" style="width:120px">
+          <a href="#" class="easyui-linkbutton" data-options="iconCls:'e-icon iconfont icon-font-search',plain:true" onclick="queryModel()">搜索</a>
+    </span>
+</div>
+<script src="${ctx!}/res/layer/layer.js"></script>
+<script src="${ctx!}/res/js/popup-tools.js"></script>
+<script>
+    function genderFmt(val){
+        if (val == "1") {
+            val = '男';
+        } else {
+            val = '女';
+        }
+        return val;
+    };
+
+    function formatDisabled(val, row) {
+        if (val == 0) {
+            val = '正常';
+        } else {
+            val = '<span style="color:red">无效</span>';
+        }
+        return val;
+    };
+    function deleteFmt(val,row){
+        var userId = row.user_id;
+        var roleId = row.role_id;
+        return '<a href="javascript:deleteUserRole(\''+userId+'\',\''+roleId+'\')"> 删除 </a>'
+    };
+
+    /* 删除 单行 */
+    function deleteUserRole(userId,roleId) {
+        $.get('${ctx!}/authRole/deleteUserRole?userId='+userId+"&roleId="+roleId , function (data) {
+            popup.msg(data, function () {
+                $('#dg').datagrid('reload');
+            });
+        }, "text").error(function(){ popup.errMsg(); });
+    };
+</script>
+</@layout>

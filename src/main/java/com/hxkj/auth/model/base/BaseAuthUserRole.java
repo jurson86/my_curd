@@ -30,12 +30,12 @@ public abstract class BaseAuthUserRole<M extends BaseAuthUserRole<M>> extends Mo
         set("role_id", roleId);
     }
 
-    public String getUser() {
+    public Long getUser() {
         return get("user");
     }
 
     // 操作人
-    public void setUser(String user) {
+    public void setUser(Long user) {
         set("user", user);
     }
 

@@ -1,6 +1,8 @@
 package com.hxkj.auth.model;
 
 import com.hxkj.auth.model.base.BaseAuthUserRole;
+import com.jfinal.kit.StrKit;
+import com.jfinal.plugin.activerecord.Page;
 
 import java.util.List;
 
@@ -41,6 +43,18 @@ public class AuthUserRole extends BaseAuthUserRole<AuthUserRole> implements java
     public List<AuthUserRole> findUserRolesByUserId(Long userId) {
         String sql = "select * from auth_user_role where user_id = ? ";
         return find(sql, userId);
+    }
+
+    public Page<AuthUserRole> pageWithUserInfo(int pageNumber, int pageSize, String where ){
+        String sqlSelect = " SELECT aur.*, au.username, au.name, au.job, au.gender, au.disabled, ao.name as org_name, au2.name as ope_name ";
+        String sqlExceptSelect = " FROM auth_user_role aur " +
+                "left JOIN auth_user au on aur.user_id= au.id " +
+                "left JOIN auth_org ao on au.org_id = ao.id  " +
+                " left JOIN auth_user au2 on au2.id = aur.user  ";
+        if (StrKit.notBlank(where)) {
+            sqlExceptSelect += " where " + where;
+        }
+        return this.paginate(pageNumber,pageSize,sqlSelect,sqlExceptSelect);
     }
 
 }

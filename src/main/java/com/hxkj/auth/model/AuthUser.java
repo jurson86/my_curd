@@ -60,9 +60,10 @@ public class AuthUser extends BaseAuthUser<AuthUser> implements java.io.Serializ
      * @return
      */
     public Page<AuthUser> page(int pageNumber, int pageSize, String sort, String order, String where) {
-        String sqlSelect = " select su.*, so.name as orgName ";
+        String sqlSelect = " select su.*, so.name as orgName, dd.dict_key as jobLevelName ";
         String sqlExceptSelect = " from auth_user su" +
-                " LEFT JOIN auth_org so on su.org_id = so.id ";
+                " LEFT JOIN auth_org so on su.org_id = so.id " +
+                " LEFT JOIN data_dict dd on dd.dict_type= 'jobLevel' and su.job_level = dd.dict_value ";
         if (StrKit.notBlank(where)) {
             sqlExceptSelect += " where " + where;
         }

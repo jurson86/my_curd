@@ -23,7 +23,7 @@ var popup = {
             maxmin: true,
             shadeClose: true,
             area: [width || '80%', height || '90%'],
-            offset: top.location==self.location ? 'auto':'30px',
+            offset: top.location==self.location || width=="100%"  ? 'auto':'30px',
             content: [url]
         });
     },
@@ -34,7 +34,7 @@ var popup = {
             skin: skin || layerSkin.lan,
             shadeClose: true,
             area: [width || '80%', height || '90%'],
-            offset: top.location==self.location ? 'auto':'30px',
+            offset: top.location==self.location || width=="100%" ? 'auto':'30px',
             title: [title, 'line-height:30px;height:30px;padding: 0 10px'],
             closeBtn: 1, /*显示关闭按钮*/
             content: content

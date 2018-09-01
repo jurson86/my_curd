@@ -1,13 +1,6 @@
 <#include "/WEB-INF/views/common/common.html"/> <@layout>
 <link rel="stylesheet" href="${ctx!}/res/layer/theme/default/layer.css">
 <link rel="stylesheet" href="${ctx!}/res/pure/buttons-min.css">
-<style>
-    .pure-button{
-        margin: 3px 0;
-        background-color:#FFFFFF;
-        border: 1px solid lightgray;
-    }
-</style>
 </head>
 <body>
 <script type="text/javascript">
@@ -16,7 +9,7 @@
     }
 
     function editModel() {
-        var row = $("#dg").treegrid("getSelected");
+        var row = $("#dg").datagrid("getSelected");
         if (row != null) {
             popup.openIframe('编辑', '${ctx!}/authRole/newModel?id=' + row.id, '600px', '350px');
         } else {
@@ -45,57 +38,31 @@
         };
         $('#dg').datagrid('load', queryParams);
     }
-    /*数组去重*/
-    Array.prototype.unique = function () {
-        var res = [];
-        var json = {};
-        for (var i = 0; i < this.length; i++) {
-            if (!json[this[i]]) {
-                res.push(this[i]);
-                json[this[i]] = 1;
-            }
-        }
-        return res;
-    };
-    /*分配权限*/
-    function givePermission() {
-        var checkedNodes = $("#allMenuTree").tree("getChecked");
 
-        var roleRow = $("#dg").datagrid("getSelected");
-        if (roleRow == null) {
-            popup.msg('请选择要分配权限的角色!');
-            return;
+    /* 打开 修改权限 窗口 */
+    function openPermission(){
+        var row = $("#dg").datagrid("getSelected");
+        if (row != null) {
+            popup.openIframe('修改角色权限', '${ctx!}/authRole/openGivePermissionModel?id=' + row.id, '350px', '600px')
+        } else {
+            popup.msg('请选择一行数据进行操作');
         }
-
-        var permissIds = [];
-        for (var i = 0; i < checkedNodes.length; i++) {
-            /* 可以增加筛选提交 排序 "/" */
-            if($("#allMenuTree").tree("isLeaf",checkedNodes[i].target)){
-                permissIds.push(checkedNodes[i].id);
-            }
-        }
-
-        $.post('${ctx!}/authRole/givePermission', {
-            roleId: roleRow.id,
-            permissIds: permissIds.join(";")
-        }, function (result) {
-            popup.msg(result);
-        }, 'text').error(function(){ popup.errMsg(); });
     }
 
+    function openUsersModel(){
+        var row = $("#dg").datagrid("getSelected");
+        if (row != null) {
+            popup.openIframe('关联用户', '${ctx!}/authRole/openUsersModel?id=' + row.id, '800px', '500px')
+        } else {
+            popup.msg('请选择一行数据进行操作');
+        }
+    }
 </script>
-
 <div id="nestLayout" class="easyui-layout" fit="true">
-    <div data-options="region:'east' " title="权限树"
-         split="true" collapsed="true" tools="#treeTB"
-         style="width: 300px;" headerCls="btNone" >
-        <ul id="allMenuTree" class="easyui-tree"></ul>
-    </div>
     <div data-options="region:'center' "   split="true" style="border-top: none">
-
         <table id="dg" class="easyui-datagrid  "
                data-options="onDblClickRow:editModel"
-               url="${ctx!}/authRole/query"
+               url="${ctx!}/authRole/query"   pageSize="40" pageList="[20,40]"
                toolbar="#tb" rownumbers="true" singleSelect="true" border="false"
                fit="true" pagination="true">
             <thead>
@@ -105,45 +72,22 @@
                 <th field="sort" width="50">排序</th>
                 <th field="create_time" width="150">创建时间</th>
                 <th field="last_edit_time" width="150">最后修改时间</th>
-                <th field="id" width="100" align="center" formatter="operateFmt">操作</th>
             </tr>
             </thead>
         </table>
-
         <div id="tb">
             <a onclick="newModel()" href="#" class="easyui-linkbutton" iconCls="e-icon iconfont icon-font-add" plain="true">新增</a>
             <a onclick="editModel()" href="#" class="easyui-linkbutton" iconCls="e-icon iconfont icon-font-edit" plain="true">编辑</a>
             <a onclick="deleteModel()" href="#" class="easyui-linkbutton  " iconCls="e-icon iconfont icon-font-delete" plain="true">删除</a>
+            <a onclick="openPermission()" href="#" class="easyui-linkbutton  " iconCls="e-icon iconfont icon-font-edit" plain="true">修改权限</a>
+            <a onclick="openUsersModel()" href="#" class="easyui-linkbutton  " iconCls="e-icon iconfont icon-font-edit" plain="true">关联用户查看</a>
             <span id="enterSpan" class="searchInputArea">
 					<input id="roleName" prompt="角色名" class="easyui-textbox" style="width:150px">
 					<a href="#" class="easyui-linkbutton" data-options="iconCls:'e-icon iconfont icon-font-search',plain:true" onclick="queryModel()">搜索</a>
             </span>
         </div>
-        <div id="treeTB">
-            <span iconCls="e-icon iconfont icon-font-save" onclick="givePermission()" title="授权" style="margin-right: 20px;"></span>
-        </div>
     </div>
 </div>
-<script src="${ctx!}/res/js/easyui-tree-tools.js"></script>
 <script src="${ctx!}/res/layer/layer.js"></script>
 <script src="${ctx!}/res/js/popup-tools.js"></script>
-<script>
-    function operateFmt(val){
-        return '<a class="pure-button" href="javascript:openPermissionPanel('+val+')">权限修改</a>'
-    }
-
-    /*打开角色侧栏*/
-    var easyTree = new EasyTree();
-    function openPermissionPanel(roleId){
-        var url = "${ctx!}/authRole/menuTreePermissionChecked?roleId=" + roleId;
-        $.getJSON(url, function (data) {
-            data = easyTree.treeDataBuild(data, 'id', 'pid', 'text,state,checked,pid,iconCls');
-            $("#allMenuTree").tree({
-                data: data,
-                checkbox: true
-            });
-            $("#nestLayout").layout("expand", "east");
-        });
-    }
-</script>
 </@layout>

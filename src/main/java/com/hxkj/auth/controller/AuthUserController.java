@@ -61,6 +61,14 @@ public class AuthUserController extends BaseController {
         String password = HashKit.sha1(authUser.getPassword());
         authUser.setPassword(password);
         authUser.setCreateTime(new Date());
+
+        String gender = authUser.getGender();
+        if("1".equals("gender")){
+           authUser.setGender("res/image/maleAvatar.jpg");
+        }else{
+            authUser.setGender("res/image/femaleAvatar.jpg");
+        }
+
         boolean saveFlag = authUser.save();
         if (saveFlag) {
             renderText(Constant.ADD_SUCCESS);
@@ -74,7 +82,6 @@ public class AuthUserController extends BaseController {
      */
     public void updateAction() {
         AuthUser authUser = getBean(AuthUser.class, "");
-        Long id = authUser.getId();
 
         String password = authUser.getPassword();
         // 认为密码改变
@@ -84,6 +91,13 @@ public class AuthUserController extends BaseController {
             authUser.setPassword(password);
         }
         authUser.setLastEditTime(new Date());
+
+        String gender = authUser.getGender();
+        if("1".equals("gender")){
+            authUser.setGender("res/image/maleAvatar.jpg");
+        }else{
+            authUser.setGender("res/image/femaleAvatar.jpg");
+        }
 
         boolean updateFlag = authUser.update();
         if (updateFlag) {
@@ -111,6 +125,14 @@ public class AuthUserController extends BaseController {
 
 
     /**
+     * 打开赋予角色 的窗口
+     */
+    public void openGiveRoleModel(){
+        setAttr("userId",getPara("id"));
+        render("auth/authUser_role.html");
+    }
+
+    /**
      * 用户赋予角色
      */
     @Before(Tx.class)
@@ -128,7 +150,7 @@ public class AuthUserController extends BaseController {
             AuthUserRole authUserRole = new AuthUserRole();
             authUserRole.setUserId(userId);
             authUserRole.setRoleId(Long.parseLong(roleIds[i]));
-            authUserRole.setUser(authUser.getName());
+            authUserRole.setUser(authUser.getId());
             authUserRole.save();
         }
 
@@ -147,7 +169,7 @@ public class AuthUserController extends BaseController {
         for (AuthRole authRole : authRoles) {
             Map<String, Object> map = new HashMap<String, Object>();
             map.put("id", authRole.getId());
-            map.put("text", authRole.getRoleName());
+            map.put("text", authRole.getRoleName()+" ------ ["+authRole.getRoleDesc()+"]");
             map.put("state", "open");
             map.put("iconCls", "icon-blank");  // 不显示图标
             for (AuthUserRole authUserRole : authUserRoles) {

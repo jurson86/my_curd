@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.hxkj.auth.model.AuthUser;
 import com.hxkj.common.constant.Constant;
 import com.hxkj.common.controller.BaseController;
+import com.hxkj.common.util.DateTimeUtils;
 import com.hxkj.common.util.FileUtils;
 import com.hxkj.common.util.Identities;
 import com.hxkj.common.util.search.SearchSql;
@@ -19,7 +20,6 @@ import com.jfinal.upload.UploadFile;
 
 import java.io.File;
 import java.io.IOException;
-import java.text.SimpleDateFormat;
 import java.util.*;
 
 /**
@@ -78,16 +78,14 @@ public class DataFileController extends BaseController {
         String limitFileTypes = extMap.get("image") + "," + extMap.get("media") + "," + extMap.get("file");
         UploadFile uploadFile = getFile("file");
         if (uploadFile != null) {
-            String orginFilename = uploadFile.getOriginalFileName();                                    // 文件原名
-            String fileSuf = orginFilename.substring(orginFilename.lastIndexOf(".") + 1).toLowerCase(); // 文件后缀
+            String orginFilename = uploadFile.getOriginalFileName();     // 文件原名
+            String fileSuf = FileUtils.getExtensionName(orginFilename);  // 文件后缀
             if (!Arrays.asList(limitFileTypes.split(",")).contains(fileSuf)) {
                 result.put("error", 1);
                 result.put("message", "只允许后缀为:<br/>" + extMap.get("image") + "<br/>" + extMap.get("media") + "<br/>" + extMap.get("file") + "<br/>格式文件");
                 uploadFile.getFile().delete();
             } else {
-                // 文件量大、上传频繁 这种分发方式并不合适（文件copy后删除原文件占资源，按类型分类可能导致某个目录下文件量超多）
-                SimpleDateFormat df = new SimpleDateFormat("yyyyMMddHHmmss");
-                String newFileName = df.format(new Date()) + "_" + new Random().nextInt(1000) + "." + fileSuf;
+                String newFileName = DateTimeUtils.format(new Date(),DateTimeUtils.pattern_ymdhmsS_noLine) + "." + fileSuf;
                 String pre;
                 if (Arrays.asList(extMap.get("image").split(",")).contains(fileSuf)) {
                     pre = prop.get("imagePath");
@@ -96,19 +94,25 @@ public class DataFileController extends BaseController {
                 } else if (Arrays.asList(extMap.get("file").split(",")).contains(fileSuf)) {
                     pre = prop.get("filePath");
                 } else {
-                    pre = "upload/unlikeFile";
+                    result.put("error", 1);
+                    result.put("message", "只允许后缀为:<br/>" + extMap.get("image") + "<br/>" + extMap.get("media") + "<br/>" + extMap.get("file") + "<br/>格式文件");
+                    uploadFile.getFile().delete();
+                    throw new RuntimeException("文件类型非法");
                 }
-                String relativePath = pre + "/" + newFileName;
-                pre = PathKit.getWebRootPath() + '/' + pre;
-                newFileName = pre + "/" + newFileName;
-                File savefile = new File(newFileName);
 
+                // 文件存储的新 相对路径
+                String relativePath = pre + "/"+ newFileName;
+                // 文件存储的新绝对路径
+                File savefile = new File(PathKit.getWebRootPath() + File.separator
+                        + relativePath);
+
+                // 文件拷贝到新路径下，删除旧文件
                 org.apache.commons.io.FileUtils.copyFile(uploadFile.getFile(), savefile);
-
                 if (uploadFile.getFile().exists()) {
                     uploadFile.getFile().delete();
                 }
 
+                // 保存数据库记录
                 DataFile dataFile = new DataFile();
                 dataFile.setId(Identities.id());
                 AuthUser authUser = getSessionUser();
@@ -164,7 +168,7 @@ public class DataFileController extends BaseController {
         // 文件删除
         File tempFile;
         for (DataFile dataFile : dataFiles) {
-            tempFile = new File(PathKit.getWebRootPath() + File.separator + dataFile.getPath());
+            tempFile = new File(PathKit.getWebRootPath() + "/"+ dataFile.getPath());
             if (tempFile.exists()) {
                 tempFile.delete();
             }

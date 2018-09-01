@@ -6,6 +6,10 @@ import com.jfinal.aop.Clear;
 import com.jfinal.kit.HashKit;
 import com.jfinal.plugin.activerecord.tx.Tx;
 
+
+/**
+ * 修改用户密码
+ */
 @Clear
 public class UserPasswordController extends BaseController {
 

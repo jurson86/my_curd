@@ -16,10 +16,16 @@ public abstract class DateTimeUtils {
 
     public static final String pattern_ym = "yyyy-MM";
     public static final int pattern_ym_length = 7;
+
     public static final String pattern_ymd = "yyyy-MM-dd";
     public static final int pattern_ymd_length = 10;
     public static final String pattern_ymd_hm = "yyyy-MM-dd HH:mm";
     public static final int pattern_ymd_hm_length = 16;
+
+    // 文件存储路径
+    public static  final String pattern_ymdhmsS_noLine = "yyyyMMdd/HHmmssSSS";
+    public static  final int pattern_ymdhmsS_noLine_length=18;
+
     public static final String pattern_ymd_hms = "yyyy-MM-dd HH:mm:ss";
     public static final int pattern_ymd_hms_length = 19;
     public static final String pattern_ymd_hms_s = "yyyy-MM-dd HH:mm:ss:SSS";

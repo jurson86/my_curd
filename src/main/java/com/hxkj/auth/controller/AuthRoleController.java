@@ -1,9 +1,6 @@
 package com.hxkj.auth.controller;
 
-import com.hxkj.auth.model.AuthMenu;
-import com.hxkj.auth.model.AuthRole;
-import com.hxkj.auth.model.AuthRoleMenu;
-import com.hxkj.auth.model.AuthUser;
+import com.hxkj.auth.model.*;
 import com.hxkj.common.constant.Constant;
 import com.hxkj.common.controller.BaseController;
 import com.hxkj.common.util.search.SearchSql;
@@ -99,6 +96,14 @@ public class AuthRoleController extends BaseController {
 
 
     /**
+     * 打开赋予角色 的窗口
+     */
+    public void openGivePermissionModel(){
+        setAttr("roleId",getPara("id"));
+        render("auth/authRole_menu.html");
+    }
+
+    /**
      * 用户赋权限
      */
     @Before(Tx.class)
@@ -116,7 +121,7 @@ public class AuthRoleController extends BaseController {
                 AuthRoleMenu authRoleMenu = new AuthRoleMenu();
                 authRoleMenu.setRoleId(roleId);
                 authRoleMenu.setMenuId(Long.parseLong(menuIds[i]));
-                authRoleMenu.setUser(authUser.getName());
+                authRoleMenu.setUser(authUser.getId());
                 authRoleMenu.save();
             }
         }
@@ -160,5 +165,44 @@ public class AuthRoleController extends BaseController {
         renderJson(maps);
     }
 
+
+    /**
+     * 打开 角色相关的 用户页
+     */
+    public void openUsersModel(){
+        setAttr("roleId",getPara("id"));
+        render("auth/authRole_user.html");
+    }
+
+
+    /**
+     * 角色 相关用户数据
+     */
+    @Before(SearchSql.class)
+    public void queryUsers(){
+        int pageNumber=getAttr("pageNumber");
+        int pageSize=getAttr("pageSize");
+        String where=getAttr(Constant.SEARCH_SQL);
+        Page<AuthUserRole> authUserRolePage=AuthUserRole.dao.pageWithUserInfo(pageNumber,pageSize,where);
+        renderDatagrid(authUserRolePage);
+    }
+
+    /**
+     * 删除 用户角色 关联记录
+     */
+    public void deleteUserRole(){
+         String userId = getPara("userId");
+         String roleId = getPara("roleId");
+         AuthUserRole authUserRole= AuthUserRole.dao.findById(roleId,userId);
+         if(authUserRole==null){
+             renderText(Constant.DELETE_FAIL);
+             return;
+         }
+         if(authUserRole.delete()){
+             renderText(Constant.DELETE_SUCCESS);
+         }else{
+             renderText(Constant.DELETE_FAIL);
+         }
+    }
 
 }
