@@ -1,5 +1,6 @@
 package com.hxkj.auth.controller;
 
+import com.google.common.base.Joiner;
 import com.hxkj.auth.model.AuthRole;
 import com.hxkj.auth.model.AuthUser;
 import com.hxkj.auth.model.AuthUserRole;
@@ -153,6 +154,17 @@ public class AuthUserController extends BaseController {
             authUserRole.setUser(authUser.getId());
             authUserRole.save();
         }
+
+        // 操作日志，非业务
+        AuthUser tUser = AuthUser.dao.findById(userId);
+        List<AuthRole> authRoles =
+                AuthRole.dao.find("select * from auth_role where id in ("+roleIdstr.replaceAll(";",",")+")");
+        List<String> roleNames = new ArrayList<>();
+        for(AuthRole authRole: authRoles){
+            roleNames.add(authRole.getRoleName());
+        }
+        String roleNamesStr = Joiner.on(",").join(roleNames);
+        addOpLog("用户: "+tUser.getUsername()+", 关联角色: "+roleNamesStr);
 
         renderText("赋予角色成功");
     }

@@ -27,15 +27,8 @@ my_CURD
 - easyui1.5.4.5、pure.css、ckeditor、layer、simplemde等 
 
 ### 接下来要做
-- [ ] 集成 easyuipoi
+- [ ] 集成 easypoi
 
 ### 预览
 ![登录](https://raw.githubusercontent.com/qinyou/my_curd/master/preview/login.png)
 ![菜单](https://raw.githubusercontent.com/qinyou/my_curd/master/preview/menu.png)
-![角色](https://raw.githubusercontent.com/qinyou/my_curd/master/preview/role.png)
-![组织](https://raw.githubusercontent.com/qinyou/my_curd/master/preview/org.png)
-![用户](https://raw.githubusercontent.com/qinyou/my_curd/master/preview/user.png)
-![文件管理](https://raw.githubusercontent.com/qinyou/my_curd/master/preview/file.png)
-![代码生成器](https://raw.githubusercontent.com/qinyou/my_curd/master/preview/codegen.png)
-![ckeditor5](https://raw.githubusercontent.com/qinyou/my_curd/master/preview/ck5.png)
-![小说阅读下载](https://raw.githubusercontent.com/qinyou/my_curd/master/preview/novel.png)

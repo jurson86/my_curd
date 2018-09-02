@@ -1,5 +1,6 @@
 package com.hxkj.auth.controller;
 
+import com.google.common.base.Joiner;
 import com.hxkj.auth.model.*;
 import com.hxkj.common.constant.Constant;
 import com.hxkj.common.controller.BaseController;
@@ -114,6 +115,7 @@ public class AuthRoleController extends BaseController {
         String deleteSql = "delete from  auth_role_menu where role_id = ?";
         Db.update(deleteSql, roleId);
 
+        // 添加 角色新菜单
         AuthUser authUser = getSessionUser();
         if (StrKit.notBlank(permissIds)) {
             String[] menuIds = permissIds.split(";");
@@ -125,6 +127,19 @@ public class AuthRoleController extends BaseController {
                 authRoleMenu.save();
             }
         }
+
+        // 添加日志
+        AuthRole authRole= AuthRole.dao.findById(roleId);
+        List<AuthMenu> authMenus = AuthMenu.dao.find("select * from auth_menu where id in ("+permissIds.replaceAll(";",",")+")");
+        List<String> menuNames = new ArrayList<>();
+        for(AuthMenu authMenu: authMenus){
+            menuNames.add(authMenu.getName());
+        }
+        String menuNamesStr = Joiner.on(",").join(menuNames);
+        System.out.println("-----------"+("角色: "+authRole.getRoleName()+", 关联菜单: "+menuNamesStr));
+        addOpLog("角色: "+authRole.getRoleName()+", 关联菜单: "+menuNamesStr);
+
+
         renderText("赋权成功");
     }
 
@@ -190,6 +205,7 @@ public class AuthRoleController extends BaseController {
     /**
      * 删除 用户角色 关联记录
      */
+    @Before(Tx.class)
     public void deleteUserRole(){
          String userId = getPara("userId");
          String roleId = getPara("roleId");
@@ -199,6 +215,12 @@ public class AuthRoleController extends BaseController {
              return;
          }
          if(authUserRole.delete()){
+
+             // 操作日志
+             AuthUser authUser = AuthUser.dao.findById(userId);
+             AuthRole authRole= AuthRole.dao.findById(roleId);
+             addOpLog("用户: "+authUser.getUsername()+", 取消关联角色: "+authRole.getRoleName());
+
              renderText(Constant.DELETE_SUCCESS);
          }else{
              renderText(Constant.DELETE_FAIL);

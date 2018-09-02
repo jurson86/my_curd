@@ -44,6 +44,8 @@
        url="${ctx!}/sysOplog/query"
        toolbar="#tb" rownumbers="true" border="false"
        fit="true" pagination="true"
+       fitColumns="false"
+       nowrap="false"
        ctrlSelect="true"
        striped="true"
        pageSize="40" pageList="[20,40]">
@@ -51,9 +53,9 @@
     <tr>
         <th data-options="field:'id',checkbox:true"></th>
         <th field="user_name" width="150">姓名</th>
-        <th field="op_content" width="350">日志内容</th>
+        <th field="op_content" width="550">日志内容</th>
         <th field="ip" width="150">ip地址</th>
-        <th field="create_time" width="150">创建时间</th>
+        <th field="create_time" width="150">操作时间</th>
     </tr>
     </thead>
 </table>

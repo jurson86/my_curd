@@ -1,6 +1,7 @@
 package com.hxkj.auth.controller;
 
 import com.hxkj.auth.model.AuthMenu;
+import com.hxkj.auth.model.AuthRole;
 import com.hxkj.auth.model.AuthRoleMenu;
 import com.hxkj.auth.model.AuthUserRole;
 import com.hxkj.common.constant.Constant;
@@ -151,6 +152,7 @@ public class AuthMenuController extends BaseController {
     /**
      * 删除 角色菜单 关联记录
      */
+    @Before(Tx.class)
     public void deleteRoleMenu(){
         String roleId = getPara("roleId");
         String menuId = getPara("menuId");
@@ -160,6 +162,11 @@ public class AuthMenuController extends BaseController {
             return;
         }
         if(authRoleMenu.delete()){
+            // 添加日志
+            AuthRole authRole= AuthRole.dao.findById(roleId);
+            AuthMenu authMenu =AuthMenu.dao.findById(menuId);
+            addOpLog("角色: "+authRole.getRoleName()+", 取消关联菜单: "+authMenu.getName());
+
             renderText(Constant.DELETE_SUCCESS);
         }else{
             renderText(Constant.DELETE_FAIL);

@@ -40,14 +40,20 @@
         <tbody>
         <tr>
             <td>
-                <input label="题目:" name="title" value="${(cmsArticle.title)!}"   class="easyui-textbox"   style="width:300px" data-options="required:true">
+                题目:
             </td>
             <td>
-                <input label="标签:" name="tags" value="${(cmsArticle.tags)!}"   class="easyui-textbox" style="width:300px;"  >
+                <input name="title" value="${(cmsArticle.title)!}"   class="easyui-textbox"   style="width:300px" data-options="required:true">
+            </td>
+            <td>
+                标签:
+            </td>
+            <td>
+                <input  name="tags" value="${(cmsArticle.tags)!}"   class="easyui-textbox" style="width:300px;"  >
             </td>
         </tr>
         <tr >
-            <td  style="padding: 0;" colspan="2" >
+            <td  style="padding: 0;" colspan="4" >
                  <textarea name="content" id="content"    >
                      ${(cmsArticleHtml.content)!}
                   </textarea>
