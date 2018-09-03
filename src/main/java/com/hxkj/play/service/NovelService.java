@@ -50,8 +50,8 @@ public class NovelService {
      * @return
      */
     public static String getProxy(String url) {
-        if (LOG.isDebugEnabled()) {
-            LOG.debug(" ---- get url: " + url);
+        if (LOG.isInfoEnabled()) {
+            LOG.info(" ---- get url: " + url);
         }
         String resStr = null;
         Content content;

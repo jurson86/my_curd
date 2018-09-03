@@ -8,11 +8,14 @@ import com.hxkj.common.controller.BaseController;
 import com.hxkj.common.interceptor.LoginInterceptor;
 import com.hxkj.common.interceptor.PermissionInterceptor;
 import com.hxkj.common.interceptor.ReadJsonInterceptor;
+import com.hxkj.common.util.guava.BaseCache;
+import com.hxkj.common.util.guava.CacheContainer;
 import com.jfinal.aop.Before;
 import com.jfinal.aop.Clear;
 import com.jfinal.aop.Duang;
 import com.jfinal.core.ActionKey;
 import com.jfinal.kit.HashKit;
+import com.jfinal.kit.Prop;
 import com.jfinal.kit.PropKit;
 import com.jfinal.kit.StrKit;
 import com.jfinal.plugin.activerecord.tx.Tx;
@@ -21,6 +24,7 @@ import org.apache.log4j.Logger;
 
 import java.util.Date;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * 登录控制器
@@ -31,6 +35,10 @@ import java.util.List;
 public class LoginController extends BaseController {
 
     private final static Logger LOG = Logger.getLogger(LoginController.class);
+
+    // 输错密码 锁定用户
+    private final static int RETRY_TIMES =  PropKit.use("config.properties").getInt("loginRetryLimitTime");
+    private final static int LOCK_TIME_M= PropKit.use("config.properties").getInt("lockTime");
 
     // 登录用户名密码cookie key
     private final static String usernameKey = PropKit.use("config.properties").get("cookie_username_key");
@@ -101,13 +109,32 @@ public class LoginController extends BaseController {
             render("login.html");
             return;
         }
-        password = HashKit.sha1(password);
-        if (!authUser.getPassword().equals(password)) {
+
+        // 密码错误次数锁定用户
+        BaseCache<String,AtomicInteger> retryCache = CacheContainer.getLoginRetryLimitCache();
+        AtomicInteger retryTimes = retryCache.getCache(username);
+        if(retryTimes.get()>=RETRY_TIMES){
             setAttr("username", username);
-            setAttr("errMsg", " 密码错误。");
+            setAttr("errMsg", " 账号已被锁定, "+LOCK_TIME_M+"分钟后可自动解锁, 或联系管理员解锁。 ");
             render("login.html");
             return;
         }
+        password = HashKit.sha1(password);
+        if (!authUser.getPassword().equals(password)) {
+            int nowRetryTimes = retryTimes.incrementAndGet();  // 错误次数 加 1
+            setAttr("username", username);
+            if((RETRY_TIMES-nowRetryTimes)==0){
+                setAttr("errMsg", " 账号已被锁定, "+LOCK_TIME_M+"分钟后可自动解锁, 或联系管理员解锁。 ");
+            }else{
+                setAttr("errMsg", " 密码错误, 再错误 "
+                        +(RETRY_TIMES-nowRetryTimes)+" 次账号将被锁定" +LOCK_TIME_M+"分钟。");
+            }
+            render("login.html");
+            return;
+        }
+        // 密码正确清楚缓存
+        retryCache.put(username,new AtomicInteger());
+
         if (authUser.getDisabled().equals("1")) {
             setAttr("errMsg", username + " 用户被禁用，请联系管理员。");
             render("login.html");
