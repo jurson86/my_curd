@@ -1,6 +1,6 @@
 package com.hxkj.common.config;
 
-import com.hxkj.cms.controller.Ck5Controller;
+import com.hxkj.cms.controller.EditorController;
 import com.hxkj.cms.controller.CmsArticleController;
 import com.hxkj.cms.controller.ImgUploadController;
 import com.hxkj.common.constant.Constant;
@@ -15,6 +15,6 @@ public class cmsRoute extends Routes {
         // markdown 编辑器
         add("/cmsArticle", CmsArticleController.class, Constant.VIEW_PATH);
         add("/imgUpload", ImgUploadController.class, Constant.VIEW_PATH);
-        add("ck5", Ck5Controller.class, Constant.VIEW_PATH);
+        add("/editor", EditorController.class, Constant.VIEW_PATH);
     }
 }

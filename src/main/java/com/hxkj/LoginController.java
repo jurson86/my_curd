@@ -15,7 +15,6 @@ import com.jfinal.aop.Clear;
 import com.jfinal.aop.Duang;
 import com.jfinal.core.ActionKey;
 import com.jfinal.kit.HashKit;
-import com.jfinal.kit.Prop;
 import com.jfinal.kit.PropKit;
 import com.jfinal.kit.StrKit;
 import com.jfinal.plugin.activerecord.tx.Tx;
@@ -115,7 +114,7 @@ public class LoginController extends BaseController {
         AtomicInteger retryTimes = retryCache.getCache(username);
         if(retryTimes.get()>=RETRY_TIMES){
             setAttr("username", username);
-            setAttr("errMsg", " 账号已被锁定, "+LOCK_TIME_M+"分钟后可自动解锁, 或联系管理员解锁。 ");
+            setAttr("errMsg", " 账号已被锁定, "+LOCK_TIME_M+"分钟后可自动解锁。 ");
             render("login.html");
             return;
         }
@@ -124,7 +123,7 @@ public class LoginController extends BaseController {
             int nowRetryTimes = retryTimes.incrementAndGet();  // 错误次数 加 1
             setAttr("username", username);
             if((RETRY_TIMES-nowRetryTimes)==0){
-                setAttr("errMsg", " 账号已被锁定, "+LOCK_TIME_M+"分钟后可自动解锁, 或联系管理员解锁。 ");
+                setAttr("errMsg", " 账号已被锁定, "+LOCK_TIME_M+"分钟后可自动解锁。 ");
             }else{
                 setAttr("errMsg", " 密码错误, 再错误 "
                         +(RETRY_TIMES-nowRetryTimes)+" 次账号将被锁定" +LOCK_TIME_M+"分钟。");

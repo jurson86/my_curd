@@ -2,8 +2,6 @@ package com.hxkj.common.util.guava;
 
 import com.jfinal.kit.PropKit;
 
-import java.util.concurrent.TimeUnit;
-
 /**
  * 缓存实例容器
  * @author chuang

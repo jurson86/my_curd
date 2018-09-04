@@ -1,0 +1,24 @@
+<#include "/WEB-INF/views/common/common.html"/><@layout>
+<link rel="stylesheet" type="text/css" href="${ctx!}/res/easyui1.5.4.5/extension/texteditor/texteditor.css">
+<script type="text/javascript" src="${ctx!}/res/easyui1.5.4.5/extension/texteditor/jquery.texteditor.js"></script>
+<script>
+</script>
+</head>
+<body>
+<h2>jquery easyui TextEditor</h2>
+http://www.jeasyui.com/extension/texteditor.php
+<br>
+1. 修改源码 为 中文
+<br>
+2. 去掉 字体选择框
+<div  id="te" style="width:940px;height:300px;padding: 10px;">
+</div>
+<script>
+    $('#te').texteditor({
+        title:'texteditor',
+		name:'content'
+    });
+</script>
+</body>
+</@layout>
+</html>
