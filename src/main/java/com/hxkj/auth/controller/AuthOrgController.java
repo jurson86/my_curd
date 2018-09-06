@@ -82,6 +82,9 @@ public class AuthOrgController extends BaseController {
         if (id != null) {
             AuthOrg authOrg = AuthOrg.dao.findById(id);
             setAttr("authOrg", authOrg);
+            setAttr("pid",authOrg.getPid());
+        }else{
+            setAttr("pid",getPara("pid","0"));
         }
         render("auth/authOrg_form.html");
     }

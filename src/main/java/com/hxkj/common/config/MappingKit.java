@@ -30,9 +30,7 @@ public class MappingKit {
         // 基础数据
         arp.addMapping("data_dict", "id", DataDict.class);
         arp.addMapping("data_file", "id", DataFile.class);
-        arp.addMapping("data_province", "pid", DataProvince.class);
-        arp.addMapping("data_city", "cid", DataCity.class);
-        arp.addMapping("data_county", "oid", DataCounty.class);
+        arp.addMapping("data_region", "id", DataRegion.class);
 
         // cms 模块
         arp.addMapping("cms_article", "id", CmsArticle.class);

@@ -45,10 +45,15 @@ public class AuthMenuController extends BaseController {
      * 新增 或者 编辑  form
      */
     public void newModel() {
+        // 编辑时需要
         Long id = getParaToLong("id");
         if (id != null) {
             AuthMenu authMenu = AuthMenu.dao.findById(id);
             setAttr("authMenu", authMenu);
+            setAttr("pid",authMenu.getPid());
+        }else{
+            // 新增时如果选中了某个节点,直接作为父节点选中
+            setAttr("pid",getPara("pid","0"));
         }
         render("auth/authMenu_form.html");
     }

@@ -1,5 +1,6 @@
 <!-- 生成时间： ${generateDate!} -->
 <#noparse><#include "/WEB-INF/views/common/common.html"/> <@layout></#noparse>
+<link rel="stylesheet" href="<#noparse>${ctx!}</#noparse>/res/css/list.css">
 <link rel="stylesheet" href="<#noparse>${ctx!}</#noparse>/res/layer/theme/default/layer.css">
 </head>
 <body>
@@ -76,12 +77,12 @@
 </table>
 
 <div id="tb">
-    <a onclick="newModel()" href="#" class="easyui-linkbutton" iconCls="e-icon iconfont icon-font-add" plain="true">新增</a>
-    <a onclick="editModel()" href="#" class="easyui-linkbutton" iconCls="e-icon iconfont icon-font-edit" plain="true">编辑</a>
-    <a onclick="deleteModel()" href="#" class="easyui-linkbutton  " iconCls="e-icon iconfont icon-font-delete" plain="true">删除</a>
+    <a onclick="newModel()" href="#" class="easyui-linkbutton" iconCls="iconfont icon-add" plain="true">新增</a>
+    <a onclick="editModel()" href="#" class="easyui-linkbutton" iconCls="iconfont icon-edit" plain="true">编辑</a>
+    <a onclick="deleteModel()" href="#" class="easyui-linkbutton  " iconCls="iconfont icon-delete" plain="true">删除</a>
     <span id="enterSpan" class="searchInputArea">
           <input id="test" prompt="test" class="easyui-textbox" style="width:120px; ">
-          <a href="#" class="easyui-linkbutton" data-options="iconCls:'e-icon iconfont icon-font-search',plain:true" onclick="queryModel()">搜索</a>
+          <a href="#" class="easyui-linkbutton" data-options="iconCls:'iconfont icon-search',plain:true" onclick="queryModel()">搜索</a>
     </span>
 </div>
 <script src="<#noparse>${ctx!}</#noparse>/res/layer/layer.js"></script>

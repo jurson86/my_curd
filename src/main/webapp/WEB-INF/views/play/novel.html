@@ -1,5 +1,6 @@
 <#include "/WEB-INF/views/common/common.html"/> <@layout>
 <link rel="stylesheet" href="${ctx!}/res/layer/theme/default/layer.css">
+<link rel="stylesheet" href="${ctx!}/res/css/list.css">
 <script src="${ctx!}/res/easyui1.5.4.5/extension/datagrid-detailview.js"></script>
 <style>
     .detailTable{
@@ -92,14 +93,14 @@
     </thead>
 </table>
 <div id="tb">
-    <a onclick="downloadModel()" href="#" class="easyui-linkbutton" iconCls="e-icon iconfont icon-font-download" plain="true">下载</a>
-    <a onclick="chapters()" href="#" class="easyui-linkbutton" iconCls="e-icon iconfont icon-font-chapters" plain="true">章节</a>
+    <a onclick="downloadModel()" href="#" class="easyui-linkbutton" iconCls="iconfont icon-download" plain="true">下载</a>
+    <a onclick="chapters()" href="#" class="easyui-linkbutton" iconCls="iconfont icon-chapters" plain="true">章节</a>
     <span id="enterSpan"   class="searchInputArea" >
          <input id="category" prompt="类型" class="easyui-combobox" style="width:120px; "
                 data-options="url:'${ctx!}/dataDict/queryDictData?type=category&fields=dict_key as text, dict_value as value'">
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           <input id="fuzzyQuery" prompt="模糊查询" class="easyui-textbox" style="width:120px; ">
-          <a href="#" class="easyui-linkbutton" iconCls="e-icon iconfont icon-font-search" plain="true" onclick="queryModel()">搜索</a>
+          <a href="#" class="easyui-linkbutton" iconCls="iconfont icon-search" plain="true" onclick="queryModel()">搜索</a>
     </span>
 </div>
 <script src="${ctx!}/res/layer/layer.js"></script>

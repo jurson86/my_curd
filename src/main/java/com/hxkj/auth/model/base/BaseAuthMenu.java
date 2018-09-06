@@ -48,15 +48,6 @@ public abstract class BaseAuthMenu<M extends BaseAuthMenu<M>> extends Model<M> i
         set("icon", icon);
     }
 
-    public String getIconfont() {
-        return get("iconfont");
-    }
-
-    // iconfont  字体图标
-    public void setIconfont(String iconfont) {
-        set("iconfont", iconfont);
-    }
-
     public Integer getSort() {
         return get("sort");
     }

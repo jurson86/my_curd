@@ -11,7 +11,7 @@ public class CacheContainer {
     private static BaseCache loginRetryLimitCache = null;
     private final static  Long RETRY_TIMES =  PropKit.use("config.properties").getLong("loginRetryLimitTime");
 
-    private CacheContainer(){};
+    private CacheContainer(){}
 
 
     /**

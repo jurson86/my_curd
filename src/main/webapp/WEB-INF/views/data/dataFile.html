@@ -1,5 +1,6 @@
 <#include "/WEB-INF/views/common/common.html"/> <@layout>
 <link rel="stylesheet" href="${ctx!}/res/layer/theme/default/layer.css">
+<link rel="stylesheet" href="${ctx!}/res/css/list.css">
 <link rel="stylesheet" href="${ctx!}/res/pure/buttons-min.css">
 <style>
     .pure-button {
@@ -85,9 +86,9 @@
 </table>
 
 <div id="tb">
-    <a onclick="newModel()" href="#" class="easyui-linkbutton" iconCls="e-icon iconfont icon-font-add" plain="true">新增</a>
-    <a onclick="editModel()" href="#" class="easyui-linkbutton" iconCls="e-icon iconfont icon-font-edit" plain="true">编辑</a>
-    <a onclick="deleteModel()" href="#" class="easyui-linkbutton  " iconCls="e-icon iconfont icon-font-delete" plain="true">删除</a>
+    <a onclick="newModel()" href="#" class="easyui-linkbutton" iconCls="iconfont icon-add" plain="true">新增</a>
+    <a onclick="editModel()" href="#" class="easyui-linkbutton" iconCls="iconfont icon-edit" plain="true">编辑</a>
+    <a onclick="deleteModel()" href="#" class="easyui-linkbutton  " iconCls="iconfont icon-delete" plain="true">删除</a>
     <span id="enterSpan" class="searchInputArea">
           <input id="fileType" prompt="文件后缀" class="easyui-combobox"
                  data-options="valueField:'value', multiple:true,textField:'label',url:'${ctx!}/dataFile/fileTypeData'">
@@ -99,7 +100,7 @@
           <input id="timeStart" prompt="上传时间起" class="easyui-datetimebox" style="width:150px; ">
           ~
           <input id="timeEnd" prompt="上传时间止" class="easyui-datetimebox" style="width:150px; ">
-          <a href="#" class="easyui-linkbutton" data-options="iconCls:'e-icon iconfont icon-font-search',plain:true" onclick="queryModel()">搜索</a>
+          <a href="#" class="easyui-linkbutton" data-options="iconCls:'iconfont icon-search',plain:true" onclick="queryModel()">搜索</a>
     </span>
 </div>
 <script src="${ctx!}/res/layer/layer.js"></script>
@@ -112,11 +113,11 @@
         if ('png,jpg,jpeg,gif,bmp'.indexOf(row.type) >= 0) {
             return '<a target="_blank" href="' + ctx + row.path + '"><img height="25px" src="' + ctx + row.path + '" alt="' + row.original_filename + '"/></a>'
         } else if ('pdf,html,txt,xml'.indexOf(row.type) >= 0) {
-            return '<a class="pure-button " target="_blank" href="' + ctx + row.path + '"><i class="iconfont icon-font-eye"></i></a>';
+            return '<a class="pure-button " target="_blank" href="' + ctx + row.path + '"><i class="iconfont icon-eye"></i></a>';
         } else if ('swf,flv,mp3,wav,wma,wmv,mid,avi,mpg,asf,rm,rmvb,mp4'.indexOf(row.type) >= 0) {
-            return '<a class="pure-button" target="_blank" href="' + ctx + row.path + '"><i class="iconfont icon-font-play"></i></a>';
+            return '<a class="pure-button" target="_blank" href="' + ctx + row.path + '"><i class="iconfont icon-play"></i></a>';
         } else {
-            return '<a class="pure-button" target="_blank" href="' + ctx + row.path + '"><i class="iconfont icon-font-download"></i></a>'
+            return '<a class="pure-button" target="_blank" href="' + ctx + row.path + '"><i class="iconfont icon-download"></i></a>'
         }
     }
     function pathFormat(val, row) {

@@ -1,5 +1,21 @@
 <#include "/WEB-INF/views/common/common.html"/> <@layout>
 <link rel="stylesheet" href="${ctx!}/res/layer/theme/default/layer.css">
+<link rel="stylesheet" href="${ctx!}/res/css/form.css">
+<style>
+    .tree-icon {
+        background: none;
+    }
+    .tree-folder:BEFORE {}
+    .tree-folder-open:BEFORE {}
+    .tree-file:BEFORE {}
+     #allMenuTree .iconfont{
+        font-variant:normal;
+        font-weight:normal;
+        line-height:15px;
+        color:#398dee;
+        font-size: 15px !important;
+    }
+</style>
 </head>
 <body style="background-color:#f5f5f5">
 <script type="text/javascript">
@@ -34,7 +50,7 @@
     }
 </script>
 <div id="toolbars" style=" text-align: right;padding-bottom: 5px; ">
-    <a href="#" class="easyui-linkbutton" data-options="iconCls:'e-icon iconfont icon-font-save'" onclick="givePermission()">授予权限</a>
+    <a href="#" class="easyui-linkbutton" data-options="iconCls:'iconfont icon-save'" onclick="givePermission()">授予权限</a>
 </div>
 <div style="height: 500px; overflow: scroll;background-color:#fff;border: 1px solid lightgray;">
     <ul id="allMenuTree" class="easyui-tree"></ul>

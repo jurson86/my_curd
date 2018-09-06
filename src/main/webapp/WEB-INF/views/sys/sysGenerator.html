@@ -1,5 +1,6 @@
 <#include "/WEB-INF/views/common/common.html"/> <@layout>
 <link rel="stylesheet" href="${ctx!}/res/layer/theme/default/layer.css">
+<link rel="stylesheet" href="${ctx!}/res/css/list.css">
 <link rel="stylesheet" href="${ctx!}/res/codemirror/codemirror.css">
 <link rel="stylesheet" href="${ctx!}/res/codemirror/material.css">
 <link rel="stylesheet" href="${ctx!}/res/pure/buttons-min.css">
@@ -112,10 +113,10 @@
             </thead>
         </table>
         <div id="tb">
-            <a onclick="jsonView()" href="#" class="easyui-linkbutton" iconCls="e-icon iconfont icon-font-code" plain="true">代码生成</a>
+            <a onclick="jsonView()" href="#" class="easyui-linkbutton" iconCls="iconfont icon-code" plain="true">代码生成</a>
             <span id="enterSpan" class="searchInputArea">
 					<input id="tableName" prompt="表名" class="easyui-textbox" style="width:150px">
-					<a href="#" class="easyui-linkbutton" data-options="iconCls:'e-icon iconfont icon-font-search',plain:true" onclick="queryModel()">过滤</a>
+					<a href="#" class="easyui-linkbutton" data-options="iconCls:'iconfont icon-search',plain:true" onclick="queryModel()">过滤</a>
             </span>
         </div>
     </div>

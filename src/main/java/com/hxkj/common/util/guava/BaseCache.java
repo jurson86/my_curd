@@ -18,7 +18,7 @@ public abstract class BaseCache<K, V> {
                 .maximumSize(10000)
                 .build(new CacheLoader<K, V>() {
                     @Override
-                    public V load(K k) throws Exception {
+                    public V load(K k) {
                         return loadData(k);
                     }
                 });
@@ -35,7 +35,7 @@ public abstract class BaseCache<K, V> {
                 .expireAfterWrite(duration, timeUtil)
                 .build(new CacheLoader<K, V>() {
                     @Override
-                    public V load(K k) throws Exception {
+                    public V load(K k) {
                         return loadData(k);
                     }
                 });
@@ -51,7 +51,7 @@ public abstract class BaseCache<K, V> {
                 .maximumSize(maxSize)
                 .build(new CacheLoader<K, V>() {
                     @Override
-                    public V load(K k) throws Exception {
+                    public V load(K k) {
                         return loadData(k);
                     }
                 });
@@ -69,7 +69,7 @@ public abstract class BaseCache<K, V> {
                 .weigher(weigher)
                 .build(new CacheLoader<K, V>() {
                     @Override
-                    public V load(K k) throws Exception {
+                    public V load(K k) {
                         return loadData(k);
                     }
                 });

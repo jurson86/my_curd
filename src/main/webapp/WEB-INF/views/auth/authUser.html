@@ -1,4 +1,5 @@
 <#include "/WEB-INF/views/common/common.html"/> <@layout>
+<link rel="stylesheet" href="${ctx!}/res/css/list.css">
 <link rel="stylesheet" href="${ctx!}/res/layer/theme/default/layer.css">
 <link rel="stylesheet" href="${ctx!}/res/pure/buttons-min.css">
 <style>
@@ -87,10 +88,10 @@
         </table>
 
         <div id="tb">
-            <a onclick="newModel()" href="#" class="easyui-linkbutton" iconCls="e-icon iconfont icon-font-add" plain="true">新增</a>
-            <a onclick="editModel()" href="#" class="easyui-linkbutton" iconCls="e-icon iconfont icon-font-edit" plain="true">编辑</a>
-            <a onclick="deleteModel()" href="#" class="easyui-linkbutton  " iconCls="e-icon iconfont icon-font-delete" plain="true">删除</a>
-            <a onclick="openRoles()" href="#" class="easyui-linkbutton  " iconCls="e-icon iconfont icon-font-edit" plain="true" >修改角色</a>
+            <a onclick="newModel()" href="#" class="easyui-linkbutton" iconCls="iconfont icon-add" plain="true">新增</a>
+            <a onclick="editModel()" href="#" class="easyui-linkbutton" iconCls="iconfont icon-edit" plain="true">编辑</a>
+            <a onclick="deleteModel()" href="#" class="easyui-linkbutton  " iconCls="iconfont icon-delete" plain="true">删除</a>
+            <a onclick="openRoles()" href="#" class="easyui-linkbutton  " iconCls="iconfont icon-edit" plain="true" >修改角色</a>
             <span id="enterSpan" class="searchInputArea">
 					<input id="username" prompt="登录名" class="easyui-textbox" style="width:120px">
                     <input id="name" prompt="姓名" class="easyui-textbox" style="width:120px">
@@ -106,7 +107,7 @@
                              <option value="0">正常</option>
                              <option value="1">无效</option>
                     </select>
-					<a href="#" class="easyui-linkbutton" data-options="iconCls:'e-icon iconfont icon-font-search',plain:true" onclick="queryModel()">搜索</a>
+					<a href="#" class="easyui-linkbutton" data-options="iconCls:'iconfont icon-search',plain:true" onclick="queryModel()">搜索</a>
             </span>
         </div>
     </div>

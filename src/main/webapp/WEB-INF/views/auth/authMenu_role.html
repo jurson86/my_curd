@@ -1,5 +1,6 @@
 <#include "/WEB-INF/views/common/common.html"/> <@layout>
 <link rel="stylesheet" href="${ctx!}/res/layer/theme/default/layer.css">
+<link rel="stylesheet" href="${ctx!}/res/css/list.css">
 </head>
 <body>
 <script type="text/javascript">
@@ -30,7 +31,7 @@
 <div id="tb" style="text-align: center; padding: 5px">
     <span id="enterSpan"  >
       	 <input id="rolename" prompt="角色名" class="easyui-textbox" style="width:120px">
-          <a href="#" class="easyui-linkbutton" data-options="iconCls:'e-icon iconfont icon-font-search',plain:true" onclick="queryModel()">搜索</a>
+          <a href="#" class="easyui-linkbutton" data-options="iconCls:'iconfont icon-search',plain:true" onclick="queryModel()">搜索</a>
     </span>
 </div>
 <script src="${ctx!}/res/layer/layer.js"></script>

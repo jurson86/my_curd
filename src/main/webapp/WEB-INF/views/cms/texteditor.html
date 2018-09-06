@@ -2,6 +2,8 @@
 <link rel="stylesheet" type="text/css" href="${ctx!}/res/easyui1.5.4.5/extension/texteditor/texteditor.css">
 <script type="text/javascript" src="${ctx!}/res/easyui1.5.4.5/extension/texteditor/jquery.texteditor.js"></script>
 <script>
+    /*移除统一字体样式 大小等*/
+    $("#fontCss").remove();
 </script>
 </head>
 <body>
@@ -10,13 +12,16 @@ http://www.jeasyui.com/extension/texteditor.php
 <br>
 1. 修改源码 为 中文
 <br>
-2. 去掉 字体选择框
-<div  id="te" style="width:940px;height:300px;padding: 10px;">
+2. html 复制粘体 很棒
+<br>
+<div  id="te" style="width:860px;min-height: 300px;font-size: 16px;">
 </div>
 <script>
     $('#te').texteditor({
         title:'texteditor',
-		name:'content'
+        draggable:true,
+        resizable:true,
+        panelHeight: 'auto',
     });
 </script>
 </body>

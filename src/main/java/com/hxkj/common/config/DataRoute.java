@@ -16,9 +16,7 @@ public class DataRoute extends Routes {
     public void config() {
         add("/dataFile", DataFileController.class, Constant.VIEW_PATH);
         add("/dataDict", DataDictController.class, Constant.VIEW_PATH);
-        add("/dataProvince", DataProvinceController.class, Constant.VIEW_PATH);
-        add("/dataCity", DataCityController.class, Constant.VIEW_PATH);
-        add("/dataCounty", DataCountyController.class, Constant.VIEW_PATH);
+        add("/dataRegion", DataRegionController.class, Constant.VIEW_PATH);
     }
 
 }

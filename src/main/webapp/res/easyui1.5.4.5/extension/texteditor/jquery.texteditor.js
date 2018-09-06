@@ -437,22 +437,35 @@
 					$(this).texteditor('getEditor').texteditor('execCommand','formatblock '+value);
 				}
 			},
-			/*'fontname': {
+			 'fontname': {
 				type: 'combobox',
 				width: 120,
-				prompt: 'Font Family',
+				prompt: '字体',
 				editable: false,
 				panelHeight: 'auto',
 				data: [
-					{value:'arial',text:'Arial'},
-					{value:'comic sans ms',text:'Comic Sans'},
-					{value:'courier new',text:'Courier New'},
-					{value:'georgia',text:'Georgia'},
-					{value:'helvetica',text:'Helvetica'},
-					{value:'impact',text:'Impact'},
-					{value:'times new roman',text:'Times'},
-					{value:'trebuchet ms',text:'Trebuchet'},
-					{value:'verdana',text:'Verdana'}
+                    {value:'Microsoft YaHei',text:'微软雅黑'},
+                    {value:'SimSun',text:'宋体'},
+                    {value:'SimHei',text:'黑体'},
+                    /*   {value:'Microsoft JhengHei',text:'微软正黑体'},
+                    {value:'NSimSun',text:'新宋体'},
+                     {value:'PMingLiU',text:'新细明体'},
+                     {value:'MingLiU',text:'细明体'},
+                     {value:'DFKai-SB',text:'标楷体'},
+                     {value:'FangSong',text:'仿宋'},*/
+                    {value:'KaiTi',text:'楷体'},
+                /*    {value:'FangSong_GB2312',text:'仿宋_GB2312'},
+					{value:'KaiTi_GB2312',text:'楷体_GB2312'}*/
+
+                    {value:'arial',text:'Arial'},
+                    {value:'comic sans ms',text:'Comic Sans'},
+                    {value:'courier new',text:'Courier New'},
+                    {value:'georgia',text:'Georgia'},
+                    {value:'helvetica',text:'Helvetica'},
+                    {value:'impact',text:'Impact'},
+                    {value:'times new roman',text:'Times'},
+                    {value:'trebuchet ms',text:'Trebuchet'},
+                    {value:'verdana',text:'Verdana'}
 				],
 				formatter: function(row){
 					return '<font face="'+row.value+'">'+row.text+'</font>';
@@ -460,7 +473,7 @@
 				onChange: function(value){
 					$(this).texteditor('getEditor').texteditor('execCommand','fontname '+value);
 				}
-			},*/
+			},
 			'fontsize': {
 				type: 'combobox',
 				width: 120,

@@ -1,0 +1,6 @@
+/* -------- 统一控制字体样式 ------------- */
+
+/* 排除字体图标 使用的字体样式 */
+:not(.iconfont):not(.fa){
+    font-family: "Helvetica Neue", Helvetica, Arial, "Microsoft Yahei", "Hiragino Sans GB", "Heiti SC", "WenQuanYi Micro Hei", sans-serif !important;
+}

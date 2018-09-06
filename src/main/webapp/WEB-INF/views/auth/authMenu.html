@@ -1,9 +1,32 @@
 <#include "/WEB-INF/views/common/common.html"/>
 <@layout>
 <link rel="stylesheet" href="${ctx!}/res/layer/theme/default/layer.css">
+<link rel="stylesheet" href="${ctx!}/res/css/list.css">
+<style>
+    .tree-icon {
+        background: none !important;
+    }
+    .tree-folder:BEFORE {}
+    .tree-folder-open:BEFORE {}
+    .tree-file:BEFORE {}
+    .datagrid-view .iconfont{
+        font-variant:normal;
+        font-weight:normal;
+        line-height:15px;
+        color:#398dee;
+        font-size: 15px !important;
+    }
+</style>
 <script>
     function newModel() {
-        popup.openIframe('新建', '${ctx!}/authMenu/newModel', '600px', '400px');
+        var node = $("#tt").treegrid("getSelected");
+        var url;
+        if(node != null){
+            url = '${ctx!}/authMenu/newModel?pid='+node.id;
+        }else{
+            url = '${ctx!}/authMenu/newModel';
+        }
+        popup.openIframe('新建', url, '600px', '400px');
     }
     function editModel() {
         var node = $("#tt").treegrid("getSelected");
@@ -52,13 +75,13 @@
 <body>
 <table  id="tt" ></table>
 <div id="tt-tb">
-    <a onclick="newModel()" class="easyui-linkbutton" data-options="iconCls:'e-icon iconfont icon-font-add',plain:true"> 新增</a>
-    <a onclick="editModel()" class="easyui-linkbutton" data-options="iconCls:'e-icon iconfont icon-font-edit',plain:true">编辑</a>
-    <a onclick="deleteModel()" class="easyui-linkbutton" data-options="iconCls:'e-icon iconfont icon-font-delete',plain:true">删除</a>
-    <a onclick="openRolesModel()" href="#" class="easyui-linkbutton  " iconCls="e-icon iconfont icon-font-look" plain="true">关联角色查看</a>
+    <a onclick="newModel()" class="easyui-linkbutton" data-options="iconCls:'iconfont icon-add',plain:true"> 新增</a>
+    <a onclick="editModel()" class="easyui-linkbutton" data-options="iconCls:'iconfont icon-edit',plain:true">编辑</a>
+    <a onclick="deleteModel()" class="easyui-linkbutton" data-options="iconCls:'iconfont icon-delete',plain:true">删除</a>
+    <a onclick="openRolesModel()" href="#" class="easyui-linkbutton  " iconCls="iconfont icon-look" plain="true">关联角色查看</a>
     <span id="enterSpan" class="searchInputArea">
       	<input id="menuName" prompt="菜单名" class="easyui-textbox" style="width:150px">
-	    <a onclick="queryModel()" class="easyui-linkbutton" data-options="iconCls:'e-icon iconfont icon-font-search',plain:true">搜索</a>
+	    <a onclick="queryModel()" class="easyui-linkbutton" data-options="iconCls:'iconfont icon-search',plain:true">搜索</a>
     </span>
 </div>
 <script src="${ctx!}/res/js/easyui-tree-tools.js"></script>
@@ -88,14 +111,13 @@
                     }
                 }
                 /* tree json 构建 */
-                data = easyTree.treeDataBuild(data, 'id', 'pid', 'name,url,icon,iconfont,sort,iconCls,create_time,last_edit_time');
+                data = easyTree.treeDataBuild(data, 'id', 'pid', 'name,url,icon,sort,iconCls,create_time,last_edit_time');
                 return data;
             },
             columns: [[
                 {field: 'name', title: '菜单名', width: 200},
                 {field: 'url', title: '菜单地址', width: 200},
                 {field: 'icon', title: '图标', width: 150},
-                {field: 'iconfont', title: '字体图标', width: 150},
                 {field: 'sort', title: '排序', width: 80},
                 {field: 'create_time', title: '创建时间', width: 150},
                 {field: 'last_edit_time', title: '最后修改时间', width: 150},

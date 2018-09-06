@@ -1,24 +1,30 @@
 <#include "/WEB-INF/views/common/common.html"/>
 <@layout>
+<link rel="stylesheet" href="${ctx!}/res/css/list.css">
 <link rel="stylesheet" href="${ctx!}/res/css/magic-check.css">
 <link rel="stylesheet" href="${ctx!}/res/layer/theme/default/layer.css">
 <link rel="stylesheet" href="${ctx!}/res/pure/tables-min.css">
 <style>
     .tree-folder {
-        background: url('${ctx!}/res/easyui1.5.4.5/themes/icons/cus-icons/org.png') no-repeat center center;
+        background: url('${ctx!}/res/image/icon/org.png') no-repeat center center;
     }
-
     .tree-folder-open {
-        background: url('${ctx!}/res/easyui1.5.4.5/themes/icons/cus-icons/org.png') no-repeat center center;
+        background: url('${ctx!}/res/image/icon/org.png') no-repeat center center;
     }
-
     .tree-file {
-        background: url('${ctx!}/res/easyui1.5.4.5/themes/icons/cus-icons/org2.png') no-repeat center center;
+        background: url('${ctx!}/res/image/icon/org2.png') no-repeat center center;
     }
 </style>
 <script>
     function newModel() {
-        popup.openIframe('新建', '${ctx!}/authOrg/newModel', '600px', '500px')
+        var node = $("#tt").treegrid("getSelected");
+        var url;
+        if(node != null){
+            url = '${ctx!}/authOrg/newModel?pid='+node.id;
+        }else{
+            url = '${ctx!}/authOrg/newModel';
+        }
+        popup.openIframe('新建', url, '600px', '500px')
     }
 
     function editModel() {
@@ -104,14 +110,14 @@
     <div data-options="region:'west' " split="true"  style="width:500px;border-top: none;">
         <table id="tt" border="false"    data-options="onDblClickRow:editModel" ></table>
         <div id="tt-tb">
-            <a onclick="newModel()" class="easyui-linkbutton" data-options="iconCls:'e-icon iconfont icon-font-add',plain:true"> 新增</a>
-            <a onclick="editModel()" class="easyui-linkbutton" data-options="iconCls:'e-icon iconfont icon-font-edit',plain:true">编辑</a>
-            <a onclick="deleteModel()" class="easyui-linkbutton" data-options="iconCls:'e-icon iconfont icon-font-delete',plain:true">删除</a>
+            <a onclick="newModel()" class="easyui-linkbutton" data-options="iconCls:'iconfont icon-add',plain:true"> 新增</a>
+            <a onclick="editModel()" class="easyui-linkbutton" data-options="iconCls:'iconfont icon-edit',plain:true">编辑</a>
+            <a onclick="deleteModel()" class="easyui-linkbutton" data-options="iconCls:'iconfont icon-delete',plain:true">删除</a>
             <span id="enterSpan" class="searchInputArea">
                   <a href="#" class="easyui-linkbutton"   onclick="javascript:$('#tt').treegrid('expandAll')">展开</a>
                   <a href="#" class="easyui-linkbutton"   onclick="javascript:$('#tt').treegrid('collapseAll');">关闭</a>
                   <input id="orgName" prompt="机构名" class="easyui-textbox" style="width:150px">
-                  <a onclick="queryModel()" class="easyui-linkbutton"  data-options="iconCls:'e-icon iconfont icon-font-search',plain:true">搜索</a>
+                  <a onclick="queryModel()" class="easyui-linkbutton"  data-options="iconCls:'iconfont icon-search',plain:true">搜索</a>
             </span>
         </div>
     </div>
@@ -144,7 +150,7 @@
             rownumbers: true,
             toolbar: '#tt-tb',
             loadFilter: function (data) {
-                data = easyTree.treeDataBuild(data, 'id', 'pid', 'name,address,remark,sort');
+                data = easyTree.treeDataBuild(data, 'id', 'pid', 'name,address,mark,sort');
                 return data;
             },
             columns: [[
@@ -158,10 +164,10 @@
                     $('#orgAddressTd').text(row.address);
                 }
 
-                if (row.remark == undefined) {
+                if (row.mark == undefined) {
                     $('#orgRemarkTd').text("");
                 } else {
-                    $('#orgRemarkTd').text(row.remark);
+                    $('#orgRemarkTd').text(row.mark);
                 }
 
                 var queryParams = {};

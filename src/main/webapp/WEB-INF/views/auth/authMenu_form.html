@@ -1,6 +1,22 @@
 <#include "/WEB-INF/views/common/common.html"/>
 <@layout>
 <link rel="stylesheet" href="${ctx!}/res/pure/tables-min.css">
+<link rel="stylesheet" href="${ctx!}/res/css/form.css">
+<style>
+    .tree-icon {
+        background: none;
+    }
+    .tree-folder:BEFORE {}
+    .tree-folder-open:BEFORE {}
+    .tree-file:BEFORE {}
+    .tree .iconfont{
+        font-variant:normal;
+        font-weight:normal;
+        line-height:15px;
+        color:#398dee;
+        font-size: 15px !important;
+    }
+</style>
 <script src="${ctx!}/res/js/util.js"></script>
 <script>
     function saveAction() {
@@ -68,18 +84,12 @@
                 <input name="icon" value="${(authMenu.icon)!}"   class="easyui-textbox"  >
             </td>
         </tr>
-        <tr>
-            <td>字体图标：</td>
-            <td>
-                <input name="iconfont" value="${(authMenu.iconfont)!}"   class="easyui-textbox" >
-            </td>
-        </tr>
         </tbody>
     </table>
 </form>
 <div id="toolbars" style="text-align:center; margin-top: 20px;">
-    <a href="#" class="easyui-linkbutton" data-options="iconCls:'e-icon iconfont icon-font-save'" onclick="saveAction()">确定</a>
-    <a href="#" class="easyui-linkbutton" data-options="iconCls:'e-icon iconfont icon-font-cancel'"
+    <a href="#" class="easyui-linkbutton" data-options="iconCls:'iconfont icon-save'" onclick="saveAction()">确定</a>
+    <a href="#" class="easyui-linkbutton" data-options="iconCls:'iconfont icon-cancel'"
        onclick="parent.layer.close(parent.layer.getFrameIndex(window.name));">取消</a>
 </div>
 <script src="${ctx!}/res/js/easyui-tree-tools.js"></script>
@@ -88,16 +98,17 @@
         var easyTree = new EasyTree();
         $("#pid").combotree({
             url: '${ctx!}/authMenu/allMenu',
-            value: '${(authMenu.pid)!}',
+            value: '${pid!}',
             editable:true,
             loadFilter: function (data, parent) {
-                var x ={
+                var rootNode ={
                     id:0,
                     pid:-1,
                     text:'根菜单',
+                    iconCls:'iconfont icon-root',
                     open:true
                 };
-                data.push(x);
+                data.push(rootNode);
                 /* 数据处理*/
                 data = easyTree.treeDataBuild(data, "id", "pid", "text,open,iconCls");
                 return data;
