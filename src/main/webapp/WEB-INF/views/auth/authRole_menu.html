@@ -2,6 +2,9 @@
 <link rel="stylesheet" href="${ctx!}/res/layer/theme/default/layer.css">
 <link rel="stylesheet" href="${ctx!}/res/css/form.css">
 <style>
+    html,body{
+        height: 96%;
+    }
     .tree-icon {
         background: none;
     }
@@ -52,7 +55,7 @@
 <div id="toolbars" style=" text-align: right;padding-bottom: 5px; ">
     <a href="#" class="easyui-linkbutton" data-options="iconCls:'iconfont icon-save'" onclick="givePermission()">授予权限</a>
 </div>
-<div style="height: 500px; overflow: scroll;background-color:#fff;border: 1px solid lightgray;">
+<div style="height: 96%; overflow: scroll;background-color:#fff;border: 1px solid lightgray;">
     <ul id="allMenuTree" class="easyui-tree"></ul>
 </div>
 <script src="${ctx!}/res/js/easyui-tree-tools.js"></script>

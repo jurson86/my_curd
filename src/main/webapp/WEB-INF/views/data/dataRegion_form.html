@@ -75,15 +75,6 @@
             </tr>
             <tr>
                 <td>
-                    路径名称:
-                </td>
-                <td colspan="3">
-                    <input name="mergerName" value="${(dataRegion.mergerName)!}" class="easyui-textbox"  data-options="required:true"
-                           style="width: 100%">
-                </td>
-            </tr>
-            <tr>
-                <td>
                     区号:
                 </td>
                 <td>
@@ -112,9 +103,15 @@
             </tr>
             <tr>
                 <td>
+                    路径名称:
+                </td>
+                <td  >
+                    <input name="mergerName" value="${(dataRegion.mergerName)!}" class="easyui-textbox"  data-options="required:true" >
+                </td>
+                <td>
                     是否禁用:
                 </td>
-                <td colspan="3">
+                <td  >
                     <input name="disable" class="easyui-combobox"
                            data-options=" data: [ {value:'0',text:'否'} ,{value:'1',text:'是'}],
                             editable: false,  required:true,
