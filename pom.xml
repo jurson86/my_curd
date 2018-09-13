@@ -225,7 +225,7 @@
             <version>${httpClient.version}</version>
         </dependency>
 
-        <!-- websocket 支持-->
+        <!-- ws 支持-->
         <dependency>
             <groupId>org.apache.tomcat</groupId>
             <artifactId>tomcat-websocket-api</artifactId>

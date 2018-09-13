@@ -1,2 +1,0 @@
-jfinal 整合 tomcat 内置的 websocket
-仅学习用 实际使用 netty 更好

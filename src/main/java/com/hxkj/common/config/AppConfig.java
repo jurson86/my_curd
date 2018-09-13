@@ -6,10 +6,9 @@ import com.hxkj.auth.model.AuthUser;
 import com.hxkj.common.constant.Constant;
 import com.hxkj.common.interceptor.LoginInterceptor;
 import com.hxkj.common.interceptor.PermissionInterceptor;
-import com.hxkj.websocket.controller.WebsocketController;
-import com.hxkj.websocket.handler.WebSocketHandler;
 import com.jfinal.config.*;
 import com.jfinal.ext.handler.ContextPathHandler;
+import com.jfinal.ext.handler.UrlSkipHandler;
 import com.jfinal.json.MixedJsonFactory;
 import com.jfinal.kit.Prop;
 import com.jfinal.kit.PropKit;
@@ -75,8 +74,9 @@ public class AppConfig extends JFinalConfig {
         me.add(new PlayRoute());
         // cms 管理
         me.add(new cmsRoute());
-        // websocket 入口
-        me.add("/ws", WebsocketController.class, Constant.VIEW_PATH);
+
+        // ws
+        me.add(new WsRoute());
     }
 
     /**
@@ -120,8 +120,9 @@ public class AppConfig extends JFinalConfig {
      */
     @Override
     public void configHandler(Handlers me) {
-        // 处理 websocket 请求
-        me.add(new WebSocketHandler("^/websocket"));
+        // 跳过处理 ws 请求
+        me.add(new UrlSkipHandler("^/ws-server",false));
+
         // 视图中添加应用context
         me.add(new ContextPathHandler("ctx"));
         // druid 监控（只允许admin查看）

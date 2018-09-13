@@ -1,6 +1,6 @@
 package com.hxkj.common.util.email;
 
-import com.google.common.util.concurrent.ThreadFactoryBuilder;
+import com.hxkj.common.util.ExecutorServiceUtils;
 import org.apache.log4j.Logger;
 
 import java.util.Arrays;
@@ -15,8 +15,6 @@ import java.util.concurrent.*;
  */
 public class SendMailUtils {
     private static final Logger LOG = Logger.getLogger(SendMailUtils.class);
-    // 邮件发送线程池
-    private static ExecutorService emailPool;
 
 
     /**
@@ -31,25 +29,16 @@ public class SendMailUtils {
     public static boolean sendEmailAsync(List<String> to, String subject, String content, String[] attachFileNames) {
         boolean flag = false;
 
-        // 实际用到时 初始化一次
-        synchronized (SendMailUtils.class) {
-            if (emailPool == null) {
-                LOG.info("---------- 初始化 邮件发送线程池 --------");
-                emailPool = new ThreadPoolExecutor(2, 2,
-                        0L, TimeUnit.MILLISECONDS, new LinkedBlockingQueue<Runnable>(),
-                        new ThreadFactoryBuilder().setNameFormat("Email-%d").setDaemon(true).build());
-            }
-        }
-
         // 输出调试日志
         if (LOG.isDebugEnabled()) {
             for (String toItem : to) {
+                if(LOG.isDebugEnabled())
                 LOG.debug("---- send mail to：" + toItem);
             }
         }
 
         SendMailProcess process = new SendMailProcess(to, subject, content, attachFileNames);
-        Future<Boolean> result = emailPool.submit(process);
+        Future<Boolean> result = ExecutorServiceUtils.pool.submit(process);
         try {
             flag = result.get();
         } catch (Exception e) {
@@ -72,6 +61,7 @@ public class SendMailUtils {
         // 输出调试日志
         if (LOG.isDebugEnabled()) {
             for (String toItem : to) {
+                if(LOG.isDebugEnabled())
                 LOG.debug("---- send mail to：" + toItem);
             }
         }
