@@ -26,5 +26,4 @@ Light, clear and convenient.
 ![code generator](https://raw.githubusercontent.com/qinyou/my_curd/master/preview/codegen.png)
 ![ckeditor5](https://raw.githubusercontent.com/qinyou/my_curd/master/preview/ck5.png)
 ![Chinese novel download](https://raw.githubusercontent.com/qinyou/my_curd/master/preview/novel.png)
-
-**English is not my native language. If there is anything wrong with this document, you can contact me by email to correct it. 15238002477@163.com**
+ 
