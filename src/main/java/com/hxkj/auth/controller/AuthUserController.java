@@ -64,10 +64,10 @@ public class AuthUserController extends BaseController {
         authUser.setCreateTime(new Date());
 
         String gender = authUser.getGender();
-        if("1".equals("gender")){
-           authUser.setGender("res/image/maleAvatar.jpg");
+        if("1".equals(gender)){
+           authUser.setAvatar("res/image/maleAvatar.jpg");
         }else{
-            authUser.setGender("res/image/femaleAvatar.jpg");
+            authUser.setAvatar("res/image/femaleAvatar.jpg");
         }
 
         boolean saveFlag = authUser.save();
@@ -92,13 +92,6 @@ public class AuthUserController extends BaseController {
             authUser.setPassword(password);
         }
         authUser.setLastEditTime(new Date());
-
-        String gender = authUser.getGender();
-        if("1".equals("gender")){
-            authUser.setGender("res/image/maleAvatar.jpg");
-        }else{
-            authUser.setGender("res/image/femaleAvatar.jpg");
-        }
 
         boolean updateFlag = authUser.update();
         if (updateFlag) {
