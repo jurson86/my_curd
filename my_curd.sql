@@ -11,7 +11,7 @@
  Target Server Version : 50719
  File Encoding         : 65001
 
- Date: 19/09/2018 00:08:41
+ Date: 19/09/2018 23:20:25
 */
 
 SET NAMES utf8mb4;
@@ -57,7 +57,7 @@ INSERT INTO `auth_menu` VALUES (34, 'ckeditor5_classic', '/editor/ck5classic', '
 INSERT INTO `auth_menu` VALUES (37, 'easyui texteditor', '/editor/texteditor', 'iconfont icon-richeditor', 4, 27, '2018-09-04 20:52:24', '2018-09-06 20:08:20');
 INSERT INTO `auth_menu` VALUES (38, '地区', '/dataRegion', 'iconfont icon-region', 4, 16, '2018-09-06 11:34:16', '2018-09-06 20:07:40');
 INSERT INTO `auth_menu` VALUES (39, '消息通知', '/', 'iconfont icon-notification', 4, 12, '2018-09-17 19:27:28', '2018-09-17 19:31:05');
-INSERT INTO `auth_menu` VALUES (40, '通知类型', '/sysNotificationType', 'iconfont icon-notification_type', 1, 39, '2018-09-17 19:27:46', '2018-09-18 18:25:45');
+INSERT INTO `auth_menu` VALUES (40, '系统通知类型', '/sysNotificationType', 'iconfont icon-notification_type', 1, 39, '2018-09-17 19:27:46', '2018-09-19 20:48:59');
 INSERT INTO `auth_menu` VALUES (41, '类型角色维护', '/sysNotificationTypeRole', 'iconfont icon-relation', 2, 39, '2018-09-17 20:07:49', '2018-09-18 00:25:18');
 INSERT INTO `auth_menu` VALUES (42, '类型用户维护', '/sysNotificationTypeUser', 'iconfont icon-relation', 3, 39, '2018-09-17 20:08:39', '2018-09-18 00:25:39');
 
@@ -181,7 +181,7 @@ CREATE TABLE `auth_user`  (
 -- ----------------------------
 -- Records of auth_user
 -- ----------------------------
-INSERT INTO `auth_user` VALUES (1, 'admin', '3d4f2bf07dc1be38b20cd6e46949a1071f9d0e3d', '张闯', 'upload/image/20180915/142905591.jpg', '1', 2, '15238002477@163.com', '15238002477', '运维工程师', 'departmentStaff', '2018-09-19 00:04:16', '0', '2018-06-21 22:09:36', '2018-08-30 13:03:50');
+INSERT INTO `auth_user` VALUES (1, 'admin', '3d4f2bf07dc1be38b20cd6e46949a1071f9d0e3d', '张闯', 'upload/image/20180915/142905591.jpg', '1', 2, '15238002477@163.com', '15238002477', '运维工程师', 'departmentStaff', '2018-09-19 23:19:18', '0', '2018-06-21 22:09:36', '2018-08-30 13:03:50');
 INSERT INTO `auth_user` VALUES (3, 'jack', '3d4f2bf07dc1be38b20cd6e46949a1071f9d0e3d', '杰克', 'res/image/maleAvatar.jpg', '1', 3, 'jack@outlook.com', '123456', '人力专员', 'departmentStaff', '2018-09-01 17:36:56', '0', '2018-06-21 22:14:44', '2018-08-30 13:04:24');
 INSERT INTO `auth_user` VALUES (4, 'tom', '3d4f2bf07dc1be38b20cd6e46949a1071f9d0e3d', 'Tom', 'res/image/maleAvatar.jpg', '1', 3, 'tom@istek.net.cn', '18813848438', '培训专员', 'departmentStaff', '2018-09-12 18:42:18', '0', '2018-06-27 20:57:01', '2018-08-30 13:04:35');
 
@@ -274,7 +274,7 @@ CREATE TABLE `data_dict`  (
   `create_time` datetime(0) NULL DEFAULT NULL COMMENT '创建时间',
   `last_edit_time` datetime(0) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 174 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '数据字典' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 172 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '数据字典' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of data_dict
@@ -4136,6 +4136,11 @@ CREATE TABLE `sys_notification`  (
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '通知主表\r\n过期时间 和 必死 时间 用于控制 表记录行数不过大\r\n定时器检查 消息是否过期，如果过期且消息未读，删除从表信息。\r\n定时器检查 消息是否必死，如果必死则删除 主从表信息。\r\n' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
+-- Records of sys_notification
+-- ----------------------------
+INSERT INTO `sys_notification` VALUES ('492112577413775360', 'SYSTEM', '00002', '日志删除', 'admin 于 2018-09-19 23:19:41 删除了 4 条 系统日志。', '2018-09-19 23:19:41', '2018-10-19 23:19:41', '2018-11-18 23:19:41');
+
+-- ----------------------------
 -- Table structure for sys_notification_detail
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_notification_detail`;
@@ -4143,7 +4148,7 @@ CREATE TABLE `sys_notification_detail`  (
   `id` varchar(30) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `main_id` varchar(30) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '主表id',
   `sender` int(11) UNSIGNED NULL DEFAULT NULL COMMENT '发送人',
-  `receiver` int(11) NOT NULL COMMENT '接收人',
+  `receiver` int(11) UNSIGNED NOT NULL COMMENT '接收人',
   `is_read` varchar(2) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '0' COMMENT '是否已读，0未读 1已读',
   `read_time` datetime(0) NULL DEFAULT NULL COMMENT '已读时间',
   PRIMARY KEY (`id`) USING BTREE,
@@ -4153,6 +4158,13 @@ CREATE TABLE `sys_notification_detail`  (
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '通知表 从表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
+-- Records of sys_notification_detail
+-- ----------------------------
+INSERT INTO `sys_notification_detail` VALUES ('492112577464107008', '492112577413775360', NULL, 1, '0', NULL);
+INSERT INTO `sys_notification_detail` VALUES ('492112577464107009', '492112577413775360', NULL, 4, '0', NULL);
+INSERT INTO `sys_notification_detail` VALUES ('492112577464107010', '492112577413775360', NULL, 3, '0', NULL);
+
+-- ----------------------------
 -- Table structure for sys_notification_type
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_notification_type`;
@@ -4160,6 +4172,7 @@ CREATE TABLE `sys_notification_type`  (
   `id` varchar(30) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `txt` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '名字',
   `code` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '编码',
+  `template` varchar(500) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '消息模板',
   `remark` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '备注',
   `until_expiry_day` int(11) NULL DEFAULT NULL COMMENT '多少天后过期',
   `until_dead_day` int(11) NULL DEFAULT NULL COMMENT '多少天后必死',
@@ -4170,8 +4183,8 @@ CREATE TABLE `sys_notification_type`  (
 -- ----------------------------
 -- Records of sys_notification_type
 -- ----------------------------
-INSERT INTO `sys_notification_type` VALUES ('491741675371102208', '用户消息', '00001', '【不和特定用户角色关联】<br/> 用户主动给其它用户发送的消息。<br/> 180天后过期， 360天后必删除。', 180, 360);
-INSERT INTO `sys_notification_type` VALUES ('491746002944917504', '小说下载', '00002', '【和部分用户部分角色关联】<br/> 某用户下载小说时，通知某部分用户。<br/> 10天后过期，20天后比删除', 10, 20);
+INSERT INTO `sys_notification_type` VALUES ('491746002944917504', '小说下载', '00001', NULL, '小说下载时消息', 10, 20);
+INSERT INTO `sys_notification_type` VALUES ('492075507165167616', '日志删除', '00002', '${user!} 于 ${date!} 删除了 ${number!} 条 系统日志。', '系统日志删除消息', 30, 60);
 
 -- ----------------------------
 -- Table structure for sys_notification_type_role
@@ -4187,9 +4200,9 @@ CREATE TABLE `sys_notification_type_role`  (
 -- Records of sys_notification_type_role
 -- ----------------------------
 INSERT INTO `sys_notification_type_role` VALUES ('491746002944917504', 1);
-INSERT INTO `sys_notification_type_role` VALUES ('491746002944917504', 7);
-INSERT INTO `sys_notification_type_role` VALUES ('491746002944917504', 8);
-INSERT INTO `sys_notification_type_role` VALUES ('491746002944917504', 9);
+INSERT INTO `sys_notification_type_role` VALUES ('492075507165167616', 7);
+INSERT INTO `sys_notification_type_role` VALUES ('492075507165167616', 8);
+INSERT INTO `sys_notification_type_role` VALUES ('492075507165167616', 9);
 
 -- ----------------------------
 -- Table structure for sys_notification_type_user
@@ -4207,6 +4220,7 @@ CREATE TABLE `sys_notification_type_user`  (
 INSERT INTO `sys_notification_type_user` VALUES ('491746002944917504', 1);
 INSERT INTO `sys_notification_type_user` VALUES ('491746002944917504', 3);
 INSERT INTO `sys_notification_type_user` VALUES ('491746002944917504', 4);
+INSERT INTO `sys_notification_type_user` VALUES ('492075507165167616', 1);
 
 -- ----------------------------
 -- Table structure for sys_oplog
@@ -4287,6 +4301,28 @@ INSERT INTO `sys_oplog` VALUES ('491742741269577728', 1, '通过 cookie 登录',
 INSERT INTO `sys_oplog` VALUES ('491753726172725248', 1, '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-09-18 23:33:44');
 INSERT INTO `sys_oplog` VALUES ('491760319987712000', 1, '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-09-18 23:59:56');
 INSERT INTO `sys_oplog` VALUES ('491761408879362048', 1, '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-09-19 00:04:16');
+INSERT INTO `sys_oplog` VALUES ('491891538486362112', 1, '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-09-19 08:41:21');
+INSERT INTO `sys_oplog` VALUES ('491951679529287680', 1, '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-09-19 12:40:20');
+INSERT INTO `sys_oplog` VALUES ('491961389963804672', 1, '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-09-19 13:18:55');
+INSERT INTO `sys_oplog` VALUES ('491961390391623680', 1, '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-09-19 13:18:55');
+INSERT INTO `sys_oplog` VALUES ('492035415272849408', 1, '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-09-19 18:13:04');
+INSERT INTO `sys_oplog` VALUES ('492037583480553472', 1, '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-09-19 18:21:41');
+INSERT INTO `sys_oplog` VALUES ('492037583925149696', 1, '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-09-19 18:21:41');
+INSERT INTO `sys_oplog` VALUES ('492041736923643904', 1, '登录', '0:0:0:0:0:0:0:1', '2018-09-19 18:38:11');
+INSERT INTO `sys_oplog` VALUES ('492044961781383168', 1, '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-09-19 18:51:00');
+INSERT INTO `sys_oplog` VALUES ('492045447892828160', 1, ' 修改 通知类型：<br/> [  \"00003\" change to  \"00002\"  ] <br/> [  \"和部分用户部分角色关联 某用户下载小说时，通知某部分用户。 10天后过期，20天后比删除 \"  change to  \"和部分用户部分角色关联 某用户下载小说时，通知某部分用户。 10天后过期，20天后比删除 2\"  ] ', '0:0:0:0:0:0:0:1', '2018-09-19 18:52:56');
+INSERT INTO `sys_oplog` VALUES ('492045583826026496', 1, ' 修改 通知类型：<br/> [  \"00002\" change to  \"00003\"  ] <br/> [  \"和部分用户部分角色关联 某用户下载小说时，通知某部分用户。 10天后过期，20天后比删除 2\"  change to  \"和部分用户部分角色关联 某用户下载小说时，通知某部分用户。 10天后过期，20天后比删除\"  ] ', '0:0:0:0:0:0:0:1', '2018-09-19 18:53:28');
+INSERT INTO `sys_oplog` VALUES ('492045834393747456', 1, ' 修改 通知类型：<br/> [  \"00003\" change to  \"00002\"  ] <br/>', '0:0:0:0:0:0:0:1', '2018-09-19 18:54:28');
+INSERT INTO `sys_oplog` VALUES ('492046186501373952', 1, '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-09-19 18:55:52');
+INSERT INTO `sys_oplog` VALUES ('492046234593263616', 1, ' 修改 通知类型：(id=491746002944917504)<br/> [  \"00002\" change to  \"00003\"  ] <br/> [  \"和部分用户部分角色关联 某用户下载小说时，通知某部分用户。 10天后过期，20天后比删除\"  change to  \"和部分用户部分角色关联 某用户下载小说时，通知某部分用户。 10天后过期，20天后比删除3\"  ] ', '0:0:0:0:0:0:0:1', '2018-09-19 18:56:04');
+INSERT INTO `sys_oplog` VALUES ('492046316872925184', 1, ' 修改 通知类型：(id=491746002944917504)<br/> [  \"00003\" change to  \"00002\"  ] <br/> [  \"和部分用户部分角色关联 某用户下载小说时，通知某部分用户。 10天后过期，20天后比删除3\"  change to  \"和部分用户部分角色关联 某用户下载小说时，通知某部分用户。 10天后过期，20天后比删除\"  ] ', '0:0:0:0:0:0:0:1', '2018-09-19 18:56:23');
+INSERT INTO `sys_oplog` VALUES ('492047450714931200', 1, '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-09-19 19:00:54');
+INSERT INTO `sys_oplog` VALUES ('492047530792583168', 1, ' 删除通知类型：[ ggggg : 111111 ]', '0:0:0:0:0:0:0:1', '2018-09-19 19:01:13');
+INSERT INTO `sys_oplog` VALUES ('492047666725781504', 1, ' 删除通知类型： <br/>[ a : 11111111111 ]   ,  <br/>[ b : 22222222222 ]  ', '0:0:0:0:0:0:0:1', '2018-09-19 19:01:45');
+INSERT INTO `sys_oplog` VALUES ('492074553489489920', 1, '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-09-19 20:48:35');
+INSERT INTO `sys_oplog` VALUES ('492074686323097600', 1, '退出', '0:0:0:0:0:0:0:1', '2018-09-19 20:49:07');
+INSERT INTO `sys_oplog` VALUES ('492074705562370048', 1, '登录', '0:0:0:0:0:0:0:1', '2018-09-19 20:49:12');
+INSERT INTO `sys_oplog` VALUES ('492074749921329152', 1, ' 删除通知类型：<br/>[ 用户消息 : 00001 ]', '0:0:0:0:0:0:0:1', '2018-09-19 20:49:22');
 
 -- ----------------------------
 -- Function structure for authMenuTreeIds

@@ -19,7 +19,7 @@ public class AuthRoleController extends BaseController {
      * 列表页
      */
     public void index() {
-        render("auth/role.html");
+        render("auth/authRole.html");
     }
 
     /**

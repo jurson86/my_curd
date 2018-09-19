@@ -43,11 +43,11 @@ public abstract class BaseSysNotificationDetail<M extends BaseSysNotificationDet
 
 
     // receiver  接收人
-    public void setReceiver(Integer receiver) {
+    public void setReceiver(Long receiver) {
         set("receiver", receiver);
     }
 
-    public Integer getReceiver() {
+    public Long getReceiver() {
         return get("receiver");
     }
 

@@ -8,7 +8,7 @@
 
     /*新增 model*/
     function newModel() {
-        popup.openIframe('新建', '${ctx!}/sysNotificationType/newModel', '720px', '300px');
+        popup.openIframe('新建', '${ctx!}/sysNotificationType/newModel', '720px', '380px');
     }
 
     /*编辑 model*/
@@ -18,7 +18,7 @@
         if (rows.length==1) {
             var row = rows[0];
             /*有且只有一个主键*/
-            popup.openIframe('编辑', '${ctx!}/sysNotificationType/newModel?id=' + row.id, '720px', '300px');
+            popup.openIframe('编辑', '${ctx!}/sysNotificationType/newModel?id=' + row.id, '720px', '380px');
         } else {
             popup.msg('请选择一行数据进行编辑');
         }

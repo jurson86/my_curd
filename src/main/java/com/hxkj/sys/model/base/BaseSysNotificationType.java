@@ -41,6 +41,14 @@ public abstract class BaseSysNotificationType<M extends BaseSysNotificationType<
         return get("code");
     }
 
+    // tempalte 通知模板
+    public void setTemplate(java.lang.String template) {
+        set("template", template);
+    }
+
+    public java.lang.String getTemplate() {
+        return get("template");
+    }
 
     // remark  备注
     public void setRemark(java.lang.String remark) {

@@ -1,10 +1,12 @@
 package com.hxkj.sys.controller;
 
+import com.google.common.base.Joiner;
 import com.hxkj.common.constant.Constant;
 import com.hxkj.common.controller.BaseController;
 import com.hxkj.common.interceptor.PermissionInterceptor;
 import com.hxkj.common.util.Identities;
 import com.hxkj.common.util.search.SearchSql;
+import com.hxkj.sys.model.SysNotification;
 import com.hxkj.sys.model.SysNotificationType;
 import com.jfinal.aop.Before;
 import com.jfinal.aop.Clear;
@@ -12,6 +14,9 @@ import com.jfinal.kit.StrKit;
 import com.jfinal.plugin.activerecord.Db;
 import com.jfinal.plugin.activerecord.Page;
 import com.jfinal.plugin.activerecord.tx.Tx;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * sys_notification_type 控制器
@@ -82,11 +87,29 @@ public class SysNotificationTypeController extends BaseController {
         if (ids.contains(",")) {
             ids = ids.replaceAll(",", "','");
 
+            // 添加日志 (防止删除后完全无法恢复)
+            String selectSql = "select *  from sys_notification_type where id  in ( '" + ids + "' ) ";
+            List<SysNotificationType> list = SysNotificationType.dao.find(selectSql);
+            List<String> txtCodeList = new ArrayList<>();
+            for(SysNotificationType type : list){
+                txtCodeList.add(" <br/>[ "+type.getTxt()+" : "+type.getCode()+" ]  ");
+            }
+            String opLogContent =" 删除通知类型："+  Joiner.on(" , ").join(txtCodeList);
+            addOpLog(opLogContent);
+
+
             // 删除选中的数据
             deleteSql = "delete from sys_notification_type where id  in ( '" + ids + "' ) ";
             Db.update(deleteSql);
+
         } else {
-            SysNotificationType.dao.deleteById(ids);
+
+            // 添加日志
+            SysNotificationType sysNotificationType = SysNotificationType.dao.findById(ids);
+            String opLogContent =" 删除通知类型：<br/>[ "+sysNotificationType.getTxt()+" : "+sysNotificationType.getCode()+" ]" ;
+            addOpLog(opLogContent);
+
+            sysNotificationType.delete();
         }
 
         // 删除关联的数据
@@ -103,8 +126,25 @@ public class SysNotificationTypeController extends BaseController {
     /**
      * 修改
      */
+    @Before(Tx.class)
     public void updateAction() {
         SysNotificationType sysNotificationType = getBean(SysNotificationType.class, "");
+
+        // 添加日志
+        SysNotificationType o = SysNotificationType.dao.findById(sysNotificationType.getId());
+        String opLogContent= "";
+        if(!o.getTxt().equals(sysNotificationType.getTxt())){
+           opLogContent += (" [  \""+o.getTxt() +"\" change to \""+sysNotificationType.getTxt()+"\" ] <br/>");
+        }
+        if(!o.getCode().equals(sysNotificationType.getCode())){
+            opLogContent += (" [  \""+o.getCode() +"\" change to  \""+sysNotificationType.getCode()+"\"  ] <br/>");
+        }
+
+        if(StrKit.notBlank(opLogContent)){
+            opLogContent = " 修改 通知类型：(id="+o.getId()+")<br/>"+opLogContent;
+            addOpLog(opLogContent);
+        }
+
         boolean updateFlag = sysNotificationType.update();
         if (updateFlag) {
             renderText(Constant.UPDATE_SUCCESS);
