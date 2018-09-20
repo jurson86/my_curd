@@ -7,8 +7,6 @@ import com.hxkj.common.util.StringUtils;
 import com.hxkj.common.util.csv.CsvRender;
 import com.hxkj.common.util.excel.PoiRender;
 import com.hxkj.common.util.search.SearchSql;
-import com.hxkj.sys.model.SysNotification;
-import com.hxkj.sys.model.SysNotificationType;
 import com.hxkj.sys.model.SysOplog;
 import com.hxkj.sys.service.SysNotificationService;
 import com.jfinal.aop.Before;
@@ -87,19 +85,14 @@ public class SysOplogController extends BaseController {
 
         // 发送消息通知 （业务并不合适,仅测试用)
         // 此处 sys_notification_type 表数据耦合，不应该 改表数据
+        String sysNotificationTypeCode = "00002";
         Map<String,Object> templateParams = new HashMap<>();
         templateParams.put("user",getSessionUser().getUsername()); // 操作人
         templateParams.put("date", DateTimeUtils.format(new Date(),DateTimeUtils.pattern_ymd_hms));// 时间
         templateParams.put("number",getPara("ids").split(",").length); // 删除记录条数
-        String sysNotificationTypeCode = "00002";
-        SysNotification sysNotification = new SysNotification();
-        sysNotification.setCate2(sysNotificationTypeCode);
         SysNotificationService service = Duang.duang(SysNotificationService.class);
-        boolean flag = service.saveSystemNotificationData(sysNotification,templateParams);
-        if(LOG.isInfoEnabled()){
-            LOG.info(" 存放通知消息记录："+flag);
-        }
-        // websocket 通知前台
+        service.sendSystemNotification(sysNotificationTypeCode,templateParams);
+
 
         renderText(Constant.DELETE_SUCCESS);
     }

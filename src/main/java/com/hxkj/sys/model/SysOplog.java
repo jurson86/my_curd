@@ -24,7 +24,7 @@ public class SysOplog extends BaseSysOplog<SysOplog> {
      * @return
      */
     public Page<SysOplog> page(int pageNumber, int pageSize, String where) {
-        String sqlSelect = " select so.*, su.name as user_name ";
+        String sqlSelect = " select so.*, su.username as user_name ";
         String sqlExceptSelect = " from sys_oplog  so LEFT JOIN auth_user  su on so.user_id = su.id  ";
         if (StrKit.notBlank(where)) {
             sqlExceptSelect += " where " + where;

@@ -62,7 +62,7 @@
        url="${ctx!}/sysNotificationType/query"
        data-options="onDblClickRow:editModel"
        toolbar="#tb" rownumbers="true" border="false"
-       fit="true"    fitColumns="false"
+       fit="true"    fitColumns="true"
        nowrap="false"
        striped="true"
        pagination="true"
@@ -75,6 +75,7 @@
         <th field="code" width="200">编码</th>
         <th field="until_expiry_day" width="100">n天后 过期</th>
         <th field="until_dead_day" width="100">n天后 删除</th>
+        <th field="template" width="400">消息模板</th>
         <th field="remark" width="400">备注</th>
     </tr>
     </thead>

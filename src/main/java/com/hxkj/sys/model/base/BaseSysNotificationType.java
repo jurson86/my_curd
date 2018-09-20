@@ -41,7 +41,7 @@ public abstract class BaseSysNotificationType<M extends BaseSysNotificationType<
         return get("code");
     }
 
-    // tempalte 通知模板
+    // tempalte 通知模板 (基于freemarker语法)
     public void setTemplate(java.lang.String template) {
         set("template", template);
     }
