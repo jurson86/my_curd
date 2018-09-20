@@ -1,7 +1,7 @@
 package com.hxkj.common.config;
 
-import com.hxkj.cms.controller.EditorController;
 import com.hxkj.cms.controller.CmsArticleController;
+import com.hxkj.cms.controller.EditorController;
 import com.hxkj.cms.controller.ImgUploadController;
 import com.hxkj.common.constant.Constant;
 import com.jfinal.config.Routes;

@@ -23,7 +23,7 @@ import java.util.*;
  */
 public class SysOplogController extends BaseController {
 
-    private final  static Logger LOG = Logger.getLogger(SysOplogController.class);
+    private final static Logger LOG = Logger.getLogger(SysOplogController.class);
 
 
     public void index() {
@@ -86,12 +86,12 @@ public class SysOplogController extends BaseController {
         // 发送消息通知 （业务并不合适,仅测试用)
         // 此处 sys_notification_type 表数据耦合，不应该 改表数据
         String sysNotificationTypeCode = "00002";
-        Map<String,Object> templateParams = new HashMap<>();
-        templateParams.put("user",getSessionUser().getUsername()); // 操作人
-        templateParams.put("date", DateTimeUtils.format(new Date(),DateTimeUtils.pattern_ymd_hms));// 时间
-        templateParams.put("number",getPara("ids").split(",").length); // 删除记录条数
+        Map<String, Object> templateParams = new HashMap<>();
+        templateParams.put("user", getSessionUser().getUsername()); // 操作人
+        templateParams.put("date", DateTimeUtils.format(new Date(), DateTimeUtils.pattern_ymd_hms));// 时间
+        templateParams.put("number", getPara("ids").split(",").length); // 删除记录条数
         SysNotificationService service = Duang.duang(SysNotificationService.class);
-        service.sendSystemNotification(sysNotificationTypeCode,templateParams);
+        service.sendSystemNotification(sysNotificationTypeCode, templateParams);
 
 
         renderText(Constant.DELETE_SUCCESS);

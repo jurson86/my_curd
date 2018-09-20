@@ -18,6 +18,6 @@ public class CommonRoute extends Routes {
         add("/userPassword", UserPasswordController.class, Constant.VIEW_PATH);
         add("/userInfo", UserInfoController.class, Constant.VIEW_PATH);
         // 工具页面
-        add("/utils", UtilsController.class,Constant.VIEW_PATH);
+        add("/utils", UtilsController.class, Constant.VIEW_PATH);
     }
 }

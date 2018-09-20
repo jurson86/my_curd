@@ -5,7 +5,6 @@ import com.hxkj.common.controller.BaseController;
 import com.hxkj.common.util.search.SearchSql;
 import com.hxkj.sys.model.SysNotificationTypeUser;
 import com.jfinal.aop.Before;
-import com.jfinal.plugin.activerecord.Db;
 import com.jfinal.plugin.activerecord.Page;
 import com.jfinal.plugin.activerecord.tx.Tx;
 
@@ -36,7 +35,6 @@ public class SysNotificationTypeUserController extends BaseController {
         Page<SysNotificationTypeUser> sysNotificationTypeUserPage = SysNotificationTypeUser.dao.page(pageNumber, pageSize, where);
         renderDatagrid(sysNotificationTypeUserPage);
     }
-
 
 
     /**

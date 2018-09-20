@@ -5,7 +5,7 @@ import org.apache.log4j.Logger;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.concurrent.*;
+import java.util.concurrent.Future;
 
 /**
  * 邮件发送工具
@@ -32,8 +32,8 @@ public class SendMailUtils {
         // 输出调试日志
         if (LOG.isDebugEnabled()) {
             for (String toItem : to) {
-                if(LOG.isDebugEnabled())
-                LOG.debug("---- send mail to：" + toItem);
+                if (LOG.isDebugEnabled())
+                    LOG.debug("---- send mail to：" + toItem);
             }
         }
 
@@ -61,8 +61,8 @@ public class SendMailUtils {
         // 输出调试日志
         if (LOG.isDebugEnabled()) {
             for (String toItem : to) {
-                if(LOG.isDebugEnabled())
-                LOG.debug("---- send mail to：" + toItem);
+                if (LOG.isDebugEnabled())
+                    LOG.debug("---- send mail to：" + toItem);
             }
         }
         SendMailProcess process = new SendMailProcess(to, subject, content, attachFileNames);

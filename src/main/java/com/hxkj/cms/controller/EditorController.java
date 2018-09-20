@@ -20,7 +20,7 @@ public class EditorController extends BaseController {
     /**
      * jquery easyui texteditor
      */
-    public void texteditor(){
+    public void texteditor() {
         render("cms/texteditor.html");
     }
 }

@@ -46,23 +46,23 @@ public class UserInfoController extends BaseController {
             String orginFilename = uploadFile.getOriginalFileName();     // 文件原名
             String fileSuf = FileUtils.getExtensionName(orginFilename);  // 文件后缀
             if (!Arrays.asList(limitFileTypes.split(",")).contains(fileSuf)) {
-                result.put("success",false);
+                result.put("success", false);
                 result.put("msg", "只允许后缀为 " + extMap.get("image") + " 格式文件");
                 uploadFile.getFile().delete();
             } else {
-                String newFileName = DateTimeUtils.format(new Date(),DateTimeUtils.pattern_ymdhmsS_noLine) + "." + fileSuf;
+                String newFileName = DateTimeUtils.format(new Date(), DateTimeUtils.pattern_ymdhmsS_noLine) + "." + fileSuf;
                 String pre;
                 if (Arrays.asList(extMap.get("image").split(",")).contains(fileSuf)) {
                     pre = prop.get("imagePath");
                 } else {
-                    result.put("success",false);
+                    result.put("success", false);
                     result.put("msg", "只允许后缀为 " + extMap.get("image") + " 格式文件");
                     uploadFile.getFile().delete();
                     throw new RuntimeException("文件类型非法");
                 }
 
                 // 文件存储的新 相对路径
-                String relativePath = pre + "/"+ newFileName;
+                String relativePath = pre + "/" + newFileName;
                 // 文件存储的新绝对路径
                 File savefile = new File(PathKit.getWebRootPath() + File.separator
                         + relativePath);
@@ -87,17 +87,17 @@ public class UserInfoController extends BaseController {
                 dataFile.setCreateTime(new Date());
                 boolean saveFlag = dataFile.save();
                 if (!saveFlag) {
-                    result.put("success",false);
+                    result.put("success", false);
                     result.put("msg", "文件存储失败");
                     savefile.delete();
                 } else {
-                    result.put("success",true);
-                    result.put("path",dataFile.getPath());
+                    result.put("success", true);
+                    result.put("path", dataFile.getPath());
                     result.put("msg", "文件存储成功");
                 }
             }
         } else {
-            result.put("success",false);
+            result.put("success", false);
             result.put("msg", "请选择文件");
         }
         render(new JsonRender(JSON.toJSONString(result)).forIE());

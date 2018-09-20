@@ -28,8 +28,7 @@ public class SysNotification extends BaseSysNotification<SysNotification> implem
     }
 
 
-
-    public Page<Record> findNotificationWithDetailPage(int pageNumber,int pageSize,String where){
+    public Page<Record> findNotificationWithDetailPage(int pageNumber, int pageSize, String where) {
         String sqlSelect = " SELECT " +
                 " a.id, a.cate1, a.cate2, a.title, a.content, a.create_time, " +
                 " b.is_read as has_read, b.read_time as read_time, " +

@@ -99,8 +99,8 @@ public class AuthRoleController extends BaseController {
     /**
      * 打开赋予角色 的窗口
      */
-    public void openGivePermissionModel(){
-        setAttr("roleId",getPara("id"));
+    public void openGivePermissionModel() {
+        setAttr("roleId", getPara("id"));
         render("auth/authRole_menu.html");
     }
 
@@ -129,15 +129,15 @@ public class AuthRoleController extends BaseController {
         }
 
         // 添加日志
-        AuthRole authRole= AuthRole.dao.findById(roleId);
-        List<AuthMenu> authMenus = AuthMenu.dao.find("select * from auth_menu where id in ("+permissIds.replaceAll(";",",")+")");
+        AuthRole authRole = AuthRole.dao.findById(roleId);
+        List<AuthMenu> authMenus = AuthMenu.dao.find("select * from auth_menu where id in (" + permissIds.replaceAll(";", ",") + ")");
         List<String> menuNames = new ArrayList<>();
-        for(AuthMenu authMenu: authMenus){
+        for (AuthMenu authMenu : authMenus) {
             menuNames.add(authMenu.getName());
         }
         String menuNamesStr = Joiner.on(",").join(menuNames);
-        System.out.println("-----------"+("角色: "+authRole.getRoleName()+", 关联菜单: "+menuNamesStr));
-        addOpLog("角色: "+authRole.getRoleName()+", 关联菜单: "+menuNamesStr);
+        System.out.println("-----------" + ("角色: " + authRole.getRoleName() + ", 关联菜单: " + menuNamesStr));
+        addOpLog("角色: " + authRole.getRoleName() + ", 关联菜单: " + menuNamesStr);
 
 
         renderText("赋权成功");
@@ -184,8 +184,8 @@ public class AuthRoleController extends BaseController {
     /**
      * 打开 角色相关的 用户页
      */
-    public void openUsersModel(){
-        setAttr("roleId",getPara("id"));
+    public void openUsersModel() {
+        setAttr("roleId", getPara("id"));
         render("auth/authRole_user.html");
     }
 
@@ -194,11 +194,11 @@ public class AuthRoleController extends BaseController {
      * 角色 相关用户数据
      */
     @Before(SearchSql.class)
-    public void queryUsers(){
-        int pageNumber=getAttr("pageNumber");
-        int pageSize=getAttr("pageSize");
-        String where=getAttr(Constant.SEARCH_SQL);
-        Page<AuthUserRole> authUserRolePage=AuthUserRole.dao.pageWithUserInfo(pageNumber,pageSize,where);
+    public void queryUsers() {
+        int pageNumber = getAttr("pageNumber");
+        int pageSize = getAttr("pageSize");
+        String where = getAttr(Constant.SEARCH_SQL);
+        Page<AuthUserRole> authUserRolePage = AuthUserRole.dao.pageWithUserInfo(pageNumber, pageSize, where);
         renderDatagrid(authUserRolePage);
     }
 
@@ -206,25 +206,25 @@ public class AuthRoleController extends BaseController {
      * 删除 用户角色 关联记录
      */
     @Before(Tx.class)
-    public void deleteUserRole(){
-         String userId = getPara("userId");
-         String roleId = getPara("roleId");
-         AuthUserRole authUserRole= AuthUserRole.dao.findById(roleId,userId);
-         if(authUserRole==null){
-             renderText(Constant.DELETE_FAIL);
-             return;
-         }
-         if(authUserRole.delete()){
+    public void deleteUserRole() {
+        String userId = getPara("userId");
+        String roleId = getPara("roleId");
+        AuthUserRole authUserRole = AuthUserRole.dao.findById(roleId, userId);
+        if (authUserRole == null) {
+            renderText(Constant.DELETE_FAIL);
+            return;
+        }
+        if (authUserRole.delete()) {
 
-             // 操作日志
-             AuthUser authUser = AuthUser.dao.findById(userId);
-             AuthRole authRole= AuthRole.dao.findById(roleId);
-             addOpLog("用户: "+authUser.getUsername()+", 取消关联角色: "+authRole.getRoleName());
+            // 操作日志
+            AuthUser authUser = AuthUser.dao.findById(userId);
+            AuthRole authRole = AuthRole.dao.findById(roleId);
+            addOpLog("用户: " + authUser.getUsername() + ", 取消关联角色: " + authRole.getRoleName());
 
-             renderText(Constant.DELETE_SUCCESS);
-         }else{
-             renderText(Constant.DELETE_FAIL);
-         }
+            renderText(Constant.DELETE_SUCCESS);
+        } else {
+            renderText(Constant.DELETE_FAIL);
+        }
     }
 
 }

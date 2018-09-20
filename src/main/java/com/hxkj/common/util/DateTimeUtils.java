@@ -23,8 +23,8 @@ public abstract class DateTimeUtils {
     public static final int pattern_ymd_hm_length = 16;
 
     // 文件存储路径
-    public static  final String pattern_ymdhmsS_noLine = "yyyyMMdd/HHmmssSSS";
-    public static  final int pattern_ymdhmsS_noLine_length=18;
+    public static final String pattern_ymdhmsS_noLine = "yyyyMMdd/HHmmssSSS";
+    public static final int pattern_ymdhmsS_noLine_length = 18;
 
     public static final String pattern_ymd_hms = "yyyy-MM-dd HH:mm:ss";
     public static final int pattern_ymd_hms_length = 19;
@@ -113,11 +113,12 @@ public abstract class DateTimeUtils {
 
     /**
      * 某个日期的 相对多少天
+     *
      * @param date
      * @param day
      * @return
      */
-    public static Date getDate(Date date,int day) {
+    public static Date getDate(Date date, int day) {
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(date);
         calendar.add(Calendar.DATE, day);

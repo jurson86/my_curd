@@ -85,7 +85,7 @@ public class DataFileController extends BaseController {
                 result.put("message", "只允许后缀为:<br/>" + extMap.get("image") + "<br/>" + extMap.get("media") + "<br/>" + extMap.get("file") + "<br/>格式文件");
                 uploadFile.getFile().delete();
             } else {
-                String newFileName = DateTimeUtils.format(new Date(),DateTimeUtils.pattern_ymdhmsS_noLine) + "." + fileSuf;
+                String newFileName = DateTimeUtils.format(new Date(), DateTimeUtils.pattern_ymdhmsS_noLine) + "." + fileSuf;
                 String pre;
                 if (Arrays.asList(extMap.get("image").split(",")).contains(fileSuf)) {
                     pre = prop.get("imagePath");
@@ -101,7 +101,7 @@ public class DataFileController extends BaseController {
                 }
 
                 // 文件存储的新 相对路径
-                String relativePath = pre + "/"+ newFileName;
+                String relativePath = pre + "/" + newFileName;
                 // 文件存储的新绝对路径
                 File savefile = new File(PathKit.getWebRootPath() + File.separator
                         + relativePath);
@@ -168,7 +168,7 @@ public class DataFileController extends BaseController {
         // 文件删除
         File tempFile;
         for (DataFile dataFile : dataFiles) {
-            tempFile = new File(PathKit.getWebRootPath() + "/"+ dataFile.getPath());
+            tempFile = new File(PathKit.getWebRootPath() + "/" + dataFile.getPath());
             if (tempFile.exists()) {
                 tempFile.delete();
             }

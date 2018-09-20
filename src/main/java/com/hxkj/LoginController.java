@@ -36,8 +36,8 @@ public class LoginController extends BaseController {
     private final static Logger LOG = Logger.getLogger(LoginController.class);
 
     // 输错密码 锁定用户
-    private final static int RETRY_TIMES =  PropKit.use("config.properties").getInt("loginRetryLimitTime");
-    private final static int LOCK_TIME_M= PropKit.use("config.properties").getInt("lockTime");
+    private final static int RETRY_TIMES = PropKit.use("config.properties").getInt("loginRetryLimitTime");
+    private final static int LOCK_TIME_M = PropKit.use("config.properties").getInt("lockTime");
 
     // 登录用户名密码cookie key
     private final static String usernameKey = PropKit.use("config.properties").get("cookie_username_key");
@@ -110,11 +110,11 @@ public class LoginController extends BaseController {
         }
 
         // 密码错误次数锁定用户
-        BaseCache<String,AtomicInteger> retryCache = CacheContainer.getLoginRetryLimitCache();
+        BaseCache<String, AtomicInteger> retryCache = CacheContainer.getLoginRetryLimitCache();
         AtomicInteger retryTimes = retryCache.getCache(username);
-        if(retryTimes.get()>=RETRY_TIMES){
+        if (retryTimes.get() >= RETRY_TIMES) {
             setAttr("username", username);
-            setAttr("errMsg", " 账号已被锁定, "+LOCK_TIME_M+"分钟后可自动解锁。 ");
+            setAttr("errMsg", " 账号已被锁定, " + LOCK_TIME_M + "分钟后可自动解锁。 ");
             render("login.html");
             return;
         }
@@ -122,17 +122,17 @@ public class LoginController extends BaseController {
         if (!authUser.getPassword().equals(password)) {
             int nowRetryTimes = retryTimes.incrementAndGet();  // 错误次数 加 1
             setAttr("username", username);
-            if((RETRY_TIMES-nowRetryTimes)==0){
-                setAttr("errMsg", " 账号已被锁定, "+LOCK_TIME_M+"分钟后可自动解锁。 ");
-            }else{
+            if ((RETRY_TIMES - nowRetryTimes) == 0) {
+                setAttr("errMsg", " 账号已被锁定, " + LOCK_TIME_M + "分钟后可自动解锁。 ");
+            } else {
                 setAttr("errMsg", " 密码错误, 再错误 "
-                        +(RETRY_TIMES-nowRetryTimes)+" 次账号将被锁定" +LOCK_TIME_M+"分钟。");
+                        + (RETRY_TIMES - nowRetryTimes) + " 次账号将被锁定" + LOCK_TIME_M + "分钟。");
             }
             render("login.html");
             return;
         }
         // 密码正确清楚缓存
-        retryCache.put(username,new AtomicInteger());
+        retryCache.put(username, new AtomicInteger());
 
         if (authUser.getDisabled().equals("1")) {
             setAttr("errMsg", username + " 用户被禁用，请联系管理员。");

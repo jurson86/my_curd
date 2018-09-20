@@ -58,7 +58,6 @@ public abstract class BaseAuthUser<M extends BaseAuthUser<M>> extends Model<M> i
     }
 
 
-
     public String getAvatar() {
         return get("avatar");
     }
@@ -67,7 +66,6 @@ public abstract class BaseAuthUser<M extends BaseAuthUser<M>> extends Model<M> i
     public void setAvatar(String avatar) {
         set("avatar", avatar);
     }
-
 
 
     public Integer getOrgId() {
@@ -101,6 +99,7 @@ public abstract class BaseAuthUser<M extends BaseAuthUser<M>> extends Model<M> i
     public void setJob(java.lang.String job) {
         set("job", job);
     }
+
     public java.lang.String getJob() {
         return get("job");
     }
@@ -109,6 +108,7 @@ public abstract class BaseAuthUser<M extends BaseAuthUser<M>> extends Model<M> i
     public void setJobLevel(java.lang.String jobLevel) {
         set("job_level", jobLevel);
     }
+
     public java.lang.String getJobLevel() {
         return get("job_level");
     }

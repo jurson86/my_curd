@@ -16,8 +16,8 @@ public class SysNotificationType extends BaseSysNotificationType<SysNotification
     public static final SysNotificationType dao = new SysNotificationType().dao();
 
 
-    public SysNotificationType findByCode(String code){
-        return findFirst("select * from sys_notification_type where code = ? ",code);
+    public SysNotificationType findByCode(String code) {
+        return findFirst("select * from sys_notification_type where code = ? ", code);
     }
 
 

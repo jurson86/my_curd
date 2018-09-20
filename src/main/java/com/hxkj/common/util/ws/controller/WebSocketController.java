@@ -15,7 +15,7 @@ import com.jfinal.aop.Clear;
 public class WebSocketController extends BaseController {
     public void index() {
         AuthUser authUser = getSessionUser();
-        setAttr("userId",UserIdEncryptUtils.encrypt( authUser.getId().toString(),UserIdEncryptUtils.CURRENT_USER_ID_AESKEY));
+        setAttr("userId", UserIdEncryptUtils.encrypt(authUser.getId().toString(), UserIdEncryptUtils.CURRENT_USER_ID_AESKEY));
         render("common/utils/chat.html");
     }
 

@@ -13,18 +13,19 @@ import com.jfinal.plugin.activerecord.Page;
  * 通用的工具页面
  */
 @Clear
-public class UtilsController extends  BaseController{
+public class UtilsController extends BaseController {
     /**
      * 角色选择
      */
-    public void role(){
-        String singleSelect = getPara("singleSelect","false");
-        setAttr("singleSelect",singleSelect);
-        setAttr("yesBtnTxt",getPara("yesBtnTxt","确定操作"));
+    public void role() {
+        String singleSelect = getPara("singleSelect", "false");
+        setAttr("singleSelect", singleSelect);
+        setAttr("yesBtnTxt", getPara("yesBtnTxt", "确定操作"));
         render("common/utils/role.html");
     }
+
     @Before(SearchSql.class)
-    public void roleData(){
+    public void roleData() {
         int pageNumber = getAttr("pageNumber");
         int pageSize = getAttr("pageSize");
         String where = getAttr(Constant.SEARCH_SQL);
@@ -36,12 +37,13 @@ public class UtilsController extends  BaseController{
     /**
      * 用户选择
      */
-    public void user(){
-        String singleSelect = getPara("singleSelect","false");
-        setAttr("singleSelect",singleSelect);
-        setAttr("yesBtnTxt",getPara("yesBtnTxt","确定操作"));
+    public void user() {
+        String singleSelect = getPara("singleSelect", "false");
+        setAttr("singleSelect", singleSelect);
+        setAttr("yesBtnTxt", getPara("yesBtnTxt", "确定操作"));
         render("common/utils/user.html");
     }
+
     /**
      * 用户 选择数据
      */

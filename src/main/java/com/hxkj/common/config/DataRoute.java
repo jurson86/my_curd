@@ -1,7 +1,9 @@
 package com.hxkj.common.config;
 
 import com.hxkj.common.constant.Constant;
-import com.hxkj.data.controller.*;
+import com.hxkj.data.controller.DataDictController;
+import com.hxkj.data.controller.DataFileController;
+import com.hxkj.data.controller.DataRegionController;
 import com.jfinal.config.Routes;
 
 /**

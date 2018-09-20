@@ -45,7 +45,7 @@ public class AuthUserRole extends BaseAuthUserRole<AuthUserRole> implements java
         return find(sql, userId);
     }
 
-    public Page<AuthUserRole> pageWithUserInfo(int pageNumber, int pageSize, String where ){
+    public Page<AuthUserRole> pageWithUserInfo(int pageNumber, int pageSize, String where) {
         String sqlSelect = " SELECT aur.*, au.username, au.name, au.job, au.gender, au.disabled, ao.name as org_name, au2.name as ope_name ";
         String sqlExceptSelect = " FROM auth_user_role aur " +
                 "left JOIN auth_user au on aur.user_id= au.id " +
@@ -54,7 +54,7 @@ public class AuthUserRole extends BaseAuthUserRole<AuthUserRole> implements java
         if (StrKit.notBlank(where)) {
             sqlExceptSelect += " where " + where;
         }
-        return this.paginate(pageNumber,pageSize,sqlSelect,sqlExceptSelect);
+        return this.paginate(pageNumber, pageSize, sqlSelect, sqlExceptSelect);
     }
 
 }

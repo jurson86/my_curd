@@ -121,7 +121,7 @@ public class AppConfig extends JFinalConfig {
     @Override
     public void configHandler(Handlers me) {
         // 跳过处理 ws 请求
-        me.add(new UrlSkipHandler("^/ws-server",false));
+        me.add(new UrlSkipHandler("^/ws-server", false));
 
         // 视图中添加应用context
         me.add(new ContextPathHandler("ctx"));

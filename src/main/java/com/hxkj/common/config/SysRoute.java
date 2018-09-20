@@ -23,9 +23,9 @@ public class SysRoute extends Routes {
         // 消息通知类型
         add("/sysNotificationType", SysNotificationTypeController.class, Constant.VIEW_PATH);
         // 系统消息通知类型 和 角色 关联
-        add("/sysNotificationTypeRole", SysNotificationTypeRoleController.class,Constant.VIEW_PATH);
+        add("/sysNotificationTypeRole", SysNotificationTypeRoleController.class, Constant.VIEW_PATH);
         // 系统消息通知类型 和 用户 关联
-        add("/sysNotificationTypeUser", SysNotificationTypeUserController.class,Constant.VIEW_PATH);
+        add("/sysNotificationTypeUser", SysNotificationTypeUserController.class, Constant.VIEW_PATH);
     }
 
 }

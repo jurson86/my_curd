@@ -3,7 +3,6 @@ package com.hxkj.auth.controller;
 import com.hxkj.auth.model.AuthMenu;
 import com.hxkj.auth.model.AuthRole;
 import com.hxkj.auth.model.AuthRoleMenu;
-import com.hxkj.auth.model.AuthUserRole;
 import com.hxkj.common.constant.Constant;
 import com.hxkj.common.controller.BaseController;
 import com.hxkj.common.util.search.SearchSql;
@@ -50,10 +49,10 @@ public class AuthMenuController extends BaseController {
         if (id != null) {
             AuthMenu authMenu = AuthMenu.dao.findById(id);
             setAttr("authMenu", authMenu);
-            setAttr("pid",authMenu.getPid());
-        }else{
+            setAttr("pid", authMenu.getPid());
+        } else {
             // 新增时如果选中了某个节点,直接作为父节点选中
-            setAttr("pid",getPara("pid","0"));
+            setAttr("pid", getPara("pid", "0"));
         }
         render("auth/authMenu_form.html");
     }
@@ -132,12 +131,11 @@ public class AuthMenuController extends BaseController {
     }
 
 
-
     /**
      * 打开 菜单相关 的 角色页
      */
-    public void openRolesModel(){
-        setAttr("menuId",getPara("id"));
+    public void openRolesModel() {
+        setAttr("menuId", getPara("id"));
         render("auth/authMenu_role.html");
     }
 
@@ -146,11 +144,11 @@ public class AuthMenuController extends BaseController {
      * 角色 相关用户数据
      */
     @Before(SearchSql.class)
-    public void queryRoles(){
-        int pageNumber=getAttr("pageNumber");
-        int pageSize=getAttr("pageSize");
-        String where=getAttr(Constant.SEARCH_SQL);
-        Page<AuthRoleMenu> authUserRolePage=AuthRoleMenu.dao.pageWithRoleInfo(pageNumber,pageSize,where);
+    public void queryRoles() {
+        int pageNumber = getAttr("pageNumber");
+        int pageSize = getAttr("pageSize");
+        String where = getAttr(Constant.SEARCH_SQL);
+        Page<AuthRoleMenu> authUserRolePage = AuthRoleMenu.dao.pageWithRoleInfo(pageNumber, pageSize, where);
         renderDatagrid(authUserRolePage);
     }
 
@@ -158,22 +156,22 @@ public class AuthMenuController extends BaseController {
      * 删除 角色菜单 关联记录
      */
     @Before(Tx.class)
-    public void deleteRoleMenu(){
+    public void deleteRoleMenu() {
         String roleId = getPara("roleId");
         String menuId = getPara("menuId");
-        AuthRoleMenu authRoleMenu= AuthRoleMenu.dao.findById(menuId,roleId);
-        if(authRoleMenu==null){
+        AuthRoleMenu authRoleMenu = AuthRoleMenu.dao.findById(menuId, roleId);
+        if (authRoleMenu == null) {
             renderText(Constant.DELETE_FAIL);
             return;
         }
-        if(authRoleMenu.delete()){
+        if (authRoleMenu.delete()) {
             // 添加日志
-            AuthRole authRole= AuthRole.dao.findById(roleId);
-            AuthMenu authMenu =AuthMenu.dao.findById(menuId);
-            addOpLog("角色: "+authRole.getRoleName()+", 取消关联菜单: "+authMenu.getName());
+            AuthRole authRole = AuthRole.dao.findById(roleId);
+            AuthMenu authMenu = AuthMenu.dao.findById(menuId);
+            addOpLog("角色: " + authRole.getRoleName() + ", 取消关联菜单: " + authMenu.getName());
 
             renderText(Constant.DELETE_SUCCESS);
-        }else{
+        } else {
             renderText(Constant.DELETE_FAIL);
         }
     }

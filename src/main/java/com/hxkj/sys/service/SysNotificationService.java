@@ -22,27 +22,28 @@ public class SysNotificationService {
 
     /**
      * 发送系统通知
-     * @param notificationCode  系统通知类型编码
-     * @param templateParams    系统通知模板参数 (模板基于freemarker)
+     *
+     * @param notificationCode 系统通知类型编码
+     * @param templateParams   系统通知模板参数 (模板基于freemarker)
      * @return
      */
     @Before(Tx.class)
     public boolean sendSystemNotification(String notificationCode, Map<String, Object> templateParams) {
         SysNotificationType sysNotificationType = SysNotificationType.dao.findByCode(notificationCode);
-        if(sysNotificationType==null){
+        if (sysNotificationType == null) {
             LOG.debug("---- 未找到消息通知类型");
             return false;
         }
 
         Set<Long> receivers = getSystemNotificationReceivers(sysNotificationType.getId());
-        if(receivers.size() == 0){
+        if (receivers.size() == 0) {
             LOG.debug("---- 未找到消息接收人");
             return false;
         }
 
 
         boolean flag = saveSystemNotificationData(sysNotificationType, templateParams, receivers);
-        if(!flag){
+        if (!flag) {
             LOG.debug("---- 系统通知 数据保存数据库失败");
         }
 

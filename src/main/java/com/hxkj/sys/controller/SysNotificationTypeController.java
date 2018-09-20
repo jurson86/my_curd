@@ -6,7 +6,6 @@ import com.hxkj.common.controller.BaseController;
 import com.hxkj.common.interceptor.PermissionInterceptor;
 import com.hxkj.common.util.Identities;
 import com.hxkj.common.util.search.SearchSql;
-import com.hxkj.sys.model.SysNotification;
 import com.hxkj.sys.model.SysNotificationType;
 import com.jfinal.aop.Before;
 import com.jfinal.aop.Clear;
@@ -91,10 +90,10 @@ public class SysNotificationTypeController extends BaseController {
             String selectSql = "select *  from sys_notification_type where id  in ( '" + ids + "' ) ";
             List<SysNotificationType> list = SysNotificationType.dao.find(selectSql);
             List<String> txtCodeList = new ArrayList<>();
-            for(SysNotificationType type : list){
-                txtCodeList.add(" <br/>[ "+type.getTxt()+" : "+type.getCode()+" ]  ");
+            for (SysNotificationType type : list) {
+                txtCodeList.add(" <br/>[ " + type.getTxt() + " : " + type.getCode() + " ]  ");
             }
-            String opLogContent =" 删除通知类型："+  Joiner.on(" , ").join(txtCodeList);
+            String opLogContent = " 删除通知类型：" + Joiner.on(" , ").join(txtCodeList);
             addOpLog(opLogContent);
 
 
@@ -106,7 +105,7 @@ public class SysNotificationTypeController extends BaseController {
 
             // 添加日志
             SysNotificationType sysNotificationType = SysNotificationType.dao.findById(ids);
-            String opLogContent =" 删除通知类型：<br/>[ "+sysNotificationType.getTxt()+" : "+sysNotificationType.getCode()+" ]" ;
+            String opLogContent = " 删除通知类型：<br/>[ " + sysNotificationType.getTxt() + " : " + sysNotificationType.getCode() + " ]";
             addOpLog(opLogContent);
 
             sysNotificationType.delete();
@@ -132,16 +131,16 @@ public class SysNotificationTypeController extends BaseController {
 
         // 添加日志
         SysNotificationType o = SysNotificationType.dao.findById(sysNotificationType.getId());
-        String opLogContent= "";
-        if(!o.getTxt().equals(sysNotificationType.getTxt())){
-           opLogContent += (" [  \""+o.getTxt() +"\" change to \""+sysNotificationType.getTxt()+"\" ] <br/>");
+        String opLogContent = "";
+        if (!o.getTxt().equals(sysNotificationType.getTxt())) {
+            opLogContent += (" [  \"" + o.getTxt() + "\" change to \"" + sysNotificationType.getTxt() + "\" ] <br/>");
         }
-        if(!o.getCode().equals(sysNotificationType.getCode())){
-            opLogContent += (" [  \""+o.getCode() +"\" change to  \""+sysNotificationType.getCode()+"\"  ] <br/>");
+        if (!o.getCode().equals(sysNotificationType.getCode())) {
+            opLogContent += (" [  \"" + o.getCode() + "\" change to  \"" + sysNotificationType.getCode() + "\"  ] <br/>");
         }
 
-        if(StrKit.notBlank(opLogContent)){
-            opLogContent = " 修改 通知类型：(id="+o.getId()+")<br/>"+opLogContent;
+        if (StrKit.notBlank(opLogContent)) {
+            opLogContent = " 修改 通知类型：(id=" + o.getId() + ")<br/>" + opLogContent;
             addOpLog(opLogContent);
         }
 

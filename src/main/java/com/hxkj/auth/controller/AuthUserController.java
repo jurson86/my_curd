@@ -64,9 +64,9 @@ public class AuthUserController extends BaseController {
         authUser.setCreateTime(new Date());
 
         String gender = authUser.getGender();
-        if("1".equals(gender)){
-           authUser.setAvatar("res/image/maleAvatar.jpg");
-        }else{
+        if ("1".equals(gender)) {
+            authUser.setAvatar("res/image/maleAvatar.jpg");
+        } else {
             authUser.setAvatar("res/image/femaleAvatar.jpg");
         }
 
@@ -121,8 +121,8 @@ public class AuthUserController extends BaseController {
     /**
      * 打开赋予角色 的窗口
      */
-    public void openGiveRoleModel(){
-        setAttr("userId",getPara("id"));
+    public void openGiveRoleModel() {
+        setAttr("userId", getPara("id"));
         render("auth/authUser_role.html");
     }
 
@@ -151,13 +151,13 @@ public class AuthUserController extends BaseController {
         // 操作日志，非业务
         AuthUser tUser = AuthUser.dao.findById(userId);
         List<AuthRole> authRoles =
-                AuthRole.dao.find("select * from auth_role where id in ("+roleIdstr.replaceAll(";",",")+")");
+                AuthRole.dao.find("select * from auth_role where id in (" + roleIdstr.replaceAll(";", ",") + ")");
         List<String> roleNames = new ArrayList<>();
-        for(AuthRole authRole: authRoles){
+        for (AuthRole authRole : authRoles) {
             roleNames.add(authRole.getRoleName());
         }
         String roleNamesStr = Joiner.on(",").join(roleNames);
-        addOpLog("用户: "+tUser.getUsername()+", 关联角色: "+roleNamesStr);
+        addOpLog("用户: " + tUser.getUsername() + ", 关联角色: " + roleNamesStr);
 
         renderText("赋予角色成功");
     }
@@ -174,7 +174,7 @@ public class AuthUserController extends BaseController {
         for (AuthRole authRole : authRoles) {
             Map<String, Object> map = new HashMap<String, Object>();
             map.put("id", authRole.getId());
-            map.put("text", authRole.getRoleName()+" ------ ["+authRole.getRoleDesc()+"]");
+            map.put("text", authRole.getRoleName() + " ------ [" + authRole.getRoleDesc() + "]");
             map.put("state", "open");
             map.put("iconCls", "icon-blank");  // 不显示图标
             for (AuthUserRole authUserRole : authUserRoles) {
