@@ -36,6 +36,12 @@
                type="hidden" value="${(sysNotificationType.id)!}">
         <tbody>
             <tr>
+                <td>分类:</td>
+                <td colspan="3">
+                    <input name="category" value="${(sysNotificationType.category)!}" class="easyui-textbox"   data-options="required:true" >
+                </td>
+            </tr>
+            <tr>
                 <td>
                     名称:
                 </td>
@@ -79,7 +85,7 @@
                     通知模板:
                 </td>
                 <td colspan="3">
-                    <input name="template" value="${(sysNotificationType.template)!}" class="easyui-textbox" style="width: 100%;height: 80px;"
+                    <input name="template" value="${(sysNotificationType.template?js_string)!}" class="easyui-textbox" style="width: 100%;height: 80px;"
                            data-options="required:true,multiline:true">
                 </td>
             </tr>

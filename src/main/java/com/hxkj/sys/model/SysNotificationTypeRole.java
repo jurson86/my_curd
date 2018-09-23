@@ -17,7 +17,7 @@ public class SysNotificationTypeRole extends BaseSysNotificationTypeRole<SysNoti
     public static final SysNotificationTypeRole dao = new SysNotificationTypeRole().dao();
 
     public Page<SysNotificationTypeRole> page(int pageNumber, int pageSize, String where) {
-        String sqlSelect = " select a.*,c.txt,c.code,  b.role_name, b.role_desc ";
+        String sqlSelect = " select a.*,c.category,c.txt,c.code,  b.role_name, b.role_desc ";
         String sqlExceptSelect = " from sys_notification_type_role a " +
                 " left join auth_role b on a.role_id = b.id " +
                 " left join sys_notification_type c on a.notification_type_id = c.id ";

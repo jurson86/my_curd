@@ -30,8 +30,8 @@ public class SysNotification extends BaseSysNotification<SysNotification> implem
 
     public Page<Record> findNotificationWithDetailPage(int pageNumber, int pageSize, String where) {
         String sqlSelect = " SELECT " +
-                " a.id, a.cate1, a.cate2, a.title, a.content, a.create_time, " +
-                " b.is_read as has_read, b.read_time as read_time, " +
+                " a.id, a.type_code , a.title, a.content, a.create_time, " +
+                " b.id as detail_id, b.is_read as has_read, b.read_time as read_time, " +
                 " c.name as sender_name, c.id as sender_id,  " +
                 " d.name as receiver_name, d.id as receiver_id, " +
                 " e.txt as notification_type ";
@@ -39,7 +39,7 @@ public class SysNotification extends BaseSysNotification<SysNotification> implem
                 " LEFT JOIN sys_notification_detail b ON b.main_id = a.id " +
                 " LEFT JOIN auth_user c on b.sender = c.id " +
                 " LEFT JOIN auth_user d on b.receiver = d.id " +
-                " LEFT JOIN sys_notification_type e on a.cate2 = e.code  ";
+                " LEFT JOIN sys_notification_type e on a.type_code = e.code  ";
         if (StrKit.notBlank(where)) {
             sqlExceptSelect += " where " + where;
         }

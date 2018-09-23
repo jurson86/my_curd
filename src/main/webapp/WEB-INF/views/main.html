@@ -58,11 +58,12 @@
     <div class="head" data-options="region:'north'" border="false">
         <span class="head-text" onclick="fullScreenToggleNew(this)" title="点击全屏" >my curd</span>
         <span class="head-menu">
-            你好, (${(session.auth_user_roles)!} )
+             你好, (${(session.auth_user_roles)!} )
             <a id="opeMenu" class="pure-button pure-button-primary " >
                 ${(session.auth_user.name)!}
             </a>
             <div id="opeMenuItem" style="width:100px;">
+                <div name="viewNotification">系统通知</div>
                 <div name="editInfo">修改个人信息</div>
                 <div name="changePwd">修改密码</div>
                 <div name="logout">退出</div>

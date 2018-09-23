@@ -91,7 +91,7 @@ public class SysOplogController extends BaseController {
         templateParams.put("date", DateTimeUtils.format(new Date(), DateTimeUtils.pattern_ymd_hms));// 时间
         templateParams.put("number", getPara("ids").split(",").length); // 删除记录条数
         SysNotificationService service = Duang.duang(SysNotificationService.class);
-        service.sendSystemNotification(sysNotificationTypeCode, templateParams);
+        service.sendNotification(sysNotificationTypeCode, templateParams);
 
 
         renderText(Constant.DELETE_SUCCESS);

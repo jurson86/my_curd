@@ -6,7 +6,7 @@ import com.jfinal.config.Routes;
 
 /**
  * websocket 模块路由
- *
+ * 准备废弃
  * @author chuang
  * @date 2018/9/10
  */

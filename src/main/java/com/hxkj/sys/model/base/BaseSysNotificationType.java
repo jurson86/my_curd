@@ -22,6 +22,15 @@ public abstract class BaseSysNotificationType<M extends BaseSysNotificationType<
     }
 
 
+    // category 分类
+    public void setCategory(java.lang.String category) {
+        set("category", category);
+    }
+
+    public java.lang.String getCategory() {
+        return get("category");
+    }
+
     // txt  名字
     public void setTxt(java.lang.String txt) {
         set("txt", txt);
@@ -41,7 +50,7 @@ public abstract class BaseSysNotificationType<M extends BaseSysNotificationType<
         return get("code");
     }
 
-    // tempalte 通知模板 (基于freemarker语法)
+    // tempalte 通知模板 (基于freemarker语法, 使用 FTL 替换 $ )
     public void setTemplate(java.lang.String template) {
         set("template", template);
     }

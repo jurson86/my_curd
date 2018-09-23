@@ -22,23 +22,13 @@ public abstract class BaseSysNotification<M extends BaseSysNotification<M>> exte
     }
 
 
-    // cate1  大分类，USER 和 SYSTEM 两种
-    public void setCate1(String cate1) {
-        set("cate1", cate1);
+    // type_code  通知类型编码
+    public void setTypeCode(String typeCode) {
+        set("type_code", typeCode);
     }
 
-    public String getCate1() {
-        return get("cate1");
-    }
-
-
-    // cate2  小分类，SYSTEM通知类型下的业务代码
-    public void setCate2(String cate2) {
-        set("cate2", cate2);
-    }
-
-    public String getCate2() {
-        return get("cate2");
+    public String getTypeCode() {
+        return get("type_code");
     }
 
 

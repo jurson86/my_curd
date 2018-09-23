@@ -65,6 +65,12 @@
         }
         return row.majorCate+" * "+row.minorCate;
     }
+    function wordCountFmt(val,row){
+        if(val==undefined || val==null){
+            return 'unknown';
+        }
+        return (val/10000).toFixed(0)+'万';
+    }
     function rowOperate(rowData){
         rowData.cover = decodeURIComponent(rowData.cover).replace("/agent/","");
         rowData.shortIntro="<p class='datagrid-p'>"+rowData.shortIntro.replace("\n","<p class='datagrid-p'>");
@@ -88,6 +94,7 @@
         <th field="title" width="50">书名</th>
         <th field="author" width="50">作者</th>
         <th field="minorCate" width="50" formatter="cateformat">分类</th>
+        <th field="wordCount" width="50" formatter="wordCountFmt">字数</th>
         <th field="lastChapter" width="300">最新章</th>
     </tr>
     </thead>

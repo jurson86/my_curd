@@ -2,6 +2,7 @@ package com.hxkj.common.controller;
 
 import com.alibaba.fastjson.JSON;
 import com.hxkj.auth.model.AuthUser;
+import com.hxkj.common.interceptor.PermissionInterceptor;
 import com.hxkj.common.util.DateTimeUtils;
 import com.hxkj.common.util.FileUtils;
 import com.hxkj.common.util.Identities;
@@ -24,7 +25,7 @@ import java.util.Map;
 /**
  * 修改 用户信息
  */
-@Clear
+@Clear(PermissionInterceptor.class)
 public class UserInfoController extends BaseController {
     private final static Prop prop = PropKit.use("config.properties");
     private final static String INDEX = "common/userInfo.html";

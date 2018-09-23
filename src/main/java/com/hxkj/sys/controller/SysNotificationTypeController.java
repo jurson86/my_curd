@@ -91,7 +91,7 @@ public class SysNotificationTypeController extends BaseController {
             List<SysNotificationType> list = SysNotificationType.dao.find(selectSql);
             List<String> txtCodeList = new ArrayList<>();
             for (SysNotificationType type : list) {
-                txtCodeList.add(" <br/>[ " + type.getTxt() + " : " + type.getCode() + " ]  ");
+                txtCodeList.add(" <br/>[ " + type.getCategory()+" : " + type.getTxt() + " : " + type.getCode() + " ]  ");
             }
             String opLogContent = " 删除通知类型：" + Joiner.on(" , ").join(txtCodeList);
             addOpLog(opLogContent);
@@ -105,7 +105,7 @@ public class SysNotificationTypeController extends BaseController {
 
             // 添加日志
             SysNotificationType sysNotificationType = SysNotificationType.dao.findById(ids);
-            String opLogContent = " 删除通知类型：<br/>[ " + sysNotificationType.getTxt() + " : " + sysNotificationType.getCode() + " ]";
+            String opLogContent = " 删除通知类型：<br/>[ "+ sysNotificationType.getCategory()+" : " + sysNotificationType.getTxt() + " : " + sysNotificationType.getCode() + " ]";
             addOpLog(opLogContent);
 
             sysNotificationType.delete();
@@ -132,11 +132,15 @@ public class SysNotificationTypeController extends BaseController {
         // 添加日志
         SysNotificationType o = SysNotificationType.dao.findById(sysNotificationType.getId());
         String opLogContent = "";
+
+        if (!o.getCategory().equals(sysNotificationType.getCategory())) {
+            opLogContent += (" 通知分类 [  \"" + o.getCategory() + "\" change to \"" + sysNotificationType.getCategory() + "\" ] <br/>");
+        }
         if (!o.getTxt().equals(sysNotificationType.getTxt())) {
-            opLogContent += (" [  \"" + o.getTxt() + "\" change to \"" + sysNotificationType.getTxt() + "\" ] <br/>");
+            opLogContent += (" 通知名称 [  \"" + o.getTxt() + "\" change to \"" + sysNotificationType.getTxt() + "\" ] <br/>");
         }
         if (!o.getCode().equals(sysNotificationType.getCode())) {
-            opLogContent += (" [  \"" + o.getCode() + "\" change to  \"" + sysNotificationType.getCode() + "\"  ] <br/>");
+            opLogContent += (" 通知编码 [  \"" + o.getCode() + "\" change to  \"" + sysNotificationType.getCode() + "\"  ] <br/>");
         }
 
         if (StrKit.notBlank(opLogContent)) {

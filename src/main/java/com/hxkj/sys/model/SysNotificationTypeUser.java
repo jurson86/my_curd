@@ -17,7 +17,7 @@ public class SysNotificationTypeUser extends BaseSysNotificationTypeUser<SysNoti
     public static final SysNotificationTypeUser dao = new SysNotificationTypeUser().dao();
 
     public Page<SysNotificationTypeUser> page(int pageNumber, int pageSize, String where) {
-        String sqlSelect = " SELECT  a.* , b.username, b.name, b.job, c.name AS org_name, d.code  ";
+        String sqlSelect = " SELECT  a.* , b.username, b.name, b.job, c.name AS org_name, d.category, d.txt, d.code  ";
         String sqlExceptSelect = " FROM sys_notification_type_user a " +
                 " LEFT JOIN auth_user b ON a.user_id = b.id " +
                 " LEFT JOIN auth_org c ON b.org_id = c.id " +

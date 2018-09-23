@@ -1,6 +1,7 @@
 package com.hxkj.common.controller;
 
 import com.hxkj.auth.model.AuthUser;
+import com.hxkj.common.interceptor.PermissionInterceptor;
 import com.jfinal.aop.Before;
 import com.jfinal.aop.Clear;
 import com.jfinal.kit.HashKit;
@@ -10,7 +11,7 @@ import com.jfinal.plugin.activerecord.tx.Tx;
 /**
  * 修改用户密码
  */
-@Clear
+@Clear(PermissionInterceptor.class)
 public class UserPasswordController extends BaseController {
 
     private final static String INDEX = "common/userPass.html";
