@@ -28,7 +28,7 @@ public class WebSocketServer {
         session.setMaxIdleTimeout(MAX_IDLE_TIMEOUT);
         // 输出默认信息
         if (LOG.isInfoEnabled()) {
-            LOG.info("--------------- basicRemote:   " + session.getBasicRemote());
+            LOG.info("--------------- 新建 ws连接 sessionId:   " + session.getId());
             LOG.info("--------------- maxIdleTimeout: " + session.getMaxIdleTimeout());
         }
         // url参数
@@ -49,6 +49,16 @@ public class WebSocketServer {
         }
 
         // SendMsgUtils.broadcast(authUser.getName() + " online now ...", session.getId());
+        // 系统 用户可以重复登录，但不可 重复连接 WebSocket (新的 webSocket 连接直接被关闭)
+        if (OnlineUserContainer.USERID_SESSIONID.containsKey(Long.parseLong(userId))) {
+            if (LOG.isInfoEnabled()) {
+                LOG.info("userId:" + userId + " 重复连接 WebSocket, 直接关闭...... ");
+            }
+            closeSession(session);
+            return;
+        }
+
+        // 用户信息存入 map
         OnlineUserContainer.addOnlineUser(authUser, session);
     }
 
@@ -60,10 +70,18 @@ public class WebSocketServer {
      */
     @OnClose
     public void onClose(Session session) {
+        if (LOG.isInfoEnabled()) {
+            LOG.info(" 关闭  ws sessionId: " + session.getId());
+        }
         String sessionId = session.getId();
         AuthUser authUser = OnlineUserContainer.SESSIONID_USER.get(sessionId);
-        OnlineUserContainer.removeOnlineUser(authUser, session);
-        //  SendMsgUtils.broadcast(authUser.getName() + " offline now ...", sessionId);
+
+        // 一个账号重复登录，在 onOpen方法中会 执行 closeSession，此时 authUser 为 null, 不应该将用户信息移除;
+        // 其它 情况 此 authUser 不应该为 null
+        if (authUser != null) {
+            // 用户信息 移出 map
+            OnlineUserContainer.removeOnlineUser(authUser, session);
+        }
     }
 
     /**
@@ -76,12 +94,14 @@ public class WebSocketServer {
     @OnMessage // 一个 endpoint 只能有一个该方法注解
     public void onMessage(String msg, Session session) {
         AuthUser authUser = OnlineUserContainer.SESSIONID_USER.get(session.getId());
-        //SendMsgUtils.broadcast(authUser.getName() + ": " + msg, session.getId());
+        if (LOG.isInfoEnabled()) {
+            LOG.info(" 收到消息：" + msg);
+        }
     }
 
 
     /**
-     * 其它方法发生异常 会触发此方法
+     * 发生异常 触发
      *
      * @param session
      * @param t
@@ -90,10 +110,6 @@ public class WebSocketServer {
     public void onError(Session session, Throwable t) {
         LOG.error(t.getMessage(), t);
         closeSession(session);
-        String sessionId = session.getId();
-        AuthUser authUser = OnlineUserContainer.SESSIONID_USER.get(sessionId);
-        OnlineUserContainer.removeOnlineUser(authUser, session);
-        // SendMsgUtils.broadcast(authUser.getName() + " offline  [exception: " + t.getMessage() + "]", sessionId);
     }
 
 

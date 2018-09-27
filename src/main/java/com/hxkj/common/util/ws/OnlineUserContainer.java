@@ -10,6 +10,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * 在线用户
+ * WebSocket session 和 用户系统关联 (可能WebSocket 规范中有更好的方法)
  *
  * @author chuang
  * @date 2018/9/10

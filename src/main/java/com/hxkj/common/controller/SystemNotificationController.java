@@ -5,6 +5,8 @@ import com.hxkj.auth.model.AuthUser;
 import com.hxkj.common.constant.Constant;
 import com.hxkj.common.interceptor.PermissionInterceptor;
 import com.hxkj.common.util.search.SearchSql;
+import com.hxkj.common.util.ws.OnlineUserContainer;
+import com.hxkj.common.util.ws.UserIdEncryptUtils;
 import com.hxkj.sys.model.SysNotification;
 import com.hxkj.sys.model.SysNotificationDetail;
 import com.jfinal.aop.Before;
@@ -16,9 +18,7 @@ import com.jfinal.plugin.activerecord.Record;
 import com.jfinal.plugin.activerecord.SqlPara;
 import com.jfinal.plugin.activerecord.tx.Tx;
 
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 /**
  * 系统后台通知列表
@@ -138,6 +138,26 @@ public class SystemNotificationController extends BaseController {
         ret.put("state", true);
         ret.put("unreadCount", record == null ? 0 : record.get("unread_count"));
         renderJson(ret);
+    }
+
+
+    /**
+     * 获得连接了 WebSocket 的用户, 仅测试用
+     */
+    public void getWebSocketOnlineUser() {
+        List<AuthUser> users = new ArrayList<>();
+        for (Map.Entry<String, AuthUser> entry : OnlineUserContainer.SESSIONID_USER.entrySet()) {
+            // 对 用户的 id 加密
+            AuthUser authUser = new AuthUser();
+            authUser.setUsername(entry.getValue().getUsername());
+            authUser.setName(entry.getValue().getName());
+            authUser.setGender(entry.getValue().getGender());
+            authUser.setJob(entry.getValue().getJob());
+            authUser.setAvatar(entry.getValue().getAvatar());
+            authUser.put("userId", UserIdEncryptUtils.encrypt(entry.getValue().getId().toString(), UserIdEncryptUtils.OTHER_USERS_ID_AESKEY));
+            users.add(authUser);
+        }
+        renderJson(users);
     }
 
 }

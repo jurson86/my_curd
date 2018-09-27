@@ -20,6 +20,7 @@ import com.jfinal.plugin.druid.DruidStatViewHandler;
 import com.jfinal.plugin.druid.IDruidStatViewAuth;
 import com.jfinal.render.ViewType;
 import com.jfinal.template.Engine;
+import org.apache.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -31,6 +32,7 @@ import javax.servlet.http.HttpServletRequest;
 public class AppConfig extends JFinalConfig {
 
     Prop configProp = PropKit.use("config.properties");
+    private final static Logger LOG = Logger.getLogger(AppConfig.class);
 
     /**
      * 配置JFinal常量
@@ -142,10 +144,12 @@ public class AppConfig extends JFinalConfig {
 
     @Override
     public void afterJFinalStart() {
+        LOG.info("my_curd 启动了....");
     }
 
     @Override
     public void beforeJFinalStop() {
+        LOG.info("my_curd 关闭了....");
     }
 
     @Override

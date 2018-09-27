@@ -37,6 +37,7 @@ public class SysNotificationService {
             return false;
         }
 
+        // 查询通知接收人
         Set<Long> receivers = getNotificationReceivers(sysNotificationType.getId());
         if (receivers.size() == 0) {
             LOG.debug("---- 未找到消息接收人");
@@ -46,6 +47,7 @@ public class SysNotificationService {
         String msgTitle = sysNotificationType.getTxt();
         String msgContent = FreemarkerUtils.renderAsText(sysNotificationType.getTemplate().replaceAll("FTL", "\\$"), templateParams);
 
+        // 保存通知数据
         boolean flag = saveNotificationData(sysNotificationType, msgTitle, msgContent, receivers);
         if (!flag) {
             LOG.debug("---- 系统通知 数据保存数据库失败");
@@ -53,8 +55,7 @@ public class SysNotificationService {
 
         LOG.info("系统通知 执行成功");
 
-        // 服务器消息推送
-
+        // 服务器消息推送 （如此写 信息不能带上 从表id）
         // 此处可以根据 sysNotificationType 的分类 使用服务器消息推送方式
         // 例如 SYSTEM 代表 后台系统通知，可采用 WebSocket 实现 或 更多方式实现
         Map<String, Object> msg = new HashMap<>();
@@ -121,7 +122,7 @@ public class SysNotificationService {
         }
         for (Long receiverId : receivers) {
             // 异步 创建 从表数据
-            // 子线程 如发生异常 不能触发事务，但系统通知并不需要非常高的准确性
+            // 子线程 如发生异常 不能触发事务
             ExecutorServiceUtils.pool.submit(new Runnable() {
                 @Override
                 public void run() {

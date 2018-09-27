@@ -1,6 +1,5 @@
 package com.hxkj.common.task;
 
-import com.hxkj.common.util.DateTimeUtils;
 import com.jfinal.kit.StrKit;
 import com.jfinal.plugin.activerecord.Db;
 import com.jfinal.plugin.activerecord.Record;
@@ -19,7 +18,7 @@ public class DelSysNotificationTask implements Runnable {
     public void run() {
         Date today = new Date();
         if (LOG.isInfoEnabled()) {
-            LOG.info(" 删除系统通知定时任务执行：" + DateTimeUtils.format(today, DateTimeUtils.pattern_ymd_hms));
+            LOG.info(" 定时任务执行。 (删除 “过期未读” 和 “必死” 的 系统通知数据表 数据）");
         }
         // 删除必死期 的 主从表记录
         String selectSql = "select GROUP_CONCAT(id) as ids from sys_notification where dead_time <= ? ";

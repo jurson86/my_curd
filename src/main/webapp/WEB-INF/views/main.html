@@ -3,7 +3,6 @@
 <link rel="stylesheet" href="${ctx!}/res/pure/buttons-min.css">
 <link rel="stylesheet" href="${ctx!}/res/layer/theme/default/layer.css">
 <link rel="stylesheet" href="${ctx!}/res/css/main-page.css">
-<link rel="stylesheet" href="${ctx!}/res/css/animate.min.css">
 <script>
     /*main 页面不可被 iframe 嵌套，如果被嵌套跳转到到登录页面*/
     if(top.location!=self.location){
@@ -130,7 +129,7 @@
 <script src="${ctx!}/res/js/tab-tools.js"></script>
 <script src="${ctx!}/res/layer/layer.js"></script>
 <script src="${ctx!}/res/js/popup-tools.js"></script>
-<script src="${ctx!}/res/js/notification.js"></script>
+<script src="${ctx!}/res/js/d-toast.min.js"></script>
 <script>
     ;(function () {
         var MainPage = {
@@ -190,8 +189,14 @@
                             var msg = JSON.parse(event.data);
                             /* 消息详情显示弹窗 */
                             if(msg.type='MSG_DETAIL'){
-                                /*右上角 10秒后小时，动画使用 animate.min.css*/
-                                Notification.create(msg.title, msg.content, '${ctx!}/'+msg.logo, 'fadeInRight', 2,10);
+                                /* 右侧通知弹窗， 兼容性不好 且 和整体风格不搭配，随后会替换*/
+                                ;new dToast({
+                                    title: msg.title,
+                                    body:msg.content,
+                                    icon:'${ctx!}/'+msg.logo,
+                                    inner:true,   /* 不用底层通知，默认为false */
+                                    timeout:10000 /* 10 秒 消失 */
+                                });
                             }
                         }
                     };
@@ -202,7 +207,7 @@
                         ws.close();
                     };
                     window.onbeforeunload = function () {
-                        /* 浏览器关闭主动断开ws连接 */
+                        /* 浏览器关闭 页面刷新跳转 主动断开ws连接 */
                         closeWebSocket();
                     };
                 } else {
