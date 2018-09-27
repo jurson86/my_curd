@@ -14,6 +14,7 @@ import com.jfinal.kit.Prop;
 import com.jfinal.kit.PropKit;
 import com.jfinal.plugin.activerecord.ActiveRecordPlugin;
 import com.jfinal.plugin.activerecord.dialect.MysqlDialect;
+import com.jfinal.plugin.cron4j.Cron4jPlugin;
 import com.jfinal.plugin.druid.DruidPlugin;
 import com.jfinal.plugin.druid.DruidStatViewHandler;
 import com.jfinal.plugin.druid.IDruidStatViewAuth;
@@ -74,9 +75,6 @@ public class AppConfig extends JFinalConfig {
         me.add(new PlayRoute());
         // cms 管理
         me.add(new cmsRoute());
-
-        // ws
-        me.add(new WsRoute());
     }
 
     /**
@@ -100,6 +98,10 @@ public class AppConfig extends JFinalConfig {
         activeRecordPlugin.setDialect(new MysqlDialect());
         MappingKit.mapping(activeRecordPlugin);
         me.add(activeRecordPlugin);
+
+        // 定时任务插件
+        Cron4jPlugin cp = new Cron4jPlugin(PropKit.use("cron4j.properties"), "cron4j");
+        me.add(cp);
     }
 
     /**

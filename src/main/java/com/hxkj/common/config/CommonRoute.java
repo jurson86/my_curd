@@ -5,8 +5,6 @@ import com.hxkj.common.controller.SystemNotificationController;
 import com.hxkj.common.controller.UserInfoController;
 import com.hxkj.common.controller.UserPasswordController;
 import com.hxkj.common.controller.UtilsController;
-import com.hxkj.common.interceptor.PermissionInterceptor;
-import com.jfinal.aop.Clear;
 import com.jfinal.config.Routes;
 
 /**
@@ -19,7 +17,7 @@ public class CommonRoute extends Routes {
     @Override
     public void config() {
         // 系统通知
-        add("/systemNotification", SystemNotificationController.class,Constant.VIEW_PATH);
+        add("/systemNotification", SystemNotificationController.class, Constant.VIEW_PATH);
         // 修改密码
         add("/userPassword", UserPasswordController.class, Constant.VIEW_PATH);
         // 修改个人信息

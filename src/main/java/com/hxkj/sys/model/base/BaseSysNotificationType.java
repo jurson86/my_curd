@@ -41,6 +41,16 @@ public abstract class BaseSysNotificationType<M extends BaseSysNotificationType<
     }
 
 
+    // 图片图标地址
+    public void setLogo(java.lang.String logo) {
+        set("logo", logo);
+    }
+
+    public java.lang.String getLogo() {
+        return get("logo");
+    }
+
+
     // code  编码
     public void setCode(java.lang.String code) {
         set("code", code);

@@ -92,7 +92,6 @@ public class SystemNotificationController extends BaseController {
             // 不为空
             AuthUser receiverUser = AuthUser.dao.findById(sysNotificationDetail.getReceiver());
             addOpLog("用户 " + authUser.getUsername() + " 非法查看 用户 " + receiverUser.getUsername() + " 的系统通知");
-
             return;
         }
 
@@ -123,6 +122,21 @@ public class SystemNotificationController extends BaseController {
         addOpLog("用户 " + authUser.getUsername() + " 设置所有系统通知为 已读");
         ret.put("state", true);
         ret.put("msg", "设置 全部已读 操作成功");
+        renderJson(ret);
+    }
+
+
+    /**
+     * 获得 未读消息数量
+     */
+    public void getUnreadCount() {
+        Map<String, Object> ret = new HashMap<>();
+        AuthUser authUser = getSessionUser();
+        // 未读消息数量
+        String sql = " select count(main_id) as unread_count from sys_notification_detail where receiver = ? and is_read = '0' ";
+        Record record = Db.findFirst(sql, authUser.getId());
+        ret.put("state", true);
+        ret.put("unreadCount", record == null ? 0 : record.get("unread_count"));
         renderJson(ret);
     }
 

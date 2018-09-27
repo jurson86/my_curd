@@ -1,9 +1,11 @@
 package com.hxkj.sys.service;
 
+import com.alibaba.fastjson.JSON;
 import com.hxkj.common.util.DateTimeUtils;
 import com.hxkj.common.util.ExecutorServiceUtils;
 import com.hxkj.common.util.FreemarkerUtils;
 import com.hxkj.common.util.Identities;
+import com.hxkj.common.util.ws.SendMsgUtils;
 import com.hxkj.sys.model.SysNotification;
 import com.hxkj.sys.model.SysNotificationDetail;
 import com.hxkj.sys.model.SysNotificationType;
@@ -41,8 +43,10 @@ public class SysNotificationService {
             return false;
         }
 
+        String msgTitle = sysNotificationType.getTxt();
+        String msgContent = FreemarkerUtils.renderAsText(sysNotificationType.getTemplate().replaceAll("FTL", "\\$"), templateParams);
 
-        boolean flag = saveNotificationData(sysNotificationType, templateParams, receivers);
+        boolean flag = saveNotificationData(sysNotificationType, msgTitle, msgContent, receivers);
         if (!flag) {
             LOG.debug("---- 系统通知 数据保存数据库失败");
         }
@@ -50,9 +54,15 @@ public class SysNotificationService {
         LOG.info("系统通知 执行成功");
 
         // 服务器消息推送
+
         // 此处可以根据 sysNotificationType 的分类 使用服务器消息推送方式
         // 例如 SYSTEM 代表 后台系统通知，可采用 WebSocket 实现 或 更多方式实现
-        // 微信公众号推送  邮件推送  短信推送等
+        Map<String, Object> msg = new HashMap<>();
+        msg.put("type", "MSG_DETAIL");  // 类型编码，类如 MSG_DETAIL 直接使用弹窗弹出消息内容，其他类型可能用于其它的操作，此处是为了扩展更方便
+        msg.put("logo", sysNotificationType.getLogo());
+        msg.put("title", msgTitle);
+        msg.put("content", msgContent);
+        SendMsgUtils.sendToUsers(receivers, JSON.toJSONString(msg));
 
         return flag;
     }
@@ -60,6 +70,7 @@ public class SysNotificationService {
 
     /**
      * 获得 系统通知  关联的所有用户id
+     *
      * @param notificationTypeId 系统通知类型id
      * @return
      */
@@ -89,17 +100,16 @@ public class SysNotificationService {
      * 保存 系统通知 数据
      *
      * @param sysNotificationType 从数据库中查询到系统通知类型对象
-     * @param tempalteParams      系统通知模板参数
+     * @param msgTitle
+     * @param msgConent           系统通知模板内容
      * @param receivers           系统通知接收人集合，不可为null，且size 大于0
      * @return
      */
-    private boolean saveNotificationData(SysNotificationType sysNotificationType, Map<String, Object> tempalteParams, Set<Long> receivers) {
+    private boolean saveNotificationData(SysNotificationType sysNotificationType, String msgTitle, String msgConent, Set<Long> receivers) {
         SysNotification sysNotification = new SysNotification();
         sysNotification.setTypeCode(sysNotificationType.getCode());
-        sysNotification.setTitle(sysNotificationType.getTxt());
-
-        // 模板使用 freemarker 模板，使用 FTL 替换 $
-        sysNotification.setContent(FreemarkerUtils.renderAsText(sysNotificationType.getTemplate().replaceAll("FTL","\\$"), tempalteParams));
+        sysNotification.setTitle(msgTitle);
+        sysNotification.setContent(msgConent);
         sysNotification.setCreateTime(new Date());
         sysNotification.setExpiryTime(DateTimeUtils.getDate(sysNotification.getCreateTime(), sysNotificationType.getUntilExpiryDay()));
         sysNotification.setDeadTime(DateTimeUtils.getDate(sysNotification.getCreateTime(), sysNotificationType.getUntilDeadDay()));

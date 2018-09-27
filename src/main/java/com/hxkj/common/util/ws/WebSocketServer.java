@@ -1,4 +1,4 @@
-package com.hxkj.common.util.ws.server;
+package com.hxkj.common.util.ws;
 
 import com.hxkj.auth.model.AuthUser;
 import org.apache.log4j.Logger;
@@ -48,7 +48,7 @@ public class WebSocketServer {
             return;
         }
 
-        SendMsgUtils.broadcast(authUser.getName() + " online now ...", session.getId());
+        // SendMsgUtils.broadcast(authUser.getName() + " online now ...", session.getId());
         OnlineUserContainer.addOnlineUser(authUser, session);
     }
 
@@ -63,7 +63,7 @@ public class WebSocketServer {
         String sessionId = session.getId();
         AuthUser authUser = OnlineUserContainer.SESSIONID_USER.get(sessionId);
         OnlineUserContainer.removeOnlineUser(authUser, session);
-        SendMsgUtils.broadcast(authUser.getName() + " offline now ...", sessionId);
+        //  SendMsgUtils.broadcast(authUser.getName() + " offline now ...", sessionId);
     }
 
     /**
@@ -76,7 +76,7 @@ public class WebSocketServer {
     @OnMessage // 一个 endpoint 只能有一个该方法注解
     public void onMessage(String msg, Session session) {
         AuthUser authUser = OnlineUserContainer.SESSIONID_USER.get(session.getId());
-        SendMsgUtils.broadcast(authUser.getName() + ": " + msg, session.getId());
+        //SendMsgUtils.broadcast(authUser.getName() + ": " + msg, session.getId());
     }
 
 
@@ -93,7 +93,7 @@ public class WebSocketServer {
         String sessionId = session.getId();
         AuthUser authUser = OnlineUserContainer.SESSIONID_USER.get(sessionId);
         OnlineUserContainer.removeOnlineUser(authUser, session);
-        SendMsgUtils.broadcast(authUser.getName() + " offline  [exception: " + t.getMessage() + "]", sessionId);
+        // SendMsgUtils.broadcast(authUser.getName() + " offline  [exception: " + t.getMessage() + "]", sessionId);
     }
 
 

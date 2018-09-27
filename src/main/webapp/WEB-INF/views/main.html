@@ -3,7 +3,7 @@
 <link rel="stylesheet" href="${ctx!}/res/pure/buttons-min.css">
 <link rel="stylesheet" href="${ctx!}/res/layer/theme/default/layer.css">
 <link rel="stylesheet" href="${ctx!}/res/css/main-page.css">
-<link rel="stylesheet" href="//at.alicdn.com/t/font_725654_cawe1abi8nf.css">
+<link rel="stylesheet" href="${ctx!}/res/css/animate.min.css">
 <script>
     /*main 页面不可被 iframe 嵌套，如果被嵌套跳转到到登录页面*/
     if(top.location!=self.location){
@@ -63,13 +63,22 @@
                 ${(session.auth_user.name)!}
             </a>
             <div id="opeMenuItem" style="width:100px;">
-                <div name="viewNotification">系统通知</div>
+                <div name="viewNotification">
+                    系统通知
+                    <span id="unreadSpan" class="unreadCount"></span>
+                </div>
                 <div name="editInfo">修改个人信息</div>
                 <div name="changePwd">修改密码</div>
                 <div name="logout">退出</div>
             </div>
             <script>
                 ;(function(){
+                    function openSysNotifiction(){
+                        popup.openIframe('系统通知', '${ctx!}/systemNotification', '700px', '400px');
+
+                        /* 移除未读消息数小红点，此处并不合理 */
+                        $('#unreadSpan').addClass('hid');
+                    }
                     function openEditInfoForm() {
                         popup.openIframe('修改用户信息', '${ctx!}/userInfo', '560px', '600px');
                     }
@@ -85,6 +94,7 @@
                     $(opeMenu.menubutton('options').menu).menu({
                         onClick: function (item) {
                             switch (item.name){
+                                case 'viewNotification':  openSysNotifiction() ;break;
                                 case 'editInfo':  openEditInfoForm() ;break;
                                 case 'changePwd': openChangePwdForm() ;break;
                                 case 'logout': logout() ;break;
@@ -120,13 +130,19 @@
 <script src="${ctx!}/res/js/tab-tools.js"></script>
 <script src="${ctx!}/res/layer/layer.js"></script>
 <script src="${ctx!}/res/js/popup-tools.js"></script>
+<script src="${ctx!}/res/js/notification.js"></script>
 <script>
     ;(function () {
         var MainPage = {
             init: function () {
                 var that = this;
+                /* 权限树 */
                 that.permissTreeInit();
+                /* 消息通知 */
+                that.notificationInit();
+                /* tab 右键菜单 */
                 TabTools.contextMenuInit();
+                /* 页面中事件绑定 */
                 that.bind();
             },
             permissTreeInit: function () {
@@ -152,6 +168,58 @@
                         console.log("权限数据请求错误: " + m);
                     }
                 });
+            },
+            notificationInit:function(){
+                var that  = this;
+                that.getUnreadCount();
+
+                /* 初始化 websocket */
+                if ('WebSocket' in window) {
+                    console.log('当前浏览器支持 websocket，初始化websocket 连接');
+                    var ws = new WebSocket("ws://localhost/ws-server?userId=${(aesUserId)!}");
+                    ws.onerror = function () {
+                        console.log("WebSocket连接发生错误");
+                    };
+                    ws.onopen = function () {
+                        console.log("WebSocket连接成功");
+                    };
+                    ws.onmessage = function (event) {
+                        console.log(event.data);
+                        that.getUnreadCount();
+                        if(event.data){
+                            var msg = JSON.parse(event.data);
+                            /* 消息详情显示弹窗 */
+                            if(msg.type='MSG_DETAIL'){
+                                /*右上角 10秒后小时，动画使用 animate.min.css*/
+                                Notification.create(msg.title, msg.content, '${ctx!}/'+msg.logo, 'fadeInRight', 2,10);
+                            }
+                        }
+                    };
+                    ws.onclose = function () {
+                        console.log("WebSocket连接关闭");
+                    };
+                    function closeWebSocket() {
+                        ws.close();
+                    };
+                    window.onbeforeunload = function () {
+                        /* 浏览器关闭主动断开ws连接 */
+                        closeWebSocket();
+                    };
+                } else {
+                    console.log('当前浏览器 Not support websocket')
+                }
+            },
+            getUnreadCount:function(){
+                /* 获得 未读消息数量 */
+                $.get('${ctx!}/systemNotification/getUnreadCount', function (data) {
+                    if(data.unreadCount==0){
+                        $('#unreadSpan').addClass('hid');
+                    }else{
+                        $('#unreadSpan').removeClass('hid');
+                        $('#unreadSpan').html(data.unreadCount);
+                        /*popup.msg("未读消息 "+data.unreadCount+" 条");*/
+                    }
+                }, "json").error(function(){ popup.errMsg(); });
             },
             bind: function () {
                 /* 权限树过滤（根据输入框内容过滤）*/

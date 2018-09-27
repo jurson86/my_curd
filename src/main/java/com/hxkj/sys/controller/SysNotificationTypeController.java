@@ -91,7 +91,7 @@ public class SysNotificationTypeController extends BaseController {
             List<SysNotificationType> list = SysNotificationType.dao.find(selectSql);
             List<String> txtCodeList = new ArrayList<>();
             for (SysNotificationType type : list) {
-                txtCodeList.add(" <br/>[ " + type.getCategory()+" : " + type.getTxt() + " : " + type.getCode() + " ]  ");
+                txtCodeList.add(" <br/>[ " + type.getCategory() + " : " + type.getTxt() + " : " + type.getCode() + " ]  ");
             }
             String opLogContent = " 删除通知类型：" + Joiner.on(" , ").join(txtCodeList);
             addOpLog(opLogContent);
@@ -105,7 +105,7 @@ public class SysNotificationTypeController extends BaseController {
 
             // 添加日志
             SysNotificationType sysNotificationType = SysNotificationType.dao.findById(ids);
-            String opLogContent = " 删除通知类型：<br/>[ "+ sysNotificationType.getCategory()+" : " + sysNotificationType.getTxt() + " : " + sysNotificationType.getCode() + " ]";
+            String opLogContent = " 删除通知类型：<br/>[ " + sysNotificationType.getCategory() + " : " + sysNotificationType.getTxt() + " : " + sysNotificationType.getCode() + " ]";
             addOpLog(opLogContent);
 
             sysNotificationType.delete();

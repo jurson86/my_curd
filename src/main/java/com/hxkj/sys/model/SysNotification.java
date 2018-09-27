@@ -34,7 +34,7 @@ public class SysNotification extends BaseSysNotification<SysNotification> implem
                 " b.id as detail_id, b.is_read as has_read, b.read_time as read_time, " +
                 " c.name as sender_name, c.id as sender_id,  " +
                 " d.name as receiver_name, d.id as receiver_id, " +
-                " e.txt as notification_type ";
+                " e.txt as notification_type, e.logo as type_logo ";
         String sqlExceptSelect = " FROM sys_notification a " +
                 " LEFT JOIN sys_notification_detail b ON b.main_id = a.id " +
                 " LEFT JOIN auth_user c on b.sender = c.id " +
@@ -43,6 +43,8 @@ public class SysNotification extends BaseSysNotification<SysNotification> implem
         if (StrKit.notBlank(where)) {
             sqlExceptSelect += " where " + where;
         }
+
+        sqlExceptSelect += " order by a.create_time desc ";
         return Db.paginate(pageNumber, pageSize, sqlSelect, sqlExceptSelect);
     }
 

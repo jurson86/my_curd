@@ -72,6 +72,7 @@
     <tr>
         <th data-options="field:'id',checkbox:true"></th>
         <th field="category" width="100">分类</th>
+        <th field="logo" align="center" width="60" formatter="logoFmt">图标</th>
         <th field="txt" width="100">名称</th>
         <th field="code" width="100">编码</th>
         <th field="until_expiry_day" width="100">n天后 过期</th>
@@ -95,4 +96,14 @@
 </div>
 <script src="${ctx!}/res/layer/layer.js"></script>
 <script src="${ctx!}/res/js/popup-tools.js"></script>
+<script>
+    var ctx = '${ctx!}/';
+    /* 图片格式化*/
+    function logoFmt(val, row) {
+        if(val==null || val==undefined || $.trim(val)==''){
+            return '';
+        }
+        return '<a target="_blank" href="' + ctx + val + '"><img height="25px" src="' + ctx + val + '" alt="logo"/></a>'
+    }
+</script>
 </@layout>

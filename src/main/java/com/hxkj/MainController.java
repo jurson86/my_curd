@@ -1,9 +1,11 @@
 package com.hxkj;
 
 import com.hxkj.auth.model.AuthMenu;
+import com.hxkj.auth.model.AuthUser;
 import com.hxkj.common.constant.Constant;
 import com.hxkj.common.controller.BaseController;
 import com.hxkj.common.interceptor.PermissionInterceptor;
+import com.hxkj.common.util.ws.UserIdEncryptUtils;
 import com.jfinal.aop.Before;
 import com.jfinal.aop.Clear;
 import com.jfinal.ext.interceptor.SessionInViewInterceptor;
@@ -26,6 +28,11 @@ public class MainController extends BaseController {
      */
     @Before(SessionInViewInterceptor.class)
     public void index() {
+
+        // WebSocket 系统通知 连接使用 (userId 对称加密)
+        AuthUser authUser = getSessionUser();
+        setAttr("aesUserId", UserIdEncryptUtils.encrypt(authUser.getId().toString(), UserIdEncryptUtils.CURRENT_USER_ID_AESKEY));
+
         render("main.html");
     }
 

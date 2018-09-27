@@ -1,6 +1,6 @@
 package com.hxkj.common.util;
 
-import com.hxkj.common.util.ws.server.UserIdEncryptUtils;
+import com.hxkj.common.util.ws.UserIdEncryptUtils;
 import com.jfinal.kit.AesKit;
 
 /**

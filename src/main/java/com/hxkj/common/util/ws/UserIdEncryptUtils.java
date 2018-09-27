@@ -1,9 +1,7 @@
-package com.hxkj.common.util.ws.server;
+package com.hxkj.common.util.ws;
 
 import com.hxkj.common.util.StringUtils;
 import com.jfinal.kit.AesKit;
-import com.jfinal.kit.Prop;
-import com.jfinal.kit.PropKit;
 
 /**
  * 用户id 加密工具
@@ -12,14 +10,8 @@ import com.jfinal.kit.PropKit;
  * @date 2018/9/10
  */
 public class UserIdEncryptUtils {
-    public final static String CURRENT_USER_ID_AESKEY;
-    public final static String OTHER_USERS_ID_AESKEY;
-
-    static {
-        Prop prop = PropKit.use("chat.properties");
-        CURRENT_USER_ID_AESKEY = prop.get("currentUserIdAeskey");
-        OTHER_USERS_ID_AESKEY = prop.get("otherUsersIdAeskey");
-    }
+    public final static String CURRENT_USER_ID_AESKEY = "uoz01RNH3B0APDhpS2SUyN-CgE6eAspO";
+    public final static String OTHER_USERS_ID_AESKEY = "TNDyNdSF04AiRRKbvlS1_wkTBGVeFZ-K";
 
     /**
      * 加密
