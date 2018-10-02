@@ -30,6 +30,15 @@ public abstract class BaseAuthRole<M extends BaseAuthRole<M>> extends Model<M> i
         set("role_name", roleName);
     }
 
+    public String getRoleCode() {
+        return get("role_code");
+    }
+
+    // role_code 角色编码
+    public void setRoleCode(String roleCode) {
+        set("role_code", roleCode);
+    }
+
     public String getRoleDesc() {
         return get("role_desc");
     }

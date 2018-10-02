@@ -59,7 +59,8 @@ public class SysNotificationService {
         // 此处可以根据 sysNotificationType 的分类 使用服务器消息推送方式
         // 例如 SYSTEM 代表 后台系统通知，可采用 WebSocket 实现 或 更多方式实现
         Map<String, Object> msg = new HashMap<>();
-        msg.put("type", "MSG_DETAIL");  // 类型编码，类如 MSG_DETAIL 直接使用弹窗弹出消息内容，其他类型可能用于其它的操作，此处是为了扩展更方便
+        msg.put("category", sysNotificationType.getCategory());  // 为了扩展更方便
+        msg.put("code",sysNotificationType.getCode()); // 为了扩展更方便
         msg.put("logo", sysNotificationType.getLogo());
         msg.put("title", msgTitle);
         msg.put("content", msgContent);

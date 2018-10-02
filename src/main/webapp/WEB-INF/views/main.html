@@ -170,7 +170,7 @@
             },
             notificationInit:function(){
                 var that  = this;
-                that.getUnreadCount();
+                that.refreshUnreadCount();
 
                 /* 初始化 websocket */
                 if ('WebSocket' in window) {
@@ -184,11 +184,11 @@
                     };
                     ws.onmessage = function (event) {
                         console.log(event.data);
-                        that.getUnreadCount();
+                        that.refreshUnreadCount();
                         if(event.data){
                             var msg = JSON.parse(event.data);
-                            /* 消息详情显示弹窗 */
-                            if(msg.type='MSG_DETAIL'){
+                            /* 消息详情显示弹窗, 通知中带有 category 和 code， 为了扩展方便 */
+                            if(msg.category=='SYSTEM'){
                                 /* 右侧通知弹窗， 兼容性不好 且 和整体风格不搭配，随后会替换*/
                                 ;new dToast({
                                     title: msg.title,
@@ -214,7 +214,7 @@
                     console.log('当前浏览器 Not support websocket')
                 }
             },
-            getUnreadCount:function(){
+            refreshUnreadCount:function(){
                 /* 获得 未读消息数量 */
                 $.get('${ctx!}/systemNotification/getUnreadCount', function (data) {
                     if(data.unreadCount==0){

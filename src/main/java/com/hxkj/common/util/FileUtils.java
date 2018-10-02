@@ -2,6 +2,8 @@ package com.hxkj.common.util;
 
 import org.apache.log4j.Logger;
 
+import javax.activation.MimetypesFileTypeMap;
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -28,6 +30,9 @@ public class FileUtils {
         } catch (IOException e) {
             LOG.error(e.getMessage(), e);
         }
+        if(contentType==null){
+            contentType = "application/octet-stream";
+        }
         return contentType;
     }
 
@@ -46,5 +51,4 @@ public class FileUtils {
         }
         return filename;
     }
-
 }

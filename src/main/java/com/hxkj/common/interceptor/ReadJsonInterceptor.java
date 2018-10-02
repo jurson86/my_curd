@@ -10,6 +10,7 @@ import com.jfinal.kit.HttpKit;
 /**
  * 读取 客户端 post 请求 body json 对象 放入到 request 中
  * （ 不是 ajax datatype:'json" )
+ * 此拦截器 针对 非web 环境下的客户端
  */
 public class ReadJsonInterceptor implements Interceptor {
     @Override
