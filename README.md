@@ -27,7 +27,7 @@ my_CURD
 - easyui1.5.4.5、pure.css、ckeditor、layer、simplemde等 
 
 ### 接下来要做
-- [ ] 消息通知模块
+- [ ] 手机端基础框架
 
 ### 预览
 ![登录](https://raw.githubusercontent.com/qinyou/my_curd/master/preview/login.png)

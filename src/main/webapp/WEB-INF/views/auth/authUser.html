@@ -71,6 +71,7 @@
                fit="true" pagination="true">
             <thead>
             <tr>
+                <th  field="avatar" align="center" width="60" formatter="imgFmt">头像</th>
                 <th sortable="true" field="username" width="100">登录名</th>
                 <th  field="name" width="100">姓名</th>
                 <th  field="gender" width="60" formatter="genderFmt">性别</th>
@@ -131,6 +132,15 @@
             val = '<span style="color:red">无效</span>';
         }
         return val;
+    };
+
+    /* 图片格式化*/
+    var ctx = '${ctx!}';
+    function imgFmt(val, row) {
+        if(val==null || $.trim(val)==''){
+            return '';
+        }
+        return '<a target="_blank" href="' + ctx + val + '"><img height="25px" src="' + ctx + val + '" alt="' + row.username + '头像"/></a>'
     };
 </script>
 </@layout>
