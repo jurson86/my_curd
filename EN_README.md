@@ -19,11 +19,4 @@ Light, clear and convenient.
 ### Preview 
 ![login](https://raw.githubusercontent.com/qinyou/my_curd/master/preview/login.png)
 ![menu](https://raw.githubusercontent.com/qinyou/my_curd/master/preview/menu.png)
-![role](https://raw.githubusercontent.com/qinyou/my_curd/master/preview/role.png)
-![org](https://raw.githubusercontent.com/qinyou/my_curd/master/preview/org.png)
-![user](https://raw.githubusercontent.com/qinyou/my_curd/master/preview/user.png)
-![file](https://raw.githubusercontent.com/qinyou/my_curd/master/preview/file.png)
-![code generator](https://raw.githubusercontent.com/qinyou/my_curd/master/preview/codegen.png)
-![ckeditor5](https://raw.githubusercontent.com/qinyou/my_curd/master/preview/ck5.png)
-![Chinese novel download](https://raw.githubusercontent.com/qinyou/my_curd/master/preview/novel.png)
  
