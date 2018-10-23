@@ -29,22 +29,28 @@ public class ExcelHelper {
     }
 
     /**
-     * 将 excel文件第一个 sheet 转换成 list<list>, 行<列>
+     * 将 excel文件 某个 sheet 转换成 list<list>, 行<列>
+     * 兼容 xls 和  xlsx 文件
      *
      * @param filename   文件全路径
      * @param sheetIndex sheet 索引
      * @return
      * @throws Exception
      */
-    public List<List> convertToList(String filename, Integer sheetIndex) throws Exception {
+    public List<List> convertToList(String filename, Integer sheetIndex) {
         Workbook wb;
 
         // 兼容2003 与2oo7
         String ext = FileUtils.getExtensionName(filename);
-        if (ext.toLowerCase().equals("xlsx")) {
-            wb = new XSSFWorkbook(filename);
-        } else {
-            wb = WorkbookFactory.create(new FileInputStream(filename));
+        try {
+            if (ext.toLowerCase().equals("xlsx")) {
+                wb = new XSSFWorkbook(filename);
+            } else {
+                wb = WorkbookFactory.create(new FileInputStream(filename));
+            }
+        } catch (Exception e) {
+            LOG.error(e.getMessage(), e);
+            return null;
         }
 
         Sheet sheet = wb.getSheetAt(sheetIndex);

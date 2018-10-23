@@ -12,9 +12,8 @@ import com.jfinal.plugin.activerecord.Page;
  */
 public class SysNotificationType extends BaseSysNotificationType<SysNotificationType> implements java.io.Serializable {
 
-    private static final long serialVersionUID = 1L;
     public static final SysNotificationType dao = new SysNotificationType().dao();
-
+    private static final long serialVersionUID = 1L;
 
     public SysNotificationType findByCode(String code) {
         return findFirst("select * from sys_notification_type where code = ? ", code);

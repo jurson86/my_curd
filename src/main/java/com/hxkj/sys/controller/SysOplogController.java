@@ -3,7 +3,6 @@ package com.hxkj.sys.controller;
 import com.hxkj.common.constant.Constant;
 import com.hxkj.common.controller.BaseController;
 import com.hxkj.common.util.DateTimeUtils;
-import com.hxkj.common.util.StringUtils;
 import com.hxkj.common.util.csv.CsvRender;
 import com.hxkj.common.util.excel.PoiRender;
 import com.hxkj.common.util.search.SearchSql;
@@ -50,13 +49,14 @@ public class SysOplogController extends BaseController {
         String[] columns = new String[]{"user_name", "op_content", "ip", "create_time"};
         String[] headers = new String[]{"操作人", "日志内容", "IP地址", "操作时间"};
 
-        render(PoiRender.me(sysOplogs)
-                .fileName(StringUtils.urlEncode("操作日志.xls"))
-                .sheetName("操作日志统计")
-                .columns(columns)
-                .headers(headers)
-                .cellWidth(3500)
-                .headerRow(1));
+        render(PoiRender.me(sysOplogs)  // 数据
+                .fileName("操作日志.xls") //导出文件名称
+                .sheetName("操作日志统计") // sheet 名称
+                .columns(columns) // 标题栏 对应数据
+                .headers(headers) // 标题栏 对应excel
+                .cellWidth(5000)  // 单元格宽度
+                .dateFormat("yyyy/MM/dd HH:mm:ss")  //日期格式
+                .headerRow(2));   //标题栏占几行
     }
 
     @Before(SearchSql.class)
@@ -65,10 +65,7 @@ public class SysOplogController extends BaseController {
         List<SysOplog> sysOplogs = SysOplog.dao.findWhere(where);
         List<String> headers = Arrays.asList("操作人员", "日志内容", "IP地址", "操作时间");
         List<String> columns = Arrays.asList("user_name", "op_content", "ip", "create_time");
-        CsvRender csvRender = new CsvRender(headers, sysOplogs);
-        csvRender.fileName("oplog.csv");
-        csvRender.clomuns(columns);
-        render(csvRender);
+        render(CsvRender.me(headers, sysOplogs).fileName("操作日志.csv").columns(columns).dateFormat("yyyy-MM-dd HH:mm:ss"));
 
     }
 

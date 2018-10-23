@@ -23,10 +23,9 @@
         <cron4j.version>2.2.5</cron4j.version>
 
         <poi.ooxml.version>3.7</poi.ooxml.version>
-        <httpClient.version>4.5.4</httpClient.version>
+        <httpClient.version>4.5.6</httpClient.version>
         <javax-mail.version>1.4.7</javax-mail.version>
-        <guava.version>14.0.1</guava.version>
-        <jodd.core.version>3.6.2</jodd.core.version>
+        <guava.version>16.0.1</guava.version>
         <jodd.bean.version>3.6.2</jodd.bean.version>
         <jsoup.version>1.10.3</jsoup.version>
         <dom4j.version>1.6.1</dom4j.version>
@@ -47,7 +46,7 @@
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>3.8.1</version>
+            <version>RELEASE</version>
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -194,6 +193,12 @@
             <groupId>org.apache.poi</groupId>
             <artifactId>poi-ooxml</artifactId>
             <version>${poi.ooxml.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>dom4j</groupId>
+                    <artifactId>dom4j</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <!--google 工具集-->
         <dependency>
@@ -204,25 +209,26 @@
         <!-- Jodd 工具集-->
         <dependency>
             <groupId>org.jodd</groupId>
-            <artifactId>jodd-core</artifactId>
-            <version>${jodd.core.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.jodd</groupId>
             <artifactId>jodd-bean</artifactId>
             <version>${jodd.bean.version}</version>
         </dependency>
         <!-- httpclient http 请求客户端 -->
         <dependency>
             <groupId>org.apache.httpcomponents</groupId>
-            <artifactId>httpclient</artifactId>
-            <version>${httpClient.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.httpcomponents</groupId>
             <artifactId>fluent-hc</artifactId>
             <version>${httpClient.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>commons-logging</groupId>
+                    <artifactId>commons-logging</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>commons-codec</groupId>
+                    <artifactId>commons-codec</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
+
 
     </dependencies>
     <build>

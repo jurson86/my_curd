@@ -15,20 +15,24 @@
  */
 package com.hxkj.common.util.csv;
 
+import com.hxkj.common.util.StringUtils;
 import com.jfinal.render.Render;
 import com.jfinal.render.RenderException;
+import org.apache.log4j.Logger;
 
 import java.io.PrintWriter;
-import java.net.URLEncoder;
 import java.util.List;
 
 @SuppressWarnings("serial")
 public class CsvRender extends Render {
-    private List<String> clomuns;
+    protected final Logger LOG = Logger.getLogger(getClass());
+
+    private List<String> columns;
     private List<?> data;
     private String encodeType = "gbk";
     private String fileName = "default.csv";
     private List<String> headers;
+    private String dateFormat = "yyyy-MM-dd HH:mm:ss";
 
     public CsvRender(List<String> headers, List<?> data) {
         this.headers = headers;
@@ -43,13 +47,15 @@ public class CsvRender extends Render {
     public void render() {
         response.reset();
         PrintWriter out = null;
+        fileName = StringUtils.encodeFileName(request, fileName);
         try {
             response.setContentType("application/vnd.ms-excel;charset=" + encodeType);
-            response.setHeader("Content-Disposition",
-                    "attachment;  filename=" + URLEncoder.encode(fileName, encodeType));
+            response.setHeader("Content-Disposition", "attachment;" + fileName);
             out = response.getWriter();
-            out.write(CsvUtil.createCSV(headers, data, clomuns));
+            CsvUtil.setDateFormat(dateFormat);
+            out.write(CsvUtil.createCSV(headers, data, columns));
         } catch (Exception e) {
+            LOG.error(e.getMessage(), e);
             throw new RenderException(e);
         } finally {
             if (null != out) {
@@ -59,8 +65,8 @@ public class CsvRender extends Render {
         }
     }
 
-    public CsvRender clomuns(List<String> clomuns) {
-        this.clomuns = clomuns;
+    public CsvRender columns(List<String> columns) {
+        this.columns = columns;
         return this;
     }
 
@@ -81,6 +87,11 @@ public class CsvRender extends Render {
 
     public CsvRender headers(List<String> headers) {
         this.headers = headers;
+        return this;
+    }
+
+    public CsvRender dateFormat(String dateFormat) {
+        this.dateFormat = dateFormat;
         return this;
     }
 

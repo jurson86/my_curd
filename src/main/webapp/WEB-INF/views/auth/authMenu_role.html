@@ -8,6 +8,7 @@
     function queryModel() {
         var queryParams = {};
         queryParams['search_LIKE_ar.role_name'] = $("#rolename").textbox("getValue");
+        queryParams['search_LIKE_ar.role_code'] = $("#rolecode").textbox("getValue");
         $('#dg').datagrid('load', queryParams);
     }
 </script>
@@ -22,7 +23,8 @@
     <tr>
 
         <th  width="100" data-options="field:'role_name'">角色名</th>
-        <th  width="200" data-options="field:'role_desc'">角色描述</th>
+        <th  width="150" data-options="field:'role_code'">角色编码</th>
+        <th  width="150" data-options="field:'role_desc'">角色描述</th>
         <th field="ope_name" width="100">关联操作人</th>
         <th field="user_id" width="100" formatter="deleteFmt">操作</th>
     </tr>
@@ -30,7 +32,8 @@
 </table>
 <div id="tb" style="text-align: center; padding: 5px">
     <span id="enterSpan"  >
-      	 <input id="rolename" prompt="角色名" class="easyui-textbox" style="width:120px">
+      	  <input id="rolename" prompt="角色名" class="easyui-textbox" style="width:120px">
+          <input id="rolecode" prompt="角色编码" class="easyui-textbox" style="width:120px">
           <a href="#" class="easyui-linkbutton" data-options="iconCls:'iconfont icon-search',plain:true" onclick="queryModel()">搜索</a>
     </span>
 </div>

@@ -95,22 +95,22 @@ public abstract class BaseAuthUser<M extends BaseAuthUser<M>> extends Model<M> i
         set("phone", phone);
     }
 
+    public java.lang.String getJob() {
+        return get("job");
+    }
+
     // job  职位
     public void setJob(java.lang.String job) {
         set("job", job);
     }
 
-    public java.lang.String getJob() {
-        return get("job");
+    public java.lang.String getJobLevel() {
+        return get("job_level");
     }
 
     // job_level  职务级别
     public void setJobLevel(java.lang.String jobLevel) {
         set("job_level", jobLevel);
-    }
-
-    public java.lang.String getJobLevel() {
-        return get("job_level");
     }
 
     public java.util.Date getLastLoginTime() {

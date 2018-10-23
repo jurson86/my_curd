@@ -12,8 +12,8 @@ import java.util.List;
  */
 public class DataRegion extends BaseDataRegion<DataRegion> implements java.io.Serializable {
 
-    private static final long serialVersionUID = 1L;
     public static final DataRegion dao = new DataRegion().dao();
+    private static final long serialVersionUID = 1L;
 
     /**
      * 根据pid 查询

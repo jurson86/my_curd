@@ -31,8 +31,8 @@ import javax.servlet.http.HttpServletRequest;
  */
 public class AppConfig extends JFinalConfig {
 
-    Prop configProp = PropKit.use("config.properties");
     private final static Logger LOG = Logger.getLogger(AppConfig.class);
+    Prop configProp = PropKit.use("config.properties");
 
     /**
      * 配置JFinal常量

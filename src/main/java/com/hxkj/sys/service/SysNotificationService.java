@@ -60,7 +60,7 @@ public class SysNotificationService {
         // 例如 SYSTEM 代表 后台系统通知，可采用 WebSocket 实现 或 更多方式实现
         Map<String, Object> msg = new HashMap<>();
         msg.put("category", sysNotificationType.getCategory());  // 为了扩展更方便
-        msg.put("code",sysNotificationType.getCode()); // 为了扩展更方便
+        msg.put("code", sysNotificationType.getCode()); // 为了扩展更方便
         msg.put("logo", sysNotificationType.getLogo());
         msg.put("title", msgTitle);
         msg.put("content", msgContent);

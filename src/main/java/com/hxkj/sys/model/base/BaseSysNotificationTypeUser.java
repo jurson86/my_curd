@@ -12,23 +12,22 @@ import com.jfinal.plugin.activerecord.Model;
 @SuppressWarnings("serial")
 public abstract class BaseSysNotificationTypeUser<M extends BaseSysNotificationTypeUser<M>> extends Model<M> implements IBean {
 
+    public String getNotificationTypeId() {
+        return get("notification_type_id");
+    }
+
     // notification_type_id  系统通知类型id
     public void setNotificationTypeId(String notificationTypeId) {
         set("notification_type_id", notificationTypeId);
     }
 
-    public String getNotificationTypeId() {
-        return get("notification_type_id");
+    public Long getUserId() {
+        return get("user_id");
     }
-
 
     // user_id  用户id
     public void setUserId(Long userId) {
         set("user_id", userId);
-    }
-
-    public Long getUserId() {
-        return get("user_id");
     }
 
 }

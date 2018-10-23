@@ -15,11 +15,11 @@
  */
 package com.hxkj.common.util.csv;
 
+import com.hxkj.common.util.DateTimeUtils;
 import com.jfinal.plugin.activerecord.Model;
 import com.jfinal.plugin.activerecord.Record;
 
 import java.sql.Timestamp;
-import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.Map.Entry;
 
@@ -30,8 +30,13 @@ import java.util.Map.Entry;
 public class CsvUtil {
 
     private static UserSettings userSettings = new UserSettings();
+    private static String dateFormat = "yyyy-MM-dd HH:mm:ss";
 
     private CsvUtil() {
+    }
+
+    public static void setDateFormat(String dateFormat) {
+        CsvUtil.dateFormat = dateFormat;
     }
 
     /**
@@ -177,9 +182,9 @@ public class CsvUtil {
             } else if (obj instanceof Calendar) {
                 content = obj.toString();
             } else if (obj instanceof Timestamp) {
-                content = new SimpleDateFormat("yyyy-MM-dd HH:mm").format(new Date(((Timestamp) obj).getTime()));
+                content = DateTimeUtils.format(new Date(((Timestamp) obj).getTime()), dateFormat);
             } else if (obj instanceof Date) {
-                content = new SimpleDateFormat("yyyy-MM-dd HH:mm").format((Date) obj);
+                content = DateTimeUtils.format((Date) obj, dateFormat);
             } else {
                 content = write(String.valueOf(obj));
             }

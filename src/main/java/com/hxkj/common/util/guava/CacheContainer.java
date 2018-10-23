@@ -9,8 +9,8 @@ import com.jfinal.kit.PropKit;
  * @date 2018/9/3
  */
 public class CacheContainer {
-    private static BaseCache loginRetryLimitCache = null;
     private final static Long RETRY_TIMES = PropKit.use("config.properties").getLong("loginRetryLimitTime");
+    private static BaseCache loginRetryLimitCache = null;
 
     private CacheContainer() {
     }

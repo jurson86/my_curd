@@ -35,7 +35,7 @@
     }
     function queryModel() {
         var queryParams = {};
-        queryParams['search_LIKE_su.name'] = $("#username").textbox("getValue");
+        queryParams['search_LIKE_su.username'] = $("#username").textbox("getValue");
         queryParams['search_LIKE_so.op_content'] = $("#opContent").textbox('getValue');
         queryParams['search_LIKE_so.ip'] = $("#ip").textbox('getValue');
         $('#dg').datagrid('load', queryParams);

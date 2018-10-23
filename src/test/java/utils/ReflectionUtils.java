@@ -1,4 +1,4 @@
-package test;
+package utils;
 
 import com.hxkj.common.util.RandomUtils;
 
@@ -15,7 +15,7 @@ public class ReflectionUtils {
     public static void main(String[] args) throws Exception{
 
             // 通过全类名 反射生成 class 对象
-            Class personClass = Class.forName("test.Person");
+            Class personClass = Class.forName("utils.Person");
             System.out.println(" Class.forName is null ? "+(personClass==null));
 
             // 通过 已知对象 生成 class 对象

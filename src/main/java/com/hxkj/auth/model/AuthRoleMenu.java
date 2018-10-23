@@ -29,8 +29,16 @@ public class AuthRoleMenu extends BaseAuthRoleMenu<AuthRoleMenu> implements java
     }
 
 
+    /**
+     * 从 auth_role_menu 从查询 角色信息
+     *
+     * @param pageNumber
+     * @param pageSize
+     * @param where
+     * @return
+     */
     public Page<AuthRoleMenu> pageWithRoleInfo(int pageNumber, int pageSize, String where) {
-        String sqlSelect = " SELECT arm.role_id,arm.menu_id, ar.role_name,ar.role_desc, au.name as ope_name ";
+        String sqlSelect = " SELECT arm.role_id,arm.menu_id, ar.role_name,ar.role_code,ar.role_desc, au.name as ope_name ";
         String sqlExceptSelect = " FROM auth_role_menu arm " +
                 " left JOIN auth_role ar on ar.id = arm.role_id " +
                 " left JOIN auth_user au on au.id = arm.user ";

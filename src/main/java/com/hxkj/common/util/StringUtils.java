@@ -36,6 +36,9 @@ import java.text.DecimalFormat;
  */
 public abstract class StringUtils {
     private final static Logger LOG = Logger.getLogger(StringUtils.class);
+    private static final char[] HEX_CHAR = {'0', '1', '2', '3', '4', '5',
+            '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'};
+    private final static String AES_KEY = PropKit.use("config.properties").get("aesKey");
 
     /**
      * double精度调整
@@ -101,7 +104,6 @@ public abstract class StringUtils {
         return result;
     }
 
-
     /**
      * 获取 对象 的类名称（不带包名）
      *
@@ -114,7 +116,6 @@ public abstract class StringUtils {
         // 类名
         return fullClassName.substring(fullClassName.lastIndexOf(".") + 1);
     }
-
 
     /**
      * 中文文件 下载编码，多浏览器适配
@@ -199,7 +200,6 @@ public abstract class StringUtils {
         return convert;
     }
 
-
     /**
      * html特殊字符 转义，避免XSS
      *
@@ -241,7 +241,6 @@ public abstract class StringUtils {
         String safe = Jsoup.clean(unsafe, Whitelist.basic());
         return safe;
     }
-
 
     /**
      * xml 字符串 格式美化
@@ -285,9 +284,6 @@ public abstract class StringUtils {
         return requestXML;
     }
 
-    private static final char[] HEX_CHAR = {'0', '1', '2', '3', '4', '5',
-            '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'};
-
     /**
      * byte[] to hex string
      *
@@ -324,9 +320,6 @@ public abstract class StringUtils {
 
         return bytes;
     }
-
-
-    private final static String AES_KEY = PropKit.use("config.properties").get("aesKey");
 
     /**
      * 字符串先aes 加密为 byte[],再转 hex String

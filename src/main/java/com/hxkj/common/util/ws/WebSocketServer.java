@@ -19,6 +19,19 @@ public class WebSocketServer {
     private final static Integer MAX_IDLE_TIMEOUT = 1800 * 1000;
 
     /**
+     * 关闭当前会话
+     *
+     * @param session
+     */
+    public static void closeSession(Session session) {
+        try {
+            session.close();
+        } catch (IOException e) {
+            LOG.error(e.getMessage(), e);
+        }
+    }
+
+    /**
      * 建立 ws 连接
      *
      * @param session
@@ -62,7 +75,6 @@ public class WebSocketServer {
         OnlineUserContainer.addOnlineUser(authUser, session);
     }
 
-
     /**
      * 关闭 ws 连接
      *
@@ -99,7 +111,6 @@ public class WebSocketServer {
         }
     }
 
-
     /**
      * 发生异常 触发
      *
@@ -110,19 +121,5 @@ public class WebSocketServer {
     public void onError(Session session, Throwable t) {
         LOG.error(t.getMessage(), t);
         closeSession(session);
-    }
-
-
-    /**
-     * 关闭当前会话
-     *
-     * @param session
-     */
-    public static void closeSession(Session session) {
-        try {
-            session.close();
-        } catch (IOException e) {
-            LOG.error(e.getMessage(), e);
-        }
     }
 }

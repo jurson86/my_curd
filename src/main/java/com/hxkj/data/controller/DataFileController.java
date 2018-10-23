@@ -10,6 +10,7 @@ import com.hxkj.common.util.Identities;
 import com.hxkj.common.util.search.SearchSql;
 import com.hxkj.data.model.DataFile;
 import com.jfinal.aop.Before;
+import com.jfinal.aop.Clear;
 import com.jfinal.kit.PathKit;
 import com.jfinal.kit.Prop;
 import com.jfinal.kit.PropKit;
@@ -69,6 +70,7 @@ public class DataFileController extends BaseController {
      * 增加
      * 文件过大 没有良好的提示性信息
      */
+    @Clear
     public void addAction() throws IOException {
         Map<String, Object> result = new HashMap<String, Object>();
         HashMap<String, String> extMap = new HashMap<String, String>();

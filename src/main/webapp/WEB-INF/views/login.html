@@ -51,8 +51,8 @@
         }
 
         .form-signin:hover {
-            opacity: .9;
-            box-shadow: lightgrey 0px 0px 5px 0px;
+            opacity: 1;
+            box-shadow: inset lightgrey 0px 0px 5px 0px;
         }
 
         .form-signin .form-signin-heading,
@@ -115,7 +115,7 @@
     <div class="pure-u-1 pure-u-md-4-24 pure-u-lg-9-24"></div>
 </div>
 <script>
-    /*不被 iframe 嵌套, 如果被嵌套，父跳转到登录页面*/
+    /*不被 iframe 嵌套, 如果被嵌套，父页面跳转到登录页面*/
     if (top.location != self.location) {
         top.location = "${ctx!}/login";
     }

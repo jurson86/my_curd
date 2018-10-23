@@ -7,7 +7,6 @@ import com.hxkj.common.constant.Constant;
 import com.hxkj.common.controller.BaseController;
 import com.hxkj.common.interceptor.LoginInterceptor;
 import com.hxkj.common.interceptor.PermissionInterceptor;
-import com.hxkj.common.interceptor.ReadJsonInterceptor;
 import com.hxkj.common.util.guava.BaseCache;
 import com.hxkj.common.util.guava.CacheContainer;
 import com.jfinal.aop.Before;
@@ -209,22 +208,4 @@ public class LoginController extends BaseController {
         text = URLDecoder.decode(text, "UTF-8");
         renderQrCode(text, 200, 200);
     }
-
-    // 无用
-    @Before(ReadJsonInterceptor.class)
-    @ActionKey("/api/json")
-    public void json() {
-        renderText("over");
-    }
-
-    //无用 异常测试
-    @ActionKey("/error")
-    public void error() {
-        int x = 1 / 0;
-        renderText("异常了....");
-    }
-
-
-
-
 }

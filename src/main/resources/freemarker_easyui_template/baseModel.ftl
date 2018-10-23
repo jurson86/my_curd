@@ -13,12 +13,13 @@ public abstract class Base${(table.tableNameCamelFirstUp)!}<M extends Base${(tab
 <#if (table.columnList)??>
      <#list table.columnList as col>
 
+   public ${col.columnJavaType} get${col.columnNameCamelFirstUp}() {
+       return get("${col.columnName}");
+   }
+
    // ${col.columnName}  ${(col.columnComment)!}
    public void set${col.columnNameCamelFirstUp}(${col.columnJavaType} ${col.columnNameCamel}) {
        set("${col.columnName}", ${col.columnNameCamel});
-   }
-   public ${col.columnJavaType} get${col.columnNameCamelFirstUp}() {
-       return get("${col.columnName}");
    }
 
      </#list>

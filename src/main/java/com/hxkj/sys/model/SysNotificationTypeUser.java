@@ -13,8 +13,8 @@ import com.jfinal.plugin.activerecord.Page;
  */
 public class SysNotificationTypeUser extends BaseSysNotificationTypeUser<SysNotificationTypeUser> implements java.io.Serializable {
 
-    private static final long serialVersionUID = 1L;
     public static final SysNotificationTypeUser dao = new SysNotificationTypeUser().dao();
+    private static final long serialVersionUID = 1L;
 
     public Page<SysNotificationTypeUser> page(int pageNumber, int pageSize, String where) {
         String sqlSelect = " SELECT  a.* , b.username, b.name, b.job, c.name AS org_name, d.category, d.txt, d.code  ";

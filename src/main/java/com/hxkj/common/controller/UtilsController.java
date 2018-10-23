@@ -14,6 +14,28 @@ import com.jfinal.plugin.activerecord.Page;
  */
 @Clear
 public class UtilsController extends BaseController {
+
+
+    /**
+     * 生成 图像验证码
+     */
+    public void captcha() {
+        renderCaptcha();
+    }
+
+
+    /**
+     * 生成 二维码
+     */
+    public void qrcode() {
+        // 参数 content-width-height
+        String content = getPara(0, "验证码测试");
+        Integer width = getParaToInt(1, 200);
+        Integer height = getParaToInt(2, 200);
+        renderQrCode(content, width, height);
+    }
+
+
     /**
      * 角色选择
      */

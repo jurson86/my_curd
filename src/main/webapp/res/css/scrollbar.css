@@ -1,6 +1,7 @@
 /* -------- 滚动条样式修改 ------------- */
 
-/* webkit 内核 滚动条 样式*/
+/* 仅 chrome webkit 内核 滚动条 样式*/
+
 ::-webkit-scrollbar {
     width: 4px; /*纵向滚动条*/
     height: 6px; /*横向滚动条*/

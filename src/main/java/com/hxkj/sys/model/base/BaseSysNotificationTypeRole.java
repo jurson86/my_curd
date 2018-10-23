@@ -12,23 +12,22 @@ import com.jfinal.plugin.activerecord.Model;
 @SuppressWarnings("serial")
 public abstract class BaseSysNotificationTypeRole<M extends BaseSysNotificationTypeRole<M>> extends Model<M> implements IBean {
 
+    public String getNotificationTypeId() {
+        return get("notification_type_id");
+    }
+
     // notification_type_id  系统通知类型id
     public void setNotificationTypeId(String notificationTypeId) {
         set("notification_type_id", notificationTypeId);
     }
 
-    public String getNotificationTypeId() {
-        return get("notification_type_id");
+    public Long getRoleId() {
+        return get("role_id");
     }
-
 
     // role_id  角色类型id
     public void setRoleId(Long roleId) {
         set("role_id", roleId);
-    }
-
-    public Long getRoleId() {
-        return get("role_id");
     }
 
 }

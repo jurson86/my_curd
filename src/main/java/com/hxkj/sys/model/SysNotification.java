@@ -15,8 +15,8 @@ import com.jfinal.plugin.activerecord.Record;
  */
 public class SysNotification extends BaseSysNotification<SysNotification> implements java.io.Serializable {
 
-    private static final long serialVersionUID = 1L;
     public static final SysNotification dao = new SysNotification().dao();
+    private static final long serialVersionUID = 1L;
 
     public Page<SysNotification> page(int pageNumber, int pageSize, String where) {
         String sqlSelect = " select * ";
