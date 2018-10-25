@@ -17,7 +17,6 @@ import com.jfinal.kit.HashKit;
 import com.jfinal.kit.PropKit;
 import com.jfinal.kit.StrKit;
 import com.jfinal.plugin.activerecord.tx.Tx;
-import jodd.util.URLDecoder;
 import org.apache.log4j.Logger;
 
 import java.util.Date;
@@ -130,7 +129,7 @@ public class LoginController extends BaseController {
             render("login.html");
             return;
         }
-        // 密码正确清楚缓存
+        // 密码正确缓存数清0
         retryCache.put(username, new AtomicInteger());
 
         if (authUser.getDisabled().equals("1")) {
@@ -194,18 +193,4 @@ public class LoginController extends BaseController {
         redirect("/login");
     }
 
-
-    // 无用
-    @ActionKey("/captcha")
-    public void captcha() {
-        renderCaptcha();
-    }
-
-    // 无用
-    @ActionKey("/qrcode")
-    public void qrcode() {
-        String text = StrKit.isBlank(getPara(0)) ? "oh, my_curd!" : getPara(0);
-        text = URLDecoder.decode(text, "UTF-8");
-        renderQrCode(text, 200, 200);
-    }
 }

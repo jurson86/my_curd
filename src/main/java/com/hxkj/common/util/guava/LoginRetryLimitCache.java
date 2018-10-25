@@ -13,10 +13,10 @@ import java.util.concurrent.atomic.AtomicInteger;
  */
 public class LoginRetryLimitCache extends BaseCache<String, AtomicInteger> {
 
-    private final static Long RETRY_TIMES = PropKit.use("config.properties").getLong("loginRetryLimitTime");
+    private final static Long LOCK_TIME = PropKit.use("config.properties").getLong("lockTime");
 
     public LoginRetryLimitCache() {
-        super(RETRY_TIMES, TimeUnit.MINUTES);
+        super(LOCK_TIME, TimeUnit.MINUTES);
     }
 
     @Override
