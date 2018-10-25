@@ -23,7 +23,7 @@ my_CURD
 - 注意修改log4j.properties 中配置的 邮箱账号（系统异常时通过该配置接收错误信息）
  
 ### 依赖
-- jFinal3.4、druid、fastjson、log4j、 poi、httpcomponents、jodd、Freemarker、pinyin4j、javax.mail等
+- jFinal3.5、druid、fastjson、log4j、 poi、httpcomponents、jodd、Freemarker、pinyin4j、javax.mail等
 - easyui1.5.4.5、pure.css、ckeditor、layer、simplemde等 
 
 ### 接下来要做

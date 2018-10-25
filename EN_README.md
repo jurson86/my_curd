@@ -13,7 +13,7 @@ Light, clear and convenient.
 - Modify the email config in `log4j.properties` file if you want to receive error log  email.
 
 ### Dependencies
-- jFinal3.4、druid、fastjson、log4j、 poi、httpcomponents、jodd、Freemarker、pinyin4j、javax.mail, etc
+- jFinal3.5、druid、fastjson、log4j、 poi、httpcomponents、jodd、Freemarker、pinyin4j、javax.mail, etc
 - easyui1.5.4.5、pure.css、ckeditor、layer、simplemde, etc
 
 ### Preview 
