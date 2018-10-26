@@ -24,7 +24,7 @@
             width: 120px;
             height: 120px;
             margin: 0 auto;
-            overflow: auto;
+            overflow: hidden;
             -webkit-border-radius: 50%;
             -moz-border-radius: 50%;
             border-radius: 50%;
@@ -33,16 +33,21 @@
             -moz-transition: .1s;
         }
         .avatarWrap:hover{
-            box-shadow: 0px 0px 0px 1px lightgray;
-            -moz-box-shadow:  0px 0px 0px 1px lightgray;
-            -webkit-box-shadow:  0px 0px 0px 1px lightgray ;
+            background-color: rgba(0,0,0,0.2);
+        }
+
+        .avatarWrap img:hover{
+            opacity: .4;
         }
     </style>
 </head>
 <body >
 <div style="padding: 15px;"></div>
 <div id="avatar" class="avatarWrap">
-    <a href="javascript:openSelectImg()"  title="点击修改头像">  <img id="avatarImg"  class="pure-img" src="${ctx!}/${(authUser.avatar)!}" alt="avatar"></a>
+    <!--想写个图片鼠标悬浮文字效果，但感觉自己写样式能力真的很有限, 只好怼个 title 代替.... :(-->
+    <a href="javascript:openSelectImg()"  title="点击修改头像">
+        <img id="avatarImg"  class="pure-img" src="${ctx!}/${(authUser.avatar)!}" alt="avatar" >
+    </a>
 </div>
 <input type="file" id="fileElem" multiple accept="image/*" style="display:none" onchange="selectImg(this.files)" />
 <script>

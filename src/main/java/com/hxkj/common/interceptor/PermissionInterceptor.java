@@ -29,8 +29,9 @@ public class PermissionInterceptor implements Interceptor {
         if (LOG.isDebugEnabled()) {
             LOG.debug("permission menu: " + JsonKit.toJson(ownAuthMenus));
         }
+
         for (AuthMenu authMenu : ownAuthMenus) {
-            // 拥有权限
+            // 拥有权限 （匹配 controllerKey）
             if (StrKit.notBlank(authMenu.getUrl()) && !authMenu.getUrl().equals("/") && authMenu.getUrl().startsWith(controllerKey)) {
                 if (LOG.isDebugEnabled()) {
                     LOG.debug(controllerKey + " 拥有 " + authMenu.getUrl() + ", 拥有权限. ");

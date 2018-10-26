@@ -15,8 +15,23 @@ import java.util.Map;
 
 
 /**
- * Base Controller ，被 其它 Controller 继承
- * 增强 其它 Controller 功能
+ * Base Controller ，被 其它 Controller 继承， 增强 其它 Controller 功能
+ * <p>
+ * controller 开发应该遵循：
+ * 一个controller 为 一个功能页面， 页面中的按钮弹窗  表格数据 保存更新删除等 为这个controller 中的方法。
+ * 权限控制只匹配到 controller，角色只要拥有controller，就拥有了controller 中所有方法的访问权限
+ * <p>
+ * Controller中方法推荐命名：
+ * index 方法 为 打开页面
+ * query 方法 为 页面内 datagrid 等 json数据接口
+ * newModel 方法 打开 新增 和 修改 表单弹窗
+ * addAction 方法 为添加提交地址
+ * updateAction 方法 为 更新提交地址
+ * deleteAction 方法 为 删除提交地址
+ * .... 其余方法根据具体业务命名
+ * <p>
+ * 菜单配置：
+ * 只配置 controller key, 例如  /authMenu  为  AuthUserController
  */
 public abstract class BaseController extends Controller {
 

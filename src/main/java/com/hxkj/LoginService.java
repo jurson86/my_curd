@@ -12,7 +12,7 @@ import java.util.*;
 public class LoginService {
 
     /**
-     * 构造树形菜单格式数据
+     * 构造完整的树形菜单数据
      *
      * @param roleIds 角色id数字数组，以逗号分隔
      * @return 菜单列表

@@ -3,12 +3,18 @@ my_CURD
 [English README](https://github.com/qinyou/my_curd/blob/master/EN_README.md)
 
 ### 简介
-后台管理系统，内置代码生成器，用于业务逻辑快速开发。 
+简单简洁的后台管理系统。 
+
+前台页面 美观和谐，风格统一，控件开发方便，页面使用流畅。
+
+权限管理、代码生成器、常用的工具封装，业务快速开发方便。 
+
+如果只是想做一个小型的运营后台，想尽量快的开发出相对美观流畅的后台系统，本项目会是个不错的选择。 
 
 ### 特点
 - **轻巧**：Jfinal、Easyui、Mysql
-- **清晰**：模块划分清晰，模块下分model、controller、service 子包 和 相应页面。
-- **便捷**：前后端封装（弹窗、Tab、富文本、markdown、数据过滤、excel 导入导出等）, 页面级别权限管理、灵活的代码生成器。
+- **清晰**：项目结构清晰，注释完善。多模块下分model、controller、service 子包 和 相应页面。
+- **便捷**：前后端封装（左右布局多Tab、弹窗、数据过滤、excel 导入导出、富文本、markdown、等）, 功能页面级别权限管理、灵活的代码生成器。
 
 ### 文档 
 [代码生成器，一键生成model、controller、view](https://note.youdao.com/share/?id=0842cb7396c5c8d2f0593e16496364b8&type=note#/)

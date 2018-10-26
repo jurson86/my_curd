@@ -23,7 +23,8 @@ public class AuthMenu extends BaseAuthMenu<AuthMenu> implements java.io.Serializ
     private static final long serialVersionUID = 1L;
 
     public List<AuthMenu> findAll() {
-        String sql = "select * from auth_menu order by  sort asc";
+        // 不查询 create_time   last_edit_time 字段
+        String sql = " select b.id,b.name,b.url,b.icon,b.sort,b.pid from auth_menu b ";
         return find(sql);
     }
 
@@ -40,7 +41,7 @@ public class AuthMenu extends BaseAuthMenu<AuthMenu> implements java.io.Serializ
     public List<AuthMenu> findByRoleIds(String roleIds) {
         List<AuthMenu> result = new ArrayList<AuthMenu>();
         if (StrKit.notBlank(roleIds)) {
-            result = find("select distinct b.*" +
+            result = find("select distinct b.id,b.name,b.url,b.icon,b.sort,b.pid " +
                     " from auth_role_menu a" +
                     " join  auth_menu b" +
                     " on a.menu_id=b.id" +
