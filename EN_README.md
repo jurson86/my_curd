@@ -9,7 +9,7 @@ Light, clear and convenient.
 - Waiting for maven build to complete.
 - Configuring database connection information in the `config.properties` file.
 - Import `my_curd.sql` into the mysql database.
-- Start the project. open `http://localhost/main`, default username is `admin`, password is `111111`.
+- run the project. open `http://localhost/main`, default username is `admin`, password is `111111`.
 - Modify the email config in `log4j.properties` file if you want to receive error log  email.
 
 ### Dependencies
