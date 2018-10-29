@@ -24,7 +24,7 @@ public class SendMailUtils {
      * @param subject         邮件主题
      * @param content         邮件内容
      * @param attachFileNames 邮件附件
-     * @return
+     * @return 是否发送成功
      */
     public static boolean sendEmailAsync(List<String> to, String subject, String content, String[] attachFileNames) {
         boolean flag = false;
@@ -50,14 +50,14 @@ public class SendMailUtils {
     /**
      * 同步 发送邮件
      *
-     * @param to
-     * @param subject
-     * @param content
-     * @param attachFileNames
-     * @return
+     * @param to 接收人
+     * @param subject 主题
+     * @param content 内容
+     * @param attachFileNames 附件
+     * @return 是否发送成功
      */
     public static boolean sendEmail(List<String> to, String subject, String content, String[] attachFileNames) {
-        boolean flag = false;
+        boolean flag;
         // 输出调试日志
         if (LOG.isDebugEnabled()) {
             for (String toItem : to) {

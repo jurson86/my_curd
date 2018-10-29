@@ -18,12 +18,12 @@ import java.util.TreeMap;
  */
 public class SearchSql implements Interceptor {
 
-    // 查询字段前缀
-    private final String prefix = "search_";
-
     public void intercept(Invocation ai) {
         Controller c = ai.getController();
 
+
+        // 查询字段前缀
+        String prefix = "search_";
         // 获得 查询 参数
         Map<String, Object> searchParams = getParametersStartingWith(c.getRequest(), prefix);
 
@@ -35,8 +35,8 @@ public class SearchSql implements Interceptor {
         c.setAttr(Constant.SEARCH_SQL, whereSql);
 
         //分页参数  bootstrap 分页 和 easyui grid 分页
-        int pageNumber = 0;
-        int pageSize = 0;
+        int pageNumber;
+        int pageSize;
         if (StrKit.notBlank(c.getPara("offset"))) {
             // bootstraptable 分页
             pageNumber = c.getParaToInt("offset", 0);
@@ -62,7 +62,7 @@ public class SearchSql implements Interceptor {
     private Map<String, Object> getParametersStartingWith(
             HttpServletRequest request, String prefix) {
         Enumeration<String> paramNames = request.getParameterNames();
-        Map<String, Object> params = new TreeMap<String, Object>();
+        Map<String, Object> params = new TreeMap<>();
         if (prefix == null) {
             prefix = "";
         }
@@ -71,6 +71,7 @@ public class SearchSql implements Interceptor {
             if ("".equals(prefix) || paramName.startsWith(prefix)) {
                 String unprefixed = paramName.substring(prefix.length());
                 String[] values = request.getParameterValues(paramName);
+                //noinspection StatementWithEmptyBody
                 if (values == null || values.length == 0) {
                     // Do nothing, no values found at all.
                 } else if (values.length > 1) {
@@ -101,7 +102,7 @@ public class SearchSql implements Interceptor {
                         sb.append(" ='").append(filter.value).append("'");
                         break;
                     case LIKE:
-                        sb.append(" like ").append("'%" + filter.value + "%'");
+                        sb.append(" like ").append("'%").append(filter.value).append("%'");
                         break;
                     case GT:
                         sb.append(" >'").append(filter.value).append("'");

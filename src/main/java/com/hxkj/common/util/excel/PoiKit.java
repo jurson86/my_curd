@@ -255,6 +255,7 @@ public class PoiKit {
         Preconditions.checkNotNull(headers, "headers 不可为空");
         Preconditions.checkNotNull(columns, "columns 不可为空");
         Preconditions.checkArgument(cellWidth >= 0, "cellWidth 不可小于0 ");
+        Preconditions.checkArgument(data.size()<MAX_ROWS," 数据行数不可大于65535 ");
 
         HSSFWorkbook wb = new HSSFWorkbook();
         HSSFSheet sheet = wb.createSheet(sheetName);

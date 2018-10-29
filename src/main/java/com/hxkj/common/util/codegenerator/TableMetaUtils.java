@@ -18,10 +18,10 @@ import java.util.Map;
 public class TableMetaUtils {
     private final static Logger LOG = Logger.getLogger(TableMetaUtils.class);
 
-    private Dialect dialect;
-    private DataSource dataSource;
+    private final Dialect dialect;
+    private final DataSource dataSource;
     // 符合 jfinal 特色 的数据库 java 类型映射
-    private TypeMapping typeMapping = new TypeMapping();
+    private final TypeMapping typeMapping = new TypeMapping();
 
     public TableMetaUtils(Dialect dialect, DataSource dataSource) {
         this.dialect = dialect;
@@ -36,7 +36,7 @@ public class TableMetaUtils {
      * @return
      */
     public List<Table> getAllTableInfo(Boolean columnFlag) {
-        List<Table> tables = new ArrayList<Table>();
+        List<Table> tables = new ArrayList<>();
         Connection conn = null;
         try {
             conn = this.dataSource.getConnection();
@@ -50,7 +50,7 @@ public class TableMetaUtils {
                 table.setTableNameCamelFirstUp(StrKit.firstCharToUpperCase(table.getTableNameCamel())); // 表 名 驼峰写法 首字母大写
                 // 查询表的主键信息
                 ResultSet pkrs = dbMeta.getPrimaryKeys(conn.getCatalog(), null, table.getTableName());
-                List<String> tablePrimaryKeys = new ArrayList<String>();
+                List<String> tablePrimaryKeys = new ArrayList<>();
                 while (pkrs.next()) {
                     tablePrimaryKeys.add(pkrs.getString("COLUMN_NAME"));
                 }

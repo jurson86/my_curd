@@ -25,7 +25,7 @@ public abstract class ImgWatermarkUtils {
      * @param x
      * @param y
      */
-    public final static void pressImage(String pressImgPath, String targetImgPath, int x, int y) {
+    public static void pressImage(String pressImgPath, String targetImgPath, int x, int y) {
         try {
             // 目标文件
             File file = new File(targetImgPath);

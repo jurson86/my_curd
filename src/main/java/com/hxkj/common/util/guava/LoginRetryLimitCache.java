@@ -9,7 +9,6 @@ import java.util.concurrent.atomic.AtomicInteger;
  * 登录密码验证错误 缓存
  *
  * @author chuang
- * @date 2018/9/3
  */
 public class LoginRetryLimitCache extends BaseCache<String, AtomicInteger> {
 

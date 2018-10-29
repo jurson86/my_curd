@@ -6,7 +6,6 @@ import com.jfinal.aop.Invocation;
 import org.apache.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
@@ -23,7 +22,6 @@ public class LoginInterceptor implements Interceptor {
         LOG.debug("do LoginInterceptor ");
 
         HttpServletRequest request = invocation.getController().getRequest();
-        HttpServletResponse response = invocation.getController().getResponse();
         HttpSession session = request.getSession();
 
         // 未登录 跳转到登录页面

@@ -7,8 +7,8 @@ import com.alibaba.fastjson.annotation.JSONField;
  * 数据库表 列
  */
 public class Column {
-    // 列名字
-    @JSONField(ordinal = 0)
+    // 列名字 (默认排序为0)
+    @JSONField()
     private String columnName;
     // 列名字 驼峰
     @JSONField(ordinal = 1)

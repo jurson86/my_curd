@@ -1,6 +1,5 @@
 package com.hxkj.common.util.guava;
 
-import com.jfinal.kit.PropKit;
 
 /**
  * 缓存实例容器
@@ -9,7 +8,6 @@ import com.jfinal.kit.PropKit;
  * @date 2018/9/3
  */
 public class CacheContainer {
-    private final static Long RETRY_TIMES = PropKit.use("config.properties").getLong("loginRetryLimitTime");
     private static BaseCache loginRetryLimitCache = null;
 
     private CacheContainer() {
@@ -19,7 +17,7 @@ public class CacheContainer {
     /**
      * 获得单例 登录错误 缓存
      *
-     * @return
+     * @return 登录错误缓存
      */
     public static BaseCache getLoginRetryLimitCache() {
         if (loginRetryLimitCache == null) {

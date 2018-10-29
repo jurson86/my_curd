@@ -12,15 +12,16 @@ import java.io.OutputStream;
 import java.util.List;
 
 /**
- * POI render, jfinal excel 导出，导出数据为文本类型
+ * 格式经典 POI render, jfinal excel 导出，导出数据为文本类型
+ * 格式：单sheet，最大65535行，前几行为标题，标题行之后行为数据
  */
 public class PoiRender extends Render {
 
     private final static String CONTENT_TYPE = "application/msexcel;charset=" + getEncoding();
-    protected final Logger LOG = Logger.getLogger(getClass());
+    private final static Logger LOG = Logger.getLogger(PoiRender.class);
 
     // ? 必须是 Map 或者 Model 或者 Record， 数据值必须是 基础类型 或者 基础包装 或者 日期类型
-    private List<?> data;
+    private final List<?> data;
 
     // excel 文件中标题列
     private String[] headers;
@@ -43,7 +44,7 @@ public class PoiRender extends Render {
     // 日期格式化
     private String dateFormat = "yyyy-MM-dd HH:mm:ss";
 
-    public PoiRender(List<?> data) {
+    private PoiRender(List<?> data) {
         this.data = data;
     }
 
@@ -76,8 +77,8 @@ public class PoiRender extends Render {
         return this;
     }
 
-    public PoiRender dateFormat(String dateFormt) {
-        this.dateFormat = dateFormt;
+    public PoiRender dateFormat(String dateFormat) {
+        this.dateFormat = dateFormat;
         return this;
     }
 

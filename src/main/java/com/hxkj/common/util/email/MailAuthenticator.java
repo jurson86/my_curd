@@ -6,9 +6,9 @@ import javax.mail.PasswordAuthentication;
 /**
  * 邮箱认证
  */
-public class MailAuthenticator extends Authenticator {
-    private String userName;
-    private String password;
+class MailAuthenticator extends Authenticator {
+    private final String userName;
+    private final String password;
 
     public MailAuthenticator(String username, String password) {
         this.userName = username;

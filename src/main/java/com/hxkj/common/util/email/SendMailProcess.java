@@ -16,19 +16,19 @@ import java.util.concurrent.Callable;
  * 发送邮件
  * FutureTask<Boolean>  或者 直接调用
  */
-public class SendMailProcess implements Callable<Boolean> {
+class SendMailProcess implements Callable<Boolean> {
     private final static Logger LOG = Logger.getLogger(SendMailProcess.class);
 
-    private String host;                  // 发送邮件的服务器的IP
-    private String port = "25";           // 发送邮件的服务器的端口
-    private String from;                  // 邮件发送者的地址
-    private String userName;              // 登陆邮件发送服务器的用户名
-    private String password;              // 登陆邮件发送服务器的密码
+    private final String host;                  // 发送邮件的服务器的IP
+    private final String port ;                 // 发送邮件的服务器的端口
+    private final String from;                  // 邮件发送者的地址
+    private final String userName;              // 登陆邮件发送服务器的用户名
+    private final String password;              // 登陆邮件发送服务器的密码
 
-    private List<String> to;              // 接收者地址
-    private String subject;               // 标题
-    private String content;               // 文本内容
-    private String[] attachFileNames;     // 附件文件名
+    private final List<String> to;              // 接收者地址
+    private final String subject;               // 标题
+    private final String content;               // 文本内容
+    private final String[] attachFileNames;     // 附件文件名
 
     public SendMailProcess(List<String> to, String subject, String content, String[] attachFileNames) {
 

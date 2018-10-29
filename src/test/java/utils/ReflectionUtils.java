@@ -60,6 +60,7 @@ public class ReflectionUtils {
            genderField.set(personInstance,"男");
            System.out.println(genderField.get(personInstance));
 
+
     }
 }
 

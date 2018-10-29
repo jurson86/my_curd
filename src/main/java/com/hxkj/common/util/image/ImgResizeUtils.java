@@ -12,6 +12,7 @@ import java.awt.image.BufferedImage;
 import java.awt.image.ConvolveOp;
 import java.awt.image.Kernel;
 import java.io.*;
+import java.util.Objects;
 
 /**
  * 图像尺寸缩放
@@ -44,7 +45,7 @@ public abstract class ImgResizeUtils {
         try {
             fis = new FileInputStream(originalFile);
             byteStream = new ByteArrayOutputStream();
-            int readLength = -1;
+            int readLength;
             int bufferSize = 1024;
             byte bytes[] = new byte[bufferSize];
             while ((readLength = fis.read(bytes, 0, bufferSize)) != -1) {
@@ -67,9 +68,7 @@ public abstract class ImgResizeUtils {
             double scaleW = (double) imageWidth / (double) width;
             double scaleY = (double) imageHeight / (double) height;
             if (scaleW >= 0 && scaleY >= 0) {
-                if (scaleW > scaleY) {
-                    height = -1;
-                } else {
+                if (scaleW <= scaleY) {
                     width = -1;
                 }
             }
@@ -81,12 +80,12 @@ public abstract class ImgResizeUtils {
             throw new RuntimeException("resize异常");
         } finally {
             try {
-                fis.close();
+                Objects.requireNonNull(fis).close();
             } catch (IOException e) {
                 LOG.error(e.getMessage());
             }
             try {
-                byteStream.close();
+                Objects.requireNonNull(byteStream).close();
             } catch (IOException e) {
                 LOG.error(e.getMessage());
             }
@@ -159,12 +158,13 @@ public abstract class ImgResizeUtils {
         try {
             ImageIcon ii = new ImageIcon(originalFile.getCanonicalPath());
             Image i = ii.getImage();
-            Image resizedImage = null;
+            Image resizedImage;
             int iWidth = i.getWidth(null);
             int iHeight = i.getHeight(null);
             if (iWidth > iHeight) {
                 resizedImage = i.getScaledInstance(newWidth, (newWidth * iHeight) / iWidth, Image.SCALE_SMOOTH);
             } else {
+                //noinspection SuspiciousNameCombination
                 resizedImage = i.getScaledInstance((newWidth * iWidth) / iHeight, newWidth, Image.SCALE_SMOOTH);
             }
             Image temp = new ImageIcon(resizedImage).getImage();
@@ -189,7 +189,7 @@ public abstract class ImgResizeUtils {
             LOG.error(e.getMessage(), e);
         } finally {
             try {
-                out.close();
+                Objects.requireNonNull(out).close();
             } catch (IOException e) {
                 LOG.error(e.getMessage(), e);
             }
