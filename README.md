@@ -33,7 +33,8 @@ my_CURD
 - easyui1.5.4.5、pure.css、ckeditor、layer、simplemde等 
 
 ### 接下来要做
-- [ ] 手机端基础框架
+- [ ] jwt token 支持
+- [ ] 全文检索支持
 
 ### 预览
 ![登录](https://raw.githubusercontent.com/qinyou/my_curd/master/preview/login.png)
