@@ -19,17 +19,13 @@ public class LoginInterceptor implements Interceptor {
 
     @Override
     public void intercept(Invocation invocation) {
-        LOG.debug("do LoginInterceptor ");
-
         HttpServletRequest request = invocation.getController().getRequest();
         HttpSession session = request.getSession();
-
         // 未登录 跳转到登录页面
         if (session.getAttribute(Constant.AUTH_USER) == null) {
             invocation.getController().redirect("/login/index");
             return;
         }
-
         invocation.invoke();
     }
 }

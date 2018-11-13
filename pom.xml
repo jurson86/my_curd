@@ -242,15 +242,14 @@
         <finalName>my_curd</finalName>
         <plugins>
             <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>2.3.1</version>
+                <version>3.6.1</version>
                 <configuration>
                     <source>${maven.compiler.source}</source>
                     <target>${maven.compiler.target}</target>
                     <encoding>UTF-8</encoding>
-                    <compilerArguments>
-                        <extdirs>src/main/webapp/WEB-INF/lib</extdirs>
-                    </compilerArguments>
+                    <compilerArgument>-parameters</compilerArgument>
                 </configuration>
             </plugin>
             <!-- jetty 应用热部署, IDEA 需要配合使用 ctrl + f9  -->

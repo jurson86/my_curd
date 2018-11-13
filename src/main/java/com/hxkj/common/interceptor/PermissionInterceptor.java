@@ -28,6 +28,8 @@ public class PermissionInterceptor implements Interceptor {
 
         if (LOG.isDebugEnabled()) {
             LOG.debug("permission menu: " + JsonKit.toJson(ownAuthMenus));
+            LOG.debug("controllerKey:"+controllerKey);
+            LOG.debug("actionKey:"+inv.getActionKey());
         }
 
         for (AuthMenu authMenu : ownAuthMenus) {
