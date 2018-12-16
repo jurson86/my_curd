@@ -62,7 +62,6 @@
 <script src="${ctx!}/res/layer/layer.js"></script>
 <script src="${ctx!}/res/js/popup-tools.js"></script>
 <script>
-    /*打开角色侧栏*/
     var easyTree = new EasyTree();
     function openPermissionPanel(){
         var url = "${ctx!}/authRole/menuTreePermissionChecked?roleId=${roleId!}";
@@ -73,7 +72,6 @@
                 checkbox: true,
                 lines:true
             });
-            $("#nestLayout").layout("expand", "east");
         });
     }
     $(function(){

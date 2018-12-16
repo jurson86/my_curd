@@ -64,7 +64,6 @@ public class LoginController extends BaseController {
                 AuthUserRole authUserRole = AuthUserRole.dao.findRolesByUserId(authUser.getId());
                 if (authUserRole != null) {
                     setSessionAttr(Constant.AUTH_USER_ROLES, authUserRole.get("roleNames"));
-                    setSessionAttr(Constant.AUTH_USER_ROLES, authUserRole.get("roleNames"));
                     LoginService loginService = Duang.duang(LoginService.class);
                     List<AuthMenu> userMenus = loginService.buildTreeUserMenu(authUserRole.get("roleIds"));
                     setSessionAttr(Constant.OWN_MENU, userMenus);
@@ -181,6 +180,7 @@ public class LoginController extends BaseController {
 
         // 移除session属性
         removeSessionAttr(Constant.AUTH_USER);
+        removeSessionAttr(Constant.AUTH_USER_NAME);
         removeSessionAttr(Constant.AUTH_USER_ROLES);
         removeSessionAttr(Constant.OWN_MENU);
 
