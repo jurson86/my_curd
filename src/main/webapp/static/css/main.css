@@ -1,0 +1,80 @@
+/*main.ftl 中使用的 css 样式*/
+
+/* -------- 顶部 导航栏 -------------- */
+.mainHeader {
+    height: 42px;
+    overflow: hidden;
+}
+
+.mainHeader .pure-button {
+    padding: 7px 8px;
+}
+.mainHeader .pure-button:hover{
+    border: none !important;
+}
+
+.mainHeader  ul.headerMenu li a.active {
+    filter: alpha(opacity=90);
+    background-image: -webkit-linear-gradient(transparent, rgba(0, 0, 0, .05) 40%, rgba(0, 0, 0, .1));
+    background-image: linear-gradient(transparent, rgba(0, 0, 0, .05) 40%, rgba(0, 0, 0, .1))
+}
+
+.mainHeader ul.headerMenu {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    list-style-type: none;
+}
+
+.mainHeader ul.headerMenu li {
+    float: left;
+}
+
+.mainHeader ul.headerMenu span.right {
+    float: right;
+}
+
+.mainHeader ul.headerMenu li a {
+    display: block;
+    padding: 12px 14px;
+    font-size: 14px;
+    color: #ffffff;
+    text-align: center;
+    text-decoration: none;
+}
+
+.mainHeader ul.headerMenu li a.title {
+    padding: 8px 0px;
+    font-size:18px;
+    font-weight: bold;
+}
+
+
+.unreadCount.hid {
+    display: none;
+}
+
+
+
+/*左侧边栏*/
+.sidebar .panel-header, .sidebar .panel-body {
+    /*background-color: #f5f5f5;*/
+    /*background-color: #fbfbfb;*/
+    background-color: #ffffff;
+}
+
+.sidebar .panel-header {
+    /*border-top: none;*/
+}
+
+/* -------- 中部 tab 组 -------------- */
+/*tab iframe 两个滚动条问题*/
+#tabGroup .tabs-panels > .panel > .panel-body {
+    overflow: hidden;
+}
+
+#tabGroup .iconfont {
+    line-height: 16px;
+    font-size: 16px;
+}
