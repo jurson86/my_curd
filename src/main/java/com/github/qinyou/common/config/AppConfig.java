@@ -23,6 +23,7 @@ import com.jfinal.kit.Prop;
 import com.jfinal.kit.PropKit;
 import com.jfinal.plugin.activerecord.ActiveRecordPlugin;
 import com.jfinal.plugin.activerecord.dialect.MysqlDialect;
+import com.jfinal.plugin.cron4j.Cron4jPlugin;
 import com.jfinal.plugin.druid.DruidPlugin;
 import com.jfinal.plugin.druid.DruidStatViewHandler;
 import com.jfinal.plugin.druid.IDruidStatViewAuth;
@@ -133,8 +134,8 @@ public class AppConfig extends JFinalConfig {
         ExampleModelMapping.mapping(activeRecordPlugin); // 用例模块
         me.add(activeRecordPlugin);
 
-//        Cron4jPlugin cp = new Cron4jPlugin(PropKit.use("cron4j.properties"), "cron4j");
-//        me.add(cp);
+        Cron4jPlugin cp = new Cron4jPlugin(PropKit.use("task.properties"), "cron4j");
+        me.add(cp);
 
         // redis 插件
 //        Prop redisProp = PropKit.use("redis.properties");
