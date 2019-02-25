@@ -1,41 +1,46 @@
-my_CURD
-===
-[English README](https://github.com/qinyou/my_curd/blob/master/EN_README.md)
 
-### 简介
-简单简洁的后台管理系统。 
+<p align="center" style='font-weight:bold'>
+    <img src="https://images.gitee.com/uploads/images/2019/0213/221706_3326cf26_608004.png" width="120">
+    <br/>
+    my_curd
+    <p align="center">
+       后台权限管理系统，内置代码生成器，代码量少，简单美观。
+    </p>    
+</p>
 
-前台页面 美观和谐，风格统一，控件开发方便，页面使用流畅。
+#### 项目介绍
+基于 jfinal mysql easyui 快速开发 后台脚手架。 
+1. 权限管理（菜单级 按钮级）
+2. 代码生成器 （单表、主从表， model、controller、页面，增删改查导入导出）
+3. 前台多主题配色  （单个css全局替换配色 ）
+4. 基于 websocket 系统通知
 
-权限管理、代码生成器、常用的工具封装，业务快速开发方便。 
 
-如果只是想做一个小型的运营后台，想尽量快的开发出相对美观流畅的后台系统，本项目会是个不错的选择。 
+#### 系统环境
+-  JDK8 及以上
+-  mysql5.7
+-  jfinal3.6 、freemarker、 easypoi3.2.0 、logback.....
+-  easyui1.6.10 、 pure.css 、layer .....
 
-### 特点
-- **轻巧**：Jfinal、Easyui、Mysql
-- **清晰**：项目结构清晰，注释完善。多模块下分model、controller、service 子包 和 相应页面。
-- **便捷**：前后端封装（左右布局多Tab、弹窗、数据过滤、excel 导入导出、富文本、markdown、等）, 功能页面级别权限管理、灵活的代码生成器。
+#### 快速开始
+1. 已安装 jdk，maven，mysql 数据库。
+2. 创建数据库 my_curd,并将 db 目录下 的 sql 脚本 导入数据库
+3. clone 本项目后解压缩, 修改 resoureces 下 jdbc.properties 中的数据库连接信息
+4. 项目根目录下 mvn clean package, 进入 target/my_curd-release/my_curd, 使用 start.bat 或 start.sh 启动项目
+5. 访问 http://localhost/dashboard, 账号 admin, 密码 123456 或 111111
+6. 更多文档请看本项目Wiki, 因为项目足够简单，查看代码了解项目可能是更好的选择
 
-### 文档 
-[代码生成器，一键生成model、controller、view](https://note.youdao.com/share/?id=0842cb7396c5c8d2f0593e16496364b8&type=note#/)
+#### 开发环境 推荐（支持 class 热加载）
+-  IDEA + JRebel + Tomcat     (写大量页面类应用)
+-  Eclipse + jfinal-undertow  (数据接口类应用)
 
-### 快速开始
-- `git clone https://github.com/qinyou/my_curd`
-- 使用`idea` or `eclipse`打开项目
-- 等待 maven构建完成
-- 配置 `config.properties` 文件里的数据库连接信息
-- 将 `my_curd.sql` 导入数据库
-- 启动项目，用户名：admin 密码：111111 或者 123456
-- 注意修改log4j.properties 中配置的 邮箱账号（系统异常时通过该配置接收错误信息）
- 
-### 依赖
-- jFinal3.5、druid、fastjson、log4j、 poi、httpcomponents、jodd、Freemarker、pinyin4j、javax.mail等
-- easyui1.5.4.5、pure.css、ckeditor、layer、simplemde等 
+#### 预览 
+![菜单](https://raw.githubusercontent.com/qinyou/my_curd/master/preview/menu.png "menu.png")
+![角色](https://raw.githubusercontent.com/qinyou/my_curd/master/preview/role.png "role.png")
+![用户](https://raw.githubusercontent.com/qinyou/my_curd/master/preview/user.png "user.png")
+![机构](https://raw.githubusercontent.com/qinyou/my_curd/master/preview/org.png "org.png")
+![单表生产](https://raw.githubusercontent.com/qinyou/my_curd/master/preview/single.png "single.png")
+![一对多表](https://raw.githubusercontent.com/qinyou/my_curd/master/preview/otm.png "otm.png")
+![访问日志](https://raw.githubusercontent.com/qinyou/my_curd/master/preview/log.png "log.png")
 
-### 接下来要做
-- [ ] jwt token 支持
-- [ ] 全文检索支持
 
-### 预览
-![登录](https://raw.githubusercontent.com/qinyou/my_curd/master/preview/login.png)
-![菜单](https://raw.githubusercontent.com/qinyou/my_curd/master/preview/menu.png)
