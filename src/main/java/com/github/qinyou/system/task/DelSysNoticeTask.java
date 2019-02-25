@@ -27,7 +27,7 @@ public class DelSysNoticeTask implements Runnable {
         String errMsg = null;
 
         Date today = new Date();
-        LOG.info(" 定时任务执行。 (删除 “过期未读” 和 “必死” 的 系统通知数据表 数据）");
+        LOG.debug(" 定时任务执行。 (删除 “过期未读” 和 “必死” 的 系统通知数据表 数据）");
         try {
             Db.tx(() -> {
                 // 删除 必死期 的 主从表记录

@@ -1,14 +1,9 @@
-# Created by .ignore support plugin (hsz.mobi)
 *.log
 /.settings
 .classpath
 .project
-jfinalide.properties
-/WebRoot/META-INF
-/WebRoot/WEB-INF/classes
 /.idea
 /out
 *.iml
 /target
 /log
-/admin.iml

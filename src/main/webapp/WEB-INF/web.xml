@@ -3,6 +3,7 @@
          xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
          id="WebApp_ID" version="3.0">
     <display-name>my_curd</display-name>
+    <description>如使用 jfinal-undertow, 此配置文件无用</description>
     <welcome-file-list>
         <welcome-file>/main</welcome-file>
     </welcome-file-list>

@@ -17,7 +17,6 @@ import java.util.Map;
  * @author zhangchuang
  */
 public class Model2Bean<M, B> {
-
     private final static Logger LOG = LoggerFactory.getLogger(Model2Bean.class);
 
 

@@ -21,7 +21,7 @@ public class TestTask implements ITask {
 
     @Override
     public void stop() {
-        LOG.info("task stop");
+        LOG.debug("task stop");
     }
 
     @Override
@@ -35,13 +35,13 @@ public class TestTask implements ITask {
 
         // 业务代码
         try {
-            LOG.info("task start");
+            LOG.debug("task start");
             try {
                 Thread.sleep(5000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            LOG.info("task end");
+            LOG.debug("task end");
         } catch (Exception e) {
             LOG.error(e.getMessage(), e);
             errMsg = e.getMessage();

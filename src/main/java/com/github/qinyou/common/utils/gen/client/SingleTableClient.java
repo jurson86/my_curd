@@ -35,7 +35,7 @@ public class SingleTableClient {
     private final static boolean hasExcel = true;
 
     public static void generate(List<TableMeta> tableMetas) throws IOException {
-        LOG.info("(*^▽^*) start generate singletable ");
+        System.out.println("(*^▽^*) start generate singletable ");
         Map<String, Object> params;
         String controllerTplContent = FileUtils.readFile(controllerTplPath);
         String indexTplContent = FileUtils.readFile(indexTplPath);
@@ -57,22 +57,19 @@ public class SingleTableClient {
             outPath = controllerOutPath + tableMeta.nameCamelFirstUp + "Controller.java";
             renderContent = FreemarkerUtils.renderAsText(controllerTplContent, params);
             FileUtils.writeFile(renderContent, outPath);
-            LOG.info(outPath);
 
             // index.ftl
             outPath = pageOutDirPath + tableMeta.nameCamel + ".ftl";
             renderContent = FreemarkerUtils.renderAsText(indexTplContent, params);
             FileUtils.writeFile(renderContent, outPath);
-            LOG.info(outPath);
 
             // form.ftl
             outPath = pageOutDirPath + tableMeta.nameCamel + "_form.ftl";
             renderContent = FreemarkerUtils.renderAsText(formTplContent, params);
             FileUtils.writeFile(renderContent, outPath);
-            LOG.info(outPath);
         }
 
-        LOG.info("(*^▽^*)  generate singletable over ");
+        System.out.println("(*^▽^*)  generate singletable over ");
     }
 
     public static void main(String[] rgs) throws IOException {

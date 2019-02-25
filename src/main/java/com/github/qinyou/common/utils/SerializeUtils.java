@@ -1,6 +1,8 @@
 package com.github.qinyou.common.utils;
 
-import org.apache.log4j.Logger;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -12,7 +14,7 @@ import java.io.ObjectOutputStream;
  */
 public abstract class SerializeUtils {
 
-    private final static Logger LOG = Logger.getLogger(SerializeUtils.class);
+    private final static Logger LOG = LoggerFactory.getLogger(SerializeUtils.class);
 
     private SerializeUtils() {
     }

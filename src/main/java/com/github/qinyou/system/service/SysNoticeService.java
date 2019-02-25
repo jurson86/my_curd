@@ -57,11 +57,11 @@ public class SysNoticeService {
         // 保存通知数据
         boolean flag = saveNotificationData(sysNoticeType, msgTitle, msgContent, receivers);
         if (!flag) {
-            LOG.info("{}, 系统通知 数据保存数据库失败", noticeCode);
+            LOG.debug("{}, 系统通知 数据保存数据库失败", noticeCode);
             return false;
         }
 
-        LOG.info("{}, 系统通知 执行成功", noticeCode);
+        LOG.debug("{}, 系统通知 执行成功", noticeCode);
 
         // 服务器消息推送
         Map<String, Object> msg = new HashMap<>();

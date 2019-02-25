@@ -22,7 +22,7 @@ public class ExecutorServiceUtils {
     public static ExecutorService pool;
 
     static {
-        LOG.info("----- 初始化线程池 -----");
+        LOG.debug("----- 初始化线程池 -----");
         pool = new ThreadPoolExecutor(5, 10,
                 0L, TimeUnit.MILLISECONDS, new LinkedBlockingQueue<>(),
                 new ThreadFactoryBuilder().setNameFormat("my_curd_pro-%d").setDaemon(true).build());

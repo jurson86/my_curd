@@ -34,7 +34,7 @@ public class ModelDictClient {
      */
     @SuppressWarnings("UnusedAssignment")
     private static void generate(List<TableMeta> tableMetas) throws IOException {
-        LOG.info("(*^▽^*) start generate dict");
+        System.out.println("(*^▽^*) start generate dict");
 
         String tplContent = FileUtils.readFile(dictTplPath);  // 模板内容
         String renderContent;        // 渲染后文本
@@ -50,7 +50,6 @@ public class ModelDictClient {
 
             outPath = dictOutDirPath + "model_dict.html";
             FileUtils.writeFile(renderContent, outPath);
-            LOG.info(outPath);
 
         } else {
             // 输出 多个文件
@@ -65,11 +64,10 @@ public class ModelDictClient {
 
                 outPath = dictOutDirPath + tableMeta.name + ".html";
                 FileUtils.writeFile(renderContent, outPath);
-                LOG.info(outPath);
             }
         }
 
-        LOG.info("(*^▽^*) generate dict over");
+        System.out.println("(*^▽^*) generate dict over");
     }
 
     public static void main(String[] args) throws IOException {

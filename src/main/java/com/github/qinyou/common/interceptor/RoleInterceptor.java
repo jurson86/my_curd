@@ -17,7 +17,6 @@ import org.slf4j.LoggerFactory;
  * @author zhangchuang
  */
 public class RoleInterceptor implements Interceptor {
-
     private final static Logger LOG = LoggerFactory.getLogger(RoleInterceptor.class);
 
     @Override

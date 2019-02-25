@@ -8,6 +8,7 @@ import com.github.qinyou.common.interceptor.ExceptionInterceptor;
 import com.github.qinyou.common.interceptor.LoginInterceptor;
 import com.github.qinyou.common.interceptor.PermissionInterceptor;
 import com.github.qinyou.common.interceptor.UserSetttingInterceptor;
+import com.github.qinyou.common.log.LogBackLogFactory;
 import com.github.qinyou.common.utils.UtilsController;
 import com.github.qinyou.example.ExampleModelMapping;
 import com.github.qinyou.example.ExampleRoute;
@@ -26,9 +27,8 @@ import com.jfinal.plugin.druid.DruidPlugin;
 import com.jfinal.plugin.druid.DruidStatViewHandler;
 import com.jfinal.plugin.druid.IDruidStatViewAuth;
 import com.jfinal.render.ViewType;
+import com.jfinal.server.undertow.UndertowServer;
 import com.jfinal.template.Engine;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -39,9 +39,29 @@ import javax.servlet.http.HttpServletRequest;
  * @author zhangcuang
  */
 public class AppConfig extends JFinalConfig {
-    private final static Logger LOG = LoggerFactory.getLogger(AppConfig.class);
-
     private Prop configProp = PropKit.use("config.properties");
+
+    public static void main(String[] args) {
+        UndertowServer.create(AppConfig.class)
+                .configWeb(builder -> {
+                    // druid web filter
+                    builder.addFilter("DruidWebStatFilter", "com.alibaba.druid.support.http.WebStatFilter");
+                    builder.addFilterUrlMapping("DruidWebStatFilter", "/*");
+                    builder.addFilterInitParam("DruidWebStatFilter", "exclusions", "*.js,*.gif,*.jpg,*.jpeg,*.png,*.css,*.ico,/druid/*,/static/*");
+                    builder.addFilterInitParam("DruidWebStatFilter", "principalSessionName", "SYS_USER_NAME");
+                    builder.addFilterInitParam("DruidWebStatFilter", "profileEnable", "true");
+                    // cors 跨域 filter
+                    builder.addFilter("CORS", "com.thetransactioncompany.cors.CORSFilter");
+                    builder.addFilterUrlMapping("CORS", "/*");
+                    builder.addFilterInitParam("CORS", "cors.allowOrigin", "*");
+                    builder.addFilterInitParam("CORS", "cors.supportedMethods", "GET, POST, HEAD, PUT, DELETE");
+                    builder.addFilterInitParam("CORS", "cors.supportedHeaders", "Accept, Origin, X-Requested-With, Content-Type, Last-Modified");
+                    builder.addFilterInitParam("CORS", "cors.exposedHeaders", "Set-Cookie");
+                    builder.addFilterInitParam("CORS", "cors.supportsCredentials", "true");
+                    // 配置 WebSocket，MyWebSocket 需使用 ServerEndpoint 注解
+                    builder.addWebSocketEndpoint("com.github.qinyou.common.ws.WebSocketServer");
+                }).start();
+    }
 
     /**
      * 配置JFinal常量
@@ -53,6 +73,9 @@ public class AppConfig extends JFinalConfig {
         Prop fileProp = PropKit.use("file.properties");
 
         me.setDevMode(configProp.getBoolean("devMode"));
+        me.setLogFactory(new LogBackLogFactory());
+        me.setInjectDependency(true);
+
         // 上传下载
         me.setBaseUploadPath(fileProp.get("upload"));
         me.setMaxPostSize(fileProp.getInt("maxPostSize"));

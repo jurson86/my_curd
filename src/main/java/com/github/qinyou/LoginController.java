@@ -189,4 +189,10 @@ public class LoginController extends BaseController {
         setCookie(passwordKey, null, 0);
         redirect("/login");
     }
+
+
+    @ActionKey("/hello")
+    public void hello() {
+        renderText("I really love you");
+    }
 }

@@ -31,7 +31,7 @@ public class ModelMappingClient {
      * @throws IOException 文件读写异常
      */
     private static void generate(List<TableMeta> tableMetas) throws IOException {
-        LOG.info("(*^▽^*) start generate MappingKit");
+        System.out.println("(*^▽^*) start generate MappingKit");
 
         String mappingKitContent = FileUtils.readFile(mappingKitTplPath);
         Map<String, Object> params = new HashMap<>();
@@ -45,8 +45,7 @@ public class ModelMappingClient {
         String outPath = mappingKitOutPath + StrKit.firstCharToUpperCase(GeneratorConfig.moduleName) + "ModelMapping.java";
         FileUtils.writeFile(renderMappingKitContent, outPath);
 
-        LOG.info(outPath);
-        LOG.info("(*^▽^*) generate MappingKit over");
+        System.out.println("(*^▽^*) generate MappingKit over");
     }
 
     public static void main(String[] args) throws IOException {

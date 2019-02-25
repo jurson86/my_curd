@@ -82,7 +82,7 @@ public class SendMsgUtils {
      * @param sessionId 排除的当前session
      */
     public static void broadcast(String message, String sessionId) {
-        LOG.info("broadcast msg : {}", message);
+        LOG.debug("broadcast msg : {}", message);
         ExecutorServiceUtils.pool.submit(() -> {
             Session session;
             for (String mapKey : OnlineUserContainer.SESSIONID_SESSION.keySet()) {

@@ -5,8 +5,6 @@ import com.github.qinyou.common.utils.freemarker.FreemarkerUtils;
 import com.github.qinyou.common.utils.gen.GeneratorConfig;
 import com.github.qinyou.common.utils.gen.tools.MysqlMetaUtils;
 import com.github.qinyou.common.utils.gen.tools.TableMeta;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -19,14 +17,13 @@ import java.util.Map;
  * @author zhangchuang
  */
 public class ModelClient {
-    private final static Logger LOG = LoggerFactory.getLogger(ModelClient.class);
     private final static boolean genModel = true;                                                       // 是否生成Model
     private final static boolean genBaseModel = true;                                                   // 是否生成baseModel
     private final static boolean chainSetter = true;                                                    // 是否生成链式 setter 方法
     private final static String baseModelTplPath = GeneratorConfig.tplBasePath + "model/baseModel.ftl"; // baseModel 模板文件路径
-    private final static String baseModelOutPath = GeneratorConfig.outputBasePath + "model/base/";    // baseModel 文件输出路径
-    private final static String modelTplPath = GeneratorConfig.tplBasePath + "model/model.ftl";       // Model 模板 路径
-    private final static String modelOutPath = GeneratorConfig.outputBasePath + "model/";             // Model 文件输出路径
+    private final static String baseModelOutPath = GeneratorConfig.outputBasePath + "model/base/";      // baseModel 文件输出路径
+    private final static String modelTplPath = GeneratorConfig.tplBasePath + "model/model.ftl";         // Model 模板 路径
+    private final static String modelOutPath = GeneratorConfig.outputBasePath + "model/";               // Model 文件输出路径
     public static boolean hasExcel = false;                                                             // 是否生成 导出导出excel 所需要的注解
 
     /**
@@ -36,7 +33,7 @@ public class ModelClient {
      * @throws IOException 文件读写异常
      */
     private static void generate(List<TableMeta> tableMetas) throws IOException {
-        LOG.info("(*^▽^*) start generate Model");
+        System.out.println("(*^▽^*) start generate Model");
         if (!genBaseModel && !genModel) {
             return;
         }
@@ -66,7 +63,6 @@ public class ModelClient {
             if (genBaseModel) {
                 renderBaseModelContent = FreemarkerUtils.renderAsText(baseModelContent, params);
                 FileUtils.writeFile(renderBaseModelContent, outPath);
-                LOG.info(outPath);
             }
 
             // 生成Model
@@ -74,10 +70,9 @@ public class ModelClient {
             if (genModel) {
                 renderModelContent = FreemarkerUtils.renderAsText(modelContent, params);
                 FileUtils.writeFile(renderModelContent, outPath);
-                LOG.info(outPath);
             }
         }
-        LOG.info("(*^▽^*) generate Model over");
+        System.out.println("(*^▽^*) generate Model over");
     }
 
     public static void main(String[] args) throws IOException {

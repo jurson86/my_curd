@@ -1,12 +1,22 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>com.hxkj</groupId>
+    <groupId>com.github.qinyou</groupId>
     <artifactId>my_curd</artifactId>
-    <packaging>war</packaging>
+
+    <!--<packaging>war</packaging>-->
+    <!--jfinal undertow 配置-->
+    <packaging>jar</packaging>
+
     <version>1.0-SNAPSHOT</version>
     <name>my_curd Maven Webapp</name>
-    <url>http://maven.apache.org</url>
+    <developers>
+        <developer>
+            <name>zhangchuang</name>
+            <email>15238002477@163.com</email>
+        </developer>
+    </developers>
+    <url>https://github.com/qinyou/my_curd</url>
 
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
@@ -20,6 +30,7 @@
         <fastjson.version>1.2.43</fastjson.version>
         <jedis.version>2.7.2</jedis.version>
         <slf4j.version>1.7.25</slf4j.version>
+        <logback.version>1.2.3</logback.version>
         <cron4j.version>2.2.5</cron4j.version>
         <google-guava.version>27.0.1-jre</google-guava.version>
         <google-zxing.version>3.3.2</google-zxing.version>
@@ -28,6 +39,7 @@
         <jodd-time.version>2.10.1</jodd-time.version>
         <easypoi.version>3.2.0</easypoi.version>
     </properties>
+
     <dependencies>
         <dependency>
             <groupId>junit</groupId>
@@ -35,24 +47,35 @@
             <version>RELEASE</version>
             <scope>test</scope>
         </dependency>
+        <!--<dependency>-->
+            <!--<groupId>javax.servlet</groupId>-->
+            <!--<artifactId>javax.servlet-api</artifactId>-->
+            <!--<version>4.0.0</version>-->
+            <!--<scope>provided</scope>-->
+        <!--</dependency>-->
+        <!--<dependency>-->
+            <!--<groupId>org.apache.tomcat</groupId>-->
+            <!--<artifactId>tomcat-websocket-api</artifactId>-->
+            <!--<version>8.5.28</version>-->
+            <!--<scope>provided</scope>-->
+        <!--</dependency>-->
+        <!--<dependency>-->
+            <!--<groupId>javax</groupId>-->
+            <!--<artifactId>javaee-api</artifactId>-->
+            <!--<version>8.0</version>-->
+            <!--<scope>provided</scope>-->
+        <!--</dependency>-->
         <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>javax.servlet-api</artifactId>
-            <version>4.0.0</version>
-            <scope>provided</scope>
+            <groupId>com.jfinal</groupId>
+            <artifactId>jfinal-undertow</artifactId>
+            <version>1.5</version>
         </dependency>
         <dependency>
-            <groupId>org.apache.tomcat</groupId>
-            <artifactId>tomcat-websocket-api</artifactId>
-            <version>8.5.28</version>
-            <scope>provided</scope>
+            <groupId>io.undertow</groupId>
+            <artifactId>undertow-websockets-jsr</artifactId>
+            <version>2.0.17.Final</version>
         </dependency>
-        <dependency>
-            <groupId>javax</groupId>
-            <artifactId>javaee-api</artifactId>
-            <version>8.0</version>
-            <scope>provided</scope>
-        </dependency>
+
 
         <dependency>
             <groupId>com.jfinal</groupId>
@@ -151,8 +174,18 @@
         <!--日志-->
         <dependency>
             <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-log4j12</artifactId>
+            <artifactId>slf4j-api</artifactId>
             <version>${slf4j.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>${logback.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-access</artifactId>
+            <version>${logback.version}</version>
         </dependency>
     </dependencies>
 
@@ -190,6 +223,44 @@
                     <skip>true</skip>
                 </configuration>
             </plugin>
+
+            <!-- jfinal-undertow 需要， fat jar 不需要-->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>2.6</version>
+                <configuration>
+                    <excludes>
+                        <exclude>*.txt</exclude>
+                        <exclude>*.xml</exclude>
+                        <exclude>*.properties</exclude>
+                    </excludes>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <version>3.1.0</version>
+                <executions>
+                    <execution>
+                        <id>make-assembly</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                        <configuration>
+                            <finalName>${project.artifactId}</finalName>
+                            <recompressZippedFiles>false</recompressZippedFiles>
+                            <appendAssemblyId>true</appendAssemblyId>
+                            <descriptors>
+                                <descriptor>package.xml</descriptor>
+                            </descriptors>
+                            <outputDirectory>${project.build.directory}/</outputDirectory>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
         </plugins>
     </build>
 

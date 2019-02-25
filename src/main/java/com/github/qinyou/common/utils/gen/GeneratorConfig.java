@@ -17,6 +17,33 @@ public class GeneratorConfig {
     public final static String author = "zhangchuang";   // 代码中 @author
     public final static String since = new DateTime().toString("yyyy-MM-dd HH:mm:ss");  // 代码中 @since (日期)
     public final static String schemaPattern = "my_curd_pro";   // 模式名（mysql 下 同数据库名)
+    // 要生成代码的表名
+    @SuppressWarnings("serial")
+    public static Set<String> tableNames = new LinkedHashSet<String>() {{
+//        add("sys_user");
+//        add("sys_user_setting");
+//        add("sys_role");
+//        add("sys_menu");
+//        add("sys_user_role");
+//        add("sys_role_menu");
+//        add("sys_org");
+//        add("sys_dict");
+//        add("sys_dict_group");
+//        add("sys_file");
+//        add("sys_notice");
+//        add("sys_notice_detail");
+//        add("sys_notice_type");
+//        add("sys_notice_type_sys_role");
+//        add("sys_service_log");
+//        add("sys_visit_log");
+//        add("sys_task_log");
+        add("ex_single_table");
+        add("ex_staff_education");
+        add("ex_staff_experience");
+        add("ex_staff_family");
+        add("ex_staff");
+    }};
+
     // 生成 代码文件基础路径
     public final static String outputBasePath = "E:/mycurdpro/gencode/" + GeneratorConfig.moduleName + "/";
     // 模板文件基础路径
@@ -63,32 +90,4 @@ public class GeneratorConfig {
         add("Float");
         add("Long");
     }};
-    // 要生成代码的表名
-    @SuppressWarnings("serial")
-    public static Set<String> tableNames = new LinkedHashSet<String>() {{
-//        add("sys_user");
-//        add("sys_user_setting");
-//        add("sys_role");
-//        add("sys_menu");
-//        add("sys_user_role");
-//        add("sys_role_menu");
-//        add("sys_org");
-//        add("sys_dict");
-//        add("sys_dict_group");
-//        add("sys_file");
-//        add("sys_notice");
-//        add("sys_notice_detail");
-//        add("sys_notice_type");
-//        add("sys_notice_type_sys_role");
-//        add("sys_service_log");
-//        add("sys_visit_log");
-//        add("sys_task_log");
-        add("ex_single_table");
-        add("ex_staff_education");
-        add("ex_staff_experience");
-        add("ex_staff_family");
-        add("ex_staff");
-    }};
-
-
 }

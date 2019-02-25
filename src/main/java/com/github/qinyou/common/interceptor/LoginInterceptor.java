@@ -3,7 +3,6 @@ package com.github.qinyou.common.interceptor;
 import com.github.qinyou.common.config.Constant;
 import com.jfinal.aop.Interceptor;
 import com.jfinal.aop.Invocation;
-import org.apache.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -14,8 +13,6 @@ import javax.servlet.http.HttpSession;
  * @author chuang
  */
 public class LoginInterceptor implements Interceptor {
-    private final static Logger LOG = Logger.getLogger(LoginInterceptor.class);
-
     @Override
     public void intercept(Invocation invocation) {
         HttpServletRequest request = invocation.getController().getRequest();

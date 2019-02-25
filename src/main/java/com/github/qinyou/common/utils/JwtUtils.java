@@ -110,7 +110,7 @@ public class JwtUtils {
             ret.set("userClaim", userClaim);
 
         } catch (ExpiredJwtException e) {
-            LOG.info(e.getMessage());
+            LOG.debug(e.getMessage());
             ret.setFail();
             ret.set("msg", "expire");  // 过期
         } catch (MalformedJwtException | SignatureException e1) {

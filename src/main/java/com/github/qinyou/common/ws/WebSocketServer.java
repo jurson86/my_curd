@@ -43,8 +43,8 @@ public class WebSocketServer {
         session.setMaxIdleTimeout(MAX_IDLE_TIMEOUT);
 
         // 输出默认信息
-        LOG.info("新建 ws连接 sessionId:  {}", session.getId());
-        LOG.info("maxIdleTimeout: {}", session.getMaxIdleTimeout());
+        LOG.debug("新建 ws连接 sessionId:  {}", session.getId());
+        LOG.debug("maxIdleTimeout: {}", session.getMaxIdleTimeout());
 
         // url参数
         String queryString = session.getQueryString();
@@ -68,7 +68,7 @@ public class WebSocketServer {
         // 系统 用户可以重复登录，但不可 重复连接 WebSocket (新的 webSocket 连接直接被关闭)
         if (OnlineUserContainer.USERID_SESSIONID.containsKey(userId)) {
             if (LOG.isInfoEnabled()) {
-                LOG.info("userId:{} 不同浏览器 重复连接 WebSocket, 直接关闭...... ", userId);
+                LOG.debug("userId:{} 不同浏览器 重复连接 WebSocket, 直接关闭...... ", userId);
             }
             closeSession(session);
             return;
@@ -86,7 +86,7 @@ public class WebSocketServer {
     @OnClose
     public void onClose(Session session) {
         if (LOG.isInfoEnabled()) {
-            LOG.info(" 关闭  ws sessionId: " + session.getId());
+            LOG.debug(" 关闭  ws sessionId: " + session.getId());
         }
         String sessionId = session.getId();
         SysUser sysUser = OnlineUserContainer.SESSIONID_USER.get(sessionId);
@@ -110,7 +110,7 @@ public class WebSocketServer {
     public void onMessage(String msg, Session session) {
         SysUser sysUser = OnlineUserContainer.SESSIONID_USER.get(session.getId());
         if (LOG.isInfoEnabled()) {
-            LOG.info(" 收到消息：" + msg);
+            LOG.debug(" 收到消息：" + msg);
         }
     }
 

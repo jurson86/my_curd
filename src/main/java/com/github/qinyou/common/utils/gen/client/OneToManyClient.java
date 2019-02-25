@@ -49,7 +49,7 @@ public class OneToManyClient {
      * @throws IOException
      */
     public static void generate(TableMeta mainTableMeta, List<TableMeta> sonTableMetas) throws IOException {
-        LOG.info("(*^▽^*) start generate oneToMany ");
+        System.out.println("(*^▽^*) start generate oneToMany ");
 
         Map<String, Object> params = new HashMap<>();
         params.put("basePackageName", GeneratorConfig.basePackageName);
@@ -57,7 +57,7 @@ public class OneToManyClient {
         params.put("author", GeneratorConfig.author);
         params.put("since", GeneratorConfig.since);
         params.put("generateDate", new DateTime().toString("yyyy-MM-dd HH:mm:ss"));
-        params.put("excludeFields",  GeneratorConfig.excludeFields);
+        params.put("excludeFields", GeneratorConfig.excludeFields);
         params.put("mainTableMeta", mainTableMeta);
         params.put("sonTableMetas", sonTableMetas);
         params.put("mainId", MAIN_ID);
@@ -68,23 +68,21 @@ public class OneToManyClient {
         String outPath = controllerOutPath + mainTableMeta.nameCamelFirstUp + "Controller.java";
         String renderContent = FreemarkerUtils.renderAsText(controllerTplContent, params);
         FileUtils.writeFile(renderContent, outPath);
-        LOG.info(outPath);
 
         // index.ftl
         String indexTplContent = FileUtils.readFile(indexTplPath);
         outPath = pageOutDirPath + mainTableMeta.nameCamel + ".ftl";
         renderContent = FreemarkerUtils.renderAsText(indexTplContent, params);
         FileUtils.writeFile(renderContent, outPath);
-        LOG.info(outPath);
+
 
         // form.ftl
         String formTplContent = FileUtils.readFile(formTplPath);
         outPath = pageOutDirPath + mainTableMeta.nameCamel + "_form.ftl";
         renderContent = FreemarkerUtils.renderAsText(formTplContent, params);
         FileUtils.writeFile(renderContent, outPath);
-        LOG.info(outPath);
 
-        LOG.info("(*^▽^*)  generate oneToMany over ");
+        System.out.println("(*^▽^*)  generate oneToMany over ");
     }
 
     public static void main(String[] args) throws IOException {

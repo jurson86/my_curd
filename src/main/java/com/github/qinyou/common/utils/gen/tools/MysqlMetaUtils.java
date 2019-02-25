@@ -1,6 +1,5 @@
 package com.github.qinyou.common.utils.gen.tools;
 
-import com.alibaba.fastjson.JSON;
 import com.google.common.base.Preconditions;
 import com.jfinal.kit.StrKit;
 import com.jfinal.plugin.activerecord.generator.TypeMapping;
@@ -150,7 +149,7 @@ public class MysqlMetaUtils {
             tableMeta.setColumnMetas(columnMetas);
         }
 
-        LOG.debug(JSON.toJSONString(tableMeta));
+        // LOG.debug(JSON.toJSONString(tableMeta));
         return tableMeta;
     }
 }

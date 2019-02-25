@@ -1,8 +1,5 @@
 package com.github.qinyou.common.utils;
 
-
-import org.apache.log4j.Logger;
-
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 
@@ -13,9 +10,6 @@ import java.lang.reflect.Method;
  */
 @SuppressWarnings({"WeakerAccess", "unchecked", "unused"})
 public class ReflectionUtils {
-
-    private final static Logger LOG = Logger.getLogger(ReflectionUtils.class);
-
     /**
      * 运行方法
      *

@@ -9,8 +9,6 @@ import com.jfinal.plugin.activerecord.generator.Generator;
  * maven 项目, oracle下存在bug，表字段如设置默认值 生成字典文件时报错 java.sql.SQLException: 流已被关闭
  */
 public class JfinalModelClient {
-
-
     // base model 包名
     private static final String baseModelPkg = "com.github.qinyou.testModule.model.base";
     // base 路径
