@@ -2,7 +2,7 @@ package com.github.qinyou.common.utils.gen.tools;
 
 
 import com.alibaba.fastjson.annotation.JSONField;
-import com.github.qinyou.common.utils.gen.GeneratorConfig;
+import com.github.qinyou.common.utils.gen.Config;
 
 import java.io.Serializable;
 
@@ -96,7 +96,7 @@ public class ColumnMeta implements Serializable {
 
     public void setJavaType(String javaType) {
         this.javaType = javaType;
-        this.javaTypeShortName = GeneratorConfig.longShort.get(javaType);
+        this.javaTypeShortName = Config.longShortMap.get(javaType);
     }
 
     public String getJavaTypeShortName() {
@@ -113,22 +113,5 @@ public class ColumnMeta implements Serializable {
 
     public String getDefaultValue() {
         return defaultValue;
-    }
-
-    @Override
-    public String toString() {
-        return "ColumnMeta{" +
-                "name='" + name + '\'' +
-                ", nameCamel='" + nameCamel + '\'' +
-                ", nameCamelFirstUp='" + nameCamelFirstUp + '\'' +
-                ", remark='" + remark + '\'' +
-                ", dbType='" + dbType + '\'' +
-                ", size=" + size +
-                ", decimalDigits=" + decimalDigits +
-                ", javaType='" + javaType + '\'' +
-                ", isPrimaryKey=" + isPrimaryKey +
-                ", isNullable=" + isNullable +
-                ", defaultValue='" + defaultValue + '\'' +
-                '}';
     }
 }

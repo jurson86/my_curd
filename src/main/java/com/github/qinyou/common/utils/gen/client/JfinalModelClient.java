@@ -14,7 +14,6 @@ public class JfinalModelClient {
     // base 路径
     //private static final String baseModelDir = PathKit.getWebRootPath() + "/src/main/java/com/mycurdpro/testModule/model/base";
     private static final String baseModelDir = "E:/codegen/src/main/java/com/github/qinyou/testModule/model/base";
-
     // model 包名
     private static final String modelPkg = "com.mycurdpro.testModule.model";
     // model 路径

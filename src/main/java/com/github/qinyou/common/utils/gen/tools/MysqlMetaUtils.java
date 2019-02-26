@@ -16,19 +16,27 @@ import java.util.*;
  * @author zhangchuang
  */
 public class MysqlMetaUtils {
+    private DataSource dataSource;  // 数据源
     private final static Logger LOG = LoggerFactory.getLogger(MysqlMetaUtils.class);
-    private final static DataSource dataSource = MysqlDataSourceUtils.getDataSource();
-    private static final TypeMapping typeMapping = new TypeMapping(); // （Jfinal 特色) 数据类型 java类型映射
+    private final static TypeMapping typeMapping = new TypeMapping(); //数据表字段驱动内类型 和 Jfinal model 类型映射
+
+    public MysqlMetaUtils() {
+        this.dataSource = MysqlDataSourceUtils.getDataSource();
+    }
+
+    public MysqlMetaUtils(DataSource dataSource) {
+        this.dataSource = dataSource;
+    }
 
     /**
      * 获得 数据表信息
      *
-     * @param schemaPattern oracle schema 名
-     * @param tableNames    获取元数据的表名集合
-     * @param includeColumn 是否包含列信息
-     * @return 表元数据
+     * @param schemaPattern 数据库名
+     * @param tableNames    表名集合
+     * @param includeColumn 是否获得表列信息
+     * @return 表元信息
      */
-    public static List<TableMeta> loadTables(String schemaPattern, Set<String> tableNames, Boolean includeColumn) {
+    public List<TableMeta> loadTables(String schemaPattern, Set<String> tableNames, Boolean includeColumn) {
         Preconditions.checkNotNull(dataSource, " dataSource 不可为 null");
 
         List<TableMeta> tables = new ArrayList<>();
@@ -63,7 +71,7 @@ public class MysqlMetaUtils {
      * @return 表信息
      * @throws Exception 查询异常
      */
-    private static TableMeta loadTable(Connection conn, String schemaPattern, String tableName, Boolean includeColumn) throws Exception {
+    private TableMeta loadTable(Connection conn, String schemaPattern, String tableName, Boolean includeColumn) throws Exception {
         Preconditions.checkNotNull(conn, "代码生成器.md 获得 Connection对象 为 null ");
 
         DatabaseMetaData dbMeta = conn.getMetaData();
@@ -124,7 +132,6 @@ public class MysqlMetaUtils {
                 nameJavaTypeMap.put(columnName, typeStr);
             }
 
-
             List<ColumnMeta> columnMetas = new ArrayList<>();
             rs = dbMeta.getColumns(conn.getCatalog(), schemaPattern, tableMeta.name, null);
             while (rs.next()) {
@@ -149,7 +156,6 @@ public class MysqlMetaUtils {
             tableMeta.setColumnMetas(columnMetas);
         }
 
-        // LOG.debug(JSON.toJSONString(tableMeta));
         return tableMeta;
     }
 }

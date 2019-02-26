@@ -1,7 +1,7 @@
 package com.github.qinyou.common.utils.gen.tools;
 
 import com.alibaba.fastjson.annotation.JSONField;
-import com.github.qinyou.common.utils.gen.GeneratorConfig;
+import com.github.qinyou.common.utils.gen.Config;
 
 import java.io.Serializable;
 import java.util.HashSet;
@@ -91,7 +91,7 @@ public class TableMeta implements Serializable {
     public void setColumnMetas(List<ColumnMeta> columnMetas) {
         this.columnMetas = columnMetas;
         for (ColumnMeta columnMeta : columnMetas) {
-            if (columnMeta.getJavaTypeShortName() == null || GeneratorConfig.excludeImportTypes.contains(columnMeta.getJavaTypeShortName())) {
+            if (columnMeta.getJavaTypeShortName() == null || Config.excludeImportTypes.contains(columnMeta.getJavaTypeShortName())) {
                 continue;
             }
             this.necessaryImport.add(columnMeta.javaType);
@@ -104,18 +104,5 @@ public class TableMeta implements Serializable {
 
     public void setNecessaryImport(Set<String> necessaryImport) {
         this.necessaryImport = necessaryImport;
-    }
-
-    @Override
-    public String toString() {
-        return "TableMeta{" +
-                "name='" + name + '\'' +
-                ", nameCamel='" + nameCamel + '\'' +
-                ", nameCamelFirstUp='" + nameCamelFirstUp + '\'' +
-                ", remark='" + remark + '\'' +
-                ", primaryKeys=" + primaryKeys +
-                ", columnMetas=" + columnMetas +
-                ", necessaryImport=" + necessaryImport +
-                '}';
     }
 }

@@ -8,6 +8,8 @@ import javax.sql.DataSource;
 
 /**
  * mysql 获得数据源
+ *
+ * @author zhangchuang
  */
 public class MysqlDataSourceUtils {
     /**
