@@ -5,13 +5,13 @@
  Source Server Type    : MySQL
  Source Server Version : 50719
  Source Host           : localhost:3306
- Source Schema         : my_curd_pro
+ Source Schema         : my_curd
 
  Target Server Type    : MySQL
  Target Server Version : 50719
  File Encoding         : 65001
 
- Date: 25/02/2019 12:47:03
+ Date: 27/02/2019 19:40:34
 */
 
 SET NAMES utf8mb4;
@@ -308,9 +308,8 @@ CREATE TABLE `sys_file`  (
 -- ----------------------------
 -- Records of sys_file
 -- ----------------------------
-INSERT INTO `sys_file` VALUES ('548554215404863488', 'upload/image/20190222/17183653766.jpg', 'timg.jpg', 'image/jpeg', 'jpg', 33809.000000000000000000000000000000, 'admin 头像2', NULL, 'admin', '2019-02-22 17:18:36', NULL, NULL);
-INSERT INTO `sys_file` VALUES ('548554311571865600', 'upload/image/20190222/17185953577.jpg', '14027794.jpg', 'image/jpeg', 'jpg', 38717.000000000000000000000000000000, 'testtetet', NULL, 'admin', '2019-02-22 17:18:59', NULL, NULL);
-INSERT INTO `sys_file` VALUES ('549346032505323520', 'upload/image/20190224/21450035520.jpg', 'MRV_20190224_13_09_35.jpg', 'image/jpeg', 'jpg', 167375.000000000000000000000000000000, 'test', NULL, 'admin', '2019-02-24 21:45:00', NULL, NULL);
+INSERT INTO `sys_file` VALUES ('549671164947988480', 'upload/image/20190225/19165791561.jpg', 'timg.jpg', 'image/jpeg', 'jpg', 33809.000000000000000000000000000000, 'admin 头像', NULL, 'admin', '2019-02-25 19:16:58', NULL, NULL);
+INSERT INTO `sys_file` VALUES ('550392697785942016', 'upload/image/20190227/1904048487.jpg', 'timg.jpg', 'image/jpeg', 'jpg', 33809.000000000000000000000000000000, 'admin 头像', NULL, 'admin', '2019-02-27 19:04:04', NULL, NULL);
 
 -- ----------------------------
 -- Table structure for sys_menu
@@ -343,13 +342,10 @@ INSERT INTO `sys_menu` VALUES ('520751483449245697', '角色管理', '/sysRole',
 INSERT INTO `sys_menu` VALUES ('520751566345469952', '机构管理', '/sysOrg', 'iconfont icon-org', 5, '520749715428474880', 'debug', '2018-12-08 00:00:48', 'zhangchuang', '2018-12-16 11:09:56');
 INSERT INTO `sys_menu` VALUES ('520751881509666817', '用户管理', '/sysUser', 'iconfont icon-user', 4, '520749715428474880', 'debug', '2018-12-08 00:02:03', 'zhangchuang', '2018-12-16 11:08:39');
 INSERT INTO `sys_menu` VALUES ('520752428128141312', '数据字典', '/sysDict', 'iconfont icon-dict', 1, '520750975204458496', 'debug', '2018-12-08 00:04:13', 'debug', '2018-12-10 19:03:56');
-INSERT INTO `sys_menu` VALUES ('520752734161338369', 'durid监控', '/druidWeb', 'iconfont icon-database', 3, '520750975204458496', 'debug', '2018-12-08 00:05:26', 'admin', '2018-12-16 14:32:50');
 INSERT INTO `sys_menu` VALUES ('520752809180659712', '访问日志', '/sysVisitLog', 'iconfont icon-visitLog', 4, '520750975204458496', 'debug', '2018-12-08 00:05:44', 'debug', '2018-12-10 19:04:31');
 INSERT INTO `sys_menu` VALUES ('520752938604298240', '业务日志', '/sysServiceLog', 'iconfont icon-serviceLog', 5, '520750975204458496', 'debug', '2018-12-08 00:06:15', 'debug', '2018-12-10 19:05:01');
 INSERT INTO `sys_menu` VALUES ('520753306482507776', '账号解锁', '/sysUserUnlock', 'iconfont icon-unlock', 6, '520750975204458496', 'debug', '2018-12-08 00:07:43', 'admin', '2018-12-16 14:33:01');
-INSERT INTO `sys_menu` VALUES ('520753615527215104', '系统通知', '/', 'iconfont icon-notice', 2, '0', 'debug', '2018-12-08 00:08:57', 'zhangchuang', '2018-12-16 14:08:09');
-INSERT INTO `sys_menu` VALUES ('520753742492991488', '通知类型', '/sysNoticeType', 'iconfont icon-noticeType', 1, '520753615527215104', 'debug', '2018-12-08 00:09:27', 'debug', '2018-12-10 19:06:54');
-INSERT INTO `sys_menu` VALUES ('520754960745365504', '类型角色', '/sysNTRole', 'iconfont icon-typeRole', 2, '520753615527215104', 'debug', '2018-12-08 00:14:17', 'admin', '2018-12-21 23:00:30');
+INSERT INTO `sys_menu` VALUES ('520753742492991488', '通知类型', '/sysNoticeType', 'iconfont icon-noticeType', 8, '520750975204458496', 'debug', '2018-12-08 00:09:27', 'admin', '2019-02-27 14:52:08');
 INSERT INTO `sys_menu` VALUES ('529975794877857792', '定时任务', '/sysTask', 'iconfont icon-task', 7, '520750975204458496', 'admin', '2019-01-02 10:54:35', NULL, NULL);
 INSERT INTO `sys_menu` VALUES ('533964782852636672', '测试例子', '/', 'iconfont icon-gencode', 4, '0', 'admin', '2019-01-13 11:05:24', 'admin', '2019-02-24 10:18:04');
 INSERT INTO `sys_menu` VALUES ('533964972439371776', '普通单表', '/exSingleTable', 'iconfont icon-gencode', 1, '533964782852636672', 'admin', '2019-01-13 11:06:10', NULL, NULL);
@@ -392,6 +388,10 @@ INSERT INTO `sys_notice` VALUES ('548560911795748864', 'delVisitLog', '访问日
 INSERT INTO `sys_notice` VALUES ('548560934939918336', 'delVisitLog', '访问日志删除', 'admin 于 2019-02-22 17:45:18 删除了 2 条 访问日志。', '2019-02-22 17:45:18', '2019-03-04 17:45:18', '2019-03-14 17:45:18');
 INSERT INTO `sys_notice` VALUES ('548566326755459072', 'delVisitLog', '访问日志删除', 'admin 于 2019-02-22 18:06:44 删除了 1 条 访问日志。', '2019-02-22 18:06:44', '2019-03-04 18:06:44', '2019-03-14 18:06:44');
 INSERT INTO `sys_notice` VALUES ('549173295270854656', 'delVisitLog', '访问日志删除', 'admin 于 2019-02-24 10:18:36 删除了 2 条 访问日志。', '2019-02-24 10:18:36', '2019-03-06 10:18:36', '2019-03-16 10:18:36');
+INSERT INTO `sys_notice` VALUES ('549640226994126848', 'delVisitLog', '访问日志删除', 'admin 于 2019-02-25 17:14:01 删除了 1 条 访问日志。', '2019-02-25 17:14:01', '2019-03-07 17:14:01', '2019-03-17 17:14:01');
+INSERT INTO `sys_notice` VALUES ('549651310161428480', 'delVisitLog', '访问日志删除', 'admin 于 2019-02-25 17:58:04 删除了 1 条 访问日志。', '2019-02-25 17:58:04', '2019-03-07 17:58:04', '2019-03-17 17:58:04');
+INSERT INTO `sys_notice` VALUES ('550338732767576064', 'delVisitLog', '访问日志删除', 'admin 于 2019-02-27 15:29:38 删除了 1 条 访问日志。', '2019-02-27 15:29:38', '2019-03-09 15:29:38', '2019-03-19 15:29:38');
+INSERT INTO `sys_notice` VALUES ('550338755119022080', 'delVisitLog', '访问日志删除', 'admin 于 2019-02-27 15:29:44 删除了 1 条 访问日志。', '2019-02-27 15:29:44', '2019-03-09 15:29:44', '2019-03-19 15:29:44');
 
 -- ----------------------------
 -- Table structure for sys_notice_detail
@@ -436,6 +436,22 @@ INSERT INTO `sys_notice_detail` VALUES ('548566326768041984', '54856632675545907
 INSERT INTO `sys_notice_detail` VALUES ('548566326768041985', '548566326755459072', NULL, '522044507147993088', 'N', NULL);
 INSERT INTO `sys_notice_detail` VALUES ('549173295384100864', '549173295270854656', NULL, '522465144505106432', 'Y', '2019-02-24 21:55:30');
 INSERT INTO `sys_notice_detail` VALUES ('549173295384100865', '549173295270854656', NULL, '522044507147993088', 'N', NULL);
+INSERT INTO `sys_notice_detail` VALUES ('549640227027681280', '549640226994126848', NULL, '549336387174793216', 'N', NULL);
+INSERT INTO `sys_notice_detail` VALUES ('549640227027681281', '549640226994126848', NULL, '522465144505106432', 'Y', '2019-02-27 15:23:15');
+INSERT INTO `sys_notice_detail` VALUES ('549640227027681282', '549640226994126848', NULL, '522465900809420800', 'N', NULL);
+INSERT INTO `sys_notice_detail` VALUES ('549640227027681283', '549640226994126848', NULL, '522044507147993088', 'N', NULL);
+INSERT INTO `sys_notice_detail` VALUES ('549651310194982912', '549651310161428480', NULL, '522465144505106432', 'Y', '2019-02-27 15:23:15');
+INSERT INTO `sys_notice_detail` VALUES ('549651310194982913', '549651310161428480', NULL, '549336387174793216', 'N', NULL);
+INSERT INTO `sys_notice_detail` VALUES ('549651310194982914', '549651310161428480', NULL, '522465900809420800', 'N', NULL);
+INSERT INTO `sys_notice_detail` VALUES ('549651310194982915', '549651310161428480', NULL, '522044507147993088', 'N', NULL);
+INSERT INTO `sys_notice_detail` VALUES ('550338732843073536', '550338732767576064', NULL, '549336387174793216', 'N', NULL);
+INSERT INTO `sys_notice_detail` VALUES ('550338732843073537', '550338732767576064', NULL, '522465900809420800', 'N', NULL);
+INSERT INTO `sys_notice_detail` VALUES ('550338732843073538', '550338732767576064', NULL, '522465144505106432', 'N', NULL);
+INSERT INTO `sys_notice_detail` VALUES ('550338732843073539', '550338732767576064', NULL, '522044507147993088', 'N', NULL);
+INSERT INTO `sys_notice_detail` VALUES ('550338755127410688', '550338755119022080', NULL, '549336387174793216', 'N', NULL);
+INSERT INTO `sys_notice_detail` VALUES ('550338755127410689', '550338755119022080', NULL, '522465144505106432', 'N', NULL);
+INSERT INTO `sys_notice_detail` VALUES ('550338755127410690', '550338755119022080', NULL, '522465900809420800', 'N', NULL);
+INSERT INTO `sys_notice_detail` VALUES ('550338755127410691', '550338755119022080', NULL, '522044507147993088', 'N', NULL);
 
 -- ----------------------------
 -- Table structure for sys_notice_type
@@ -463,8 +479,8 @@ CREATE TABLE `sys_notice_type`  (
 -- ----------------------------
 -- Records of sys_notice_type
 -- ----------------------------
-INSERT INTO `sys_notice_type` VALUES ('534774841853607936', '系统使用', '访问日志删除', 'delVisitLog', 'upload/image/20190222/17183653766.jpg', 'FTL{username!} 于 FTL{datetime!} 删除了 FTL{number!} 条 访问日志。', '删除系统访问日志时，触发改消息通知', 10, 20, 'admin', '2019-01-15 16:44:17', 'admin', '2019-02-22 17:38:42');
-INSERT INTO `sys_notice_type` VALUES ('534775887648784384', '系统使用', '无权限操作', 'noPermissionOpe', 'upload/image/20190222/17183653766.jpg', 'FTL{username!} 于 FTL{date!} 访问 无权限操作 FTL{visitUrl!}.', '用户执行访问无权限路径，点击无权限的按钮时，触发该操作', 30, 60, 'admin', '2019-01-15 16:48:27', 'admin', '2019-02-22 17:38:49');
+INSERT INTO `sys_notice_type` VALUES ('534774841853607936', '系统使用', '访问日志删除', 'delVisitLog', 'upload/image/20190227/1904048487.jpg', 'FTL{username!} 于 FTL{datetime!} 删除了 FTL{number!} 条 访问日志。', '删除系统访问日志时，触发改消息通知', 10, 20, 'admin', '2019-01-15 16:44:17', 'admin', '2019-02-27 19:04:27');
+INSERT INTO `sys_notice_type` VALUES ('534775887648784384', '系统使用', '无权限操作', 'noPermissionOpe', 'upload/image/20190227/1904048487.jpg', 'FTL{username!} 于 FTL{date!} 访问 无权限操作 FTL{visitUrl!}.', '用户执行访问无权限路径，点击无权限的按钮时，触发该操作', 30, 60, 'admin', '2019-01-15 16:48:27', 'admin', '2019-02-27 19:04:34');
 
 -- ----------------------------
 -- Table structure for sys_notice_type_sys_role
@@ -481,9 +497,11 @@ CREATE TABLE `sys_notice_type_sys_role`  (
 -- ----------------------------
 -- Records of sys_notice_type_sys_role
 -- ----------------------------
-INSERT INTO `sys_notice_type_sys_role` VALUES ('534774841853607936', '520339201795817472', 'admin', '2019-01-15 17:02:09');
-INSERT INTO `sys_notice_type_sys_role` VALUES ('534774841853607936', '520340379124367361', 'admin', '2019-01-15 17:02:09');
-INSERT INTO `sys_notice_type_sys_role` VALUES ('534775887648784384', '520339201795817472', 'admin', '2019-01-15 17:02:17');
+INSERT INTO `sys_notice_type_sys_role` VALUES ('534774841853607936', '520339201795817472', 'admin', '2019-02-27 15:18:21');
+INSERT INTO `sys_notice_type_sys_role` VALUES ('534774841853607936', '520340379124367361', 'admin', '2019-02-27 15:18:21');
+INSERT INTO `sys_notice_type_sys_role` VALUES ('534774841853607936', '538438949161402368', 'admin', '2019-02-27 15:18:21');
+INSERT INTO `sys_notice_type_sys_role` VALUES ('534775887648784384', '520339201795817472', 'admin', '2019-02-27 15:20:50');
+INSERT INTO `sys_notice_type_sys_role` VALUES ('534775887648784384', '520340379124367361', 'admin', '2019-02-27 15:20:50');
 
 -- ----------------------------
 -- Table structure for sys_org
@@ -579,17 +597,14 @@ INSERT INTO `sys_role_menu` VALUES ('520339201795817472', '520751483449245697', 
 INSERT INTO `sys_role_menu` VALUES ('520339201795817472', '520751566345469952', 'admin', '2019-02-24 20:53:27');
 INSERT INTO `sys_role_menu` VALUES ('520339201795817472', '520751881509666817', 'admin', '2019-02-24 20:53:27');
 INSERT INTO `sys_role_menu` VALUES ('520339201795817472', '520752428128141312', 'admin', '2019-02-24 20:53:27');
-INSERT INTO `sys_role_menu` VALUES ('520339201795817472', '520752734161338369', 'admin', '2019-02-24 20:53:27');
 INSERT INTO `sys_role_menu` VALUES ('520339201795817472', '520752809180659712', 'admin', '2019-02-24 20:53:27');
 INSERT INTO `sys_role_menu` VALUES ('520339201795817472', '520752938604298240', 'admin', '2019-02-24 20:53:27');
 INSERT INTO `sys_role_menu` VALUES ('520339201795817472', '520753306482507776', 'admin', '2019-02-24 20:53:27');
 INSERT INTO `sys_role_menu` VALUES ('520339201795817472', '520753742492991488', 'admin', '2019-02-24 20:53:27');
-INSERT INTO `sys_role_menu` VALUES ('520339201795817472', '520754960745365504', 'admin', '2019-02-24 20:53:27');
 INSERT INTO `sys_role_menu` VALUES ('520339201795817472', '529975794877857792', 'admin', '2019-02-24 20:53:27');
 INSERT INTO `sys_role_menu` VALUES ('520339201795817472', '533964972439371776', 'admin', '2019-02-24 20:53:27');
 INSERT INTO `sys_role_menu` VALUES ('520339201795817472', '537980279722082304', 'admin', '2019-02-24 20:53:27');
 INSERT INTO `sys_role_menu` VALUES ('520340379124367361', '520751187331383297', 'admin', '2019-01-15 17:03:04');
-INSERT INTO `sys_role_menu` VALUES ('520340379124367361', '520752734161338369', 'admin', '2019-01-15 17:03:04');
 INSERT INTO `sys_role_menu` VALUES ('520340379124367361', '520752809180659712', 'admin', '2019-01-15 17:03:04');
 INSERT INTO `sys_role_menu` VALUES ('520340379124367361', '520752938604298240', 'admin', '2019-01-15 17:03:04');
 INSERT INTO `sys_role_menu` VALUES ('520340379124367361', '520753306482507776', 'admin', '2019-01-15 17:03:04');
@@ -662,7 +677,7 @@ CREATE TABLE `sys_user`  (
 -- Records of sys_user
 -- ----------------------------
 INSERT INTO `sys_user` VALUES ('522044507147993088', 'debug', '7c4a8d09ca3762af61e59520943dc26494f8941b', '开发调试', '/static/image/male.jpg', 'M', 'qinyou1994@outlook.com', '15238002477', '520707499788075008', '开发工程师', 'staff', NULL, NULL, NULL, 'debug', '2018-12-11 13:38:29', 'debug', '2018-12-12 11:21:13', '0', NULL);
-INSERT INTO `sys_user` VALUES ('522465144505106432', 'admin', '7c4a8d09ca3762af61e59520943dc26494f8941b', '张闯', 'upload/image/20190222/17183653766.jpg', 'M', '15238002477@163.com', '15238002477', '520710334881726465', '开发工程师', 'staff', NULL, NULL, '2019-02-24 21:42:57', 'debug', '2018-12-12 17:29:57', 'admin', '2019-02-22 14:59:32', '0', NULL);
+INSERT INTO `sys_user` VALUES ('522465144505106432', 'admin', '7c4a8d09ca3762af61e59520943dc26494f8941b', '张闯', 'upload/image/20190227/1904048487.jpg', 'M', '15238002477@163.com', '15238002477', '520710334881726465', '开发工程师', 'staff', NULL, NULL, '2019-02-27 18:59:53', 'debug', '2018-12-12 17:29:57', 'admin', '2019-02-22 14:59:32', '0', NULL);
 INSERT INTO `sys_user` VALUES ('522465900809420800', 'zhaoli', '7c4a8d09ca3762af61e59520943dc26494f8941b', '赵丽', NULL, 'F', 'zhaoli@istek.net.cn', 'kaka', '520706929148821505', 'xxx', 'director', NULL, NULL, '2019-02-24 21:37:25', 'debug', '2018-12-12 17:32:57', NULL, NULL, '0', NULL);
 INSERT INTO `sys_user` VALUES ('549336387174793216', 'abc', '7c4a8d09ca3762af61e59520943dc26494f8941b', 'abc2', NULL, 'F', 'qinyou@outlook.com2', '13238002456', '520706829357940736', 'developer2', 'monitor', NULL, NULL, NULL, 'admin', '2019-02-24 21:06:40', 'admin', '2019-02-24 21:08:53', '0', 'X');
 
@@ -707,7 +722,7 @@ CREATE TABLE `sys_user_setting`  (
 -- ----------------------------
 -- Records of sys_user_setting
 -- ----------------------------
-INSERT INTO `sys_user_setting` VALUES ('546795821421559808', 'admin', 'green', '#40b370');
+INSERT INTO `sys_user_setting` VALUES ('546795821421559808', 'admin', 'default', '#447eff');
 INSERT INTO `sys_user_setting` VALUES ('549344229646663680', 'zhaoli', 'wechat', '#09b83e');
 
 -- ----------------------------
