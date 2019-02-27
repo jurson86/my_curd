@@ -49,7 +49,7 @@ public class SysMenu extends BaseSysMenu<SysMenu> {
 
 
     public List<SysMenu> findAllSort() {
-        String sql = "select * from sys_menu order by sortNum";
+        String sql = "select * from sys_menu order by sortNum,id";
         return find(sql);
     }
 

@@ -17,7 +17,7 @@
                     <th data-options="field:'id',checkbox:true"></th>
                     <th field="groupName" width="150">名称</th>
                     <th field="groupCode" width="200">编码</th>
-                    <th field="createTime" width="200">创建时间</th>
+                    <#--<th field="createTime" width="200">创建时间</th>-->
                 </tr>
                 </thead>
             </table>
@@ -52,7 +52,7 @@
                     <th field="dictLabel" width="150">名称</th>
                     <th field="dictValue" width="200">编码</th>
                     <th field="sortNum" width="100">排序号</th>
-                    <th field="createTime" width="200">创建时间</th>
+                    <#--<th field="createTime" width="200">创建时间</th>-->
                 </tr>
                 </thead>
             </table>

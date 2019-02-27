@@ -29,7 +29,7 @@ public class SysNoticeTypeSysRole extends BaseSysNoticeTypeSysRole<SysNoticeType
      * @return
      */
     public Page<SysNoticeTypeSysRole> page(int pageNumber, int pageSize, String where) {
-        String sqlSelect = " select a.*,c.cate,c.typeName,c.typeCode,  b.roleName,b.roleCode ";
+        String sqlSelect = " select a.*,c.cate,c.typeName,c.typeCode,  b.roleName,b.roleCode,b.roleDesc ";
         String sqlExceptSelect = " from sys_notice_type_sys_role a " +
                 " left join sys_role b on a.sysRoleId = b.id " +
                 " left join sys_notice_type c on a.sysNoticeTypeId = c.id ";
