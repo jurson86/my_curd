@@ -33,11 +33,11 @@
         <logback.version>1.2.3</logback.version>
         <cron4j.version>2.2.5</cron4j.version>
         <google-guava.version>27.0.1-jre</google-guava.version>
+        <jodd-time.version>2.10.1</jodd-time.version>
+        <easypoi.version>3.2.0</easypoi.version>
         <google-zxing.version>3.3.2</google-zxing.version>
         <cors-filter.version>2.5</cors-filter.version>
         <beanutils.version>1.9.3</beanutils.version>
-        <jodd-time.version>2.10.1</jodd-time.version>
-        <easypoi.version>3.2.0</easypoi.version>
     </properties>
 
     <dependencies>

@@ -25,6 +25,10 @@ public class SystemModelMapping {
         arp.addMapping("sys_user_role", "sysUserId,sysRoleId", SysUserRole.class);
         // 角色菜单中间表
         arp.addMapping("sys_role_menu", "sysRoleId,sysMenuId", SysRoleMenu.class);
+        // 菜单按钮
+        arp.addMapping("sys_button", "id", SysButton.class);
+        // 角色 菜单按钮中间表
+        arp.addMapping("sys_role_button", "sysRoleId,sysButtonId", SysRoleButton.class);
         // 组织机构表
         arp.addMapping("sys_org", "id", SysOrg.class);
         // 字典表

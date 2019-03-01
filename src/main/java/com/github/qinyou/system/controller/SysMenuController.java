@@ -9,6 +9,8 @@ import com.github.qinyou.common.utils.StringUtils;
 import com.github.qinyou.common.utils.TreeTableUtils;
 import com.github.qinyou.common.utils.WebUtils;
 import com.github.qinyou.common.validator.IdRequired;
+import com.github.qinyou.common.validator.IdsRequired;
+import com.github.qinyou.system.model.SysButton;
 import com.github.qinyou.system.model.SysMenu;
 import com.github.qinyou.system.model.SysRoleMenu;
 import com.jfinal.aop.Before;
@@ -16,6 +18,7 @@ import com.jfinal.aop.Clear;
 import com.jfinal.config.Routes;
 import com.jfinal.plugin.activerecord.Db;
 import com.jfinal.plugin.activerecord.Page;
+import com.jfinal.plugin.activerecord.tx.Tx;
 
 import java.util.*;
 
@@ -131,6 +134,13 @@ public class SysMenuController extends BaseController {
             Db.update(sql);
             sql = "delete from sys_role_menu where sysMenuId in ('" + allIds + "')";
             Db.update(sql);
+
+            // 删相关按钮
+            sql = "delete from sys_role_button where sysButtonId in (select id from sys_button where sysMenuId in ('"+allIds+"'))";
+            Db.update(sql);
+            sql = "delete from sys_button where sysMenuId in ('"+allIds +"')";
+            Db.update(sql);
+
             return true;
         });
         renderSuccess(Constant.DELETE_SUCCESS);
@@ -201,5 +211,99 @@ public class SysMenuController extends BaseController {
         }
         SysRoleMenu.dao.deleteByIds(roleId, menuId);
         renderSuccess("菜单角色删除成功");
+    }
+
+
+    /**
+     * 打开菜单配置按钮页面
+     */
+    public void openButton(){
+        setAttr("menuId", get("id"));
+        render("system/sysButton.ftl");
+    }
+    public void newButtonModel(){
+        String id = get("id");
+        String sysMenuId;
+        if (StringUtils.notEmpty(id)) {
+           SysButton sysButton = SysButton.dao.findById(id);
+           setAttr("sysButton",sysButton);
+           sysMenuId = sysButton.getSysMenuId();
+        }else{
+            sysMenuId = get("menuId");
+        }
+        setAttr("sysMenuId",sysMenuId);
+        render("system/sysButton_form.ftl");
+    }
+
+    /**
+     * 查询菜单按钮
+     */
+    public void queryButton(){
+         String menuId = get("menuId");
+         String sql = "select * from sys_button where sysMenuId = ? ";
+         List<SysButton> sysButtons = SysButton.dao.find(sql,menuId);
+         renderDatagrid(sysButtons,sysButtons.size());
+    }
+
+    /**
+     * 新增按钮
+     */
+    @Before(Tx.class)
+    public void addButtonAction(){
+        SysButton sysButton = getBean(SysButton.class, "")
+                .setId(IdUtils.id())
+                .setCreater(WebUtils.getSessionUsername(this))
+                .setCreateTime(new Date());
+        SysMenu sysMenu = SysMenu.dao.findById(sysButton.getSysMenuId());
+        if (sysMenu==null){
+            renderFail(Constant.ADD_FAIL);
+            return;
+        }
+        if(sysMenu.getBtnControl()==null){
+            sysMenu.setBtnControl("Y");
+            sysMenu.update();
+        }
+        sysButton.save();
+        renderSuccess(Constant.ADD_SUCCESS);
+    }
+
+    /**
+     * 编辑按钮
+     */
+    public void updateButtonAction(){
+        SysButton sysButton = getBean(SysButton.class, "");
+        sysButton.setUpdater(WebUtils.getSessionUsername(this))
+                .setUpdateTime(new Date());
+        if(sysButton.update()){
+            renderSuccess(Constant.UPDATE_SUCCESS);
+        }else{
+            renderFail(Constant.UPDATE_FAIL);
+        };
+    }
+
+    /**
+     * 删除按钮
+     */
+    @Before({Tx.class, IdsRequired.class})
+    public void deleteButtonAction(){
+        String sysMenuId = get("menuId");
+        if(StringUtils.isEmpty(sysMenuId)){
+            renderFail("参数menuId 缺失");
+            return;
+        }
+        String ids = get("ids");
+        ids = ids.replaceAll(",","','");
+        String sql = "delete from sys_role_button where sysButtonId in ('"+ids +"')";
+        Db.update(sql);
+        sql = "delete from sys_button where id in ('"+ids +"')";
+        Db.update(sql);
+
+        sql = "select count(1) as c from sys_button where sysMenuId = ?";
+        long count= Db.findFirst(sql,sysMenuId).getLong("c");
+        if(count==0){
+           sql = "update sys_menu set btnControl = null where id = ?";
+           Db.update(sql,sysMenuId);
+        }
+        renderSuccess(Constant.DELETE_SUCCESS);
     }
 }

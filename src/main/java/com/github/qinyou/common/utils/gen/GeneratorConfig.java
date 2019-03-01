@@ -14,7 +14,7 @@ import java.util.Set;
  */
 public class GeneratorConfig {
     public static String basePackageName = "com.github.qinyou";
-    public static String moduleName = "example";
+    public static String moduleName = "system";
     public static String author = "zhangchuang";
     public static String since = new DateTime().toString("yyyy-MM-dd HH:mm:ss");
     public static String schemaPattern = "my_curd";
@@ -26,11 +26,13 @@ public class GeneratorConfig {
     public static Set<String> tableNames = new LinkedHashSet<>();
 
     static {
-        tableNames.add("ex_single_table");
-        tableNames.add("ex_staff_education");
-        tableNames.add("ex_staff_experience");
-        tableNames.add("ex_staff_family");
-        tableNames.add("ex_staff");
+//        tableNames.add("ex_single_table");
+//        tableNames.add("ex_staff_education");
+//        tableNames.add("ex_staff_experience");
+//        tableNames.add("ex_staff_family");
+//        tableNames.add("ex_staff");
+        tableNames.add("sys_button");
+        tableNames.add("sys_role_button");
     }
 
     // 模板文件基础路径

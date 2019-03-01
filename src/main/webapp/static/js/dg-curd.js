@@ -41,7 +41,12 @@ function deleteModel(dgid,url) {
             rows.forEach(function(row){
                 ids.push(row.id);
             });
-            $.post(url+'?ids=' + ids.join(','), function (data) {
+            if (url.indexOf('?')>=0){
+                url = url+'&ids=' + ids.join(',')
+            }else{
+                url = url+'?ids=' + ids.join(',')
+            }
+            $.post(url, function (data) {
                 if(data.state==='ok'){
                     popup.msg(data.msg, function () {
                         $('#'+dgid).datagrid('reload');

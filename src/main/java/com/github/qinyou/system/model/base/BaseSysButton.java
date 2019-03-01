@@ -7,16 +7,16 @@ import java.util.Date;
 
 /**
  * Generated baseModel
- * DB table: sys_menu  系统菜单
+ * DB table: sys_button  菜单按钮
  *
  * @author zhangchuang
- * @since 2019-02-21 13:10:49
+ * @since 2019-02-28 19:22:25
  */
 @SuppressWarnings({"serial", "unchecked"})
-public abstract class BaseSysMenu<M extends BaseSysMenu<M>> extends Model<M> implements IBean {
+public abstract class BaseSysButton<M extends BaseSysButton<M>> extends Model<M> implements IBean {
 
 
-    // 主键ID
+    // 主键id
     public String getId() {
         return getStr("id");
     }
@@ -27,67 +27,35 @@ public abstract class BaseSysMenu<M extends BaseSysMenu<M>> extends Model<M> imp
     }
 
 
-    // 菜单名称
-    public String getMenuName() {
-        return getStr("menuName");
+    // 菜单id
+    public String getSysMenuId() {
+        return getStr("sysMenuId");
     }
 
-    public M setMenuName(String menuName) {
-        set("menuName", menuName);
+    public M setSysMenuId(String sysMenuId) {
+        set("sysMenuId", sysMenuId);
         return (M) this;
     }
 
 
-    // 菜单地址
-    public String getUrl() {
-        return getStr("url");
+    // 按钮编码
+    public String getButtonCode() {
+        return getStr("buttonCode");
     }
 
-    public M setUrl(String url) {
-        set("url", url);
+    public M setButtonCode(String buttonCode) {
+        set("buttonCode", buttonCode);
         return (M) this;
     }
 
 
-    // 菜单图标
-    public String getIcon() {
-        return getStr("icon");
+    // 按钮说明
+    public String getButtonTxt() {
+        return getStr("buttonTxt");
     }
 
-    public M setIcon(String icon) {
-        set("icon", icon);
-        return (M) this;
-    }
-
-
-    // 排序号
-    public Integer getSortNum() {
-        return getInt("sortNum");
-    }
-
-    public M setSortNum(Integer sortNum) {
-        set("sortNum", sortNum);
-        return (M) this;
-    }
-
-
-    // 父ID
-    public String getPid() {
-        return getStr("pid");
-    }
-
-    public M setPid(String pid) {
-        set("pid", pid);
-        return (M) this;
-    }
-
-    // 是否有按钮控制Y是null否
-    public String getBtnControl() {
-        return getStr("btnControl");
-    }
-
-    public M setBtnControl(String btnControl) {
-        set("btnControl", btnControl);
+    public M setButtonTxt(String buttonTxt) {
+        set("buttonTxt", buttonTxt);
         return (M) this;
     }
 
@@ -114,7 +82,7 @@ public abstract class BaseSysMenu<M extends BaseSysMenu<M>> extends Model<M> imp
     }
 
 
-    // 最后修改人
+    // 最后更新人
     public String getUpdater() {
         return getStr("updater");
     }
@@ -125,7 +93,7 @@ public abstract class BaseSysMenu<M extends BaseSysMenu<M>> extends Model<M> imp
     }
 
 
-    // 最后修改时间
+    // 最后更新时间
     public Date getUpdateTime() {
         return get("updateTime");
     }
