@@ -59,7 +59,7 @@ public class SysVisitLogController extends BaseController {
      */
 
     @Before({RoleInterceptor.class, IdsRequired.class})
-    @RequirePermission("sysVistLog:delete")
+    @RequirePermission("sysVisitLog:delete")
     public void deleteAction() {
         String ids = getPara("ids").replaceAll(",", "','");
         String sql = "delete from sys_visit_log where  id in ('" + ids + "')";
@@ -94,7 +94,7 @@ public class SysVisitLogController extends BaseController {
      * 导出excel
      */
     @Before(SearchSql.class)
-    @RequirePermission("sysVistLog:export")
+    @RequirePermission("sysVisitLog:export")
     public void exportExcel() {
         String where = getAttr(Constant.SEARCH_SQL);
         if (SysVisitLog.dao.findCountByWhere(where) > 50000) {

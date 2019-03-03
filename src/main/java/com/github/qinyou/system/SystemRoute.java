@@ -39,9 +39,6 @@ public class SystemRoute extends Routes {
         // 用户解锁
         add("/sysUserUnlock", SysUserUnlockController.class, Constant.VIEW_PATH);
 
-        // 通知类型关联 角色
-        add("/sysNTRole", SysNTRoleController.class, Constant.VIEW_PATH);
-
         // 定时任务
         add("/sysTask", SysTaskController.class, Constant.VIEW_PATH);
     }
