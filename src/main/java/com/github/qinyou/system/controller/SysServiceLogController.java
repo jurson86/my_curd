@@ -2,6 +2,7 @@ package com.github.qinyou.system.controller;
 
 import cn.afterturn.easypoi.excel.ExcelExportUtil;
 import cn.afterturn.easypoi.excel.entity.ExportParams;
+import com.github.qinyou.common.annotation.RequirePermission;
 import com.github.qinyou.common.base.BaseController;
 import com.github.qinyou.common.config.Constant;
 import com.github.qinyou.common.interceptor.SearchSql;
@@ -35,6 +36,7 @@ public class SysServiceLogController extends BaseController {
 
 
     @Before(IdsRequired.class)
+    @RequirePermission("sysServiceLog:delete")
     public void deleteAction() {
         String ids = getPara("ids").replaceAll(",", "','");
         String sql = "delete from sys_service_log where  id in ('" + ids + "')";
@@ -46,6 +48,7 @@ public class SysServiceLogController extends BaseController {
      * 导出excel
      */
     @Before(SearchSql.class)
+    @RequirePermission("sysServiceLog:export")
     public void exportExcel() {
         String where = getAttr(Constant.SEARCH_SQL);
         if (SysServiceLog.dao.findCountByWhere(where) > 5000) {

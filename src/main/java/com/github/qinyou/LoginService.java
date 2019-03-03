@@ -1,11 +1,12 @@
 package com.github.qinyou;
 
 import com.github.qinyou.common.utils.StringUtils;
+import com.github.qinyou.system.model.SysButton;
 import com.github.qinyou.system.model.SysMenu;
 
 import java.util.*;
 
-class LoginService {
+public class LoginService {
     /**
      * 用户完整的菜单
      *
@@ -42,13 +43,40 @@ class LoginService {
     }
 
     /**
+     * 查询用户菜单按钮
+     * @return
+     */
+    Map<String,List<String>> findUserButtons(String roleIds){
+        if (StringUtils.isEmpty(roleIds)) {
+            return new HashMap<>();
+        }
+        if (roleIds.contains(",") && !roleIds.contains("'")) {
+            roleIds = roleIds.replaceAll(",", "','");
+        }
+
+        String sql = " select a.sysMenuId,a.buttonCode from sys_button a , sys_role_button b ,sys_role c " +
+                " where b.sysButtonId = a.id  and b.sysRoleId = c.id and b.sysRoleId in ('"+roleIds+"')";
+        List<SysButton> sysButtons = SysButton.dao.find(sql);
+        Map<String,List<String>> sysMenuButtons = new HashMap<>();
+        sysButtons.forEach(sysButton -> {
+            List<String> sysButtonCodes = sysMenuButtons.get(sysButton.getSysMenuId());
+            if(sysButtonCodes==null){
+                sysButtonCodes = new ArrayList<>();
+                sysMenuButtons.put(sysButton.getSysMenuId(),sysButtonCodes);
+            }
+            sysButtonCodes.add(sysButton.getButtonCode());
+        });
+        return sysMenuButtons;
+    }
+
+    /**
      * 获取 所有 父祖 菜单
      *
      * @param allMenuList
      * @param menu
      * @param chainSet
      */
-    private void getPChain(Collection<SysMenu> allMenuList, SysMenu menu, Set<SysMenu> chainSet) {
+    public static void getPChain(Collection<SysMenu> allMenuList, SysMenu menu, Set<SysMenu> chainSet) {
         for (SysMenu m : allMenuList) {
             if (Objects.equals(menu.getPid(), m.getId())) {
                 chainSet.add(m);

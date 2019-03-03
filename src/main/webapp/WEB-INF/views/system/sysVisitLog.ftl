@@ -1,6 +1,5 @@
 <#--数据字典 datagrid  -->
 <#include "../common/common.ftl"/>
-<#assign StringUtils=statics['com.github.qinyou.common.utils.StringUtils']>
 <@layout>
 <style>
     /*datagrid 行号大时调整*/
@@ -42,13 +41,15 @@
         <#--<a onclick="viewModel('查看','dg','${ctx!}/sysVisitLog/view', '800px', '600px')" href="#"-->
            <#--class="easyui-linkbutton" iconCls="iconfont icon-eye" plain="true">查看</a>-->
 
-       <#if StringUtils.asListOrContains(rolecodes,'admin,GOD')>
+        <#if  !btnControl?? ||  btnCodes?seq_contains("sysVisitLog:delete")  >
         <a onclick="deleteModel('dg','${ctx!}/sysVisitLog/deleteAction')" href="#" class="easyui-linkbutton"
            iconCls="iconfont icon-delete" plain="true">删除</a>
-       </#if>
+        </#if>
 
+        <#if  !btnControl?? ||  btnCodes?seq_contains("sysVisitLog:export")  >
         <a onclick="exportExcel('${ctx!}/sysVisitLog/exportExcel','searchSpan')" href="#" class="easyui-linkbutton"
            iconCls="iconfont icon-export" plain="true">导出</a>
+        </#if>
 
         <span id="searchSpan" class="searchInputArea">
             <input name="search_LIKE_sysUser" prompt="用户名" class="easyui-textbox" style="width:120px; ">
@@ -83,5 +84,7 @@
         function usernameFmt(val,row) {
             return '<a title="点击查看人员信息" href="javascript:userInfo(\'${ctx!}\',\''+val+'\')" >'+val+'</a>';
         }
+
+
     </script>
 </@layout>

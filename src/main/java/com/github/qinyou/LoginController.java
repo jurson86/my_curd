@@ -23,6 +23,7 @@ import org.slf4j.LoggerFactory;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
@@ -35,8 +36,8 @@ public class LoginController extends BaseController {
     private final static LoginService loginService = Duang.duang(LoginService.class);
 
     // 登录用户名密码cookie key
-    private final static String usernameKey = "github.qinyou_username";
-    private final static String passwordKey = "github.qinyou_password";
+    private final static String usernameKey = "mycurd_username";
+    private final static String passwordKey = "mycurd_password";
 
     /**
      * 登录页面
@@ -158,6 +159,10 @@ public class LoginController extends BaseController {
         List<SysMenu> sysMenus = loginService.findUserMenus(roleIds);
         setSessionAttr(Constant.SYS_USER_MENU, sysMenus);
         LOG.debug("{} has menu {}", sysUser.getUsername(), JSON.toJSONString(sysMenus));
+        // 按钮
+        Map<String,List<String>> sysMenuButtons = loginService.findUserButtons(roleIds);
+        setSessionAttr(Constant.SYS_USER_MENU_BUTTONS, sysMenuButtons);
+        LOG.debug("{} has menuButtons {}", sysUser.getUsername(), JSON.toJSONString(sysMenuButtons));
 
         // 角色编码
         String rolecodes = SysUserRole.dao.findRoleCodesByUserId(sysUser.getId());

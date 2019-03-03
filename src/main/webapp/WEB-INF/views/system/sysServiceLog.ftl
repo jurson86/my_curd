@@ -9,7 +9,10 @@
     .datagrid-cell-rownumber{
         width:50px !important;
     }
-
+    /*datagrid 最小高度*/
+    .datagrid-toolbar{
+        min-height: 33px !important;
+    }
 </style>
     <table id="dg" class="easyui-datagrid"
           url="${ctx!}/sysServiceLog/query"
@@ -30,10 +33,14 @@
        </thead>
     </table>
     <div id="tb">
+        <#if  !btnControl?? ||  btnCodes?seq_contains("sysServiceLog:delete")  >
         <a onclick="deleteModel('dg','${ctx!}/sysServiceLog/deleteAction')" href="#" class="easyui-linkbutton  "
            iconCls="iconfont icon-delete" plain="true">删除</a>
+        </#if>
+        <#if  !btnControl?? ||  btnCodes?seq_contains("sysServiceLog:export")  >
         <a onclick="exportExcel('${ctx!}/sysServiceLog/exportExcel','searchSpan')" href="#" class="easyui-linkbutton"
            iconCls="iconfont icon-export" plain="true">导出</a>
+        </#if>
         <span id="searchSpan" class="searchInputArea">
             <input name="search_LIKE_sysUser" prompt="用户名" class="easyui-textbox" style="width:120px; ">
             <input name="search_LIKE_sysUserIp" prompt="IP地址" class="easyui-textbox" style="width:120px; ">

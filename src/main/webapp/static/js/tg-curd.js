@@ -105,7 +105,8 @@ $(".searchInputArea,.searchInputAreaDiv").on("keydown", function (e) {
  */
 function saveAction(formId,type,tgId){
     $('#'+formId).form('submit', {
-        onSubmit: function () {
+        onSubmit: function (param) {
+            param.xmlHttpRequest = "XMLHttpRequest";
             return $(this).form('validate');
         },
         success: function (data) {

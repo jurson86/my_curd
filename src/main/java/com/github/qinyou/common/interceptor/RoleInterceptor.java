@@ -16,6 +16,7 @@ import org.slf4j.LoggerFactory;
  *
  * @author zhangchuang
  */
+@SuppressWarnings("Duplicates")
 public class RoleInterceptor implements Interceptor {
     private final static Logger LOG = LoggerFactory.getLogger(RoleInterceptor.class);
 
@@ -45,7 +46,7 @@ public class RoleInterceptor implements Interceptor {
         baseController.addServiceLog("RoleInterceptor: 访问无权限路径");
         // 如此 区分 ajax 并不完全准确, 例如 easyui form
         String requestType = baseController.getHeader("X-Requested-With");
-        if (StringUtils.notEmpty(requestType)) {
+        if ("XMLHttpRequest".equals(requestType) || StringUtils.notEmpty(inv.getController().getPara("xmlHttpRequest"))) {
             Ret ret = Ret.create().setFail().set("msg", "无权限操作！您的行为已被记录到日志。");
             inv.getController().renderJson(ret);
         } else {

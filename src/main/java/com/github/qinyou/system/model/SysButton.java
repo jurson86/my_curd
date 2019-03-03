@@ -4,6 +4,8 @@ import com.github.qinyou.common.utils.StringUtils;
 import com.github.qinyou.system.model.base.BaseSysButton;
 import com.jfinal.plugin.activerecord.Page;
 
+import java.util.List;
+
 /**
  * Generated model
  * DB: sys_button  菜单按钮
@@ -28,6 +30,16 @@ public class SysButton extends BaseSysButton<SysButton> {
             sqlExceptSelect += " where " + where;
         }
         return this.paginate(pageNumber,pageSize,sqlSelect,sqlExceptSelect);
+    }
+
+
+    public List<SysButton> findByProperty(String field,String value){
+        String sql = "select * from sys_button where "+field+" = ? ";
+        return find(sql,value);
+    }
+
+    public SysButton findUniqueByProperty(String field,String value){
+        return findFirst("select * from sys_button where "+field+" = ?",value);
     }
 
 }

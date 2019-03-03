@@ -42,9 +42,21 @@ public class SysMenu extends BaseSysMenu<SysMenu> {
      * @param fieldValue
      * @return
      */
-    public SysMenu findByProperty(String fieldName, Object fieldValue) {
+    public SysMenu findUniqueByProperty(String fieldName, Object fieldValue) {
         String sql = "select * from sys_menu where " + fieldName + " = ?";
         return findFirst(sql, fieldValue);
+    }
+
+    /**
+     * 通过字段查询
+     *
+     * @param fieldName
+     * @param fieldValue
+     * @return
+     */
+    public List<SysMenu> findByProperty(String fieldName, Object fieldValue) {
+        String sql = "select * from sys_menu where " + fieldName + " = ? order by sortNum";
+        return find(sql, fieldValue);
     }
 
 

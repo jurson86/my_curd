@@ -12,6 +12,7 @@ import com.github.qinyou.common.validator.IdRequired;
 import com.github.qinyou.common.validator.IdsRequired;
 import com.github.qinyou.system.model.SysButton;
 import com.github.qinyou.system.model.SysMenu;
+import com.github.qinyou.system.model.SysRoleButton;
 import com.github.qinyou.system.model.SysRoleMenu;
 import com.jfinal.aop.Before;
 import com.jfinal.aop.Clear;
@@ -67,7 +68,7 @@ public class SysMenuController extends BaseController {
         SysMenu sysMenu = getBean(SysMenu.class, "");
         if (!sysMenu.getUrl().equals("/")) {
             // 地址不重复
-            SysMenu sysMenuOld = SysMenu.dao.findByProperty("url", sysMenu.getUrl());
+            SysMenu sysMenuOld = SysMenu.dao.findUniqueByProperty("url", sysMenu.getUrl());
             if (sysMenuOld != null) {
                 renderFail("菜单地址已存在.");
                 return;
@@ -96,7 +97,7 @@ public class SysMenuController extends BaseController {
         SysMenu sysMenu = getBean(SysMenu.class, "");
         if (!sysMenu.getUrl().equals("/")) {
             // 地址不重复
-            SysMenu sysMenuOld = SysMenu.dao.findByProperty("url", sysMenu.getUrl());
+            SysMenu sysMenuOld = SysMenu.dao.findUniqueByProperty("url", sysMenu.getUrl());
             if (sysMenuOld != null && !sysMenu.getId().equals(sysMenuOld.getId())) {
                 renderFail("菜单地址已存在.");
                 return;
@@ -254,11 +255,18 @@ public class SysMenuController extends BaseController {
                 .setId(IdUtils.id())
                 .setCreater(WebUtils.getSessionUsername(this))
                 .setCreateTime(new Date());
+
+        if(SysButton.dao.findUniqueByProperty("buttonCode",sysButton.getButtonCode())!=null){
+            renderFail(Constant.ADD_FAIL+" 编码已经存在");
+            return;
+        }
+
         SysMenu sysMenu = SysMenu.dao.findById(sysButton.getSysMenuId());
         if (sysMenu==null){
             renderFail(Constant.ADD_FAIL);
             return;
         }
+
         if(sysMenu.getBtnControl()==null){
             sysMenu.setBtnControl("Y");
             sysMenu.update();
@@ -274,6 +282,13 @@ public class SysMenuController extends BaseController {
         SysButton sysButton = getBean(SysButton.class, "");
         sysButton.setUpdater(WebUtils.getSessionUsername(this))
                 .setUpdateTime(new Date());
+
+        SysButton oldSysButton  = SysButton.dao.findUniqueByProperty("buttonCode",sysButton.getButtonCode());
+        if(oldSysButton!=null && !sysButton.getId().equals(oldSysButton.getId()) ){
+            renderFail(Constant.ADD_FAIL+" 编码已经存在");
+            return;
+        }
+
         if(sysButton.update()){
             renderSuccess(Constant.UPDATE_SUCCESS);
         }else{
@@ -305,5 +320,39 @@ public class SysMenuController extends BaseController {
            Db.update(sql,sysMenuId);
         }
         renderSuccess(Constant.DELETE_SUCCESS);
+    }
+
+    /**
+     * 查看按钮角色
+     */
+    public void openButtonRole(){
+        setAttr("buttonId", get("id"));
+        render("system/sysButton_role.ftl");
+    }
+
+    /**
+     * 查看按钮角色数据
+     */
+    @Before(SearchSql.class)
+    public void queryButtonRole(){
+        int pageNumber = getAttr("pageNumber");
+        int pageSize = getAttr("pageSize");
+        String where = getAttr(Constant.SEARCH_SQL);
+        Page<SysRoleButton> sysRoleMenuPage = SysRoleButton.dao.pageWithRoleInfo(pageNumber, pageSize, where);
+        renderDatagrid(sysRoleMenuPage);
+    }
+
+    /**
+     * 删除按钮角色
+     */
+    public void deleteButtonRole(){
+        String buttonId = get("buttonId");
+        String roleId = get("roleId");
+        if (StringUtils.isEmpty(roleId) || StringUtils.isEmpty(buttonId)) {
+            renderFail("buttonId roleId 参数不可为空");
+            return;
+        }
+        SysRoleButton.dao.deleteByIds(roleId, buttonId);
+        renderSuccess("按钮角色删除成功");
     }
 }

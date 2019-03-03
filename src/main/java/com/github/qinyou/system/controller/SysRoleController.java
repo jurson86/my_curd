@@ -1,5 +1,6 @@
 package com.github.qinyou.system.controller;
 
+import com.github.qinyou.LoginService;
 import com.github.qinyou.common.base.BaseController;
 import com.github.qinyou.common.config.Constant;
 import com.github.qinyou.common.interceptor.SearchSql;
@@ -7,10 +8,7 @@ import com.github.qinyou.common.utils.Id.IdUtils;
 import com.github.qinyou.common.utils.StringUtils;
 import com.github.qinyou.common.utils.WebUtils;
 import com.github.qinyou.common.validator.IdsRequired;
-import com.github.qinyou.system.model.SysMenu;
-import com.github.qinyou.system.model.SysRole;
-import com.github.qinyou.system.model.SysRoleMenu;
-import com.github.qinyou.system.model.SysUserRole;
+import com.github.qinyou.system.model.*;
 import com.google.common.base.Objects;
 import com.jfinal.aop.Before;
 import com.jfinal.plugin.activerecord.Db;
@@ -24,6 +22,7 @@ import java.util.*;
  *
  * @author zhangchuang
  */
+@SuppressWarnings("Duplicates")
 public class SysRoleController extends BaseController {
 
     /**
@@ -223,5 +222,86 @@ public class SysRoleController extends BaseController {
             }
         }
         renderSuccess("配置菜单成功");
+    }
+
+    /**
+     * 角色配置按钮
+     */
+    public void newRoleButton() {
+        setAttr("roleId", getPara("id"));
+        render("system/sysRole_button.ftl");
+    }
+
+    /**
+     * 角色配置按钮数据
+     */
+    public void buttonTreeChecked() {
+        String id = getPara("roleId");
+        // 角色相关按钮
+        List<SysRoleButton> sysRoleButtons = SysRoleButton.dao.findByRoleId(id);
+
+        // 有按钮控制的菜单
+        List<SysMenu> sysMenus = SysMenu.dao.findByProperty("btnControl","Y");
+        List<SysMenu> allSysMenus = SysMenu.dao.findAll();
+        Set<SysMenu> chainSet = new LinkedHashSet<>();
+        List<SysButton> allButtons = new ArrayList<>();
+        for (SysMenu menu : sysMenus) {
+            List<SysButton> sysButtons = SysButton.dao.findByProperty("sysMenuId",menu.getId());
+            allButtons.addAll(sysButtons);
+
+            menu.put("state","closed");
+            chainSet.add(menu);
+            LoginService.getPChain(allSysMenus, menu, chainSet);
+        }
+
+        List<Map<String, Object>> maps = new ArrayList<>();
+        chainSet.forEach(sysMenu->{
+            Map<String, Object> map = new HashMap<>();
+            map.put("id", sysMenu.getId());
+            map.put("pid", sysMenu.getPid());
+            map.put("text", sysMenu.getMenuName());
+            map.put("iconCls", sysMenu.getIcon());
+            map.put("state",sysMenu.getStr("state")==null?"open":"closed");
+            maps.add(map);
+        });
+
+        allButtons.forEach(sysButton -> {
+            Map<String, Object> map = new HashMap<>();
+            map.put("id", sysButton.getId());
+            map.put("pid", sysButton.getSysMenuId());
+            map.put("text", sysButton.getButtonTxt());
+            map.put("iconCls","iconfont icon-file");
+            for (SysRoleButton sysRoleButton : sysRoleButtons) {
+                // 中间表 有记录
+                if (Objects.equal(sysRoleButton.getSysButtonId(), sysButton.getId())) {
+                    map.put("checked", true);
+                    break;
+                }
+            }
+            maps.add(map);
+        });
+        renderJson(maps);
+    }
+
+    public void buttonTreeUpdate(){
+        String roleId = get("roleId");
+        String buttonIds = get("buttonIds");
+        if (StringUtils.isEmpty(roleId)) {
+            renderFail("roleId 参数不可为空.");
+            return;
+        }
+        String deleteSql = "delete from  sys_role_button where sysRoleId = ?";
+        Db.update(deleteSql, roleId);
+        if (StringUtils.notEmpty(buttonIds)) {
+            String[] buttonIdAry = buttonIds.split(",");
+            for (String buttonId : buttonIdAry) {
+                new SysRoleButton().setSysRoleId(roleId)
+                        .setSysButtonId(buttonId)
+                        .setCreater(WebUtils.getSessionUsername(this))
+                        .setCreateTime(new Date())
+                        .save();
+            }
+        }
+        renderSuccess("配置按钮成功");
     }
 }

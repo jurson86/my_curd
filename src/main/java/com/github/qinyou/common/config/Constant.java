@@ -17,7 +17,11 @@ public class Constant {
 
     // 用户拥有的菜单
     public final static String SYS_USER_MENU = "SYS_USER_MENU";
-    // 用户拥有的
+
+    // 用户拥有的 菜单按钮
+    public final static String SYS_USER_MENU_BUTTONS = "SYS_USER_MENU_BUTTONS";
+
+    // 用户拥有的角色编码
     public final static String SYS_USER_ROLE_CODES = "SYS_USER_ROLE_CODES";
 
     // 项目默认编码

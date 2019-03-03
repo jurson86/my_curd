@@ -2,10 +2,12 @@ package com.github.qinyou.system.controller;
 
 import cn.afterturn.easypoi.excel.ExcelExportUtil;
 import cn.afterturn.easypoi.excel.entity.ExportParams;
-import com.github.qinyou.common.annotation.RequireRole;
+import com.github.qinyou.common.annotation.RequirePermission;
 import com.github.qinyou.common.base.BaseController;
 import com.github.qinyou.common.config.Constant;
-import com.github.qinyou.common.interceptor.*;
+import com.github.qinyou.common.interceptor.ExceptionInterceptor;
+import com.github.qinyou.common.interceptor.RoleInterceptor;
+import com.github.qinyou.common.interceptor.SearchSql;
 import com.github.qinyou.common.render.ExcelRender;
 import com.github.qinyou.common.utils.StringUtils;
 import com.github.qinyou.common.utils.WebUtils;
@@ -34,7 +36,6 @@ public class SysVisitLogController extends BaseController {
 
     private final static Logger LOG = LoggerFactory.getLogger(SysVisitLogController.class);
 
-    @Before(ControlDomByRole.class)
     public void index() {
         render("system/sysVisitLog.ftl");
     }
@@ -56,9 +57,9 @@ public class SysVisitLogController extends BaseController {
     /**
      * 批量删除
      */
-    @Clear(PermissionInterceptor.class)
+
     @Before({RoleInterceptor.class, IdsRequired.class})
-    @RequireRole(value = "admin,GOD", relation = RequireRole.Relation.OR) // 测试按钮权限 拥有 admin  或者 GOD 角色
+    @RequirePermission("sysVistLog:delete")
     public void deleteAction() {
         String ids = getPara("ids").replaceAll(",", "','");
         String sql = "delete from sys_visit_log where  id in ('" + ids + "')";
@@ -93,6 +94,7 @@ public class SysVisitLogController extends BaseController {
      * 导出excel
      */
     @Before(SearchSql.class)
+    @RequirePermission("sysVistLog:export")
     public void exportExcel() {
         String where = getAttr(Constant.SEARCH_SQL);
         if (SysVisitLog.dao.findCountByWhere(where) > 50000) {

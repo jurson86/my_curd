@@ -1,6 +1,7 @@
 package com.github.qinyou.common.interceptor;
 
 import com.alibaba.fastjson.JSON;
+import com.github.qinyou.common.config.Constant;
 import com.github.qinyou.common.utils.Id.IdUtils;
 import com.github.qinyou.common.utils.StringUtils;
 import com.github.qinyou.common.utils.WebUtils;
@@ -22,6 +23,7 @@ import java.util.Map;
  *
  * @author zhangchuang
  */
+@SuppressWarnings("Duplicates")
 public class ExceptionInterceptor implements Interceptor {
     private final static Logger LOG = LoggerFactory.getLogger(ExceptionInterceptor.class);
     private final static Boolean visitLog = PropKit.use("config.properties").getBoolean("visitLog");
@@ -61,19 +63,13 @@ public class ExceptionInterceptor implements Interceptor {
         // 返回异常信息
         if (StringUtils.notEmpty(errMsg)) {
             String requestType = inv.getController().getRequest().getHeader("X-Requested-With");
-
-            // 只能判断 jquery ajax, 原始的 ajax 没有该请求头 例如 easyui form 没, easyui datagrid 有，
-            // 故此处注掉 以免 easyui form 提交发生异常无法正常 提示异常信息
-//            if("XMLHttpRequest".equals(requestType)){
-//                Ret ret = Ret.create().set("state", "error").set("msg", errMsg);
-//                inv.getController().renderJson(ret);
-//            }else{
-//                inv.getController().setAttr("errorMsg",errMsg);
-//                inv.getController().render(Constant.VIEW_PATH+"/common/500.ftl");
-//            }
-
-            Ret ret = Ret.create().set("state", "error").set("msg", errMsg);
-            inv.getController().renderJson(ret);
+            if("XMLHttpRequest".equals(requestType) || StringUtils.notEmpty(inv.getController().getPara("xmlHttpRequest"))){
+                Ret ret = Ret.create().set("state", "error").set("msg", errMsg);
+                inv.getController().renderJson(ret);
+            }else{
+                inv.getController().setAttr("errorMsg",errMsg);
+                inv.getController().render(Constant.VIEW_PATH+"/common/500.ftl");
+            }
         }
     }
 

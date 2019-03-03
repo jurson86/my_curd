@@ -136,7 +136,8 @@ function goUploadPage(uploadPageUrl,uploadUrl,label,windowName){
  */
 function saveAction(formId,type,dgId){
     $('#'+formId).form('submit', {
-        onSubmit: function () {
+        onSubmit: function (param) {
+            param.xmlHttpRequest = "XMLHttpRequest";
             return $(this).form('validate');
         },
         success: function (data) {
