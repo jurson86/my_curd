@@ -30,11 +30,6 @@ public class SysTaskController extends BaseController {
     private final static Logger LOG = LoggerFactory.getLogger(SysTaskController.class);
     private final static Prop prop = PropKit.use("task.properties");
 
-    public SysTaskController() {
-        //  每一次url 方法访问 都会重新 创建 controller 对象，忽然感觉 jfinal 很恐怖  :(,
-        System.out.println("init  ......................");
-    }
-
     private static void initData(List<Cron4jTaskIntro> data) {
         String taskNames = prop.get("cron4j");
         if (StringUtils.isEmpty(taskNames)) {
