@@ -1,14 +1,13 @@
 
 <p align="center" style='font-weight:bold'>
-    <img src="https://images.gitee.com/uploads/images/2019/0213/221706_3326cf26_608004.png" width="120">
+    <img src="https://images.gitee.com/uploads/images/2019/0213/221706_3326cf26_608004.png" width="100">
     <br/>
-    my_curd
+    <b>my_curd</b>
     <p align="center">
         后台权限管理系统，内置代码生成器，代码量少，简单美观。
+        <br>
+        基于 jfinal mysql easyui，开发效率高，适用于一般企业管理后台。
     </p>
-    <p align="center">
-       基于 jfinal mysql easyui，开发效率高，适用于一般企业管理后台。
-    </p>    
 </p>
 
 #### 功能模块
