@@ -1,6 +1,6 @@
 package com.github.qinyou.common.ws;
 
-import com.github.qinyou.common.utils.ExecutorServiceUtils;
+import com.github.qinyou.common.utils.thread.ExecutorServiceUtils;
 import com.jfinal.kit.StrKit;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

@@ -93,7 +93,7 @@
 </script>
 <script>
     function menuTreeInit(){
-        const easyTree = new EasyTree();
+        var easyTree = new EasyTree();
         $.getJSON('${ctx!}/dashboard/menuTree',function(data){
             var treeData = easyTree.treeDataBuild(data, "id", "pid", "text,iconCls,url");
             $('#permissionTree').tree({
@@ -154,13 +154,14 @@
         }, "json").error(function(){ popup.errMsg(); });
     }
 
+    var ws;
     function websocketInit(){
         refreshCount();
         if ('WebSocket' in window) {
             var host =window.location.hostname;
             var port = window.location.port;
             var wsUrl = host+':'+port+'${ctx!}';
-            var ws = new WebSocket("ws://"+wsUrl+"/ws-server?userId=${(aesUserId)!}");
+            ws = new WebSocket("ws://"+wsUrl+"/ws-server?userId=${(aesUserId)!}");
             ws.onerror = function () {
                 console.error("WebSocket连接发生错误");
                 ws.close();
@@ -178,16 +179,6 @@
             ws.onmessage = function (event) {
                 console.log(event.data);
                 refreshCount();
-                <#--if(event.data){-->
-                    <#--var msg = JSON.parse(event.data);-->
-                    <#--new dToast({-->
-                        <#--title: msg.title,-->
-                        <#--body:msg.content,-->
-                        <#--icon:'${ctx!}/'+msg.logo,-->
-                        <#--inner:true,   /* 不用底层通知，默认为false */-->
-                        <#--timeout:10000 /* 10 秒 自动消失 */-->
-                    <#--});-->
-                <#--}-->
             };
         } else {
             console.log('当前浏览器 不支持 websocket')

@@ -1,9 +1,9 @@
 package com.github.qinyou.system.service;
 
 import com.alibaba.fastjson.JSON;
-import com.github.qinyou.common.utils.ExecutorServiceUtils;
 import com.github.qinyou.common.utils.Id.IdUtils;
 import com.github.qinyou.common.utils.freemarker.FreemarkerUtils;
+import com.github.qinyou.common.utils.thread.ExecutorServiceUtils;
 import com.github.qinyou.common.ws.SendMsgUtils;
 import com.github.qinyou.system.model.SysNotice;
 import com.github.qinyou.system.model.SysNoticeDetail;
