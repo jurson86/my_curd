@@ -1,12 +1,14 @@
 package com.github.qinyou.common.utils;
 
 import com.google.common.base.Charsets;
+import com.google.common.io.FileWriteMode;
 import com.google.common.io.Files;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.charset.Charset;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
@@ -48,6 +50,23 @@ public class FileUtils {
             Files.createParentDirs(saveFile);
         }
         Files.write(content.getBytes(), saveFile);
+    }
+
+
+    /**
+     * 文件追加
+     * @param content
+     * @param savePath
+     * @param charset
+     * @throws IOException
+     */
+    public static  void appendString(String content, String savePath, Charset charset) throws IOException{
+        LOG.debug("write file path: {}", savePath);
+        File saveFile = new File(savePath);
+        if (!saveFile.exists()) {
+            Files.createParentDirs(saveFile);
+        }
+        Files.asCharSink(saveFile, charset, FileWriteMode.APPEND).write(content);
     }
 
 
