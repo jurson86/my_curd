@@ -7,8 +7,7 @@ import com.github.qinyou.common.utils.StringUtils;
 import com.jfinal.aop.Interceptor;
 import com.jfinal.aop.Invocation;
 import com.jfinal.kit.Ret;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 
 /**
@@ -17,8 +16,8 @@ import org.slf4j.LoggerFactory;
  * @author zhangchuang
  */
 @SuppressWarnings("Duplicates")
+@Slf4j
 public class RoleInterceptor implements Interceptor {
-    private final static Logger LOG = LoggerFactory.getLogger(RoleInterceptor.class);
 
     @Override
     public void intercept(Invocation inv) {
@@ -33,7 +32,7 @@ public class RoleInterceptor implements Interceptor {
             } else {
                 flag = StringUtils.asListAndContains(roleCodes, requireRole.value());
             }
-            LOG.debug("user roleCodes {}, annotation value: {}, annotation relation: {}  = {}"
+            log.debug("user roleCodes {}, annotation value: {}, annotation relation: {}  = {}"
                     , roleCodes, requireRole.value(), relation.name(), flag);
         }
 

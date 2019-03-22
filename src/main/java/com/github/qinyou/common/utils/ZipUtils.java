@@ -1,7 +1,6 @@
 package com.github.qinyou.common.utils;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -18,9 +17,8 @@ import java.util.zip.ZipOutputStream;
  * @author chuang
  */
 @SuppressWarnings("unused")
+@Slf4j
 public class ZipUtils {
-
-    private final static Logger LOG = LoggerFactory.getLogger(ZipUtils.class);
 
     private static final int BUFFER_SIZE = 2 * 1024;
 
@@ -40,7 +38,7 @@ public class ZipUtils {
             File sourceFile = new File(srcDir);
             compress(sourceFile, zos, sourceFile.getName(), KeepDirStructure);
         } catch (Exception e) {
-            LOG.error(e.getMessage(), e);
+            log.error(e.getMessage(), e);
         } finally {
             close(zos);
         }
@@ -68,7 +66,7 @@ public class ZipUtils {
                 in.close();
             }
         } catch (Exception e) {
-            LOG.error(e.getMessage(), e);
+            log.error(e.getMessage(), e);
         } finally {
             close(zos);
         }
@@ -97,7 +95,7 @@ public class ZipUtils {
                 zos.closeEntry();
             }
         } catch (Exception e) {
-            LOG.error(e.getMessage(), e);
+            log.error(e.getMessage(), e);
         } finally {
             close(zos);
         }
@@ -167,7 +165,7 @@ public class ZipUtils {
             try {
                 out.close();
             } catch (IOException e) {
-                LOG.error(e.getMessage(), e);
+                log.error(e.getMessage(), e);
             }
         }
     }

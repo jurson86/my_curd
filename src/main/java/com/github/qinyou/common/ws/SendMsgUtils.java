@@ -2,8 +2,7 @@ package com.github.qinyou.common.ws;
 
 import com.github.qinyou.common.utils.thread.ExecutorServiceUtils;
 import com.jfinal.kit.StrKit;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 import javax.websocket.Session;
 import java.io.IOException;
@@ -15,10 +14,8 @@ import java.util.Set;
  *
  * @author chuang
  */
+@Slf4j
 public class SendMsgUtils {
-
-    private final static Logger LOG = LoggerFactory.getLogger(SendMsgUtils.class);
-
 
     /**
      * 送 消息给部分用户发
@@ -31,19 +28,19 @@ public class SendMsgUtils {
             ExecutorServiceUtils.pool.submit(() -> {
                 String sessionId = OnlineUserContainer.USERID_SESSIONID.get(userId);
                 if (StrKit.isBlank(sessionId)) {
-                    LOG.debug("用户：{} websocket 不在线，不使用 WebSocket 推送。", userId);
+                    log.debug("用户：{} websocket 不在线，不使用 WebSocket 推送。", userId);
                     return;
                 }
                 Session session = OnlineUserContainer.SESSIONID_SESSION.get(sessionId);
                 if (session == null) {
-                    LOG.debug("用户：{} 找不到 websocket session，不使用 WebSocket 推送。", userId);
+                    log.debug("用户：{} 找不到 websocket session，不使用 WebSocket 推送。", userId);
                     return;
                 }
                 try {
                     session.getBasicRemote().sendText(msg);
                 } catch (IOException e) {
                     WebSocketServer.closeSession(session);
-                    LOG.error(e.getMessage(), e);
+                    log.error(e.getMessage(), e);
                 }
             });
         }
@@ -68,7 +65,7 @@ public class SendMsgUtils {
                     session.getBasicRemote().sendText(msg);
                 } catch (IOException e) {
                     WebSocketServer.closeSession(session);
-                    LOG.error(e.getMessage(), e);
+                    log.error(e.getMessage(), e);
                 }
             }
         }
@@ -82,7 +79,7 @@ public class SendMsgUtils {
      * @param sessionId 排除的当前session
      */
     public static void broadcast(String message, String sessionId) {
-        LOG.debug("broadcast msg : {}", message);
+        log.debug("broadcast msg : {}", message);
         ExecutorServiceUtils.pool.submit(() -> {
             Session session;
             for (String mapKey : OnlineUserContainer.SESSIONID_SESSION.keySet()) {
@@ -95,7 +92,7 @@ public class SendMsgUtils {
                     session.getBasicRemote().sendText(message);
                 } catch (IOException e) {
                     WebSocketServer.closeSession(session);
-                    LOG.error(e.getMessage(), e);
+                    log.error(e.getMessage(), e);
                 }
             }
         });

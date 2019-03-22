@@ -5,8 +5,7 @@ import freemarker.cache.TemplateLoader;
 import freemarker.template.Configuration;
 import freemarker.template.DefaultObjectWrapper;
 import freemarker.template.Template;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 import java.io.*;
 import java.util.Map;
@@ -16,8 +15,8 @@ import java.util.Map;
  *
  * @author zhangchuang
  */
+@Slf4j
 public abstract class FreemarkerUtils {
-    private final static Logger LOG = LoggerFactory.getLogger(FreemarkerUtils.class);
 
     /**
      * 通过模板文本字符串和数据获得渲染后的文本
@@ -35,7 +34,7 @@ public abstract class FreemarkerUtils {
             Template template = cfg.getTemplate("");
             template.process(paramMap, writer);
         } catch (Exception e) {
-            LOG.error(e.getMessage(), e);
+            log.error(e.getMessage(), e);
         }
         return writer.toString();
     }
@@ -66,20 +65,20 @@ public abstract class FreemarkerUtils {
             outputStreamWriter.close();
             fileOutputStream.close();
         } catch (Exception e) {
-            LOG.error(e.getMessage(), e);
+            log.error(e.getMessage(), e);
         } finally {
             if (null != fileOutputStream) {
                 try {
                     fileOutputStream.close();
                 } catch (IOException e) {
-                    LOG.error(e.getMessage(), e);
+                    log.error(e.getMessage(), e);
                 }
             }
             if (null != outputStreamWriter) {
                 try {
                     outputStreamWriter.close();
                 } catch (IOException e) {
-                    LOG.error(e.getMessage(), e);
+                    log.error(e.getMessage(), e);
                 }
             }
         }

@@ -16,8 +16,7 @@ import com.jfinal.kit.PropKit;
 import com.jfinal.plugin.activerecord.Db;
 import com.jfinal.plugin.activerecord.Page;
 import com.jfinal.plugin.cron4j.ITask;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -26,8 +25,8 @@ import java.util.List;
 /**
  * 定时任务
  */
+@Slf4j
 public class SysTaskController extends BaseController {
-    private final static Logger LOG = LoggerFactory.getLogger(SysTaskController.class);
     private final static Prop prop = PropKit.use("task.properties");
 
     private static void initData(List<Cron4jTaskIntro> data) {
@@ -117,7 +116,7 @@ public class SysTaskController extends BaseController {
                     return;
                 }
             } catch (Exception e) {
-                LOG.error(e.getMessage(), e);
+                log.error(e.getMessage(), e);
                 renderFail("运行异常，原因:" + Throwables.getStackTraceAsString(e));
                 return;
             }

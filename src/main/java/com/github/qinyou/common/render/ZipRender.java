@@ -4,8 +4,7 @@ import com.github.qinyou.common.utils.WebUtils;
 import com.github.qinyou.common.utils.ZipUtils;
 import com.jfinal.render.Render;
 import com.jfinal.render.RenderException;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 import java.io.IOException;
 import java.io.OutputStream;
@@ -19,9 +18,8 @@ import java.util.List;
  * @author chuang
  */
 @SuppressWarnings("unused")
+@Slf4j
 public class ZipRender extends Render {
-
-    private final static Logger LOG = LoggerFactory.getLogger(ExcelRender.class);
     private final static String CONTENT_TYPE = "application/x-zip-compressed;charset=" + getEncoding();
 
     private String fileName;      // 下载文件名
@@ -60,7 +58,7 @@ public class ZipRender extends Render {
             os = response.getOutputStream();
             ZipUtils.toZip(datas, filenames, os);
         } catch (Exception e) {
-            LOG.error(e.getMessage(), e);
+            log.error(e.getMessage(), e);
             throw new RenderException(e);
         } finally {
             try {
@@ -69,7 +67,7 @@ public class ZipRender extends Render {
                     os.close();
                 }
             } catch (IOException e) {
-                LOG.error(e.getMessage(), e);
+                log.error(e.getMessage(), e);
             }
         }
     }

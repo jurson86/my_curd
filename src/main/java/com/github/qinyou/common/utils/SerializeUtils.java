@@ -1,8 +1,7 @@
 package com.github.qinyou.common.utils;
 
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -12,9 +11,8 @@ import java.io.ObjectOutputStream;
 /**
  * 序列化操作
  */
+@Slf4j
 public abstract class SerializeUtils {
-
-    private final static Logger LOG = LoggerFactory.getLogger(SerializeUtils.class);
 
     private SerializeUtils() {
     }
@@ -35,7 +33,7 @@ public abstract class SerializeUtils {
             byte[] bytes = baos.toByteArray();
             return bytes;
         } catch (Exception e) {
-            LOG.error("序列化异常: ", e);
+            log.error("序列化异常: ", e);
         }
         return null;
     }
@@ -53,7 +51,7 @@ public abstract class SerializeUtils {
             ObjectInputStream ois = new ObjectInputStream(bais);
             return ois.readObject();
         } catch (Exception e) {
-            LOG.error("序列化异常： ", e);
+            log.error("序列化异常： ", e);
         }
         return null;
     }

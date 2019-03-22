@@ -9,6 +9,7 @@ import java.util.List;
 /**
  * Generated model
  * DB: sys_role_button  角色 菜单按钮中间表
+ *
  * @author zhangchuang
  * @since 2019-02-28 19:22:25
  */

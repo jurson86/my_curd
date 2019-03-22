@@ -44,9 +44,10 @@ public class LoginService {
 
     /**
      * 查询用户菜单按钮
+     *
      * @return
      */
-    Map<String,List<String>> findUserButtons(String roleIds){
+    Map<String, List<String>> findUserButtons(String roleIds) {
         if (StringUtils.isEmpty(roleIds)) {
             return new HashMap<>();
         }
@@ -55,14 +56,14 @@ public class LoginService {
         }
 
         String sql = " select a.sysMenuId,a.buttonCode from sys_button a , sys_role_button b ,sys_role c " +
-                " where b.sysButtonId = a.id  and b.sysRoleId = c.id and b.sysRoleId in ('"+roleIds+"')";
+                " where b.sysButtonId = a.id  and b.sysRoleId = c.id and b.sysRoleId in ('" + roleIds + "')";
         List<SysButton> sysButtons = SysButton.dao.find(sql);
-        Map<String,List<String>> sysMenuButtons = new HashMap<>();
+        Map<String, List<String>> sysMenuButtons = new HashMap<>();
         sysButtons.forEach(sysButton -> {
             List<String> sysButtonCodes = sysMenuButtons.get(sysButton.getSysMenuId());
-            if(sysButtonCodes==null){
+            if (sysButtonCodes == null) {
                 sysButtonCodes = new ArrayList<>();
-                sysMenuButtons.put(sysButton.getSysMenuId(),sysButtonCodes);
+                sysMenuButtons.put(sysButton.getSysMenuId(), sysButtonCodes);
             }
             sysButtonCodes.add(sysButton.getButtonCode());
         });

@@ -11,9 +11,8 @@ import com.jfinal.aop.Invocation;
 import com.jfinal.core.Controller;
 import com.jfinal.kit.PropKit;
 import com.jfinal.kit.Ret;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.exception.ExceptionUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.util.Date;
 import java.util.Map;
@@ -24,8 +23,8 @@ import java.util.Map;
  * @author zhangchuang
  */
 @SuppressWarnings("Duplicates")
+@Slf4j
 public class ExceptionInterceptor implements Interceptor {
-    private final static Logger LOG = LoggerFactory.getLogger(ExceptionInterceptor.class);
     private final static Boolean visitLog = PropKit.use("config.properties").getBoolean("visitLog");
 
     @Override
@@ -34,7 +33,7 @@ public class ExceptionInterceptor implements Interceptor {
         try {
             inv.invoke();
         } catch (Exception e) {
-            LOG.error(e.getMessage(), e);
+            log.error(e.getMessage(), e);
             errMsg = ExceptionUtils.getMessage(e);
         }
 
@@ -63,12 +62,12 @@ public class ExceptionInterceptor implements Interceptor {
         // 返回异常信息
         if (StringUtils.notEmpty(errMsg)) {
             String requestType = inv.getController().getRequest().getHeader("X-Requested-With");
-            if("XMLHttpRequest".equals(requestType) || StringUtils.notEmpty(inv.getController().getPara("xmlHttpRequest"))){
+            if ("XMLHttpRequest".equals(requestType) || StringUtils.notEmpty(inv.getController().getPara("xmlHttpRequest"))) {
                 Ret ret = Ret.create().set("state", "error").set("msg", errMsg);
                 inv.getController().renderJson(ret);
-            }else{
-                inv.getController().setAttr("errorMsg",errMsg);
-                inv.getController().render(Constant.VIEW_PATH+"/common/500.ftl");
+            } else {
+                inv.getController().setAttr("errorMsg", errMsg);
+                inv.getController().render(Constant.VIEW_PATH + "/common/500.ftl");
             }
         }
     }

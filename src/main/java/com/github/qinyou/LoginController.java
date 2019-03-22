@@ -18,8 +18,7 @@ import com.jfinal.aop.Duang;
 import com.jfinal.core.ActionKey;
 import com.jfinal.kit.HashKit;
 import com.jfinal.kit.StrKit;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.Date;
 import java.util.List;
@@ -30,9 +29,8 @@ import java.util.concurrent.atomic.AtomicInteger;
  * 登录 controller
  */
 @Clear({LoginInterceptor.class, PermissionInterceptor.class})
+@Slf4j
 public class LoginController extends BaseController {
-
-    private final static Logger LOG = LoggerFactory.getLogger(LoginController.class);
     private final static LoginService loginService = Duang.duang(LoginService.class);
 
     // 登录用户名密码cookie key
@@ -45,8 +43,8 @@ public class LoginController extends BaseController {
     public void index() {
         String username = getCookie(usernameKey);
         String password = getCookie(passwordKey);
-        LOG.debug("username from cookie: {}", username);
-        LOG.debug("password from cookie:{}", password);
+        log.debug("username from cookie: {}", username);
+        log.debug("password from cookie:{}", password);
         // cookie username password 存在
         if (StringUtils.notEmpty(username) && StringUtils.notEmpty(password)) {
             SysUser sysUser = SysUser.dao.findByUsernameAndPassword(username, password);
@@ -155,14 +153,14 @@ public class LoginController extends BaseController {
         setSessionAttr(Constant.SYS_USER_NAME, sysUser.getRealName());
         // 菜单
         String roleIds = SysUserRole.dao.findRoleIdsByUserId(sysUser.getId());
-        LOG.debug("{} has role ids {}", sysUser.getUsername(), roleIds);
+        log.debug("{} has role ids {}", sysUser.getUsername(), roleIds);
         List<SysMenu> sysMenus = loginService.findUserMenus(roleIds);
         setSessionAttr(Constant.SYS_USER_MENU, sysMenus);
-        LOG.debug("{} has menu {}", sysUser.getUsername(), JSON.toJSONString(sysMenus));
+        log.debug("{} has menu {}", sysUser.getUsername(), JSON.toJSONString(sysMenus));
         // 按钮
-        Map<String,List<String>> sysMenuButtons = loginService.findUserButtons(roleIds);
+        Map<String, List<String>> sysMenuButtons = loginService.findUserButtons(roleIds);
         setSessionAttr(Constant.SYS_USER_MENU_BUTTONS, sysMenuButtons);
-        LOG.debug("{} has menuButtons {}", sysUser.getUsername(), JSON.toJSONString(sysMenuButtons));
+        log.debug("{} has menuButtons {}", sysUser.getUsername(), JSON.toJSONString(sysMenuButtons));
 
         // 角色编码
         String rolecodes = SysUserRole.dao.findRoleCodesByUserId(sysUser.getId());

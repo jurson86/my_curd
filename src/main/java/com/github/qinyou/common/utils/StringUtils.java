@@ -4,8 +4,7 @@ package com.github.qinyou.common.utils;
 import com.google.common.base.Strings;
 import com.jfinal.kit.AesKit;
 import com.jfinal.kit.PropKit;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.Arrays;
 import java.util.List;
@@ -13,9 +12,8 @@ import java.util.List;
 /**
  * 字符串工具
  */
+@Slf4j
 public class StringUtils {
-
-    private final static Logger LOG = LoggerFactory.getLogger(StringUtils.class);
     private final static String AES_KEY = PropKit.use("config.properties").get("aesKey");
 
     /**
@@ -118,7 +116,7 @@ public class StringUtils {
         try {
             resultStr = AesKit.decryptToStr(hexStringToBytes(str), AES_KEY);
         } catch (Exception e) {
-            LOG.error(e.getMessage(), e);
+            log.error(e.getMessage(), e);
         }
         return resultStr;
     }

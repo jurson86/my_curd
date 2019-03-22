@@ -137,9 +137,9 @@ public class SysMenuController extends BaseController {
             Db.update(sql);
 
             // 删相关按钮
-            sql = "delete from sys_role_button where sysButtonId in (select id from sys_button where sysMenuId in ('"+allIds+"'))";
+            sql = "delete from sys_role_button where sysButtonId in (select id from sys_button where sysMenuId in ('" + allIds + "'))";
             Db.update(sql);
-            sql = "delete from sys_button where sysMenuId in ('"+allIds +"')";
+            sql = "delete from sys_button where sysMenuId in ('" + allIds + "')";
             Db.update(sql);
 
             return true;
@@ -218,56 +218,57 @@ public class SysMenuController extends BaseController {
     /**
      * 打开菜单配置按钮页面
      */
-    public void openButton(){
+    public void openButton() {
         setAttr("menuId", get("id"));
         render("system/sysButton.ftl");
     }
-    public void newButtonModel(){
+
+    public void newButtonModel() {
         String id = get("id");
         String sysMenuId;
         if (StringUtils.notEmpty(id)) {
-           SysButton sysButton = SysButton.dao.findById(id);
-           setAttr("sysButton",sysButton);
-           sysMenuId = sysButton.getSysMenuId();
-        }else{
+            SysButton sysButton = SysButton.dao.findById(id);
+            setAttr("sysButton", sysButton);
+            sysMenuId = sysButton.getSysMenuId();
+        } else {
             sysMenuId = get("menuId");
         }
-        setAttr("sysMenuId",sysMenuId);
+        setAttr("sysMenuId", sysMenuId);
         render("system/sysButton_form.ftl");
     }
 
     /**
      * 查询菜单按钮
      */
-    public void queryButton(){
-         String menuId = get("menuId");
-         String sql = "select * from sys_button where sysMenuId = ? ";
-         List<SysButton> sysButtons = SysButton.dao.find(sql,menuId);
-         renderDatagrid(sysButtons,sysButtons.size());
+    public void queryButton() {
+        String menuId = get("menuId");
+        String sql = "select * from sys_button where sysMenuId = ? ";
+        List<SysButton> sysButtons = SysButton.dao.find(sql, menuId);
+        renderDatagrid(sysButtons, sysButtons.size());
     }
 
     /**
      * 新增按钮
      */
     @Before(Tx.class)
-    public void addButtonAction(){
+    public void addButtonAction() {
         SysButton sysButton = getBean(SysButton.class, "")
                 .setId(IdUtils.id())
                 .setCreater(WebUtils.getSessionUsername(this))
                 .setCreateTime(new Date());
 
-        if(SysButton.dao.findUniqueByProperty("buttonCode",sysButton.getButtonCode())!=null){
-            renderFail(Constant.ADD_FAIL+" 编码已经存在");
+        if (SysButton.dao.findUniqueByProperty("buttonCode", sysButton.getButtonCode()) != null) {
+            renderFail(Constant.ADD_FAIL + " 编码已经存在");
             return;
         }
 
         SysMenu sysMenu = SysMenu.dao.findById(sysButton.getSysMenuId());
-        if (sysMenu==null){
+        if (sysMenu == null) {
             renderFail(Constant.ADD_FAIL);
             return;
         }
 
-        if(sysMenu.getBtnControl()==null){
+        if (sysMenu.getBtnControl() == null) {
             sysMenu.setBtnControl("Y");
             sysMenu.update();
         }
@@ -278,46 +279,47 @@ public class SysMenuController extends BaseController {
     /**
      * 编辑按钮
      */
-    public void updateButtonAction(){
+    public void updateButtonAction() {
         SysButton sysButton = getBean(SysButton.class, "");
         sysButton.setUpdater(WebUtils.getSessionUsername(this))
                 .setUpdateTime(new Date());
 
-        SysButton oldSysButton  = SysButton.dao.findUniqueByProperty("buttonCode",sysButton.getButtonCode());
-        if(oldSysButton!=null && !sysButton.getId().equals(oldSysButton.getId()) ){
-            renderFail(Constant.ADD_FAIL+" 编码已经存在");
+        SysButton oldSysButton = SysButton.dao.findUniqueByProperty("buttonCode", sysButton.getButtonCode());
+        if (oldSysButton != null && !sysButton.getId().equals(oldSysButton.getId())) {
+            renderFail(Constant.ADD_FAIL + " 编码已经存在");
             return;
         }
 
-        if(sysButton.update()){
+        if (sysButton.update()) {
             renderSuccess(Constant.UPDATE_SUCCESS);
-        }else{
+        } else {
             renderFail(Constant.UPDATE_FAIL);
-        };
+        }
+        ;
     }
 
     /**
      * 删除按钮
      */
     @Before({Tx.class, IdsRequired.class})
-    public void deleteButtonAction(){
+    public void deleteButtonAction() {
         String sysMenuId = get("menuId");
-        if(StringUtils.isEmpty(sysMenuId)){
+        if (StringUtils.isEmpty(sysMenuId)) {
             renderFail("参数menuId 缺失");
             return;
         }
         String ids = get("ids");
-        ids = ids.replaceAll(",","','");
-        String sql = "delete from sys_role_button where sysButtonId in ('"+ids +"')";
+        ids = ids.replaceAll(",", "','");
+        String sql = "delete from sys_role_button where sysButtonId in ('" + ids + "')";
         Db.update(sql);
-        sql = "delete from sys_button where id in ('"+ids +"')";
+        sql = "delete from sys_button where id in ('" + ids + "')";
         Db.update(sql);
 
         sql = "select count(1) as c from sys_button where sysMenuId = ?";
-        long count= Db.findFirst(sql,sysMenuId).getLong("c");
-        if(count==0){
-           sql = "update sys_menu set btnControl = null where id = ?";
-           Db.update(sql,sysMenuId);
+        long count = Db.findFirst(sql, sysMenuId).getLong("c");
+        if (count == 0) {
+            sql = "update sys_menu set btnControl = null where id = ?";
+            Db.update(sql, sysMenuId);
         }
         renderSuccess(Constant.DELETE_SUCCESS);
     }
@@ -325,7 +327,7 @@ public class SysMenuController extends BaseController {
     /**
      * 查看按钮角色
      */
-    public void openButtonRole(){
+    public void openButtonRole() {
         setAttr("buttonId", get("id"));
         render("system/sysButton_role.ftl");
     }
@@ -334,7 +336,7 @@ public class SysMenuController extends BaseController {
      * 查看按钮角色数据
      */
     @Before(SearchSql.class)
-    public void queryButtonRole(){
+    public void queryButtonRole() {
         int pageNumber = getAttr("pageNumber");
         int pageSize = getAttr("pageSize");
         String where = getAttr(Constant.SEARCH_SQL);
@@ -345,7 +347,7 @@ public class SysMenuController extends BaseController {
     /**
      * 删除按钮角色
      */
-    public void deleteButtonRole(){
+    public void deleteButtonRole() {
         String buttonId = get("buttonId");
         String roleId = get("roleId");
         if (StringUtils.isEmpty(roleId) || StringUtils.isEmpty(buttonId)) {

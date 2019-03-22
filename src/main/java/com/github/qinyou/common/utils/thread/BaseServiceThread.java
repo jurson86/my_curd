@@ -4,6 +4,7 @@ import java.util.concurrent.CountDownLatch;
 
 /**
  * 包含计数器 子线程基类
+ *
  * @author zhangchuang
  */
 public abstract class BaseServiceThread implements Runnable {
@@ -32,7 +33,7 @@ public abstract class BaseServiceThread implements Runnable {
             t.printStackTrace(System.err);
             serviceUp = false;
         } finally {
-            if(latch != null) {
+            if (latch != null) {
                 latch.countDown();
             }
         }
@@ -42,6 +43,7 @@ public abstract class BaseServiceThread implements Runnable {
     public String getServiceName() {
         return serviceName;
     }
+
     public boolean isServiceUp() {
         return serviceUp;
     }

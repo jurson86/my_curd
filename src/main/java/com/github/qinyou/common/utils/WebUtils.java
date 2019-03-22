@@ -3,17 +3,15 @@ package com.github.qinyou.common.utils;
 import com.github.qinyou.common.config.Constant;
 import com.github.qinyou.system.model.SysUser;
 import com.jfinal.core.Controller;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 
+@Slf4j
 public class WebUtils {
-
-    private final static Logger LOG = LoggerFactory.getLogger(WebUtils.class);
 
     /**
      * 获取 http请求  ip地址
@@ -93,7 +91,7 @@ public class WebUtils {
                 }
             }
         } catch (UnsupportedEncodingException e) {
-            LOG.error(e.getMessage(), e);
+            log.error(e.getMessage(), e);
             return "";
         }
     }

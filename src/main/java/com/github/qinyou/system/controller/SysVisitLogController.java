@@ -21,8 +21,6 @@ import com.jfinal.plugin.activerecord.Db;
 import com.jfinal.plugin.activerecord.Page;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.joda.time.DateTime;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.util.HashMap;
 import java.util.List;
@@ -33,8 +31,6 @@ import java.util.Map;
  */
 @Clear(ExceptionInterceptor.class)
 public class SysVisitLogController extends BaseController {
-
-    private final static Logger LOG = LoggerFactory.getLogger(SysVisitLogController.class);
 
     public void index() {
         render("system/sysVisitLog.ftl");

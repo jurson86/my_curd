@@ -44,50 +44,50 @@ public class DownBook {
         String booksDir = "D:/books/";
         Integer showNumber = 50;
         String keywords = scanner("搜索关键字");
-        String jsonStr = fuzzySearch(keywords,0,showNumber);
-        if(StringUtils.isEmpty(jsonStr)){
+        String jsonStr = fuzzySearch(keywords, 0, showNumber);
+        if (StringUtils.isEmpty(jsonStr)) {
             System.out.println("无响应,程序结束...");
             return;
         }
         JSONObject json = JSONObject.parseObject(jsonStr);
-        if(!json.getBoolean("ok")){
+        if (!json.getBoolean("ok")) {
             System.out.println("接口异常,程序结束...");
             return;
         }
         JSONArray books = json.getJSONArray("books");
-        for(int ix = 0;ix<books.size();ix++){
-            System.out.println(String.format("%-2s .%4s万字. %s(%s)", ix+1,
-                    books.getJSONObject(ix).getInteger("wordCount")/10000,
+        for (int ix = 0; ix < books.size(); ix++) {
+            System.out.println(String.format("%-2s .%4s万字. %s(%s)", ix + 1,
+                    books.getJSONObject(ix).getInteger("wordCount") / 10000,
                     books.getJSONObject(ix).getString("title"),
                     books.getJSONObject(ix).getString("author")
-                    ));
+            ));
             //System.out.println(ix+1+"."+books.getJSONObject(ix).getString("title")+" @ "+books.getJSONObject(ix).getString("author"));
         }
 
-        String ixs = scanner("需下载序号(1~"+showNumber+"),多个之间使用,号分隔");
-        String[] ixAry  = ixs.split(",");
+        String ixs = scanner("需下载序号(1~" + showNumber + "),多个之间使用,号分隔");
+        String[] ixAry = ixs.split(",");
         Set<Integer> ixSet = new LinkedHashSet<>();
-        for(String ix:ixAry){
-            if(!RegexUtils.regExpVali(RegexUtils.pattern_integer_1,ix)){
+        for (String ix : ixAry) {
+            if (!RegexUtils.regExpVali(RegexUtils.pattern_integer_1, ix)) {
                 System.out.println("序号格式错误,程序结束...");
                 return;
             }
             Integer ixI = Integer.parseInt(ix);
-            if(ixI>0 && ixI <= showNumber){
+            if (ixI > 0 && ixI <= showNumber) {
                 ixSet.add(ixI);
             }
         }
 
-        Ret ret ;
-        String title ;
+        Ret ret;
+        String title;
         String author;
         Integer wordCount;
-        for(Integer ix : ixSet){
-            title = books.getJSONObject(ix-1).getString("title");
-            author =  books.getJSONObject(ix-1).getString("author");
-            wordCount = books.getJSONObject(ix-1).getInteger("wordCount")/10000;
-            System.out.println(String.format("开始下载 %-2s .%4s万字. %s(%s)", ix+1,  wordCount,  title,author ));
-            ret = saveToTxtQuick(books.getJSONObject(ix-1).getString("_id"),booksDir+String.format("%s(%s.%s万).txt",title,author,wordCount) );
+        for (Integer ix : ixSet) {
+            title = books.getJSONObject(ix - 1).getString("title");
+            author = books.getJSONObject(ix - 1).getString("author");
+            wordCount = books.getJSONObject(ix - 1).getInteger("wordCount") / 10000;
+            System.out.println(String.format("开始下载 %-2s .%4s万字. %s(%s)", ix + 1, wordCount, title, author));
+            ret = saveToTxtQuick(books.getJSONObject(ix - 1).getString("_id"), booksDir + String.format("%s(%s.%s万).txt", title, author, wordCount));
             System.out.println(ret);
         }
 
@@ -139,12 +139,10 @@ public class DownBook {
      * @param limit
      * @return
      */
-    public static String  fuzzySearch(String keyword, Integer start, Integer limit) {
-        String url = "http://api.zhuishushenqi.com/book/fuzzy-search?query="+ keyword + "&start=" + start + "&limit=" + limit;
+    public static String fuzzySearch(String keyword, Integer start, Integer limit) {
+        String url = "http://api.zhuishushenqi.com/book/fuzzy-search?query=" + keyword + "&start=" + start + "&limit=" + limit;
         return getProxy(url);
     }
-
-
 
 
     /**
@@ -180,7 +178,7 @@ public class DownBook {
         try {
             url = URLEncoder.encode(url, charset);
         } catch (UnsupportedEncodingException e) {
-            log.error(e.getMessage(),e);
+            log.error(e.getMessage(), e);
             return "";
         }
         String dUrl = "http://chapter2.zhuishushenqi.com/chapter/" + url;
@@ -189,52 +187,53 @@ public class DownBook {
 
     /**
      * 下载小说
+     *
      * @param nid
      * @param savePath
      * @return
      * @throws InterruptedException
      */
-    public static Ret saveToTxtQuick(String nid, String  savePath) throws InterruptedException {
+    public static Ret saveToTxtQuick(String nid, String savePath) throws InterruptedException {
         Ret ret = Ret.create();
         ExecutorService executorService = Executors.newFixedThreadPool(5);
-        String chapters  = chapters(nid);
-        if(StringUtils.isEmpty(chapters)){
-            return ret.setFail().set("msg","api data blank");
+        String chapters = chapters(nid);
+        if (StringUtils.isEmpty(chapters)) {
+            return ret.setFail().set("msg", "api data blank");
         }
         JSONObject json = JSONObject.parseObject(chapters);
-        if(!json.getBoolean("ok")){
-            return ret.setFail().set("msg","api request error");
+        if (!json.getBoolean("ok")) {
+            return ret.setFail().set("msg", "api request error");
         }
         JSONArray jArray = json.getJSONObject("mixToc").getJSONArray("chapters");
-        CountDownLatch latch=new CountDownLatch(jArray.size());
+        CountDownLatch latch = new CountDownLatch(jArray.size());
 
-        for(int ix=0;ix<jArray.size();ix++){
-            ExecutorServiceUtils.pool.execute(new DownChapter(jArray.getJSONObject(ix),latch) );
+        for (int ix = 0; ix < jArray.size(); ix++) {
+            ExecutorServiceUtils.pool.execute(new DownChapter(jArray.getJSONObject(ix), latch));
         }
 
         // throw InterruptedException ( why & when ?)
         latch.await();
 
         String content;
-        for(int ix=0;ix<jArray.size();ix++){
+        for (int ix = 0; ix < jArray.size(); ix++) {
             content = jArray.getJSONObject(ix).getString("title") + "(" + (ix + 1) + ") \n" + jArray.getJSONObject(ix).getString("body") + " \n";
             try {
-                FileUtils.appendString(content,savePath,Charset.forName(DownBook.charset));
+                FileUtils.appendString(content, savePath, Charset.forName(DownBook.charset));
             } catch (IOException e) {
-                log.error(e.getMessage(),e);
+                log.error(e.getMessage(), e);
             }
         }
-        ret.setOk().set("path",savePath);
+        ret.setOk().set("path", savePath);
         return ret;
     }
 
 }
 
 @Slf4j
-class DownChapter extends BaseServiceThread{
-    private JSONObject jsonObject ;
+class DownChapter extends BaseServiceThread {
+    private JSONObject jsonObject;
 
-    public DownChapter(JSONObject jsonObject, CountDownLatch latch ) {
+    public DownChapter(JSONObject jsonObject, CountDownLatch latch) {
         super("下载章节线程", latch);
         this.jsonObject = jsonObject;
     }
@@ -242,17 +241,17 @@ class DownChapter extends BaseServiceThread{
     @Override
     public void service() {
         if (!jsonObject.getBoolean("unreadble")) {
-            String  jsonStr  = DownBook.chapter(jsonObject.getString("link"));
-            if(StringUtils.isEmpty(jsonStr)){
-                log.info("{} api data blank",jsonObject.getString("link"));
+            String jsonStr = DownBook.chapter(jsonObject.getString("link"));
+            if (StringUtils.isEmpty(jsonStr)) {
+                log.info("{} api data blank", jsonObject.getString("link"));
                 return;
             }
             JSONObject chapterJson = JSONObject.parseObject(jsonStr);
-            if(!chapterJson.getBoolean("ok")){
-                log.info("{} api request error",jsonObject.getString("link"));
+            if (!chapterJson.getBoolean("ok")) {
+                log.info("{} api request error", jsonObject.getString("link"));
                 return;
             }
-            jsonObject.put("body",chapterJson.getJSONObject("chapter").getString("body")) ;
+            jsonObject.put("body", chapterJson.getJSONObject("chapter").getString("body"));
         }
     }
 }

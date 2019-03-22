@@ -12,9 +12,8 @@ import com.github.qinyou.system.model.SysNoticeTypeSysRole;
 import com.jfinal.aop.Before;
 import com.jfinal.plugin.activerecord.Record;
 import com.jfinal.plugin.activerecord.tx.Tx;
+import lombok.extern.slf4j.Slf4j;
 import org.joda.time.DateTime;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.util.*;
 
@@ -23,8 +22,8 @@ import java.util.*;
  *
  * @author zhangchuang
  */
+@Slf4j
 public class SysNoticeService {
-    private final static Logger LOG = LoggerFactory.getLogger(SysNoticeService.class);
 
     /**
      * 发送系统通知
@@ -38,14 +37,14 @@ public class SysNoticeService {
         // 查询通知模板
         SysNoticeType sysNoticeType = SysNoticeType.dao.findByCode(noticeCode);
         if (sysNoticeType == null) {
-            LOG.debug("{}, 未找到消息通知类型", noticeCode);
+            log.debug("{}, 未找到消息通知类型", noticeCode);
             return false;
         }
 
         // 查询通知接收人
         Set<String> receivers = getNotificationReceivers(sysNoticeType.getId());
         if (receivers.size() == 0) {
-            LOG.debug("{}, 未找到消息接收人", noticeCode);
+            log.debug("{}, 未找到消息接收人", noticeCode);
             return false;
         }
 
@@ -57,11 +56,11 @@ public class SysNoticeService {
         // 保存通知数据
         boolean flag = saveNotificationData(sysNoticeType, msgTitle, msgContent, receivers);
         if (!flag) {
-            LOG.debug("{}, 系统通知 数据保存数据库失败", noticeCode);
+            log.debug("{}, 系统通知 数据保存数据库失败", noticeCode);
             return false;
         }
 
-        LOG.debug("{}, 系统通知 执行成功", noticeCode);
+        log.debug("{}, 系统通知 执行成功", noticeCode);
 
         // 服务器消息推送
         Map<String, Object> msg = new HashMap<>();
@@ -71,7 +70,7 @@ public class SysNoticeService {
         msg.put("title", msgTitle);
         msg.put("content", msgContent);
 
-        LOG.debug("receivers size: {}", receivers.size());
+        log.debug("receivers size: {}", receivers.size());
         // websocket 消息推送
         SendMsgUtils.sendToUsers(receivers, JSON.toJSONString(msg));
         return flag;

@@ -64,7 +64,7 @@ public class SysUserUnlockController extends BaseController {
         renderSuccess("解锁成功");
     }
 
-    public void good(){
+    public void good() {
         renderText("hello world I really love you");
     }
 }

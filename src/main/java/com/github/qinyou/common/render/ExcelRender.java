@@ -3,9 +3,8 @@ package com.github.qinyou.common.render;
 import com.github.qinyou.common.utils.WebUtils;
 import com.jfinal.render.Render;
 import com.jfinal.render.RenderException;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.poi.ss.usermodel.Workbook;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.io.OutputStream;
@@ -16,10 +15,10 @@ import java.io.OutputStream;
  * @author zhangchuang
  */
 @SuppressWarnings("unused")
+@Slf4j
 public class ExcelRender extends Render {
 
     private final static String CONTENT_TYPE = "application/msexcel;charset=" + getEncoding();
-    private final static Logger LOG = LoggerFactory.getLogger(ExcelRender.class);
 
     private String fileName;
     private Workbook workbook;
@@ -50,7 +49,7 @@ public class ExcelRender extends Render {
             os = response.getOutputStream();
             workbook.write(os);
         } catch (Exception e) {
-            LOG.error(e.getMessage(), e);
+            log.error(e.getMessage(), e);
             throw new RenderException(e);
         } finally {
             try {
@@ -59,7 +58,7 @@ public class ExcelRender extends Render {
                     os.close();
                 }
             } catch (IOException e) {
-                LOG.error(e.getMessage(), e);
+                log.error(e.getMessage(), e);
             }
         }
     }

@@ -1,8 +1,7 @@
 package com.github.qinyou.common.utils;
 
 import com.jfinal.plugin.activerecord.Model;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 import javax.validation.constraints.NotNull;
 import java.lang.reflect.Field;
@@ -16,9 +15,8 @@ import java.util.Map;
  *
  * @author zhangchuang
  */
+@Slf4j
 public class Model2Bean<M, B> {
-    private final static Logger LOG = LoggerFactory.getLogger(Model2Bean.class);
-
 
     /**
      * model 转 bean
@@ -36,7 +34,7 @@ public class Model2Bean<M, B> {
         try {
             o = beanClass.newInstance();
         } catch (InstantiationException | IllegalAccessException e) {
-            LOG.error(e.getMessage(), e);
+            log.error(e.getMessage(), e);
             throw new RuntimeException(" bean 初始化失败");
         }
 
@@ -48,7 +46,7 @@ public class Model2Bean<M, B> {
                 field.setAccessible(true);
                 field.set(o, m.get(entry.getKey()));
             } catch (NoSuchFieldException | IllegalAccessException e) {
-                LOG.error(e.getMessage(), e);
+                log.error(e.getMessage(), e);
                 throw new RuntimeException(entry.getValue() + " field 设值失败");
             }
         }
@@ -91,7 +89,7 @@ public class Model2Bean<M, B> {
         try {
             o = beanClass.newInstance();
         } catch (InstantiationException | IllegalAccessException e) {
-            LOG.error(e.getMessage(), e);
+            log.error(e.getMessage(), e);
             throw new RuntimeException(" bean 初始化失败");
         }
         Field[] fields = beanClass.getDeclaredFields();
@@ -107,7 +105,7 @@ public class Model2Bean<M, B> {
             try {
                 field.set(o, m.get(fieldName));
             } catch (IllegalAccessException e) {
-                LOG.error(e.getMessage(), e);
+                log.error(e.getMessage(), e);
 //                throw new  RuntimeException(e);
             }
         }

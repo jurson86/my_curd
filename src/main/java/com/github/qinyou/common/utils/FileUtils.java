@@ -3,8 +3,7 @@ package com.github.qinyou.common.utils;
 import com.google.common.base.Charsets;
 import com.google.common.io.FileWriteMode;
 import com.google.common.io.Files;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 import java.io.File;
 import java.io.IOException;
@@ -18,9 +17,8 @@ import java.nio.file.Paths;
  * @author zhangchuang
  */
 @SuppressWarnings("UnstableApiUsage")
+@Slf4j
 public class FileUtils {
-
-    private final static Logger LOG = LoggerFactory.getLogger(FileUtils.class);
 
 
     /**
@@ -31,7 +29,7 @@ public class FileUtils {
      * @throws IOException 读文件异常
      */
     public static String readFile(String filePath) throws IOException {
-        LOG.debug("read file path: {}", filePath);
+        log.debug("read file path: {}", filePath);
         return Files.asCharSource(new File(filePath), Charsets.UTF_8).read();
     }
 
@@ -44,7 +42,7 @@ public class FileUtils {
      * @throws IOException 写文件异常
      */
     public static void writeFile(String content, String savePath) throws IOException {
-        LOG.debug("write file path: {}", savePath);
+        log.debug("write file path: {}", savePath);
         File saveFile = new File(savePath);
         if (!saveFile.exists()) {
             Files.createParentDirs(saveFile);
@@ -55,13 +53,14 @@ public class FileUtils {
 
     /**
      * 文件追加
+     *
      * @param content
      * @param savePath
      * @param charset
      * @throws IOException
      */
-    public static  void appendString(String content, String savePath, Charset charset) throws IOException{
-        LOG.debug("write file path: {}", savePath);
+    public static void appendString(String content, String savePath, Charset charset) throws IOException {
+        log.debug("write file path: {}", savePath);
         File saveFile = new File(savePath);
         if (!saveFile.exists()) {
             Files.createParentDirs(saveFile);
@@ -83,7 +82,7 @@ public class FileUtils {
         try {
             contentType = java.nio.file.Files.probeContentType(path);
         } catch (IOException e) {
-            LOG.error(e.getMessage(), e);
+            log.error(e.getMessage(), e);
         }
         if (contentType == null) {
             contentType = "application/octet-stream";

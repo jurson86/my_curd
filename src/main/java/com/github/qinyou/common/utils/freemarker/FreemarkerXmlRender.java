@@ -25,7 +25,7 @@ public class FreemarkerXmlRender extends FreeMarkerRender {
         response.setContentType(CONTENT_TYPE);
 
         Enumeration<String> attrs = request.getAttributeNames();
-        Map<String,Object> root = new HashMap<>();
+        Map<String, Object> root = new HashMap<>();
         while (attrs.hasMoreElements()) {
             String attrName = attrs.nextElement();
             root.put(attrName, request.getAttribute(attrName));

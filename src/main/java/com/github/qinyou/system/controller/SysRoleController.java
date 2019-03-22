@@ -241,27 +241,27 @@ public class SysRoleController extends BaseController {
         List<SysRoleButton> sysRoleButtons = SysRoleButton.dao.findByRoleId(id);
 
         // 有按钮控制的菜单
-        List<SysMenu> sysMenus = SysMenu.dao.findByProperty("btnControl","Y");
+        List<SysMenu> sysMenus = SysMenu.dao.findByProperty("btnControl", "Y");
         List<SysMenu> allSysMenus = SysMenu.dao.findAll();
         Set<SysMenu> chainSet = new LinkedHashSet<>();
         List<SysButton> allButtons = new ArrayList<>();
         for (SysMenu menu : sysMenus) {
-            List<SysButton> sysButtons = SysButton.dao.findByProperty("sysMenuId",menu.getId());
+            List<SysButton> sysButtons = SysButton.dao.findByProperty("sysMenuId", menu.getId());
             allButtons.addAll(sysButtons);
 
-            menu.put("state","closed");
+            menu.put("state", "closed");
             chainSet.add(menu);
             LoginService.getPChain(allSysMenus, menu, chainSet);
         }
 
         List<Map<String, Object>> maps = new ArrayList<>();
-        chainSet.forEach(sysMenu->{
+        chainSet.forEach(sysMenu -> {
             Map<String, Object> map = new HashMap<>();
             map.put("id", sysMenu.getId());
             map.put("pid", sysMenu.getPid());
             map.put("text", sysMenu.getMenuName());
             map.put("iconCls", sysMenu.getIcon());
-            map.put("state",sysMenu.getStr("state")==null?"open":"closed");
+            map.put("state", sysMenu.getStr("state") == null ? "open" : "closed");
             maps.add(map);
         });
 
@@ -270,7 +270,7 @@ public class SysRoleController extends BaseController {
             map.put("id", sysButton.getId());
             map.put("pid", sysButton.getSysMenuId());
             map.put("text", sysButton.getButtonTxt());
-            map.put("iconCls","iconfont icon-file");
+            map.put("iconCls", "iconfont icon-file");
             for (SysRoleButton sysRoleButton : sysRoleButtons) {
                 // 中间表 有记录
                 if (Objects.equal(sysRoleButton.getSysButtonId(), sysButton.getId())) {
@@ -283,7 +283,7 @@ public class SysRoleController extends BaseController {
         renderJson(maps);
     }
 
-    public void buttonTreeUpdate(){
+    public void buttonTreeUpdate() {
         String roleId = get("roleId");
         String buttonIds = get("buttonIds");
         if (StringUtils.isEmpty(roleId)) {
