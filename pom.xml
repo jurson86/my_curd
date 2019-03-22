@@ -22,25 +22,27 @@
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
 
-        <mysql-connector.version>5.1.20</mysql-connector.version>
-        <jfinal.version>3.6</jfinal.version>
-        <druid.version>1.0.29</druid.version>
+        <jfinal.version>3.7</jfinal.version>
+        <jfinal-undertow.version>1.6</jfinal-undertow.version>
         <jfinal-cos.version>2017.5</jfinal-cos.version>
+        <cron4j.version>2.2.5</cron4j.version>
+        <fastjson.version>1.2.55</fastjson.version>
+
+        <mysql-connector.version>5.1.44</mysql-connector.version>
+        <druid.version>1.0.29</druid.version>
         <freemarker.version>2.3.28</freemarker.version>
-        <fastjson.version>1.2.43</fastjson.version>
         <jedis.version>2.7.2</jedis.version>
         <slf4j.version>1.7.25</slf4j.version>
         <logback.version>1.2.3</logback.version>
-        <cron4j.version>2.2.5</cron4j.version>
-        <google-guava.version>27.0.1-jre</google-guava.version>
-        <jodd-time.version>2.10.1</jodd-time.version>
-        <easypoi.version>3.2.0</easypoi.version>
         <google-zxing.version>3.3.2</google-zxing.version>
-        <cors-filter.version>2.5</cors-filter.version>
-        <beanutils.version>1.9.3</beanutils.version>
 
-        <!--play-->
-        <httpClient.version>4.5.6</httpClient.version>
+        <google-guava.version>27.1-jre</google-guava.version>
+        <jodd-time.version>2.10.1</jodd-time.version>
+        <easypoi.version>4.0.0</easypoi.version>
+        <cors-filter.version>2.6</cors-filter.version>
+        <beanutils.version>1.9.3</beanutils.version>
+        <httpClient.version>4.5.7</httpClient.version>
+
     </properties>
 
     <dependencies>
@@ -74,23 +76,29 @@
             <!--<version>8.0</version>-->
             <!--<scope>provided</scope>-->
         <!--</dependency>-->
-        <dependency>
-            <groupId>com.jfinal</groupId>
-            <artifactId>jfinal-undertow</artifactId>
-            <version>1.5</version>
-        </dependency>
-        <dependency>
-            <groupId>io.undertow</groupId>
-            <artifactId>undertow-websockets-jsr</artifactId>
-            <version>2.0.17.Final</version>
-        </dependency>
-
 
         <dependency>
             <groupId>com.jfinal</groupId>
             <artifactId>jfinal</artifactId>
             <version>${jfinal.version}</version>
         </dependency>
+        <dependency>
+            <groupId>com.jfinal</groupId>
+            <artifactId>jfinal-undertow</artifactId>
+            <version>${jfinal-undertow.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.undertow</groupId>
+            <artifactId>undertow-websockets-jsr</artifactId>
+            <version>2.0.17.Final</version>
+        </dependency>
+        <dependency>
+            <groupId>com.jfinal</groupId>
+            <artifactId>cos</artifactId>
+            <version>${jfinal-cos.version}</version>
+        </dependency>
+
+
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
@@ -111,11 +119,7 @@
             <artifactId>freemarker</artifactId>
             <version>${freemarker.version}</version>
         </dependency>
-        <dependency>
-            <groupId>com.jfinal</groupId>
-            <artifactId>cos</artifactId>
-            <version>${jfinal-cos.version}</version>
-        </dependency>
+
         <dependency>
             <groupId>it.sauronsoftware.cron4j</groupId>
             <artifactId>cron4j</artifactId>
@@ -191,13 +195,6 @@
             <artifactId>logback-classic</artifactId>
             <version>${logback.version}</version>
         </dependency>
-        <dependency>
-            <groupId>ch.qos.logback</groupId>
-            <artifactId>logback-access</artifactId>
-            <version>${logback.version}</version>
-        </dependency>
-
-        <!--play-->
         <dependency>
             <groupId>org.apache.httpcomponents</groupId>
             <artifactId>fluent-hc</artifactId>
