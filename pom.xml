@@ -4,7 +4,9 @@
     <groupId>com.github.qinyou</groupId>
     <artifactId>my_curd</artifactId>
 
+    <!-- tomcat 等服务容器配置 -->
     <!--<packaging>war</packaging>-->
+
     <!--jfinal undertow 配置-->
     <packaging>jar</packaging>
 

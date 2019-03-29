@@ -3,8 +3,10 @@ package com.github.qinyou.common.utils.gen.client;
 import com.github.qinyou.common.utils.FileUtils;
 import com.github.qinyou.common.utils.freemarker.FreemarkerUtils;
 import com.github.qinyou.common.utils.gen.GeneratorConfig;
+import com.github.qinyou.common.utils.gen.tools.MysqlDataSourceUtils;
 import com.github.qinyou.common.utils.gen.tools.MysqlMetaUtils;
 import com.github.qinyou.common.utils.gen.tools.TableMeta;
+import lombok.extern.slf4j.Slf4j;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -17,31 +19,39 @@ import java.util.Map;
  *
  * @author zhangchuang
  */
+@Slf4j
 public class ModelDictClient {
-    private final static boolean singleFile = false;                                           //  true ? 多张表一个文件:每张表一个文件
-    private final static String dictTplPath = GeneratorConfig.tplBasePath + "model/dict.ftl";  // 模板路径
-    private final static String dictOutDirPath = GeneratorConfig.outputBasePath + "doc/model/";  // 输出目录
+    public  static boolean singleFile = false;                                           //  true ? 多张表一个文件:每张表一个文件
+
+    private final static String dictTplPath = GeneratorConfig.tplBasePath + "model/dict.ftl";    // 模板路径
+    private static String dictOutDirPath = GeneratorConfig.outputBasePath + "doc/model/";  // 输出目录
+
 
     /**
-     * 生成字典
-     *
-     * @param tableMetas 表元数据集合
-     * @throws IOException 文件读写异常
+     * 重建输出路径
+     * web 下用
      */
-    public static void generate(List<TableMeta> tableMetas) throws IOException {
-        System.out.println("(*^▽^*) start generate dict");
+    public static  void reBuildOutPath(){
+        dictOutDirPath = GeneratorConfig.outputBasePath + "doc/model/";  // 输出目录
+    }
 
+    /**
+     * 生成数据字典
+     * @param tableMetas
+     * @return map, key是文件路径，value
+     * @throws IOException
+     */
+    public static Map<String, String> generate(List<TableMeta> tableMetas) throws IOException {
+        log.debug("(*^▽^*) start generate dict");
+        Map<String, String> ret = new HashMap<>();
         String tplContent = FileUtils.readFile(dictTplPath);  // 模板内容
-        String renderContent;        // 渲染后文本
-        String outPath;              // 输出路径
+
         Map<String, Object> params;  // 渲染参数
         if (singleFile) {
             params = new HashMap<>();
             params.put("tableMetas", tableMetas);
             params.put("author", GeneratorConfig.author);
-            renderContent = FreemarkerUtils.renderAsText(tplContent, params);
-            outPath = dictOutDirPath + "model_dict.html";
-            FileUtils.writeFile(renderContent, outPath);
+            ret.put(dictOutDirPath + "model_dict.html", FreemarkerUtils.renderAsText(tplContent, params));
         } else {
             List<TableMeta> tableMetasTemp;
             for (TableMeta tableMeta : tableMetas) {
@@ -50,18 +60,20 @@ public class ModelDictClient {
                 params = new HashMap<>();
                 params.put("tableMetas", tableMetasTemp);
                 params.put("author", GeneratorConfig.author);
-                renderContent = FreemarkerUtils.renderAsText(tplContent, params);
-                outPath = dictOutDirPath + tableMeta.name + ".html";
-                FileUtils.writeFile(renderContent, outPath);
+                ret.put(dictOutDirPath + tableMeta.name + ".html", FreemarkerUtils.renderAsText(tplContent, params));
             }
         }
 
-        System.out.println("(*^▽^*) generate dict over");
+        log.debug("(*^▽^*) generate dict over");
+        return ret;
     }
 
     public static void main(String[] args) throws IOException {
-        MysqlMetaUtils utils = new MysqlMetaUtils();
-        List<TableMeta> tableMetas = utils.loadTables(GeneratorConfig.schemaPattern, GeneratorConfig.tableNames, true);
-        generate(tableMetas);
+        MysqlMetaUtils utils = new MysqlMetaUtils(MysqlDataSourceUtils.getDataSource());
+        List<TableMeta> tableMetas = utils.tableMetas(GeneratorConfig.schemaPattern, GeneratorConfig.tableNames, true);
+
+        for (Map.Entry<String, String> entry :  generate(tableMetas).entrySet()) {
+            FileUtils.writeFile( entry.getValue(), entry.getKey());
+        }
     }
 }

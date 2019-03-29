@@ -12,6 +12,7 @@ import com.github.qinyou.common.log.LogBackLogFactory;
 import com.github.qinyou.common.utils.UtilsController;
 import com.github.qinyou.example.ExampleModelMapping;
 import com.github.qinyou.example.ExampleRoute;
+import com.github.qinyou.genOnline.GenOnlineRoute;
 import com.github.qinyou.system.SystemModelMapping;
 import com.github.qinyou.system.SystemRoute;
 import com.github.qinyou.system.model.SysUser;
@@ -107,6 +108,7 @@ public class AppConfig extends JFinalConfig {
         me.add("/utils", UtilsController.class, Constant.VIEW_PATH); // 页面工具
         me.add(new SystemRoute());  // system 模块路由
         me.add(new ExampleRoute()); // 用例 模块路由
+        me.add(new GenOnlineRoute()); // 在线代码生成器 模块路由
     }
 
     /**

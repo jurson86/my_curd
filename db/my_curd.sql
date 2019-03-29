@@ -11,7 +11,7 @@
  Target Server Version : 50719
  File Encoding         : 65001
 
- Date: 03/03/2019 13:57:33
+ Date: 29/03/2019 09:33:02
 */
 
 SET NAMES utf8mb4;
@@ -105,6 +105,282 @@ INSERT INTO `ex_single_table` VALUES ('551740098631172096', '1', 1, '1', 'admin'
 INSERT INTO `ex_single_table` VALUES ('551742233389301760', '1', 1, '1', 'admin', '2019-03-03 12:26:39', NULL, NULL);
 INSERT INTO `ex_single_table` VALUES ('551743428740775936', '2', 2, '2', 'admin', '2019-03-03 12:31:24', NULL, NULL);
 INSERT INTO `ex_single_table` VALUES ('551747710315659264', '1', 1, '1', 'admin', '2019-03-03 12:48:25', NULL, NULL);
+INSERT INTO `ex_single_table` VALUES ('558582651712176128', 'zhangchuang2', 20, 'M', 'admin', '2019-03-22 09:28:02', 'admin', '2019-02-22 22:05:49');
+INSERT INTO `ex_single_table` VALUES ('558582651728953344', 'ggg', 3, 'F', 'admin', '2019-03-22 09:28:02', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558582651737341952', 'hello', 5, 'F', 'admin', '2019-03-22 09:28:02', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558582651745730560', 'zhangchuang', 20, 'M', 'admin', '2019-03-22 09:28:02', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558582651754119168', 'ggg', 3, 'F', 'admin', '2019-03-22 09:28:02', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558582651766702080', 'hello', 5, 'F', 'admin', '2019-03-22 09:28:02', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558582651775090688', 'zhangchuang', 20, 'M', 'admin', '2019-03-22 09:28:02', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558582651779284992', 'ggg', 3, 'F', 'admin', '2019-03-22 09:28:02', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558582651791867904', 'hello', 5, 'F', 'admin', '2019-03-22 09:28:02', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558582651796062208', 'ggg', 3, 'F', 'admin', '2019-03-22 09:28:02', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558582651808645120', 'hello', 5, 'F', 'admin', '2019-03-22 09:28:02', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558582651817033728', 'zhangchuang', 20, 'M', 'admin', '2019-03-22 09:28:02', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558582651829616640', 'ggg', 3, 'F', 'admin', '2019-03-22 09:28:02', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558582651838005248', 'hello', 5, 'F', 'admin', '2019-03-22 09:28:02', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558582651846393856', 'zhangchuang', 20, 'M', 'admin', '2019-03-22 09:28:02', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558582651858976768', 'ggg', 3, 'F', 'admin', '2019-03-22 09:28:02', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558582651863171072', 'hello', 5, 'F', 'admin', '2019-03-22 09:28:02', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558582651871559680', 'zhangchuang', 20, 'M', 'admin', '2019-03-22 09:28:02', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558582651879948288', 'ggg', 3, 'F', 'admin', '2019-03-22 09:28:02', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558582651892531200', 'hello', 5, 'F', 'admin', '2019-03-22 09:28:02', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558582651900919808', 'zhangchuang', 20, 'M', 'admin', '2019-03-22 09:28:02', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558582651913502720', 'ggg', 3, 'F', 'admin', '2019-03-22 09:28:02', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558582651917697024', 'hello', 5, 'F', 'admin', '2019-03-22 09:28:02', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558582651930279936', 'zhangchuang', 20, 'M', 'admin', '2019-03-22 09:28:02', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558582651938668544', 'ggg', 3, 'F', 'admin', '2019-03-22 09:28:02', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558582651947057152', 'hello', 5, 'F', 'admin', '2019-03-22 09:28:02', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558582651955445760', 'zhangchuang', 20, 'M', 'admin', '2019-03-22 09:28:02', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558582651963834368', 'ggg', 3, 'F', 'admin', '2019-03-22 09:28:02', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558582651972222976', 'hello', 5, 'F', 'admin', '2019-03-22 09:28:02', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558582651984805888', 'zhangchuang', 20, 'M', 'admin', '2019-03-22 09:28:02', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558582651993194496', 'ggg', 3, 'F', 'admin', '2019-03-22 09:28:02', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558582652001583104', 'hello', 5, 'F', 'admin', '2019-03-22 09:28:02', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558582652009971712', 'zhangchuang', 20, 'M', 'admin', '2019-03-22 09:28:02', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558582652014166016', 'ggg', 3, 'F', 'admin', '2019-03-22 09:28:02', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558582652026748928', 'hello', 5, 'F', 'admin', '2019-03-22 09:28:02', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558582652035137536', 'zhangchuang', 20, 'M', 'admin', '2019-03-22 09:28:02', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558582652039331840', 'ggg', 3, 'F', 'admin', '2019-03-22 09:28:02', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558582652051914752', 'hello', 5, 'F', 'admin', '2019-03-22 09:28:02', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558582652056109056', 'zhangchuang', 20, 'M', 'admin', '2019-03-22 09:28:02', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558582652064497664', 'ggg', 3, 'F', 'admin', '2019-03-22 09:28:02', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558582652072886272', 'hello', 5, 'F', 'admin', '2019-03-22 09:28:02', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558582652077080576', 'zhangchuang', 20, 'M', 'admin', '2019-03-22 09:28:02', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558582652085469184', 'ggg', 3, 'F', 'admin', '2019-03-22 09:28:02', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558582652093857792', 'hello', 5, 'F', 'admin', '2019-03-22 09:28:02', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558582652098052096', 'zhangchuang', 20, 'M', 'admin', '2019-03-22 09:28:02', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558582652106440704', 'ggg', 3, 'F', 'admin', '2019-03-22 09:28:02', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558582652119023616', 'hello', 5, 'F', 'admin', '2019-03-22 09:28:02', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558582652127412224', 'zhangchuang', 20, 'M', 'admin', '2019-03-22 09:28:02', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558582652135800832', 'ggg', 3, 'F', 'admin', '2019-03-22 09:28:02', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558582652144189440', 'hello', 5, 'F', 'admin', '2019-03-22 09:28:02', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558582652148383744', 'zhangchuang', 20, 'M', 'admin', '2019-03-22 09:28:02', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558582652156772352', 'ggg', 3, 'F', 'admin', '2019-03-22 09:28:02', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558582652165160960', 'hello', 5, 'F', 'admin', '2019-03-22 09:28:02', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558582652169355264', 'zhangchuang', 20, 'M', 'admin', '2019-03-22 09:28:02', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558582652177743872', 'ggg', 3, 'F', 'admin', '2019-03-22 09:28:02', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558582652186132480', 'hello', 5, 'F', 'admin', '2019-03-22 09:28:02', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558582652198715392', 'zhangchuang', 20, 'M', 'admin', '2019-03-22 09:28:02', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558582652207104000', 'ggg', 3, 'F', 'admin', '2019-03-22 09:28:02', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558582652215492608', 'hello', 5, 'F', 'admin', '2019-03-22 09:28:02', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558582652223881216', 'zhangchuang', 20, 'M', 'admin', '2019-03-22 09:28:02', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558582652232269824', 'ggg', 3, 'F', 'admin', '2019-03-22 09:28:02', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558582652240658432', 'hello', 5, 'F', 'admin', '2019-03-22 09:28:02', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558582652249047040', 'zhangchuang', 20, 'M', 'admin', '2019-03-22 09:28:02', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558582652253241344', 'ggg', 3, 'F', 'admin', '2019-03-22 09:28:02', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558582652261629952', 'hello', 5, 'F', 'admin', '2019-03-22 09:28:02', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558582652270018560', '1', 1, '1', 'admin', '2019-03-22 09:28:02', NULL, NULL);
+INSERT INTO `ex_single_table` VALUES ('558582652278407168', '1', 1, '1', 'admin', '2019-03-22 09:28:02', NULL, NULL);
+INSERT INTO `ex_single_table` VALUES ('558582652286795776', '2', 2, '2', 'admin', '2019-03-22 09:28:02', NULL, NULL);
+INSERT INTO `ex_single_table` VALUES ('558582652290990080', '1', 1, '1', 'admin', '2019-03-22 09:28:02', NULL, NULL);
+INSERT INTO `ex_single_table` VALUES ('558582717097181184', 'zhangchuang2', 20, 'M', 'admin', '2019-03-22 09:28:18', 'admin', '2019-02-22 22:05:49');
+INSERT INTO `ex_single_table` VALUES ('558582717105569792', 'ggg', 3, 'F', 'admin', '2019-03-22 09:28:18', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558582717113958400', 'hello', 5, 'F', 'admin', '2019-03-22 09:28:18', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558582717122347008', 'zhangchuang', 20, 'M', 'admin', '2019-03-22 09:28:18', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558582717126541312', 'ggg', 3, 'F', 'admin', '2019-03-22 09:28:18', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558582717139124224', 'hello', 5, 'F', 'admin', '2019-03-22 09:28:18', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558582717139124225', 'zhangchuang', 20, 'M', 'admin', '2019-03-22 09:28:18', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558582717147512832', 'ggg', 3, 'F', 'admin', '2019-03-22 09:28:18', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558582717155901440', 'hello', 5, 'F', 'admin', '2019-03-22 09:28:18', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558582717164290048', 'ggg', 3, 'F', 'admin', '2019-03-22 09:28:18', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558582717164290049', 'hello', 5, 'F', 'admin', '2019-03-22 09:28:18', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558582717168484352', 'zhangchuang', 20, 'M', 'admin', '2019-03-22 09:28:18', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558582717176872960', 'ggg', 3, 'F', 'admin', '2019-03-22 09:28:18', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558582717181067264', 'hello', 5, 'F', 'admin', '2019-03-22 09:28:18', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558582717185261568', 'zhangchuang', 20, 'M', 'admin', '2019-03-22 09:28:18', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558582717193650176', 'ggg', 3, 'F', 'admin', '2019-03-22 09:28:18', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558582717197844480', 'hello', 5, 'F', 'admin', '2019-03-22 09:28:18', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558582717202038784', 'zhangchuang', 20, 'M', 'admin', '2019-03-22 09:28:18', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558582717210427392', 'ggg', 3, 'F', 'admin', '2019-03-22 09:28:18', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558582717214621696', 'hello', 5, 'F', 'admin', '2019-03-22 09:28:18', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558582717218816000', 'zhangchuang', 20, 'M', 'admin', '2019-03-22 09:28:18', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558582717227204608', 'ggg', 3, 'F', 'admin', '2019-03-22 09:28:18', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558582717227204609', 'hello', 5, 'F', 'admin', '2019-03-22 09:28:18', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558582717235593216', 'zhangchuang', 20, 'M', 'admin', '2019-03-22 09:28:18', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558582717239787520', 'ggg', 3, 'F', 'admin', '2019-03-22 09:28:18', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558582717243981824', 'hello', 5, 'F', 'admin', '2019-03-22 09:28:18', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558582717248176128', 'zhangchuang', 20, 'M', 'admin', '2019-03-22 09:28:18', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558582717256564736', 'ggg', 3, 'F', 'admin', '2019-03-22 09:28:18', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558582717264953344', 'hello', 5, 'F', 'admin', '2019-03-22 09:28:18', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558582717269147648', 'zhangchuang', 20, 'M', 'admin', '2019-03-22 09:28:18', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558582717277536256', 'ggg', 3, 'F', 'admin', '2019-03-22 09:28:18', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558582717281730560', 'hello', 5, 'F', 'admin', '2019-03-22 09:28:18', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558582717285924864', 'zhangchuang', 20, 'M', 'admin', '2019-03-22 09:28:18', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558582717294313472', 'ggg', 3, 'F', 'admin', '2019-03-22 09:28:18', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558582717298507776', 'hello', 5, 'F', 'admin', '2019-03-22 09:28:18', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558582717306896384', 'zhangchuang', 20, 'M', 'admin', '2019-03-22 09:28:18', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558582717315284992', 'ggg', 3, 'F', 'admin', '2019-03-22 09:28:18', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558582717315284993', 'hello', 5, 'F', 'admin', '2019-03-22 09:28:18', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558582717323673600', 'zhangchuang', 20, 'M', 'admin', '2019-03-22 09:28:18', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558582717332062208', 'ggg', 3, 'F', 'admin', '2019-03-22 09:28:18', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558582717332062209', 'hello', 5, 'F', 'admin', '2019-03-22 09:28:18', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558582717340450816', 'zhangchuang', 20, 'M', 'admin', '2019-03-22 09:28:18', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558582717344645120', 'ggg', 3, 'F', 'admin', '2019-03-22 09:28:18', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558582717353033728', 'hello', 5, 'F', 'admin', '2019-03-22 09:28:18', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558582717357228032', 'zhangchuang', 20, 'M', 'admin', '2019-03-22 09:28:18', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558582717365616640', 'ggg', 3, 'F', 'admin', '2019-03-22 09:28:18', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558582717369810944', 'hello', 5, 'F', 'admin', '2019-03-22 09:28:18', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558582717374005248', 'zhangchuang', 20, 'M', 'admin', '2019-03-22 09:28:18', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558582717378199552', 'ggg', 3, 'F', 'admin', '2019-03-22 09:28:18', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558582717386588160', 'hello', 5, 'F', 'admin', '2019-03-22 09:28:18', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558582717394976768', 'zhangchuang', 20, 'M', 'admin', '2019-03-22 09:28:18', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558582717399171072', 'ggg', 3, 'F', 'admin', '2019-03-22 09:28:18', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558582717403365376', 'hello', 5, 'F', 'admin', '2019-03-22 09:28:18', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558582717411753984', 'zhangchuang', 20, 'M', 'admin', '2019-03-22 09:28:18', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558582717415948288', 'ggg', 3, 'F', 'admin', '2019-03-22 09:28:18', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558582717424336896', 'hello', 5, 'F', 'admin', '2019-03-22 09:28:18', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558582717428531200', 'zhangchuang', 20, 'M', 'admin', '2019-03-22 09:28:18', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558582717436919808', 'ggg', 3, 'F', 'admin', '2019-03-22 09:28:18', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558582717441114112', 'hello', 5, 'F', 'admin', '2019-03-22 09:28:18', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558582717445308416', 'zhangchuang', 20, 'M', 'admin', '2019-03-22 09:28:18', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558582717453697024', 'ggg', 3, 'F', 'admin', '2019-03-22 09:28:18', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558582717462085632', 'hello', 5, 'F', 'admin', '2019-03-22 09:28:18', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558582717470474240', 'zhangchuang', 20, 'M', 'admin', '2019-03-22 09:28:18', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558582717474668544', 'ggg', 3, 'F', 'admin', '2019-03-22 09:28:18', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558582717478862848', 'hello', 5, 'F', 'admin', '2019-03-22 09:28:18', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558582717487251456', '1', 1, '1', 'admin', '2019-03-22 09:28:18', NULL, NULL);
+INSERT INTO `ex_single_table` VALUES ('558582717495640064', '1', 1, '1', 'admin', '2019-03-22 09:28:18', NULL, NULL);
+INSERT INTO `ex_single_table` VALUES ('558582717499834368', '2', 2, '2', 'admin', '2019-03-22 09:28:18', NULL, NULL);
+INSERT INTO `ex_single_table` VALUES ('558582717504028672', '1', 1, '1', 'admin', '2019-03-22 09:28:18', NULL, NULL);
+INSERT INTO `ex_single_table` VALUES ('558582799561392128', 'zhangchuang2', 20, 'M', 'admin', '2019-03-22 09:28:37', 'admin', '2019-02-22 22:05:49');
+INSERT INTO `ex_single_table` VALUES ('558582799573975040', 'ggg', 3, 'F', 'admin', '2019-03-22 09:28:37', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558582799578169344', 'hello', 5, 'F', 'admin', '2019-03-22 09:28:37', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558582799586557952', 'zhangchuang', 20, 'M', 'admin', '2019-03-22 09:28:37', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558582799594946560', 'ggg', 3, 'F', 'admin', '2019-03-22 09:28:37', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558582799599140864', 'hello', 5, 'F', 'admin', '2019-03-22 09:28:37', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558582799607529472', 'zhangchuang', 20, 'M', 'admin', '2019-03-22 09:28:37', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558582799611723776', 'ggg', 3, 'F', 'admin', '2019-03-22 09:28:37', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558582799620112384', 'hello', 5, 'F', 'admin', '2019-03-22 09:28:37', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558582799628500992', 'ggg', 3, 'F', 'admin', '2019-03-22 09:28:37', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558582799632695296', 'hello', 5, 'F', 'admin', '2019-03-22 09:28:37', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558582799641083904', 'zhangchuang', 20, 'M', 'admin', '2019-03-22 09:28:37', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558582799649472512', 'ggg', 3, 'F', 'admin', '2019-03-22 09:28:37', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558582799653666816', 'hello', 5, 'F', 'admin', '2019-03-22 09:28:37', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558582799657861120', 'zhangchuang', 20, 'M', 'admin', '2019-03-22 09:28:37', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558582799662055424', 'ggg', 3, 'F', 'admin', '2019-03-22 09:28:37', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558582799670444032', 'hello', 5, 'F', 'admin', '2019-03-22 09:28:37', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558582799695609856', 'zhangchuang', 20, 'M', 'admin', '2019-03-22 09:28:37', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558582799703998464', 'ggg', 3, 'F', 'admin', '2019-03-22 09:28:37', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558582799712387072', 'hello', 5, 'F', 'admin', '2019-03-22 09:28:37', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558582799716581376', 'zhangchuang', 20, 'M', 'admin', '2019-03-22 09:28:37', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558582799720775680', 'ggg', 3, 'F', 'admin', '2019-03-22 09:28:37', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558582799729164288', 'hello', 5, 'F', 'admin', '2019-03-22 09:28:37', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558582799737552896', 'zhangchuang', 20, 'M', 'admin', '2019-03-22 09:28:37', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558582799741747200', 'ggg', 3, 'F', 'admin', '2019-03-22 09:28:37', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558582799750135808', 'hello', 5, 'F', 'admin', '2019-03-22 09:28:37', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558582799758524416', 'zhangchuang', 20, 'M', 'admin', '2019-03-22 09:28:37', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558582799762718720', 'ggg', 3, 'F', 'admin', '2019-03-22 09:28:37', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558582799771107328', 'hello', 5, 'F', 'admin', '2019-03-22 09:28:37', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558582799775301632', 'zhangchuang', 20, 'M', 'admin', '2019-03-22 09:28:37', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558582799783690240', 'ggg', 3, 'F', 'admin', '2019-03-22 09:28:37', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558582799787884544', 'hello', 5, 'F', 'admin', '2019-03-22 09:28:37', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558582799796273152', 'zhangchuang', 20, 'M', 'admin', '2019-03-22 09:28:37', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558582799796273153', 'ggg', 3, 'F', 'admin', '2019-03-22 09:28:37', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558582799804661760', 'hello', 5, 'F', 'admin', '2019-03-22 09:28:37', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558582799808856064', 'zhangchuang', 20, 'M', 'admin', '2019-03-22 09:28:37', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558582799813050368', 'ggg', 3, 'F', 'admin', '2019-03-22 09:28:37', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558582799817244672', 'hello', 5, 'F', 'admin', '2019-03-22 09:28:37', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558582799821438976', 'zhangchuang', 20, 'M', 'admin', '2019-03-22 09:28:37', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558582799825633280', 'ggg', 3, 'F', 'admin', '2019-03-22 09:28:37', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558582799829827584', 'hello', 5, 'F', 'admin', '2019-03-22 09:28:37', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558582799834021888', 'zhangchuang', 20, 'M', 'admin', '2019-03-22 09:28:37', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558582799842410496', 'ggg', 3, 'F', 'admin', '2019-03-22 09:28:37', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558582799846604800', 'hello', 5, 'F', 'admin', '2019-03-22 09:28:37', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558582799850799104', 'zhangchuang', 20, 'M', 'admin', '2019-03-22 09:28:37', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558582799854993408', 'ggg', 3, 'F', 'admin', '2019-03-22 09:28:37', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558582799863382016', 'hello', 5, 'F', 'admin', '2019-03-22 09:28:37', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558582799867576320', 'zhangchuang', 20, 'M', 'admin', '2019-03-22 09:28:37', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558582799875964928', 'ggg', 3, 'F', 'admin', '2019-03-22 09:28:37', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558582799880159232', 'hello', 5, 'F', 'admin', '2019-03-22 09:28:37', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558582799884353536', 'zhangchuang', 20, 'M', 'admin', '2019-03-22 09:28:37', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558582799892742144', 'ggg', 3, 'F', 'admin', '2019-03-22 09:28:37', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558582799896936448', 'hello', 5, 'F', 'admin', '2019-03-22 09:28:37', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558582799905325056', 'zhangchuang', 20, 'M', 'admin', '2019-03-22 09:28:37', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558582799913713664', 'ggg', 3, 'F', 'admin', '2019-03-22 09:28:37', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558582799917907968', 'hello', 5, 'F', 'admin', '2019-03-22 09:28:37', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558582799926296576', 'zhangchuang', 20, 'M', 'admin', '2019-03-22 09:28:37', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558582799930490880', 'ggg', 3, 'F', 'admin', '2019-03-22 09:28:37', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558582799938879488', 'hello', 5, 'F', 'admin', '2019-03-22 09:28:37', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558582799943073792', 'zhangchuang', 20, 'M', 'admin', '2019-03-22 09:28:37', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558582799947268096', 'ggg', 3, 'F', 'admin', '2019-03-22 09:28:37', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558582799955656704', 'hello', 5, 'F', 'admin', '2019-03-22 09:28:37', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558582799959851008', 'zhangchuang', 20, 'M', 'admin', '2019-03-22 09:28:37', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558582799968239616', 'ggg', 3, 'F', 'admin', '2019-03-22 09:28:37', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558582799976628224', 'hello', 5, 'F', 'admin', '2019-03-22 09:28:37', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558582799980822528', '1', 1, '1', 'admin', '2019-03-22 09:28:37', NULL, NULL);
+INSERT INTO `ex_single_table` VALUES ('558582799989211136', '1', 1, '1', 'admin', '2019-03-22 09:28:37', NULL, NULL);
+INSERT INTO `ex_single_table` VALUES ('558582799993405440', '2', 2, '2', 'admin', '2019-03-22 09:28:37', NULL, NULL);
+INSERT INTO `ex_single_table` VALUES ('558582799997599744', '1', 1, '1', 'admin', '2019-03-22 09:28:37', NULL, NULL);
+INSERT INTO `ex_single_table` VALUES ('558583102088151040', 'zhangchuang2', 20, 'M', 'admin', '2019-03-22 09:29:50', 'admin', '2019-02-22 22:05:49');
+INSERT INTO `ex_single_table` VALUES ('558583102096539648', 'ggg', 3, 'F', 'admin', '2019-03-22 09:29:50', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558583102104928256', 'hello', 5, 'F', 'admin', '2019-03-22 09:29:50', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558583102109122560', 'zhangchuang', 20, 'M', 'admin', '2019-03-22 09:29:50', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558583102113316864', 'ggg', 3, 'F', 'admin', '2019-03-22 09:29:50', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558583102121705472', 'hello', 5, 'F', 'admin', '2019-03-22 09:29:50', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558583102130094080', 'zhangchuang', 20, 'M', 'admin', '2019-03-22 09:29:50', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558583102134288384', 'ggg', 3, 'F', 'admin', '2019-03-22 09:29:50', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558583102142676992', 'hello', 5, 'F', 'admin', '2019-03-22 09:29:50', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558583102146871296', 'ggg', 3, 'F', 'admin', '2019-03-22 09:29:50', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558583102151065600', 'hello', 5, 'F', 'admin', '2019-03-22 09:29:50', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558583102159454208', 'zhangchuang', 20, 'M', 'admin', '2019-03-22 09:29:50', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558583102163648512', 'ggg', 3, 'F', 'admin', '2019-03-22 09:29:50', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558583102167842816', 'hello', 5, 'F', 'admin', '2019-03-22 09:29:50', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558583102176231424', 'zhangchuang', 20, 'M', 'admin', '2019-03-22 09:29:50', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558583102180425728', 'ggg', 3, 'F', 'admin', '2019-03-22 09:29:50', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558583102184620032', 'hello', 5, 'F', 'admin', '2019-03-22 09:29:50', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558583102193008640', 'zhangchuang', 20, 'M', 'admin', '2019-03-22 09:29:50', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558583102197202944', 'ggg', 3, 'F', 'admin', '2019-03-22 09:29:50', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558583102205591552', 'hello', 5, 'F', 'admin', '2019-03-22 09:29:50', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558583102209785856', 'zhangchuang', 20, 'M', 'admin', '2019-03-22 09:29:50', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558583102213980160', 'ggg', 3, 'F', 'admin', '2019-03-22 09:29:50', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558583102222368768', 'hello', 5, 'F', 'admin', '2019-03-22 09:29:50', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558583102226563072', 'zhangchuang', 20, 'M', 'admin', '2019-03-22 09:29:50', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558583102230757376', 'ggg', 3, 'F', 'admin', '2019-03-22 09:29:50', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558583102234951680', 'hello', 5, 'F', 'admin', '2019-03-22 09:29:50', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558583102239145984', 'zhangchuang', 20, 'M', 'admin', '2019-03-22 09:29:50', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558583102247534592', 'ggg', 3, 'F', 'admin', '2019-03-22 09:29:50', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558583102251728896', 'hello', 5, 'F', 'admin', '2019-03-22 09:29:50', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558583102255923200', 'zhangchuang', 20, 'M', 'admin', '2019-03-22 09:29:50', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558583102260117504', 'ggg', 3, 'F', 'admin', '2019-03-22 09:29:50', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558583102264311808', 'hello', 5, 'F', 'admin', '2019-03-22 09:29:50', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558583102272700416', 'zhangchuang', 20, 'M', 'admin', '2019-03-22 09:29:50', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558583102276894720', 'ggg', 3, 'F', 'admin', '2019-03-22 09:29:50', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558583102285283328', 'hello', 5, 'F', 'admin', '2019-03-22 09:29:50', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558583102293671936', 'zhangchuang', 20, 'M', 'admin', '2019-03-22 09:29:50', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558583102302060544', 'ggg', 3, 'F', 'admin', '2019-03-22 09:29:50', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558583102306254848', 'hello', 5, 'F', 'admin', '2019-03-22 09:29:50', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558583102310449152', 'zhangchuang', 20, 'M', 'admin', '2019-03-22 09:29:50', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558583102318837760', 'ggg', 3, 'F', 'admin', '2019-03-22 09:29:50', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558583102323032064', 'hello', 5, 'F', 'admin', '2019-03-22 09:29:50', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558583102327226368', 'zhangchuang', 20, 'M', 'admin', '2019-03-22 09:29:50', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558583102335614976', 'ggg', 3, 'F', 'admin', '2019-03-22 09:29:50', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558583102339809280', 'hello', 5, 'F', 'admin', '2019-03-22 09:29:50', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558583102348197888', 'zhangchuang', 20, 'M', 'admin', '2019-03-22 09:29:50', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558583102352392192', 'ggg', 3, 'F', 'admin', '2019-03-22 09:29:50', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558583102356586496', 'hello', 5, 'F', 'admin', '2019-03-22 09:29:50', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558583102360780800', 'zhangchuang', 20, 'M', 'admin', '2019-03-22 09:29:50', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558583102364975104', 'ggg', 3, 'F', 'admin', '2019-03-22 09:29:50', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558583102373363712', 'hello', 5, 'F', 'admin', '2019-03-22 09:29:50', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558583102377558016', 'zhangchuang', 20, 'M', 'admin', '2019-03-22 09:29:50', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558583102381752320', 'ggg', 3, 'F', 'admin', '2019-03-22 09:29:50', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558583102385946624', 'hello', 5, 'F', 'admin', '2019-03-22 09:29:50', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558583102390140928', 'zhangchuang', 20, 'M', 'admin', '2019-03-22 09:29:50', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558583102394335232', 'ggg', 3, 'F', 'admin', '2019-03-22 09:29:50', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558583102398529536', 'hello', 5, 'F', 'admin', '2019-03-22 09:29:50', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558583102402723840', 'zhangchuang', 20, 'M', 'admin', '2019-03-22 09:29:50', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558583102406918144', 'ggg', 3, 'F', 'admin', '2019-03-22 09:29:50', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558583102411112448', 'hello', 5, 'F', 'admin', '2019-03-22 09:29:50', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558583102423695360', 'zhangchuang', 20, 'M', 'admin', '2019-03-22 09:29:50', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558583102427889664', 'ggg', 3, 'F', 'admin', '2019-03-22 09:29:50', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558583102436278272', 'hello', 5, 'F', 'admin', '2019-03-22 09:29:50', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558583102440472576', 'zhangchuang', 20, 'M', 'admin', '2019-03-22 09:29:50', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558583102444666880', 'ggg', 3, 'F', 'admin', '2019-03-22 09:29:50', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558583102448861184', 'hello', 5, 'F', 'admin', '2019-03-22 09:29:50', 'admin', NULL);
+INSERT INTO `ex_single_table` VALUES ('558583102453055488', '1', 1, '1', 'admin', '2019-03-22 09:29:50', NULL, NULL);
+INSERT INTO `ex_single_table` VALUES ('558583102457249792', '1', 1, '1', 'admin', '2019-03-22 09:29:50', NULL, NULL);
+INSERT INTO `ex_single_table` VALUES ('558583102461444096', '2', 2, '2', 'admin', '2019-03-22 09:29:50', NULL, NULL);
+INSERT INTO `ex_single_table` VALUES ('558583102465638400', '1', 1, '1', 'admin', '2019-03-22 09:29:50', NULL, NULL);
 
 -- ----------------------------
 -- Table structure for ex_staff
@@ -226,8 +502,8 @@ CREATE TABLE `sys_button`  (
   `updater` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '最后更新人',
   `updateTime` datetime(0) NULL DEFAULT NULL COMMENT '最后更新时间',
   PRIMARY KEY (`id`) USING BTREE,
-  INDEX `sysMenuId`(`sysMenuId`) USING BTREE,
-  UNIQUE INDEX `buttonCode`(`buttonCode`) USING BTREE
+  UNIQUE INDEX `buttonCode`(`buttonCode`) USING BTREE,
+  INDEX `sysMenuId`(`sysMenuId`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '菜单按钮' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
@@ -338,8 +614,10 @@ CREATE TABLE `sys_file`  (
 -- ----------------------------
 -- Records of sys_file
 -- ----------------------------
-INSERT INTO `sys_file` VALUES ('549671164947988480', 'upload/image/20190225/19165791561.jpg', 'timg.jpg', 'image/jpeg', 'jpg', 33809.000000000000000000000000000000, 'admin 头像', NULL, 'admin', '2019-02-25 19:16:58', NULL, NULL);
-INSERT INTO `sys_file` VALUES ('550747887550595072', 'upload/image/20190228/18352861496.jpg', 'timg.jpg', 'image/jpeg', 'jpg', 33809.000000000000000000000000000000, 'admin 头像', NULL, 'admin', '2019-02-28 18:35:28', NULL, NULL);
+INSERT INTO `sys_file` VALUES ('553235186205065216', 'upload/image/20190307/15190696245.jpg', '002.jpg', 'image/jpeg', 'jpg', 182397.000000000000000000000000000000, 'admin 头像', NULL, 'admin', '2019-03-07 15:19:07', NULL, NULL);
+INSERT INTO `sys_file` VALUES ('553236035060891648', 'upload/image/20190307/15222938823.jpg', 'timg.jpg', 'image/jpeg', 'jpg', 33809.000000000000000000000000000000, 'admin 头像', NULL, 'admin', '2019-03-07 15:22:29', NULL, NULL);
+INSERT INTO `sys_file` VALUES ('553276540243148800', 'upload/image/20190307/18032657721.jpg', 'timg.jpg', 'image/jpeg', 'jpg', 33809.000000000000000000000000000000, 'admin 头像', NULL, 'admin', '2019-03-07 18:03:26', NULL, NULL);
+INSERT INTO `sys_file` VALUES ('553573351314948096', 'upload/image/20190308/13425177021.jpg', 'timg.jpg', 'image/jpeg', 'jpg', 33809.000000000000000000000000000000, 'admin 头像', NULL, 'admin', '2019-03-08 13:42:51', NULL, NULL);
 
 -- ----------------------------
 -- Table structure for sys_menu
@@ -381,6 +659,7 @@ INSERT INTO `sys_menu` VALUES ('529975794877857792', '定时任务', '/sysTask',
 INSERT INTO `sys_menu` VALUES ('533964782852636672', '测试例子', '/', 'iconfont icon-gencode', 4, '0', NULL, 'admin', '2019-01-13 11:05:24', 'admin', '2019-02-24 10:18:04');
 INSERT INTO `sys_menu` VALUES ('533964972439371776', '普通单表', '/exSingleTable', 'iconfont icon-gencode', 1, '533964782852636672', NULL, 'admin', '2019-01-13 11:06:10', NULL, NULL);
 INSERT INTO `sys_menu` VALUES ('537980279722082304', '一对多表', '/exStaff', 'iconfont icon-gencode', 3, '533964782852636672', NULL, 'admin', '2019-01-24 13:01:33', 'admin', '2019-02-22 22:28:47');
+INSERT INTO `sys_menu` VALUES ('560430837321957376', '代码生成', '/genOnline', 'iconfont icon-gencode', 9, '520750975204458496', NULL, 'admin', '2019-03-27 11:52:04', 'admin', '2019-03-27 11:52:33');
 
 -- ----------------------------
 -- Table structure for sys_notice
@@ -402,24 +681,16 @@ CREATE TABLE `sys_notice`  (
 -- ----------------------------
 -- Records of sys_notice
 -- ----------------------------
-INSERT INTO `sys_notice` VALUES ('546764251063123968', 'delVisitLog', '访问日志删除', 'admin 于 2019-02-17 18:45:55 删除了 1 条 访问日志。', '2019-02-17 18:45:55', '2019-02-27 18:45:55', '2019-03-09 18:45:55');
-INSERT INTO `sys_notice` VALUES ('546976233372516352', 'delVisitLog', '访问日志删除', 'admin 于 2019-02-18 08:48:16 删除了 1 条 访问日志。', '2019-02-18 08:48:16', '2019-02-28 08:48:16', '2019-03-10 08:48:16');
-INSERT INTO `sys_notice` VALUES ('546976272090136576', 'delVisitLog', '访问日志删除', 'admin 于 2019-02-18 08:48:25 删除了 2 条 访问日志。', '2019-02-18 08:48:25', '2019-02-28 08:48:25', '2019-03-10 08:48:25');
-INSERT INTO `sys_notice` VALUES ('548559829438824448', 'delVisitLog', '访问日志删除', 'admin 于 2019-02-22 17:40:54 删除了 1 条 访问日志。', '2019-02-22 17:40:55', '2019-03-04 17:40:55', '2019-03-14 17:40:55');
-INSERT INTO `sys_notice` VALUES ('548559869783834624', 'delVisitLog', '访问日志删除', 'admin 于 2019-02-22 17:41:04 删除了 1 条 访问日志。', '2019-02-22 17:41:04', '2019-03-04 17:41:04', '2019-03-14 17:41:04');
-INSERT INTO `sys_notice` VALUES ('548559926457270272', 'delVisitLog', '访问日志删除', 'admin 于 2019-02-22 17:41:18 删除了 1 条 访问日志。', '2019-02-22 17:41:18', '2019-03-04 17:41:18', '2019-03-14 17:41:18');
-INSERT INTO `sys_notice` VALUES ('548560486958891008', 'delVisitLog', '访问日志删除', 'admin 于 2019-02-22 17:43:31 删除了 1 条 访问日志。', '2019-02-22 17:43:31', '2019-03-04 17:43:31', '2019-03-14 17:43:31');
-INSERT INTO `sys_notice` VALUES ('548560911795748864', 'delVisitLog', '访问日志删除', 'admin 于 2019-02-22 17:45:13 删除了 1 条 访问日志。', '2019-02-22 17:45:13', '2019-03-04 17:45:13', '2019-03-14 17:45:13');
-INSERT INTO `sys_notice` VALUES ('548560934939918336', 'delVisitLog', '访问日志删除', 'admin 于 2019-02-22 17:45:18 删除了 2 条 访问日志。', '2019-02-22 17:45:18', '2019-03-04 17:45:18', '2019-03-14 17:45:18');
-INSERT INTO `sys_notice` VALUES ('548566326755459072', 'delVisitLog', '访问日志删除', 'admin 于 2019-02-22 18:06:44 删除了 1 条 访问日志。', '2019-02-22 18:06:44', '2019-03-04 18:06:44', '2019-03-14 18:06:44');
-INSERT INTO `sys_notice` VALUES ('549173295270854656', 'delVisitLog', '访问日志删除', 'admin 于 2019-02-24 10:18:36 删除了 2 条 访问日志。', '2019-02-24 10:18:36', '2019-03-06 10:18:36', '2019-03-16 10:18:36');
-INSERT INTO `sys_notice` VALUES ('549640226994126848', 'delVisitLog', '访问日志删除', 'admin 于 2019-02-25 17:14:01 删除了 1 条 访问日志。', '2019-02-25 17:14:01', '2019-03-07 17:14:01', '2019-03-17 17:14:01');
-INSERT INTO `sys_notice` VALUES ('549651310161428480', 'delVisitLog', '访问日志删除', 'admin 于 2019-02-25 17:58:04 删除了 1 条 访问日志。', '2019-02-25 17:58:04', '2019-03-07 17:58:04', '2019-03-17 17:58:04');
-INSERT INTO `sys_notice` VALUES ('550338732767576064', 'delVisitLog', '访问日志删除', 'admin 于 2019-02-27 15:29:38 删除了 1 条 访问日志。', '2019-02-27 15:29:38', '2019-03-09 15:29:38', '2019-03-19 15:29:38');
-INSERT INTO `sys_notice` VALUES ('550338755119022080', 'delVisitLog', '访问日志删除', 'admin 于 2019-02-27 15:29:44 删除了 1 条 访问日志。', '2019-02-27 15:29:44', '2019-03-09 15:29:44', '2019-03-19 15:29:44');
-INSERT INTO `sys_notice` VALUES ('550749303342104576', 'delVisitLog', '访问日志删除', 'admin 于 2019-02-28 18:41:06 删除了 1 条 访问日志。', '2019-02-28 18:41:06', '2019-03-10 18:41:06', '2019-03-20 18:41:06');
 INSERT INTO `sys_notice` VALUES ('551738719984418816', 'delVisitLog', '访问日志删除', 'admin 于 2019-03-03 12:12:41 删除了 1 条 访问日志。', '2019-03-03 12:12:41', '2019-03-13 12:12:41', '2019-03-23 12:12:41');
 INSERT INTO `sys_notice` VALUES ('551753143537369088', 'delVisitLog', '访问日志删除', 'admin 于 2019-03-03 13:10:00 删除了 2 条 访问日志。', '2019-03-03 13:10:00', '2019-03-13 13:10:00', '2019-03-23 13:10:00');
+INSERT INTO `sys_notice` VALUES ('551903101087383552', 'delVisitLog', '访问日志删除', 'admin 于 2019-03-03 23:05:53 删除了 1 条 访问日志。', '2019-03-03 23:05:53', '2019-03-13 23:05:53', '2019-03-23 23:05:53');
+INSERT INTO `sys_notice` VALUES ('551907498353754112', 'delVisitLog', '访问日志删除', 'admin 于 2019-03-03 23:23:21 删除了 2 条 访问日志。', '2019-03-03 23:23:21', '2019-03-13 23:23:21', '2019-03-23 23:23:21');
+INSERT INTO `sys_notice` VALUES ('553237166633779200', 'delVisitLog', '访问日志删除', 'admin 于 2019-03-07 15:26:59 删除了 1 条 访问日志。', '2019-03-07 15:26:59', '2019-03-17 15:26:59', '2019-03-27 15:26:59');
+INSERT INTO `sys_notice` VALUES ('553580006203195392', 'delVisitLog', '访问日志删除', 'admin 于 2019-03-08 14:09:18 删除了 1 条 访问日志。', '2019-03-08 14:09:18', '2019-03-18 14:09:18', '2019-03-28 14:09:18');
+INSERT INTO `sys_notice` VALUES ('555437562424983552', 'delVisitLog', '访问日志删除', 'admin 于 2019-03-13 17:10:34 删除了 1 条 访问日志。', '2019-03-13 17:10:34', '2019-03-23 17:10:34', '2019-04-02 17:10:34');
+INSERT INTO `sys_notice` VALUES ('555776301403734016', 'delVisitLog', '访问日志删除', 'admin 于 2019-03-14 15:36:35 删除了 1 条 访问日志。', '2019-03-14 15:36:36', '2019-03-24 15:36:36', '2019-04-03 15:36:36');
+INSERT INTO `sys_notice` VALUES ('556953727529910272', 'delVisitLog', '访问日志删除', 'admin 于 2019-03-17 21:35:16 删除了 1 条 访问日志。', '2019-03-17 21:35:16', '2019-03-27 21:35:16', '2019-04-06 21:35:16');
+INSERT INTO `sys_notice` VALUES ('560023441000890368', 'delVisitLog', '访问日志删除', 'admin 于 2019-03-26 08:53:12 删除了 1 条 访问日志。', '2019-03-26 08:53:13', '2019-04-05 08:53:13', '2019-04-15 08:53:13');
 
 -- ----------------------------
 -- Table structure for sys_notice_detail
@@ -441,48 +712,28 @@ CREATE TABLE `sys_notice_detail`  (
 -- ----------------------------
 -- Records of sys_notice_detail
 -- ----------------------------
-INSERT INTO `sys_notice_detail` VALUES ('546764251134427136', '546764251063123968', NULL, '522465144505106432', 'Y', '2019-02-18 08:47:10');
-INSERT INTO `sys_notice_detail` VALUES ('546764251134427138', '546764251063123968', NULL, '522465900809420800', 'Y', '2019-02-24 21:37:44');
-INSERT INTO `sys_notice_detail` VALUES ('546976233427042304', '546976233372516352', NULL, '522465144505106432', 'Y', '2019-02-22 17:40:14');
-INSERT INTO `sys_notice_detail` VALUES ('546976233427042306', '546976233372516352', NULL, '522465900809420800', 'Y', '2019-02-24 21:37:44');
-INSERT INTO `sys_notice_detail` VALUES ('546976272098525184', '546976272090136576', NULL, '522465900809420800', 'Y', '2019-02-24 21:37:44');
-INSERT INTO `sys_notice_detail` VALUES ('546976272102719489', '546976272090136576', NULL, '522465144505106432', 'Y', '2019-02-22 17:40:17');
-INSERT INTO `sys_notice_detail` VALUES ('548560911812526080', '548560911795748864', NULL, '522465144505106432', 'Y', '2019-02-22 17:54:18');
-INSERT INTO `sys_notice_detail` VALUES ('548560911812526081', '548560911795748864', NULL, '522044507147993088', 'N', NULL);
-INSERT INTO `sys_notice_detail` VALUES ('548560934948306944', '548560934939918336', NULL, '522465144505106432', 'Y', '2019-02-22 17:54:21');
-INSERT INTO `sys_notice_detail` VALUES ('548560934948306945', '548560934939918336', NULL, '522044507147993088', 'N', NULL);
-INSERT INTO `sys_notice_detail` VALUES ('548566326768041984', '548566326755459072', NULL, '522465144505106432', 'Y', '2019-02-22 23:03:42');
-INSERT INTO `sys_notice_detail` VALUES ('548566326768041985', '548566326755459072', NULL, '522044507147993088', 'N', NULL);
-INSERT INTO `sys_notice_detail` VALUES ('549173295384100864', '549173295270854656', NULL, '522465144505106432', 'Y', '2019-02-24 21:55:30');
-INSERT INTO `sys_notice_detail` VALUES ('549173295384100865', '549173295270854656', NULL, '522044507147993088', 'N', NULL);
-INSERT INTO `sys_notice_detail` VALUES ('549640227027681280', '549640226994126848', NULL, '549336387174793216', 'N', NULL);
-INSERT INTO `sys_notice_detail` VALUES ('549640227027681281', '549640226994126848', NULL, '522465144505106432', 'Y', '2019-02-27 15:23:15');
-INSERT INTO `sys_notice_detail` VALUES ('549640227027681282', '549640226994126848', NULL, '522465900809420800', 'N', NULL);
-INSERT INTO `sys_notice_detail` VALUES ('549640227027681283', '549640226994126848', NULL, '522044507147993088', 'N', NULL);
-INSERT INTO `sys_notice_detail` VALUES ('549651310194982912', '549651310161428480', NULL, '522465144505106432', 'Y', '2019-02-27 15:23:15');
-INSERT INTO `sys_notice_detail` VALUES ('549651310194982913', '549651310161428480', NULL, '549336387174793216', 'N', NULL);
-INSERT INTO `sys_notice_detail` VALUES ('549651310194982914', '549651310161428480', NULL, '522465900809420800', 'N', NULL);
-INSERT INTO `sys_notice_detail` VALUES ('549651310194982915', '549651310161428480', NULL, '522044507147993088', 'N', NULL);
-INSERT INTO `sys_notice_detail` VALUES ('550338732843073536', '550338732767576064', NULL, '549336387174793216', 'N', NULL);
-INSERT INTO `sys_notice_detail` VALUES ('550338732843073537', '550338732767576064', NULL, '522465900809420800', 'N', NULL);
-INSERT INTO `sys_notice_detail` VALUES ('550338732843073538', '550338732767576064', NULL, '522465144505106432', 'N', NULL);
-INSERT INTO `sys_notice_detail` VALUES ('550338732843073539', '550338732767576064', NULL, '522044507147993088', 'N', NULL);
-INSERT INTO `sys_notice_detail` VALUES ('550338755127410688', '550338755119022080', NULL, '549336387174793216', 'N', NULL);
-INSERT INTO `sys_notice_detail` VALUES ('550338755127410689', '550338755119022080', NULL, '522465144505106432', 'N', NULL);
-INSERT INTO `sys_notice_detail` VALUES ('550338755127410690', '550338755119022080', NULL, '522465900809420800', 'N', NULL);
-INSERT INTO `sys_notice_detail` VALUES ('550338755127410691', '550338755119022080', NULL, '522044507147993088', 'N', NULL);
-INSERT INTO `sys_notice_detail` VALUES ('550749303396630528', '550749303342104576', NULL, '549336387174793216', 'N', NULL);
-INSERT INTO `sys_notice_detail` VALUES ('550749303396630529', '550749303342104576', NULL, '522465900809420800', 'N', NULL);
-INSERT INTO `sys_notice_detail` VALUES ('550749303396630530', '550749303342104576', NULL, '522465144505106432', 'N', NULL);
-INSERT INTO `sys_notice_detail` VALUES ('550749303396630531', '550749303342104576', NULL, '522044507147993088', 'N', NULL);
-INSERT INTO `sys_notice_detail` VALUES ('551738720043139072', '551738719984418816', NULL, '549336387174793216', 'N', NULL);
-INSERT INTO `sys_notice_detail` VALUES ('551738720047333376', '551738719984418816', NULL, '522465144505106432', 'N', NULL);
-INSERT INTO `sys_notice_detail` VALUES ('551738720068304896', '551738719984418816', NULL, '522044507147993088', 'N', NULL);
-INSERT INTO `sys_notice_detail` VALUES ('551738720068304897', '551738719984418816', NULL, '522465900809420800', 'N', NULL);
-INSERT INTO `sys_notice_detail` VALUES ('551753143596089344', '551753143537369088', NULL, '549336387174793216', 'N', NULL);
-INSERT INTO `sys_notice_detail` VALUES ('551753143596089345', '551753143537369088', NULL, '522465900809420800', 'N', NULL);
-INSERT INTO `sys_notice_detail` VALUES ('551753143596089346', '551753143537369088', NULL, '522465144505106432', 'N', NULL);
-INSERT INTO `sys_notice_detail` VALUES ('551753143596089347', '551753143537369088', NULL, '522044507147993088', 'N', NULL);
+INSERT INTO `sys_notice_detail` VALUES ('551738720047333376', '551738719984418816', NULL, '522465144505106432', 'Y', '2019-03-04 18:38:29');
+INSERT INTO `sys_notice_detail` VALUES ('551753143596089346', '551753143537369088', NULL, '522465144505106432', 'Y', '2019-03-04 18:38:32');
+INSERT INTO `sys_notice_detail` VALUES ('551903101150298113', '551903101087383552', NULL, '522465144505106432', 'Y', '2019-03-12 09:18:01');
+INSERT INTO `sys_notice_detail` VALUES ('551907498370531329', '551907498353754112', NULL, '522465144505106432', 'Y', '2019-03-12 09:18:01');
+INSERT INTO `sys_notice_detail` VALUES ('553237166709276672', '553237166633779200', NULL, '522465144505106432', 'Y', '2019-03-12 09:18:01');
+INSERT INTO `sys_notice_detail` VALUES ('553580006270304257', '553580006203195392', NULL, '522465144505106432', 'Y', '2019-03-12 09:18:01');
+INSERT INTO `sys_notice_detail` VALUES ('555437562504675328', '555437562424983552', NULL, '549336387174793216', 'N', NULL);
+INSERT INTO `sys_notice_detail` VALUES ('555437562504675329', '555437562424983552', NULL, '522465144505106432', 'N', NULL);
+INSERT INTO `sys_notice_detail` VALUES ('555437562504675330', '555437562424983552', NULL, '522465900809420800', 'N', NULL);
+INSERT INTO `sys_notice_detail` VALUES ('555437562504675331', '555437562424983552', NULL, '522044507147993088', 'N', NULL);
+INSERT INTO `sys_notice_detail` VALUES ('555776301466648576', '555776301403734016', NULL, '522465144505106432', 'Y', '2019-03-14 15:36:40');
+INSERT INTO `sys_notice_detail` VALUES ('555776301466648577', '555776301403734016', NULL, '549336387174793216', 'N', NULL);
+INSERT INTO `sys_notice_detail` VALUES ('555776301466648578', '555776301403734016', NULL, '522465900809420800', 'N', NULL);
+INSERT INTO `sys_notice_detail` VALUES ('555776301470842880', '555776301403734016', NULL, '522044507147993088', 'N', NULL);
+INSERT INTO `sys_notice_detail` VALUES ('556953727601213440', '556953727529910272', NULL, '549336387174793216', 'N', NULL);
+INSERT INTO `sys_notice_detail` VALUES ('556953727601213441', '556953727529910272', NULL, '522465144505106432', 'N', NULL);
+INSERT INTO `sys_notice_detail` VALUES ('556953727601213442', '556953727529910272', NULL, '522465900809420800', 'N', NULL);
+INSERT INTO `sys_notice_detail` VALUES ('556953727601213443', '556953727529910272', NULL, '522044507147993088', 'N', NULL);
+INSERT INTO `sys_notice_detail` VALUES ('560023441042833408', '560023441000890368', NULL, '549336387174793216', 'N', NULL);
+INSERT INTO `sys_notice_detail` VALUES ('560023441042833409', '560023441000890368', NULL, '522465144505106432', 'N', NULL);
+INSERT INTO `sys_notice_detail` VALUES ('560023441042833410', '560023441000890368', NULL, '522465900809420800', 'N', NULL);
+INSERT INTO `sys_notice_detail` VALUES ('560023441042833411', '560023441000890368', NULL, '522044507147993088', 'N', NULL);
 
 -- ----------------------------
 -- Table structure for sys_notice_type
@@ -510,8 +761,8 @@ CREATE TABLE `sys_notice_type`  (
 -- ----------------------------
 -- Records of sys_notice_type
 -- ----------------------------
-INSERT INTO `sys_notice_type` VALUES ('534774841853607936', '系统使用', '访问日志删除', 'delVisitLog', 'upload/image/20190228/18352861496.jpg', 'FTL{username!} 于 FTL{datetime!} 删除了 FTL{number!} 条 访问日志。', '删除系统访问日志时，触发改消息通知', 10, 20, 'admin', '2019-01-15 16:44:17', 'admin', '2019-02-28 18:35:52');
-INSERT INTO `sys_notice_type` VALUES ('534775887648784384', '系统使用', '无权限操作', 'noPermissionOpe', 'upload/image/20190228/18352861496.jpg', 'FTL{username!} 于 FTL{date!} 访问 无权限操作 FTL{visitUrl!}.', '用户执行访问无权限路径，点击无权限的按钮时，触发该操作', 30, 60, 'admin', '2019-01-15 16:48:27', 'admin', '2019-02-28 18:36:00');
+INSERT INTO `sys_notice_type` VALUES ('534774841853607936', '系统使用', '访问日志删除', 'delVisitLog', 'upload/image/20190308/13425177021.jpg', 'FTL{username!} 于 FTL{datetime!} 删除了 FTL{number!} 条 访问日志。', '删除系统访问日志时，触发改消息通知', 10, 20, 'admin', '2019-01-15 16:44:17', 'admin', '2019-03-08 13:59:18');
+INSERT INTO `sys_notice_type` VALUES ('534775887648784384', '系统使用', '无权限操作', 'noPermissionOpe', 'upload/image/20190308/13425177021.jpg', 'FTL{username!} 于 FTL{date!} 访问 无权限操作 FTL{visitUrl!}.', '用户执行访问无权限路径，点击无权限的按钮时，触发该操作', 30, 60, 'admin', '2019-01-15 16:48:27', 'admin', '2019-03-08 13:59:26');
 
 -- ----------------------------
 -- Table structure for sys_notice_type_sys_role
@@ -642,19 +893,20 @@ CREATE TABLE `sys_role_menu`  (
 -- ----------------------------
 -- Records of sys_role_menu
 -- ----------------------------
-INSERT INTO `sys_role_menu` VALUES ('520339201795817472', '520751187331383297', 'admin', '2019-02-24 20:53:27');
-INSERT INTO `sys_role_menu` VALUES ('520339201795817472', '520751411466600448', 'admin', '2019-02-24 20:53:27');
-INSERT INTO `sys_role_menu` VALUES ('520339201795817472', '520751483449245697', 'admin', '2019-02-24 20:53:27');
-INSERT INTO `sys_role_menu` VALUES ('520339201795817472', '520751566345469952', 'admin', '2019-02-24 20:53:27');
-INSERT INTO `sys_role_menu` VALUES ('520339201795817472', '520751881509666817', 'admin', '2019-02-24 20:53:27');
-INSERT INTO `sys_role_menu` VALUES ('520339201795817472', '520752428128141312', 'admin', '2019-02-24 20:53:27');
-INSERT INTO `sys_role_menu` VALUES ('520339201795817472', '520752809180659712', 'admin', '2019-02-24 20:53:27');
-INSERT INTO `sys_role_menu` VALUES ('520339201795817472', '520752938604298240', 'admin', '2019-02-24 20:53:27');
-INSERT INTO `sys_role_menu` VALUES ('520339201795817472', '520753306482507776', 'admin', '2019-02-24 20:53:27');
-INSERT INTO `sys_role_menu` VALUES ('520339201795817472', '520753742492991488', 'admin', '2019-02-24 20:53:27');
-INSERT INTO `sys_role_menu` VALUES ('520339201795817472', '529975794877857792', 'admin', '2019-02-24 20:53:27');
-INSERT INTO `sys_role_menu` VALUES ('520339201795817472', '533964972439371776', 'admin', '2019-02-24 20:53:27');
-INSERT INTO `sys_role_menu` VALUES ('520339201795817472', '537980279722082304', 'admin', '2019-02-24 20:53:27');
+INSERT INTO `sys_role_menu` VALUES ('520339201795817472', '520751187331383297', 'admin', '2019-03-27 11:52:47');
+INSERT INTO `sys_role_menu` VALUES ('520339201795817472', '520751411466600448', 'admin', '2019-03-27 11:52:47');
+INSERT INTO `sys_role_menu` VALUES ('520339201795817472', '520751483449245697', 'admin', '2019-03-27 11:52:47');
+INSERT INTO `sys_role_menu` VALUES ('520339201795817472', '520751566345469952', 'admin', '2019-03-27 11:52:47');
+INSERT INTO `sys_role_menu` VALUES ('520339201795817472', '520751881509666817', 'admin', '2019-03-27 11:52:47');
+INSERT INTO `sys_role_menu` VALUES ('520339201795817472', '520752428128141312', 'admin', '2019-03-27 11:52:47');
+INSERT INTO `sys_role_menu` VALUES ('520339201795817472', '520752809180659712', 'admin', '2019-03-27 11:52:47');
+INSERT INTO `sys_role_menu` VALUES ('520339201795817472', '520752938604298240', 'admin', '2019-03-27 11:52:47');
+INSERT INTO `sys_role_menu` VALUES ('520339201795817472', '520753306482507776', 'admin', '2019-03-27 11:52:47');
+INSERT INTO `sys_role_menu` VALUES ('520339201795817472', '520753742492991488', 'admin', '2019-03-27 11:52:47');
+INSERT INTO `sys_role_menu` VALUES ('520339201795817472', '529975794877857792', 'admin', '2019-03-27 11:52:47');
+INSERT INTO `sys_role_menu` VALUES ('520339201795817472', '533964972439371776', 'admin', '2019-03-27 11:52:47');
+INSERT INTO `sys_role_menu` VALUES ('520339201795817472', '537980279722082304', 'admin', '2019-03-27 11:52:47');
+INSERT INTO `sys_role_menu` VALUES ('520339201795817472', '560430837321957376', 'admin', '2019-03-27 11:52:47');
 INSERT INTO `sys_role_menu` VALUES ('520340379124367361', '520751187331383297', 'admin', '2019-01-15 17:03:04');
 INSERT INTO `sys_role_menu` VALUES ('520340379124367361', '520752809180659712', 'admin', '2019-01-15 17:03:04');
 INSERT INTO `sys_role_menu` VALUES ('520340379124367361', '520752938604298240', 'admin', '2019-01-15 17:03:04');
@@ -769,6 +1021,106 @@ INSERT INTO `sys_service_log` VALUES ('551764440786141184', '/login/action', '�
 INSERT INTO `sys_service_log` VALUES ('551764622286258176', '/logout', '退出', 'admin', '0:0:0:0:0:0:0:1', NULL, '2019-03-03 13:55:37');
 INSERT INTO `sys_service_log` VALUES ('551764644759339008', '/login/action', '登录', 'admin', '0:0:0:0:0:0:0:1', NULL, '2019-03-03 13:55:42');
 INSERT INTO `sys_service_log` VALUES ('551764984426659840', '/logout', '退出', 'admin', '0:0:0:0:0:0:0:1', NULL, '2019-03-03 13:57:03');
+INSERT INTO `sys_service_log` VALUES ('551765497931104256', '/login/action', '登录', 'admin', '0:0:0:0:0:0:0:1', NULL, '2019-03-03 13:59:06');
+INSERT INTO `sys_service_log` VALUES ('551766415967780864', '/login', '通过cookie登录', 'admin', '0:0:0:0:0:0:0:1', NULL, '2019-03-03 14:02:44');
+INSERT INTO `sys_service_log` VALUES ('551901025171144704', '/login/action', '登录', 'admin', '0:0:0:0:0:0:0:1', NULL, '2019-03-03 22:57:38');
+INSERT INTO `sys_service_log` VALUES ('551902696043446272', '/sysVisitLog/deleteAction', 'PermissionInterceptor: 访问无权限路径', 'admin', '0:0:0:0:0:0:0:1', NULL, '2019-03-03 23:04:16');
+INSERT INTO `sys_service_log` VALUES ('551902776603443200', '/sysVisitLog/deleteAction', 'PermissionInterceptor: 访问无权限路径', 'admin', '0:0:0:0:0:0:0:1', NULL, '2019-03-03 23:04:35');
+INSERT INTO `sys_service_log` VALUES ('552193309821370368', '/login/action', '登录', 'admin', '0:0:0:0:0:0:0:1', NULL, '2019-03-04 18:19:04');
+INSERT INTO `sys_service_log` VALUES ('552196403347062784', '/logout', '退出', 'admin', '0:0:0:0:0:0:0:1', NULL, '2019-03-04 18:31:21');
+INSERT INTO `sys_service_log` VALUES ('552197660539355136', '/login/action', '登录', 'admin', '0:0:0:0:0:0:0:1', NULL, '2019-03-04 18:36:21');
+INSERT INTO `sys_service_log` VALUES ('552200049090625536', '/login', '通过cookie登录', 'admin', '0:0:0:0:0:0:0:1', NULL, '2019-03-04 18:45:51');
+INSERT INTO `sys_service_log` VALUES ('552200163100196864', '/logout', '退出', 'admin', '0:0:0:0:0:0:0:1', NULL, '2019-03-04 18:46:18');
+INSERT INTO `sys_service_log` VALUES ('552200216493686784', '/login/action', '登录', 'admin', '0:0:0:0:0:0:0:1', NULL, '2019-03-04 18:46:30');
+INSERT INTO `sys_service_log` VALUES ('552205256314847232', '/login/action', '登录', 'admin', '0:0:0:0:0:0:0:1', NULL, '2019-03-04 19:06:32');
+INSERT INTO `sys_service_log` VALUES ('553234677423407104', '/login/action', '登录', 'admin', '0:0:0:0:0:0:0:1', NULL, '2019-03-07 15:17:05');
+INSERT INTO `sys_service_log` VALUES ('553250949980749824', '/login/action', '登录', 'admin', '0:0:0:0:0:0:0:1', NULL, '2019-03-07 16:21:45');
+INSERT INTO `sys_service_log` VALUES ('553250963922616320', '/logout', '退出', 'admin', '0:0:0:0:0:0:0:1', NULL, '2019-03-07 16:21:48');
+INSERT INTO `sys_service_log` VALUES ('553263768503582720', '/login/action', '登录', 'admin', '0:0:0:0:0:0:0:1', NULL, '2019-03-07 17:12:41');
+INSERT INTO `sys_service_log` VALUES ('553263886011203584', '/logout', '退出', 'admin', '0:0:0:0:0:0:0:1', NULL, '2019-03-07 17:13:09');
+INSERT INTO `sys_service_log` VALUES ('553269499407630336', '/login/action', '登录', 'admin', '0:0:0:0:0:0:0:1', NULL, '2019-03-07 17:35:27');
+INSERT INTO `sys_service_log` VALUES ('553269701883461632', '/logout', '退出', 'admin', '0:0:0:0:0:0:0:1', NULL, '2019-03-07 17:36:16');
+INSERT INTO `sys_service_log` VALUES ('553270488474845184', '/login/action', '登录', 'admin', '0:0:0:0:0:0:0:1', NULL, '2019-03-07 17:39:23');
+INSERT INTO `sys_service_log` VALUES ('553270510654324736', '/logout', '退出', 'admin', '0:0:0:0:0:0:0:1', NULL, '2019-03-07 17:39:29');
+INSERT INTO `sys_service_log` VALUES ('553270613569961984', '/login/action', '登录', 'admin', '0:0:0:0:0:0:0:1', NULL, '2019-03-07 17:39:53');
+INSERT INTO `sys_service_log` VALUES ('553275942571606016', '/login/action', '登录', 'admin', '0:0:0:0:0:0:0:1', NULL, '2019-03-07 18:01:04');
+INSERT INTO `sys_service_log` VALUES ('553276275372851200', '/login/action', '登录', 'admin', '0:0:0:0:0:0:0:1', NULL, '2019-03-07 18:02:23');
+INSERT INTO `sys_service_log` VALUES ('553571674583203840', '/login/action', '登录', 'admin', '0:0:0:0:0:0:0:1', NULL, '2019-03-08 13:36:12');
+INSERT INTO `sys_service_log` VALUES ('553572612169531392', '/login', '通过cookie登录', 'admin', '0:0:0:0:0:0:0:1', NULL, '2019-03-08 13:39:55');
+INSERT INTO `sys_service_log` VALUES ('553577636681482240', '/logout', '退出', 'admin', '0:0:0:0:0:0:0:1', NULL, '2019-03-08 13:59:53');
+INSERT INTO `sys_service_log` VALUES ('553577877258371072', '/login/action', '登录', 'admin', '0:0:0:0:0:0:0:1', NULL, '2019-03-08 14:00:50');
+INSERT INTO `sys_service_log` VALUES ('553579446154559488', '/logout', '退出', 'admin', '0:0:0:0:0:0:0:1', NULL, '2019-03-08 14:07:04');
+INSERT INTO `sys_service_log` VALUES ('553579957431828480', '/login/action', '登录', 'admin', '0:0:0:0:0:0:0:1', NULL, '2019-03-08 14:09:06');
+INSERT INTO `sys_service_log` VALUES ('553655092130086912', '/login/action', '登录', 'admin', '0:0:0:0:0:0:0:1', NULL, '2019-03-08 19:07:40');
+INSERT INTO `sys_service_log` VALUES ('553656200898543616', '/logout', '退出', 'admin', '0:0:0:0:0:0:0:1', NULL, '2019-03-08 19:12:04');
+INSERT INTO `sys_service_log` VALUES ('553656243269402624', '/login/action', '登录', 'admin', '0:0:0:0:0:0:0:1', NULL, '2019-03-08 19:12:14');
+INSERT INTO `sys_service_log` VALUES ('553656283476000768', '/logout', '退出', 'admin', '0:0:0:0:0:0:0:1', NULL, '2019-03-08 19:12:24');
+INSERT INTO `sys_service_log` VALUES ('553665161974513664', '/login/action', '登录', 'admin', '0:0:0:0:0:0:0:1', NULL, '2019-03-08 19:47:41');
+INSERT INTO `sys_service_log` VALUES ('554684287580897280', '/login/action', '登录', 'admin', '0:0:0:0:0:0:0:1', NULL, '2019-03-11 15:17:19');
+INSERT INTO `sys_service_log` VALUES ('554684677458231296', '/logout', '退出', 'admin', '0:0:0:0:0:0:0:1', NULL, '2019-03-11 15:18:52');
+INSERT INTO `sys_service_log` VALUES ('554685132926091264', '/login/action', '登录', 'admin', '0:0:0:0:0:0:0:1', NULL, '2019-03-11 15:20:41');
+INSERT INTO `sys_service_log` VALUES ('554955848594489344', '/login/action', '登录', 'admin', '0:0:0:0:0:0:0:1', NULL, '2019-03-12 09:16:24');
+INSERT INTO `sys_service_log` VALUES ('554955848737095680', '/login/action', '登录', 'admin', '0:0:0:0:0:0:0:1', NULL, '2019-03-12 09:16:24');
+INSERT INTO `sys_service_log` VALUES ('554956254515036160', '/dashboard/noticeSetAllRead', '用户 admin 设置所有系统通知为 已读', 'admin', '0:0:0:0:0:0:0:1', NULL, '2019-03-12 09:18:01');
+INSERT INTO `sys_service_log` VALUES ('554957146274398208', '/logout', '退出', 'admin', '0:0:0:0:0:0:0:1', NULL, '2019-03-12 09:21:34');
+INSERT INTO `sys_service_log` VALUES ('554957740812795904', '/login/action', '登录', 'admin', '0:0:0:0:0:0:0:1', NULL, '2019-03-12 09:23:56');
+INSERT INTO `sys_service_log` VALUES ('554960939732959232', '/logout', '退出', 'admin', '0:0:0:0:0:0:0:1', NULL, '2019-03-12 09:36:38');
+INSERT INTO `sys_service_log` VALUES ('554960961602060288', '/login/action', '登录', 'admin', '0:0:0:0:0:0:0:1', NULL, '2019-03-12 09:36:43');
+INSERT INTO `sys_service_log` VALUES ('554960984171610112', '/logout', '退出', 'admin', '0:0:0:0:0:0:0:1', NULL, '2019-03-12 09:36:49');
+INSERT INTO `sys_service_log` VALUES ('554961021467361280', '/login/action', '登录', 'admin', '0:0:0:0:0:0:0:1', NULL, '2019-03-12 09:36:58');
+INSERT INTO `sys_service_log` VALUES ('555416222439571456', '/login/action', '登录', 'admin', '0:0:0:0:0:0:0:1', NULL, '2019-03-13 15:45:46');
+INSERT INTO `sys_service_log` VALUES ('555427415879319552', '/login/action', '登录', 'admin', '0:0:0:0:0:0:0:1', NULL, '2019-03-13 16:30:15');
+INSERT INTO `sys_service_log` VALUES ('555428877053198336', '/logout', '退出', 'admin', '0:0:0:0:0:0:0:1', NULL, '2019-03-13 16:36:03');
+INSERT INTO `sys_service_log` VALUES ('555435855242592256', '/login/action', '登录', 'admin', '0:0:0:0:0:0:0:1', NULL, '2019-03-13 17:03:47');
+INSERT INTO `sys_service_log` VALUES ('555742781390192640', '/login/action', '登录', 'admin', '0:0:0:0:0:0:0:1', NULL, '2019-03-14 13:23:24');
+INSERT INTO `sys_service_log` VALUES ('555744910603452416', '/logout', '退出', 'admin', '0:0:0:0:0:0:0:1', NULL, '2019-03-14 13:31:51');
+INSERT INTO `sys_service_log` VALUES ('555744958431100928', '/login/action', '登录', 'admin', '0:0:0:0:0:0:0:1', NULL, '2019-03-14 13:32:03');
+INSERT INTO `sys_service_log` VALUES ('555774015503859712', '/logout', '退出', 'admin', '0:0:0:0:0:0:0:1', NULL, '2019-03-14 15:27:31');
+INSERT INTO `sys_service_log` VALUES ('555774042938802176', '/login/action', '登录', 'zhaoli', '0:0:0:0:0:0:0:1', NULL, '2019-03-14 15:27:37');
+INSERT INTO `sys_service_log` VALUES ('555774938456260608', '/logout', '退出', 'zhaoli', '0:0:0:0:0:0:0:1', NULL, '2019-03-14 15:31:11');
+INSERT INTO `sys_service_log` VALUES ('555775024204611584', '/login/action', '登录', 'zhaoli', '0:0:0:0:0:0:0:1', NULL, '2019-03-14 15:31:31');
+INSERT INTO `sys_service_log` VALUES ('555775878680805376', '/logout', '退出', 'zhaoli', '0:0:0:0:0:0:0:1', NULL, '2019-03-14 15:34:55');
+INSERT INTO `sys_service_log` VALUES ('555775928660131840', '/login/action', '登录', 'admin', '0:0:0:0:0:0:0:1', NULL, '2019-03-14 15:35:07');
+INSERT INTO `sys_service_log` VALUES ('555815304026914816', '/login/action', '登录', 'zhaoli', '0:0:0:0:0:0:0:1', NULL, '2019-03-14 18:11:35');
+INSERT INTO `sys_service_log` VALUES ('555815828667236352', '/logout', '退出', 'zhaoli', '0:0:0:0:0:0:0:1', NULL, '2019-03-14 18:13:40');
+INSERT INTO `sys_service_log` VALUES ('555815879514783744', '/login/action', '登录', 'admin', '0:0:0:0:0:0:0:1', NULL, '2019-03-14 18:13:52');
+INSERT INTO `sys_service_log` VALUES ('555827089517838336', '/login/action', '登录', 'zhaoli', '0:0:0:0:0:0:0:1', NULL, '2019-03-14 18:58:24');
+INSERT INTO `sys_service_log` VALUES ('555827195197521920', '/logout', '退出', 'zhaoli', '0:0:0:0:0:0:0:1', NULL, '2019-03-14 18:58:50');
+INSERT INTO `sys_service_log` VALUES ('555827239447429120', '/login/action', '登录', 'admin', '0:0:0:0:0:0:0:1', NULL, '2019-03-14 18:59:00');
+INSERT INTO `sys_service_log` VALUES ('556953517454000128', '/login/action', '登录', 'admin', '0:0:0:0:0:0:0:1', NULL, '2019-03-17 21:34:26');
+INSERT INTO `sys_service_log` VALUES ('557960328021803008', '/login/action', '登录', 'admin', '0:0:0:0:0:0:0:1', NULL, '2019-03-20 16:15:08');
+INSERT INTO `sys_service_log` VALUES ('558582438566035456', '/login/action', '登录', 'admin', '0:0:0:0:0:0:0:1', NULL, '2019-03-22 09:27:11');
+INSERT INTO `sys_service_log` VALUES ('558584856120918016', '/login/action', '登录', 'admin', '0:0:0:0:0:0:0:1', NULL, '2019-03-22 09:36:48');
+INSERT INTO `sys_service_log` VALUES ('558670221624213504', '/login/action', '登录', 'admin', '0:0:0:0:0:0:0:1', NULL, '2019-03-22 15:16:00');
+INSERT INTO `sys_service_log` VALUES ('558670245523357696', '/login/action', '登录', 'admin', '0:0:0:0:0:0:0:1', NULL, '2019-03-22 15:16:06');
+INSERT INTO `sys_service_log` VALUES ('558671555937173504', '/login/action', '登录', 'admin', '0:0:0:0:0:0:0:1', NULL, '2019-03-22 15:21:19');
+INSERT INTO `sys_service_log` VALUES ('558674337972879360', '/login/action', '登录', 'admin', '0:0:0:0:0:0:0:1', NULL, '2019-03-22 15:32:22');
+INSERT INTO `sys_service_log` VALUES ('560022740841529344', '/login/action', '登录', 'admin', '0:0:0:0:0:0:0:1', NULL, '2019-03-26 08:50:26');
+INSERT INTO `sys_service_log` VALUES ('560142237531373568', '/login/action', '登录', 'admin', '0:0:0:0:0:0:0:1', NULL, '2019-03-26 16:45:16');
+INSERT INTO `sys_service_log` VALUES ('560428644283973632', '/login/action', '登录', 'admin', '0:0:0:0:0:0:0:1', NULL, '2019-03-27 11:43:21');
+INSERT INTO `sys_service_log` VALUES ('560430533062950912', '/login/action', '登录', 'admin', '0:0:0:0:0:0:0:1', NULL, '2019-03-27 11:50:51');
+INSERT INTO `sys_service_log` VALUES ('560431034278084608', '/logout', '退出', 'admin', '0:0:0:0:0:0:0:1', NULL, '2019-03-27 11:52:51');
+INSERT INTO `sys_service_log` VALUES ('560431053492191232', '/login/action', '登录', 'admin', '0:0:0:0:0:0:0:1', NULL, '2019-03-27 11:52:55');
+INSERT INTO `sys_service_log` VALUES ('560432579795222528', '/login/action', '登录', 'admin', '0:0:0:0:0:0:0:1', NULL, '2019-03-27 11:58:59');
+INSERT INTO `sys_service_log` VALUES ('560440243879149568', '/login/action', '登录', 'admin', '0:0:0:0:0:0:0:1', NULL, '2019-03-27 12:29:27');
+INSERT INTO `sys_service_log` VALUES ('560445297126277120', '/login/action', '登录', 'admin', '0:0:0:0:0:0:0:1', NULL, '2019-03-27 12:49:31');
+INSERT INTO `sys_service_log` VALUES ('560446237728309248', '/login/action', '登录', 'admin', '0:0:0:0:0:0:0:1', NULL, '2019-03-27 12:53:16');
+INSERT INTO `sys_service_log` VALUES ('560504726043492352', '/login/action', '登录', 'admin', '0:0:0:0:0:0:0:1', NULL, '2019-03-27 16:45:40');
+INSERT INTO `sys_service_log` VALUES ('560516620812812288', '/login/action', '登录', 'admin', '0:0:0:0:0:0:0:1', NULL, '2019-03-27 17:32:56');
+INSERT INTO `sys_service_log` VALUES ('560516734289707008', '/login/action', '登录', 'admin', '0:0:0:0:0:0:0:1', NULL, '2019-03-27 17:33:23');
+INSERT INTO `sys_service_log` VALUES ('560517772874874880', '/login', '通过cookie登录', 'admin', '0:0:0:0:0:0:0:1', NULL, '2019-03-27 17:37:31');
+INSERT INTO `sys_service_log` VALUES ('560543646571560960', '/login', '通过cookie登录', 'admin', '0:0:0:0:0:0:0:1', NULL, '2019-03-27 19:20:20');
+INSERT INTO `sys_service_log` VALUES ('560561013888385024', '/login', '通过cookie登录', 'admin', '0:0:0:0:0:0:0:1', NULL, '2019-03-27 20:29:20');
+INSERT INTO `sys_service_log` VALUES ('560563732615266304', '/login', '通过cookie登录', 'admin', '0:0:0:0:0:0:0:1', NULL, '2019-03-27 20:40:09');
+INSERT INTO `sys_service_log` VALUES ('560890687927615488', '/login/action', '登录', 'admin', '0:0:0:0:0:0:0:1', NULL, '2019-03-28 18:19:21');
+INSERT INTO `sys_service_log` VALUES ('560898962547015680', '/login/action', '登录', 'admin', '0:0:0:0:0:0:0:1', NULL, '2019-03-28 18:52:14');
+INSERT INTO `sys_service_log` VALUES ('560912007360937984', '/login', '通过cookie登录', 'admin', '0:0:0:0:0:0:0:1', NULL, '2019-03-28 19:44:04');
+INSERT INTO `sys_service_log` VALUES ('561107303445561344', '/login', '通过cookie登录', 'admin', '0:0:0:0:0:0:0:1', NULL, '2019-03-29 08:40:06');
+INSERT INTO `sys_service_log` VALUES ('561107303860797440', '/login', '通过cookie登录', 'admin', '0:0:0:0:0:0:0:1', NULL, '2019-03-29 08:40:06');
+INSERT INTO `sys_service_log` VALUES ('561116596903346176', '/login', '通过cookie登录', 'admin', '0:0:0:0:0:0:0:1', NULL, '2019-03-29 09:17:02');
+INSERT INTO `sys_service_log` VALUES ('561116597427634176', '/login', '通过cookie登录', 'admin', '0:0:0:0:0:0:0:1', NULL, '2019-03-29 09:17:02');
+INSERT INTO `sys_service_log` VALUES ('561119926878732288', '/login', '通过cookie登录', 'admin', '0:0:0:0:0:0:0:1', NULL, '2019-03-29 09:30:16');
+INSERT INTO `sys_service_log` VALUES ('561119931014316032', '/login', '通过cookie登录', 'admin', '0:0:0:0:0:0:0:1', NULL, '2019-03-29 09:30:17');
 
 -- ----------------------------
 -- Table structure for sys_task_log
@@ -790,6 +1142,9 @@ CREATE TABLE `sys_task_log`  (
 -- ----------------------------
 INSERT INTO `sys_task_log` VALUES ('550748311674421248', 'com.github.qinyou.system.task.DelSysNoticeTask', '2019-02-28 18:37:09', '2019-02-28 18:37:09', 'success', NULL);
 INSERT INTO `sys_task_log` VALUES ('550748321367457792', 'com.github.qinyou.system.task.TestTask', '2019-02-28 18:37:12', '2019-02-28 18:37:17', 'success', NULL);
+INSERT INTO `sys_task_log` VALUES ('553278087110852608', 'com.github.qinyou.system.task.TestTask', '2019-03-07 18:09:35', '2019-03-07 18:09:40', 'success', NULL);
+INSERT INTO `sys_task_log` VALUES ('558576159881691136', 'com.github.qinyou.system.task.DelSysNoticeTask', '2019-03-22 09:02:14', '2019-03-22 09:02:14', 'success', NULL);
+INSERT INTO `sys_task_log` VALUES ('558591088877633536', 'com.github.qinyou.system.task.TestTask', '2019-03-22 10:01:34', '2019-03-22 10:01:39', 'success', NULL);
 
 -- ----------------------------
 -- Table structure for sys_user
@@ -825,8 +1180,8 @@ CREATE TABLE `sys_user`  (
 -- Records of sys_user
 -- ----------------------------
 INSERT INTO `sys_user` VALUES ('522044507147993088', 'debug', '7c4a8d09ca3762af61e59520943dc26494f8941b', '开发调试', '/static/image/male.jpg', 'M', 'qinyou1994@outlook.com', '15238002477', '520707499788075008', '开发工程师', 'staff', NULL, NULL, NULL, 'debug', '2018-12-11 13:38:29', 'debug', '2018-12-12 11:21:13', '0', NULL);
-INSERT INTO `sys_user` VALUES ('522465144505106432', 'admin', '3d4f2bf07dc1be38b20cd6e46949a1071f9d0e3d', '张闯', 'upload/image/20190228/18352861496.jpg', 'M', '15238002477@163.com', '15238002477', '520710334881726465', '开发工程师', 'staff', NULL, NULL, '2019-03-03 13:55:42', 'debug', '2018-12-12 17:29:57', 'admin', '2019-02-22 14:59:32', '0', NULL);
-INSERT INTO `sys_user` VALUES ('522465900809420800', 'zhaoli', '7c4a8d09ca3762af61e59520943dc26494f8941b', '赵丽', NULL, 'F', 'zhaoli@istek.net.cn', 'kaka', '520706929148821505', 'xxx', 'director', NULL, NULL, '2019-03-03 13:48:29', 'debug', '2018-12-12 17:32:57', NULL, NULL, '0', NULL);
+INSERT INTO `sys_user` VALUES ('522465144505106432', 'admin', '3d4f2bf07dc1be38b20cd6e46949a1071f9d0e3d', '张闯', 'upload/image/20190308/13425177021.jpg', 'M', '15238002477@163.com', '15238002477', '520710334881726465', '开发工程师', 'staff', NULL, NULL, '2019-03-29 09:30:17', 'debug', '2018-12-12 17:29:57', 'admin', '2019-02-22 14:59:32', '0', NULL);
+INSERT INTO `sys_user` VALUES ('522465900809420800', 'zhaoli', '7c4a8d09ca3762af61e59520943dc26494f8941b', '赵丽', NULL, 'F', 'zhaoli@istek.net.cn', 'kaka', '520706929148821505', 'xxx', 'director', NULL, NULL, '2019-03-14 18:58:24', 'debug', '2018-12-12 17:32:57', NULL, NULL, '0', NULL);
 INSERT INTO `sys_user` VALUES ('549336387174793216', 'abc', '7c4a8d09ca3762af61e59520943dc26494f8941b', 'abc2', NULL, 'F', 'qinyou@outlook.com2', '13238002456', '520706829357940736', 'developer2', 'monitor', NULL, NULL, NULL, 'admin', '2019-02-24 21:06:40', 'admin', '2019-02-24 21:08:53', '0', 'X');
 
 -- ----------------------------
@@ -870,7 +1225,7 @@ CREATE TABLE `sys_user_setting`  (
 -- ----------------------------
 -- Records of sys_user_setting
 -- ----------------------------
-INSERT INTO `sys_user_setting` VALUES ('546795821421559808', 'admin', 'green', '#40b370');
+INSERT INTO `sys_user_setting` VALUES ('546795821421559808', 'admin', 'default', '#447eff');
 INSERT INTO `sys_user_setting` VALUES ('549344229646663680', 'zhaoli', 'green', '#40b370');
 
 -- ----------------------------
@@ -892,5 +1247,79 @@ CREATE TABLE `sys_visit_log`  (
   INDEX `SYS_VISIT_LOG_SYS_USER_IX`(`sysUser`) USING BTREE,
   INDEX `SYS_VISIT_LOG_URL_IX`(`url`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '系统访问日志' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of sys_visit_log
+-- ----------------------------
+INSERT INTO `sys_visit_log` VALUES ('561120221163683840', 'admin', '0:0:0:0:0:0:0:1', '/sysServiceLog', '2019-03-29 09:31:26', 'GET', NULL, NULL, NULL);
+INSERT INTO `sys_visit_log` VALUES ('561120221868326912', 'admin', '0:0:0:0:0:0:0:1', '/sysServiceLog/query', '2019-03-29 09:31:26', 'POST', '{\"page\":[\"1\"],\"rows\":[\"40\"]}', NULL, NULL);
+INSERT INTO `sys_visit_log` VALUES ('561120222258397184', 'admin', '0:0:0:0:0:0:0:1', '/sysServiceLog', '2019-03-29 09:31:26', 'GET', NULL, NULL, NULL);
+INSERT INTO `sys_visit_log` VALUES ('561120222933680128', 'admin', '0:0:0:0:0:0:0:1', '/sysServiceLog/query', '2019-03-29 09:31:26', 'POST', '{\"page\":[\"1\"],\"rows\":[\"40\"]}', NULL, NULL);
+INSERT INTO `sys_visit_log` VALUES ('561120228877008896', 'admin', '0:0:0:0:0:0:0:1', '/sysFile', '2019-03-29 09:31:28', 'GET', NULL, NULL, NULL);
+INSERT INTO `sys_visit_log` VALUES ('561120229237719040', 'admin', '0:0:0:0:0:0:0:1', '/sysFile/fileTypeData', '2019-03-29 09:31:28', 'POST', NULL, NULL, NULL);
+INSERT INTO `sys_visit_log` VALUES ('561120229606817792', 'admin', '0:0:0:0:0:0:0:1', '/sysFile/query', '2019-03-29 09:31:28', 'POST', '{\"page\":[\"1\"],\"rows\":[\"40\"]}', NULL, NULL);
+INSERT INTO `sys_visit_log` VALUES ('561120231271956480', 'admin', '0:0:0:0:0:0:0:1', '/sysFile', '2019-03-29 09:31:28', 'GET', NULL, NULL, NULL);
+INSERT INTO `sys_visit_log` VALUES ('561120231565557760', 'admin', '0:0:0:0:0:0:0:1', '/sysFile/fileTypeData', '2019-03-29 09:31:28', 'POST', NULL, NULL, NULL);
+INSERT INTO `sys_visit_log` VALUES ('561120231926267904', 'admin', '0:0:0:0:0:0:0:1', '/sysFile/query', '2019-03-29 09:31:28', 'POST', '{\"page\":[\"1\"],\"rows\":[\"40\"]}', NULL, NULL);
+INSERT INTO `sys_visit_log` VALUES ('561120232400224256', 'admin', '0:0:0:0:0:0:0:1', '/sysDict', '2019-03-29 09:31:29', 'GET', NULL, NULL, NULL);
+INSERT INTO `sys_visit_log` VALUES ('561120233146810368', 'admin', '0:0:0:0:0:0:0:1', '/sysDict/queryGroup', '2019-03-29 09:31:29', 'POST', '{\"page\":[\"1\"],\"rows\":[\"40\"],\"search_IS_delFlag\":[\"null\"]}', NULL, NULL);
+INSERT INTO `sys_visit_log` VALUES ('561120233151004672', 'admin', '0:0:0:0:0:0:0:1', '/sysDict/queryDict', '2019-03-29 09:31:29', 'POST', '{\"page\":[\"1\"],\"rows\":[\"40\"],\"search_IS_delFlag\":[\"null\"]}', NULL, NULL);
+INSERT INTO `sys_visit_log` VALUES ('561120234212163584', 'admin', '0:0:0:0:0:0:0:1', '/sysDict', '2019-03-29 09:31:29', 'GET', NULL, NULL, NULL);
+INSERT INTO `sys_visit_log` VALUES ('561120234740645888', 'admin', '0:0:0:0:0:0:0:1', '/sysDict/queryGroup', '2019-03-29 09:31:29', 'POST', '{\"page\":[\"1\"],\"rows\":[\"40\"],\"search_IS_delFlag\":[\"null\"]}', NULL, NULL);
+INSERT INTO `sys_visit_log` VALUES ('561120234883252224', 'admin', '0:0:0:0:0:0:0:1', '/sysDict/queryDict', '2019-03-29 09:31:29', 'POST', '{\"page\":[\"1\"],\"rows\":[\"40\"],\"search_IS_delFlag\":[\"null\"]}', NULL, NULL);
+INSERT INTO `sys_visit_log` VALUES ('561120235524980736', 'admin', '0:0:0:0:0:0:0:1', '/sysServiceLog', '2019-03-29 09:31:29', 'GET', NULL, NULL, NULL);
+INSERT INTO `sys_visit_log` VALUES ('561120236024102912', 'admin', '0:0:0:0:0:0:0:1', '/sysServiceLog/query', '2019-03-29 09:31:29', 'POST', '{\"page\":[\"1\"],\"rows\":[\"40\"]}', NULL, NULL);
+INSERT INTO `sys_visit_log` VALUES ('561120236305121280', 'admin', '0:0:0:0:0:0:0:1', '/sysServiceLog', '2019-03-29 09:31:29', 'GET', NULL, NULL, NULL);
+INSERT INTO `sys_visit_log` VALUES ('561120236871352320', 'admin', '0:0:0:0:0:0:0:1', '/sysServiceLog/query', '2019-03-29 09:31:30', 'POST', '{\"page\":[\"1\"],\"rows\":[\"40\"]}', NULL, NULL);
+INSERT INTO `sys_visit_log` VALUES ('561120236938461184', 'admin', '0:0:0:0:0:0:0:1', '/sysServiceLog', '2019-03-29 09:31:30', 'GET', NULL, NULL, NULL);
+INSERT INTO `sys_visit_log` VALUES ('561120237634715648', 'admin', '0:0:0:0:0:0:0:1', '/sysServiceLog/query', '2019-03-29 09:31:30', 'POST', '{\"page\":[\"1\"],\"rows\":[\"40\"]}', NULL, NULL);
+INSERT INTO `sys_visit_log` VALUES ('561120238087700480', 'admin', '0:0:0:0:0:0:0:1', '/sysServiceLog', '2019-03-29 09:31:30', 'GET', NULL, NULL, NULL);
+INSERT INTO `sys_visit_log` VALUES ('561120238750400512', 'admin', '0:0:0:0:0:0:0:1', '/sysServiceLog/query', '2019-03-29 09:31:30', 'POST', '{\"page\":[\"1\"],\"rows\":[\"40\"]}', NULL, NULL);
+INSERT INTO `sys_visit_log` VALUES ('561120238955921408', 'admin', '0:0:0:0:0:0:0:1', '/sysServiceLog', '2019-03-29 09:31:30', 'GET', NULL, NULL, NULL);
+INSERT INTO `sys_visit_log` VALUES ('561120239513763840', 'admin', '0:0:0:0:0:0:0:1', '/sysServiceLog/query', '2019-03-29 09:31:30', 'POST', '{\"page\":[\"1\"],\"rows\":[\"40\"]}', NULL, NULL);
+INSERT INTO `sys_visit_log` VALUES ('561120239719284736', 'admin', '0:0:0:0:0:0:0:1', '/sysServiceLog', '2019-03-29 09:31:30', 'GET', NULL, NULL, NULL);
+INSERT INTO `sys_visit_log` VALUES ('561120240319070208', 'admin', '0:0:0:0:0:0:0:1', '/sysServiceLog/query', '2019-03-29 09:31:30', 'POST', '{\"page\":[\"1\"],\"rows\":[\"40\"]}', NULL, NULL);
+INSERT INTO `sys_visit_log` VALUES ('561120240574922752', 'admin', '0:0:0:0:0:0:0:1', '/sysServiceLog', '2019-03-29 09:31:30', 'GET', NULL, NULL, NULL);
+INSERT INTO `sys_visit_log` VALUES ('561120241095016448', 'admin', '0:0:0:0:0:0:0:1', '/sysServiceLog/query', '2019-03-29 09:31:31', 'POST', '{\"page\":[\"1\"],\"rows\":[\"40\"]}', NULL, NULL);
+INSERT INTO `sys_visit_log` VALUES ('561120241673830400', 'admin', '0:0:0:0:0:0:0:1', '/sysTask', '2019-03-29 09:31:31', 'GET', NULL, NULL, NULL);
+INSERT INTO `sys_visit_log` VALUES ('561120242181341184', 'admin', '0:0:0:0:0:0:0:1', '/sysTask/query', '2019-03-29 09:31:31', 'POST', NULL, NULL, NULL);
+INSERT INTO `sys_visit_log` VALUES ('561120242512691200', 'admin', '0:0:0:0:0:0:0:1', '/sysTask', '2019-03-29 09:31:31', 'GET', NULL, NULL, NULL);
+INSERT INTO `sys_visit_log` VALUES ('561120243049562112', 'admin', '0:0:0:0:0:0:0:1', '/sysTask/query', '2019-03-29 09:31:31', 'POST', NULL, NULL, NULL);
+INSERT INTO `sys_visit_log` VALUES ('561120243276054528', 'admin', '0:0:0:0:0:0:0:1', '/sysTask', '2019-03-29 09:31:31', 'GET', NULL, NULL, NULL);
+INSERT INTO `sys_visit_log` VALUES ('561120243645153280', 'admin', '0:0:0:0:0:0:0:1', '/sysTask/query', '2019-03-29 09:31:31', 'POST', NULL, NULL, NULL);
+INSERT INTO `sys_visit_log` VALUES ('561120244114915328', 'admin', '0:0:0:0:0:0:0:1', '/sysTask', '2019-03-29 09:31:31', 'GET', NULL, NULL, NULL);
+INSERT INTO `sys_visit_log` VALUES ('561120244538540032', 'admin', '0:0:0:0:0:0:0:1', '/sysTask/query', '2019-03-29 09:31:31', 'POST', NULL, NULL, NULL);
+INSERT INTO `sys_visit_log` VALUES ('561120244920221696', 'admin', '0:0:0:0:0:0:0:1', '/sysTask', '2019-03-29 09:31:31', 'GET', NULL, NULL, NULL);
+INSERT INTO `sys_visit_log` VALUES ('561120245301903360', 'admin', '0:0:0:0:0:0:0:1', '/sysTask/query', '2019-03-29 09:31:32', 'POST', NULL, NULL, NULL);
+INSERT INTO `sys_visit_log` VALUES ('561120245582921728', 'admin', '0:0:0:0:0:0:0:1', '/sysTask', '2019-03-29 09:31:32', 'GET', NULL, NULL, NULL);
+INSERT INTO `sys_visit_log` VALUES ('561120245977186304', 'admin', '0:0:0:0:0:0:0:1', '/sysTask/query', '2019-03-29 09:31:32', 'POST', NULL, NULL, NULL);
+INSERT INTO `sys_visit_log` VALUES ('561120246228844544', 'admin', '0:0:0:0:0:0:0:1', '/sysTask', '2019-03-29 09:31:32', 'GET', NULL, NULL, NULL);
+INSERT INTO `sys_visit_log` VALUES ('561120246631497728', 'admin', '0:0:0:0:0:0:0:1', '/sysTask/query', '2019-03-29 09:31:32', 'POST', NULL, NULL, NULL);
+INSERT INTO `sys_visit_log` VALUES ('561120246971236352', 'admin', '0:0:0:0:0:0:0:1', '/sysTask', '2019-03-29 09:31:32', 'GET', NULL, NULL, NULL);
+INSERT INTO `sys_visit_log` VALUES ('561120247361306624', 'admin', '0:0:0:0:0:0:0:1', '/sysTask/query', '2019-03-29 09:31:32', 'POST', NULL, NULL, NULL);
+INSERT INTO `sys_visit_log` VALUES ('561120247633936384', 'admin', '0:0:0:0:0:0:0:1', '/sysTask', '2019-03-29 09:31:32', 'GET', NULL, NULL, NULL);
+INSERT INTO `sys_visit_log` VALUES ('561120248024006656', 'admin', '0:0:0:0:0:0:0:1', '/sysTask/query', '2019-03-29 09:31:32', 'POST', NULL, NULL, NULL);
+INSERT INTO `sys_visit_log` VALUES ('561120248959336448', 'admin', '0:0:0:0:0:0:0:1', '/sysServiceLog', '2019-03-29 09:31:32', 'GET', NULL, NULL, NULL);
+INSERT INTO `sys_visit_log` VALUES ('561120249487818752', 'admin', '0:0:0:0:0:0:0:1', '/sysServiceLog/query', '2019-03-29 09:31:33', 'POST', '{\"page\":[\"1\"],\"rows\":[\"40\"]}', NULL, NULL);
+INSERT INTO `sys_visit_log` VALUES ('561120249710116864', 'admin', '0:0:0:0:0:0:0:1', '/sysServiceLog', '2019-03-29 09:31:33', 'GET', NULL, NULL, NULL);
+INSERT INTO `sys_visit_log` VALUES ('561120250272153600', 'admin', '0:0:0:0:0:0:0:1', '/sysServiceLog/query', '2019-03-29 09:31:33', 'POST', '{\"page\":[\"1\"],\"rows\":[\"40\"]}', NULL, NULL);
+INSERT INTO `sys_visit_log` VALUES ('561120250507034624', 'admin', '0:0:0:0:0:0:0:1', '/sysServiceLog', '2019-03-29 09:31:33', 'GET', NULL, NULL, NULL);
+INSERT INTO `sys_visit_log` VALUES ('561120251136180224', 'admin', '0:0:0:0:0:0:0:1', '/sysServiceLog/query', '2019-03-29 09:31:33', 'POST', '{\"page\":[\"1\"],\"rows\":[\"40\"]}', NULL, NULL);
+INSERT INTO `sys_visit_log` VALUES ('561120254156079104', 'admin', '0:0:0:0:0:0:0:1', '/sysRole', '2019-03-29 09:31:34', 'GET', NULL, NULL, NULL);
+INSERT INTO `sys_visit_log` VALUES ('561120254604869632', 'admin', '0:0:0:0:0:0:0:1', '/sysRole/query', '2019-03-29 09:31:34', 'POST', '{\"page\":[\"1\"],\"rows\":[\"40\"]}', NULL, NULL);
+INSERT INTO `sys_visit_log` VALUES ('561120255221432320', 'admin', '0:0:0:0:0:0:0:1', '/sysMenu', '2019-03-29 09:31:34', 'GET', NULL, NULL, NULL);
+INSERT INTO `sys_visit_log` VALUES ('561120255582142464', 'admin', '0:0:0:0:0:0:0:1', '/sysMenu/query', '2019-03-29 09:31:34', 'POST', NULL, NULL, NULL);
+INSERT INTO `sys_visit_log` VALUES ('561120256085458944', 'admin', '0:0:0:0:0:0:0:1', '/sysMenu', '2019-03-29 09:31:34', 'GET', NULL, NULL, NULL);
+INSERT INTO `sys_visit_log` VALUES ('561120256353894400', 'admin', '0:0:0:0:0:0:0:1', '/sysMenu/query', '2019-03-29 09:31:34', 'POST', NULL, NULL, NULL);
+INSERT INTO `sys_visit_log` VALUES ('561120257184366592', 'admin', '0:0:0:0:0:0:0:1', '/sysRole', '2019-03-29 09:31:34', 'GET', NULL, NULL, NULL);
+INSERT INTO `sys_visit_log` VALUES ('561120257603796992', 'admin', '0:0:0:0:0:0:0:1', '/sysRole/query', '2019-03-29 09:31:35', 'POST', '{\"page\":[\"1\"],\"rows\":[\"40\"]}', NULL, NULL);
+INSERT INTO `sys_visit_log` VALUES ('561120258144862208', 'admin', '0:0:0:0:0:0:0:1', '/sysRole', '2019-03-29 09:31:35', 'GET', NULL, NULL, NULL);
+INSERT INTO `sys_visit_log` VALUES ('561120258488795136', 'admin', '0:0:0:0:0:0:0:1', '/sysRole/query', '2019-03-29 09:31:35', 'POST', '{\"page\":[\"1\"],\"rows\":[\"40\"]}', NULL, NULL);
+INSERT INTO `sys_visit_log` VALUES ('561120259315073024', 'admin', '0:0:0:0:0:0:0:1', '/sysOrg', '2019-03-29 09:31:35', 'GET', NULL, NULL, NULL);
+INSERT INTO `sys_visit_log` VALUES ('561120259633840128', 'admin', '0:0:0:0:0:0:0:1', '/sysOrg/query', '2019-03-29 09:31:35', 'POST', NULL, NULL, NULL);
+INSERT INTO `sys_visit_log` VALUES ('561120260002938880', 'admin', '0:0:0:0:0:0:0:1', '/sysOrg/queryUser', '2019-03-29 09:31:35', 'POST', '{\"page\":[\"1\"],\"rows\":[\"40\"]}', NULL, NULL);
+INSERT INTO `sys_visit_log` VALUES ('561120345784844288', 'admin', '0:0:0:0:0:0:0:1', '/sysServiceLog', '2019-03-29 09:31:56', 'GET', NULL, NULL, NULL);
+INSERT INTO `sys_visit_log` VALUES ('561120346757922816', 'admin', '0:0:0:0:0:0:0:1', '/sysServiceLog/query', '2019-03-29 09:31:56', 'POST', '{\"page\":[\"1\"],\"rows\":[\"40\"]}', NULL, NULL);
+INSERT INTO `sys_visit_log` VALUES ('561120402449891328', 'admin', '0:0:0:0:0:0:0:1', '/dashboard/userInfo', '2019-03-29 09:32:09', 'GET', NULL, NULL, NULL);
 
 SET FOREIGN_KEY_CHECKS = 1;

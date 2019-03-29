@@ -3,8 +3,11 @@ package com.github.qinyou.common.utils.gen.client;
 import com.github.qinyou.common.utils.FileUtils;
 import com.github.qinyou.common.utils.freemarker.FreemarkerUtils;
 import com.github.qinyou.common.utils.gen.GeneratorConfig;
+import com.github.qinyou.common.utils.gen.tools.MysqlDataSourceUtils;
 import com.github.qinyou.common.utils.gen.tools.MysqlMetaUtils;
 import com.github.qinyou.common.utils.gen.tools.TableMeta;
+import lombok.extern.slf4j.Slf4j;
+import org.joda.time.DateTime;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -17,26 +20,35 @@ import java.util.Map;
  *
  * @author zhangchuang
  */
+@Slf4j
 public class SingleTableClient {
+    // 生成 导入导出 excel 方法
+    public  static boolean hasExcel = true;
+
     // 生成 controller
     private final static String controllerTplPath = GeneratorConfig.tplBasePath + "singletable/controller.ftl";// controller 模板文件路径
-    private final static String controllerOutPath = GeneratorConfig.outputBasePath + "controller/";             // controller 渲染文件输出路径
+    private static String controllerOutPath = GeneratorConfig.outputBasePath + "controller/";             // controller 渲染文件输出路径
     // 生成 页面
     private final static String indexTplPath = GeneratorConfig.tplBasePath + "singletable/index.ftl";                     // 主页面模板路径
     private final static String formTplPath = GeneratorConfig.tplBasePath + "singletable/form.ftl";                      // 表单页模板路径
-    private final static String pageOutDirPath = GeneratorConfig.outputBasePath + "views/" + GeneratorConfig.moduleName + "/"; // 页面 输出文件输出目录
+    private static String pageOutDirPath = GeneratorConfig.outputBasePath + "views/" + GeneratorConfig.moduleName + "/"; // 页面 输出文件输出目录
 
-    // 生成 导入导出 excel 方法
-    private final static boolean hasExcel = true;
 
-    public static void generate(List<TableMeta> tableMetas) throws IOException {
-        System.out.println("(*^▽^*) start generate singletable ");
+    /**
+     * 重建输出路径
+     * web 下用
+     */
+    public static  void reBuildOutPath(){
+        controllerOutPath = GeneratorConfig.outputBasePath + "controller/";
+        pageOutDirPath = GeneratorConfig.outputBasePath + "views/" + GeneratorConfig.moduleName + "/";
+    }
 
+    public static Map<String,String> generate(List<TableMeta> tableMetas) throws IOException {
+        log.debug("(*^▽^*) start generate singletable ");
+        Map<String,String> ret = new HashMap<>();
         String controllerTplContent = FileUtils.readFile(controllerTplPath);
         String indexTplContent = FileUtils.readFile(indexTplPath);
         String formTplContent = FileUtils.readFile(formTplPath);
-        String renderContent;
-        String outPath;
         Map<String, Object> params;
         for (TableMeta tableMeta : tableMetas) {
             params = new HashMap<>();
@@ -45,28 +57,24 @@ public class SingleTableClient {
             params.put("tableMeta", tableMeta);
             params.put("excludeFields", GeneratorConfig.excludeFields);
             params.put("author", GeneratorConfig.author);
-            params.put("since", GeneratorConfig.since);
+            params.put("since",new DateTime().toString("yyyy-MM-dd HH:mm:ss"));
             params.put("hasExcel", hasExcel);
             // controller
-            outPath = controllerOutPath + tableMeta.nameCamelFirstUp + "Controller.java";
-            renderContent = FreemarkerUtils.renderAsText(controllerTplContent, params);
-            FileUtils.writeFile(renderContent, outPath);
+            ret.put(controllerOutPath + tableMeta.nameCamelFirstUp + "Controller.java",FreemarkerUtils.renderAsText(controllerTplContent, params));
             // index.ftl
-            outPath = pageOutDirPath + tableMeta.nameCamel + ".ftl";
-            renderContent = FreemarkerUtils.renderAsText(indexTplContent, params);
-            FileUtils.writeFile(renderContent, outPath);
+            ret.put( pageOutDirPath + tableMeta.nameCamel + ".ftl",FreemarkerUtils.renderAsText(indexTplContent, params));
             // form.ftl
-            outPath = pageOutDirPath + tableMeta.nameCamel + "_form.ftl";
-            renderContent = FreemarkerUtils.renderAsText(formTplContent, params);
-            FileUtils.writeFile(renderContent, outPath);
+            ret.put(pageOutDirPath + tableMeta.nameCamel + "_form.ftl",FreemarkerUtils.renderAsText(formTplContent, params));
         }
-
-        System.out.println("(*^▽^*)  generate singletable over ");
+        log.debug("(*^▽^*)  generate singletable over ");
+        return ret;
     }
 
     public static void main(String[] rgs) throws IOException {
-        MysqlMetaUtils utils = new MysqlMetaUtils();
-        List<TableMeta> tableMetas = utils.loadTables(GeneratorConfig.schemaPattern, GeneratorConfig.tableNames, true);
-        generate(tableMetas);
+        MysqlMetaUtils utils = new MysqlMetaUtils(MysqlDataSourceUtils.getDataSource());
+        List<TableMeta> tableMetas = utils.tableMetas(GeneratorConfig.schemaPattern, GeneratorConfig.tableNames, true);
+        for (Map.Entry<String, String> entry :  generate(tableMetas).entrySet()) {
+            FileUtils.writeFile( entry.getValue(), entry.getKey());
+        }
     }
 }

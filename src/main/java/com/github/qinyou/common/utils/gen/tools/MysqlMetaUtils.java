@@ -1,10 +1,8 @@
 package com.github.qinyou.common.utils.gen.tools;
 
-import com.google.common.base.Preconditions;
+import com.github.qinyou.common.utils.gen.Config;
 import com.jfinal.kit.StrKit;
-import com.jfinal.plugin.activerecord.generator.TypeMapping;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 import javax.sql.DataSource;
 import java.sql.*;
@@ -15,45 +13,61 @@ import java.util.*;
  *
  * @author zhangchuang
  */
+@Slf4j
 public class MysqlMetaUtils {
-    private DataSource dataSource;  // 数据源
-    private final static Logger LOG = LoggerFactory.getLogger(MysqlMetaUtils.class);
-    private final static TypeMapping typeMapping = new TypeMapping(); //数据表字段驱动内类型 和 Jfinal model 类型映射
 
-    public MysqlMetaUtils() {
-        this.dataSource = MysqlDataSourceUtils.getDataSource();
-    }
+    // 数据源
+    private DataSource dataSource;
 
     public MysqlMetaUtils(DataSource dataSource) {
         this.dataSource = dataSource;
     }
 
     /**
+     * 查询数据库中所有表元信息，不包含列信息
+     * @param schemaPattern
+     * @return
+     * @throws SQLException
+     */
+    public List<TableMeta> allTableMeta(String schemaPattern) throws SQLException {
+        List<TableMeta> tableMetas = new ArrayList<>();
+        Connection conn = dataSource.getConnection();
+        DatabaseMetaData dbMeta = conn.getMetaData();
+        ResultSet rs = dbMeta.getTables(conn.getCatalog(), schemaPattern, null, null);
+        while (rs.next()){
+            TableMeta tableMeta = new TableMeta();
+            tableMeta.name = rs.getString("TABLE_NAME");
+            tableMeta.remark = rs.getString("REMARKS");
+            tableMetas.add(tableMeta);
+        }
+        log.debug("all table size: {}",tableMetas.size());
+        return tableMetas;
+    }
+
+
+    /**
      * 获得 数据表信息
-     *
      * @param schemaPattern 数据库名
      * @param tableNames    表名集合
      * @param includeColumn 是否获得表列信息
      * @return 表元信息
      */
-    public List<TableMeta> loadTables(String schemaPattern, Set<String> tableNames, Boolean includeColumn) {
-        Preconditions.checkNotNull(dataSource, " dataSource 不可为 null");
-
+    public List<TableMeta> tableMetas(String schemaPattern, Set<String> tableNames, Boolean includeColumn) {
         List<TableMeta> tables = new ArrayList<>();
         Connection conn = null;
         try {
             conn = dataSource.getConnection();
             for (String tableName : tableNames) {
-                tables.add(loadTable(conn, schemaPattern, tableName, includeColumn));
+                tables.add(tableMeta(conn, schemaPattern, tableName, includeColumn));
             }
         } catch (Exception e) {
-            LOG.error(e.getMessage(), e);
+            log.error(e.getMessage(), e);
         } finally {
             if (conn != null) {
                 try {
                     conn.close();
                 } catch (SQLException e) {
-                    LOG.error(e.getMessage(), e);
+                    log.error(e.getMessage(), e);
                 }
             }
         }
@@ -71,9 +85,7 @@ public class MysqlMetaUtils {
      * @return 表信息
      * @throws Exception 查询异常
      */
-    private TableMeta loadTable(Connection conn, String schemaPattern, String tableName, Boolean includeColumn) throws Exception {
-        Preconditions.checkNotNull(conn, "代码生成器.md 获得 Connection对象 为 null ");
-
+    private TableMeta tableMeta(Connection conn, String schemaPattern, String tableName, Boolean includeColumn) throws Exception {
         DatabaseMetaData dbMeta = conn.getMetaData();
         // 表元信息
         ResultSet rs = dbMeta.getTables(conn.getCatalog(), schemaPattern, tableName, null);
@@ -103,7 +115,7 @@ public class MysqlMetaUtils {
             for (int i = 1; i <= columnCount; ++i) {
                 String columnName = rsmd.getColumnName(i);
                 String colClassName = rsmd.getColumnClassName(i);
-                String typeStr = typeMapping.getType(colClassName);
+                String typeStr = Config.typeMapping.getType(colClassName);
                 if (typeStr == null) {
                     switch (rsmd.getColumnType(i)) {
                         case Types.BINARY:

@@ -4,8 +4,11 @@ import com.github.qinyou.common.utils.FileUtils;
 import com.github.qinyou.common.utils.freemarker.FreemarkerUtils;
 import com.github.qinyou.common.utils.gen.Config;
 import com.github.qinyou.common.utils.gen.GeneratorConfig;
+import com.github.qinyou.common.utils.gen.tools.MysqlDataSourceUtils;
 import com.github.qinyou.common.utils.gen.tools.MysqlMetaUtils;
 import com.github.qinyou.common.utils.gen.tools.TableMeta;
+import lombok.extern.slf4j.Slf4j;
+import org.joda.time.DateTime;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -17,29 +20,40 @@ import java.util.Map;
  *
  * @author zhangchuang
  */
+@Slf4j
 public class ModelClient {
 
-    private static boolean chainSetter = true;                                                    // 是否生成链式 setter 方法
-    private static boolean hasExcel = false;                                                             // 是否生成 导出导出excel 所需要的注解
-    private static String baseModelTplPath = GeneratorConfig.tplBasePath + "model/baseModel.ftl"; // baseModel 模板文件路径
+    public static boolean chainSetter = true;                                                    // 是否生成链式 setter 方法
+    public static boolean hasExcel = false;                                                      // 是否生成 导出导出excel 所需要的注解
+
+    private final static String baseModelTplPath = GeneratorConfig.tplBasePath + "model/baseModel.ftl"; // baseModel 模板文件路径
     private static String baseModelOutPath = GeneratorConfig.outputBasePath + "model/base/";      // baseModel 文件输出路径
-    private static String modelTplPath = GeneratorConfig.tplBasePath + "model/model.ftl";         // Model 模板 路径
+    private final static String modelTplPath = GeneratorConfig.tplBasePath + "model/model.ftl";         // Model 模板 路径
     private static String modelOutPath = GeneratorConfig.outputBasePath + "model/";               // Model 文件输出路径
 
 
     /**
-     * 生成 model
-     *
-     * @param tableMetas 表元数据集合
-     * @throws IOException 文件读写异常
+     * 重建输出路径
+     * web 下用
      */
-    public static void generate(List<TableMeta> tableMetas) throws IOException {
-        System.out.println("(*^▽^*) start generate Model");
+    public static  void reBuildOutPath(){
+        baseModelOutPath = GeneratorConfig.outputBasePath + "model/base/";
+        modelOutPath = GeneratorConfig.outputBasePath + "model/";
+    }
+
+
+    /**
+     * 生成baseModel、Model
+     * @param tableMetas
+     * @return
+     * @throws IOException
+     */
+    public static Map<String,String> generate(List<TableMeta> tableMetas) throws IOException {
+        log.debug("(*^▽^*) start generate Model");
+        Map<String,String> ret = new HashMap<>();
 
         String baseModelTpl = FileUtils.readFile(baseModelTplPath);
         String modelTpl = FileUtils.readFile(modelTplPath);
-        String renderContent;      // 渲染后文本
-        String outPath;            // 文件输出路径
         Map<String, Object> params;
         for (TableMeta tableMeta : tableMetas) {
             params = new HashMap<>();
@@ -49,23 +63,20 @@ public class ModelClient {
             params.put("chainSetter", chainSetter);
             params.put("tableMeta", tableMeta);
             params.put("author", GeneratorConfig.author);
-            params.put("since", GeneratorConfig.since);
+            params.put("since", new DateTime().toString("yyyy-MM-dd HH:mm:ss"));
             params.put("hasExcel", hasExcel);
-            outPath = baseModelOutPath + "Base" + tableMeta.nameCamelFirstUp + ".java";
-            renderContent = FreemarkerUtils.renderAsText(baseModelTpl, params);
-            FileUtils.writeFile(renderContent, outPath);
-            outPath = modelOutPath + tableMeta.nameCamelFirstUp + ".java";
-            renderContent = FreemarkerUtils.renderAsText(modelTpl, params);
-            FileUtils.writeFile(renderContent, outPath);
+            ret.put(baseModelOutPath + "Base" + tableMeta.nameCamelFirstUp + ".java",FreemarkerUtils.renderAsText(baseModelTpl, params));
+            ret.put(modelOutPath + tableMeta.nameCamelFirstUp + ".java",FreemarkerUtils.renderAsText(modelTpl, params));
         }
-
-        System.out.println("(*^▽^*) generate Model over");
+        log.debug("(*^▽^*) generate Model over");
+        return ret;
     }
 
     public static void main(String[] args) throws IOException {
-        MysqlMetaUtils utils = new MysqlMetaUtils();
-        List<TableMeta> tableMetas = utils.loadTables(GeneratorConfig.schemaPattern, GeneratorConfig.tableNames, true);
-        generate(tableMetas);
+        MysqlMetaUtils utils = new MysqlMetaUtils(MysqlDataSourceUtils.getDataSource());
+        List<TableMeta> tableMetas = utils.tableMetas(GeneratorConfig.schemaPattern, GeneratorConfig.tableNames, true);
+        for (Map.Entry<String, String> entry : generate(tableMetas).entrySet()) {
+            FileUtils.writeFile( entry.getValue(), entry.getKey());
+        }
     }
-
 }
