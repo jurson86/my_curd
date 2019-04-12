@@ -31,11 +31,12 @@
 
 #### 预览 
 ![菜单](https://raw.githubusercontent.com/qinyou/my_curd/master/preview/menu.png "menu.png")
-![角色](https://raw.githubusercontent.com/qinyou/my_curd/master/preview/role.png "role.png")
-![用户](https://raw.githubusercontent.com/qinyou/my_curd/master/preview/user.png "user.png")
 ![机构](https://raw.githubusercontent.com/qinyou/my_curd/master/preview/org.png "org.png")
-![单表生产](https://raw.githubusercontent.com/qinyou/my_curd/master/preview/single.png "single.png")
-![一对多表](https://raw.githubusercontent.com/qinyou/my_curd/master/preview/otm.png "otm.png")
 ![访问日志](https://raw.githubusercontent.com/qinyou/my_curd/master/preview/log.png "log.png")
+![通知消息](https://raw.githubusercontent.com/qinyou/my_curd/master/preview/notice.png "notice.png")
+![定时任务](https://raw.githubusercontent.com/qinyou/my_curd/master/preview/task.png "task.png")
+![代码生成器](https://raw.githubusercontent.com/qinyou/my_curd/master/preview/gen.png "gen.png")
+![一对多表](https://raw.githubusercontent.com/qinyou/my_curd/master/preview/otm.png "otm.png")
+![多主题](https://raw.githubusercontent.com/qinyou/my_curd/master/preview/theme.png "theme.png")
 
 

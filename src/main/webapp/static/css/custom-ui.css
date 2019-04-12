@@ -1,11 +1,10 @@
 /*一些控件布局, 轻易不要修改原有代码，除非明确了解*/
 
 /* 排除字体图标 使用的字体样式 */
-/*
-:not(.iconfont):not(.fa){
-    font-family: "Helvetica Neue", Helvetica, Arial, "Microsoft Yahei", "Hiragino Sans GB", "Heiti SC", "WenQuanYi Micro Hei", sans-serif !important;
+:not(.iconfont){
+    /*ant design*/
+    font-family: "Helvetica Neue",Helvetica,"Hiragino Sans GB","STHeitiSC-Light","Microsoft YaHei","微软雅黑",Arial,sans-serif ;
 }
-*/
 
 /*iconfont easyui 图标冲突问题*/
 .iconfont{

@@ -20,7 +20,13 @@
 			if (row.errorFlag==1){
 				return 'background-color:#f5969659;font-weight:bold;';
 			}
-		  }"
+		  },onHeaderContextMenu: function(e, field){
+                e.preventDefault();
+                $(this).datagrid('columnMenu').menu('show', {
+                    left:e.pageX,
+                    top:e.pageY
+                });
+          }"
           fitColumns="false"
           fit="true" pagination="true"
           ctrlSelect="true"
@@ -70,6 +76,7 @@
         </span>
     </div>
     <script src="${ctx!}/static/js/dg-curd.js"></script>
+    <script src="${ctx!}/static/plugins/easyui1.6.10/datagrid-extend.js"></script>
     <script>
         <#-- 只查询异常 checkbox  onChange 事件-->
         function onlyErrorChange(checked){
