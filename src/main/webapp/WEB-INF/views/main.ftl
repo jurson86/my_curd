@@ -47,8 +47,9 @@
                     popup.openIframeNoResize('修改密码', '${ctx!}/dashboard/userPass', '360px', '350px');
                 }
                 function logout(){
-                    var logoutUrl = '${ctx!}/logout';
-                    window.location.href=logoutUrl;
+                    popup.openConfirm(null,3, '退出确认', '您确定要退出当前系统吗?', function () {
+                        window.location.href='${ctx!}/logout';
+                    });
                 }
 
                 var opeMenu = $('#opeMenu').menubutton({ menu: '#opeMenuItem' });
