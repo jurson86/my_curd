@@ -35,6 +35,7 @@ public class PermissionInterceptor implements Interceptor {
         String controllerKey = inv.getControllerKey();
         String actionKey = inv.getActionKey();
 
+        // 通过 controller key 验证 菜单权限
         for (SysMenu sysMenu : sysMenus) {
             if (!sysMenu.getUrl().equals("/") && sysMenu.getUrl().equals(controllerKey)) {
                 log.debug("c: {}, a:{} 拥有 {}, 拥有菜单权限. ", controllerKey, actionKey, sysMenu.getUrl());
@@ -74,7 +75,8 @@ public class PermissionInterceptor implements Interceptor {
      * @param inv
      */
     private void menuPageOpe(SysMenu sysMenu, Invocation inv) {
-        if (StringUtils.notEmpty(sysMenu.getBtnControl())) {
+        // 需要控制按钮权限
+        if ("Y".equals(sysMenu.getBtnControl())) {
             HttpServletRequest request = inv.getController().getRequest();
             Map<String, List<String>> sysMenuButtons = inv.getController().getSessionAttr(Constant.SYS_USER_MENU_BUTTONS);
             log.debug("menuButtons:{}", JSON.toJSONString(sysMenuButtons));
@@ -85,7 +87,7 @@ public class PermissionInterceptor implements Interceptor {
     }
 
     /**
-     * 非菜单页操作，判断是否有菜单权限
+     * 非菜单页操作，判断是否有权限
      *
      * @param sysMenu
      * @param inv
@@ -94,8 +96,7 @@ public class PermissionInterceptor implements Interceptor {
     private boolean nMenuPageOpe(SysMenu sysMenu, Invocation inv) {
         boolean flag = true;
         RequirePermission requirePermission = inv.getMethod().getAnnotation(RequirePermission.class);
-        if (requirePermission != null && StringUtils.notEmpty(sysMenu.getBtnControl())) {
-            List<SysMenu> userSysMenus = inv.getController().getSessionAttr(Constant.SYS_USER_MENU);
+        if (requirePermission != null && "Y".equals(sysMenu.getBtnControl())) {
             Map<String, List<String>> sysMenuButtons = inv.getController().getSessionAttr(Constant.SYS_USER_MENU_BUTTONS);
             List<String> sysButtons = sysMenuButtons.get(sysMenu.getId());
             if (sysButtons == null || !sysButtons.contains(requirePermission.value())) {

@@ -6,7 +6,6 @@ import com.github.qinyou.common.annotation.RequirePermission;
 import com.github.qinyou.common.base.BaseController;
 import com.github.qinyou.common.config.Constant;
 import com.github.qinyou.common.interceptor.ExceptionInterceptor;
-import com.github.qinyou.common.interceptor.RoleInterceptor;
 import com.github.qinyou.common.interceptor.SearchSql;
 import com.github.qinyou.common.render.ExcelRender;
 import com.github.qinyou.common.utils.StringUtils;
@@ -54,7 +53,7 @@ public class SysVisitLogController extends BaseController {
      * 批量删除
      */
 
-    @Before({RoleInterceptor.class, IdsRequired.class})
+    @Before(IdsRequired.class)
     @RequirePermission("sysVisitLog:delete")
     public void deleteAction() {
         String ids = getPara("ids").replaceAll(",", "','");

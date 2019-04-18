@@ -19,7 +19,7 @@
       </table>
     <div id="tb">
         <a onclick="openUtilsRole()" href="#" class="easyui-linkbutton" iconCls="iconfont icon-add" plain="true">添加</a>
-        <a onclick="deleteRolesAction()" href="#" class="easyui-linkbutton" iconCls="iconfont icon-add" plain="true">删除</a>
+        <a onclick="deleteRolesAction()" href="#" class="easyui-linkbutton" iconCls="iconfont icon-delete" plain="true">删除</a>
         <span id="searchSpan" class="searchInputArea">
              <input name="search_LIKE_b.roleName" prompt="名称" class="easyui-textbox" style="width:120px; ">
              <input name="search_LIKE_b.roleCode" prompt="编码" class="easyui-textbox" style="width:120px; ">

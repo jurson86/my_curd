@@ -47,6 +47,11 @@
         <#--<a onclick="viewModel('查看','dg','${ctx!}/sysVisitLog/view', '800px', '600px')" href="#"-->
            <#--class="easyui-linkbutton" iconCls="iconfont icon-eye" plain="true">查看</a>-->
 
+        <#--
+        按钮显示 条件:
+        1. btnControl 不存在（不控制按钮权限）。
+        2. btnControl 存在（需控制权限）且 包含 按钮权限字段
+        -->
         <#if  !btnControl?? ||  btnCodes?seq_contains("sysVisitLog:delete")  >
         <a onclick="deleteModel('dg','${ctx!}/sysVisitLog/deleteAction')" href="#" class="easyui-linkbutton"
            iconCls="iconfont icon-delete" plain="true">删除</a>
