@@ -1,5 +1,6 @@
 <#--数据字典 datagrid  -->
 <#include "../common/common.ftl"/>
+<#include "../common/btnControl.ftl"/>
 <@layout>
 <style>
     /*datagrid 行号大时调整*/
@@ -44,23 +45,14 @@
        </thead>
     </table>
     <div id="tb">
-        <#--<a onclick="viewModel('查看','dg','${ctx!}/sysVisitLog/view', '800px', '600px')" href="#"-->
-           <#--class="easyui-linkbutton" iconCls="iconfont icon-eye" plain="true">查看</a>-->
 
-        <#--
-        按钮显示 条件:
-        1. btnControl 不存在（不控制按钮权限）。
-        2. btnControl 存在（需控制权限）且 包含 按钮权限字段
-        -->
-        <#if  !btnControl?? ||  btnCodes?seq_contains("sysVisitLog:delete")  >
-        <a onclick="deleteModel('dg','${ctx!}/sysVisitLog/deleteAction')" href="#" class="easyui-linkbutton"
-           iconCls="iconfont icon-delete" plain="true">删除</a>
-        </#if>
-
-        <#if  !btnControl?? ||  btnCodes?seq_contains("sysVisitLog:export")  >
-        <a onclick="exportExcel('${ctx!}/sysVisitLog/exportExcel','searchSpan')" href="#" class="easyui-linkbutton"
-           iconCls="iconfont icon-export" plain="true">导出</a>
-        </#if>
+        <#-- 具有按钮编码权限才可显示 -->
+        <@hasBtnCode "sysVisitLog:delete">
+            <a onclick="deleteModel('dg','${ctx!}/sysVisitLog/deleteAction')" href="#" class="easyui-linkbutton" iconCls="iconfont icon-delete" plain="true">删除</a>
+        </@hasBtnCode>
+        <@hasBtnCode "sysVisitLog:export">
+            <a onclick="exportExcel('${ctx!}/sysVisitLog/exportExcel','searchSpan')" href="#" class="easyui-linkbutton" iconCls="iconfont icon-export" plain="true">导出</a>
+        </@hasBtnCode>
 
         <span id="searchSpan" class="searchInputArea">
             <input name="search_LIKE_sysUser" prompt="用户名" class="easyui-textbox" style="width:120px; ">

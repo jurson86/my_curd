@@ -5,7 +5,7 @@
 <div id="mainLayout" class="easyui-layout" fit="true" border="false">
     <div class="mainHeader" data-options="region:'north'" border="false">
         <ul class="headerMenu">
-            <li><a href="javascript:fullScreenToggleNew()" title="点击全屏" style="width: 199px;" class="title">my curd</a></li>
+            <li><a href="javascript:fullScreenToggleNew()" title="点击全屏" style="width: 199px;" class="title">XX 管理系统</a></li>
             <li><a href="#" class="active">首页</a></li>
             <#--<li><a href="#">OA协同</a></li>-->
             <span class="right">
@@ -155,14 +155,14 @@
         }, "json").error(function(){ popup.errMsg(); });
     }
 
-    var ws;
+
     function websocketInit(){
         refreshCount();
         if ('WebSocket' in window) {
             var host =window.location.hostname;
             var port = window.location.port;
             var wsUrl = host+':'+port+'${ctx!}';
-            ws = new WebSocket("ws://"+wsUrl+"/ws-server?userId=${(aesUserId)!}");
+            var ws = new WebSocket("ws://"+wsUrl+"/ws-server?userId=${(aesUserId)!}");
             ws.onerror = function () {
                 console.error("WebSocket连接发生错误");
                 ws.close();
