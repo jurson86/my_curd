@@ -86,7 +86,7 @@ public class DownBook {
             title = books.getJSONObject(ix - 1).getString("title");
             author = books.getJSONObject(ix - 1).getString("author");
             wordCount = books.getJSONObject(ix - 1).getInteger("wordCount") / 10000;
-            System.out.println(String.format("开始下载 %-2s .%4s万字. %s(%s)", ix + 1, wordCount, title, author));
+            System.out.println(String.format("开始下载 %-2s .%4s万字. %s(%s)", ix, wordCount, title, author));
             ret = saveToTxtQuick(books.getJSONObject(ix - 1).getString("_id"), booksDir + String.format("%s(%s.%s万).txt", title, author, wordCount));
             System.out.println(ret);
         }
@@ -115,7 +115,7 @@ public class DownBook {
      * @return
      */
     public static String getProxy(String url) {
-        log.debug(" ---- get url: {}", url);
+        log.info(" ---- get url: {}", url);
 
         String resStr = null;
         Content content;

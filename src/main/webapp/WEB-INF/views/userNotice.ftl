@@ -18,6 +18,7 @@
             if(data.state==='ok'){
                 popup.msg(data.msg, function () {
                     $('#dg').datagrid('reload');
+                    parent.refreshCount();
                 });
             }else if(data.state==='error'){
                 popup.errMsg('系统异常',data.msg);
@@ -31,6 +32,7 @@
             if(data.state==='ok'){
                 popup.msg(data.msg, function () {
                     $('#dg').datagrid('reload');
+                    parent.refreshCount();
                 });
             }else if(data.state==='error'){
                 popup.errMsg('系统异常',data.msg);

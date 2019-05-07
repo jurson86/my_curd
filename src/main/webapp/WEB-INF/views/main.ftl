@@ -32,8 +32,6 @@
         <script>
             function openUserNotice(){
                 popup.openIframeNoResize('用户通知', '${ctx!}/dashboard/userNotice', '900px', '600px');
-                /* 移除未读消息数小红点，此处并不合理 */
-                $('#unreadCount').addClass('hidCss');
             }
             function openThemeSetting() {
                 popup.openIframeNoResize('主题设置', '${ctx!}/dashboard/themeList', '200px', '120px',true,true);
