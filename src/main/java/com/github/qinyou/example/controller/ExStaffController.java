@@ -1,5 +1,6 @@
 package com.github.qinyou.example.controller;
 
+import com.github.qinyou.common.annotation.RequireMenuCode;
 import com.github.qinyou.common.base.BaseController;
 import com.github.qinyou.common.config.Constant;
 import com.github.qinyou.common.interceptor.SearchSql;
@@ -28,6 +29,7 @@ import java.util.List;
  * @author zhangchuang
  * @since 2019-02-22 22:15:05
  */
+@RequireMenuCode("exStaff")
 public class ExStaffController extends BaseController {
     private final static Logger LOG = LoggerFactory.getLogger(ExStaffController.class);
 

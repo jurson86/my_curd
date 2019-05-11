@@ -2,7 +2,6 @@ package com.github.qinyou;
 
 import com.alibaba.fastjson.JSON;
 import com.github.qinyou.common.base.BaseController;
-import com.github.qinyou.common.config.Constant;
 import com.github.qinyou.common.interceptor.LoginInterceptor;
 import com.github.qinyou.common.interceptor.PermissionInterceptor;
 import com.github.qinyou.common.utils.StringUtils;
@@ -20,9 +19,9 @@ import com.jfinal.kit.HashKit;
 import com.jfinal.kit.StrKit;
 import lombok.extern.slf4j.Slf4j;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
@@ -148,31 +147,31 @@ public class LoginController extends BaseController {
      */
     private void afterLogin(SysUser sysUser) {
         // 登录用户信息
-        setSessionAttr(Constant.SYS_USER, sysUser);
+        setSessionAttr("sysUser", sysUser);
         // druid session 监控用
-        setSessionAttr(Constant.SYS_USER_NAME, sysUser.getRealName());
-        // 菜单
+        setSessionAttr("sysUserName", sysUser.getRealName());
+        //  菜单
         String roleIds = SysUserRole.dao.findRoleIdsByUserId(sysUser.getId());
-        log.debug("{} has role ids {}", sysUser.getUsername(), roleIds);
         List<SysMenu> sysMenus = loginService.findUserMenus(roleIds);
-        setSessionAttr(Constant.SYS_USER_MENU, sysMenus);
-        log.debug("{} has menu {}", sysUser.getUsername(), JSON.toJSONString(sysMenus));
-        // 按钮
-        Map<String, List<String>> sysMenuButtons = loginService.findUserButtons(roleIds);
-        setSessionAttr(Constant.SYS_USER_MENU_BUTTONS, sysMenuButtons);
-        log.debug("{} has menuButtons {}", sysUser.getUsername(), JSON.toJSONString(sysMenuButtons));
-
+        setSessionAttr("sysUserMenu", sysMenus);
+        List<String> menuCodes = new ArrayList<>();
+        sysMenus.forEach(item -> menuCodes.add(item.getMenuCode()));
+        setSessionAttr("menuCodes", menuCodes);
+        // 按钮编码
+        List<String> buttonCodes = loginService.findUserButtons(roleIds);
+        setSessionAttr("buttonCodes", buttonCodes);
         // 角色编码
         String rolecodes = SysUserRole.dao.findRoleCodesByUserId(sysUser.getId());
-        setSessionAttr(Constant.SYS_USER_ROLE_CODES, rolecodes);
-
+        setSessionAttr("roleCodes", rolecodes);
         // 用户配置
         SysUserSetting sysUserSetting = SysUserSetting.dao.findBySysUser(sysUser.getUsername());
-        if (sysUserSetting == null) {
-            setSessionAttr(Constant.SYS_USER_THEME, "default");
-        } else {
-            setSessionAttr(Constant.SYS_USER_THEME, sysUserSetting.getTheme());
-        }
+        setSessionAttr("theme", sysUserSetting == null ? "default" : sysUserSetting.getTheme());
+
+
+        log.debug("{} 拥有角色 ids {}", sysUser.getUsername(), roleIds);
+        log.debug("{} 拥有菜单 {}", sysUser.getUsername(), JSON.toJSONString(sysMenus));
+        log.debug("{} 拥有菜单编码 {}", sysUser.getUsername(), JSON.toJSONString(menuCodes));
+        log.debug("{} 拥有按钮编码 {}", sysUser.getUsername(), JSON.toJSONString(buttonCodes));
     }
 
 
@@ -182,11 +181,13 @@ public class LoginController extends BaseController {
     @ActionKey("/logout")
     public void logout() {
         addServiceLog("退出");
-        // 移除session属性
-        removeSessionAttr(Constant.SYS_USER);
-        removeSessionAttr(Constant.SYS_USER_NAME);
+
         // 当前session 失效
+        while (getSession().getAttributeNames().hasMoreElements()) {
+            removeSessionAttr(getSession().getAttributeNames().nextElement());
+        }
         getSession().invalidate();
+
         // 清理 记住密码 cookie
         setCookie(usernameKey, null, 0);
         setCookie(passwordKey, null, 0);

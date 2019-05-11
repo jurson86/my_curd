@@ -1,5 +1,6 @@
 package com.github.qinyou.genOnline.controller;
 
+import com.github.qinyou.common.annotation.RequireMenuCode;
 import com.github.qinyou.common.base.BaseController;
 import com.github.qinyou.common.render.ZipRender;
 import com.github.qinyou.common.utils.StringUtils;
@@ -20,65 +21,68 @@ import java.util.*;
 
 /**
  * 在线代码生成器
+ *
  * @author chuang
  */
 @SuppressWarnings("Duplicates")
+@RequireMenuCode("genOnline")
 @Slf4j
 public class GenOnlineController extends BaseController {
 
-    private static  MysqlMetaUtils metaUtils;
+    private static MysqlMetaUtils metaUtils;
 
     /**
      * 首页
      */
-    public void index(){
+    public void index() {
         render("genOnline/genOnline.ftl");
     }
 
 
     /**
      * datagrid 数据
+     *
      * @throws SQLException
      */
     public void query() throws SQLException {
-        DataSource  dataSource = null;
-        try{
-            if(StringUtils.isEmpty(GeneratorConfig.dbConfigName)){
+        DataSource dataSource = null;
+        try {
+            if (StringUtils.isEmpty(GeneratorConfig.dbConfigName)) {
                 dataSource = DbKit.getConfig().getDataSource();
-            }else{
+            } else {
                 dataSource = DbKit.getConfig(GeneratorConfig.dbConfigName).getDataSource();
             }
-        }catch (Exception e){
-            log.error(e.getMessage(),e);
+        } catch (Exception e) {
+            log.error(e.getMessage(), e);
         }
 
-        if(dataSource==null){
+        if (dataSource == null) {
             renderDatagrid(new ArrayList<>());
             return;
         }
-        if(metaUtils==null){
+        if (metaUtils == null) {
             metaUtils = new MysqlMetaUtils(dataSource);
         }
 
-        List<TableMeta> tableMetaList = metaUtils.allTableMeta(GeneratorConfig.schemaPattern  );
+        List<TableMeta> tableMetaList = metaUtils.allTableMeta(GeneratorConfig.schemaPattern);
 
-        Collection<TableMeta>  result = null;
+        Collection<TableMeta> result = null;
         String tableName = getPara("extra_name");
         if (StringUtils.notEmpty(tableName)) {
             result = Collections2.filter(tableMetaList, x -> x.getName().contains(tableName));
-            renderDatagrid(result,result.size());
+            renderDatagrid(result, result.size());
         }
 
         String tableRemark = getPara("extra_remark");
         if (StringUtils.notEmpty(tableRemark)) {
             result = Collections2.filter(tableMetaList, x -> x.getRemark().contains(tableRemark));
-            renderDatagrid(result,result.size());
+            renderDatagrid(result, result.size());
         }
 
-        if (result==null) {
-            renderDatagrid(tableMetaList,tableMetaList.size());
-        }else{
-            renderDatagrid(result,result.size());
+        if (result == null) {
+            renderDatagrid(tableMetaList, tableMetaList.size());
+        } else {
+            renderDatagrid(result, result.size());
         }
     }
 
@@ -86,16 +90,16 @@ public class GenOnlineController extends BaseController {
     /**
      * 代码生成器 表单
      */
-    public void openGenForm(){
+    public void openGenForm() {
         String formName = get("formName");
-        setAttr("tables",get("tables"));
-        setAttr("basePackageName",GeneratorConfig.basePackageName);
-        setAttr("moduleName",GeneratorConfig.moduleName);
-        setAttr("author",GeneratorConfig.author);
+        setAttr("tables", get("tables"));
+        setAttr("basePackageName", GeneratorConfig.basePackageName);
+        setAttr("moduleName", GeneratorConfig.moduleName);
+        setAttr("author", GeneratorConfig.author);
         setAttr("hasExcel", ModelClient.hasExcel);
         setAttr("chainSetter", ModelClient.chainSetter);
         setAttr("singleFile", ModelDictClient.singleFile);
-        render("genOnline/genOnline_"+formName+"_form.ftl");
+        render("genOnline/genOnline_" + formName + "_form.ftl");
     }
 
 
@@ -128,17 +132,17 @@ public class GenOnlineController extends BaseController {
         List<String> fileContents = new ArrayList<>();
 
         Set<String> tableNames = new LinkedHashSet<>(Arrays.asList(tables.split(",")));
-        List<TableMeta> tableMetas = metaUtils.tableMetas(GeneratorConfig.schemaPattern,tableNames,true);
+        List<TableMeta> tableMetas = metaUtils.tableMetas(GeneratorConfig.schemaPattern, tableNames, true);
 
-        ModelClient.generate(tableMetas).forEach((k,v)->{
+        ModelClient.generate(tableMetas).forEach((k, v) -> {
             fileNames.add(k);
             fileContents.add(v);
         });
-        ModelMappingClient.generate(tableMetas).forEach((k,v)->{
+        ModelMappingClient.generate(tableMetas).forEach((k, v) -> {
             fileNames.add(k);
             fileContents.add(v);
         });
-        render(ZipRender.me().fileName(moduleName+"_model.zip").filenames(fileNames).datas(fileContents));
+        render(ZipRender.me().fileName(moduleName + "_model.zip").filenames(fileNames).datas(fileContents));
     }
 
     /**
@@ -163,12 +167,12 @@ public class GenOnlineController extends BaseController {
         List<String> fileNames = new ArrayList<>();
         List<String> fileContents = new ArrayList<>();
         Set<String> tableNames = new LinkedHashSet<>(Arrays.asList(tables.split(",")));
-        List<TableMeta> tableMetas = metaUtils.tableMetas(GeneratorConfig.schemaPattern,tableNames,true);
-        ModelMappingClient.generate(tableMetas).forEach((k,v)->{
+        List<TableMeta> tableMetas = metaUtils.tableMetas(GeneratorConfig.schemaPattern, tableNames, true);
+        ModelMappingClient.generate(tableMetas).forEach((k, v) -> {
             fileNames.add(k);
             fileContents.add(v);
         });
-        render(ZipRender.me().fileName(moduleName+"_mapping.zip").filenames(fileNames).datas(fileContents));
+        render(ZipRender.me().fileName(moduleName + "_mapping.zip").filenames(fileNames).datas(fileContents));
     }
 
     /**
@@ -183,7 +187,7 @@ public class GenOnlineController extends BaseController {
         String basePackageName = get("basePackageName", GeneratorConfig.basePackageName);
         String moduleName = get("moduleName", GeneratorConfig.moduleName);
         String author = get("author", GeneratorConfig.author);
-        String singleFile = get("singleFile", ModelDictClient.singleFile?"YES":"NO");
+        String singleFile = get("singleFile", ModelDictClient.singleFile ? "YES" : "NO");
 
         GeneratorConfig.basePackageName = basePackageName;
         GeneratorConfig.moduleName = moduleName;
@@ -195,14 +199,14 @@ public class GenOnlineController extends BaseController {
         List<String> fileNames = new ArrayList<>();
         List<String> fileContents = new ArrayList<>();
         Set<String> tableNames = new LinkedHashSet<>(Arrays.asList(tables.split(",")));
-        List<TableMeta> tableMetas = metaUtils.tableMetas(GeneratorConfig.schemaPattern,tableNames,true);
+        List<TableMeta> tableMetas = metaUtils.tableMetas(GeneratorConfig.schemaPattern, tableNames, true);
 
-        ModelDictClient.generate(tableMetas).forEach((k,v)->{
+        ModelDictClient.generate(tableMetas).forEach((k, v) -> {
             fileNames.add(k);
             fileContents.add(v);
         });
 
-        render(ZipRender.me().fileName(moduleName+"_modeldict.zip").filenames(fileNames).datas(fileContents));
+        render(ZipRender.me().fileName(moduleName + "_modeldict.zip").filenames(fileNames).datas(fileContents));
     }
 
     /**
@@ -238,26 +242,26 @@ public class GenOnlineController extends BaseController {
         List<String> fileContents = new ArrayList<>();
 
         Set<String> tableNames = new LinkedHashSet<>(Arrays.asList(tables.split(",")));
-        List<TableMeta> tableMetas = metaUtils.tableMetas(GeneratorConfig.schemaPattern,tableNames,true);
+        List<TableMeta> tableMetas = metaUtils.tableMetas(GeneratorConfig.schemaPattern, tableNames, true);
 
-        ModelClient.generate(tableMetas).forEach((k,v)->{
+        ModelClient.generate(tableMetas).forEach((k, v) -> {
             fileNames.add(k);
             fileContents.add(v);
         });
-        ModelDictClient.generate(tableMetas).forEach((k,v)->{
+        ModelDictClient.generate(tableMetas).forEach((k, v) -> {
             fileNames.add(k);
             fileContents.add(v);
         });
-        ModelMappingClient.generate(tableMetas).forEach((k,v)->{
+        ModelMappingClient.generate(tableMetas).forEach((k, v) -> {
             fileNames.add(k);
             fileContents.add(v);
         });
-        SingleTableClient.generate(tableMetas).forEach((k,v)->{
+        SingleTableClient.generate(tableMetas).forEach((k, v) -> {
             fileNames.add(k);
             fileContents.add(v);
         });
 
-        render(ZipRender.me().fileName(moduleName+"_single.zip").filenames(fileNames).datas(fileContents));
+        render(ZipRender.me().fileName(moduleName + "_single.zip").filenames(fileNames).datas(fileContents));
     }
 
 
@@ -265,28 +269,28 @@ public class GenOnlineController extends BaseController {
      * 生成 一对多表 结构
      */
     public void genOneToMany() throws IOException {
-     //  sonTable[]={ex_staff,ex_staff_education,ex_staff_experience}
+        //  sonTable[]={ex_staff,ex_staff_education,ex_staff_experience}
 
         String mainId = get("mainId");
-        if(StringUtils.isEmpty(mainId)){
+        if (StringUtils.isEmpty(mainId)) {
             renderFail("请输入 字表外键名");
             return;
         }
 
         String mainTable = get("mainTable");
-        if(StringUtils.isEmpty(mainTable)){
+        if (StringUtils.isEmpty(mainTable)) {
             renderFail("请选择 主表");
             return;
         }
 
         String[] sonTables = getParaValues("sonTables");
-        if(sonTables==null || sonTables.length==0){
+        if (sonTables == null || sonTables.length == 0) {
             renderFail("请至少选择 一个从表");
             return;
         }
 
-        if(Arrays.asList(sonTables).contains(mainTable)){
-            renderFail(mainTable+" 不可同时为主从表");
+        if (Arrays.asList(sonTables).contains(mainTable)) {
+            renderFail(mainTable + " 不可同时为主从表");
             return;
         }
 
@@ -295,18 +299,18 @@ public class GenOnlineController extends BaseController {
         Collections.addAll(sonTableSet, sonTables);
         List<TableMeta> sonTableMetas = metaUtils.tableMetas(GeneratorConfig.schemaPattern, sonTableSet, true);
         List<ColumnMeta> columnMetas;
-        boolean flag ;
-        for(TableMeta tableMeta:sonTableMetas){
+        boolean flag;
+        for (TableMeta tableMeta : sonTableMetas) {
             columnMetas = tableMeta.getColumnMetas();
             flag = false;
-            for(ColumnMeta columnMeta:columnMetas){
-               if(columnMeta.getName().equals(mainId)){
-                   flag = true;
-                   break;
-               }
+            for (ColumnMeta columnMeta : columnMetas) {
+                if (columnMeta.getName().equals(mainId)) {
+                    flag = true;
+                    break;
+                }
             }
-            if(!flag){
-                renderFail(tableMeta.getName()+"表 不包含字段 "+mainId+", 请确认 子表外键名");
+            if (!flag) {
+                renderFail(tableMeta.getName() + "表 不包含字段 " + mainId + ", 请确认 子表外键名");
                 return;
             }
         }
@@ -322,7 +326,7 @@ public class GenOnlineController extends BaseController {
         GeneratorConfig.outputBasePath = GeneratorConfig.moduleName + "/";
         GeneratorConfig.author = author;
         ModelClient.chainSetter = "YES".equals(chainSetter);
-        OneToManyClient.sonTables  = sonTableSet;
+        OneToManyClient.sonTables = sonTableSet;
         OneToManyClient.mainTable = mainTable;
         OneToManyClient.mainId = mainId;
 
@@ -339,24 +343,24 @@ public class GenOnlineController extends BaseController {
         List<String> fileNames = new ArrayList<>();
         List<String> fileContents = new ArrayList<>();
 
-        OneToManyClient.generate(mainTableMeta,sonTableMetas).forEach((k,v)->{
+        OneToManyClient.generate(mainTableMeta, sonTableMetas).forEach((k, v) -> {
             fileNames.add(k);
             fileContents.add(v);
         });
 
         sonTableMetas.add(mainTableMeta);
-        ModelClient.generate(sonTableMetas).forEach((k,v)->{
+        ModelClient.generate(sonTableMetas).forEach((k, v) -> {
             fileNames.add(k);
             fileContents.add(v);
         });
-        ModelDictClient.generate(sonTableMetas).forEach((k,v)->{
+        ModelDictClient.generate(sonTableMetas).forEach((k, v) -> {
             fileNames.add(k);
             fileContents.add(v);
         });
-        ModelMappingClient.generate(sonTableMetas).forEach((k,v)->{
+        ModelMappingClient.generate(sonTableMetas).forEach((k, v) -> {
             fileNames.add(k);
             fileContents.add(v);
         });
-        render(ZipRender.me().fileName(moduleName+"_oneToMany.zip").filenames(fileNames).datas(fileContents));
+        render(ZipRender.me().fileName(moduleName + "_oneToMany.zip").filenames(fileNames).datas(fileContents));
     }
 }

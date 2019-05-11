@@ -1,5 +1,6 @@
 package com.github.qinyou.system.controller;
 
+import com.github.qinyou.common.annotation.RequireMenuCode;
 import com.github.qinyou.common.base.BaseController;
 import com.github.qinyou.common.config.Constant;
 import com.github.qinyou.common.interceptor.PermissionInterceptor;
@@ -24,6 +25,7 @@ import java.util.*;
  *
  * @author zhangchuang
  */
+@RequireMenuCode("sysOrg")
 public class SysOrgController extends BaseController {
 
     public void index() {

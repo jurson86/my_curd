@@ -23,6 +23,13 @@
                 <input name="url" value="${(sysMenu.url)!}"   class="easyui-textbox"  data-options="required:true" >
             </td>
         </tr>
+
+        <tr>
+            <td>编码：</td>
+            <td>
+                <input name="menuCode" value="${(sysMenu.menuCode)!}"   class="easyui-textbox"  >
+            </td>
+        </tr>
         <tr>
             <td>图标：</td>
             <td>

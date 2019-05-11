@@ -1,29 +1,11 @@
 <#include "../common/common.ftl"/><@layout>
-<script>
-    function saveAction() {
-        var url;
-        var idVal = $('#id').val();
-
-        if (isEmpty(idVal)) {
-            url = '${ctx!}/sysNotificationType/addAction';
-        } else {
-            url = '${ctx!}/sysNotificationType/updateAction';
-        }
-
-        $('#modelForm').form('submit', {
-            url: url,
-            onSubmit: function() {
-                return $(this).form('validate');
-            },
-            success: function (data) {
-                parent.popup.msg(data, function () {
-                    parent.$("#dg").datagrid("reload");
-                    parent.layer.close(parent.layer.getFrameIndex(window.name));
-                });
-            }
-        });
+<style>
+    .logo-preview{
+        width:60px;
+        border: 1px dashed lightgray;
+        border-radius:10%;
     }
-</script>
+</style>
 </head>
 <body style="padding: 10px 30px; ">
 <form id="modelForm" method="POST" action="<#if sysNoticeType?? >${ctx!}/sysNoticeType/updateAction<#else>${ctx!}/sysNoticeType/addAction</#if>" >
@@ -52,8 +34,19 @@
             </tr>
             <tr>
                 <td>图片Logo:</td>
-                <td colspan="3">
-                    <input name="logo" value="${(sysNoticeType.logo)!}" class="easyui-textbox"  data-options="required:true" style="width: 100%;"   >
+                <td>
+                    <input id="logo" name="logo" value="${(sysNoticeType.logo)!}" class="easyui-textbox"
+                           data-options="required:true,
+                                icons: [ {
+                                        iconCls:'iconfont icon-upload',
+                                        handler: function(e){
+                                           $('#fileElem').click();
+                                        }
+                                }]">
+                </td>
+                <td>预览: </td>
+                <td id="logoview">
+                    <#if (sysNoticeType.logo)??> <img src="${ctx!}/${(sysNoticeType.logo)!}" alt="logo 预览" class="logo-preview" > </#if>
                 </td>
             </tr>
             <tr>
@@ -92,6 +85,16 @@
         </tbody>
     </table>
 </form>
+
+<#--文件上传工具-->
+<input type="file" id="fileElem" multiple accept="image/*" style="display:none" onchange="commonSingleFileUpload(this.files,'image/*','${ctx!}',uploadSuccess)"/>
+<script>
+    function uploadSuccess(data){
+        $('#logoview').html('<img src="${ctx!}/'+data.data.path+'" alt="logo 预览" class="logo-preview" >');
+        $("#logo").textbox("setValue",data.data.path);
+    }
+</script>
+
 <div  class="formBtnsDiv">
     <button  class=" pure-button button-small" onclick="popup.close(window.name);" >
         <i class="iconfont icon-cancel"></i> 取消

@@ -25,8 +25,8 @@
     </thead>
 </table>
 <div id="tb">
-    <a onclick="newModel('${ctx!}/sysNoticeType/newModel',  '750px', '500px')" href="#" class="easyui-linkbutton" iconCls="iconfont icon-add" plain="true">新增</a>
-    <a onclick="editModel('dg','${ctx!}/sysNoticeType/newModel',  '750px', '500px')" href="#" class="easyui-linkbutton" iconCls="iconfont icon-edit" plain="true">编辑</a>
+    <a onclick="newModel('${ctx!}/sysNoticeType/newModel',  '750px', '550px')" href="#" class="easyui-linkbutton" iconCls="iconfont icon-add" plain="true">新增</a>
+    <a onclick="editModel('dg','${ctx!}/sysNoticeType/newModel',  '750px', '550px')" href="#" class="easyui-linkbutton" iconCls="iconfont icon-edit" plain="true">编辑</a>
     <a onclick="deleteModel('dg','${ctx!}/sysNoticeType/deleteAction')" href="#" class="easyui-linkbutton  " iconCls="iconfont icon-delete" plain="true">删除</a>
     <a onclick="newTypeRole()" href="#" class="easyui-linkbutton  " iconCls="iconfont icon-config" plain="true">配置角色</a>
     <span  id="searchSpan" class="searchInputArea" >

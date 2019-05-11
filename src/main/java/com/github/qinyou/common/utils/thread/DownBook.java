@@ -2,15 +2,17 @@ package com.github.qinyou.common.utils.thread;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import com.github.qinyou.common.utils.FileUtils;
+import com.github.qinyou.common.config.Constant;
 import com.github.qinyou.common.utils.RandomUtils;
 import com.github.qinyou.common.utils.RegexUtils;
 import com.github.qinyou.common.utils.StringUtils;
 import com.jfinal.kit.Ret;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.io.FileUtils;
 import org.apache.http.client.fluent.Content;
 import org.apache.http.client.fluent.Request;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
@@ -214,11 +216,12 @@ public class DownBook {
         // throw InterruptedException ( why & when ?)
         latch.await();
 
+        File saveFile = new File(savePath);
         String content;
         for (int ix = 0; ix < jArray.size(); ix++) {
             content = jArray.getJSONObject(ix).getString("title") + "(" + (ix + 1) + ") \n" + jArray.getJSONObject(ix).getString("body") + " \n";
             try {
-                FileUtils.appendString(content, savePath, Charset.forName(DownBook.charset));
+                FileUtils.writeStringToFile(saveFile, content, Constant.DEFAULT_ENCODEING, true);
             } catch (IOException e) {
                 log.error(e.getMessage(), e);
             }

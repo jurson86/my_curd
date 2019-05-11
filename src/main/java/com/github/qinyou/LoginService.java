@@ -8,6 +8,22 @@ import java.util.*;
 
 public class LoginService {
     /**
+     * 获取 所有 父祖 菜单
+     *
+     * @param allMenuList
+     * @param menu
+     * @param chainSet
+     */
+    public static void getPChain(Collection<SysMenu> allMenuList, SysMenu menu, Set<SysMenu> chainSet) {
+        for (SysMenu m : allMenuList) {
+            if (Objects.equals(menu.getPid(), m.getId())) {
+                chainSet.add(m);
+                getPChain(allMenuList, m, chainSet);
+            }
+        }
+    }
+
+    /**
      * 用户完整的菜单
      *
      * @param roleIds 多个role id，以逗号分隔
@@ -17,10 +33,10 @@ public class LoginService {
         if (StringUtils.isEmpty(roleIds)) {
             return new ArrayList<>();
         }
-
         if (roleIds.contains(",") && !roleIds.contains("'")) {
             roleIds = roleIds.replaceAll(",", "','");
         }
+
         // 所有菜单
         List<SysMenu> allMenuList = SysMenu.dao.findAll();
         // 用户菜单
@@ -47,43 +63,23 @@ public class LoginService {
      *
      * @return
      */
-    Map<String, List<String>> findUserButtons(String roleIds) {
+    List<String> findUserButtons(String roleIds) {
         if (StringUtils.isEmpty(roleIds)) {
-            return new HashMap<>();
+            return new ArrayList<>();
         }
         if (roleIds.contains(",") && !roleIds.contains("'")) {
             roleIds = roleIds.replaceAll(",", "','");
         }
 
-        String sql = " select a.sysMenuId,a.buttonCode from sys_button a , sys_role_button b ,sys_role c " +
+        String sql = " select distinct a.buttonCode from sys_button a , sys_role_button b ,sys_role c " +
                 " where b.sysButtonId = a.id  and b.sysRoleId = c.id and b.sysRoleId in ('" + roleIds + "')";
         List<SysButton> sysButtons = SysButton.dao.find(sql);
-        Map<String, List<String>> sysMenuButtons = new HashMap<>();
-        sysButtons.forEach(sysButton -> {
-            List<String> sysButtonCodes = sysMenuButtons.get(sysButton.getSysMenuId());
-            if (sysButtonCodes == null) {
-                sysButtonCodes = new ArrayList<>();
-                sysMenuButtons.put(sysButton.getSysMenuId(), sysButtonCodes);
-            }
-            sysButtonCodes.add(sysButton.getButtonCode());
-        });
-        return sysMenuButtons;
-    }
 
-    /**
-     * 获取 所有 父祖 菜单
-     *
-     * @param allMenuList
-     * @param menu
-     * @param chainSet
-     */
-    public static void getPChain(Collection<SysMenu> allMenuList, SysMenu menu, Set<SysMenu> chainSet) {
-        for (SysMenu m : allMenuList) {
-            if (Objects.equals(menu.getPid(), m.getId())) {
-                chainSet.add(m);
-                getPChain(allMenuList, m, chainSet);
-            }
-        }
+        List<String> buttonCodes = new ArrayList<>();
+        sysButtons.forEach(sysButton -> {
+            buttonCodes.add(sysButton.getButtonCode());
+        });
+        return buttonCodes;
     }
 
 

@@ -20,7 +20,7 @@
                     </a>
                 </li>
                 <li>
-                    <span id="opeMenu" class="pure-button pure-button-primary" >${(username)!}</span>
+                    <span id="opeMenu" class="pure-button pure-button-primary" >${(session.sysUserName)!}</span>
                     <div id="opeMenuItem" style="width:100px;">
                         <div name="editInfo" >修改个人信息</div>
                         <div name="changePwd">修改密码</div>

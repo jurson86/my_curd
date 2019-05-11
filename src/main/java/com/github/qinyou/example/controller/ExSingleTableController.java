@@ -4,11 +4,11 @@ import cn.afterturn.easypoi.excel.ExcelExportUtil;
 import cn.afterturn.easypoi.excel.ExcelImportUtil;
 import cn.afterturn.easypoi.excel.entity.ExportParams;
 import cn.afterturn.easypoi.excel.entity.ImportParams;
+import com.github.qinyou.common.annotation.RequireMenuCode;
 import com.github.qinyou.common.base.BaseController;
 import com.github.qinyou.common.config.Constant;
 import com.github.qinyou.common.interceptor.SearchSql;
 import com.github.qinyou.common.render.ExcelRender;
-import com.github.qinyou.common.utils.FileUtils;
 import com.github.qinyou.common.utils.Id.IdUtils;
 import com.github.qinyou.common.utils.StringUtils;
 import com.github.qinyou.common.utils.WebUtils;
@@ -19,6 +19,7 @@ import com.jfinal.plugin.activerecord.Db;
 import com.jfinal.plugin.activerecord.Page;
 import com.jfinal.plugin.activerecord.tx.Tx;
 import com.jfinal.upload.UploadFile;
+import org.apache.commons.io.FilenameUtils;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -32,6 +33,7 @@ import java.util.List;
  * @author zhangchuang
  * @since 2019-02-22 21:39:25
  */
+@RequireMenuCode("exSingleTable")
 public class ExSingleTableController extends BaseController {
 
     private final static Logger LOG = LoggerFactory.getLogger(ExSingleTableController.class);
@@ -139,7 +141,7 @@ public class ExSingleTableController extends BaseController {
             renderFail("上传文件不可为空");
             return;
         }
-        if (!FileUtils.getExtensionName(uploadFile.getFileName()).equals("xls")) {
+        if (!FilenameUtils.getExtension(uploadFile.getFileName()).equals("xls")) {
             uploadFile.getFile().delete();
             renderFail("上传文件后缀必须是xls");
             return;

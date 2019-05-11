@@ -45,7 +45,6 @@
        </thead>
     </table>
     <div id="tb">
-
         <#-- 具有按钮编码权限才可显示 -->
         <@hasBtnCode "sysVisitLog:delete">
             <a onclick="deleteModel('dg','${ctx!}/sysVisitLog/deleteAction')" href="#" class="easyui-linkbutton" iconCls="iconfont icon-delete" plain="true">删除</a>
@@ -88,7 +87,5 @@
         function usernameFmt(val,row) {
             return '<a title="点击查看人员信息" href="javascript:userInfo(\'${ctx!}\',\''+val+'\')" >'+val+'</a>';
         }
-
-
     </script>
 </@layout>

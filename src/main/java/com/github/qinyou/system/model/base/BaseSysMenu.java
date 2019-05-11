@@ -37,6 +37,16 @@ public abstract class BaseSysMenu<M extends BaseSysMenu<M>> extends Model<M> imp
         return (M) this;
     }
 
+    // 菜单编码
+    public String getMenuCode() {
+        return getStr("menuCode");
+    }
+
+    public M setMenuCode(String menuCode) {
+        set("menuCode", menuCode);
+        return (M) this;
+    }
+
 
     // 菜单地址
     public String getUrl() {
@@ -78,16 +88,6 @@ public abstract class BaseSysMenu<M extends BaseSysMenu<M>> extends Model<M> imp
 
     public M setPid(String pid) {
         set("pid", pid);
-        return (M) this;
-    }
-
-    // 是否有按钮控制Y是null否
-    public String getBtnControl() {
-        return getStr("btnControl");
-    }
-
-    public M setBtnControl(String btnControl) {
-        set("btnControl", btnControl);
         return (M) this;
     }
 

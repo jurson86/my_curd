@@ -1,5 +1,6 @@
 package com.github.qinyou.system.controller;
 
+import com.github.qinyou.common.annotation.RequireMenuCode;
 import com.github.qinyou.common.base.BaseController;
 import com.github.qinyou.common.config.Constant;
 import com.github.qinyou.common.interceptor.SearchSql;
@@ -25,6 +26,7 @@ import java.util.List;
 /**
  * 定时任务
  */
+@RequireMenuCode("sysTask")
 @Slf4j
 public class SysTaskController extends BaseController {
     private final static Prop prop = PropKit.use("task.properties");

@@ -31,7 +31,6 @@ import java.util.*;
 public class MainController extends BaseController {
 
     public void index() {
-        setAttr("username", WebUtils.getSysUser(this).getRealName());
         SysUser sysUser = WebUtils.getSysUser(this);
         setAttr("aesUserId", UserIdEncryptUtils.encrypt(sysUser.getId(), UserIdEncryptUtils.CURRENT_USER_ID_AESKEY));
         render("main.ftl");
@@ -42,7 +41,7 @@ public class MainController extends BaseController {
      * 树形菜单
      */
     public void menuTree() {
-        List<SysMenu> sysMenus = getSessionAttr(Constant.SYS_USER_MENU);
+        List<SysMenu> sysMenus = getSessionAttr("sysUserMenu");
 
         List<Map<String, Object>> maps = new ArrayList<>();
         for (SysMenu sysMenu : sysMenus) {
@@ -295,7 +294,7 @@ public class MainController extends BaseController {
             sysUserSetting.setThemeColor(color);
             sysUserSetting.update();
         }
-        setSessionAttr(Constant.SYS_USER_THEME, colorName);
+        setSessionAttr("theme", colorName);
 
         renderSuccess("设置成功");
     }

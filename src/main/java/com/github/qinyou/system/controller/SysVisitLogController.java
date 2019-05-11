@@ -2,7 +2,8 @@ package com.github.qinyou.system.controller;
 
 import cn.afterturn.easypoi.excel.ExcelExportUtil;
 import cn.afterturn.easypoi.excel.entity.ExportParams;
-import com.github.qinyou.common.annotation.RequirePermission;
+import com.github.qinyou.common.annotation.RequireButtonCode;
+import com.github.qinyou.common.annotation.RequireMenuCode;
 import com.github.qinyou.common.base.BaseController;
 import com.github.qinyou.common.config.Constant;
 import com.github.qinyou.common.interceptor.ExceptionInterceptor;
@@ -29,6 +30,7 @@ import java.util.Map;
  * 访问日志
  */
 @Clear(ExceptionInterceptor.class)
+@RequireMenuCode("sysVisitLog")
 public class SysVisitLogController extends BaseController {
 
     public void index() {
@@ -52,9 +54,8 @@ public class SysVisitLogController extends BaseController {
     /**
      * 批量删除
      */
-
+    @RequireButtonCode("sysVisitLog:delete")
     @Before(IdsRequired.class)
-    @RequirePermission("sysVisitLog:delete")
     public void deleteAction() {
         String ids = getPara("ids").replaceAll(",", "','");
         String sql = "delete from sys_visit_log where  id in ('" + ids + "')";
@@ -88,8 +89,8 @@ public class SysVisitLogController extends BaseController {
     /**
      * 导出excel
      */
+    @RequireButtonCode("sysVisitLog:export")
     @Before(SearchSql.class)
-    @RequirePermission("sysVisitLog:export")
     public void exportExcel() {
         String where = getAttr(Constant.SEARCH_SQL);
         if (SysVisitLog.dao.findCountByWhere(where) > 50000) {

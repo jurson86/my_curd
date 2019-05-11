@@ -1,6 +1,5 @@
 package com.github.qinyou.common.utils;
 
-import com.github.qinyou.common.config.Constant;
 import com.github.qinyou.system.model.SysUser;
 import com.jfinal.core.Controller;
 import lombok.extern.slf4j.Slf4j;
@@ -40,7 +39,7 @@ public class WebUtils {
      * @return
      */
     public static String getSessionUsername(Controller controller) {
-        SysUser sysUser = controller.getSessionAttr(Constant.SYS_USER);
+        SysUser sysUser = controller.getSessionAttr("sysUser");
         return sysUser == null ? "debug" : sysUser.getUsername();
     }
 
@@ -51,7 +50,7 @@ public class WebUtils {
      * @return
      */
     public static SysUser getSysUser(Controller controller) {
-        return controller.getSessionAttr(Constant.SYS_USER);
+        return controller.getSessionAttr("sysUser");
     }
 
 

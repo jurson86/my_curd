@@ -141,3 +141,41 @@ function postForm(url,target, params) {
     temp_form.submit();
     document.body.removeChild(temp_form);
 }
+
+/**
+ * 通用单文件上传
+ * @param files input 文件对象
+ * @param type  文件类型
+ * @param ctx   应用上下文路径
+ * @param okCallback 成功回调
+ */
+function commonSingleFileUpload(files,type,ctx,okCallback){
+    var file = files[0];
+    if (file === undefined || !file.type.match(type)) {
+        return false;
+    }
+    var form_data = new FormData();
+    form_data.append("file", file);
+    $.ajax({
+        type: "POST",
+        url: ctx+"/file/upload",
+        dataType: "json",
+        crossDomain: true,
+        processData: false,
+        contentType: false,
+        data: form_data,
+        success: function (data) {
+            //console.log(JSON.stringify(data));
+            if (data.state === 'ok') {
+               okCallback(data);
+            } else if (data.state === 'error') {
+                popup.errMsg('系统异常', data.msg);
+            } else {
+                popup.msg(data.msg);
+            }
+        },
+        fail: function (x) {
+            popup.errMsg();
+        }
+    });
+}

@@ -14,6 +14,7 @@ import com.github.qinyou.common.utils.StringUtils;
 import com.github.qinyou.common.utils.WebUtils;
 import com.github.qinyou.common.validator.IdsRequired;
 import com.github.qinyou.common.validator.IdRequired;
+import com.github.qinyou.common.annotation.RequireMenuCode;
 import ${(basePackageName)!}.${(moduleName)!}.model.${(mainTableMeta.nameCamelFirstUp)!};
 <#if sonTableMetas??>
     <#list sonTableMetas as sonTableMeta>
@@ -29,6 +30,7 @@ import java.util.List;
  * @author ${author!}
  * @since ${since!}
  */
+@RequireMenuCode("${(mainTableMeta.nameCamel)!}")
 public class ${(mainTableMeta.nameCamelFirstUp)!}Controller extends BaseController{
     private  final  static Logger LOG = LoggerFactory.getLogger(${(mainTableMeta.nameCamelFirstUp)!}Controller.class);
 

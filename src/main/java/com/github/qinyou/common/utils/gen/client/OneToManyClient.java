@@ -1,6 +1,7 @@
 package com.github.qinyou.common.utils.gen.client;
 
-import com.github.qinyou.common.utils.FileUtils;
+
+import com.github.qinyou.common.config.Constant;
 import com.github.qinyou.common.utils.freemarker.FreemarkerUtils;
 import com.github.qinyou.common.utils.gen.GeneratorConfig;
 import com.github.qinyou.common.utils.gen.tools.MysqlDataSourceUtils;
@@ -8,8 +9,10 @@ import com.github.qinyou.common.utils.gen.tools.MysqlMetaUtils;
 import com.github.qinyou.common.utils.gen.tools.TableMeta;
 import com.jfinal.kit.StrKit;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.io.FileUtils;
 import org.joda.time.DateTime;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.*;
 
@@ -20,21 +23,20 @@ import java.util.*;
  */
 @Slf4j
 public class OneToManyClient {
-    public static String mainTable;  // 主表
-    public static Set<String> sonTables; // 子表
-    public static String mainId ;// 从表中 依赖字段名, 如果 被依赖非 主表ID, 需自行 修改生成的相关代码
-
     private final static String controllerTplPath = GeneratorConfig.tplBasePath + "oneToMany/controller.ftl"; // controller 模板文件路径
-    private static String controllerOutPath = GeneratorConfig.outputBasePath + "controller/";           // controller 渲染文件输出路径
     private final static String indexTplPath = GeneratorConfig.tplBasePath + "oneToMany/index.ftl";           // 主页面模板路径
     private final static String formTplPath = GeneratorConfig.tplBasePath + "oneToMany/form.ftl";             // 表单页模板路径
+    public static String mainTable;  // 主表
+    public static Set<String> sonTables; // 子表
+    public static String mainId;// 从表中 依赖字段名, 如果 被依赖非 主表ID, 需自行 修改生成的相关代码
+    private static String controllerOutPath = GeneratorConfig.outputBasePath + "controller/";           // controller 渲染文件输出路径
     private static String pageOutDirPath = GeneratorConfig.outputBasePath + "views/" + GeneratorConfig.moduleName + "/"; // 页面 输出文件输出目录
 
     /**
      * 重建输出路径
      * web 下用
      */
-    public static  void reBuildOutPath(){
+    public static void reBuildOutPath() {
         controllerOutPath = GeneratorConfig.outputBasePath + "controller/";
         pageOutDirPath = GeneratorConfig.outputBasePath + "views/" + GeneratorConfig.moduleName + "/";
     }
@@ -46,9 +48,9 @@ public class OneToManyClient {
      * @param sonTableMetas 字表表元信息集合
      * @throws IOException 写文件异常
      */
-    public static  Map<String,String> generate(TableMeta mainTableMeta, List<TableMeta> sonTableMetas) throws IOException {
+    public static Map<String, String> generate(TableMeta mainTableMeta, List<TableMeta> sonTableMetas) throws IOException {
         log.debug("(*^▽^*) start generate oneToMany ");
-        Map<String,String> ret = new HashMap<>();
+        Map<String, String> ret = new HashMap<>();
 
         Map<String, Object> params = new HashMap<>();
         params.put("basePackageName", GeneratorConfig.basePackageName);
@@ -61,15 +63,16 @@ public class OneToManyClient {
         params.put("sonTableMetas", sonTableMetas);
         params.put("mainId", mainId);
         params.put("mainIdCamel", StrKit.toCamelCase(mainId));
+
         // controller
-        String tplContent = FileUtils.readFile(controllerTplPath);
-        ret.put(controllerOutPath + mainTableMeta.nameCamelFirstUp + "Controller.java",FreemarkerUtils.renderAsText(tplContent, params));
+        String tplContent = FileUtils.readFileToString(new File(controllerTplPath), Constant.DEFAULT_ENCODEING);
+        ret.put(controllerOutPath + mainTableMeta.nameCamelFirstUp + "Controller.java", FreemarkerUtils.renderAsText(tplContent, params));
         // index.ftl
-        tplContent = FileUtils.readFile(indexTplPath);
-        ret.put(pageOutDirPath + mainTableMeta.nameCamel + ".ftl",FreemarkerUtils.renderAsText(tplContent, params));
+        tplContent = FileUtils.readFileToString(new File(indexTplPath), Constant.DEFAULT_ENCODEING);
+        ret.put(pageOutDirPath + mainTableMeta.nameCamel + ".ftl", FreemarkerUtils.renderAsText(tplContent, params));
         // form.ftl
-        tplContent = FileUtils.readFile(formTplPath);
-        ret.put(pageOutDirPath + mainTableMeta.nameCamel + "_form.ftl",FreemarkerUtils.renderAsText(tplContent, params));
+        tplContent = FileUtils.readFileToString(new File(formTplPath), Constant.DEFAULT_ENCODEING);
+        ret.put(pageOutDirPath + mainTableMeta.nameCamel + "_form.ftl", FreemarkerUtils.renderAsText(tplContent, params));
 
         log.debug("(*^▽^*)  generate oneToMany over ");
         return ret;
@@ -92,8 +95,8 @@ public class OneToManyClient {
 
         List<TableMeta> sonTableMetas = utils.tableMetas(GeneratorConfig.schemaPattern, sonTables, true);
 
-        for (Map.Entry<String, String> entry :  generate(mainTableMeta, sonTableMetas).entrySet()) {
-            FileUtils.writeFile( entry.getValue(), entry.getKey());
+        for (Map.Entry<String, String> entry : generate(mainTableMeta, sonTableMetas).entrySet()) {
+            FileUtils.writeStringToFile(new File(entry.getKey()), entry.getValue(), Constant.DEFAULT_ENCODEING);
         }
     }
 }

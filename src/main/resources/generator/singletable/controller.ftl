@@ -23,6 +23,7 @@ import com.github.qinyou.common.utils.Id.IdUtils;
 import com.github.qinyou.common.utils.StringUtils;
 import com.github.qinyou.common.utils.WebUtils;
 import com.github.qinyou.common.validator.IdsRequired;
+import com.github.qinyou.common.annotation.RequireMenuCode;
 import ${(basePackageName)!}.${(moduleName)!}.model.${(tableMeta.nameCamelFirstUp)!};
 
 import java.util.Date;
@@ -35,6 +36,7 @@ import java.util.List;
  * @author ${author!}
  * @since ${(since)!}
  */
+@RequireMenuCode("${(tableMeta.nameCamel)!}")
 public class ${(tableMeta.nameCamelFirstUp)!}Controller extends BaseController{
 
     private  final  static Logger LOG = LoggerFactory.getLogger(${(tableMeta.nameCamelFirstUp)!}Controller.class);

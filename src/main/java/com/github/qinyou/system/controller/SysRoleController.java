@@ -1,6 +1,7 @@
 package com.github.qinyou.system.controller;
 
 import com.github.qinyou.LoginService;
+import com.github.qinyou.common.annotation.RequireMenuCode;
 import com.github.qinyou.common.base.BaseController;
 import com.github.qinyou.common.config.Constant;
 import com.github.qinyou.common.interceptor.SearchSql;
@@ -23,6 +24,7 @@ import java.util.*;
  * @author zhangchuang
  */
 @SuppressWarnings("Duplicates")
+@RequireMenuCode("sysRole")
 public class SysRoleController extends BaseController {
 
     /**
@@ -165,7 +167,7 @@ public class SysRoleController extends BaseController {
         // 角色相关菜单
         List<SysRoleMenu> sysRoleMenus = SysRoleMenu.dao.findByRoleId(id);
         // 全部菜单
-        List<SysMenu> sysMenus = SysMenu.dao.findAll();
+        List<SysMenu> sysMenus = SysMenu.dao.findAllSort();
         // 非叶子 菜单 id 集
         Set<String> pids = new HashSet<>();
         for (SysMenu sysMenu : sysMenus) {
@@ -241,7 +243,7 @@ public class SysRoleController extends BaseController {
         List<SysRoleButton> sysRoleButtons = SysRoleButton.dao.findByRoleId(id);
 
         // 有按钮控制的菜单
-        List<SysMenu> sysMenus = SysMenu.dao.findByProperty("btnControl", "Y");
+        List<SysMenu> sysMenus = SysMenu.dao.findHasBtnList();
         List<SysMenu> allSysMenus = SysMenu.dao.findAll();
         Set<SysMenu> chainSet = new LinkedHashSet<>();
         List<SysButton> allButtons = new ArrayList<>();

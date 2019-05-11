@@ -1,73 +1,19 @@
 package com.github.qinyou.common.utils;
 
-import com.google.common.base.Charsets;
-import com.google.common.io.FileWriteMode;
-import com.google.common.io.Files;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.File;
 import java.io.IOException;
-import java.nio.charset.Charset;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
 /**
- * 文件操作工具类, 依赖 google guava
+ * 文件操作工具类
  *
  * @author zhangchuang
  */
-@SuppressWarnings("UnstableApiUsage")
 @Slf4j
-public class FileUtils {
-
-
-    /**
-     * 读文件为文本
-     *
-     * @param filePath 文件路径
-     * @return 文件文本内容
-     * @throws IOException 读文件异常
-     */
-    public static String readFile(String filePath) throws IOException {
-        log.debug("read file path: {}", filePath);
-        return Files.asCharSource(new File(filePath), Charsets.UTF_8).read();
-    }
-
-
-    /**
-     * 文本内容写入文件
-     *
-     * @param content  文本内容
-     * @param savePath 写文件路劲
-     * @throws IOException 写文件异常
-     */
-    public static void writeFile(String content, String savePath) throws IOException {
-        log.debug("write file path: {}", savePath);
-        File saveFile = new File(savePath);
-        if (!saveFile.exists()) {
-            Files.createParentDirs(saveFile);
-        }
-        Files.write(content.getBytes(), saveFile);
-    }
-
-
-    /**
-     * 文件追加
-     *
-     * @param content
-     * @param savePath
-     * @param charset
-     * @throws IOException
-     */
-    public static void appendString(String content, String savePath, Charset charset) throws IOException {
-        log.debug("write file path: {}", savePath);
-        File saveFile = new File(savePath);
-        if (!saveFile.exists()) {
-            Files.createParentDirs(saveFile);
-        }
-        Files.asCharSink(saveFile, charset, FileWriteMode.APPEND).write(content);
-    }
-
+public class FileUtils extends org.apache.commons.io.FileUtils {
 
     /**
      * 通过文件全路径 获得文件的 MIME(contentType)类型
@@ -90,19 +36,10 @@ public class FileUtils {
         return contentType;
     }
 
-    /**
-     * 获取文件 后缀
-     *
-     * @param filename 文件名
-     * @return
-     */
-    public static String getExtensionName(String filename) {
-        if ((filename != null) && (filename.length() > 0)) {
-            int dot = filename.lastIndexOf('.');
-            if ((dot > -1) && (dot < (filename.length() - 1))) {
-                return filename.substring(dot + 1);
-            }
+
+    public static void deleteFile(File file) {
+        if (!file.delete()) {
+            log.error("文件{} 未删除成功.", file.getAbsolutePath());
         }
-        return filename;
     }
 }

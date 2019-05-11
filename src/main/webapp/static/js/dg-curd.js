@@ -118,10 +118,10 @@ function exportExcel(url,inputsSpanId){
 
 /**
  * 跳转到 上传文件页面
- * @param uploadPageUrl
- * @param uploadUrl
- * @param label
- * @param windowName
+ * @param uploadPageUrl file 表单地址
+ * @param uploadUrl     表单 action
+ * @param label         表单提交按钮文本
+ * @param windowName    弹出框标题
  */
 function goUploadPage(uploadPageUrl,uploadUrl,label,windowName){
     var url = uploadPageUrl+"?uploadUrl="+uploadUrl+"&label="+label;

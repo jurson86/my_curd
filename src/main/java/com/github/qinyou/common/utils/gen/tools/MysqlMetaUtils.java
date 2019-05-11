@@ -25,6 +25,7 @@ public class MysqlMetaUtils {
 
     /**
      * 查询数据库中所有表元信息，不包含列信息
+     *
      * @param schemaPattern
      * @return
      * @throws SQLException
@@ -34,19 +35,20 @@ public class MysqlMetaUtils {
         Connection conn = dataSource.getConnection();
         DatabaseMetaData dbMeta = conn.getMetaData();
         ResultSet rs = dbMeta.getTables(conn.getCatalog(), schemaPattern, null, null);
-        while (rs.next()){
+        while (rs.next()) {
             TableMeta tableMeta = new TableMeta();
             tableMeta.name = rs.getString("TABLE_NAME");
             tableMeta.remark = rs.getString("REMARKS");
             tableMetas.add(tableMeta);
         }
-        log.debug("all table size: {}",tableMetas.size());
+        log.debug("all table size: {}", tableMetas.size());
         return tableMetas;
     }
 
 
     /**
      * 获得 数据表信息
+     *
      * @param schemaPattern 数据库名
      * @param tableNames    表名集合
      * @param includeColumn 是否获得表列信息

@@ -5,8 +5,8 @@
     <div data-options="region:'west',split:true" style="width:30%;border-top: none;" collapsible="false" >
         <table id="tg" border="false"  ></table>
         <div id="tb">
-            <a onclick="newModel('tg','${ctx!}/sysOrg/newModel', '700px', '500px')" href="#" class="easyui-linkbutton"  iconCls="iconfont icon-add" plain="true">新增</a>
-            <a onclick="editModel('tg','${ctx!}/sysOrg/newModel', '700px', '400px')" href="#" class="easyui-linkbutton" iconCls="iconfont icon-edit" plain="true">编辑</a>
+            <a onclick="newModel('tg','${ctx!}/sysOrg/newModel', '650px', '400px')" href="#" class="easyui-linkbutton"  iconCls="iconfont icon-add" plain="true">新增</a>
+            <a onclick="editModel('tg','${ctx!}/sysOrg/newModel', '650px', '400px')" href="#" class="easyui-linkbutton" iconCls="iconfont icon-edit" plain="true">编辑</a>
             <a onclick="deleteModel('tg','${ctx!}/sysOrg/deleteAction')" href="#" class="easyui-linkbutton  "  iconCls="iconfont icon-delete" plain="true">删除</a>
         </div>
     </div>

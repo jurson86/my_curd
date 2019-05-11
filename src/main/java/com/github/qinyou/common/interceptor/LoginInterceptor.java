@@ -1,6 +1,5 @@
 package com.github.qinyou.common.interceptor;
 
-import com.github.qinyou.common.config.Constant;
 import com.jfinal.aop.Interceptor;
 import com.jfinal.aop.Invocation;
 
@@ -18,7 +17,7 @@ public class LoginInterceptor implements Interceptor {
         HttpServletRequest request = invocation.getController().getRequest();
         HttpSession session = request.getSession();
         // 未登录 跳转到登录页面
-        if (session.getAttribute(Constant.SYS_USER) == null) {
+        if (session.getAttribute("sysUser") == null) {
             invocation.getController().redirect("/login");
             return;
         }

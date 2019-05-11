@@ -1,13 +1,15 @@
 package com.github.qinyou.common.utils.gen.client;
 
-import com.github.qinyou.common.utils.FileUtils;
+import com.github.qinyou.common.config.Constant;
 import com.github.qinyou.common.utils.freemarker.FreemarkerUtils;
 import com.github.qinyou.common.utils.gen.GeneratorConfig;
 import com.github.qinyou.common.utils.gen.tools.MysqlDataSourceUtils;
 import com.github.qinyou.common.utils.gen.tools.MysqlMetaUtils;
 import com.github.qinyou.common.utils.gen.tools.TableMeta;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.io.FileUtils;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -21,9 +23,8 @@ import java.util.Map;
  */
 @Slf4j
 public class ModelDictClient {
-    public  static boolean singleFile = false;                                           //  true ? 多张表一个文件:每张表一个文件
-
     private final static String dictTplPath = GeneratorConfig.tplBasePath + "model/dict.ftl";    // 模板路径
+    public static boolean singleFile = false;                                           //  true ? 多张表一个文件:每张表一个文件
     private static String dictOutDirPath = GeneratorConfig.outputBasePath + "doc/model/";  // 输出目录
 
 
@@ -31,12 +32,13 @@ public class ModelDictClient {
      * 重建输出路径
      * web 下用
      */
-    public static  void reBuildOutPath(){
+    public static void reBuildOutPath() {
         dictOutDirPath = GeneratorConfig.outputBasePath + "doc/model/";  // 输出目录
     }
 
     /**
      * 生成数据字典
+     *
      * @param tableMetas
      * @return map, key是文件路径，value
      * @throws IOException
@@ -44,7 +46,8 @@ public class ModelDictClient {
     public static Map<String, String> generate(List<TableMeta> tableMetas) throws IOException {
         log.debug("(*^▽^*) start generate dict");
         Map<String, String> ret = new HashMap<>();
-        String tplContent = FileUtils.readFile(dictTplPath);  // 模板内容
+
+        String tplContent = FileUtils.readFileToString(new File(dictTplPath), Constant.DEFAULT_ENCODEING);  // 模板内容
 
         Map<String, Object> params;  // 渲染参数
         if (singleFile) {
@@ -72,8 +75,8 @@ public class ModelDictClient {
         MysqlMetaUtils utils = new MysqlMetaUtils(MysqlDataSourceUtils.getDataSource());
         List<TableMeta> tableMetas = utils.tableMetas(GeneratorConfig.schemaPattern, GeneratorConfig.tableNames, true);
 
-        for (Map.Entry<String, String> entry :  generate(tableMetas).entrySet()) {
-            FileUtils.writeFile( entry.getValue(), entry.getKey());
+        for (Map.Entry<String, String> entry : generate(tableMetas).entrySet()) {
+            FileUtils.writeStringToFile(new File(entry.getKey()), entry.getValue(), Constant.DEFAULT_ENCODEING);
         }
     }
 }

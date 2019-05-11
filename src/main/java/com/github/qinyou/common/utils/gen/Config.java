@@ -15,6 +15,7 @@ import java.util.Set;
  */
 public class Config {
 
+    public final static TypeMapping typeMapping = new TypeMapping(); //数据表字段驱动内类型 和 Jfinal model 类型映射
     public static Map<String, String> getterTypeMap;
     public static Map<String, String> longShortMap;
     public static Set<String> excludeImportTypes;
@@ -48,6 +49,4 @@ public class Config {
         excludeImportTypes.add("Float");
         excludeImportTypes.add("Long");
     }
-
-    public final static TypeMapping typeMapping = new TypeMapping(); //数据表字段驱动内类型 和 Jfinal model 类型映射
 }

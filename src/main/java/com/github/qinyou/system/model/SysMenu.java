@@ -66,6 +66,26 @@ public class SysMenu extends BaseSysMenu<SysMenu> {
     }
 
     /**
+     * 查询于配置按钮的菜单
+     *
+     * @return
+     */
+    public List<SysMenu> findHasBtnList() {
+        String sql = "select a.* from sys_menu a where a.id in (SELECT sysMenuId from sys_button GROUP BY sysMenuId )  order by a.sortNum,a.id";
+        return find(sql);
+    }
+
+    /**
+     * 排序查询全部，并包含按钮数量信息
+     *
+     * @return
+     */
+    public List<SysMenu> findAllCSort() {
+        String sql = "select a.*,(select count(1) from sys_button b where b.sysMenuId = a.id) as btnCount from sys_menu a order by a.sortNum,a.id";
+        return find(sql);
+    }
+
+    /**
      * 通过 角色ids (数字数组，逗号分隔字符串) 查询菜单
      *
      * @param roleIds

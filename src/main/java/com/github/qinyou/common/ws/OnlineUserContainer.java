@@ -60,7 +60,7 @@ public class OnlineUserContainer {
         List<SysUser> authUsers = new ArrayList<>();
         for (Map.Entry<String, SysUser> entry : SESSIONID_USER.entrySet()) {
             // userid 加密
-            entry.getValue().set("userid", UserIdEncryptUtils.encrypt(entry.getValue().getId().toString(), UserIdEncryptUtils.OTHER_USERS_ID_AESKEY));
+            entry.getValue().set("userid", UserIdEncryptUtils.encrypt(entry.getValue().getId(), UserIdEncryptUtils.OTHER_USERS_ID_AESKEY));
             entry.getValue().setId(null);
             entry.getValue().setPassword(null);
             authUsers.add(entry.getValue());

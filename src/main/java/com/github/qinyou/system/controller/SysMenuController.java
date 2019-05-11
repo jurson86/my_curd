@@ -1,5 +1,6 @@
 package com.github.qinyou.system.controller;
 
+import com.github.qinyou.common.annotation.RequireMenuCode;
 import com.github.qinyou.common.base.BaseController;
 import com.github.qinyou.common.config.Constant;
 import com.github.qinyou.common.interceptor.PermissionInterceptor;
@@ -16,7 +17,6 @@ import com.github.qinyou.system.model.SysRoleButton;
 import com.github.qinyou.system.model.SysRoleMenu;
 import com.jfinal.aop.Before;
 import com.jfinal.aop.Clear;
-import com.jfinal.config.Routes;
 import com.jfinal.plugin.activerecord.Db;
 import com.jfinal.plugin.activerecord.Page;
 import com.jfinal.plugin.activerecord.tx.Tx;
@@ -26,6 +26,7 @@ import java.util.*;
 /**
  * 菜单管理
  */
+@RequireMenuCode("sysMenu")
 public class SysMenuController extends BaseController {
 
     public void index() {
@@ -36,7 +37,7 @@ public class SysMenuController extends BaseController {
      * treegrid 查询数据
      */
     public void query() {
-        List<SysMenu> sysMenus = SysMenu.dao.findAllSort();
+        List<SysMenu> sysMenus = SysMenu.dao.findAllCSort();
         // easyui 字体图标
         for (SysMenu sysMenu : sysMenus) {
             sysMenu.put("iconCls", sysMenu.getIcon());
@@ -73,12 +74,6 @@ public class SysMenuController extends BaseController {
                 renderFail("菜单地址已存在.");
                 return;
             }
-            // 是否合法 controller key 验证
-            Set<String> controllerKeySet = Routes.getControllerKeySet();
-            if (!controllerKeySet.contains(sysMenu.getUrl())) {
-                renderFail("菜单地址 必须是 已存在 Controller 的 Controller Key.");
-                return;
-            }
         }
         sysMenu.setId(IdUtils.id())
                 .setCreater(WebUtils.getSessionUsername(this))
@@ -100,12 +95,6 @@ public class SysMenuController extends BaseController {
             SysMenu sysMenuOld = SysMenu.dao.findUniqueByProperty("url", sysMenu.getUrl());
             if (sysMenuOld != null && !sysMenu.getId().equals(sysMenuOld.getId())) {
                 renderFail("菜单地址已存在.");
-                return;
-            }
-            // 是否合法 controller key 验证
-            Set<String> controllerKeySet = Routes.getControllerKeySet();
-            if (!controllerKeySet.contains(sysMenu.getUrl())) {
-                renderFail("菜单地址 必须是 已存在 Controller 的 Controller Key.");
                 return;
             }
         }
@@ -268,10 +257,6 @@ public class SysMenuController extends BaseController {
             return;
         }
 
-        if (sysMenu.getBtnControl() == null) {
-            sysMenu.setBtnControl("Y");
-            sysMenu.update();
-        }
         sysButton.save();
         renderSuccess(Constant.ADD_SUCCESS);
     }
@@ -295,7 +280,6 @@ public class SysMenuController extends BaseController {
         } else {
             renderFail(Constant.UPDATE_FAIL);
         }
-        ;
     }
 
     /**
@@ -315,12 +299,6 @@ public class SysMenuController extends BaseController {
         sql = "delete from sys_button where id in ('" + ids + "')";
         Db.update(sql);
 
-        sql = "select count(1) as c from sys_button where sysMenuId = ?";
-        long count = Db.findFirst(sql, sysMenuId).getLong("c");
-        if (count == 0) {
-            sql = "update sys_menu set btnControl = null where id = ?";
-            Db.update(sql, sysMenuId);
-        }
         renderSuccess(Constant.DELETE_SUCCESS);
     }
 

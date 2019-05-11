@@ -13,6 +13,8 @@ import com.jfinal.plugin.activerecord.ActiveRecordPlugin;
 public class SystemModelMapping {
 
     public static void mapping(ActiveRecordPlugin arp) {
+
+
         // 系统用户表
         arp.addMapping("sys_user", "id", SysUser.class);
         // 用户设置项
@@ -29,14 +31,14 @@ public class SystemModelMapping {
         arp.addMapping("sys_button", "id", SysButton.class);
         // 角色 菜单按钮中间表
         arp.addMapping("sys_role_button", "sysRoleId,sysButtonId", SysRoleButton.class);
+
         // 组织机构表
         arp.addMapping("sys_org", "id", SysOrg.class);
         // 字典表
         arp.addMapping("sys_dict", "id", SysDict.class);
         // 字典分组表
         arp.addMapping("sys_dict_group", "id", SysDictGroup.class);
-        // 用户上传的文件
-        arp.addMapping("sys_file", "id", SysFile.class);
+
         // 通知消息
         arp.addMapping("sys_notice", "id", SysNotice.class);
         // 通知消息从表

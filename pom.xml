@@ -44,6 +44,7 @@
         <cors-filter.version>2.6</cors-filter.version>
         <beanutils.version>1.9.3</beanutils.version>
         <httpClient.version>4.5.7</httpClient.version>
+        <commons-io.version>2.6</commons-io.version>
 
     </properties>
 
@@ -162,6 +163,11 @@
             <groupId>joda-time</groupId>
             <artifactId>joda-time</artifactId>
             <version>${jodd-time.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>${commons-io.version}</version>
         </dependency>
         <!-- easypoi excel 导入导出 -->
         <dependency>

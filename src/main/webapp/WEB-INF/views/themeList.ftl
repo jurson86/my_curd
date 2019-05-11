@@ -19,7 +19,7 @@
 </style>
 <div class="pure-g">
     <#list colorList as item>
-        <div onclick="setTheme('${item.value}','${item.color}',this)" class="pure-u-1-2 colorArea  <#if theme == item.value>active</#if>" title="${item.label}"  style="background-color:${item.color};">
+        <div onclick="setTheme('${item.value}','${item.color}',this)" class="pure-u-1-2 colorArea  <#if session.theme == item.value>active</#if>" title="${item.label}"  style="background-color:${item.color};">
         </div>
     </#list>
 </div>

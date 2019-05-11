@@ -1,5 +1,6 @@
 package com.github.qinyou.system.controller;
 
+import com.github.qinyou.common.annotation.RequireMenuCode;
 import com.github.qinyou.common.base.BaseController;
 import com.github.qinyou.common.config.Constant;
 import com.github.qinyou.common.interceptor.ExceptionInterceptor;
@@ -26,6 +27,7 @@ import java.util.List;
  *
  * @author zhangchuang
  */
+@RequireMenuCode("sysDict")
 public class SysDictController extends BaseController {
 
     /**

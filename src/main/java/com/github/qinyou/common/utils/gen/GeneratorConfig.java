@@ -22,12 +22,13 @@ public class GeneratorConfig {
     public static String dbConfigName = null;
     // 需生成代码的表
     public static Set<String> tableNames = new LinkedHashSet<>();
-    static {
-        tableNames.add("sys_button");
-        tableNames.add("sys_role_button");
-    }
     // 模板文件基础路径
     public static String tplBasePath = PathKit.getRootClassPath().replaceAll("\\\\", "/") + "/generator/";
     // 生成文件基础路径
     public static String outputBasePath = "E:/mycurdpro/gencode/" + GeneratorConfig.moduleName + "/";
+
+    static {
+        tableNames.add("sys_button");
+        tableNames.add("sys_role_button");
+    }
 }

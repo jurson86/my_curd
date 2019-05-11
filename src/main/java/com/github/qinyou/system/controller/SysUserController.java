@@ -1,5 +1,6 @@
 package com.github.qinyou.system.controller;
 
+import com.github.qinyou.common.annotation.RequireMenuCode;
 import com.github.qinyou.common.base.BaseController;
 import com.github.qinyou.common.config.Constant;
 import com.github.qinyou.common.interceptor.SearchSql;
@@ -17,6 +18,7 @@ import com.jfinal.plugin.activerecord.tx.Tx;
 
 import java.util.Date;
 
+@RequireMenuCode("sysUser")
 public class SysUserController extends BaseController {
 
     /**
