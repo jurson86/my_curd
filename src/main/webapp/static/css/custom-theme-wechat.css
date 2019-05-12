@@ -47,6 +47,12 @@ a:hover{
     background: #09b83e !important;
 }
 
+/*checkbox 颜色*/
+div[class*='datagrid-']>input[type=checkbox]:checked::before {
+    border: 1px solid #09b83e;
+    background-color: #09b83e;
+}
+
 
 
 /*easyui */

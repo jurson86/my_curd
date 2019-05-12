@@ -100,5 +100,33 @@ a{
 }
 
 .bg{
-    background-color: #f2f2f2;
+    background-color: #f5f5f5;
 }
+
+/*修改checkbox 默认样式*/
+/*.datagrid-header-check .datagrid-cell-check*/
+div[class*='datagrid-']>input[type=checkbox] {
+    position: relative;
+    width: 15px;
+    height: 15px;
+    margin-right: 5px;
+}
+div[class*='datagrid-']>input[type=checkbox]::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 15px;
+    height: 15px;
+    line-height: 15px;
+    text-align: center;
+    font-size: 12px;
+    background-color: #fff;
+    border:1px solid #dfdfdf;
+    border-radius: 10%;
+}
+div[class*='datagrid-']>input[type=checkbox]:checked::before {
+    color: white;
+    content: '✔';
+}
+

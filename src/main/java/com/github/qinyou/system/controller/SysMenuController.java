@@ -67,14 +67,6 @@ public class SysMenuController extends BaseController {
      */
     public void addAction() {
         SysMenu sysMenu = getBean(SysMenu.class, "");
-        if (!sysMenu.getUrl().equals("/")) {
-            // 地址不重复
-            SysMenu sysMenuOld = SysMenu.dao.findUniqueByProperty("url", sysMenu.getUrl());
-            if (sysMenuOld != null) {
-                renderFail("菜单地址已存在.");
-                return;
-            }
-        }
         sysMenu.setId(IdUtils.id())
                 .setCreater(WebUtils.getSessionUsername(this))
                 .setCreateTime(new Date());
@@ -90,14 +82,6 @@ public class SysMenuController extends BaseController {
      */
     public void updateAction() {
         SysMenu sysMenu = getBean(SysMenu.class, "");
-        if (!sysMenu.getUrl().equals("/")) {
-            // 地址不重复
-            SysMenu sysMenuOld = SysMenu.dao.findUniqueByProperty("url", sysMenu.getUrl());
-            if (sysMenuOld != null && !sysMenu.getId().equals(sysMenuOld.getId())) {
-                renderFail("菜单地址已存在.");
-                return;
-            }
-        }
         sysMenu.setUpdater(WebUtils.getSessionUsername(this))
                 .setUpdateTime(new Date());
         if (sysMenu.update()) {

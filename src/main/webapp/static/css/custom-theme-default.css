@@ -48,6 +48,12 @@ a:hover{
 }
 
 
+/*checkbox 颜色*/
+div[class*='datagrid-']>input[type=checkbox]:checked::before {
+    background-color: #447eff;
+    border: 1px solid #447eff;
+}
+
 
 /*easyui */
 .accordion .accordion-header-selected .panel-title {
