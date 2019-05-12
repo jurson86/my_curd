@@ -5,8 +5,8 @@
 <div id="mainLayout" class="easyui-layout" fit="true" border="false">
     <div class="mainHeader" data-options="region:'north'" border="false">
         <ul class="headerMenu">
-            <li><a href="javascript:fullScreenToggleNew()" title="点击全屏" style="width: 199px;" class="title">XX 管理系统</a></li>
-            <li><a href="#" class="active">首页</a></li>
+            <li><a href="javascript:fullScreenToggleNew()" title="点击全屏"  class="header-title">XX 管理系统</a></li>
+            <li><a href="#" class="header-active">首页</a></li>
             <#--<li><a href="#">OA协同</a></li>-->
             <span class="right">
                 <li>
@@ -63,14 +63,17 @@
             })();
         </script>
     </div>
-    <div cls="sidebar" data-options="region:'west',split:false" title="&nbsp;&nbsp;功能导航" style=" width:200px;">
-        <div class="pure-form" style="text-align: center;padding: 10px 0px;">
+
+    <div cls="sidebar" data-options="region:'west',split:false"   border="false">
+        <div class="pure-form" style="text-align: center;padding: 10px 0px 10px;">
             <input id="filterInput" type="text" placeholder="输入关键字、Enter过滤">
         </div>
-        <ul id="permissionTree" style="margin-left:9px">
+        <div style="height: 10px;" class="bg"></div>
+        <ul id="permissionTree" style="margin-left:18px">
         </ul>
     </div>
-    <div data-options="region:'center'" border="false" >
+
+    <div data-options="region:'center'" border="false" class="content bg">
         <!-- pill="true" narrow="true" plain="true" tab 可选样式-->
         <div id="tabGroup"   pill="false"  narrow="false" plain="false" ></div>
         <div id="tabsMenu" class="easyui-menu">
@@ -81,6 +84,7 @@
             <div data-options="name:3">关闭所有</div>
         </div>
     </div>
+
 </div>
 <script src="${ctx!}/static/js/easyui-tree-tools.js"></script>
 <script src="${ctx!}/static/js/tab-tools.js"></script>

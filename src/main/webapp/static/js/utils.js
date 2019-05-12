@@ -34,7 +34,7 @@ function exitFullScreen() {
     }
 }
 function fullScreenToggleNew() {
-    var btn = $('ul.headerMenu li a.title').first();
+    var btn = $('a.header-title').first();
     if (btn.hasClass('full')) {
         exitFullScreen();
         btn.removeClass('full').attr('title', '点击全屏');

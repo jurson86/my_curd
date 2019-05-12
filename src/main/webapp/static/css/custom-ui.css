@@ -88,9 +88,6 @@ a:hover{
 /*.pure-button{
    border-radius: 0px !important;
 }*/
-.borderTopNone{
-    border-top: none;
-}
 
 /*链接字颜色*/
 a{
@@ -100,4 +97,8 @@ a{
 /*隐藏元素*/
 .hidCss{
     display: none;
+}
+
+.bg{
+    background-color: #f2f2f2;
 }

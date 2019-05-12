@@ -2,7 +2,7 @@
 <#include "../common/common.ftl"/>
 <@layout>
 <div class="easyui-layout" fit="true" border="false">
-    <div data-options="region:'west',split:true" style="width:30%;border-top: none;" collapsible="false" >
+    <div data-options="region:'west',split:true" border="false" style="width:30%;" collapsible="false" >
         <table id="tg" border="false"  ></table>
         <div id="tb">
             <a onclick="newModel('tg','${ctx!}/sysOrg/newModel', '650px', '400px')" href="#" class="easyui-linkbutton"  iconCls="iconfont icon-add" plain="true">新增</a>
@@ -11,7 +11,7 @@
         </div>
     </div>
 
-    <div data-options="region:'center'" style="border-top: none;">
+    <div data-options="region:'center'" border="false" class="bg" style="padding-left: 10px;">
         <table id="dg2" class="easyui-datagrid"
                url="${ctx!}/sysOrg/queryUser"
                toolbar="#tb2" rownumbers="true" border="false"
