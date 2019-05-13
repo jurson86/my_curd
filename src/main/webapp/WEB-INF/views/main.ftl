@@ -65,7 +65,7 @@
     </div>
 
     <div cls="sidebar" data-options="region:'west',split:false"   border="false">
-        <div class="pure-form" style="text-align: center;padding: 10px 0px 10px;">
+        <div style="text-align: center;padding: 10px ;">
             <input id="filterInput" type="text" placeholder="输入关键字、Enter过滤">
         </div>
         <div style="height: 10px;" class="bg"></div>

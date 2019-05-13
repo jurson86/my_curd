@@ -1,6 +1,6 @@
 
 <p align="center" style='font-weight:bold'>
-    <img src="https://images.gitee.com/uploads/images/2019/0213/221706_3326cf26_608004.png" width="100">
+    <img src="https://raw.githubusercontent.com/qinyou/my_curd/master/preview/logo.png" width="100">
     <br/>
     <b>my_curd</b>
     <p align="center">
@@ -29,14 +29,20 @@
 4. 访问 http://localhost/dashboard, 账号 admin, 密码 123456 或 111111
 5. 更多文档请看本项目Wiki, 因为项目足够简单，查看代码了解项目可能是更好的选择
 
-#### 预览 
-![菜单](https://raw.githubusercontent.com/qinyou/my_curd/master/preview/menu.png "menu.png")
-![机构](https://raw.githubusercontent.com/qinyou/my_curd/master/preview/org.png "org.png")
-![访问日志](https://raw.githubusercontent.com/qinyou/my_curd/master/preview/log.png "log.png")
-![通知消息](https://raw.githubusercontent.com/qinyou/my_curd/master/preview/notice.png "notice.png")
-![定时任务](https://raw.githubusercontent.com/qinyou/my_curd/master/preview/task.png "task.png")
+#### 预览
+##### 代码生成器
 ![代码生成器](https://raw.githubusercontent.com/qinyou/my_curd/master/preview/gen.png "gen.png")
-![一对多表](https://raw.githubusercontent.com/qinyou/my_curd/master/preview/otm.png "otm.png")
-![多主题](https://raw.githubusercontent.com/qinyou/my_curd/master/preview/theme.png "theme.png")
+
+##### 生成 1对多 增删改查 功能
+![1对多](https://raw.githubusercontent.com/qinyou/my_curd/master/preview/1tn.png "1tn.png")
+
+##### 菜单管理
+![菜单管理](https://raw.githubusercontent.com/qinyou/my_curd/master/preview/menu.png "menu.png")
+
+##### 组织机构
+![组织机构](https://raw.githubusercontent.com/qinyou/my_curd/master/preview/org.png "org.png")
+
+##### 访问日志
+![访问日志](https://raw.githubusercontent.com/qinyou/my_curd/master/preview/log.png "log.png")
 
 

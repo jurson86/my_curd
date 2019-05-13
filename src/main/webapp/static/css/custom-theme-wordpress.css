@@ -55,6 +55,12 @@ div[class*='datagrid-']>input[type=checkbox]:checked::before {
 }
 
 
+.sidebar .tree-node-selected {
+    border-left:none;
+    border-right:  2px solid #21759b  !important;
+}
+
+
 /*easyui */
 .accordion .accordion-header-selected .panel-title {
     color: #21759b !important;
@@ -119,7 +125,7 @@ div[class*='datagrid-']>input[type=checkbox]:checked::before {
     color: #21759b  !important;
 }
 .tree-node-selected {
-    border-left: 2px solid #21759b  !important;
+    border-left: 2px solid #21759b ;
 }
 .calendar-selected {
     background: #21759b  !important;
