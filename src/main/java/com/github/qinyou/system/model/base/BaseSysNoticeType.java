@@ -72,12 +72,12 @@ public abstract class BaseSysNoticeType<M extends BaseSysNoticeType<M>> extends 
 
 
     // 消息模板
-    public String getTemplate() {
-        return getStr("template");
+    public String getTpl() {
+        return getStr("tpl");
     }
 
-    public M setTemplate(String template) {
-        set("template", template);
+    public M setTpl(String template) {
+        set("tpl", template);
         return (M) this;
     }
 

@@ -124,4 +124,15 @@ public abstract class BaseSysDict<M extends BaseSysDict<M>> extends Model<M> imp
         set("delFlag", delFlag);
         return (M) this;
     }
+
+
+    // 状态，on启用off禁用
+    public String getState() {
+        return getStr("state");
+    }
+
+    public M setState(String state) {
+        set("state", state);
+        return (M) this;
+    }
 }

@@ -1,13 +1,13 @@
 package com.github.qinyou.system.controller;
 
 import com.github.qinyou.common.annotation.RequireMenuCode;
-import com.github.qinyou.common.base.BaseController;
 import com.github.qinyou.common.config.Constant;
 import com.github.qinyou.common.interceptor.SearchSql;
 import com.github.qinyou.common.utils.Id.IdUtils;
 import com.github.qinyou.common.utils.StringUtils;
 import com.github.qinyou.common.utils.WebUtils;
 import com.github.qinyou.common.validator.IdsRequired;
+import com.github.qinyou.common.web.BaseController;
 import com.github.qinyou.system.model.SysNoticeType;
 import com.github.qinyou.system.model.SysNoticeTypeSysRole;
 import com.jfinal.aop.Before;
@@ -47,9 +47,9 @@ public class SysNoticeTypeController extends BaseController {
         sysNoticeType.setId(IdUtils.id());
         sysNoticeType.setCreater(WebUtils.getSessionUsername(this)).setCreateTime(new Date());
         if (sysNoticeType.save()) {
-            renderSuccess(Constant.ADD_SUCCESS);
+            renderSuccess(ADD_SUCCESS);
         } else {
-            renderFail(Constant.ADD_FAIL);
+            renderFail(ADD_FAIL);
         }
     }
 
@@ -58,9 +58,9 @@ public class SysNoticeTypeController extends BaseController {
         SysNoticeType sysNoticeType = getBean(SysNoticeType.class, "");
         sysNoticeType.setUpdater(WebUtils.getSessionUsername(this)).setUpdateTime(new Date());
         if (sysNoticeType.update()) {
-            renderSuccess(Constant.UPDATE_SUCCESS);
+            renderSuccess(UPDATE_SUCCESS);
         } else {
-            renderFail(Constant.UPDATE_FAIL);
+            renderFail(UPDATE_FAIL);
         }
     }
 
@@ -80,7 +80,7 @@ public class SysNoticeTypeController extends BaseController {
             Db.update(sql);
             return true;
         });
-        renderSuccess(Constant.DELETE_SUCCESS);
+        renderSuccess(DELETE_SUCCESS);
     }
 
     /**
@@ -143,6 +143,6 @@ public class SysNoticeTypeController extends BaseController {
             idAry = idPair.split(",");
             SysNoticeTypeSysRole.dao.deleteByIds(idAry[0], idAry[1]);
         }
-        renderSuccess(Constant.DELETE_SUCCESS);
+        renderSuccess(DELETE_SUCCESS);
     }
 }

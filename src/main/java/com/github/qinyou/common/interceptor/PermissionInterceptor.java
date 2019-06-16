@@ -2,8 +2,8 @@ package com.github.qinyou.common.interceptor;
 
 import com.github.qinyou.common.annotation.RequireButtonCode;
 import com.github.qinyou.common.annotation.RequireMenuCode;
-import com.github.qinyou.common.base.BaseController;
 import com.github.qinyou.common.utils.StringUtils;
+import com.github.qinyou.common.web.BaseController;
 import com.jfinal.aop.Interceptor;
 import com.jfinal.aop.Invocation;
 import com.jfinal.kit.JsonKit;
@@ -52,10 +52,9 @@ public class PermissionInterceptor implements Interceptor {
 
         // 无 权限响应
         BaseController baseController = (BaseController) inv.getController();
-        baseController.addServiceLog("PermissionInterceptor: 访问无权限路径");
         String requestType = inv.getController().getHeader("X-Requested-With");
         if ("XMLHttpRequest".equals(requestType) || StringUtils.notEmpty(inv.getController().getPara("xmlHttpRequest"))) {
-            Ret ret = Ret.create().setFail().set("msg", "无权限操作！您的行为已被记录到日志。");
+            Ret ret = Ret.create().setFail().set("msg", "无权限操作！您的行为已被记录到日志。"); // 其实并没有
             inv.getController().renderJson(ret);
         } else {
             inv.getController().render("/WEB-INF/views/common/no_permission.ftl");

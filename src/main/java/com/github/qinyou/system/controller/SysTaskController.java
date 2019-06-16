@@ -1,12 +1,12 @@
 package com.github.qinyou.system.controller;
 
 import com.github.qinyou.common.annotation.RequireMenuCode;
-import com.github.qinyou.common.base.BaseController;
 import com.github.qinyou.common.config.Constant;
 import com.github.qinyou.common.interceptor.SearchSql;
 import com.github.qinyou.common.utils.ReflectionUtils;
 import com.github.qinyou.common.utils.StringUtils;
 import com.github.qinyou.common.validator.IdsRequired;
+import com.github.qinyou.common.web.BaseController;
 import com.github.qinyou.system.model.SysTaskLog;
 import com.github.qinyou.system.vo.Cron4jTaskIntro;
 import com.google.common.base.Throwables;
@@ -149,6 +149,6 @@ public class SysTaskController extends BaseController {
         String ids = getPara("ids").replaceAll(",", "','");
         String sql = "delete from sys_task_log where id in ('" + ids + "')";
         Db.update(sql);
-        renderSuccess(Constant.DELETE_SUCCESS);
+        renderSuccess(DELETE_SUCCESS);
     }
 }

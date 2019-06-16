@@ -1,12 +1,11 @@
 package com.github.qinyou;
 
-import com.github.qinyou.common.base.BaseController;
 import com.github.qinyou.common.config.Constant;
 import com.github.qinyou.common.interceptor.PermissionInterceptor;
 import com.github.qinyou.common.interceptor.SearchSql;
-import com.github.qinyou.common.utils.Id.IdUtils;
 import com.github.qinyou.common.utils.StringUtils;
 import com.github.qinyou.common.utils.WebUtils;
+import com.github.qinyou.common.web.BaseController;
 import com.github.qinyou.common.ws.UserIdEncryptUtils;
 import com.github.qinyou.system.model.*;
 import com.jfinal.aop.Before;
@@ -99,7 +98,6 @@ public class MainController extends BaseController {
         newPwd = HashKit.sha1(newPwd);
         sysUser.setPassword(newPwd);
         boolean updateFlag = sysUser.update();
-        addServiceLog(getPara("oldPwd") + " 修改为新密码：" + getPara("newPwd"));
 
         if (updateFlag) {
             renderSuccess("修改密码成功");
@@ -243,7 +241,6 @@ public class MainController extends BaseController {
         String sql = "update sys_notice_detail set hasRead = 'Y' , readTime = ? where receiver = ? and hasRead = 'N' ";
         sqlPara.setSql(sql).addPara(new Date()).addPara(sysUser.getId());
         Db.update(sqlPara);
-        addServiceLog("用户 " + sysUser.getUsername() + " 设置所有系统通知为 已读");
         renderSuccess("设置 全部已读 操作成功");
     }
 
@@ -257,46 +254,4 @@ public class MainController extends BaseController {
         Ret ret = Ret.create().setOk().set("unreadCount", record == null ? 0 : record.get("unreadCount"));
         renderJson(ret);
     }
-
-
-    /**
-     * 主题列表
-     */
-    public void themeList() {
-        List<SysDict> themeList = SysDict.dao.findListByGroupCode("theme", true);
-        themeList.forEach(item -> {
-            String[] aryTemp = item.getStr("value").split(" ");
-            item.put("color", aryTemp[1]);
-            item.put("value", aryTemp[0]);
-        });
-        setAttr("colorList", themeList);
-        render("themeList.ftl");
-    }
-
-    /**
-     * 主题设置
-     */
-    public void themeSet() {
-        String username = WebUtils.getSessionUsername(this);
-        SysUserSetting sysUserSetting = SysUserSetting.dao.findBySysUser(username);
-
-        String color = get("color");
-        String colorName = get("colorName");
-        if (sysUserSetting == null) {
-            sysUserSetting = new SysUserSetting();
-            sysUserSetting.setId(IdUtils.id());
-            sysUserSetting.setSysUser(username);
-            sysUserSetting.setTheme(colorName);
-            sysUserSetting.setThemeColor(color);
-            sysUserSetting.save();
-        } else {
-            sysUserSetting.setTheme(colorName);
-            sysUserSetting.setThemeColor(color);
-            sysUserSetting.update();
-        }
-        setSessionAttr("theme", colorName);
-
-        renderSuccess("设置成功");
-    }
-
 }

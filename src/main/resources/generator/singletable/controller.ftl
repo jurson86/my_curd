@@ -12,11 +12,13 @@ import cn.afterturn.easypoi.excel.ExcelImportUtil;
 import cn.afterturn.easypoi.excel.entity.ExportParams;
 import cn.afterturn.easypoi.excel.entity.ImportParams;
 import com.github.qinyou.common.render.ExcelRender;
+import org.apache.commons.io.FilenameUtils;
 import com.github.qinyou.common.utils.FileUtils;
 import com.jfinal.upload.UploadFile;
 import com.jfinal.plugin.activerecord.tx.Tx;
+import lombok.extern.slf4j.Slf4j;
 </#if>
-import com.github.qinyou.common.base.BaseController;
+import com.github.qinyou.common.web.BaseController;
 import com.github.qinyou.common.config.Constant;
 import com.github.qinyou.common.interceptor.SearchSql;
 import com.github.qinyou.common.utils.Id.IdUtils;
@@ -36,6 +38,7 @@ import java.util.List;
  * @author ${author!}
  * @since ${(since)!}
  */
+<#if hasExcel>@Slf4j</#if>
 @RequireMenuCode("${(tableMeta.nameCamel)!}")
 public class ${(tableMeta.nameCamelFirstUp)!}Controller extends BaseController{
 
@@ -83,9 +86,9 @@ public class ${(tableMeta.nameCamelFirstUp)!}Controller extends BaseController{
             .setCreater(WebUtils.getSessionUsername(this))
             .setCreateTime(new Date());
         if(${(tableMeta.nameCamel)!}.save()){
-            renderSuccess(Constant.ADD_SUCCESS);
+            renderSuccess(ADD_SUCCESS);
         }else{
-            renderFail(Constant.ADD_FAIL);
+            renderFail(ADD_FAIL);
         }
     }
 
@@ -97,9 +100,9 @@ public class ${(tableMeta.nameCamelFirstUp)!}Controller extends BaseController{
         ${(tableMeta.nameCamel)!}.setUpdater(WebUtils.getSessionUsername(this))
             .setUpdateTime(new Date());
         if( ${(tableMeta.nameCamel)!}.update()){
-            renderSuccess(Constant.UPDATE_SUCCESS);
+            renderSuccess(UPDATE_SUCCESS);
         }else{
-            renderFail(Constant.UPDATE_FAIL);
+            renderFail(UPDATE_FAIL);
         }
     }
 
@@ -111,7 +114,7 @@ public class ${(tableMeta.nameCamelFirstUp)!}Controller extends BaseController{
         String ids = getPara("ids").replaceAll(",","','");
         String deleteSql = "delete from ${(tableMeta.name)!} where id in ( '" + ids + "' ) ";
         Db.update(deleteSql);
-        renderSuccess(Constant.DELETE_SUCCESS);
+        renderSuccess(DELETE_SUCCESS);
     }
 
 
@@ -147,8 +150,8 @@ public class ${(tableMeta.nameCamelFirstUp)!}Controller extends BaseController{
             renderFail("上传文件不可为空");
             return;
         }
-        if(!FileUtils.getExtensionName(uploadFile.getFileName()).equals("xls")){
-            uploadFile.getFile().delete();
+        if(!FilenameUtils.getExtension(uploadFile.getFileName()).equals("xls")){
+            FileUtils.deleteFile(uploadFile.getFile());
             renderFail("上传文件后缀必须是xls");
             return;
         }
@@ -160,8 +163,8 @@ public class ${(tableMeta.nameCamelFirstUp)!}Controller extends BaseController{
             params.setHeadRows(1);
             list = ExcelImportUtil.importExcel( uploadFile.getFile(), ${(tableMeta.nameCamelFirstUp)!}.class, params);
         }catch (Exception e){
-            LOG.error(e.getMessage(),e);
-            uploadFile.getFile().delete();
+            log.error(e.getMessage(),e);
+            FileUtils.deleteFile(uploadFile.getFile());
             renderFail("模板文件格式错误");
             return;
         }
@@ -173,8 +176,8 @@ public class ${(tableMeta.nameCamelFirstUp)!}Controller extends BaseController{
                     .save();
         }
 
-        uploadFile.getFile().delete();
-        renderSuccess(Constant.IMPORT_SUCCESS);
+        FileUtils.deleteFile(uploadFile.getFile());
+        renderSuccess(IMPORT_SUCCESS);
     }
     </#if>
 }

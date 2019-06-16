@@ -31,13 +31,14 @@ public class SystemRoute extends Routes {
         // 通知类型
         add("/sysNoticeType", SysNoticeTypeController.class, Constant.VIEW_PATH);
 
-        // 业务日志
-        add("/sysServiceLog", SysServiceLogController.class, Constant.VIEW_PATH);
-
         // 用户解锁
         add("/sysUserUnlock", SysUserUnlockController.class, Constant.VIEW_PATH);
 
         // 定时任务
         add("/sysTask", SysTaskController.class, Constant.VIEW_PATH);
+
+
+        // 系统设置
+        add("/sysSetting", SysSettingController.class, Constant.VIEW_PATH);
     }
 }

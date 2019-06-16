@@ -6,7 +6,7 @@ import com.jfinal.plugin.activerecord.Page;
 import com.jfinal.plugin.activerecord.tx.Tx;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import com.github.qinyou.common.base.BaseController;
+import com.github.qinyou.common.web.BaseController;
 import com.github.qinyou.common.config.Constant;
 import com.github.qinyou.common.interceptor.SearchSql;
 import com.github.qinyou.common.utils.Id.IdUtils;
@@ -97,7 +97,7 @@ public class ${(mainTableMeta.nameCamelFirstUp)!}Controller extends BaseControll
 
     </#list>
 </#if>
-        renderSuccess(Constant.ADD_SUCCESS);
+        renderSuccess(ADD_SUCCESS);
     }
 
     /**
@@ -129,7 +129,7 @@ public class ${(mainTableMeta.nameCamelFirstUp)!}Controller extends BaseControll
 
     </#list>
 </#if>
-        renderSuccess(Constant.UPDATE_SUCCESS);
+        renderSuccess(UPDATE_SUCCESS);
     }
 
     /**
@@ -151,7 +151,7 @@ public class ${(mainTableMeta.nameCamelFirstUp)!}Controller extends BaseControll
         deleteSql = "delete from ${(mainTableMeta.name)!} where id in ( '" + ids + "' ) ";
         Db.update(deleteSql);
 
-        renderSuccess(Constant.DELETE_SUCCESS);
+        renderSuccess(DELETE_SUCCESS);
     }
 
 
@@ -164,7 +164,7 @@ public class ${(mainTableMeta.nameCamelFirstUp)!}Controller extends BaseControll
     public void delete${(sonTableMeta.nameCamelFirstUp)!}Action() {
         String id = getPara("id");
         ${(sonTableMeta.nameCamelFirstUp)!}.dao.deleteById(id);
-        renderSuccess(Constant.DELETE_SUCCESS);
+        renderSuccess(DELETE_SUCCESS);
     }
     </#list>
 </#if>

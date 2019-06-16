@@ -1,14 +1,14 @@
 package com.github.qinyou.genOnline.controller;
 
 import com.github.qinyou.common.annotation.RequireMenuCode;
-import com.github.qinyou.common.base.BaseController;
+import com.github.qinyou.common.gen.GeneratorConfig;
+import com.github.qinyou.common.gen.client.*;
+import com.github.qinyou.common.gen.tools.ColumnMeta;
+import com.github.qinyou.common.gen.tools.MysqlMetaUtils;
+import com.github.qinyou.common.gen.tools.TableMeta;
 import com.github.qinyou.common.render.ZipRender;
 import com.github.qinyou.common.utils.StringUtils;
-import com.github.qinyou.common.utils.gen.GeneratorConfig;
-import com.github.qinyou.common.utils.gen.client.*;
-import com.github.qinyou.common.utils.gen.tools.ColumnMeta;
-import com.github.qinyou.common.utils.gen.tools.MysqlMetaUtils;
-import com.github.qinyou.common.utils.gen.tools.TableMeta;
+import com.github.qinyou.common.web.BaseController;
 import com.google.common.collect.Collections2;
 import com.jfinal.plugin.activerecord.DbKit;
 import lombok.extern.slf4j.Slf4j;

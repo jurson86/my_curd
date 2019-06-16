@@ -107,6 +107,7 @@ div[class*='datagrid-']>input[type=checkbox]:checked::before {
 .checkbox-checked {
     background:#7280fa  !important;
 }
+
 .sidemenu .tree-node-selected {
     border-right: 2px solid#7280fa  !important;
     color:#7280fa  !important;

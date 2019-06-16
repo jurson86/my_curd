@@ -1,15 +1,15 @@
 package com.github.qinyou.system.controller;
 
 import com.github.qinyou.common.annotation.RequireMenuCode;
-import com.github.qinyou.common.base.BaseController;
 import com.github.qinyou.common.config.Constant;
-import com.github.qinyou.common.interceptor.ExceptionInterceptor;
+import com.github.qinyou.common.interceptor.ComActionInterceptor;
 import com.github.qinyou.common.interceptor.PermissionInterceptor;
 import com.github.qinyou.common.interceptor.SearchSql;
 import com.github.qinyou.common.utils.Id.IdUtils;
 import com.github.qinyou.common.utils.StringUtils;
 import com.github.qinyou.common.utils.WebUtils;
 import com.github.qinyou.common.validator.IdsRequired;
+import com.github.qinyou.common.web.BaseController;
 import com.github.qinyou.system.model.SysDict;
 import com.github.qinyou.system.model.SysDictGroup;
 import com.google.common.base.Objects;
@@ -73,9 +73,9 @@ public class SysDictController extends BaseController {
         sysDictGroup.setCreater(WebUtils.getSessionUsername(this))
                 .setCreateTime(new Date());
         if (sysDictGroup.save()) {
-            renderSuccess(Constant.ADD_SUCCESS);
+            renderSuccess(ADD_SUCCESS);
         } else {
-            renderFail(Constant.ADD_FAIL);
+            renderFail(ADD_FAIL);
         }
     }
 
@@ -87,7 +87,7 @@ public class SysDictController extends BaseController {
         // 已存数据
         SysDictGroup sysDictGroupOld = SysDictGroup.dao.findById(get("id"));
         if (sysDictGroupOld == null) {
-            renderSuccess(Constant.UPDATE_FAIL);
+            renderSuccess(UPDATE_FAIL);
             return;
         }
         // 修改后的数据
@@ -97,7 +97,7 @@ public class SysDictController extends BaseController {
 
         if (!Objects.equal(sysDictGroup.getGroupCode(), sysDictGroupOld.getGroupCode())) {
             // 编码不一致
-            List<SysDict> sysDictList = SysDict.dao.findListByGroupCode(sysDictGroupOld.getGroupCode(), false);
+            List<SysDict> sysDictList = SysDict.dao.findAllByGroupCode(sysDictGroupOld.getGroupCode());
             if (sysDictList.size() > 0) {
                 // 子表存在记录
                 Db.tx(() -> {
@@ -113,7 +113,7 @@ public class SysDictController extends BaseController {
         } else {
             sysDictGroup.update();
         }
-        renderSuccess(Constant.UPDATE_SUCCESS);
+        renderSuccess(UPDATE_SUCCESS);
     }
 
 
@@ -131,7 +131,7 @@ public class SysDictController extends BaseController {
             Db.update(sql);
             return true;
         });
-        renderSuccess(Constant.DELETE_SUCCESS);
+        renderSuccess(DELETE_SUCCESS);
     }
 
 
@@ -184,9 +184,9 @@ public class SysDictController extends BaseController {
                 .setCreateTime(new Date())
                 .save();
         if (flag) {
-            renderSuccess(Constant.ADD_SUCCESS);
+            renderSuccess(ADD_SUCCESS);
         } else {
-            renderFail(Constant.ADD_FAIL);
+            renderFail(ADD_FAIL);
         }
     }
 
@@ -198,9 +198,9 @@ public class SysDictController extends BaseController {
         SysDict sysDict = getBean(SysDict.class, "");
         boolean flag = sysDict.setUpdater(WebUtils.getSessionUsername(this)).setUpdateTime(new Date()).update();
         if (flag) {
-            renderSuccess(Constant.UPDATE_SUCCESS);
+            renderSuccess(UPDATE_SUCCESS);
         } else {
-            renderFail(Constant.UPDATE_FAIL);
+            renderFail(UPDATE_FAIL);
         }
     }
 
@@ -212,14 +212,14 @@ public class SysDictController extends BaseController {
         String ids = getPara("ids").replaceAll(",", "','");
         String sql = "update sys_dict set delFlag = 'X' where id in ('" + ids + "')";
         Db.update(sql);
-        renderSuccess(Constant.DELETE_SUCCESS);
+        renderSuccess(DELETE_SUCCESS);
     }
 
 
-    @Clear({PermissionInterceptor.class, ExceptionInterceptor.class})
+    @Clear({PermissionInterceptor.class, ComActionInterceptor.class})
     public void combobox() {
         String groupCode = get("groupCode", "");
-        renderJson(SysDict.dao.findListByGroupCode(groupCode, true));
+        renderJson(SysDict.dao.findListByGroupAndState(groupCode, "on"));
     }
 }
 

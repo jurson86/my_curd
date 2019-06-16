@@ -4,18 +4,19 @@ import com.alibaba.druid.filter.stat.StatFilter;
 import com.alibaba.druid.wall.WallFilter;
 import com.github.qinyou.LoginController;
 import com.github.qinyou.MainController;
-import com.github.qinyou.common.interceptor.ExceptionInterceptor;
+import com.github.qinyou.common.interceptor.ComActionInterceptor;
 import com.github.qinyou.common.interceptor.LoginInterceptor;
 import com.github.qinyou.common.interceptor.PermissionInterceptor;
 import com.github.qinyou.common.interceptor.SessionInViewInterceptor;
-import com.github.qinyou.common.log.LogBackLogFactory;
 import com.github.qinyou.common.utils.UtilsController;
-import com.github.qinyou.common.utils.file.FileController;
+import com.github.qinyou.common.utils.log.LogBackLogFactory;
+import com.github.qinyou.common.web.FileController;
 import com.github.qinyou.example.ExampleModelMapping;
 import com.github.qinyou.example.ExampleRoute;
 import com.github.qinyou.genOnline.GenOnlineRoute;
 import com.github.qinyou.system.SystemModelMapping;
 import com.github.qinyou.system.SystemRoute;
+import com.github.qinyou.system.model.SysSetting;
 import com.github.qinyou.system.model.SysUser;
 import com.jfinal.config.*;
 import com.jfinal.ext.handler.ContextPathHandler;
@@ -55,14 +56,7 @@ public class AppConfig extends JFinalConfig {
                     builder.addFilterInitParam("DruidWebStatFilter", "exclusions", "*.js,*.gif,*.jpg,*.jpeg,*.png,*.css,*.ico,/druid/*,/static/*");
                     builder.addFilterInitParam("DruidWebStatFilter", "principalSessionName", "SYS_USER_NAME");
                     builder.addFilterInitParam("DruidWebStatFilter", "profileEnable", "true");
-                    // cors 跨域 filter
-                    builder.addFilter("CORS", "com.thetransactioncompany.cors.CORSFilter");
-                    builder.addFilterUrlMapping("CORS", "/*");
-                    builder.addFilterInitParam("CORS", "cors.allowOrigin", "*");
-                    builder.addFilterInitParam("CORS", "cors.supportedMethods", "GET, POST, HEAD, PUT, DELETE");
-                    builder.addFilterInitParam("CORS", "cors.supportedHeaders", "Accept, Origin, X-Requested-With, Content-Type, Last-Modified");
-                    builder.addFilterInitParam("CORS", "cors.exposedHeaders", "Set-Cookie");
-                    builder.addFilterInitParam("CORS", "cors.supportsCredentials", "true");
+
                     // 配置 WebSocket，MyWebSocket 需使用 ServerEndpoint 注解
                     builder.addWebSocketEndpoint("com.github.qinyou.common.ws.WebSocketServer");
                 }).start();
@@ -141,9 +135,8 @@ public class AppConfig extends JFinalConfig {
         List<String> sessionFields = new ArrayList<>();
         sessionFields.add("sysUserName");
         sessionFields.add("buttonCodes");
-        sessionFields.add("theme");
         me.addGlobalActionInterceptor(new SessionInViewInterceptor(sessionFields));
-        me.addGlobalActionInterceptor(new ExceptionInterceptor());   // 异常，访问日志
+        me.addGlobalActionInterceptor(new ComActionInterceptor());   // 异常，访问日志
     }
 
     @Override
@@ -168,5 +161,14 @@ public class AppConfig extends JFinalConfig {
 
     @Override
     public void configEngine(Engine me) {
+    }
+
+
+    @Override
+    public void onStart() {
+        List<SysSetting> sysSettings = SysSetting.dao.findAll();
+        for (SysSetting sysSetting : sysSettings) {
+            Constant.SETTING.put(sysSetting.getSettingCode(), sysSetting.getSettingValue());
+        }
     }
 }

@@ -9,7 +9,6 @@ import io.jsonwebtoken.SignatureAlgorithm;
 import javax.crypto.spec.SecretKeySpec;
 import javax.xml.bind.DatatypeConverter;
 import java.security.Key;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -81,17 +80,5 @@ public class JwtUtils {
         userClaim.setIat(claims.getIssuedAt());
         userClaim.setExp(claims.getExpiration());
         return userClaim;
-    }
-
-    public static void main(String[] args) {
-        String username = "admin";
-        List<String> roles = new ArrayList<>();
-        roles.add("admin");
-        roles.add("god");
-        roles.add("bad_buy");
-        String token = createToken(username, roles);
-        System.out.println(createToken(username, roles));
-        UserClaim userClaim = parseToken(token);
-        System.out.println(userClaim);
     }
 }

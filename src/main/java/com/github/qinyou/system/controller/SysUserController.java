@@ -1,13 +1,13 @@
 package com.github.qinyou.system.controller;
 
 import com.github.qinyou.common.annotation.RequireMenuCode;
-import com.github.qinyou.common.base.BaseController;
 import com.github.qinyou.common.config.Constant;
 import com.github.qinyou.common.interceptor.SearchSql;
 import com.github.qinyou.common.utils.Id.IdUtils;
 import com.github.qinyou.common.utils.StringUtils;
 import com.github.qinyou.common.utils.WebUtils;
 import com.github.qinyou.common.validator.IdsRequired;
+import com.github.qinyou.common.web.BaseController;
 import com.github.qinyou.system.model.SysUser;
 import com.github.qinyou.system.model.SysUserRole;
 import com.jfinal.aop.Before;
@@ -20,6 +20,7 @@ import java.util.Date;
 
 @RequireMenuCode("sysUser")
 public class SysUserController extends BaseController {
+    private final String DEFAULT_PWD = "123456"; // 默认密码
 
     /**
      * 主页面
@@ -61,11 +62,11 @@ public class SysUserController extends BaseController {
     public void addAction() {
         SysUser sysUser = getBean(SysUser.class, "");
         sysUser.setId(IdUtils.id()).setCreater(WebUtils.getSessionUsername(this)).setCreateTime(new Date()).setUserState("0");
-        sysUser.setPassword(HashKit.sha1(Constant.USER_DEFAULT_PASSWORD));
+        sysUser.setPassword(HashKit.sha1(DEFAULT_PWD));
         if (sysUser.save()) {
-            renderSuccess(Constant.ADD_SUCCESS);
+            renderSuccess(ADD_SUCCESS);
         } else {
-            renderFail(Constant.ADD_FAIL);
+            renderFail(ADD_FAIL);
         }
 
     }
@@ -77,9 +78,9 @@ public class SysUserController extends BaseController {
         SysUser sysUser = getBean(SysUser.class, "");
         sysUser.setUpdater(WebUtils.getSessionUsername(this)).setUpdateTime(new Date());
         if (sysUser.update()) {
-            renderSuccess(Constant.UPDATE_SUCCESS);
+            renderSuccess(UPDATE_SUCCESS);
         } else {
-            renderFail(Constant.UPDATE_FAIL);
+            renderFail(UPDATE_FAIL);
         }
     }
 
@@ -96,7 +97,7 @@ public class SysUserController extends BaseController {
             Db.update(sql);
             return true;
         });
-        renderSuccess(Constant.DELETE_SUCCESS);
+        renderSuccess(DELETE_SUCCESS);
     }
 
 
@@ -106,10 +107,10 @@ public class SysUserController extends BaseController {
     @Before(IdsRequired.class)
     public void resetPwd() {
         String ids = getPara("ids").replaceAll(",", "','");
-        String sha1Pwd = HashKit.sha1(Constant.USER_DEFAULT_PASSWORD);
+        String sha1Pwd = HashKit.sha1(DEFAULT_PWD);
         String sql = "update sys_user set password = ? where id in ('" + ids + "')";
         Db.update(sql, sha1Pwd);
-        renderSuccess("重置密码成功。新密码: " + Constant.USER_DEFAULT_PASSWORD);
+        renderSuccess("重置密码成功。新密码: " + DEFAULT_PWD);
     }
 
 
@@ -173,7 +174,7 @@ public class SysUserController extends BaseController {
         for (String roleId : roleIdAry) {
             SysUserRole.dao.deleteByIds(userId, roleId);
         }
-        renderSuccess(Constant.DELETE_SUCCESS);
+        renderSuccess(DELETE_SUCCESS);
     }
 
 

@@ -4,14 +4,14 @@ import cn.afterturn.easypoi.excel.ExcelExportUtil;
 import cn.afterturn.easypoi.excel.entity.ExportParams;
 import com.github.qinyou.common.annotation.RequireButtonCode;
 import com.github.qinyou.common.annotation.RequireMenuCode;
-import com.github.qinyou.common.base.BaseController;
 import com.github.qinyou.common.config.Constant;
-import com.github.qinyou.common.interceptor.ExceptionInterceptor;
+import com.github.qinyou.common.interceptor.ComActionInterceptor;
 import com.github.qinyou.common.interceptor.SearchSql;
 import com.github.qinyou.common.render.ExcelRender;
 import com.github.qinyou.common.utils.StringUtils;
 import com.github.qinyou.common.utils.WebUtils;
 import com.github.qinyou.common.validator.IdsRequired;
+import com.github.qinyou.common.web.BaseController;
 import com.github.qinyou.system.model.SysVisitLog;
 import com.github.qinyou.system.service.SysNoticeService;
 import com.jfinal.aop.Before;
@@ -29,7 +29,7 @@ import java.util.Map;
 /**
  * 访问日志
  */
-@Clear(ExceptionInterceptor.class)
+@Clear(ComActionInterceptor.class)
 @RequireMenuCode("sysVisitLog")
 public class SysVisitLogController extends BaseController {
 
@@ -70,7 +70,7 @@ public class SysVisitLogController extends BaseController {
         SysNoticeService service = Duang.duang(SysNoticeService.class);
         service.sendNotice(noticeTypeCode, params);
 
-        renderSuccess(Constant.DELETE_SUCCESS);
+        renderSuccess(DELETE_SUCCESS);
     }
 
 

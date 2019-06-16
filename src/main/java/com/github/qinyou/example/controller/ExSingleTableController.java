@@ -5,24 +5,24 @@ import cn.afterturn.easypoi.excel.ExcelImportUtil;
 import cn.afterturn.easypoi.excel.entity.ExportParams;
 import cn.afterturn.easypoi.excel.entity.ImportParams;
 import com.github.qinyou.common.annotation.RequireMenuCode;
-import com.github.qinyou.common.base.BaseController;
 import com.github.qinyou.common.config.Constant;
 import com.github.qinyou.common.interceptor.SearchSql;
 import com.github.qinyou.common.render.ExcelRender;
+import com.github.qinyou.common.utils.FileUtils;
 import com.github.qinyou.common.utils.Id.IdUtils;
 import com.github.qinyou.common.utils.StringUtils;
 import com.github.qinyou.common.utils.WebUtils;
 import com.github.qinyou.common.validator.IdsRequired;
+import com.github.qinyou.common.web.BaseController;
 import com.github.qinyou.example.model.ExSingleTable;
 import com.jfinal.aop.Before;
 import com.jfinal.plugin.activerecord.Db;
 import com.jfinal.plugin.activerecord.Page;
 import com.jfinal.plugin.activerecord.tx.Tx;
 import com.jfinal.upload.UploadFile;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.poi.ss.usermodel.Workbook;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.util.Date;
 import java.util.List;
@@ -33,10 +33,10 @@ import java.util.List;
  * @author zhangchuang
  * @since 2019-02-22 21:39:25
  */
+@Slf4j
 @RequireMenuCode("exSingleTable")
 public class ExSingleTableController extends BaseController {
 
-    private final static Logger LOG = LoggerFactory.getLogger(ExSingleTableController.class);
 
     /**
      * 列表页
@@ -80,9 +80,9 @@ public class ExSingleTableController extends BaseController {
                 .setCreater(WebUtils.getSessionUsername(this))
                 .setCreateTime(new Date());
         if (exSingleTable.save()) {
-            renderSuccess(Constant.ADD_SUCCESS);
+            renderSuccess(ADD_SUCCESS);
         } else {
-            renderFail(Constant.ADD_FAIL);
+            renderFail(ADD_FAIL);
         }
     }
 
@@ -94,9 +94,9 @@ public class ExSingleTableController extends BaseController {
         exSingleTable.setUpdater(WebUtils.getSessionUsername(this))
                 .setUpdateTime(new Date());
         if (exSingleTable.update()) {
-            renderSuccess(Constant.UPDATE_SUCCESS);
+            renderSuccess(UPDATE_SUCCESS);
         } else {
-            renderFail(Constant.UPDATE_FAIL);
+            renderFail(UPDATE_FAIL);
         }
     }
 
@@ -108,7 +108,7 @@ public class ExSingleTableController extends BaseController {
         String ids = getPara("ids").replaceAll(",", "','");
         String deleteSql = "delete from ex_single_table where id in ( '" + ids + "' ) ";
         Db.update(deleteSql);
-        renderSuccess(Constant.DELETE_SUCCESS);
+        renderSuccess(DELETE_SUCCESS);
     }
 
 
@@ -142,7 +142,7 @@ public class ExSingleTableController extends BaseController {
             return;
         }
         if (!FilenameUtils.getExtension(uploadFile.getFileName()).equals("xls")) {
-            uploadFile.getFile().delete();
+            FileUtils.deleteFile(uploadFile.getFile());
             renderFail("上传文件后缀必须是xls");
             return;
         }
@@ -154,8 +154,8 @@ public class ExSingleTableController extends BaseController {
             params.setHeadRows(1);
             list = ExcelImportUtil.importExcel(uploadFile.getFile(), ExSingleTable.class, params);
         } catch (Exception e) {
-            LOG.error(e.getMessage(), e);
-            uploadFile.getFile().delete();
+            log.error(e.getMessage(), e);
+            FileUtils.deleteFile(uploadFile.getFile());
             renderFail("模板文件格式错误");
             return;
         }
@@ -169,7 +169,7 @@ public class ExSingleTableController extends BaseController {
                     .save();
         }
 
-        uploadFile.getFile().delete();
-        renderSuccess(Constant.IMPORT_SUCCESS);
+        FileUtils.deleteFile(uploadFile.getFile());
+        renderSuccess(IMPORT_SUCCESS);
     }
 }

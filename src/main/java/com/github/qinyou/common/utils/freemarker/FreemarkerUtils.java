@@ -1,7 +1,6 @@
 package com.github.qinyou.common.utils.freemarker;
 
 import com.github.qinyou.common.config.Constant;
-import freemarker.cache.TemplateLoader;
 import freemarker.template.Configuration;
 import freemarker.template.DefaultObjectWrapper;
 import freemarker.template.Template;
@@ -16,7 +15,7 @@ import java.util.Map;
  * @author zhangchuang
  */
 @Slf4j
-public abstract class FreemarkerUtils {
+public class FreemarkerUtils {
 
     /**
      * 通过模板文本字符串和数据获得渲染后的文本
@@ -83,32 +82,4 @@ public abstract class FreemarkerUtils {
             }
         }
     }
-}
-
-class StringTemplateLoader implements TemplateLoader {
-    private String template;
-
-    public StringTemplateLoader(String template) {
-        this.template = template;
-        if (template == null) {
-            this.template = "";
-        }
-    }
-
-    public void closeTemplateSource(Object templateSource) {
-        ((StringReader) templateSource).close();
-    }
-
-    public Object findTemplateSource(String name) {
-        return new StringReader(template);
-    }
-
-    public long getLastModified(Object templateSource) {
-        return 0;
-    }
-
-    public Reader getReader(Object templateSource, String encoding) {
-        return (Reader) templateSource;
-    }
-
 }

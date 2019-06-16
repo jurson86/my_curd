@@ -17,8 +17,6 @@ public class SystemModelMapping {
 
         // 系统用户表
         arp.addMapping("sys_user", "id", SysUser.class);
-        // 用户设置项
-        arp.addMapping("sys_user_setting", "id", SysUserSetting.class);
         // 角色
         arp.addMapping("sys_role", "id", SysRole.class);
         // 系统菜单
@@ -47,12 +45,12 @@ public class SystemModelMapping {
         arp.addMapping("sys_notice_type", "id", SysNoticeType.class);
         // 系统通知类型角色中间表
         arp.addMapping("sys_notice_type_sys_role", "sysNoticeTypeId,sysRoleId", SysNoticeTypeSysRole.class);
-        // 业务日志，程序主动记录的重要操作日志
-        arp.addMapping("sys_service_log", "id", SysServiceLog.class);
         // 系统访问日志
         arp.addMapping("sys_visit_log", "id", SysVisitLog.class);
         // 定时任务日志
         arp.addMapping("sys_task_log", "id", SysTaskLog.class);
+        // 系统设置项
+        arp.addMapping("sys_setting", "id", SysSetting.class);
     }
 }
 

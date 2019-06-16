@@ -52,13 +52,14 @@
                     <th field="dictLabel" width="150">名称</th>
                     <th field="dictValue" width="200">编码</th>
                     <th field="sortNum" width="100">排序号</th>
+                    <th field="state" width="100" >状态</th>
                     <#--<th field="createTime" width="200">创建时间</th>-->
                 </tr>
                 </thead>
             </table>
             <div id="tb2">
                 <a onclick="newDictModel()" href="#" class="easyui-linkbutton" iconCls="iconfont icon-add" plain="true">新增字典</a>
-                <a onclick="editModel('dg2','${ctx!}/sysDict/newDictModel', '350px', '300px')" href="#" class="easyui-linkbutton" iconCls="iconfont icon-edit" plain="true">编辑字典</a>
+                <a onclick="editModel('dg2','${ctx!}/sysDict/newDictModel', '350px', '350px')" href="#" class="easyui-linkbutton" iconCls="iconfont icon-edit" plain="true">编辑字典</a>
                 <a onclick="deleteModel('dg2','${ctx!}/sysDict/deleteDictAction')" href="#" class="easyui-linkbutton  " iconCls="iconfont icon-delete" plain="true">删除字典</a>
                 <span id="searchSpan2" class="searchInputArea">
                     <input id="groupCodeHid" name="search_EQ_groupCode" type="hidden"  >
@@ -79,13 +80,13 @@
                popup.msg('请选中一条字典分组');
                return;
             }
-            popup.openIframe('新建','${ctx!}/sysDict/newDictModel?groupCode='+rows[0].groupCode, '350px', '300px')
-        };
+            popup.openIframe('新建','${ctx!}/sysDict/newDictModel?groupCode='+rows[0].groupCode, '350px', '350px')
+        }
 
         /*左侧分组选中*/
         function groupSelect(index,row){
             $('#groupCodeHid').val(row.groupCode);
             $('#searchSpan2 a').first().trigger('click');
-        };
+        }
     </script>
 </@layout>

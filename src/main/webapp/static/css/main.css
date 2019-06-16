@@ -35,7 +35,7 @@
 .mainHeader ul.headerMenu li a.header-title {
     width: 220px;
     font-size:18px ;
-    font-weight: bold;
+    font-weight: 400;
 }
 .mainHeader ul.headerMenu  a.header-active {
     filter: alpha(opacity=90);

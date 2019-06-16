@@ -2,13 +2,13 @@ package com.github.qinyou.system.controller;
 
 import com.github.qinyou.LoginService;
 import com.github.qinyou.common.annotation.RequireMenuCode;
-import com.github.qinyou.common.base.BaseController;
 import com.github.qinyou.common.config.Constant;
 import com.github.qinyou.common.interceptor.SearchSql;
 import com.github.qinyou.common.utils.Id.IdUtils;
 import com.github.qinyou.common.utils.StringUtils;
 import com.github.qinyou.common.utils.WebUtils;
 import com.github.qinyou.common.validator.IdsRequired;
+import com.github.qinyou.common.web.BaseController;
 import com.github.qinyou.system.model.*;
 import com.google.common.base.Objects;
 import com.jfinal.aop.Before;
@@ -71,9 +71,9 @@ public class SysRoleController extends BaseController {
                 .setCreater(WebUtils.getSessionUsername(this))
                 .setCreateTime(new Date());
         if (sysRole.save()) {
-            renderSuccess(Constant.ADD_SUCCESS);
+            renderSuccess(ADD_SUCCESS);
         } else {
-            renderFail(Constant.ADD_FAIL);
+            renderFail(ADD_FAIL);
         }
     }
 
@@ -85,9 +85,9 @@ public class SysRoleController extends BaseController {
         sysRole.setUpdater(WebUtils.getSessionUsername(this))
                 .setUpdateTime(new Date());
         if (sysRole.update()) {
-            renderSuccess(Constant.UPDATE_SUCCESS);
+            renderSuccess(UPDATE_SUCCESS);
         } else {
-            renderFail(Constant.UPDATE_FAIL);
+            renderFail(UPDATE_FAIL);
         }
     }
 
@@ -113,7 +113,7 @@ public class SysRoleController extends BaseController {
             Db.update(sql);
             return true;
         });
-        renderSuccess(Constant.DELETE_SUCCESS);
+        renderSuccess(DELETE_SUCCESS);
     }
 
     /**
@@ -147,7 +147,7 @@ public class SysRoleController extends BaseController {
             return;
         }
         SysUserRole.dao.deleteByIds(userId, roleId);
-        renderSuccess(Constant.DELETE_SUCCESS);
+        renderSuccess(DELETE_SUCCESS);
     }
 
 

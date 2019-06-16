@@ -51,7 +51,7 @@ public class SysNoticeService {
         // 通知标题
         String msgTitle = sysNoticeType.getTypeName();
         // 通知内容
-        String msgContent = FreemarkerUtils.renderAsText(sysNoticeType.getTemplate().replaceAll("FTL", "\\$"), templateParams);
+        String msgContent = FreemarkerUtils.renderAsText(sysNoticeType.getTpl().replaceAll("FTL", "\\$"), templateParams);
 
         // 保存通知数据
         boolean flag = saveNotificationData(sysNoticeType, msgTitle, msgContent, receivers);

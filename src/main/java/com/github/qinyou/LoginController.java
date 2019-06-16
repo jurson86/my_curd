@@ -1,17 +1,16 @@
 package com.github.qinyou;
 
 import com.alibaba.fastjson.JSON;
-import com.github.qinyou.common.base.BaseController;
 import com.github.qinyou.common.interceptor.LoginInterceptor;
 import com.github.qinyou.common.interceptor.PermissionInterceptor;
 import com.github.qinyou.common.utils.StringUtils;
 import com.github.qinyou.common.utils.guava.BaseCache;
 import com.github.qinyou.common.utils.guava.CacheContainer;
 import com.github.qinyou.common.utils.guava.LoginRetryLimitCache;
+import com.github.qinyou.common.web.BaseController;
 import com.github.qinyou.system.model.SysMenu;
 import com.github.qinyou.system.model.SysUser;
 import com.github.qinyou.system.model.SysUserRole;
-import com.github.qinyou.system.model.SysUserSetting;
 import com.jfinal.aop.Clear;
 import com.jfinal.aop.Duang;
 import com.jfinal.core.ActionKey;
@@ -53,7 +52,6 @@ public class LoginController extends BaseController {
 
                 afterLogin(sysUser);
 
-                addServiceLog("通过cookie登录");
                 redirect("/dashboard");
                 return;
             } else {
@@ -135,7 +133,6 @@ public class LoginController extends BaseController {
         afterLogin(sysUser);
 
         // 登录日志
-        addServiceLog("登录");
         redirect("/dashboard");
     }
 
@@ -163,10 +160,6 @@ public class LoginController extends BaseController {
         // 角色编码
         String rolecodes = SysUserRole.dao.findRoleCodesByUserId(sysUser.getId());
         setSessionAttr("roleCodes", rolecodes);
-        // 用户配置
-        SysUserSetting sysUserSetting = SysUserSetting.dao.findBySysUser(sysUser.getUsername());
-        setSessionAttr("theme", sysUserSetting == null ? "default" : sysUserSetting.getTheme());
-
 
         log.debug("{} 拥有角色 ids {}", sysUser.getUsername(), roleIds);
         log.debug("{} 拥有菜单 {}", sysUser.getUsername(), JSON.toJSONString(sysMenus));
@@ -180,8 +173,6 @@ public class LoginController extends BaseController {
      */
     @ActionKey("/logout")
     public void logout() {
-        addServiceLog("退出");
-
         // 当前session 失效
         while (getSession().getAttributeNames().hasMoreElements()) {
             removeSessionAttr(getSession().getAttributeNames().nextElement());

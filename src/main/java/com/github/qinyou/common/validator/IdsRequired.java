@@ -5,7 +5,7 @@ import com.jfinal.kit.Ret;
 import com.jfinal.validate.Validator;
 
 /**
- * ids 参数不可为空, 使用 json 返回错误信息
+ * ids 参数不可为空
  */
 public class IdsRequired extends Validator {
     @Override

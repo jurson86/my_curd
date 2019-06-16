@@ -5,7 +5,7 @@ import com.jfinal.kit.Ret;
 import com.jfinal.validate.Validator;
 
 /**
- * id 参数不为空 校验器
+ * id 参数不为空
  *
  * @author zhangchuang
  */

@@ -5,18 +5,13 @@
 <div id="mainLayout" class="easyui-layout" fit="true" border="false">
     <div class="mainHeader" data-options="region:'north'" border="false">
         <ul class="headerMenu">
-            <li><a href="javascript:fullScreenToggleNew()" title="点击全屏"  class="header-title">XX 管理系统</a></li>
+            <li><a href="javascript:fullScreenToggleNew()" title="点击全屏"  class="header-title">${(setting.sysTitle)!'综合管理系统'}</a></li>
             <li><a href="#" class="header-active">首页</a></li>
             <#--<li><a href="#">OA协同</a></li>-->
             <span class="right">
                 <li>
                     <a href="javascript:openUserNotice()"   title="点击查看通知"  >
                         <i class="iconfont icon-bell"></i> <span id="unreadCount" ></span>
-                    </a>
-                </li>
-                <li>
-                    <a href="javascript:openThemeSetting()"   title="点击设置主题"  >
-                        <i class="iconfont icon-theme"></i>
                     </a>
                 </li>
                 <li>

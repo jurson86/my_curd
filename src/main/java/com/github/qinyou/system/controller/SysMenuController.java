@@ -1,7 +1,6 @@
 package com.github.qinyou.system.controller;
 
 import com.github.qinyou.common.annotation.RequireMenuCode;
-import com.github.qinyou.common.base.BaseController;
 import com.github.qinyou.common.config.Constant;
 import com.github.qinyou.common.interceptor.PermissionInterceptor;
 import com.github.qinyou.common.interceptor.SearchSql;
@@ -11,6 +10,7 @@ import com.github.qinyou.common.utils.TreeTableUtils;
 import com.github.qinyou.common.utils.WebUtils;
 import com.github.qinyou.common.validator.IdRequired;
 import com.github.qinyou.common.validator.IdsRequired;
+import com.github.qinyou.common.web.BaseController;
 import com.github.qinyou.system.model.SysButton;
 import com.github.qinyou.system.model.SysMenu;
 import com.github.qinyou.system.model.SysRoleButton;
@@ -71,9 +71,9 @@ public class SysMenuController extends BaseController {
                 .setCreater(WebUtils.getSessionUsername(this))
                 .setCreateTime(new Date());
         if (sysMenu.save()) {
-            renderSuccess(Constant.ADD_SUCCESS);
+            renderSuccess(ADD_SUCCESS);
         } else {
-            renderFail(Constant.ADD_FAIL);
+            renderFail(ADD_FAIL);
         }
     }
 
@@ -85,9 +85,9 @@ public class SysMenuController extends BaseController {
         sysMenu.setUpdater(WebUtils.getSessionUsername(this))
                 .setUpdateTime(new Date());
         if (sysMenu.update()) {
-            renderSuccess(Constant.UPDATE_SUCCESS);
+            renderSuccess(UPDATE_SUCCESS);
         } else {
-            renderFail(Constant.UPDATE_FAIL);
+            renderFail(UPDATE_FAIL);
         }
     }
 
@@ -117,7 +117,7 @@ public class SysMenuController extends BaseController {
 
             return true;
         });
-        renderSuccess(Constant.DELETE_SUCCESS);
+        renderSuccess(DELETE_SUCCESS);
     }
 
 
@@ -231,18 +231,18 @@ public class SysMenuController extends BaseController {
                 .setCreateTime(new Date());
 
         if (SysButton.dao.findUniqueByProperty("buttonCode", sysButton.getButtonCode()) != null) {
-            renderFail(Constant.ADD_FAIL + " 编码已经存在");
+            renderFail(ADD_FAIL + " 编码已经存在");
             return;
         }
 
         SysMenu sysMenu = SysMenu.dao.findById(sysButton.getSysMenuId());
         if (sysMenu == null) {
-            renderFail(Constant.ADD_FAIL);
+            renderFail(ADD_FAIL);
             return;
         }
 
         sysButton.save();
-        renderSuccess(Constant.ADD_SUCCESS);
+        renderSuccess(ADD_SUCCESS);
     }
 
     /**
@@ -255,14 +255,14 @@ public class SysMenuController extends BaseController {
 
         SysButton oldSysButton = SysButton.dao.findUniqueByProperty("buttonCode", sysButton.getButtonCode());
         if (oldSysButton != null && !sysButton.getId().equals(oldSysButton.getId())) {
-            renderFail(Constant.ADD_FAIL + " 编码已经存在");
+            renderFail(ADD_FAIL + " 编码已经存在");
             return;
         }
 
         if (sysButton.update()) {
-            renderSuccess(Constant.UPDATE_SUCCESS);
+            renderSuccess(UPDATE_SUCCESS);
         } else {
-            renderFail(Constant.UPDATE_FAIL);
+            renderFail(UPDATE_FAIL);
         }
     }
 
@@ -283,7 +283,7 @@ public class SysMenuController extends BaseController {
         sql = "delete from sys_button where id in ('" + ids + "')";
         Db.update(sql);
 
-        renderSuccess(Constant.DELETE_SUCCESS);
+        renderSuccess(DELETE_SUCCESS);
     }
 
     /**

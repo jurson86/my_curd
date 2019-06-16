@@ -1,11 +1,11 @@
 package com.github.qinyou.system.controller;
 
 import com.github.qinyou.common.annotation.RequireMenuCode;
-import com.github.qinyou.common.base.BaseController;
 import com.github.qinyou.common.utils.StringUtils;
 import com.github.qinyou.common.utils.guava.BaseCache;
 import com.github.qinyou.common.utils.guava.CacheContainer;
 import com.github.qinyou.common.utils.guava.LoginRetryLimitCache;
+import com.github.qinyou.common.web.BaseController;
 import com.google.common.base.Joiner;
 import com.jfinal.aop.Before;
 import com.jfinal.plugin.activerecord.Db;
@@ -60,8 +60,6 @@ public class SysUserUnlockController extends BaseController {
         for (String username : usernameAry) {
             baseCache.put(username, new AtomicInteger());
         }
-
-        addServiceLog(usernames + " 账号解锁");
 
         renderSuccess("解锁成功");
     }

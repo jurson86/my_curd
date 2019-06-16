@@ -10,6 +10,9 @@
 .iconfont{
     background: none;
 }
+.iconfont:before{
+    line-height: 20px;
+}
 
 /*easyui linkbutton 按钮字体图标*/
 .l-btn-icon.iconfont{

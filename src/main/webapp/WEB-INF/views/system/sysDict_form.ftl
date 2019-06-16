@@ -13,6 +13,13 @@
             </td>
         </tr>
         <tr>
+            <td>状态：</td>
+            <td>
+                <input name="gender"  class="easyui-combobox"  data-options=" data:[{value:'on',text:'启用'} ,{value:'off',text:'禁用'}],
+                             editable: false,  required:true, panelHeight:'auto',  value:'${(sysDict.state)!'on'}' ">
+            </td>
+        </tr>
+        <tr>
             <td>名称：</td>
             <td>
                 <input name="dictLabel" value="${(sysDict.dictLabel)!}"   class="easyui-textbox"  data-options="required:true" >

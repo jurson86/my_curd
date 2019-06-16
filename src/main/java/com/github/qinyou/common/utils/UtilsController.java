@@ -1,9 +1,9 @@
 package com.github.qinyou.common.utils;
 
-import com.github.qinyou.common.base.BaseController;
 import com.github.qinyou.common.config.Constant;
 import com.github.qinyou.common.interceptor.PermissionInterceptor;
 import com.github.qinyou.common.interceptor.SearchSql;
+import com.github.qinyou.common.web.BaseController;
 import com.github.qinyou.system.model.SysOrg;
 import com.github.qinyou.system.model.SysRole;
 import com.github.qinyou.system.model.SysUser;

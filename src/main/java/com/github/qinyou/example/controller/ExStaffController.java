@@ -1,7 +1,6 @@
 package com.github.qinyou.example.controller;
 
 import com.github.qinyou.common.annotation.RequireMenuCode;
-import com.github.qinyou.common.base.BaseController;
 import com.github.qinyou.common.config.Constant;
 import com.github.qinyou.common.interceptor.SearchSql;
 import com.github.qinyou.common.utils.Id.IdUtils;
@@ -9,6 +8,7 @@ import com.github.qinyou.common.utils.StringUtils;
 import com.github.qinyou.common.utils.WebUtils;
 import com.github.qinyou.common.validator.IdRequired;
 import com.github.qinyou.common.validator.IdsRequired;
+import com.github.qinyou.common.web.BaseController;
 import com.github.qinyou.example.model.ExStaff;
 import com.github.qinyou.example.model.ExStaffEducation;
 import com.github.qinyou.example.model.ExStaffExperience;
@@ -17,8 +17,7 @@ import com.jfinal.aop.Before;
 import com.jfinal.plugin.activerecord.Db;
 import com.jfinal.plugin.activerecord.Page;
 import com.jfinal.plugin.activerecord.tx.Tx;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.Date;
 import java.util.List;
@@ -29,9 +28,9 @@ import java.util.List;
  * @author zhangchuang
  * @since 2019-02-22 22:15:05
  */
+@Slf4j
 @RequireMenuCode("exStaff")
 public class ExStaffController extends BaseController {
-    private final static Logger LOG = LoggerFactory.getLogger(ExStaffController.class);
 
     /**
      * 列表页
@@ -106,7 +105,7 @@ public class ExStaffController extends BaseController {
                         .setCreater(WebUtils.getSessionUsername(this)));
         Db.batchSave(exStaffFamilys, exStaffFamilys.size());
 
-        renderSuccess(Constant.ADD_SUCCESS);
+        renderSuccess(ADD_SUCCESS);
     }
 
     /**
@@ -158,7 +157,7 @@ public class ExStaffController extends BaseController {
             }
         });
 
-        renderSuccess(Constant.UPDATE_SUCCESS);
+        renderSuccess(UPDATE_SUCCESS);
     }
 
     /**
@@ -180,7 +179,7 @@ public class ExStaffController extends BaseController {
         deleteSql = "delete from ex_staff where id in ( '" + ids + "' ) ";
         Db.update(deleteSql);
 
-        renderSuccess(Constant.DELETE_SUCCESS);
+        renderSuccess(DELETE_SUCCESS);
     }
 
 
@@ -191,7 +190,7 @@ public class ExStaffController extends BaseController {
     public void deleteExStaffEducationAction() {
         String id = getPara("id");
         ExStaffEducation.dao.deleteById(id);
-        renderSuccess(Constant.DELETE_SUCCESS);
+        renderSuccess(DELETE_SUCCESS);
     }
 
     /**
@@ -201,7 +200,7 @@ public class ExStaffController extends BaseController {
     public void deleteExStaffExperienceAction() {
         String id = getPara("id");
         ExStaffExperience.dao.deleteById(id);
-        renderSuccess(Constant.DELETE_SUCCESS);
+        renderSuccess(DELETE_SUCCESS);
     }
 
     /**
@@ -211,7 +210,7 @@ public class ExStaffController extends BaseController {
     public void deleteExStaffFamilyAction() {
         String id = getPara("id");
         ExStaffFamily.dao.deleteById(id);
-        renderSuccess(Constant.DELETE_SUCCESS);
+        renderSuccess(DELETE_SUCCESS);
     }
 
 }
