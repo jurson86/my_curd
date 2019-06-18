@@ -4,7 +4,7 @@
 <table id="dg" class="easyui-datagrid"
        url="${ctx!}/sysSetting/query"
        toolbar="#tb" rownumbers="true" border="false"
-       fit="true"    fitColumns="false"
+       fit="true"    fitColumns="false"  nowrap="false"
        striped="false"  pagination="true"
        ctrlSelect="true" pageSize="40" pageList="[20,40]">
     <thead>
@@ -12,14 +12,14 @@
         <th data-options="field:'id',checkbox:true"></th>
         <th field="settingInfo" width="250">说明</th>
         <th field="settingCode" width="250">设置编码</th>
-        <th field="settingValue" width="250">设置编码值</th>
+        <th field="settingValue" width="450">设置编码值</th>
     </tr>
     </thead>
 </table>
 <div id="tb">
-    <a onclick="newModel('${ctx!}/sysSetting/newModel', '400px', '300px')" href="#" class="easyui-linkbutton"
+    <a onclick="newModel('${ctx!}/sysSetting/newModel', '350px', '400px')" href="#" class="easyui-linkbutton"
        iconCls="iconfont icon-add" plain="true">新增</a>
-    <a onclick="editModel('dg','${ctx!}/sysSetting/newModel', '400px', '300px')" href="#"
+    <a onclick="editModel('dg','${ctx!}/sysSetting/newModel', '350px', '400px')" href="#"
        class="easyui-linkbutton" iconCls="iconfont icon-edit" plain="true">编辑</a>
     <a onclick="deleteModel('dg','${ctx!}/sysSetting/deleteAction')" href="#" class="easyui-linkbutton  "
        iconCls="iconfont icon-delete" plain="true">删除</a>

@@ -4,10 +4,7 @@ import com.alibaba.druid.filter.stat.StatFilter;
 import com.alibaba.druid.wall.WallFilter;
 import com.github.qinyou.LoginController;
 import com.github.qinyou.MainController;
-import com.github.qinyou.common.interceptor.ComActionInterceptor;
-import com.github.qinyou.common.interceptor.LoginInterceptor;
-import com.github.qinyou.common.interceptor.PermissionInterceptor;
-import com.github.qinyou.common.interceptor.SessionInViewInterceptor;
+import com.github.qinyou.common.interceptor.*;
 import com.github.qinyou.common.utils.UtilsController;
 import com.github.qinyou.common.utils.log.LogBackLogFactory;
 import com.github.qinyou.common.web.FileController;
@@ -16,7 +13,6 @@ import com.github.qinyou.example.ExampleRoute;
 import com.github.qinyou.genOnline.GenOnlineRoute;
 import com.github.qinyou.system.SystemModelMapping;
 import com.github.qinyou.system.SystemRoute;
-import com.github.qinyou.system.model.SysSetting;
 import com.github.qinyou.system.model.SysUser;
 import com.jfinal.config.*;
 import com.jfinal.ext.handler.ContextPathHandler;
@@ -132,6 +128,11 @@ public class AppConfig extends JFinalConfig {
     public void configInterceptor(Interceptors me) {
         me.addGlobalActionInterceptor(new LoginInterceptor());       // 登录
         me.addGlobalActionInterceptor(new PermissionInterceptor());  // 权限
+        Boolean visitLog = configProp.getBoolean("visitLog");
+        if(visitLog){
+            me.addGlobalActionInterceptor(new VisitLogInterceptor()); // 访问日志
+        }
+        // session 数据 放入 request, 控制 dom
         List<String> sessionFields = new ArrayList<>();
         sessionFields.add("sysUserName");
         sessionFields.add("buttonCodes");
@@ -163,12 +164,4 @@ public class AppConfig extends JFinalConfig {
     public void configEngine(Engine me) {
     }
 
-
-    @Override
-    public void onStart() {
-        List<SysSetting> sysSettings = SysSetting.dao.findAll();
-        for (SysSetting sysSetting : sysSettings) {
-            Constant.SETTING.put(sysSetting.getSettingCode(), sysSetting.getSettingValue());
-        }
-    }
 }

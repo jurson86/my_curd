@@ -10,7 +10,7 @@
     <!--jfinal undertow 配置-->
     <packaging>jar</packaging>
 
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0-RELEASE</version>
     <name>my_curd Maven Webapp</name>
     <developers>
         <developer>

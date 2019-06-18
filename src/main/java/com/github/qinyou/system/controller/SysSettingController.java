@@ -79,6 +79,7 @@ public class SysSettingController extends BaseController {
                 .setUpdater(WebUtils.getSessionUsername(this))
                 .setUpdateTime(new Date());
         if (sysSetting.save()) {
+            refreshSetting();
             renderSuccess(ADD_SUCCESS);
         } else {
             renderFail(ADD_FAIL);
@@ -93,6 +94,7 @@ public class SysSettingController extends BaseController {
         sysSetting.setUpdater(WebUtils.getSessionUsername(this))
                 .setUpdateTime(new Date());
         if (sysSetting.update()) {
+            refreshSetting();
             renderSuccess(UPDATE_SUCCESS);
         } else {
             renderFail(UPDATE_FAIL);
@@ -107,6 +109,7 @@ public class SysSettingController extends BaseController {
         String ids = getPara("ids").replaceAll(",", "','");
         String deleteSql = "delete from sys_setting where id in ( '" + ids + "' ) ";
         Db.update(deleteSql);
+        refreshSetting();
         renderSuccess(DELETE_SUCCESS);
     }
 
@@ -124,9 +127,9 @@ public class SysSettingController extends BaseController {
         }
 
         List<SysSetting> list = SysSetting.dao.findByWhere(where);
-        Workbook workbook = ExcelExportUtil.exportExcel(new ExportParams("用户设置项", "用户设置项"),
+        Workbook workbook = ExcelExportUtil.exportExcel(new ExportParams("系统设置项", "系统设置项"),
                 SysSetting.class, list);
-        render(ExcelRender.me(workbook).fileName("用户设置项.xls"));
+        render(ExcelRender.me(workbook).fileName("系统设置项.xls"));
     }
 
 
@@ -167,6 +170,7 @@ public class SysSettingController extends BaseController {
         }
 
         FileUtils.deleteFile(uploadFile.getFile());
+        refreshSetting();
         renderSuccess(IMPORT_SUCCESS);
     }
 

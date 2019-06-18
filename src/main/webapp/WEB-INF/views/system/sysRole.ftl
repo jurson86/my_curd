@@ -20,9 +20,9 @@
   </thead>
 </table>
 <div id="tb">
-    <a onclick="newModel('${ctx!}/sysRole/newModel', '500px', '400px')" href="#" class="easyui-linkbutton"
+    <a onclick="newModel('${ctx!}/sysRole/newModel', '350px', '370px')" href="#" class="easyui-linkbutton"
        iconCls="iconfont icon-add" plain="true">新增</a>
-    <a onclick="editModel('dg','${ctx!}/sysRole/newModel', '500px', '400px')" href="#"
+    <a onclick="editModel('dg','${ctx!}/sysRole/newModel', '350px', '370px')" href="#"
        class="easyui-linkbutton" iconCls="iconfont icon-edit" plain="true">编辑</a>
     <a onclick="deleteModel('dg','${ctx!}/sysRole/deleteAction')" href="#" class="easyui-linkbutton  "
        iconCls="iconfont icon-delete" plain="true">删除</a>

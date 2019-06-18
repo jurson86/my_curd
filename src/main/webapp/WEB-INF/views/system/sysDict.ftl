@@ -22,9 +22,9 @@
                 </thead>
             </table>
             <div id="tb">
-                <a onclick="newModel('${ctx!}/sysDict/newGroupModel', '350px', '200px')" href="#" class="easyui-linkbutton"
+                <a onclick="newModel('${ctx!}/sysDict/newGroupModel', '330px', '200px')" href="#" class="easyui-linkbutton"
                    iconCls="iconfont icon-add" plain="true">新增分组</a>
-                <a onclick="editModel('dg','${ctx!}/sysDict/newGroupModel', '350px', '200px')" href="#"
+                <a onclick="editModel('dg','${ctx!}/sysDict/newGroupModel', '330px', '200px')" href="#"
                    class="easyui-linkbutton" iconCls="iconfont icon-edit" plain="true">编辑分组</a>
                 <a onclick="deleteModel('dg','${ctx!}/sysDict/deleteGroupAction')" href="#" class="easyui-linkbutton  "
                    iconCls="iconfont icon-delete" plain="true">删除分组</a>

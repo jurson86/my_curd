@@ -27,8 +27,8 @@
  </thead>
 </table>
 <div id="tb">
-    <a onclick="newModel('${ctx!}/sysUser/newModel', '800px', '500px')" href="#" class="easyui-linkbutton"  iconCls="iconfont icon-add" plain="true">新增</a>
-    <a onclick="editModel('dg','${ctx!}/sysUser/newModel', '800px', '500px')" href="#" class="easyui-linkbutton" iconCls="iconfont icon-edit" plain="true">编辑</a>
+    <a onclick="newModel('${ctx!}/sysUser/newModel', '650px', '350px')" href="#" class="easyui-linkbutton"  iconCls="iconfont icon-add" plain="true">新增</a>
+    <a onclick="editModel('dg','${ctx!}/sysUser/newModel', '650px', '350px')" href="#" class="easyui-linkbutton" iconCls="iconfont icon-edit" plain="true">编辑</a>
     <a onclick="deleteModel('dg','${ctx!}/sysUser/deleteAction')" href="#" class="easyui-linkbutton  " iconCls="iconfont icon-delete" plain="true">删除</a>
     <a onclick="resetPwd()" href="#" class="easyui-linkbutton  " iconCls="iconfont icon-resetPwd" plain="true">重置密码</a>
     <a onclick="newUserRole()" href="#" class="easyui-linkbutton  " iconCls="iconfont icon-config" plain="true">配置角色</a>

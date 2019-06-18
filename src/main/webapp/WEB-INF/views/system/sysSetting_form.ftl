@@ -7,16 +7,7 @@
         <tbody>
         <tr>
             <td>
-                说明:
-            </td>
-            <td>
-                <input name="settingInfo" value="${(sysSetting.settingInfo)!}" class="easyui-textbox"    style="width: 100%;height: 50px;"
-                       data-options="required:true,multiline:true">
-            </td>
-        </tr>
-        <tr>
-            <td>
-                编码:
+                属性:
             </td>
             <td>
                 <input name="settingCode" value="${(sysSetting.settingCode)!}" class="easyui-textbox"  data-options="required:true">
@@ -24,10 +15,19 @@
         </tr>
         <tr>
             <td>
-                编码值:
+                属性值
             </td>
             <td>
-                <input name="settingValue" value="${(sysSetting.settingValue)!}" class="easyui-textbox"   >
+                <input name="settingValue" value="${(sysSetting.settingValue)!}" class="easyui-textbox"   style="width: 100%;height: 150px;" data-options="required:true,multiline:true" >
+            </td>
+        </tr>
+        <tr>
+            <td>
+                说明:
+            </td>
+            <td>
+                <input name="settingInfo" value="${(sysSetting.settingInfo)!}" class="easyui-textbox"    style="width: 100%;height: 50px;"
+                       data-options="required:true,multiline:true">
             </td>
         </tr>
         </tbody>

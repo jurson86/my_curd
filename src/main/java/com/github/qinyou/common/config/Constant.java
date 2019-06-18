@@ -1,6 +1,9 @@
 package com.github.qinyou.common.config;
 
+import com.github.qinyou.system.model.SysSetting;
+
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -20,4 +23,10 @@ public class Constant {
 
     // 系统参数设置
     public final static Map<String, String> SETTING = new HashMap<>();
+    static {
+        List<SysSetting> sysSettings = SysSetting.dao.findAll();
+        for (SysSetting sysSetting : sysSettings) {
+            SETTING.put(sysSetting.getSettingCode(), sysSetting.getSettingValue());
+        }
+    }
 }

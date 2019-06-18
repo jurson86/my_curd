@@ -5,8 +5,8 @@ import cn.afterturn.easypoi.excel.entity.ExportParams;
 import com.github.qinyou.common.annotation.RequireButtonCode;
 import com.github.qinyou.common.annotation.RequireMenuCode;
 import com.github.qinyou.common.config.Constant;
-import com.github.qinyou.common.interceptor.ComActionInterceptor;
 import com.github.qinyou.common.interceptor.SearchSql;
+import com.github.qinyou.common.interceptor.VisitLogInterceptor;
 import com.github.qinyou.common.render.ExcelRender;
 import com.github.qinyou.common.utils.StringUtils;
 import com.github.qinyou.common.utils.WebUtils;
@@ -29,7 +29,7 @@ import java.util.Map;
 /**
  * 访问日志
  */
-@Clear(ComActionInterceptor.class)
+@Clear(VisitLogInterceptor.class)
 @RequireMenuCode("sysVisitLog")
 public class SysVisitLogController extends BaseController {
 
