@@ -6,7 +6,7 @@
     <p align="center">
         后台权限管理系统，内置代码生成器，代码量少，简单美观。
         <br>
-        基于 jfinal mysql easyui，开发效率高，适用于一般企业管理后台。
+        基于 jfinal mysql easyui，开发效率高，适用于一般企业运营后台。
     </p>
 </p>
 
@@ -19,7 +19,7 @@
 #### 系统环境
 -  JDK8 及以上
 -  mysql5.7
--  jfinal4.0 、freemarker、 easypoi3.2.0 、logback.....
+-  jfinal4.2 、freemarker、 easypoi3.2.0 、logback.....
 -  easyui1.6.10 、 pure.css 、layer .....
 
 #### 快速开始
