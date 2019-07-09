@@ -1,7 +1,4 @@
-
-<p align="center" style='font-weight:bold'>
-    <img src="https://raw.githubusercontent.com/qinyou/my_curd/master/preview/logo.png" width="100">
-    <br/>
+<p align="center" >
     <b>my_curd</b>
     <p align="center">
         后台权限管理系统，内置代码生成器，代码量少，简单美观。
@@ -9,6 +6,7 @@
         基于 jfinal mysql easyui，开发效率高，适用于一般企业运营后台。
     </p>
 </p>
+<div style="background-color:yellow; height:50px;border:1px solid black"></div>
 
 #### 功能模块
 1. 权限管理（菜单级 按钮级）
