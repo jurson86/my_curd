@@ -19,7 +19,7 @@
 #### 系统环境
 -  JDK8 及以上
 -  mysql5.7
--  jfinal4.2 、freemarker、 easypoi3.2.0 、logback.....
+-  jfinal4.3 、freemarker、 easypoi3.2.0 、logback.....
 -  easyui1.6.10 、 pure.css 、layer .....
 
 #### 快速开始
@@ -30,19 +30,13 @@
 5. 更多文档请看本项目Wiki, 因为项目足够简单，查看代码了解项目可能是更好的选择
 
 #### 预览
+##### 菜单权限
+![菜单管理](https://raw.githubusercontent.com/qinyou/my_curd/master/preview/menu.png "menu.png")
+
 ##### 代码生成器
 ![代码生成器](https://raw.githubusercontent.com/qinyou/my_curd/master/preview/gen.png "gen.png")
 
-##### 生成 1对多 增删改查 功能
-![1对多](https://raw.githubusercontent.com/qinyou/my_curd/master/preview/1tn.png "1tn.png")
 
-##### 菜单管理
-![菜单管理](https://raw.githubusercontent.com/qinyou/my_curd/master/preview/menu.png "menu.png")
 
-##### 组织机构
-![组织机构](https://raw.githubusercontent.com/qinyou/my_curd/master/preview/org.png "org.png")
-
-##### 访问日志
-![访问日志](https://raw.githubusercontent.com/qinyou/my_curd/master/preview/log.png "log.png")
 
 

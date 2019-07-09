@@ -14,8 +14,8 @@
     </thead>
 </table>
 <div id="tb">
-    <a onclick="newModel('${ctx!}/sysMenu/newButtonModel?menuId=${menuId}', '300px', '200px')"  class="easyui-linkbutton" iconCls="iconfont icon-add" plain="true">新增</a>
-    <a onclick="editModel('dg','${ctx!}/sysMenu/newButtonModel', '300px', '200px')" class="easyui-linkbutton" iconCls="iconfont icon-edit" plain="true">编辑</a>
+    <a onclick="newModel('${ctx!}/sysMenu/newButtonModel?menuId=${menuId}', '320px', '200px')"  class="easyui-linkbutton" iconCls="iconfont icon-add" plain="true">新增</a>
+    <a onclick="editModel('dg','${ctx!}/sysMenu/newButtonModel', '320px', '200px')" class="easyui-linkbutton" iconCls="iconfont icon-edit" plain="true">编辑</a>
     <a onclick="deleteModel('dg','${ctx!}/sysMenu/deleteButtonAction?menuId=${menuId}')" class="easyui-linkbutton" iconCls="iconfont icon-delete" plain="true">删除</a>
     <a onclick="openButtonRole()" href="javascript:void(0)" class="easyui-linkbutton " iconCls="iconfont icon-look" plain="true"> 查看角色</a>
 </div>

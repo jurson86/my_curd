@@ -146,7 +146,7 @@ public class FileController extends BaseController {
     }
 
     @Data
-    class UploadResult {
+    public class UploadResult {
         private String name;   // 文件原名
         private String path;   // 文件路径
         private String uri;    // 文件web下路径
