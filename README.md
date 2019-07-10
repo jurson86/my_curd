@@ -26,6 +26,9 @@
 ##### 代码生成器
 ![代码生成器](https://raw.githubusercontent.com/qinyou/my_curd/master/preview/gen.png "gen.png")
 
+##### 生成 一对多 增删改查导入导出
+![代码生成器](https://raw.githubusercontent.com/qinyou/my_curd/master/preview/1tn.png "1tn.png")
+
 
 
 
