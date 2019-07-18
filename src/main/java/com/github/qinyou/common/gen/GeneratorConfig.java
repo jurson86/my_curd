@@ -27,6 +27,9 @@ public class GeneratorConfig {
     // 生成文件基础路径
     public static String outputBasePath = "E:/mycurdpro/gencode/" + GeneratorConfig.moduleName + "/";
 
+    // 忽略表 前缀，多个之间 都好分隔
+    public static String ignoreTablePrefixes = "sys_,act_"; // 忽略 系统表、activiti 表
+
     static {
         tableNames.add("sys_button");
         tableNames.add("sys_role_button");

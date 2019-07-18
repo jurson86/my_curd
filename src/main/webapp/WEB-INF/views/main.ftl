@@ -103,6 +103,7 @@
                     }
                 }
             });
+            /*$('#permissionTree').tree('collapseAll');*/
         }).error(function(){ popup.errMsg(); });
     }
 

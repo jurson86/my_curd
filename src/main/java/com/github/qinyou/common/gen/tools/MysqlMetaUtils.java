@@ -1,6 +1,7 @@
 package com.github.qinyou.common.gen.tools;
 
 import com.github.qinyou.common.gen.Config;
+import com.github.qinyou.common.gen.GeneratorConfig;
 import com.jfinal.kit.StrKit;
 import lombok.extern.slf4j.Slf4j;
 
@@ -31,6 +32,7 @@ public class MysqlMetaUtils {
      * @throws SQLException
      */
     public List<TableMeta> allTableMeta(String schemaPattern) throws SQLException {
+        String[] ignoreTablePrefixes = GeneratorConfig.ignoreTablePrefixes.split(",");
         List<TableMeta> tableMetas = new ArrayList<>();
         Connection conn = dataSource.getConnection();
         DatabaseMetaData dbMeta = conn.getMetaData();
@@ -39,7 +41,18 @@ public class MysqlMetaUtils {
             TableMeta tableMeta = new TableMeta();
             tableMeta.name = rs.getString("TABLE_NAME");
             tableMeta.remark = rs.getString("REMARKS");
-            tableMetas.add(tableMeta);
+
+            // 忽略部分表
+            boolean flag = true;
+            for(String prefix : ignoreTablePrefixes){
+                if(tableMeta.name.startsWith(prefix)){
+                   flag = false;
+                   break;
+                }
+            }
+            if(flag){
+                tableMetas.add(tableMeta);
+            }
         }
         log.debug("all table size: {}", tableMetas.size());
         return tableMetas;

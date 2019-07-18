@@ -7,8 +7,8 @@
 * @param height*
 *
 */
-function newModel(url,width,height) {
-    popup.openIframe('新建', url, width,height)
+function newModel(url,width,height,title) {
+    popup.openIframe(title || '新建', url, width,height)
 }
 
 /**
@@ -18,12 +18,12 @@ function newModel(url,width,height) {
  * @param width
  * @param height
  */
-function editModel(dgId,url,width,height){
+function editModel(dgId,url,width,height,title){
     var rows= $("#"+dgId).datagrid("getSelections");
     if (rows.length===1) {
-        popup.openIframe('编辑', url+'?id=' + rows[0].id, width,height);
+        popup.openIframe(title || '编辑', url+'?id=' + rows[0].id, width,height);
     } else {
-        popup.msg('请选择一行数据进行编辑');
+        popup.msg('请选择一行数据进行操作');
     }
 }
 
@@ -60,7 +60,7 @@ function deleteModel(dgid,url) {
             }, "json").error(function(){ popup.errMsg(); });
         });
     } else {
-        popup.msg('请至少选择一行进行删除');
+        popup.msg('请至少选择一行进行操作');
     }
 }
 
