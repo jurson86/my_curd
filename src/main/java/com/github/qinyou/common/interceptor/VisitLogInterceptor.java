@@ -21,12 +21,10 @@ import java.util.Map;
 public class VisitLogInterceptor implements Interceptor {
     @Override
     public void intercept(Invocation inv) {
-        String errMsg = null;
         try {
             inv.invoke();
         } catch (Exception e) {
             log.error(e.getMessage(), e);
-            errMsg = ExceptionUtils.getMessage(e);
         }
 
         Controller controller = inv.getController();
@@ -44,8 +42,6 @@ public class VisitLogInterceptor implements Interceptor {
                 sysVisitLog.setParam("超长文本参数");
             }
         }
-
-        sysVisitLog.setError(errMsg);
         sysVisitLog.save();
     }
 }

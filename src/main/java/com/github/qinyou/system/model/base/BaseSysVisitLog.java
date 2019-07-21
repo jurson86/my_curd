@@ -106,18 +106,6 @@ public abstract class BaseSysVisitLog<M extends BaseSysVisitLog<M>> extends Mode
         return (M) this;
     }
 
-
-    // 异常
-    public String getError() {
-        return getStr("error");
-    }
-
-    public M setError(String error) {
-        set("error", error);
-        return (M) this;
-    }
-
-
     // 设备
     public String getDevice() {
         return getStr("device");

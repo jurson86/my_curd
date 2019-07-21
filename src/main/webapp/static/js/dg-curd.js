@@ -33,10 +33,11 @@ function editModel(dgId,url,width,height,title){
  * @param dgid
  * @param url
  */
-function deleteModel(dgid,url) {
+function deleteModel(dgid,url,title) {
+    var realTitle = title||'删除';
     var rows = $("#"+dgid).datagrid("getSelections");
     if (rows.length!==0) {
-        popup.openConfirm(null,3, '删除', '您确定要删除选中的'+rows.length+'条记录吗?', function () {
+        popup.openConfirm(null,3, title, '您确定'+realTitle+'选中的'+rows.length+'条记录吗?', function () {
             var ids = [];
             rows.forEach(function(row){
                 ids.push(row.id);

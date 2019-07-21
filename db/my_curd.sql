@@ -1,7 +1,7 @@
 /*
  Navicat Premium Data Transfer
 
- Source Server         : 本地mysql
+ Source Server         : localhost-mysql-master
  Source Server Type    : MySQL
  Source Server Version : 50719
  Source Host           : localhost:3306
@@ -11,7 +11,7 @@
  Target Server Version : 50719
  File Encoding         : 65001
 
- Date: 18/06/2019 17:15:54
+ Date: 21/07/2019 22:00:20
 */
 
 SET NAMES utf8mb4;
@@ -972,6 +972,7 @@ INSERT INTO `sys_dict` VALUES ('546767700571979776', 'theme', '浅绿色', 'wech
 INSERT INTO `sys_dict` VALUES ('546767905048494080', 'theme', '深蓝色', 'wordpress #21759b', 'admin', '2019-02-17 19:00:27', 'admin', '2019-02-17 20:56:23', 4, NULL, 'on');
 INSERT INTO `sys_dict` VALUES ('546798242201862144', 'theme', '红色', 'gplus #fc5832', 'admin', '2019-02-17 21:00:59', 'admin', '2019-05-12 14:54:38', 5, NULL, 'on');
 INSERT INTO `sys_dict` VALUES ('546798541595475968', 'theme', '紫色', 'yahoo #7280fa', 'admin', '2019-02-17 21:02:11', 'admin', '2019-04-12 14:00:21', 6, NULL, 'on');
+INSERT INTO `sys_dict` VALUES ('601173470222483456', 'OACategory', '测试', '测试', 'admin', '2019-07-17 22:08:45', 'admin', '2019-07-17 22:17:56', 1, NULL, 'on');
 
 -- ----------------------------
 -- Table structure for sys_dict_group
@@ -998,6 +999,7 @@ INSERT INTO `sys_dict_group` VALUES ('521827608057348097', '职位级别', 'jobL
 INSERT INTO `sys_dict_group` VALUES ('538060106122657792', '学历', 'education', 'admin', '2019-01-24 18:18:45', NULL, NULL, NULL);
 INSERT INTO `sys_dict_group` VALUES ('538060660420902912', '亲属关系', 'familyRelation', 'admin', '2019-01-24 18:20:58', 'admin', '2019-02-22 10:18:29', NULL);
 INSERT INTO `sys_dict_group` VALUES ('546767153253056512', '主题', 'theme', 'admin', '2019-02-17 18:57:27', NULL, NULL, NULL);
+INSERT INTO `sys_dict_group` VALUES ('601173420599672832', '流程分类', 'OACategory', 'admin', '2019-07-17 22:08:33', NULL, NULL, NULL);
 
 -- ----------------------------
 -- Table structure for sys_menu
@@ -1024,7 +1026,7 @@ CREATE TABLE `sys_menu`  (
 -- ----------------------------
 -- Records of sys_menu
 -- ----------------------------
-INSERT INTO `sys_menu` VALUES ('520749715428474880', '权限管理', NULL, '/', 'iconfont icon-permission', 1, '0', 'debug', '2018-12-07 23:53:27', 'admin', '2019-05-10 21:34:44');
+INSERT INTO `sys_menu` VALUES ('520749715428474880', '权限管理', NULL, '/', 'iconfont icon-permission', 2, '0', 'debug', '2018-12-07 23:53:27', 'admin', '2019-07-18 22:21:26');
 INSERT INTO `sys_menu` VALUES ('520750975204458496', '系统运维', NULL, '/', 'iconfont icon-operation', 3, '0', 'debug', '2018-12-07 23:58:27', 'zhangchuang', '2018-12-16 14:08:18');
 INSERT INTO `sys_menu` VALUES ('520751411466600448', '菜单管理', 'sysMenu', '/sysMenu', 'iconfont icon-menu', 1, '520749715428474880', 'debug', '2018-12-08 00:00:11', 'debug', '2018-12-10 18:52:08');
 INSERT INTO `sys_menu` VALUES ('520751483449245697', '角色管理', 'sysRole', '/sysRole', 'iconfont icon-role', 2, '520749715428474880', 'debug', '2018-12-08 00:00:28', 'debug', '2018-12-10 18:52:22');
@@ -1040,6 +1042,12 @@ INSERT INTO `sys_menu` VALUES ('533964972439371776', '普通单表', 'exSingleTa
 INSERT INTO `sys_menu` VALUES ('537980279722082304', '一对多表', 'exStaff', '/exStaff', 'iconfont icon-gencode', 3, '533964782852636672', 'admin', '2019-01-24 13:01:33', 'admin', '2019-05-11 17:10:27');
 INSERT INTO `sys_menu` VALUES ('560430837321957376', '代码生成', 'genOnline', '/genOnline', 'iconfont icon-gencode', 9, '520750975204458496', 'admin', '2019-03-27 11:52:04', 'admin', '2019-03-27 11:52:33');
 INSERT INTO `sys_menu` VALUES ('589554668238012416', '系统参数', 'sysSetting', '/sysSetting', 'iconfont icon-setting', 10, '520750975204458496', 'admin', '2019-06-15 20:39:46', 'admin', '2019-06-16 18:46:51');
+INSERT INTO `sys_menu` VALUES ('601158856554315776', '流程部署', 'processDeploy', '/processDeploy', 'iconfont icon-gencode', 3, '601517151597101056', 'admin', '2019-07-17 21:10:40', 'admin', '2019-07-21 20:54:58');
+INSERT INTO `sys_menu` VALUES ('601159063673241600', '流程定义', 'processDefine', '/processDefine', 'iconfont icon-gencode', 4, '601517151597101056', 'admin', '2019-07-17 21:11:30', 'admin', '2019-07-21 20:14:07');
+INSERT INTO `sys_menu` VALUES ('601517151597101056', 'OA办公', NULL, '/', 'iconfont icon-gencode', 0, '0', 'admin', '2019-07-18 20:54:25', 'admin', '2019-07-18 21:42:31');
+INSERT INTO `sys_menu` VALUES ('601521906507579392', '我的任务', 'myTask', '/myTask', 'iconfont icon-gencode', 2, '601517151597101056', 'admin', '2019-07-18 21:13:18', 'admin', '2019-07-20 23:19:15');
+INSERT INTO `sys_menu` VALUES ('601522119347535872', '我的流程', 'myProcess', '/myProcess', 'iconfont icon-gencode', 1, '601517151597101056', 'admin', '2019-07-18 21:14:09', 'admin', '2019-07-20 23:19:05');
+INSERT INTO `sys_menu` VALUES ('601522637276971008', '流程中心', 'processDefineLatest', '/processDefineLatest', 'iconfont icon-gencode', 0, '601517151597101056', 'admin', '2019-07-18 21:16:12', 'admin', '2019-07-18 21:17:06');
 
 -- ----------------------------
 -- Table structure for sys_notice
@@ -1061,29 +1069,7 @@ CREATE TABLE `sys_notice`  (
 -- ----------------------------
 -- Records of sys_notice
 -- ----------------------------
-INSERT INTO `sys_notice` VALUES ('578670487312269312', 'delVisitLog', '访问日志删除', 'admin 于 2019-05-16 19:49:55 删除了 2 条 访问日志。', '2019-05-16 19:49:55', '2019-05-26 19:49:55', '2019-06-05 19:49:55');
-INSERT INTO `sys_notice` VALUES ('578670509558857728', 'delVisitLog', '访问日志删除', 'admin 于 2019-05-16 19:50:00 删除了 1 条 访问日志。', '2019-05-16 19:50:01', '2019-05-26 19:50:01', '2019-06-05 19:50:01');
-INSERT INTO `sys_notice` VALUES ('578670534347194368', 'delVisitLog', '访问日志删除', 'admin 于 2019-05-16 19:50:06 删除了 2 条 访问日志。', '2019-05-16 19:50:07', '2019-05-26 19:50:07', '2019-06-05 19:50:07');
-INSERT INTO `sys_notice` VALUES ('578670591658164224', 'delVisitLog', '访问日志删除', 'admin 于 2019-05-16 19:50:20 删除了 2 条 访问日志。', '2019-05-16 19:50:20', '2019-05-26 19:50:20', '2019-06-05 19:50:20');
-INSERT INTO `sys_notice` VALUES ('578670618434600960', 'delVisitLog', '访问日志删除', 'admin 于 2019-05-16 19:50:26 删除了 2 条 访问日志。', '2019-05-16 19:50:27', '2019-05-26 19:50:27', '2019-06-05 19:50:27');
-INSERT INTO `sys_notice` VALUES ('580143170747105280', 'delVisitLog', '访问日志删除', 'admin 于 2019-05-20 21:21:50 删除了 3 条 访问日志。', '2019-05-20 21:21:50', '2019-05-30 21:21:50', '2019-06-09 21:21:50');
-INSERT INTO `sys_notice` VALUES ('584843718364758016', 'delVisitLog', '访问日志删除', 'admin 于 2019-06-02 20:40:07 删除了 2 条 访问日志。', '2019-06-02 20:40:08', '2019-06-12 20:40:08', '2019-06-22 20:40:08');
-INSERT INTO `sys_notice` VALUES ('584843816427585536', 'delVisitLog', '访问日志删除', 'admin 于 2019-06-02 20:40:31 删除了 1 条 访问日志。', '2019-06-02 20:40:32', '2019-06-12 20:40:32', '2019-06-22 20:40:32');
-INSERT INTO `sys_notice` VALUES ('584844673080623104', 'delVisitLog', '访问日志删除', 'admin 于 2019-06-02 20:43:55 删除了 1 条 访问日志。', '2019-06-02 20:43:56', '2019-06-12 20:43:56', '2019-06-22 20:43:56');
-INSERT INTO `sys_notice` VALUES ('584844691028049920', 'delVisitLog', '访问日志删除', 'admin 于 2019-06-02 20:44:00 删除了 1 条 访问日志。', '2019-06-02 20:44:00', '2019-06-12 20:44:00', '2019-06-22 20:44:00');
-INSERT INTO `sys_notice` VALUES ('587712438082732032', 'delVisitLog', '访问日志删除', 'admin 于 2019-06-10 18:39:23 删除了 3 条 访问日志。', '2019-06-10 18:39:24', '2019-06-20 18:39:24', '2019-06-30 18:39:24');
-INSERT INTO `sys_notice` VALUES ('587712438082732033', 'delVisitLog', '访问日志删除', 'admin 于 2019-06-10 18:39:23 删除了 0 条 访问日志。', '2019-06-10 18:39:24', '2019-06-20 18:39:24', '2019-06-30 18:39:24');
-INSERT INTO `sys_notice` VALUES ('587712477362388992', 'delVisitLog', '访问日志删除', 'admin 于 2019-06-10 18:39:33 删除了 3 条 访问日志。', '2019-06-10 18:39:34', '2019-06-20 18:39:34', '2019-06-30 18:39:34');
-INSERT INTO `sys_notice` VALUES ('589514725172183040', 'delVisitLog', '访问日志删除', 'admin 于 2019-06-15 18:01:01 删除了 2 条 访问日志。', '2019-06-15 18:01:03', '2019-06-25 18:01:03', '2019-07-05 18:01:03');
-INSERT INTO `sys_notice` VALUES ('589514725465784320', 'delVisitLog', '访问日志删除', 'admin 于 2019-06-15 18:01:03 删除了 0 条 访问日志。', '2019-06-15 18:01:03', '2019-06-25 18:01:03', '2019-07-05 18:01:03');
-INSERT INTO `sys_notice` VALUES ('589534373611569152', 'delVisitLog', '访问日志删除', 'admin 于 2019-06-15 19:19:06 删除了 1 条 访问日志。', '2019-06-15 19:19:08', '2019-06-25 19:19:08', '2019-07-05 19:19:08');
-INSERT INTO `sys_notice` VALUES ('589534373687066624', 'delVisitLog', '访问日志删除', 'admin 于 2019-06-15 19:19:07 删除了 0 条 访问日志。', '2019-06-15 19:19:08', '2019-06-25 19:19:08', '2019-07-05 19:19:08');
-INSERT INTO `sys_notice` VALUES ('589534390204235776', 'delVisitLog', '访问日志删除', 'admin 于 2019-06-15 19:19:11 删除了 1 条 访问日志。', '2019-06-15 19:19:12', '2019-06-25 19:19:12', '2019-07-05 19:19:12');
-INSERT INTO `sys_notice` VALUES ('589534413608452096', 'delVisitLog', '访问日志删除', 'admin 于 2019-06-15 19:19:17 删除了 1 条 访问日志。', '2019-06-15 19:19:17', '2019-06-25 19:19:17', '2019-07-05 19:19:17');
-INSERT INTO `sys_notice` VALUES ('589544447801294848', 'delVisitLog', '访问日志删除', 'admin 于 2019-06-15 19:59:08 删除了 1 条 访问日志。', '2019-06-15 19:59:10', '2019-06-25 19:59:10', '2019-07-05 19:59:10');
-INSERT INTO `sys_notice` VALUES ('589887159331192832', 'delVisitLog', '访问日志删除', 'admin 于 2019-06-16 18:40:57 删除了 2 条 访问日志。', '2019-06-16 18:40:58', '2019-06-26 18:40:58', '2019-07-06 18:40:58');
-INSERT INTO `sys_notice` VALUES ('589887182626357248', 'delVisitLog', '访问日志删除', 'admin 于 2019-06-16 18:41:03 删除了 1 条 访问日志。', '2019-06-16 18:41:04', '2019-06-26 18:41:04', '2019-07-06 18:41:04');
-INSERT INTO `sys_notice` VALUES ('589887204919083008', 'delVisitLog', '访问日志删除', 'admin 于 2019-06-16 18:41:09 删除了 2 条 访问日志。', '2019-06-16 18:41:09', '2019-06-26 18:41:09', '2019-07-06 18:41:09');
+INSERT INTO `sys_notice` VALUES ('598227896263245824', 'delVisitLog', '访问日志删除', 'admin 于 2019-07-09 19:04:04 删除了 40 条 访问日志。', '2019-07-09 19:04:05', '2019-07-19 19:04:05', '2019-07-29 19:04:05');
 
 -- ----------------------------
 -- Table structure for sys_notice_detail
@@ -1101,81 +1087,6 @@ CREATE TABLE `sys_notice_detail`  (
   INDEX `sender`(`sender`) USING BTREE,
   INDEX `receiver`(`receiver`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '通知消息从表' ROW_FORMAT = Dynamic;
-
--- ----------------------------
--- Records of sys_notice_detail
--- ----------------------------
-INSERT INTO `sys_notice_detail` VALUES ('578670509563052033', '578670509558857728', NULL, '522465144505106432', 'Y', '2019-06-02 20:31:03');
-INSERT INTO `sys_notice_detail` VALUES ('578670534351388673', '578670534347194368', NULL, '522465144505106432', 'Y', '2019-06-02 20:31:05');
-INSERT INTO `sys_notice_detail` VALUES ('580143170784854018', '580143170747105280', NULL, '522465144505106432', 'Y', '2019-06-02 20:31:01');
-INSERT INTO `sys_notice_detail` VALUES ('584843718389923840', '584843718364758016', NULL, '549336387174793216', 'N', NULL);
-INSERT INTO `sys_notice_detail` VALUES ('584843718389923841', '584843718364758016', NULL, '522465144505106432', 'Y', '2019-06-02 20:41:44');
-INSERT INTO `sys_notice_detail` VALUES ('584843718389923842', '584843718364758016', NULL, '522465900809420800', 'N', NULL);
-INSERT INTO `sys_notice_detail` VALUES ('584843718389923843', '584843718364758016', NULL, '522044507147993088', 'N', NULL);
-INSERT INTO `sys_notice_detail` VALUES ('584843816435974144', '584843816427585536', NULL, '549336387174793216', 'N', NULL);
-INSERT INTO `sys_notice_detail` VALUES ('584843816435974145', '584843816427585536', NULL, '522465144505106432', 'Y', '2019-06-15 19:22:04');
-INSERT INTO `sys_notice_detail` VALUES ('584843816435974146', '584843816427585536', NULL, '522465900809420800', 'N', NULL);
-INSERT INTO `sys_notice_detail` VALUES ('584843816435974147', '584843816427585536', NULL, '522044507147993088', 'N', NULL);
-INSERT INTO `sys_notice_detail` VALUES ('584844673084817408', '584844673080623104', NULL, '549336387174793216', 'N', NULL);
-INSERT INTO `sys_notice_detail` VALUES ('584844673084817409', '584844673080623104', NULL, '522465144505106432', 'Y', '2019-06-15 19:22:04');
-INSERT INTO `sys_notice_detail` VALUES ('584844673084817410', '584844673080623104', NULL, '522465900809420800', 'N', NULL);
-INSERT INTO `sys_notice_detail` VALUES ('584844673084817411', '584844673080623104', NULL, '522044507147993088', 'N', NULL);
-INSERT INTO `sys_notice_detail` VALUES ('584844691040632832', '584844691028049920', NULL, '549336387174793216', 'N', NULL);
-INSERT INTO `sys_notice_detail` VALUES ('584844691040632833', '584844691028049920', NULL, '522465144505106432', 'Y', '2019-06-15 19:22:04');
-INSERT INTO `sys_notice_detail` VALUES ('584844691040632834', '584844691028049920', NULL, '522465900809420800', 'N', NULL);
-INSERT INTO `sys_notice_detail` VALUES ('584844691040632835', '584844691028049920', NULL, '522044507147993088', 'N', NULL);
-INSERT INTO `sys_notice_detail` VALUES ('587712438128869376', '587712438082732032', NULL, '522465900809420800', 'N', NULL);
-INSERT INTO `sys_notice_detail` VALUES ('587712438128869377', '587712438082732033', NULL, '522465144505106432', 'Y', '2019-06-15 19:22:04');
-INSERT INTO `sys_notice_detail` VALUES ('587712438128869378', '587712438082732033', NULL, '549336387174793216', 'N', NULL);
-INSERT INTO `sys_notice_detail` VALUES ('587712438128869379', '587712438082732032', NULL, '522465144505106432', 'Y', '2019-06-15 19:22:04');
-INSERT INTO `sys_notice_detail` VALUES ('587712438128869380', '587712438082732032', NULL, '549336387174793216', 'N', NULL);
-INSERT INTO `sys_notice_detail` VALUES ('587712438195978240', '587712438082732033', NULL, '522465900809420800', 'N', NULL);
-INSERT INTO `sys_notice_detail` VALUES ('587712438200172544', '587712438082732033', NULL, '522044507147993088', 'N', NULL);
-INSERT INTO `sys_notice_detail` VALUES ('587712438216949760', '587712438082732032', NULL, '522044507147993088', 'N', NULL);
-INSERT INTO `sys_notice_detail` VALUES ('587712477374971904', '587712477362388992', NULL, '549336387174793216', 'N', NULL);
-INSERT INTO `sys_notice_detail` VALUES ('587712477374971905', '587712477362388992', NULL, '522465144505106432', 'Y', '2019-06-15 19:22:04');
-INSERT INTO `sys_notice_detail` VALUES ('587712477374971906', '587712477362388992', NULL, '522465900809420800', 'N', NULL);
-INSERT INTO `sys_notice_detail` VALUES ('587712477374971907', '587712477362388992', NULL, '522044507147993088', 'N', NULL);
-INSERT INTO `sys_notice_detail` VALUES ('589514725247680512', '589514725172183040', NULL, '549336387174793216', 'N', NULL);
-INSERT INTO `sys_notice_detail` VALUES ('589514725247680513', '589514725172183040', NULL, '522465144505106432', 'Y', '2019-06-15 19:22:04');
-INSERT INTO `sys_notice_detail` VALUES ('589514725247680514', '589514725172183040', NULL, '522465900809420800', 'N', NULL);
-INSERT INTO `sys_notice_detail` VALUES ('589514725251874816', '589514725172183040', NULL, '522044507147993088', 'N', NULL);
-INSERT INTO `sys_notice_detail` VALUES ('589514725474172928', '589514725465784320', NULL, '549336387174793216', 'N', NULL);
-INSERT INTO `sys_notice_detail` VALUES ('589514725474172929', '589514725465784320', NULL, '522465144505106432', 'Y', '2019-06-15 19:22:04');
-INSERT INTO `sys_notice_detail` VALUES ('589514725474172930', '589514725465784320', NULL, '522465900809420800', 'N', NULL);
-INSERT INTO `sys_notice_detail` VALUES ('589514725474172931', '589514725465784320', NULL, '522044507147993088', 'N', NULL);
-INSERT INTO `sys_notice_detail` VALUES ('589534373657706496', '589534373611569152', NULL, '549336387174793216', 'N', NULL);
-INSERT INTO `sys_notice_detail` VALUES ('589534373657706497', '589534373611569152', NULL, '522465900809420800', 'N', NULL);
-INSERT INTO `sys_notice_detail` VALUES ('589534373657706498', '589534373611569152', NULL, '522465144505106432', 'Y', '2019-06-15 19:22:04');
-INSERT INTO `sys_notice_detail` VALUES ('589534373657706499', '589534373611569152', NULL, '522044507147993088', 'N', NULL);
-INSERT INTO `sys_notice_detail` VALUES ('589534373729009664', '589534373687066624', NULL, '549336387174793216', 'N', NULL);
-INSERT INTO `sys_notice_detail` VALUES ('589534373729009665', '589534373687066624', NULL, '522465144505106432', 'Y', '2019-06-15 19:22:04');
-INSERT INTO `sys_notice_detail` VALUES ('589534373741592576', '589534373687066624', NULL, '522465900809420800', 'N', NULL);
-INSERT INTO `sys_notice_detail` VALUES ('589534373749981184', '589534373687066624', NULL, '522044507147993088', 'N', NULL);
-INSERT INTO `sys_notice_detail` VALUES ('589534390212624384', '589534390204235776', NULL, '549336387174793216', 'N', NULL);
-INSERT INTO `sys_notice_detail` VALUES ('589534390212624385', '589534390204235776', NULL, '522465144505106432', 'Y', '2019-06-15 19:22:04');
-INSERT INTO `sys_notice_detail` VALUES ('589534390212624386', '589534390204235776', NULL, '522465900809420800', 'N', NULL);
-INSERT INTO `sys_notice_detail` VALUES ('589534390212624387', '589534390204235776', NULL, '522044507147993088', 'N', NULL);
-INSERT INTO `sys_notice_detail` VALUES ('589534413616840704', '589534413608452096', NULL, '549336387174793216', 'N', NULL);
-INSERT INTO `sys_notice_detail` VALUES ('589534413616840705', '589534413608452096', NULL, '522465144505106432', 'Y', '2019-06-15 19:22:04');
-INSERT INTO `sys_notice_detail` VALUES ('589534413616840706', '589534413608452096', NULL, '522465900809420800', 'N', NULL);
-INSERT INTO `sys_notice_detail` VALUES ('589534413616840707', '589534413608452096', NULL, '522044507147993088', 'N', NULL);
-INSERT INTO `sys_notice_detail` VALUES ('589544447834849280', '589544447801294848', NULL, '522465144505106432', 'N', NULL);
-INSERT INTO `sys_notice_detail` VALUES ('589544447834849281', '589544447801294848', NULL, '522465900809420800', 'N', NULL);
-INSERT INTO `sys_notice_detail` VALUES ('589544447834849282', '589544447801294848', NULL, '549336387174793216', 'N', NULL);
-INSERT INTO `sys_notice_detail` VALUES ('589544447834849283', '589544447801294848', NULL, '522044507147993088', 'N', NULL);
-INSERT INTO `sys_notice_detail` VALUES ('589887159402496000', '589887159331192832', NULL, '549336387174793216', 'N', NULL);
-INSERT INTO `sys_notice_detail` VALUES ('589887159402496001', '589887159331192832', NULL, '522465900809420800', 'N', NULL);
-INSERT INTO `sys_notice_detail` VALUES ('589887159402496002', '589887159331192832', NULL, '522465144505106432', 'Y', '2019-06-18 16:19:22');
-INSERT INTO `sys_notice_detail` VALUES ('589887159402496003', '589887159331192832', NULL, '522044507147993088', 'N', NULL);
-INSERT INTO `sys_notice_detail` VALUES ('589887182626357249', '589887182626357248', NULL, '549336387174793216', 'N', NULL);
-INSERT INTO `sys_notice_detail` VALUES ('589887182630551552', '589887182626357248', NULL, '522465144505106432', 'Y', '2019-06-18 16:19:26');
-INSERT INTO `sys_notice_detail` VALUES ('589887182630551553', '589887182626357248', NULL, '522465900809420800', 'N', NULL);
-INSERT INTO `sys_notice_detail` VALUES ('589887182634745856', '589887182626357248', NULL, '522044507147993088', 'N', NULL);
-INSERT INTO `sys_notice_detail` VALUES ('589887205007163392', '589887204919083008', NULL, '549336387174793216', 'N', NULL);
-INSERT INTO `sys_notice_detail` VALUES ('589887205007163393', '589887204919083008', NULL, '522465144505106432', 'N', NULL);
-INSERT INTO `sys_notice_detail` VALUES ('589887205007163394', '589887204919083008', NULL, '522465900809420800', 'N', NULL);
-INSERT INTO `sys_notice_detail` VALUES ('589887205007163395', '589887204919083008', NULL, '522044507147993088', 'N', NULL);
 
 -- ----------------------------
 -- Table structure for sys_notice_type
@@ -1203,8 +1114,8 @@ CREATE TABLE `sys_notice_type`  (
 -- ----------------------------
 -- Records of sys_notice_type
 -- ----------------------------
-INSERT INTO `sys_notice_type` VALUES ('534774841853607936', '系统使用', '访问日志删除', 'delVisitLog', 'upload/image/2019_05_11/576893383461568512.jpg', 'FTL{username!} 于 FTL{datetime!} 删除了 FTL{number!} 条 访问日志。', '删除系统访问日志时，触发改消息通知', 10, 20, 'admin', '2019-01-15 16:44:17', 'admin', '2019-05-11 22:08:22');
-INSERT INTO `sys_notice_type` VALUES ('534775887648784384', '系统使用', '无权限操作', 'noPermissionOpe', 'upload/image/2019_05_11/576893428126711808.jpg', 'FTL{username!} 于 FTL{date!} 访问 无权限操作 FTL{visitUrl!}.', '用户执行访问无权限路径，点击无权限的按钮时，触发该操作', 30, 60, 'admin', '2019-01-15 16:48:27', 'admin', '2019-05-11 22:08:33');
+INSERT INTO `sys_notice_type` VALUES ('534774841853607936', '系统使用', '访问日志删除', 'delVisitLog', 'upload/image/2019_07_09/598094492565766144.jpg', 'FTL{username!} 于 FTL{datetime!} 删除了 FTL{number!} 条 访问日志。', '删除系统访问日志时，触发改消息通知', 10, 20, 'admin', '2019-01-15 16:44:17', 'admin', '2019-07-09 10:14:00');
+INSERT INTO `sys_notice_type` VALUES ('534775887648784384', '系统使用', '无权限操作', 'noPermissionOpe', 'upload/image/2019_07_09/598094525994369024.jpg', 'FTL{username!} 于 FTL{date!} 访问 无权限操作 FTL{visitUrl!}.', '用户执行访问无权限路径，点击无权限的按钮时，触发该操作', 30, 60, 'admin', '2019-01-15 16:48:27', 'admin', '2019-07-09 10:14:08');
 
 -- ----------------------------
 -- Table structure for sys_notice_type_sys_role
@@ -1246,6 +1157,7 @@ CREATE TABLE `sys_org`  (
   `updater` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '最后修改人',
   `updateTime` datetime(0) NULL DEFAULT NULL COMMENT '最后修改时间',
   PRIMARY KEY (`id`) USING BTREE,
+  UNIQUE INDEX `orgCode`(`orgCode`) USING BTREE,
   INDEX `pid`(`pid`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '组织机构表' ROW_FORMAT = Dynamic;
 
@@ -1258,7 +1170,7 @@ INSERT INTO `sys_org` VALUES ('520707040134299649', '财务中心', 'cwzx', 'cwz
 INSERT INTO `sys_org` VALUES ('520707116877479937', '采购中心', 'cgzx', 'cgzx', NULL, 3, '520706829357940736', 'debug', NULL, '2018-12-07 21:04:10', 'debug', '2018-12-07 21:20:49');
 INSERT INTO `sys_org` VALUES ('520707224780144641', '技术研发中心', 'jsyfzx', 'jsyfzx', NULL, 4, '520706829357940736', 'debug', NULL, '2018-12-07 21:04:36', NULL, NULL);
 INSERT INTO `sys_org` VALUES ('520707309203095552', '品保中心', 'pbzx', 'pbzx', NULL, 5, '520706829357940736', 'debug', NULL, '2018-12-07 21:04:56', NULL, NULL);
-INSERT INTO `sys_org` VALUES ('520707412714323969', '生产中心', 'sczx', 'sczx', NULL, 6, '520706829357940736', 'debug', NULL, '2018-12-07 21:05:21', NULL, NULL);
+INSERT INTO `sys_org` VALUES ('520707412714323969', '生产中心', 'sczxx', 'sczx', NULL, 6, '520706829357940736', 'debug', NULL, '2018-12-07 21:05:21', NULL, NULL);
 INSERT INTO `sys_org` VALUES ('520707499788075008', '信息中心', 'xxzx', '运营楼y408', 'hello world good morning', 7, '520706829357940736', 'debug', NULL, '2018-12-07 21:05:42', 'debug', '2018-12-12 13:00:26');
 INSERT INTO `sys_org` VALUES ('520707685839011841', '运营中心', 'yyzx', 'yyzx', NULL, 8, '520706829357940736', 'debug', NULL, '2018-12-07 21:06:26', NULL, NULL);
 INSERT INTO `sys_org` VALUES ('520707791640330241', '招标组', 'zbz', 'zbz', NULL, 9, '520706829357940736', 'debug', NULL, '2018-12-07 21:06:51', 'admin', '2019-02-24 21:13:43');
@@ -1300,6 +1212,7 @@ CREATE TABLE `sys_role`  (
 INSERT INTO `sys_role` VALUES ('520339201795817472', '管理员', 'admin', '超级管理员，管理所有权限', 1, 'debug', '2018-12-06 20:42:13', 'debug', '2018-12-06 20:44:48');
 INSERT INTO `sys_role` VALUES ('520340379124367361', '系统运维', 'systemOperation', '系统运维', 2, 'debug', '2018-12-06 20:46:53', NULL, NULL);
 INSERT INTO `sys_role` VALUES ('538438949161402368', '电商管理员', 'shopManager', '电商模块使用者', 3, 'admin', '2019-01-25 19:24:09', 'admin', '2019-02-22 09:16:27');
+INSERT INTO `sys_role` VALUES ('601143921250140160', '人力员工', 'hrStaff', '人力资源员工，用于测试activiti 流程审批', 4, 'admin', '2019-07-17 20:11:20', NULL, NULL);
 
 -- ----------------------------
 -- Table structure for sys_role_button
@@ -1334,19 +1247,24 @@ CREATE TABLE `sys_role_menu`  (
 -- ----------------------------
 -- Records of sys_role_menu
 -- ----------------------------
-INSERT INTO `sys_role_menu` VALUES ('520339201795817472', '520751411466600448', 'admin', '2019-06-15 20:40:04');
-INSERT INTO `sys_role_menu` VALUES ('520339201795817472', '520751483449245697', 'admin', '2019-06-15 20:40:04');
-INSERT INTO `sys_role_menu` VALUES ('520339201795817472', '520751566345469952', 'admin', '2019-06-15 20:40:04');
-INSERT INTO `sys_role_menu` VALUES ('520339201795817472', '520751881509666817', 'admin', '2019-06-15 20:40:04');
-INSERT INTO `sys_role_menu` VALUES ('520339201795817472', '520752428128141312', 'admin', '2019-06-15 20:40:04');
-INSERT INTO `sys_role_menu` VALUES ('520339201795817472', '520752809180659712', 'admin', '2019-06-15 20:40:04');
-INSERT INTO `sys_role_menu` VALUES ('520339201795817472', '520753306482507776', 'admin', '2019-06-15 20:40:04');
-INSERT INTO `sys_role_menu` VALUES ('520339201795817472', '520753742492991488', 'admin', '2019-06-15 20:40:04');
-INSERT INTO `sys_role_menu` VALUES ('520339201795817472', '529975794877857792', 'admin', '2019-06-15 20:40:04');
-INSERT INTO `sys_role_menu` VALUES ('520339201795817472', '533964972439371776', 'admin', '2019-06-15 20:40:04');
-INSERT INTO `sys_role_menu` VALUES ('520339201795817472', '537980279722082304', 'admin', '2019-06-15 20:40:04');
-INSERT INTO `sys_role_menu` VALUES ('520339201795817472', '560430837321957376', 'admin', '2019-06-15 20:40:04');
-INSERT INTO `sys_role_menu` VALUES ('520339201795817472', '589554668238012416', 'admin', '2019-06-15 20:40:04');
+INSERT INTO `sys_role_menu` VALUES ('520339201795817472', '520751411466600448', 'admin', '2019-07-18 21:17:58');
+INSERT INTO `sys_role_menu` VALUES ('520339201795817472', '520751483449245697', 'admin', '2019-07-18 21:17:58');
+INSERT INTO `sys_role_menu` VALUES ('520339201795817472', '520751566345469952', 'admin', '2019-07-18 21:17:58');
+INSERT INTO `sys_role_menu` VALUES ('520339201795817472', '520751881509666817', 'admin', '2019-07-18 21:17:58');
+INSERT INTO `sys_role_menu` VALUES ('520339201795817472', '520752428128141312', 'admin', '2019-07-18 21:17:58');
+INSERT INTO `sys_role_menu` VALUES ('520339201795817472', '520752809180659712', 'admin', '2019-07-18 21:17:58');
+INSERT INTO `sys_role_menu` VALUES ('520339201795817472', '520753306482507776', 'admin', '2019-07-18 21:17:58');
+INSERT INTO `sys_role_menu` VALUES ('520339201795817472', '520753742492991488', 'admin', '2019-07-18 21:17:58');
+INSERT INTO `sys_role_menu` VALUES ('520339201795817472', '529975794877857792', 'admin', '2019-07-18 21:17:58');
+INSERT INTO `sys_role_menu` VALUES ('520339201795817472', '533964972439371776', 'admin', '2019-07-18 21:17:58');
+INSERT INTO `sys_role_menu` VALUES ('520339201795817472', '537980279722082304', 'admin', '2019-07-18 21:17:58');
+INSERT INTO `sys_role_menu` VALUES ('520339201795817472', '560430837321957376', 'admin', '2019-07-18 21:17:58');
+INSERT INTO `sys_role_menu` VALUES ('520339201795817472', '589554668238012416', 'admin', '2019-07-18 21:17:58');
+INSERT INTO `sys_role_menu` VALUES ('520339201795817472', '601158856554315776', 'admin', '2019-07-18 21:17:58');
+INSERT INTO `sys_role_menu` VALUES ('520339201795817472', '601159063673241600', 'admin', '2019-07-18 21:17:58');
+INSERT INTO `sys_role_menu` VALUES ('520339201795817472', '601521906507579392', 'admin', '2019-07-18 21:17:58');
+INSERT INTO `sys_role_menu` VALUES ('520339201795817472', '601522119347535872', 'admin', '2019-07-18 21:17:58');
+INSERT INTO `sys_role_menu` VALUES ('520339201795817472', '601522637276971008', 'admin', '2019-07-18 21:17:58');
 INSERT INTO `sys_role_menu` VALUES ('520340379124367361', '520752809180659712', 'admin', '2019-01-15 17:03:04');
 INSERT INTO `sys_role_menu` VALUES ('520340379124367361', '520753306482507776', 'admin', '2019-01-15 17:03:04');
 INSERT INTO `sys_role_menu` VALUES ('520340379124367361', '529975794877857792', 'admin', '2019-01-15 17:03:04');
@@ -1371,7 +1289,7 @@ CREATE TABLE `sys_setting`  (
 -- Records of sys_setting
 -- ----------------------------
 INSERT INTO `sys_setting` VALUES ('589566528542736384', '登录背景图', 'loginBackgroundImg', 'http://img.netbian.com/file/20130623/4788369295bc8017139e42f9425d6c1f.jpg', 'admin', '2019-06-18 17:11:37');
-INSERT INTO `sys_setting` VALUES ('589588733792092160', '系统主题 default、wechat、yahoo、gplus 任选其一', 'sysTheme', 'yahoo', 'admin', '2019-06-18 17:07:30');
+INSERT INTO `sys_setting` VALUES ('589588733792092160', '系统主题 default、wechat、yahoo、gplus 任选其一', 'sysTheme', 'default', 'admin', '2019-07-20 22:45:23');
 INSERT INTO `sys_setting` VALUES ('589885672161017856', '系统标题', 'sysTitle', 'mycurd 开发脚手架', 'admin', '2019-06-18 16:20:35');
 
 -- ----------------------------
@@ -1416,6 +1334,93 @@ INSERT INTO `sys_task_log` VALUES ('577105797226430464', 'com.github.qinyou.syst
 INSERT INTO `sys_task_log` VALUES ('577105831842021376', 'com.github.qinyou.system.task.DelSysNoticeTask', '2019-05-12 12:12:32', '2019-05-12 12:12:32', 'success', NULL);
 INSERT INTO `sys_task_log` VALUES ('584842826433429504', 'com.github.qinyou.system.task.DelSysNoticeTask', '2019-06-02 20:36:36', '2019-06-02 20:36:36', 'success', NULL);
 INSERT INTO `sys_task_log` VALUES ('584842835291799552', 'com.github.qinyou.system.task.TestTask', '2019-06-02 20:36:38', '2019-06-02 20:36:43', 'success', NULL);
+INSERT INTO `sys_task_log` VALUES ('601926244816125952', 'com.github.qinyou.system.task.TestTask', '2019-07-20 00:00:00', '2019-07-20 00:00:05', 'success', NULL);
+INSERT INTO `sys_task_log` VALUES ('601926496424034304', 'com.github.qinyou.system.task.TestTask', '2019-07-20 00:01:00', '2019-07-20 00:01:05', 'success', NULL);
+INSERT INTO `sys_task_log` VALUES ('602288632690114560', 'com.github.qinyou.system.task.TestTask', '2019-07-21 00:00:00', '2019-07-21 00:00:05', 'success', NULL);
+INSERT INTO `sys_task_log` VALUES ('602288884293828608', 'com.github.qinyou.system.task.TestTask', '2019-07-21 00:01:00', '2019-07-21 00:01:05', 'success', NULL);
+INSERT INTO `sys_task_log` VALUES ('602289135960457216', 'com.github.qinyou.system.task.TestTask', '2019-07-21 00:02:00', '2019-07-21 00:02:05', 'success', NULL);
+INSERT INTO `sys_task_log` VALUES ('602289387610308608', 'com.github.qinyou.system.task.TestTask', '2019-07-21 00:03:00', '2019-07-21 00:03:05', 'success', NULL);
+INSERT INTO `sys_task_log` VALUES ('602289639272742912', 'com.github.qinyou.system.task.TestTask', '2019-07-21 00:04:00', '2019-07-21 00:04:05', 'success', NULL);
+INSERT INTO `sys_task_log` VALUES ('602289890930982912', 'com.github.qinyou.system.task.TestTask', '2019-07-21 00:05:00', '2019-07-21 00:05:05', 'success', NULL);
+INSERT INTO `sys_task_log` VALUES ('602290142593417216', 'com.github.qinyou.system.task.TestTask', '2019-07-21 00:06:00', '2019-07-21 00:06:05', 'success', NULL);
+INSERT INTO `sys_task_log` VALUES ('602290394243268608', 'com.github.qinyou.system.task.TestTask', '2019-07-21 00:07:00', '2019-07-21 00:07:05', 'success', NULL);
+INSERT INTO `sys_task_log` VALUES ('602290645909897216', 'com.github.qinyou.system.task.TestTask', '2019-07-21 00:08:00', '2019-07-21 00:08:05', 'success', NULL);
+INSERT INTO `sys_task_log` VALUES ('602290897563942912', 'com.github.qinyou.system.task.TestTask', '2019-07-21 00:09:00', '2019-07-21 00:09:05', 'success', NULL);
+INSERT INTO `sys_task_log` VALUES ('602291149226377216', 'com.github.qinyou.system.task.TestTask', '2019-07-21 00:10:00', '2019-07-21 00:10:05', 'success', NULL);
+INSERT INTO `sys_task_log` VALUES ('602291400876228608', 'com.github.qinyou.system.task.TestTask', '2019-07-21 00:11:00', '2019-07-21 00:11:05', 'success', NULL);
+INSERT INTO `sys_task_log` VALUES ('602291652534468608', 'com.github.qinyou.system.task.TestTask', '2019-07-21 00:12:00', '2019-07-21 00:12:05', 'success', NULL);
+INSERT INTO `sys_task_log` VALUES ('602291904247234560', 'com.github.qinyou.system.task.TestTask', '2019-07-21 00:13:00', '2019-07-21 00:13:05', 'success', NULL);
+INSERT INTO `sys_task_log` VALUES ('602292155859337216', 'com.github.qinyou.system.task.TestTask', '2019-07-21 00:14:00', '2019-07-21 00:14:05', 'success', NULL);
+INSERT INTO `sys_task_log` VALUES ('602292407513382912', 'com.github.qinyou.system.task.TestTask', '2019-07-21 00:15:00', '2019-07-21 00:15:05', 'success', NULL);
+INSERT INTO `sys_task_log` VALUES ('602292659251314688', 'com.github.qinyou.system.task.TestTask', '2019-07-21 00:16:00', '2019-07-21 00:16:05', 'success', NULL);
+INSERT INTO `sys_task_log` VALUES ('602292910829862912', 'com.github.qinyou.system.task.TestTask', '2019-07-21 00:17:00', '2019-07-21 00:17:05', 'success', NULL);
+INSERT INTO `sys_task_log` VALUES ('602293162488102912', 'com.github.qinyou.system.task.TestTask', '2019-07-21 00:18:00', '2019-07-21 00:18:05', 'success', NULL);
+INSERT INTO `sys_task_log` VALUES ('602293414200868864', 'com.github.qinyou.system.task.TestTask', '2019-07-21 00:19:00', '2019-07-21 00:19:05', 'success', NULL);
+INSERT INTO `sys_task_log` VALUES ('602293665804582912', 'com.github.qinyou.system.task.TestTask', '2019-07-21 00:20:00', '2019-07-21 00:20:05', 'success', NULL);
+INSERT INTO `sys_task_log` VALUES ('602294169171394560', 'com.github.qinyou.system.task.TestTask', '2019-07-21 00:22:00', '2019-07-21 00:22:05', 'success', NULL);
+INSERT INTO `sys_task_log` VALUES ('602294420783497216', 'com.github.qinyou.system.task.TestTask', '2019-07-21 00:23:00', '2019-07-21 00:23:05', 'success', NULL);
+INSERT INTO `sys_task_log` VALUES ('602294672487874560', 'com.github.qinyou.system.task.TestTask', '2019-07-21 00:24:00', '2019-07-21 00:24:05', 'success', NULL);
+INSERT INTO `sys_task_log` VALUES ('602294924091588608', 'com.github.qinyou.system.task.TestTask', '2019-07-21 00:25:00', '2019-07-21 00:25:05', 'success', NULL);
+INSERT INTO `sys_task_log` VALUES ('602295175754022912', 'com.github.qinyou.system.task.TestTask', '2019-07-21 00:26:00', '2019-07-21 00:26:05', 'success', NULL);
+INSERT INTO `sys_task_log` VALUES ('602295427416457216', 'com.github.qinyou.system.task.TestTask', '2019-07-21 00:27:00', '2019-07-21 00:27:05', 'success', NULL);
+INSERT INTO `sys_task_log` VALUES ('602295679070502912', 'com.github.qinyou.system.task.TestTask', '2019-07-21 00:28:00', '2019-07-21 00:28:05', 'success', NULL);
+INSERT INTO `sys_task_log` VALUES ('602295930724548608', 'com.github.qinyou.system.task.TestTask', '2019-07-21 00:29:00', '2019-07-21 00:29:05', 'success', NULL);
+INSERT INTO `sys_task_log` VALUES ('602296182386982912', 'com.github.qinyou.system.task.TestTask', '2019-07-21 00:30:00', '2019-07-21 00:30:05', 'success', NULL);
+INSERT INTO `sys_task_log` VALUES ('602296434045222912', 'com.github.qinyou.system.task.TestTask', '2019-07-21 00:31:00', '2019-07-21 00:31:05', 'success', NULL);
+INSERT INTO `sys_task_log` VALUES ('602296685699268608', 'com.github.qinyou.system.task.TestTask', '2019-07-21 00:32:00', '2019-07-21 00:32:05', 'success', NULL);
+INSERT INTO `sys_task_log` VALUES ('602296937357508608', 'com.github.qinyou.system.task.TestTask', '2019-07-21 00:33:00', '2019-07-21 00:33:05', 'success', NULL);
+INSERT INTO `sys_task_log` VALUES ('602297189019942912', 'com.github.qinyou.system.task.TestTask', '2019-07-21 00:34:00', '2019-07-21 00:34:05', 'success', NULL);
+INSERT INTO `sys_task_log` VALUES ('602297692365783040', 'com.github.qinyou.system.task.TestTask', '2019-07-21 00:36:00', '2019-07-21 00:36:05', 'success', NULL);
+INSERT INTO `sys_task_log` VALUES ('602297943998857216', 'com.github.qinyou.system.task.TestTask', '2019-07-21 00:37:00', '2019-07-21 00:37:05', 'success', NULL);
+INSERT INTO `sys_task_log` VALUES ('602298195652902912', 'com.github.qinyou.system.task.TestTask', '2019-07-21 00:38:00', '2019-07-21 00:38:05', 'success', NULL);
+INSERT INTO `sys_task_log` VALUES ('602298447315337216', 'com.github.qinyou.system.task.TestTask', '2019-07-21 00:39:00', '2019-07-21 00:39:05', 'success', NULL);
+INSERT INTO `sys_task_log` VALUES ('602298698969382912', 'com.github.qinyou.system.task.TestTask', '2019-07-21 00:40:00', '2019-07-21 00:40:05', 'success', NULL);
+INSERT INTO `sys_task_log` VALUES ('602298950627622912', 'com.github.qinyou.system.task.TestTask', '2019-07-21 00:41:00', '2019-07-21 00:41:05', 'success', NULL);
+INSERT INTO `sys_task_log` VALUES ('602299202285862912', 'com.github.qinyou.system.task.TestTask', '2019-07-21 00:42:00', '2019-07-21 00:42:05', 'success', NULL);
+INSERT INTO `sys_task_log` VALUES ('602299453948297216', 'com.github.qinyou.system.task.TestTask', '2019-07-21 00:43:00', '2019-07-21 00:43:05', 'success', NULL);
+INSERT INTO `sys_task_log` VALUES ('602299705610731520', 'com.github.qinyou.system.task.TestTask', '2019-07-21 00:44:00', '2019-07-21 00:44:05', 'success', NULL);
+INSERT INTO `sys_task_log` VALUES ('602299957260582912', 'com.github.qinyou.system.task.TestTask', '2019-07-21 00:45:00', '2019-07-21 00:45:05', 'success', NULL);
+INSERT INTO `sys_task_log` VALUES ('602300208918822912', 'com.github.qinyou.system.task.TestTask', '2019-07-21 00:46:00', '2019-07-21 00:46:05', 'success', NULL);
+INSERT INTO `sys_task_log` VALUES ('602300460577062912', 'com.github.qinyou.system.task.TestTask', '2019-07-21 00:47:00', '2019-07-21 00:47:05', 'success', NULL);
+INSERT INTO `sys_task_log` VALUES ('602300712235302912', 'com.github.qinyou.system.task.TestTask', '2019-07-21 00:48:00', '2019-07-21 00:48:05', 'success', NULL);
+INSERT INTO `sys_task_log` VALUES ('602300963893542912', 'com.github.qinyou.system.task.TestTask', '2019-07-21 00:49:00', '2019-07-21 00:49:05', 'success', NULL);
+INSERT INTO `sys_task_log` VALUES ('602301215551782912', 'com.github.qinyou.system.task.TestTask', '2019-07-21 00:50:00', '2019-07-21 00:50:05', 'success', NULL);
+INSERT INTO `sys_task_log` VALUES ('602301467210022912', 'com.github.qinyou.system.task.TestTask', '2019-07-21 00:51:00', '2019-07-21 00:51:05', 'success', NULL);
+INSERT INTO `sys_task_log` VALUES ('602301718889234432', 'com.github.qinyou.system.task.TestTask', '2019-07-21 00:52:00', '2019-07-21 00:52:05', 'success', NULL);
+INSERT INTO `sys_task_log` VALUES ('602301970526502912', 'com.github.qinyou.system.task.TestTask', '2019-07-21 00:53:00', '2019-07-21 00:53:05', 'success', NULL);
+INSERT INTO `sys_task_log` VALUES ('602302222201520128', 'com.github.qinyou.system.task.TestTask', '2019-07-21 00:54:00', '2019-07-21 00:54:05', 'success', NULL);
+INSERT INTO `sys_task_log` VALUES ('602302473847177216', 'com.github.qinyou.system.task.TestTask', '2019-07-21 00:55:00', '2019-07-21 00:55:05', 'success', NULL);
+INSERT INTO `sys_task_log` VALUES ('602302725501222912', 'com.github.qinyou.system.task.TestTask', '2019-07-21 00:56:00', '2019-07-21 00:56:05', 'success', NULL);
+INSERT INTO `sys_task_log` VALUES ('602302977159462912', 'com.github.qinyou.system.task.TestTask', '2019-07-21 00:57:00', '2019-07-21 00:57:05', 'success', NULL);
+INSERT INTO `sys_task_log` VALUES ('602303228817702912', 'com.github.qinyou.system.task.TestTask', '2019-07-21 00:58:00', '2019-07-21 00:58:05', 'success', NULL);
+INSERT INTO `sys_task_log` VALUES ('602303732142571520', 'com.github.qinyou.system.task.DelSysNoticeTask', '2019-07-21 01:00:00', '2019-07-21 01:00:00', 'success', NULL);
+INSERT INTO `sys_task_log` VALUES ('602303983792422912', 'com.github.qinyou.system.task.DelSysNoticeTask', '2019-07-21 01:01:00', '2019-07-21 01:01:00', 'success', NULL);
+INSERT INTO `sys_task_log` VALUES ('602304235551326208', 'com.github.qinyou.system.task.DelSysNoticeTask', '2019-07-21 01:02:00', '2019-07-21 01:02:00', 'success', NULL);
+INSERT INTO `sys_task_log` VALUES ('602304487104708608', 'com.github.qinyou.system.task.DelSysNoticeTask', '2019-07-21 01:03:00', '2019-07-21 01:03:00', 'success', NULL);
+INSERT INTO `sys_task_log` VALUES ('602305242104594432', 'com.github.qinyou.system.task.DelSysNoticeTask', '2019-07-21 01:06:00', '2019-07-21 01:06:00', 'success', NULL);
+INSERT INTO `sys_task_log` VALUES ('602305493741862912', 'com.github.qinyou.system.task.DelSysNoticeTask', '2019-07-21 01:07:00', '2019-07-21 01:07:00', 'success', NULL);
+INSERT INTO `sys_task_log` VALUES ('602305745404297216', 'com.github.qinyou.system.task.DelSysNoticeTask', '2019-07-21 01:08:00', '2019-07-21 01:08:00', 'success', NULL);
+INSERT INTO `sys_task_log` VALUES ('602305997054148608', 'com.github.qinyou.system.task.DelSysNoticeTask', '2019-07-21 01:09:00', '2019-07-21 01:09:00', 'success', NULL);
+INSERT INTO `sys_task_log` VALUES ('602306248712388608', 'com.github.qinyou.system.task.DelSysNoticeTask', '2019-07-21 01:10:00', '2019-07-21 01:10:00', 'success', NULL);
+INSERT INTO `sys_task_log` VALUES ('602306500374822912', 'com.github.qinyou.system.task.DelSysNoticeTask', '2019-07-21 01:11:00', '2019-07-21 01:11:00', 'success', NULL);
+INSERT INTO `sys_task_log` VALUES ('602306752037257216', 'com.github.qinyou.system.task.DelSysNoticeTask', '2019-07-21 01:12:00', '2019-07-21 01:12:00', 'success', NULL);
+INSERT INTO `sys_task_log` VALUES ('602307003695497216', 'com.github.qinyou.system.task.DelSysNoticeTask', '2019-07-21 01:13:00', '2019-07-21 01:13:00', 'success', NULL);
+INSERT INTO `sys_task_log` VALUES ('602307255353737216', 'com.github.qinyou.system.task.DelSysNoticeTask', '2019-07-21 01:14:00', '2019-07-21 01:14:00', 'success', NULL);
+INSERT INTO `sys_task_log` VALUES ('602307507133612032', 'com.github.qinyou.system.task.DelSysNoticeTask', '2019-07-21 01:15:00', '2019-07-21 01:15:00', 'success', NULL);
+INSERT INTO `sys_task_log` VALUES ('602307758666022912', 'com.github.qinyou.system.task.DelSysNoticeTask', '2019-07-21 01:16:00', '2019-07-21 01:16:00', 'success', NULL);
+INSERT INTO `sys_task_log` VALUES ('602308010324262912', 'com.github.qinyou.system.task.DelSysNoticeTask', '2019-07-21 01:17:00', '2019-07-21 01:17:00', 'success', NULL);
+INSERT INTO `sys_task_log` VALUES ('602308261986697216', 'com.github.qinyou.system.task.DelSysNoticeTask', '2019-07-21 01:18:00', '2019-07-21 01:18:00', 'success', NULL);
+INSERT INTO `sys_task_log` VALUES ('602308513640742912', 'com.github.qinyou.system.task.DelSysNoticeTask', '2019-07-21 01:19:00', '2019-07-21 01:19:00', 'success', NULL);
+INSERT INTO `sys_task_log` VALUES ('602308765298982912', 'com.github.qinyou.system.task.DelSysNoticeTask', '2019-07-21 01:20:00', '2019-07-21 01:20:00', 'success', NULL);
+INSERT INTO `sys_task_log` VALUES ('602309016957222912', 'com.github.qinyou.system.task.DelSysNoticeTask', '2019-07-21 01:21:00', '2019-07-21 01:21:00', 'success', NULL);
+INSERT INTO `sys_task_log` VALUES ('602309268619657216', 'com.github.qinyou.system.task.DelSysNoticeTask', '2019-07-21 01:22:00', '2019-07-21 01:22:00', 'success', NULL);
+INSERT INTO `sys_task_log` VALUES ('602309520273702912', 'com.github.qinyou.system.task.DelSysNoticeTask', '2019-07-21 01:23:00', '2019-07-21 01:23:00', 'success', NULL);
+INSERT INTO `sys_task_log` VALUES ('602309771936137216', 'com.github.qinyou.system.task.DelSysNoticeTask', '2019-07-21 01:24:00', '2019-07-21 01:24:00', 'success', NULL);
+INSERT INTO `sys_task_log` VALUES ('602310023665680384', 'com.github.qinyou.system.task.DelSysNoticeTask', '2019-07-21 01:25:00', '2019-07-21 01:25:00', 'success', NULL);
+INSERT INTO `sys_task_log` VALUES ('602310275240034304', 'com.github.qinyou.system.task.DelSysNoticeTask', '2019-07-21 01:26:00', '2019-07-21 01:26:00', 'success', NULL);
+INSERT INTO `sys_task_log` VALUES ('602310526910857216', 'com.github.qinyou.system.task.DelSysNoticeTask', '2019-07-21 01:27:00', '2019-07-21 01:27:00', 'success', NULL);
+INSERT INTO `sys_task_log` VALUES ('602310778569097216', 'com.github.qinyou.system.task.DelSysNoticeTask', '2019-07-21 01:28:00', '2019-07-21 01:28:00', 'success', NULL);
+INSERT INTO `sys_task_log` VALUES ('602311030223142912', 'com.github.qinyou.system.task.DelSysNoticeTask', '2019-07-21 01:29:00', '2019-07-21 01:29:00', 'success', NULL);
 
 -- ----------------------------
 -- Table structure for sys_user
@@ -1451,7 +1456,7 @@ CREATE TABLE `sys_user`  (
 -- Records of sys_user
 -- ----------------------------
 INSERT INTO `sys_user` VALUES ('522044507147993088', 'debug', '7c4a8d09ca3762af61e59520943dc26494f8941b', '开发调试', 'static/image/male.jpg', 'M', 'qinyou1994@outlook.com', '15238002477', '520707499788075008', '开发工程师', 'staff', NULL, NULL, NULL, 'debug', '2018-12-11 13:38:29', 'debug', '2018-12-12 11:21:13', '0', NULL);
-INSERT INTO `sys_user` VALUES ('522465144505106432', 'admin', '3d4f2bf07dc1be38b20cd6e46949a1071f9d0e3d', '张闯', 'upload/image/2019_05_11/576893342906843136.jpg', 'M', '15238002477@163.com', '15238002477', '520710334881726465', '开发工程师', 'staff', NULL, NULL, '2019-06-18 17:07:57', 'debug', '2018-12-12 17:29:57', 'admin', '2019-02-22 14:59:32', '0', NULL);
+INSERT INTO `sys_user` VALUES ('522465144505106432', 'admin', '3d4f2bf07dc1be38b20cd6e46949a1071f9d0e3d', '张闯', 'upload/image/2019_07_09/598088017822875648.jpg', 'M', '15238002477@163.com', '15238002477', '520710334881726465', '开发工程师', 'staff', NULL, NULL, '2019-07-21 21:50:38', 'debug', '2018-12-12 17:29:57', 'admin', '2019-02-22 14:59:32', '0', NULL);
 INSERT INTO `sys_user` VALUES ('522465900809420800', 'zhaoli', '7c4a8d09ca3762af61e59520943dc26494f8941b', '赵丽', NULL, 'F', 'zhaoli@istek.net.cn', 'kaka', '520706929148821505', 'xxx', 'director', NULL, NULL, '2019-03-14 18:58:24', 'debug', '2018-12-12 17:32:57', NULL, NULL, '0', NULL);
 INSERT INTO `sys_user` VALUES ('549336387174793216', 'abc', '7c4a8d09ca3762af61e59520943dc26494f8941b', 'abc2', NULL, 'F', 'qinyou@outlook.com2', '13238002456', '520706829357940736', 'developer2', 'monitor', NULL, NULL, NULL, 'admin', '2019-02-24 21:06:40', 'admin', '2019-02-24 21:08:53', '0', 'X');
 
@@ -1493,7 +1498,6 @@ CREATE TABLE `sys_visit_log`  (
   `createTime` datetime(0) NOT NULL COMMENT '创建时间',
   `requestType` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '访问类型,GET POST PUT DELETE',
   `param` text CHARACTER SET utf8 COLLATE utf8_general_ci NULL COMMENT '参数',
-  `error` text CHARACTER SET utf8 COLLATE utf8_general_ci NULL COMMENT '异常',
   `device` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '设备',
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `SYS_VISIT_LOG_SYS_USER_IP_IX`(`sysUserIp`) USING BTREE,

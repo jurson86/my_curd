@@ -28,9 +28,6 @@
             function openUserNotice(){
                 popup.openIframeNoResize('用户通知', '${ctx!}/dashboard/userNotice', '900px', '600px');
             }
-            function openThemeSetting() {
-                popup.openIframeNoResize('主题设置', '${ctx!}/dashboard/themeList', '200px', '120px',true,true);
-            }
 
             (function(){
                 function openUserInfoEdit() {
@@ -103,7 +100,9 @@
                     }
                 }
             });
-            /*$('#permissionTree').tree('collapseAll');*/
+            if(data.length>25){
+                $('#permissionTree').tree('collapseAll');
+            }
         }).error(function(){ popup.errMsg(); });
     }
 
