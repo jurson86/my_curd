@@ -29,12 +29,6 @@
             <td>时间</td>
             <td>${(sysVisitLog.createTime)!}</td>
         </tr>
-        <#if (sysVisitLog.error)??>
-        <tr>
-            <td style="width: 100px;">异常信息</td>
-            <td>${(sysVisitLog.error)!}</td>
-        </tr>
-        </#if>
     </tbody>
 </table>
 </@layout>

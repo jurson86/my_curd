@@ -21,12 +21,6 @@ import java.util.Map;
 public class VisitLogInterceptor implements Interceptor {
     @Override
     public void intercept(Invocation inv) {
-        try {
-            inv.invoke();
-        } catch (Exception e) {
-            log.error(e.getMessage(), e);
-        }
-
         Controller controller = inv.getController();
         SysVisitLog sysVisitLog = new SysVisitLog();
         sysVisitLog.setId(IdUtils.id());
@@ -43,5 +37,6 @@ public class VisitLogInterceptor implements Interceptor {
             }
         }
         sysVisitLog.save();
+        inv.invoke();
     }
 }

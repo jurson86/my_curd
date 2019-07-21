@@ -26,7 +26,7 @@ public class SysVisitLog extends BaseSysVisitLog<SysVisitLog> {
      * @return
      */
     public Page<SysVisitLog> page(int pageNumber, int pageSize, String where) {
-        String sqlSelect = " select id,sysUser,sysUserIp,url,createTime,requestTyp ";
+        String sqlSelect = " select id,sysUser,sysUserIp,url,createTime,requestType ";
         String sqlExceptSelect = " from sys_visit_log  ";
         if (StringUtils.notEmpty(where)) {
             sqlExceptSelect += " where " + where;
