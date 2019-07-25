@@ -1,14 +1,13 @@
 package com.github.qinyou.common.utils.Id;
 
-import com.jfinal.kit.Prop;
-import com.jfinal.kit.PropKit;
+import com.github.qinyou.AppConfig;
 
 /**
  * 生成唯一性ID算法的工具类.
  */
 public class IdUtils {
-    private final static Prop prop = PropKit.use("config.properties");
-    private final static SnowflakeIdWorker idWorker = new SnowflakeIdWorker(prop.getInt("workerId"), prop.getInt("datacenterId"));
+    private final static SnowflakeIdWorker idWorker =
+            new SnowflakeIdWorker(AppConfig.configProp.getInt("id.workerId"), AppConfig.configProp.getInt("id.datacenterId"));
 
     /**
      * 18 位数字型 字符串

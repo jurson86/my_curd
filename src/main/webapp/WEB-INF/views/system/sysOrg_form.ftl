@@ -8,22 +8,23 @@
         <tr>
             <td>名称：</td>
             <td>
-            <input name="orgName" value="${(sysOrg.orgName)!}"   class="easyui-textbox"  data-options="required:true" >
+                <input name="orgName" value="${(sysOrg.orgName)!}"   class="easyui-textbox"  data-options="required:true" >
             </td>
-            <td>父机构：</td>
-            <td>
-                <input name="pid"  id="pid">
-            </td>
-        </tr>
-        <tr>
             <td>编码：</td>
             <td>
                 <input name="orgCode" value="${(sysOrg.orgCode)!}"   class="easyui-textbox" data-options="required:true">
+            </td>
+        </tr>
+        <tr>
+            <td>父机构：</td>
+            <td>
+                <input name="pid"  id="pid">
             </td>
             <td>排序号：</td>
             <td>
                 <input name="sortNum" value="${(sysOrg.sortNum)!}"   class="easyui-numberbox" data-options="required:true,precision:0,min:0">
             </td>
+
         </tr>
         <tr>
             <td>地址：</td>

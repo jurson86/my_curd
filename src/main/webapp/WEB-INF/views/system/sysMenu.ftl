@@ -56,7 +56,7 @@
             },
             columns: [[
                 {field: 'menuName', title: '菜单名', width: 200},
-                {field: 'menuCode', title: '菜单编码', width: 150},
+                {field: 'menuCode', title: '权限编码', width: 150},
                 {field: 'url', title: '地址', width: 250},
                 {field: 'icon', title: '图标', width: 250},
                 {field: 'sortNum', title: '排序号', width: 100},

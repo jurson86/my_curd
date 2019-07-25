@@ -5,7 +5,7 @@ import cn.afterturn.easypoi.excel.ExcelImportUtil;
 import cn.afterturn.easypoi.excel.entity.ExportParams;
 import cn.afterturn.easypoi.excel.entity.ImportParams;
 import com.github.qinyou.common.annotation.RequireMenuCode;
-import com.github.qinyou.common.config.Constant;
+import com.github.qinyou.common.constant.Constant;
 import com.github.qinyou.common.interceptor.SearchSql;
 import com.github.qinyou.common.render.ExcelRender;
 import com.github.qinyou.common.utils.FileUtils;

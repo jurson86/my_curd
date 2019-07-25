@@ -1,6 +1,6 @@
 package com.github.qinyou.common.gen.client;
 
-import com.github.qinyou.common.config.Constant;
+import com.github.qinyou.common.constant.Constant;
 import com.github.qinyou.common.gen.GeneratorConfig;
 import com.github.qinyou.common.gen.tools.MysqlDataSourceUtils;
 import com.github.qinyou.common.gen.tools.MysqlMetaUtils;

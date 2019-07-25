@@ -1,16 +1,21 @@
-package com.github.qinyou.common.config;
+package com.github.qinyou;
 
 import com.alibaba.druid.filter.stat.StatFilter;
 import com.alibaba.druid.wall.WallFilter;
-import com.github.qinyou.LoginController;
-import com.github.qinyou.MainController;
+import com.github.qinyou.common.constant.Constant;
+import com.github.qinyou.common.web.LoginController;
+import com.github.qinyou.common.web.MainController;
 import com.github.qinyou.common.interceptor.*;
-import com.github.qinyou.common.utils.UtilsController;
+import com.github.qinyou.common.web.UtilsController;
 import com.github.qinyou.common.utils.log.LogBackLogFactory;
 import com.github.qinyou.common.web.FileController;
 import com.github.qinyou.example.ExampleModelMapping;
 import com.github.qinyou.example.ExampleRoute;
 import com.github.qinyou.genOnline.GenOnlineRoute;
+import com.github.qinyou.oa.OARoute;
+import com.github.qinyou.oa.OaModelMapping;
+import com.github.qinyou.oa.activiti.ActivitiConfig;
+import com.github.qinyou.oa.activiti.ActivitiPlugin;
 import com.github.qinyou.system.SystemModelMapping;
 import com.github.qinyou.system.SystemRoute;
 import com.github.qinyou.system.model.SysUser;
@@ -29,47 +34,69 @@ import com.jfinal.plugin.druid.IDruidStatViewAuth;
 import com.jfinal.render.ViewType;
 import com.jfinal.server.undertow.UndertowServer;
 import com.jfinal.template.Engine;
+import lombok.extern.slf4j.Slf4j;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;
-
 
 /**
  * Jfinal框架 配置
  *
  * @author zhangcuang
  */
+@Slf4j
 public class AppConfig extends JFinalConfig {
-    private Prop configProp = PropKit.use("config.properties");
+    public static final Prop configProp ;      // 配置文件
+    public static final String activeProfile;  // 生效的配置环境
+
+    static {
+        Prop propTemp = PropKit.use("config.txt");
+        activeProfile= propTemp.get("runtime.profile");
+        if(!"dev".equalsIgnoreCase(activeProfile) && !"prod".equalsIgnoreCase(activeProfile)){
+            log.info("配置文件错误，runtime.profile = {} , 仅可以配置为 dev 或 prod",activeProfile);
+            throw new RuntimeException("constant.txt 配置文件错误, runtime.profile  仅可以配置为 dev 或 prod");
+        }
+        configProp = PropKit.use("config-"+activeProfile+".txt");
+        log.info("配置环境设置: {}",activeProfile);
+    }
 
     public static void main(String[] args) {
-        UndertowServer.create(AppConfig.class)
+        if(configProp==null){
+            log.info("undertow server 启动失败, 配置文件加载异常。");
+            return;
+        }
+        UndertowServer undertowServer = UndertowServer.create(AppConfig.class,"config-"+activeProfile+".txt")
                 .configWeb(builder -> {
-                    // druid web filter
+                    // druid web filter 配置
                     builder.addFilter("DruidWebStatFilter", "com.alibaba.druid.support.http.WebStatFilter");
                     builder.addFilterUrlMapping("DruidWebStatFilter", "/*");
                     builder.addFilterInitParam("DruidWebStatFilter", "exclusions", "*.js,*.gif,*.jpg,*.jpeg,*.png,*.css,*.ico,/druid/*,/static/*");
-                    builder.addFilterInitParam("DruidWebStatFilter", "principalSessionName", "SYS_USER_NAME");
+                    builder.addFilterInitParam("DruidWebStatFilter", "principalSessionName", "sysUserName");
                     builder.addFilterInitParam("DruidWebStatFilter", "profileEnable", "true");
-
                     // 配置 WebSocket，MyWebSocket 需使用 ServerEndpoint 注解
                     builder.addWebSocketEndpoint("com.github.qinyou.common.ws.WebSocketServer");
-                }).start();
+                });
+        //log.info("in threads {}",undertowServer.getUndertowConfig().getIoThreads());
+        //log.info("work threads {}",undertowServer.getUndertowConfig().getWorkerThreads());
+        undertowServer.start();
+
+        log.info("undertow server 启动成功");
     }
 
 
     @Override
     public void configConstant(Constants me) {
-        Prop fileProp = PropKit.use("file.properties");
-
-        me.setDevMode(configProp.getBoolean("devMode"));
+        if(activeProfile.equalsIgnoreCase("dev")){
+            me.setDevMode(true);
+        }
         me.setLogFactory(new LogBackLogFactory());
         me.setInjectDependency(true);
+
         // 上传下载
-        me.setBaseUploadPath(fileProp.get("upload"));
-        me.setMaxPostSize(fileProp.getInt("maxPostSize"));
-        me.setBaseDownloadPath(fileProp.get("download"));
+        me.setBaseUploadPath(configProp.get("file.upload"));
+        me.setMaxPostSize(configProp.getInt("file.maxPostSize"));
+        me.setBaseDownloadPath(configProp.get("file.download"));
         // 视图
         me.setViewType(ViewType.FREE_MARKER);
         me.setViewExtension(".ftl");
@@ -91,47 +118,76 @@ public class AppConfig extends JFinalConfig {
         me.add(new SystemRoute());  // system 模块路由
         me.add(new ExampleRoute()); // 用例 模块路由
         me.add(new GenOnlineRoute()); // 在线代码生成器 模块路由
+
+        me.add(new OARoute()); // 整合 activiti
     }
 
 
     @Override
     public void configPlugin(Plugins me) {
-        Prop jdbcProp = PropKit.use("jdbc.properties");
-
-        // 数据库
-        DruidPlugin druidPlugin = new DruidPlugin(jdbcProp.get("jdbc.url"), jdbcProp.get("jdbc.user"), jdbcProp.get("jdbc.password"), jdbcProp.get("jdbc.driver"));
-        druidPlugin.addFilter(new StatFilter());
+        // 数据源 1 (用户权限、组织机构、主数据)
+        DruidPlugin sysDruid = new DruidPlugin(configProp.get("jdbc.url"), configProp.get("jdbc.user"), configProp.get("jdbc.password"), configProp.get("jdbc.driver"));
+        sysDruid.setInitialSize(configProp.getInt("jdbc.initialSize"));
+        sysDruid.setMaxActive(configProp.getInt("jdbc.maxActive"));
+        sysDruid.setMinIdle(configProp.getInt("jdbc.minIdle"));
+        sysDruid.addFilter(new StatFilter());
         WallFilter wall = new WallFilter();
-        wall.setDbType(jdbcProp.get("jdbc.dbType"));
-        druidPlugin.addFilter(wall);
-        me.add(druidPlugin);
+        wall.setDbType(configProp.get("jdbc.dbType"));
+        sysDruid.addFilter(wall);
+        me.add(sysDruid);
+        ActiveRecordPlugin sysActiveRecord = new ActiveRecordPlugin(sysDruid);
+        sysActiveRecord.setDialect(new MysqlDialect());
+        if(activeProfile.equalsIgnoreCase("dev")){
+            sysActiveRecord.setShowSql(true);
+        }
+        SystemModelMapping.mapping(sysActiveRecord);  // system 模块
+        ExampleModelMapping.mapping(sysActiveRecord); // example 模块
+        me.add(sysActiveRecord);
+        log.info("设置 数据源 sysDruid sysActiveRecord 成功");
 
-        ActiveRecordPlugin activeRecordPlugin = new ActiveRecordPlugin(druidPlugin);
-        activeRecordPlugin.setDialect(new MysqlDialect());
-        activeRecordPlugin.setShowSql(configProp.getBoolean("devMode"));
-        SystemModelMapping.mapping(activeRecordPlugin);  // system 模块
-        ExampleModelMapping.mapping(activeRecordPlugin); // example 模块
-        me.add(activeRecordPlugin);
-
-        Cron4jPlugin cp = new Cron4jPlugin(PropKit.use("task.properties"), "cron4j");
-        me.add(cp);
-
-        // redis 插件
-//        Prop redisProp = PropKit.use("redis.properties");
-//        RedisPlugin userRedis = new RedisPlugin("user", redisProp.get("host"),redisProp.getInt("port")
-//                ,redisProp.getInt("timeout"),redisProp.get("password"),redisProp.getInt("database"));
+//         redis 插件
+//        RedisPlugin userRedis = new RedisPlugin("user", configProp.get("redis.host"),configProp.getInt("redis.port")
+//                ,configProp.getInt("redis.timeout"),configProp.get("redis.password"),configProp.getInt("redis.database"));
 //        me.add(userRedis);
-    }
 
+        // 数据源2 （activiti生成、表单）
+        DruidPlugin oaDruid = new DruidPlugin(configProp.get("oa.jdbc.url"), configProp.get("oa.jdbc.user"), configProp.get("oa.jdbc.password"), configProp.get("oa.jdbc.driver"));
+        oaDruid.setInitialSize(configProp.getInt("oa.jdbc.initialSize"));
+        oaDruid.setMaxActive(configProp.getInt("oa.jdbc.maxActive"));
+        oaDruid.setMinIdle(configProp.getInt("oa.jdbc.minIdle"));
+        oaDruid.addFilter(new StatFilter());
+        oaDruid.addFilter(wall);
+        me.add(oaDruid);
+        ActiveRecordPlugin oaActiveRecord = new ActiveRecordPlugin(ActivitiConfig.DATASOURCE_NAME,oaDruid);
+        oaActiveRecord.setDialect(new MysqlDialect());
+        if(activeProfile.equalsIgnoreCase("dev")){
+            oaActiveRecord.setShowSql(true);
+        }
+        OaModelMapping.mapping(oaActiveRecord);
+        me.add(oaActiveRecord);
+        log.info("设置 数据源 oaDruid oaActiveRecord 成功");
+
+        // activiti 插件
+        ActivitiPlugin ap = new ActivitiPlugin();
+        me.add(ap);
+        log.info("加载 Activiti 插件 成功");
+
+        //定时任务
+        Cron4jPlugin cp = new Cron4jPlugin(configProp, "cron4j");
+        me.add(cp);
+        log.info("加载 Corn4j 插件 成功");
+    }
 
     @Override
     public void configInterceptor(Interceptors me) {
         me.addGlobalActionInterceptor(new LoginInterceptor());       // 登录
         me.addGlobalActionInterceptor(new PermissionInterceptor());  // 权限
-        Boolean visitLog = configProp.getBoolean("visitLog");
+        Boolean visitLog = configProp.getBoolean("sys.visitLog");
         if(visitLog){
             me.addGlobalActionInterceptor(new VisitLogInterceptor()); // 访问日志
         }
+        log.info("访问日志 拦截器状态: {}",visitLog);
+
         // session 数据 放入 request, 控制 dom
         List<String> sessionFields = new ArrayList<>();
         sessionFields.add("sysUserName");

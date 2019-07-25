@@ -1,7 +1,7 @@
 package com.github.qinyou.genOnline;
 
 
-import com.github.qinyou.common.config.Constant;
+import com.github.qinyou.common.constant.Constant;
 import com.github.qinyou.genOnline.controller.GenOnlineController;
 import com.jfinal.config.Routes;
 

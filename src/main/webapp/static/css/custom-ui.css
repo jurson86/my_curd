@@ -79,11 +79,13 @@ table.labelInputTable  tr>td:nth-child(odd){
 
 /*超链接去掉下划线*/
 a{
+    color:#333;
     text-decoration:none;
 }
 a:hover{
     text-decoration:underline;
 }
+
 
 .pure-button-primary:hover{
     color: #fff;
@@ -92,10 +94,6 @@ a:hover{
    border-radius: 0px !important;
 }*/
 
-/*链接字颜色*/
-a{
-    color:#333;
-}
 
 /*隐藏元素*/
 .hidCss{

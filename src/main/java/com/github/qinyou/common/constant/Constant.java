@@ -1,4 +1,4 @@
-package com.github.qinyou.common.config;
+package com.github.qinyou.common.constant;
 
 import com.github.qinyou.system.model.SysSetting;
 

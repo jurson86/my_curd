@@ -2,7 +2,7 @@ package com.github.qinyou.common.utils.thread;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import com.github.qinyou.common.config.Constant;
+import com.github.qinyou.common.constant.Constant;
 import com.github.qinyou.common.utils.RandomUtils;
 import com.github.qinyou.common.utils.RegexUtils;
 import com.github.qinyou.common.utils.StringUtils;

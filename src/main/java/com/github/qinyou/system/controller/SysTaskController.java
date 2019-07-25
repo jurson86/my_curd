@@ -1,7 +1,8 @@
 package com.github.qinyou.system.controller;
 
+import com.github.qinyou.AppConfig;
 import com.github.qinyou.common.annotation.RequireMenuCode;
-import com.github.qinyou.common.config.Constant;
+import com.github.qinyou.common.constant.Constant;
 import com.github.qinyou.common.interceptor.SearchSql;
 import com.github.qinyou.common.utils.ReflectionUtils;
 import com.github.qinyou.common.utils.StringUtils;
@@ -29,19 +30,18 @@ import java.util.List;
 @RequireMenuCode("sysTask")
 @Slf4j
 public class SysTaskController extends BaseController {
-    private final static Prop prop = PropKit.use("task.properties");
 
     private static void initData(List<Cron4jTaskIntro> data) {
-        String taskNames = prop.get("cron4j");
+        String taskNames = AppConfig.configProp.get("cron4j");
         if (StringUtils.isEmpty(taskNames)) {
             return;
         }
         String[] taskNameAry = taskNames.split(",");
         for (String taskName : taskNameAry) {
-            String cron = prop.get(taskName + ".cron");
-            String className = prop.get(taskName + ".class");
-            String daemon = prop.get(taskName + ".daemon");
-            String enable = prop.get(taskName + ".enable");
+            String cron = AppConfig.configProp.get(taskName + ".cron");
+            String className = AppConfig.configProp.get(taskName + ".class");
+            String daemon = AppConfig.configProp.get(taskName + ".daemon");
+            String enable = AppConfig.configProp.get(taskName + ".enable");
             Cron4jTaskIntro intro = new Cron4jTaskIntro();
 
             intro.setName(taskName);

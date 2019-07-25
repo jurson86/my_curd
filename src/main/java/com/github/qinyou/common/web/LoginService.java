@@ -1,4 +1,4 @@
-package com.github.qinyou;
+package com.github.qinyou.common.web;
 
 import com.github.qinyou.common.utils.StringUtils;
 import com.github.qinyou.system.model.SysButton;

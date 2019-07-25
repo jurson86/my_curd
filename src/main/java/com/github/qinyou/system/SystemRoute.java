@@ -1,7 +1,7 @@
 package com.github.qinyou.system;
 
 
-import com.github.qinyou.common.config.Constant;
+import com.github.qinyou.common.constant.Constant;
 import com.github.qinyou.system.controller.*;
 import com.jfinal.config.Routes;
 

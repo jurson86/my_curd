@@ -32,7 +32,7 @@
                 state.columnMenu.menu('appendItem', {
                     text: col.title,
                     name: field,
-                    iconCls: 'iconfont icon-check'
+                    iconCls: col.hidden?'iconfont icon-nocheck':'iconfont icon-check'
                 });
             }
         }

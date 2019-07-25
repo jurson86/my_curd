@@ -1,9 +1,9 @@
 package com.github.qinyou.common.utils;
 
 
+import com.github.qinyou.AppConfig;
 import com.google.common.base.Strings;
 import com.jfinal.kit.AesKit;
-import com.jfinal.kit.PropKit;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.Arrays;
@@ -14,7 +14,7 @@ import java.util.List;
  */
 @Slf4j
 public class StringUtils {
-    private final static String AES_KEY = PropKit.use("config.properties").get("aesKey");
+    private final static String AES_KEY = AppConfig.configProp.get("security.aesKey");
 
     /**
      * 判断字符串是 null 或者  空格

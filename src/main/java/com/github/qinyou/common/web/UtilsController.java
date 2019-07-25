@@ -1,8 +1,9 @@
-package com.github.qinyou.common.utils;
+package com.github.qinyou.common.web;
 
-import com.github.qinyou.common.config.Constant;
+import com.github.qinyou.common.constant.Constant;
 import com.github.qinyou.common.interceptor.PermissionInterceptor;
 import com.github.qinyou.common.interceptor.SearchSql;
+import com.github.qinyou.common.utils.StringUtils;
 import com.github.qinyou.common.web.BaseController;
 import com.github.qinyou.system.model.SysOrg;
 import com.github.qinyou.system.model.SysRole;
@@ -19,10 +20,6 @@ import com.jfinal.plugin.activerecord.Page;
 @SuppressWarnings("Duplicates")
 @Clear(PermissionInterceptor.class)
 public class UtilsController extends BaseController {
-    /**
-     * 上传文件
-     */
-    private final static Prop prop = PropKit.use("file.properties");
 
     /**
      * 生成 图像验证码

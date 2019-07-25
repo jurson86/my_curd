@@ -19,7 +19,7 @@ public class GeneratorConfig {
     // 页面中不显示的字段
     public static String[] excludeFields = new String[]{"createTime", "creater", "updateTime", "updater"};
     // 在线代码生成器，多数据源配置
-    public static String dbConfigName = null;
+    public static String dbConfigName = "my_curd_oa";
     // 需生成代码的表
     public static Set<String> tableNames = new LinkedHashSet<>();
     // 模板文件基础路径

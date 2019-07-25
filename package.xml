@@ -25,7 +25,7 @@
     <includeBaseDirectory>true</includeBaseDirectory>
 
     <fileSets>
-        <!-- src/main/resources 全部 copy 到 config 目录下 -->
+        <!-- src/main/resources 全部 copy 到 constant 目录下 -->
         <fileSet>
             <directory>${basedir}/src/main/resources</directory>
             <outputDirectory>config</outputDirectory>

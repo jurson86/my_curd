@@ -1,4 +1,4 @@
-package com.github.qinyou;
+package com.github.qinyou.common.web;
 
 import com.alibaba.fastjson.JSON;
 import com.github.qinyou.common.interceptor.LoginInterceptor;
@@ -7,7 +7,6 @@ import com.github.qinyou.common.utils.StringUtils;
 import com.github.qinyou.common.utils.guava.BaseCache;
 import com.github.qinyou.common.utils.guava.CacheContainer;
 import com.github.qinyou.common.utils.guava.LoginRetryLimitCache;
-import com.github.qinyou.common.web.BaseController;
 import com.github.qinyou.system.model.SysMenu;
 import com.github.qinyou.system.model.SysUser;
 import com.github.qinyou.system.model.SysUserRole;

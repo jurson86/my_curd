@@ -1,11 +1,10 @@
-package com.github.qinyou;
+package com.github.qinyou.common.web;
 
-import com.github.qinyou.common.config.Constant;
+import com.github.qinyou.common.constant.Constant;
 import com.github.qinyou.common.interceptor.PermissionInterceptor;
 import com.github.qinyou.common.interceptor.SearchSql;
 import com.github.qinyou.common.utils.StringUtils;
 import com.github.qinyou.common.utils.WebUtils;
-import com.github.qinyou.common.web.BaseController;
 import com.github.qinyou.common.ws.UserIdEncryptUtils;
 import com.github.qinyou.system.model.*;
 import com.jfinal.aop.Before;

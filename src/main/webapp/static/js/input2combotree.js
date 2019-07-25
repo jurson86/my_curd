@@ -13,6 +13,7 @@ function initFormCombotree(selector,selectorValue,excludeNodeId,dataUrl,required
     $(selector).combotree({
         url: dataUrl,
         value: selectorValue,
+        panelHeight:'auto',
         required:required,
         loadFilter: function (data, parent) {
             /*数据处理*/

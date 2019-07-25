@@ -1,7 +1,7 @@
 package com.github.qinyou.system.controller;
 
 import com.github.qinyou.common.annotation.RequireMenuCode;
-import com.github.qinyou.common.config.Constant;
+import com.github.qinyou.common.constant.Constant;
 import com.github.qinyou.common.interceptor.SearchSql;
 import com.github.qinyou.common.utils.Id.IdUtils;
 import com.github.qinyou.common.utils.StringUtils;

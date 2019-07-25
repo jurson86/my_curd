@@ -3,8 +3,6 @@ package ${(basePackageName)!}.${(moduleName)!}.controller;
 import com.jfinal.aop.Before;
 import com.jfinal.plugin.activerecord.Db;
 import com.jfinal.plugin.activerecord.Page;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 <#if hasExcel>
 import org.apache.poi.ss.usermodel.Workbook;
 import cn.afterturn.easypoi.excel.ExcelExportUtil;
@@ -19,7 +17,7 @@ import com.jfinal.plugin.activerecord.tx.Tx;
 import lombok.extern.slf4j.Slf4j;
 </#if>
 import com.github.qinyou.common.web.BaseController;
-import com.github.qinyou.common.config.Constant;
+import com.github.qinyou.common.constant.Constant;
 import com.github.qinyou.common.interceptor.SearchSql;
 import com.github.qinyou.common.utils.Id.IdUtils;
 import com.github.qinyou.common.utils.StringUtils;
@@ -41,8 +39,6 @@ import java.util.List;
 <#if hasExcel>@Slf4j</#if>
 @RequireMenuCode("${(tableMeta.nameCamel)!}")
 public class ${(tableMeta.nameCamelFirstUp)!}Controller extends BaseController{
-
-    private  final  static Logger LOG = LoggerFactory.getLogger(${(tableMeta.nameCamelFirstUp)!}Controller.class);
 
     /**
      * 列表页

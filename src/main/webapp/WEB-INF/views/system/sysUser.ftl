@@ -12,13 +12,13 @@
  <thead>
  <tr>
      <th data-options="field:'id',checkbox:true"></th>
-     <th field="username" width="150" formatter="usernameFmt">用户名</th>
+     <th field="username" width="100" formatter="usernameFmt">用户名</th>
+     <th field="realName" width="100">姓名</th>
      <th field="orgName" width="200" formatter="orgNameFmt">部门</th>
  <#--<th field="email" width="100">邮箱</th>-->
  <#--<th field="phone" width="100">电话</th>-->
      <th field="job" width="150">职位</th>
      <th field="jobLevelText" width="150">职位级别</th>
-     <th field="realName" width="100">姓名</th>
  <#--<th field="avatar" width="100">头像</th>-->
      <th field="gender" width="50" formatter="genderFmt">性别</th>
      <th field="userStateText" width="100">是否禁用</th>

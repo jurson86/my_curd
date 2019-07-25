@@ -5,8 +5,8 @@
     <div data-options="region:'west',split:true" border="false" style="width:30%;" collapsible="false" >
         <table id="tg" border="false"  ></table>
         <div id="tb">
-            <a onclick="newModel('tg','${ctx!}/sysOrg/newModel', '650px', '400px')" href="#" class="easyui-linkbutton"  iconCls="iconfont icon-add" plain="true">新增</a>
-            <a onclick="editModel('tg','${ctx!}/sysOrg/newModel', '650px', '400px')" href="#" class="easyui-linkbutton" iconCls="iconfont icon-edit" plain="true">编辑</a>
+            <a onclick="newModel('tg','${ctx!}/sysOrg/newModel', '690px', '400px')" href="#" class="easyui-linkbutton"  iconCls="iconfont icon-add" plain="true">新增</a>
+            <a onclick="editModel('tg','${ctx!}/sysOrg/newModel', '690px', '400px')" href="#" class="easyui-linkbutton" iconCls="iconfont icon-edit" plain="true">编辑</a>
             <a onclick="deleteModel('tg','${ctx!}/sysOrg/deleteAction')" href="#" class="easyui-linkbutton  "  iconCls="iconfont icon-delete" plain="true">删除</a>
         </div>
     </div>
@@ -94,6 +94,7 @@
             },
             columns: [[
                 {field: 'orgName', title: '机构名', width: 300,formatter:orgNameFmt},
+                {field: 'orgCode', title: '编码', width: 120},
                 {field: 'sortNum', title: '排序', width: 80}
             ]],
             onSelect: function (row) {

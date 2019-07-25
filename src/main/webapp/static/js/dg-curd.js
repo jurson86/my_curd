@@ -29,7 +29,7 @@ function editModel(dgId,url,width,height,title){
 
 
 /**
- * 删除 Model
+ * 批量删除 Model
  * @param dgid
  * @param url
  */

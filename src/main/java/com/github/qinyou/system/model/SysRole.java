@@ -29,6 +29,7 @@ public class SysRole extends BaseSysRole<SysRole> {
         if (StringUtils.notEmpty(where)) {
             sqlExceptSelect += " where " + where;
         }
+        sqlExceptSelect+=" order by sortNum";
         return this.paginate(pageNumber, pageSize, sqlSelect, sqlExceptSelect);
     }
 
