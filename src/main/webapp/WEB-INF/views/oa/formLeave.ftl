@@ -25,17 +25,17 @@
         <th field="leaveReason" width="300">请假原因</th>
 
         <th field="one" width="200" formatter="instanceStatueFmt">流程状态</th>
-        <th field="two" width="100" formatter="instanceDetailFmt">流程详情</th>
+        <th field="two" width="200" formatter="instanceDetailFmt">流程详情</th>
     </tr>
     </thead>
 </table>
 <div id="tb">
     <a onclick="newModel('${ctx!}/formLeave/newModel', '500px', '500px')" href="#" class="easyui-linkbutton"
-       iconCls="iconfont icon-add" plain="true">新建</a>
-    <#--<a onclick="editModel('dg','${ctx!}/formLeave/newModel', '500px', '500px')" href="#"-->
-       <#--class="easyui-linkbutton" iconCls="iconfont icon-edit" plain="true">调整</a>-->
+       iconCls="iconfont icon-add" plain="true">新建申请</a>
+    <a onclick="openAdjustFormModel('dg','${ctx!}/formLeave/newModel', '500px', '500px')" href="#"
+       class="easyui-linkbutton" iconCls="iconfont icon-edit" plain="true">调整申请</a>
     <a onclick="deleteModel('dg','${ctx!}/formLeave/deleteAction')" href="#" class="easyui-linkbutton  "
-       iconCls="iconfont icon-delete" plain="true">删除</a>
+       iconCls="iconfont icon-delete" plain="true">删除作废</a>
     <span id="searchSpan" class="searchInputArea">
             <input name="search_LIKE_test" prompt="测试" class="easyui-textbox" style="width:120px; ">
             <a href="#" class="easyui-linkbutton searchBtn"  data-options="iconCls:'iconfont icon-search',plain:true"
@@ -45,33 +45,7 @@
 <script src="${ctx!}/static/js/dg-curd.js"></script>
 <script src="${ctx!}/static/plugins/easyui1.6.10/datagrid-extend.js"></script>
 <script>
-
-     function openProcessInstanceModel(runFlag,id,title){
-         if(runFlag){
-             popup.openIframe(title||'正运行 流程详情', '${ctx!}/oa/processInstanceDetail?id='+id, "1000px","90%");
-         }else{
-             popup.openIframe(title||'已结束 流程详情', '${ctx!}/oa/historicProcessInstanceDetail?id='+id, "1000px","90%");
-         }
-     }
-     function instanceStatueFmt(val,row) {
-         if(row.processInstanceId){
-             return '[待审: '+row.currentActivityName+']';
-         }else  if(row.hisProcessInstanceId){
-             return '[已结束]';
-         }else{
-             return '[无流程]';
-         }
-     }
-
-     function instanceDetailFmt(val,row){
-         if(row.processInstanceId){
-             return '<a href="javascript:openProcessInstanceModel(true,\''+row.processInstanceId+'\')">['+row.processInstanceId+']</a>';
-         }else  if(row.hisProcessInstanceId){
-             return '<a href="javascript:openProcessInstanceModel(false,\''+row.hisProcessInstanceId+'\')">['+row.hisProcessInstanceId+']</a>';
-         }else{
-             return '[无]';
-         }
-     }
-
+    var ctx = "${ctx!}";
 </script>
+<script src="${ctx!}/static/js/oa.js"></script>
 </@layout>

@@ -20,6 +20,11 @@
                    collapsible:true,closable:true">
             </div>
 
+            <div class="easyui-panel" title="审批流转" style="width:100%;margin-bottom: 20px"
+                 data-options="href:'${ctx!}/oa/historicTaskInstances?id=${processInstanceId!}',
+                  collapsible:true,closable:true">
+            </div>
+
             <div class="easyui-panel" title="${taskName!}" style="width:100%;margin-bottom: 20px;"
                  data-options="collapsible:true,closable:true">
                 <form id="processForm" method="POST" action="${ctx!}/myToDoTask/completeAction">
@@ -29,7 +34,7 @@
                         <#if taskDescription?? >
                             <tr>
                                 <td>注意事项:</td>
-                                <td style="color: #fc5832;">${taskDescription!}</td>
+                                <td style="color: #fc5832;font-weight:bold; font-size: 20px;">${taskDescription!}</td>
                             </tr>
                         </#if>
                         ${renderedTaskForm!}
@@ -46,10 +51,7 @@
                     <button  class=" button-small pure-button pure-button-primary" onclick="completeAction('processForm','reload','dg')" >办理</button>
                 </div>
             </div>
-            <div class="easyui-panel" title="审批流转" style="width:100%;margin-bottom: 20px"
-                 data-options="href:'${ctx!}/oa/historicTaskInstances?id=${processInstanceId!}',
-                  collapsible:true,closable:true">
-            </div>
+
         </div>
         <div title="流程图" fit="true">
             <img style="max-width:100%;" src="${ctx!}/oa/instanceDiagram?id=${processInstanceId!}" alt="流程图">
