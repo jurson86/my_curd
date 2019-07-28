@@ -5,6 +5,7 @@ import com.github.qinyou.common.utils.StringUtils;
 import com.jfinal.aop.Interceptor;
 import com.jfinal.aop.Invocation;
 import com.jfinal.kit.Ret;
+import com.jfinal.render.JsonRender;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.exception.ExceptionUtils;
 
@@ -34,7 +35,7 @@ public class ComActionInterceptor implements Interceptor {
             String requestType = inv.getController().getRequest().getHeader("X-Requested-With");
             if ("XMLHttpRequest".equals(requestType) || StringUtils.notEmpty(inv.getController().getPara("xmlHttpRequest"))) {
                 Ret ret = Ret.create().set("state", "error").set("msg", errMsg);
-                inv.getController().renderJson(ret);
+                inv.getController().render(new JsonRender(ret).forIE());
             } else {
                 inv.getController().setAttr("errorMsg", errMsg);
                 inv.getController().render(Constant.VIEW_PATH + "/common/500.ftl");

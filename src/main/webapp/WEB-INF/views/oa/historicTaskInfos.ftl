@@ -2,7 +2,7 @@
 <#include "../common/common.ftl"/>
 <@layout>
     <#if historicTaskInfos?size gt 0>
-        <table class=" pure-table pure-table-horizontal  fullWidthTable"  style="border: none;" >
+        <table id="detailTable" class=" pure-table pure-table-horizontal  fullWidthTable"  style="border: none;" >
             <thead>
             <tr>
                 <th>名称</th>
@@ -15,13 +15,32 @@
             <tbody>
             <#list  historicTaskInfos as info>
                 <tr>
-                    <td>${(info.name)!}</td>
-                    <td>${(info.assignee)!}</td>
-                    <td>${(info.startTime?string("yyyy-MM-dd"))!}</td>
-                    <td>${(info.endTime?string("yyyy-MM-dd"))!'当前节点'}</td>
+                    <td>${(info.name)!}<#if !(info.assignee)??> ( 待认领 )</#if></td>
                     <td>
-                        <#list info.comments as comment>
-                            ${comment!}
+                        <#if (info.assignee)??>
+                            <a title="点击查看详细信息" href="javascript:userInfo('','${(info.assignee)!}')">${(info.assignee)!}</a>
+                            <#else>
+                                <#list (info.candidateGroup) as group>
+                                    ${group!}<br/>
+                                </#list>
+                                <#list (info.candidateUser) as user>
+                                    <a title="点击查看详细信息" href="javascript:userInfo('','${user!}')">${user!}</a>
+                                    <br/>
+                                </#list>
+                        </#if>
+                    </td>
+                    <td>${(info.startTime?string("yyyy-MM-dd"))!}</td>
+                    <td>
+                        <#if (info.endTime)?? >
+                            ${(info.endTime?string("yyyy-MM-dd"))!}
+                            <#else >
+                            <span style="padding:7px 5px;color: #ffffff;background-color: #fc5832;font-weight: bold;">当前节点</span>
+                        </#if>
+
+                    </td>
+                    <td>
+                        <#list (info.comments)?reverse as comment>
+                            ${comment!} <br/>
                         </#list>
                     </td>
                 </tr>

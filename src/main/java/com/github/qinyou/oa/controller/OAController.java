@@ -13,6 +13,7 @@ import com.jfinal.aop.Before;
 import com.jfinal.aop.Clear;
 import com.jfinal.aop.Inject;
 import com.jfinal.kit.StrKit;
+import org.activiti.engine.history.HistoricIdentityLink;
 import org.activiti.engine.history.HistoricProcessInstance;
 import org.activiti.engine.history.HistoricTaskInstance;
 import org.activiti.engine.runtime.ProcessInstance;
@@ -133,15 +134,38 @@ public class OAController extends BaseController {
 
         List<HistoricTaskInfo> historicTaskInfos = new ArrayList<>();
         historicTaskInstances.forEach(historicTaskInstance -> {
-            HistoricTaskInfo historicTaskInfo =     new HistoricTaskInfo()
+
+
+            HistoricTaskInfo historicTaskInfo =   new HistoricTaskInfo()
                     .setId(historicTaskInstance.getId())
                     .setName(historicTaskInstance.getName())
                     .setStartTime(historicTaskInstance.getStartTime())
                     .setEndTime(historicTaskInstance.getEndTime())
                     .setCreateTime(historicTaskInstance.getCreateTime())
                     .setClaimTime(historicTaskInstance.getClaimTime())
-                    .setAssignee(historicTaskInstance.getAssignee())
                     .setOwner(historicTaskInstance.getOwner());
+            if(StringUtils.notEmpty(historicTaskInstance.getAssignee())){
+                 historicTaskInfo.setAssignee(historicTaskInstance.getAssignee());
+            }else{
+                List<HistoricIdentityLink> historicIdentityLinks = ActivitiUtils.getHistoryService()
+                        .getHistoricIdentityLinksForTask(historicTaskInstance.getId());
+                List<String> candidateGroup = new ArrayList<>();
+                List<String> candidateUser =  new ArrayList<>();
+                historicIdentityLinks.forEach(historicIdentityLink -> {
+                    if("candidate".equals(historicIdentityLink.getType())){
+                        if(historicIdentityLink.getGroupId()!=null){
+                            candidateGroup.add(historicIdentityLink.getGroupId());
+                        }
+                        if(historicIdentityLink.getUserId()!=null){
+                            candidateUser.add(historicIdentityLink.getUserId());
+                        }
+                    }
+                });
+                // 候选组 和 候选用户
+                historicTaskInfo.setCandidateGroup(candidateGroup);
+                historicTaskInfo.setCandidateUser(candidateUser);
+            }
+
             List<Comment> comments =  ActivitiUtils.getTaskService().getTaskComments(historicTaskInstance.getId());
             List<String> commentsStr = new ArrayList<>();
             comments.forEach(comment -> {

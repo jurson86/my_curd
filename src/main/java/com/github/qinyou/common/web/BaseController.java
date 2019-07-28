@@ -8,6 +8,7 @@ import com.jfinal.kit.Ret;
 import com.jfinal.plugin.activerecord.Model;
 import com.jfinal.plugin.activerecord.Page;
 import com.jfinal.plugin.activerecord.Record;
+import com.jfinal.render.JsonRender;
 
 import java.util.*;
 
@@ -36,7 +37,7 @@ public abstract class BaseController extends Controller {
         Map<String, Object> datagrid = new HashMap<>();
         datagrid.put("rows", pageData.getList());
         datagrid.put("total", pageData.getTotalRow());
-        renderJson(datagrid);
+        render(new JsonRender(datagrid).forIE());
     }
 
     /**
@@ -64,7 +65,7 @@ public abstract class BaseController extends Controller {
         if (footer != null && footer.size() > 0) {
             datagrid.put("footer", footer);
         }
-        renderJson(datagrid);
+        render(new JsonRender(datagrid).forIE());
     }
 
     /**
@@ -82,7 +83,7 @@ public abstract class BaseController extends Controller {
         Map<String, Object> datagrid = new HashMap<>();
         datagrid.put("rows", collection);
         datagrid.put("total", total);
-        renderJson(datagrid);
+        render(new JsonRender(datagrid).forIE());
     }
 
 
@@ -91,7 +92,7 @@ public abstract class BaseController extends Controller {
      */
     protected void renderSuccess() {
         Ret ret = Ret.create().setOk();
-        renderJson(ret);
+        render(new JsonRender(ret).forIE());
     }
 
     /**
@@ -101,7 +102,7 @@ public abstract class BaseController extends Controller {
      */
     protected void renderSuccess(String msg) {
         Ret ret = Ret.create().setOk().setIfNotNull("msg", msg);
-        renderJson(ret);
+        render(new JsonRender(ret).forIE());
     }
 
     /**
@@ -111,7 +112,7 @@ public abstract class BaseController extends Controller {
      */
     protected void renderSuccess(List<Object> data) {
         Ret ret = Ret.create().setOk().setIfNotNull("data", data);
-        renderJson(ret);
+        render(new JsonRender(ret).forIE());
     }
 
     /**
@@ -122,7 +123,7 @@ public abstract class BaseController extends Controller {
      */
     protected void renderSuccess(String msg, List<Object> data) {
         Ret ret = Ret.create().setOk().setIfNotNull("msg", msg).setIfNotNull("data", data);
-        renderJson(ret);
+        render(new JsonRender(ret).forIE());
     }
 
 
@@ -131,7 +132,7 @@ public abstract class BaseController extends Controller {
      */
     protected void renderFail() {
         Ret ret = Ret.create().setFail();
-        renderJson(ret);
+        render(new JsonRender(ret).forIE());
     }
 
     /**
@@ -141,7 +142,7 @@ public abstract class BaseController extends Controller {
      */
     protected void renderFail(String msg) {
         Ret ret = Ret.create().setFail().setIfNotNull("msg", msg);
-        renderJson(ret);
+        render(new JsonRender(ret).forIE());
     }
 
     /**
@@ -151,7 +152,7 @@ public abstract class BaseController extends Controller {
      */
     protected void renderFail(List<Object> data) {
         Ret ret = Ret.create().setFail().setIfNotNull("data", data);
-        renderJson(ret);
+        render(new JsonRender(ret).forIE());
     }
 
     /**
@@ -162,7 +163,7 @@ public abstract class BaseController extends Controller {
      */
     protected void renderFail(String msg, List<Object> data) {
         Ret ret = Ret.create().setFail().setIfNotNull("msg", msg).setIfNotNull("data", data);
-        renderJson(ret);
+        render(new JsonRender(ret).forIE());
     }
 
     /**

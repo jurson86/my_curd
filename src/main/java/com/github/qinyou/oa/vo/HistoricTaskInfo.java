@@ -19,4 +19,8 @@ public class HistoricTaskInfo {
     private String assignee;
     private String owner;
     private List<String> comments;
+    // 候选组
+    private List<String> candidateGroup;
+    // 候选用户
+    private List<String> candidateUser;
 }

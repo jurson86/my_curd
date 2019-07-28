@@ -20,9 +20,9 @@
                    collapsible:true,closable:true">
             </div>
 
-            <div class="easyui-panel" title="审批操作 (${taskName!})" style="width:100%;margin-bottom: 20px;"
+            <div class="easyui-panel" title="${taskName!}" style="width:100%;margin-bottom: 20px;"
                  data-options="collapsible:true,closable:true">
-                <form id="modelForm" method="POST" action="${ctx!}/myTask/completeAction">
+                <form id="processForm" method="POST" action="${ctx!}/myToDoTask/completeAction">
                     <input type="hidden" name="id" value="${taskId!}">
                     <input type="hidden" name="processInstanceId" value="${processInstanceId!}">
                     <table class=" pure-table pure-table-horizontal  labelInputTable fullWidthTable" style="border-top: none;border-left: none;border-right: none;" >
@@ -36,14 +36,14 @@
                         <tr>
                             <td>备注（操作阐述）：</td>
                             <td>
-                                <input id="fp_comment" name="fp_comment"   class="easyui-textbox" multiline="true" required="true" style="width:90%; height:80px" value="正常通过" />
+                                <input id="comment" name="comment"   class="easyui-textbox" multiline="true" required="true" style="width:90%; height:80px" value="正常通过" />
                             </td>
                         </tr>
 
                     </table>
                 </form>
                 <div style="padding: 10px; text-align: right;background-color: #fafafa">
-                    <button  class=" button-small pure-button pure-button-primary" onclick="saveAction('modelForm','reload','dg')" >办理</button>
+                    <button  class=" button-small pure-button pure-button-primary" onclick="completeAction('processForm','reload','dg')" >办理</button>
                 </div>
             </div>
             <div class="easyui-panel" title="审批流转" style="width:100%;margin-bottom: 20px"
@@ -55,5 +55,33 @@
             <img style="max-width:100%;" src="${ctx!}/oa/instanceDiagram?id=${processInstanceId!}" alt="流程图">
         </div>
     </div>
-    <script src="${ctx!}/static/js/dg-curd.js"></script>
+    <script>
+        function completeAction(dgId){
+            $('#processForm').form('submit', {
+                onSubmit: function (param) {
+                    param.xmlHttpRequest = "XMLHttpRequest";
+                    console.log("validate:"+$(this).form('validate'));
+                    console.log(param);
+                    return $(this).form('validate');
+                 /*   return false;*/
+                },
+                success: function (data) {
+                    if(typeof data ==='string'){
+                        data = JSON.parse(data);
+                    }
+                    if(data.state === 'ok'){
+                        popup.msg(data.msg, function () {
+                            top.frames[sessionStorage.getItem("iframeId")].$("#dg").datagrid("reload");
+                            popup.close(window.name);
+                        });
+                    }else if(data.state === 'error'){
+                        popup.errMsg('系统异常',data.msg);
+                    }else{
+                        popup.msg(data.msg);
+                    }
+                }
+            });
+        }
+
+    </script>
 </@layout>
