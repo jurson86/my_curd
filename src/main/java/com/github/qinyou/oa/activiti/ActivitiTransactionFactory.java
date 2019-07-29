@@ -8,7 +8,10 @@ import javax.sql.DataSource;
 import java.sql.Connection;
 import java.util.Properties;
 
-
+/**
+ * activiti 事务 和 jfinal 事务整合
+ * @author chuang
+ */
 public class ActivitiTransactionFactory implements TransactionFactory {
 
     @Override

@@ -15,12 +15,12 @@ public class ActivitiTransaction implements Transaction {
     protected Connection connection;
     protected DataSource dataSource;
     protected TransactionIsolationLevel level;
-    protected boolean autoCommmit;
+    protected boolean autoCommit;
 
     public ActivitiTransaction(DataSource ds, TransactionIsolationLevel desiredLevel, boolean desiredAutoCommit) {
         dataSource = ds;
         level = desiredLevel;
-        autoCommmit = desiredAutoCommit;
+        autoCommit = desiredAutoCommit;
     }
 
     public ActivitiTransaction(Connection connection) {

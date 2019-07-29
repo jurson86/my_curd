@@ -4,7 +4,7 @@
 
 top.layer.config({
     shift: 0, /*0-6的动画形式，-1不开启，开启动画可能导致 dialog 异常情况*/
-    shade: 0.1 /*遮罩透明度*/
+    shade: 0.3 /*遮罩透明度*/
 });
 
 var popup = {

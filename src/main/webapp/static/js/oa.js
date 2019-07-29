@@ -6,9 +6,9 @@
  */
 function openProcessInstanceDetail(runFlag,id,title){
     if(runFlag){
-        popup.openIframe(title||'正运行 流程详情', ctx+'/oa/processInstanceDetail?id='+id, "1000px","90%");
+        popup.openIframe(title||'正运行 流程详情', ctx+'/oa/processInstanceDetail?id='+id, "1000px","96%");
     }else{
-        popup.openIframe(title||'已结束 流程详情', ctx+'/oa/historicProcessInstanceDetail?id='+id, "1000px","90%");
+        popup.openIframe(title||'已结束 流程详情', ctx+'/oa/historicProcessInstanceDetail?id='+id, "1000px","96%");
     }
 }
 

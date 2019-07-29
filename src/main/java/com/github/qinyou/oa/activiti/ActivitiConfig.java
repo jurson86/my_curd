@@ -1,6 +1,11 @@
 package com.github.qinyou.oa.activiti;
 
+/**
+ * activiti 使用配置
+ * @author chuang
+ */
 public class ActivitiConfig {
+
     // oa 模块使用的数据源
     public final static String DATASOURCE_NAME = "my_curd_oa";
 

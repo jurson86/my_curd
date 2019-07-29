@@ -3,6 +3,7 @@ package com.github.qinyou.oa.controller;
 import com.github.qinyou.common.annotation.RequireMenuCode;
 import com.github.qinyou.common.utils.FileUtils;
 import com.github.qinyou.common.utils.StringUtils;
+import com.github.qinyou.common.utils.WebUtils;
 import com.github.qinyou.common.validator.IdsRequired;
 import com.github.qinyou.common.web.BaseController;
 import com.github.qinyou.oa.activiti.ActivitiUtils;
@@ -47,7 +48,7 @@ public class ProcessDeployController extends BaseController {
             query.deploymentCategory(category);
         }
         if (StringUtils.notEmpty(deploymentName)) {
-            query.deploymentNameLike("%"+deploymentName+"%");
+            query.deploymentNameLike("%" + deploymentName + "%");
         }
 
         List<ProcessDeploymentInfo> list = new ArrayList<>();
@@ -67,7 +68,7 @@ public class ProcessDeployController extends BaseController {
         render("oa/processDeploy_form.ftl");
     }
 
-    // 部署
+    // 部署操作
     public void deployAction() {
         UploadFile file = getFile();
         if (file == null) {
@@ -93,8 +94,10 @@ public class ProcessDeployController extends BaseController {
                     .category(category)
                     .name(name)
                     .deploy();
-            log.info("id:{}", deployment.getId());
-            log.info("name:{}", deployment.getName());
+
+            log.info("{} 部署流程, deploymentId:{}, deploymentName:{}, deploymentCategory:{}",
+                    WebUtils.getSessionUsername(this), deployment.getId(), deployment.getName(), deployment.getCategory());
+
         } catch (Exception e) {
             log.error(e.getMessage(), e);
             throw new RuntimeException(e);
@@ -104,14 +107,15 @@ public class ProcessDeployController extends BaseController {
         renderSuccess("部署成功");
     }
 
-    // 卸载
+    // 卸载 操作
     @Before({IdsRequired.class, Tx.class})
     public void unDeployAction() {
-        boolean cascade = getParaToBoolean("cascade",true);
+        boolean cascade = getParaToBoolean("cascade", true);
         RepositoryService service = ActivitiUtils.getRepositoryService();
         for (String id : getPara("ids").split(",")) {
             // cascade 如为 false, 如果 流程已经启动，抛出 runtime exception 触发事务
-            service.deleteDeployment(id,cascade);
+            log.info("{} 部署流程, deploymentId:{}, cascade:{}", WebUtils.getSessionUsername(this), id, cascade);
+            service.deleteDeployment(id, cascade);
         }
         renderSuccess("卸载成功");
     }

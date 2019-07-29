@@ -1,5 +1,6 @@
 package com.github.qinyou.oa;
 
+import com.github.qinyou.oa.activiti.ActivitiConfig;
 import com.github.qinyou.oa.activiti.ActivitiPlugin;
 import com.github.qinyou.oa.activiti.ActivitiUtils;
 import com.jfinal.kit.Prop;
@@ -17,14 +18,18 @@ import java.io.InputStream;
 import java.util.List;
 import java.util.zip.ZipInputStream;
 
+/**
+ * 非web 环境下 调试 activiti api
+ */
 @Slf4j
 public class Test {
 
     static void init() {
-        Prop jdbcProp = PropKit.use("jdbc.properties");
-        DruidPlugin dp = new DruidPlugin(jdbcProp.get("jdbc.url"), jdbcProp.get("jdbc.user"), jdbcProp.get("jdbc.password"), jdbcProp.get("jdbc.driver"));
+        Prop jdbcProp = PropKit.use("config-dev.txt");
+        DruidPlugin dp = new DruidPlugin(jdbcProp.get("oa.jdbc.url"),
+                jdbcProp.get("oa.jdbc.user"), jdbcProp.get("oa.jdbc.password"), jdbcProp.get("oa.jdbc.driver"));
         dp.start();
-        ActiveRecordPlugin arp = new ActiveRecordPlugin(dp);
+        ActiveRecordPlugin arp = new ActiveRecordPlugin(ActivitiConfig.DATASOURCE_NAME,dp);
         arp.setDialect(new MysqlDialect());
         arp.setShowSql(true);
         arp.start();

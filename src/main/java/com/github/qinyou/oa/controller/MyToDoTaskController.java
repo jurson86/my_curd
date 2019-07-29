@@ -29,7 +29,7 @@ import java.util.Map;
 public class MyToDoTaskController extends BaseController {
 
     public void index(){
-        render("oa/myTask.ftl");
+        render("oa/myToDoTask.ftl");
     }
 
     /**
@@ -131,7 +131,7 @@ public class MyToDoTaskController extends BaseController {
         setAttr("businessForm",businessForm);  // 业务表名
         setAttr("renderedTaskForm",renderedTaskForm); // 任务表单
 
-        render("oa/myTask_complete.ftl");
+        render("oa/myToDoTask_complete.ftl");
     }
 
     /**
@@ -161,7 +161,7 @@ public class MyToDoTaskController extends BaseController {
                 if(k.contains("-")){
                     String[] nameAry = k.split("-");
                     String kTemp,vTemp;
-                    kTemp = nameAry[0];  //? 能否成功
+                    kTemp = nameAry[0];
                     vTemp = nameAry[1]+": "+v;
                     variables.put(kTemp,v);
                     ActivitiUtils.getTaskService().addComment(taskId,processInstanceId,vTemp);
