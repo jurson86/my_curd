@@ -70,8 +70,5 @@
             return '<a title="点击查看请求信息" href="javascript:viewModelsByLink(\'查看\',\'${ctx!}/sysVisitLog/view?id='
                     +row.id+'\',\'700px\',\'400px\')"  >'+val+'</a>';
         }
-        function usernameFmt(val,row) {
-            return '<a title="点击查看人员信息" href="javascript:userInfo(\'${ctx!}\',\''+val+'\')" >'+val+'</a>';
-        }
     </script>
 </@layout>

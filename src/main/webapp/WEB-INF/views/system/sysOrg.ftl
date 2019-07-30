@@ -60,11 +60,9 @@
         }
         return gender;
     }
-    function usernameFmt(val,row) {
-        return '<a title="点击查看用户信息"  href="javascript:userInfo(\'${ctx!}\',\''+val+'\')" >'+val+'</a>';
-    }
+
     function orgNameFmt(val,row) {
-      return '<a href="javascript:orgInfo(\'${ctx!}\',\''+row.id+'\')" title="点击查看机构信息" >'+val+'</a>';
+      return '<a href="javascript:orgInfo(\''+row.id+'\')" title="点击查看机构信息" >'+val+'</a>';
     }
 
     <#--级联机构查询 onChange 事件-->

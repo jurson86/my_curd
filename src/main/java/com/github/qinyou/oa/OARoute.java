@@ -19,6 +19,8 @@ public class OARoute extends Routes {
 
         // 代办任务
         add("/myToDoTask", MyToDoTaskController.class, Constant.VIEW_PATH);
+        // 已办任务（流程)
+        add("/myCompleteTask", MyCompleteTaskController.class, Constant.VIEW_PATH);
 
         // 流程部署
         add("/processDeploy", ProcessDeployController.class, Constant.VIEW_PATH);

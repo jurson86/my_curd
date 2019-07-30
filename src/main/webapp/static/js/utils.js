@@ -60,7 +60,7 @@ function notEmpty(val){
  * 查看用户信息 （弹窗卡片)
  * @param username
  */
-function userInfo(ctx,username){
+function userInfo(username){
     if(isEmpty(popup)){
         popup = parent.popup;
         if(isEmpty(popup)){
@@ -75,12 +75,16 @@ function userInfo(ctx,username){
     popup.openIframeNoResize(username+" 用户信息", ctx+"/utils/userInfo?username="+username, "300px","430px",true);
 }
 
+function usernameFmt(val,row) {
+    return '<a title="点击查看人员信息" href="javascript:userInfo(\''+val+'\')" >'+val+'</a>';
+}
+
 /**
  * 查看机构信息 （弹窗卡片)
  * @param ctx
  * @param orgId
  */
-function orgInfo(ctx,orgId){
+function orgInfo(orgId){
     if(isEmpty(popup)){
         popup = parent.popup;
         if(isEmpty(popup)){
@@ -94,7 +98,6 @@ function orgInfo(ctx,orgId){
     }
     popup.openIframeNoResize("机构信息", ctx+"/utils/orgInfo?id="+orgId, "300px","365px",true);
 }
-
 
 /**
  * 阻止右键菜单

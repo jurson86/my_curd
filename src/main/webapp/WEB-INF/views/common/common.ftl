@@ -17,6 +17,9 @@
     <#include "popup.ftl"/>
 </head>
 <body>
+    <script>
+        var ctx = '${ctx!}';
+    </script>
     <#nested>
 </body>
 </html>

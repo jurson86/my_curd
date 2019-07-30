@@ -27,9 +27,6 @@
 </div>
 <script src="${ctx!}/static/js/dg-curd.js"></script>
 <script>
-    function usernameFmt(val,row) {
-        return '<a title="点击查看人员信息" href="javascript:userInfo(\'${ctx!}\',\''+val+'\')" >'+val+'</a>';
-    }
     function deleteFmt(val,row){
         return '<a href="javascript:deleteRoleUser(\''+row.sysUserId+'\',\''+row.sysRoleId+'\')"> 删除 </a>'
     }

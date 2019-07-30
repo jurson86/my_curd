@@ -70,12 +70,6 @@
         }
     }
 
-    function usernameFmt(val,row) {
-        return '<a title="点击查看人员信息" href="javascript:userInfo(\'${ctx!}\',\''+val+'\')" >'+val+'</a>';
-    }
-    function orgNameFmt(val,row) {
-        return '<a href="javascript:orgInfo(\'${ctx!}\',\''+row.orgId+'\')" title="点击查看机构信息" >'+val+'</a>';
-    }
     function genderFmt(val,row) {
         var gender = '';
         if(val==='M'){
@@ -86,6 +80,9 @@
         return gender;
     }
 
+    function orgNameFmt(val,row) {
+        return '<a href="javascript:orgInfo(\''+row.orgId+'\')" title="点击查看机构信息" >'+val+'</a>';
+    }
 
     /**
      * 用户配置角色

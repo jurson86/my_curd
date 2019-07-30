@@ -18,7 +18,7 @@
                     <td>${(info.name)!}<#if !(info.assignee)??> ( 待认领 )</#if></td>
                     <td>
                         <#if (info.assignee)??>
-                            <a title="点击查看详细信息" href="javascript:userInfo('','${(info.assignee)!}')">${(info.assignee)!}</a>
+                            <a title="点击查看详细信息" href="javascript:userInfo('${(info.assignee)!}')">${(info.assignee)!}</a>
                             <#else>
                                 <#list (info.candidateGroup) as group>
                                     ${group!}<br/>
