@@ -119,6 +119,8 @@ public class OAController extends BaseController {
         String processInstanceId = get("id"); // 流程实例id (运行时或历史均可)
         List<HistoricTaskInstance> historicTaskInstances = ActivitiUtils.getHistoryService().createHistoricTaskInstanceQuery()
                 .processInstanceId(processInstanceId)
+                .orderByTaskCreateTime()
+                .asc()
                 .list();
 
         List<HistoricTaskInfo> historicTaskInfos = new ArrayList<>();

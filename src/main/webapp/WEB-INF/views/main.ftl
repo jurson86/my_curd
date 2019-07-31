@@ -1,6 +1,5 @@
-<#include "/WEB-INF/views/common/common.ftl"/>
+<#include "common/common.ftl"/>
 <@layout>
-<#include "common/popup.ftl"/>
 <link rel="stylesheet" href="${ctx!}/static/css/main.css">
 <div id="mainLayout" class="easyui-layout" fit="true" border="false">
     <div class="mainHeader" data-options="region:'north'" border="false">

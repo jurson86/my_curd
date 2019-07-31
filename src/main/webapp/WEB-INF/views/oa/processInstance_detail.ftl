@@ -3,18 +3,16 @@
 <@layout>
     <style>
         body{
-            padding: 0 10px;
-        }
-        .userCard{
-            margin-bottom: 5px;
-            padding: 5px 2px;
-            text-align: center;
-            font-size: 20px;
-            font-weight: 500;
+            padding: 20px 10px;
         }
     </style>
-    <div class="userCard">
+    <link rel="stylesheet" href="${ctx!}/static/css/oa.css">
+    <div class="instance-detail-title">
         ${processInstanceName!}
+    </div>
+    <div class="instance-detail-second-title">
+        申请人:
+        <a title="点击查看详细信息" href="javascript:userInfo('${initiator!}')">${initiator!}</a>
     </div>
     <div class="easyui-panel" title="申请内容" style="width:100%;margin-bottom: 20px;"
          data-options="href:'${ctx!}/oa/processInstanceFormDetail?businessForm=${businessForm!}&businessKey=${businessKey}',

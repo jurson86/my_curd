@@ -20,11 +20,11 @@ function openProcessInstanceDetail(runFlag,id,title){
  */
 function instanceStatueFmt(val,row) {
     if(row.processInstanceId){
-        return '[待审: '+row.currentActivityName+']';
+        return '<span class="datagrid-ell-highlight">待审: '+row.currentActivityName+'</span>';
     }else  if(row.hisProcessInstanceId){
-        return '[已结束]';
+        return '已结束';
     }else{
-        return '[无流程]';
+        return '无流程';
     }
 }
 
@@ -41,7 +41,7 @@ function instanceDetailFmt(val,row){
     }else  if(row.hisProcessInstanceId){
         ret =  '<a href="javascript:openProcessInstanceDetail(false,\''+row.hisProcessInstanceId+'\')">['+row.hisProcessInstanceId+']</a>';
     }else{
-        ret =  '[无]';
+        ret =  '无';
     }
     return ret;
 }

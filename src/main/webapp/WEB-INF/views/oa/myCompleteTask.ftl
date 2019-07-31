@@ -18,8 +18,9 @@
         </thead>
     </table>
     <div id="tb">
-        <div id="searchSpan" class="searchInputAreaDiv"  >
-            <input name="extra_processName" prompt="流程名" class="easyui-textbox" style="width:180px; ">
+        <div id="searchSpan" class="searchInputAreaDiv"  style="text-align: left; padding: 10px 0 10px 50px">
+            <input name="extra_processName" prompt="流程名" class="easyui-textbox" style="width:180px;">
+            <span style="display: inline-block;width: 20px;"></span>
             <input name="extra_applyUser" prompt="发起人" class="easyui-textbox" style="width:150px; ">
             <a href="#" class="easyui-linkbutton searchBtn"  data-options="iconCls:'iconfont icon-search',plain:true"
                onclick="queryModel('dg','searchSpan')">搜索</a>
@@ -31,18 +32,18 @@
         function statueFmt(val,row){
             var ret = '';
             if(row.endTime ==null){
-                ret = '[正运行]';
+                ret = '<span class="datagrid-ell-highlight">正运行</span>';
             } else {
-                ret = '[已结束]';
+                ret = '已结束';
             }
             return ret;
         }
         function detailFmt(val,row){
             var ret;
             if(row.endTime ==null){
-                ret =  '<a href="javascript:openProcessInstanceDetail(true,\''+row.processInstanceId+'\')">'+val+'</a>';
+                ret =  '<a  href="javascript:openProcessInstanceDetail(true,\''+row.processInstanceId+'\')">'+val+'</a>';
             } else {
-                ret =  '<a href="javascript:openProcessInstanceDetail(false,\''+row.processInstanceId+'\')">'+val+'</a>';
+                ret =  '<a  href="javascript:openProcessInstanceDetail(false,\''+row.processInstanceId+'\')">'+val+'</a>';
             }
             return ret;
         }

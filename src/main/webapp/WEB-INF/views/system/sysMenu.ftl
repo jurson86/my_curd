@@ -58,9 +58,14 @@
                 {field: 'menuName', title: '菜单名', width: 200},
                 {field: 'menuCode', title: '权限编码', width: 150},
                 {field: 'url', title: '地址', width: 250},
-                {field: 'icon', title: '图标', width: 250},
+      /*          {field: 'icon', title: '图标', width: 250},*/
                 {field: 'sortNum', title: '排序号', width: 100},
-                {field: 'btnCount', title: '按钮数量', width: 100, formatter:function(val){if(val=='0'){return '无'}else{return val}}}
+                {field: 'btnCount', title: '按钮数量', width: 100,
+                    formatter:
+                        function(val){
+                          if(val=='0'){return ''}else{return '<span class="datagrid-ell-highlight">'+val+'<span>'}
+                      }
+                }
             ]]
         });
 

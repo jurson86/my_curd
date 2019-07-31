@@ -24,7 +24,7 @@
                                     ${group!}<br/>
                                 </#list>
                                 <#list (info.candidateUser) as user>
-                                    <a title="点击查看详细信息" href="javascript:userInfo('','${user!}')">${user!}</a>
+                                    <a title="点击查看详细信息" href="javascript:userInfo('${user!}')">${user!}</a>
                                     <br/>
                                 </#list>
                         </#if>

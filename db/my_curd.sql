@@ -11,7 +11,7 @@
  Target Server Version : 50719
  File Encoding         : 65001
 
- Date: 30/07/2019 18:56:15
+ Date: 31/07/2019 19:13:07
 */
 
 SET NAMES utf8mb4;
@@ -1046,8 +1046,9 @@ INSERT INTO `sys_menu` VALUES ('601158856554315776', '流程部署', 'processDep
 INSERT INTO `sys_menu` VALUES ('601159063673241600', '流程定义', 'processDefine', '/processDefine', 'iconfont icon-gencode', 4, '601517151597101056', 'admin', '2019-07-17 21:11:30', 'admin', '2019-07-21 20:14:07');
 INSERT INTO `sys_menu` VALUES ('601517151597101056', 'OA办公', NULL, '/', 'iconfont icon-gencode', 0, '0', 'admin', '2019-07-18 20:54:25', 'admin', '2019-07-18 21:42:31');
 INSERT INTO `sys_menu` VALUES ('601521906507579392', '代办任务', 'myToDoTask', '/myToDoTask', 'iconfont icon-gencode', 1, '601517151597101056', 'admin', '2019-07-18 21:13:18', 'admin', '2019-07-28 13:27:42');
-INSERT INTO `sys_menu` VALUES ('603262768065282048', '员工请假', 'formLeave', '/formLeave', 'iconfont icon-gencode', 5, '601517151597101056', 'admin', '2019-07-23 16:30:52', 'admin', '2019-07-28 13:28:01');
+INSERT INTO `sys_menu` VALUES ('603262768065282048', '员工请假', 'formLeave', '/formLeave', 'iconfont icon-gencode', 0, '606192793462767616', 'admin', '2019-07-23 16:30:52', 'admin', '2019-07-31 18:33:55');
 INSERT INTO `sys_menu` VALUES ('604801852810199040', '已批流程', 'myCompleteTask', '/myCompleteTask', 'iconfont icon-gencode', 2, '601517151597101056', 'admin', '2019-07-27 22:26:38', 'admin', '2019-07-30 18:37:42');
+INSERT INTO `sys_menu` VALUES ('606192793462767616', '流程中心', NULL, '/', 'iconfont icon-gencode', 5, '601517151597101056', 'admin', '2019-07-31 18:33:44', NULL, NULL);
 
 -- ----------------------------
 -- Table structure for sys_notice
@@ -1071,6 +1072,8 @@ CREATE TABLE `sys_notice`  (
 -- ----------------------------
 INSERT INTO `sys_notice` VALUES ('598227896263245824', 'delVisitLog', '访问日志删除', 'admin 于 2019-07-09 19:04:04 删除了 40 条 访问日志。', '2019-07-09 19:04:05', '2019-07-19 19:04:05', '2019-07-29 19:04:05');
 INSERT INTO `sys_notice` VALUES ('603283643720269824', 'delVisitLog', '访问日志删除', 'admin 于 2019-07-23 17:53:48 删除了 4 条 访问日志。', '2019-07-23 17:53:49', '2019-08-02 17:53:49', '2019-08-12 17:53:49');
+INSERT INTO `sys_notice` VALUES ('606113846465134592', 'delVisitLog', '访问日志删除', 'admin 于 2019-07-31 13:20:00 删除了 2 条 访问日志。', '2019-07-31 13:20:02', '2019-08-10 13:20:02', '2019-08-20 13:20:02');
+INSERT INTO `sys_notice` VALUES ('606113924894425088', 'delVisitLog', '访问日志删除', 'admin 于 2019-07-31 13:20:20 删除了 3 条 访问日志。', '2019-07-31 13:20:21', '2019-08-10 13:20:21', '2019-08-20 13:20:21');
 
 -- ----------------------------
 -- Table structure for sys_notice_detail
@@ -1093,9 +1096,17 @@ CREATE TABLE `sys_notice_detail`  (
 -- Records of sys_notice_detail
 -- ----------------------------
 INSERT INTO `sys_notice_detail` VALUES ('603283643758018560', '603283643720269824', NULL, '549336387174793216', 'N', NULL);
-INSERT INTO `sys_notice_detail` VALUES ('603283643758018561', '603283643720269824', NULL, '522465144505106432', 'N', NULL);
+INSERT INTO `sys_notice_detail` VALUES ('603283643758018561', '603283643720269824', NULL, '522465144505106432', 'Y', '2019-07-31 13:20:10');
 INSERT INTO `sys_notice_detail` VALUES ('603283643758018562', '603283643720269824', NULL, '522465900809420800', 'N', NULL);
 INSERT INTO `sys_notice_detail` VALUES ('603283643762212864', '603283643720269824', NULL, '522044507147993088', 'N', NULL);
+INSERT INTO `sys_notice_detail` VALUES ('606113846557409280', '606113846465134592', NULL, '549336387174793216', 'N', NULL);
+INSERT INTO `sys_notice_detail` VALUES ('606113846557409281', '606113846465134592', NULL, '522465144505106432', 'Y', '2019-07-31 13:20:10');
+INSERT INTO `sys_notice_detail` VALUES ('606113846557409282', '606113846465134592', NULL, '522465900809420800', 'N', NULL);
+INSERT INTO `sys_notice_detail` VALUES ('606113846557409283', '606113846465134592', NULL, '522044507147993088', 'N', NULL);
+INSERT INTO `sys_notice_detail` VALUES ('606113924902813696', '606113924894425088', NULL, '549336387174793216', 'N', NULL);
+INSERT INTO `sys_notice_detail` VALUES ('606113924902813697', '606113924894425088', NULL, '522465144505106432', 'Y', '2019-07-31 13:20:31');
+INSERT INTO `sys_notice_detail` VALUES ('606113924902813698', '606113924894425088', NULL, '522465900809420800', 'N', NULL);
+INSERT INTO `sys_notice_detail` VALUES ('606113924902813699', '606113924894425088', NULL, '522044507147993088', 'N', NULL);
 
 -- ----------------------------
 -- Table structure for sys_notice_type
@@ -1287,7 +1298,7 @@ CREATE TABLE `sys_setting`  (
 -- Records of sys_setting
 -- ----------------------------
 INSERT INTO `sys_setting` VALUES ('589566528542736384', '登录背景图', 'loginBackgroundImg', 'http://img.netbian.com/file/20130623/4788369295bc8017139e42f9425d6c1f.jpg', 'admin', '2019-06-18 17:11:37');
-INSERT INTO `sys_setting` VALUES ('589588733792092160', '系统主题 default、wechat、yahoo、gplus 任选其一', 'sysTheme', 'yahoo', 'admin', '2019-07-30 18:55:43');
+INSERT INTO `sys_setting` VALUES ('589588733792092160', '系统主题 default、wechat、yahoo、gplus 任选其一', 'sysTheme', 'wechat', 'admin', '2019-07-31 17:47:09');
 INSERT INTO `sys_setting` VALUES ('589885672161017856', '系统标题', 'sysTitle', 'mycurd 开发脚手架', 'admin', '2019-06-18 16:20:35');
 
 -- ----------------------------
@@ -1475,11 +1486,11 @@ CREATE TABLE `sys_user`  (
 -- Records of sys_user
 -- ----------------------------
 INSERT INTO `sys_user` VALUES ('522044507147993088', 'debug', '7c4a8d09ca3762af61e59520943dc26494f8941b', '开发调试', 'static/image/male.jpg', 'M', 'qinyou1994@outlook.com', '15238002477', NULL, '开发工程师', 'staff', NULL, NULL, NULL, 'debug', '2018-12-11 13:38:29', 'debug', '2018-12-12 11:21:13', '0', 'X');
-INSERT INTO `sys_user` VALUES ('522465144505106432', 'admin', '3d4f2bf07dc1be38b20cd6e46949a1071f9d0e3d', '张闯', 'upload/image/2019_07_09/598088017822875648.jpg', 'M', '15238002477@163.com', '15238002477', '603236244448608256', '开发工程师', 'staff', NULL, NULL, '2019-07-30 18:52:22', 'debug', '2018-12-12 17:29:57', 'admin', '2019-07-23 15:02:52', '0', NULL);
+INSERT INTO `sys_user` VALUES ('522465144505106432', 'admin', '3d4f2bf07dc1be38b20cd6e46949a1071f9d0e3d', '张闯', 'upload/image/2019_07_09/598088017822875648.jpg', 'M', '15238002477@163.com', '15238002477', '603236244448608256', '开发工程师', 'staff', NULL, NULL, '2019-07-31 19:12:53', 'debug', '2018-12-12 17:29:57', 'admin', '2019-07-23 15:02:52', '0', NULL);
 INSERT INTO `sys_user` VALUES ('522465900809420800', 'zhaoli', '7c4a8d09ca3762af61e59520943dc26494f8941b', '赵丽', NULL, 'F', 'zhaoli@istek.net.cn', 'kaka', '603238825841393664', 'xxx', 'director', NULL, NULL, '2019-03-14 18:58:24', 'debug', '2018-12-12 17:32:57', 'admin', '2019-07-23 15:03:03', '0', NULL);
 INSERT INTO `sys_user` VALUES ('549336387174793216', 'abc', '7c4a8d09ca3762af61e59520943dc26494f8941b', 'abc2', NULL, 'F', 'qinyou@outlook.com2', '13238002456', NULL, 'developer2', 'monitor', NULL, NULL, NULL, 'admin', '2019-02-24 21:06:40', 'admin', '2019-02-24 21:08:53', '0', 'X');
-INSERT INTO `sys_user` VALUES ('603240093859184640', 'zhangdali', '7c4a8d09ca3762af61e59520943dc26494f8941b', '张大力', NULL, 'M', 'zhangdali@snake.com', '110120119', '603239216616308736', '人资HR', 'staff', NULL, NULL, '2019-07-30 18:32:54', 'admin', '2019-07-23 15:00:46', NULL, NULL, '0', NULL);
-INSERT INTO `sys_user` VALUES ('603240540820996096', 'limengcai', '7c4a8d09ca3762af61e59520943dc26494f8941b', '李梦财', NULL, 'F', 'limengcai@snake.com', '110112119', '603240270057701376', '财务会计', 'staff', NULL, NULL, '2019-07-30 18:50:39', 'admin', '2019-07-23 15:02:33', NULL, NULL, '0', NULL);
+INSERT INTO `sys_user` VALUES ('603240093859184640', 'zhangdali', '7c4a8d09ca3762af61e59520943dc26494f8941b', '张大力', NULL, 'M', 'zhangdali@snake.com', '110120119', '603239216616308736', '人资HR', 'staff', NULL, NULL, '2019-07-31 13:23:59', 'admin', '2019-07-23 15:00:46', NULL, NULL, '0', NULL);
+INSERT INTO `sys_user` VALUES ('603240540820996096', 'limengcai', '7c4a8d09ca3762af61e59520943dc26494f8941b', '李梦财', NULL, 'F', 'limengcai@snake.com', '110112119', '603240270057701376', '财务会计', 'staff', NULL, NULL, '2019-07-31 18:48:10', 'admin', '2019-07-23 15:02:33', NULL, NULL, '0', NULL);
 
 -- ----------------------------
 -- Table structure for sys_user_role
@@ -4753,14 +4764,9 @@ INSERT INTO `sys_visit_log` VALUES ('603264362655776768', 'admin', '0:0:0:0:0:0:
 INSERT INTO `sys_visit_log` VALUES ('603264364396412928', 'admin', '0:0:0:0:0:0:0:1', '/processDeploy', '2019-07-23 16:37:13', 'GET', NULL, NULL);
 INSERT INTO `sys_visit_log` VALUES ('603264364685819904', 'admin', '0:0:0:0:0:0:0:1', '/sysDict/combobox', '2019-07-23 16:37:13', 'POST', '{\"groupCode\":[\"OACategory\"]}', NULL);
 INSERT INTO `sys_visit_log` VALUES ('603264364836814848', 'admin', '0:0:0:0:0:0:0:1', '/processDeploy/query', '2019-07-23 16:37:13', 'POST', '{\"page\":[\"1\"],\"rows\":[\"40\"]}', NULL);
-INSERT INTO `sys_visit_log` VALUES ('603264376660557824', 'admin', '0:0:0:0:0:0:0:1', '/sysOrg', '2019-07-23 16:37:16', 'GET', NULL, NULL);
 INSERT INTO `sys_visit_log` VALUES ('603264377004490752', 'admin', '0:0:0:0:0:0:0:1', '/sysOrg/query', '2019-07-23 16:37:16', 'POST', NULL, NULL);
-INSERT INTO `sys_visit_log` VALUES ('603264377365200896', 'admin', '0:0:0:0:0:0:0:1', '/sysOrg/queryUser', '2019-07-23 16:37:16', 'POST', '{\"page\":[\"1\"],\"rows\":[\"40\"]}', NULL);
-INSERT INTO `sys_visit_log` VALUES ('603264378015318016', 'admin', '0:0:0:0:0:0:0:1', '/sysRole', '2019-07-23 16:37:16', 'GET', NULL, NULL);
 INSERT INTO `sys_visit_log` VALUES ('603264378401193984', 'admin', '0:0:0:0:0:0:0:1', '/sysRole/query', '2019-07-23 16:37:16', 'POST', '{\"page\":[\"1\"],\"rows\":[\"40\"]}', NULL);
 INSERT INTO `sys_visit_log` VALUES ('603264381005856768', 'admin', '0:0:0:0:0:0:0:1', '/sysUserUnlock', '2019-07-23 16:37:17', 'GET', NULL, NULL);
 INSERT INTO `sys_visit_log` VALUES ('603264381341401088', 'admin', '0:0:0:0:0:0:0:1', '/sysUserUnlock/query', '2019-07-23 16:37:17', 'POST', '{\"page\":[\"1\"],\"rows\":[\"40\"]}', NULL);
-INSERT INTO `sys_visit_log` VALUES ('603264384327745536', 'admin', '0:0:0:0:0:0:0:1', '/sysUserUnlock', '2019-07-23 16:37:17', 'GET', NULL, NULL);
-INSERT INTO `sys_visit_log` VALUES ('603264384709427200', 'admin', '0:0:0:0:0:0:0:1', '/sysUserUnlock/query', '2019-07-23 16:37:17', 'POST', '{\"page\":[\"1\"],\"rows\":[\"40\"]}', NULL);
 
 SET FOREIGN_KEY_CHECKS = 1;

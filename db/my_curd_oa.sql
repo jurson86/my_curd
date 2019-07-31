@@ -11,7 +11,7 @@
  Target Server Version : 50719
  File Encoding         : 65001
 
- Date: 30/07/2019 18:56:04
+ Date: 31/07/2019 19:13:16
 */
 
 SET NAMES utf8mb4;
@@ -75,7 +75,7 @@ CREATE TABLE `act_ge_property`  (
 -- ----------------------------
 -- Records of act_ge_property
 -- ----------------------------
-INSERT INTO `act_ge_property` VALUES ('next.dbid', '105001', 43);
+INSERT INTO `act_ge_property` VALUES ('next.dbid', '110001', 45);
 INSERT INTO `act_ge_property` VALUES ('schema.history', 'create(5.22.0.0)', 1);
 INSERT INTO `act_ge_property` VALUES ('schema.version', '5.22.0.0', 1);
 
@@ -112,9 +112,17 @@ INSERT INTO `act_hi_actinst` VALUES ('100003', 'easy-leave-request:1:90006', '92
 INSERT INTO `act_hi_actinst` VALUES ('100004', 'easy-leave-request:1:90006', '92501', '92501', 'financeAudit', '100005', NULL, '财务审批', 'userTask', 'limengcai', '2019-07-30 18:27:06.850', '2019-07-30 18:36:54.142', 587292, '');
 INSERT INTO `act_hi_actinst` VALUES ('102504', 'easy-leave-request:1:90006', '92501', '92501', 'exclusivegateway2', NULL, NULL, '财务审批结果判断', 'exclusiveGateway', NULL, '2019-07-30 18:36:54.143', '2019-07-30 18:36:54.174', 31, '');
 INSERT INTO `act_hi_actinst` VALUES ('102505', 'easy-leave-request:1:90006', '92501', '92501', 'getResult', '102506', NULL, '申请人消假', 'userTask', 'admin', '2019-07-30 18:36:54.174', '2019-07-30 18:37:25.215', 31041, '');
-INSERT INTO `act_hi_actinst` VALUES ('102510', 'easy-leave-request:1:90006', '92501', '92501', 'hrLook', '102511', NULL, '销假确认', 'userTask', NULL, '2019-07-30 18:37:25.215', NULL, NULL, '');
+INSERT INTO `act_hi_actinst` VALUES ('102510', 'easy-leave-request:1:90006', '92501', '92501', 'hrLook', '102511', NULL, '销假确认', 'userTask', 'zhangdali', '2019-07-30 18:37:25.215', '2019-07-31 13:11:17.983', 66832768, '');
 INSERT INTO `act_hi_actinst` VALUES ('102516', 'easy-leave-request:1:90006', '102514', '102514', 'startEvent', NULL, NULL, '发起流程', 'startEvent', NULL, '2019-07-30 18:55:15.305', '2019-07-30 18:55:15.309', 4, '');
-INSERT INTO `act_hi_actinst` VALUES ('102518', 'easy-leave-request:1:90006', '102514', '102514', 'hrAudit', '102519', NULL, '人力审批', 'userTask', NULL, '2019-07-30 18:55:15.309', NULL, NULL, '');
+INSERT INTO `act_hi_actinst` VALUES ('102518', 'easy-leave-request:1:90006', '102514', '102514', 'hrAudit', '102519', NULL, '人力审批', 'userTask', 'zhangdali', '2019-07-30 18:55:15.309', '2019-07-31 13:12:01.381', 65806072, '');
+INSERT INTO `act_hi_actinst` VALUES ('105003', 'easy-leave-request:1:90006', '92501', '92501', 'endEvent', NULL, NULL, '流程结束', 'endEvent', NULL, '2019-07-31 13:11:17.983', '2019-07-31 13:11:17.984', 1, '');
+INSERT INTO `act_hi_actinst` VALUES ('105007', 'easy-leave-request:1:90006', '102514', '102514', 'exclusivegateway1', NULL, NULL, '人力审批结果判断', 'exclusiveGateway', NULL, '2019-07-31 13:12:01.381', '2019-07-31 13:12:01.390', 9, '');
+INSERT INTO `act_hi_actinst` VALUES ('105008', 'easy-leave-request:1:90006', '102514', '102514', 'adjustForm', '105009', NULL, '调整申请', 'userTask', 'admin', '2019-07-31 13:12:01.390', '2019-07-31 13:22:49.990', 648600, '');
+INSERT INTO `act_hi_actinst` VALUES ('105012', 'easy-leave-request:1:90006', '102514', '102514', 'hrAudit', '105013', NULL, '人力审批', 'userTask', 'zhangdali', '2019-07-31 13:22:49.990', '2019-07-31 13:24:24.161', 94171, '');
+INSERT INTO `act_hi_actinst` VALUES ('105017', 'easy-leave-request:1:90006', '102514', '102514', 'exclusivegateway1', NULL, NULL, '人力审批结果判断', 'exclusiveGateway', NULL, '2019-07-31 13:24:24.161', '2019-07-31 13:24:24.161', 0, '');
+INSERT INTO `act_hi_actinst` VALUES ('105018', 'easy-leave-request:1:90006', '102514', '102514', 'financeAudit', '105019', NULL, '财务审批', 'userTask', 'limengcai', '2019-07-31 13:24:24.161', '2019-07-31 18:48:30.051', 19445890, '');
+INSERT INTO `act_hi_actinst` VALUES ('107503', 'easy-leave-request:1:90006', '102514', '102514', 'exclusivegateway2', NULL, NULL, '财务审批结果判断', 'exclusiveGateway', NULL, '2019-07-31 18:48:30.052', '2019-07-31 18:48:30.061', 9, '');
+INSERT INTO `act_hi_actinst` VALUES ('107504', 'easy-leave-request:1:90006', '102514', '102514', 'getResult', '107505', NULL, '申请人消假', 'userTask', 'admin', '2019-07-31 18:48:30.061', NULL, NULL, '');
 INSERT INTO `act_hi_actinst` VALUES ('90009', 'easy-leave-request:1:90006', '90007', '90007', 'startEvent', NULL, NULL, '发起流程', 'startEvent', NULL, '2019-07-28 18:09:54.441', '2019-07-28 18:09:54.455', 14, '');
 INSERT INTO `act_hi_actinst` VALUES ('90011', 'easy-leave-request:1:90006', '90007', '90007', 'hrAudit', '90012', NULL, '人力审批', 'userTask', 'zhangdali', '2019-07-28 18:09:54.455', '2019-07-28 18:20:18.809', 624354, '');
 INSERT INTO `act_hi_actinst` VALUES ('90018', 'easy-leave-request:1:90006', '90007', '90007', 'exclusivegateway1', NULL, NULL, '人力审批结果判断', 'exclusiveGateway', NULL, '2019-07-28 18:20:18.809', '2019-07-28 18:20:18.817', 8, '');
@@ -180,6 +188,14 @@ INSERT INTO `act_hi_comment` VALUES ('102502', 'comment', '2019-07-30 18:36:54.0
 INSERT INTO `act_hi_comment` VALUES ('102503', 'comment', '2019-07-30 18:36:54.094', NULL, '100005', '92501', 'AddComment', '正常通过', 0xE6ADA3E5B8B8E9809AE8BF87);
 INSERT INTO `act_hi_comment` VALUES ('102507', 'comment', '2019-07-30 18:37:25.192', NULL, '102506', '92501', 'AddComment', '销假时间: 2019-07-30 18:37:22', 0xE99480E58187E697B6E997B43A20323031392D30372D33302031383A33373A3232);
 INSERT INTO `act_hi_comment` VALUES ('102508', 'comment', '2019-07-30 18:37:25.197', NULL, '102506', '92501', 'AddComment', '正常通过', 0xE6ADA3E5B8B8E9809AE8BF87);
+INSERT INTO `act_hi_comment` VALUES ('105002', 'comment', '2019-07-31 13:11:17.945', NULL, '102511', '92501', 'AddComment', '经审查，张闯 已经 于 30 号中午 到岗。', 0xE7BB8FE5AEA1E69FA5EFBC8CE5BCA0E997AF20E5B7B2E7BB8F20E4BA8E20333020E58FB7E4B8ADE58D8820E588B0E5B297E38082);
+INSERT INTO `act_hi_comment` VALUES ('105004', 'comment', '2019-07-31 13:12:01.355', NULL, '102519', '102514', 'AddComment', '审批结果: 拒绝', 0xE5AEA1E689B9E7BB93E69E9C3A20E68B92E7BB9D);
+INSERT INTO `act_hi_comment` VALUES ('105005', 'comment', '2019-07-31 13:12:01.362', NULL, '102519', '102514', 'AddComment', '正常通过', 0xE6ADA3E5B8B8E9809AE8BF87);
+INSERT INTO `act_hi_comment` VALUES ('105011', 'comment', '2019-07-31 13:22:49.976', NULL, '105009', '102514', 'AddComment', '以调整，请重新审批', 0xE4BBA5E8B083E695B4EFBC8CE8AFB7E9878DE696B0E5AEA1E689B9);
+INSERT INTO `act_hi_comment` VALUES ('105015', 'comment', '2019-07-31 13:24:24.130', NULL, '105013', '102514', 'AddComment', '审批结果: 同意', 0xE5AEA1E689B9E7BB93E69E9C3A20E5908CE6848F);
+INSERT INTO `act_hi_comment` VALUES ('105016', 'comment', '2019-07-31 13:24:24.143', NULL, '105013', '102514', 'AddComment', '正常通过', 0xE6ADA3E5B8B8E9809AE8BF87);
+INSERT INTO `act_hi_comment` VALUES ('107501', 'comment', '2019-07-31 18:48:30.003', NULL, '105019', '102514', 'AddComment', '审批结果: 同意', 0xE5AEA1E689B9E7BB93E69E9C3A20E5908CE6848F);
+INSERT INTO `act_hi_comment` VALUES ('107502', 'comment', '2019-07-31 18:48:30.017', NULL, '105019', '102514', 'AddComment', '正常通过', 0xE6ADA3E5B8B8E9809AE8BF87);
 INSERT INTO `act_hi_comment` VALUES ('90015', 'comment', '2019-07-28 18:20:18.785', NULL, '90012', '90007', 'AddComment', '审批结果: 拒绝', 0xE5AEA1E689B9E7BB93E69E9C3A20E68B92E7BB9D);
 INSERT INTO `act_hi_comment` VALUES ('90016', 'comment', '2019-07-28 18:20:18.791', NULL, '90012', '90007', 'AddComment', '请求不合理，请重新调整申请', 0xE8AFB7E6B182E4B88DE59088E79086EFBC8CE8AFB7E9878DE696B0E8B083E695B4E794B3E8AFB7);
 INSERT INTO `act_hi_comment` VALUES ('90029', 'comment', '2019-07-28 18:37:31.089', NULL, '90020', '90007', 'AddComment', '已做相关调整，请重新审批', 0xE5B7B2E5819AE79BB8E585B3E8B083E695B4EFBC8CE8AFB7E9878DE696B0E5AEA1E689B9);
@@ -248,6 +264,11 @@ INSERT INTO `act_hi_identitylink` VALUES ('102501', NULL, 'participant', 'limeng
 INSERT INTO `act_hi_identitylink` VALUES ('102512', 'role_hrStaff', 'candidate', NULL, '102511', NULL);
 INSERT INTO `act_hi_identitylink` VALUES ('102513', NULL, 'participant', 'limengcai', NULL, '90022');
 INSERT INTO `act_hi_identitylink` VALUES ('102520', 'role_hrStaff', 'candidate', NULL, '102519', NULL);
+INSERT INTO `act_hi_identitylink` VALUES ('105001', NULL, 'participant', 'zhangdali', NULL, '102514');
+INSERT INTO `act_hi_identitylink` VALUES ('105010', NULL, 'participant', 'admin', NULL, '102514');
+INSERT INTO `act_hi_identitylink` VALUES ('105014', 'role_hrStaff', 'candidate', NULL, '105013', NULL);
+INSERT INTO `act_hi_identitylink` VALUES ('105020', 'role_finance', 'candidate', NULL, '105019', NULL);
+INSERT INTO `act_hi_identitylink` VALUES ('105021', NULL, 'participant', 'limengcai', NULL, '102514');
 INSERT INTO `act_hi_identitylink` VALUES ('90013', 'role_hrStaff', 'candidate', NULL, '90012', NULL);
 INSERT INTO `act_hi_identitylink` VALUES ('90014', NULL, 'participant', 'zhangdali', NULL, '90007');
 INSERT INTO `act_hi_identitylink` VALUES ('90021', NULL, 'participant', 'admin', NULL, '90007');
@@ -294,7 +315,7 @@ CREATE TABLE `act_hi_procinst`  (
 INSERT INTO `act_hi_procinst` VALUES ('102514', '102514', '605835819239866368', 'easy-leave-request:1:90006', '2019-07-30 18:55:15.305', NULL, NULL, NULL, 'startEvent', NULL, NULL, NULL, '', '简单请假流程-( 张闯 2019/07/30 18:55 )');
 INSERT INTO `act_hi_procinst` VALUES ('90007', '90007', '605099631369519104', 'easy-leave-request:1:90006', '2019-07-28 18:09:54.441', '2019-07-30 17:44:03.483', 171249042, NULL, 'startEvent', NULL, NULL, '用户自主删除流程实例', '', '简单请假流程-( 张闯 2019/07/28 18:09 )');
 INSERT INTO `act_hi_procinst` VALUES ('90022', '90022', '605105253888557056', 'easy-leave-request:1:90006', '2019-07-28 18:32:14.845', NULL, NULL, NULL, 'startEvent', NULL, NULL, NULL, '', '简单请假流程-( 张闯 2019/07/28 18:32 )');
-INSERT INTO `act_hi_procinst` VALUES ('92501', '92501', '605457960642019328', 'easy-leave-request:1:90006', '2019-07-29 17:53:46.807', NULL, NULL, NULL, 'startEvent', NULL, NULL, NULL, '', '简单请假流程-( 张闯 2019/07/29 17:53 )');
+INSERT INTO `act_hi_procinst` VALUES ('92501', '92501', '605457960642019328', 'easy-leave-request:1:90006', '2019-07-29 17:53:46.807', '2019-07-31 13:11:17.986', 155851179, NULL, 'startEvent', 'endEvent', NULL, NULL, '', '简单请假流程-( 张闯 2019/07/29 17:53 )');
 
 -- ----------------------------
 -- Table structure for act_hi_taskinst
@@ -330,8 +351,12 @@ CREATE TABLE `act_hi_taskinst`  (
 -- ----------------------------
 INSERT INTO `act_hi_taskinst` VALUES ('100005', 'easy-leave-request:1:90006', 'financeAudit', '92501', '92501', '财务审批', NULL, '根据请假内容做好 工资计算', NULL, 'limengcai', '2019-07-30 18:27:06.850', '2019-07-30 18:36:48.601', '2019-07-30 18:36:54.123', 587273, 'completed', 50, NULL, 'audit.form', NULL, '');
 INSERT INTO `act_hi_taskinst` VALUES ('102506', 'easy-leave-request:1:90006', 'getResult', '92501', '92501', '申请人消假', NULL, '请 休假后 到岗后 批复，根据实际到岗时间填写，非正确数据 不予批复。', NULL, 'admin', '2019-07-30 18:36:54.175', NULL, '2019-07-30 18:37:25.212', 31037, 'completed', 50, NULL, 'available.form', NULL, '');
-INSERT INTO `act_hi_taskinst` VALUES ('102511', 'easy-leave-request:1:90006', 'hrLook', '92501', '92501', '销假确认', NULL, '员工到岗需要 亲自确认，不可随机审批', NULL, NULL, '2019-07-30 18:37:25.215', NULL, NULL, NULL, NULL, 50, NULL, NULL, NULL, '');
-INSERT INTO `act_hi_taskinst` VALUES ('102519', 'easy-leave-request:1:90006', 'hrAudit', '102514', '102514', '人力审批', NULL, NULL, NULL, NULL, '2019-07-30 18:55:15.311', NULL, NULL, NULL, NULL, 50, NULL, 'audit.form', NULL, '');
+INSERT INTO `act_hi_taskinst` VALUES ('102511', 'easy-leave-request:1:90006', 'hrLook', '92501', '92501', '销假确认', NULL, '员工到岗需要 亲自确认，不可随机审批', NULL, 'zhangdali', '2019-07-30 18:37:25.215', '2019-07-31 13:09:36.519', '2019-07-31 13:11:17.963', 66832748, 'completed', 50, NULL, NULL, NULL, '');
+INSERT INTO `act_hi_taskinst` VALUES ('102519', 'easy-leave-request:1:90006', 'hrAudit', '102514', '102514', '人力审批', NULL, NULL, NULL, 'zhangdali', '2019-07-30 18:55:15.311', '2019-07-31 13:09:38.752', '2019-07-31 13:12:01.376', 65806065, 'completed', 50, NULL, 'audit.form', NULL, '');
+INSERT INTO `act_hi_taskinst` VALUES ('105009', 'easy-leave-request:1:90006', 'adjustForm', '102514', '102514', '调整申请', NULL, '请 根据上个 批复调整 请假单', NULL, 'admin', '2019-07-31 13:12:01.390', NULL, '2019-07-31 13:22:49.985', 648595, 'completed', 50, NULL, NULL, NULL, '');
+INSERT INTO `act_hi_taskinst` VALUES ('105013', 'easy-leave-request:1:90006', 'hrAudit', '102514', '102514', '人力审批', NULL, NULL, NULL, 'zhangdali', '2019-07-31 13:22:49.991', '2019-07-31 13:24:15.508', '2019-07-31 13:24:24.156', 94165, 'completed', 50, NULL, 'audit.form', NULL, '');
+INSERT INTO `act_hi_taskinst` VALUES ('105019', 'easy-leave-request:1:90006', 'financeAudit', '102514', '102514', '财务审批', NULL, '根据请假内容做好 工资计算', NULL, 'limengcai', '2019-07-31 13:24:24.161', '2019-07-31 13:28:15.472', '2019-07-31 18:48:30.035', 19445874, 'completed', 50, NULL, 'audit.form', NULL, '');
+INSERT INTO `act_hi_taskinst` VALUES ('107505', 'easy-leave-request:1:90006', 'getResult', '102514', '102514', '申请人消假', NULL, '请 休假后 到岗后 批复，根据实际到岗时间填写，非正确数据 不予批复。', NULL, 'admin', '2019-07-31 18:48:30.062', NULL, NULL, NULL, NULL, 50, NULL, 'available.form', NULL, '');
 INSERT INTO `act_hi_taskinst` VALUES ('90012', 'easy-leave-request:1:90006', 'hrAudit', '90007', '90007', '人力审批', NULL, NULL, NULL, 'zhangdali', '2019-07-28 18:09:54.458', '2019-07-28 18:20:02.079', '2019-07-28 18:20:18.805', 624347, 'completed', 50, NULL, 'audit.form', NULL, '');
 INSERT INTO `act_hi_taskinst` VALUES ('90020', 'easy-leave-request:1:90006', 'adjustForm', '90007', '90007', '调整申请', NULL, '请 根据上个 批复调整 请假单', NULL, 'admin', '2019-07-28 18:20:18.817', NULL, '2019-07-28 18:37:31.097', 1032280, 'completed', 50, NULL, NULL, NULL, '');
 INSERT INTO `act_hi_taskinst` VALUES ('90027', 'easy-leave-request:1:90006', 'hrAudit', '90022', '90022', '人力审批', NULL, NULL, NULL, 'zhangdali', '2019-07-28 18:32:14.848', '2019-07-28 18:38:12.044', '2019-07-29 18:14:44.824', 85349976, 'completed', 50, NULL, 'audit.form', NULL, '');
@@ -372,19 +397,20 @@ CREATE TABLE `act_hi_varinst`  (
 -- ----------------------------
 -- Records of act_hi_varinst
 -- ----------------------------
-INSERT INTO `act_hi_varinst` VALUES ('102509', '92501', '92501', NULL, 'fp_availableTime', 'string', 0, NULL, NULL, NULL, '2019-07-30 18:37:22', NULL, '2019-07-30 18:37:25.205', '2019-07-30 18:37:25.205');
+INSERT INTO `act_hi_varinst` VALUES ('102509', '92501', '92501', NULL, 'fp_availableTime', 'string', 1, NULL, NULL, NULL, '2019-07-30 18:37:22', NULL, '2019-07-30 18:37:25.205', '2019-07-31 13:11:17.999');
 INSERT INTO `act_hi_varinst` VALUES ('102515', '102514', '102514', NULL, 'initiator', 'string', 0, NULL, NULL, NULL, 'admin', NULL, '2019-07-30 18:55:15.305', '2019-07-30 18:55:15.305');
 INSERT INTO `act_hi_varinst` VALUES ('102517', '102514', '102514', NULL, 'businessForm', 'string', 0, NULL, NULL, NULL, 'form_leave', NULL, '2019-07-30 18:55:15.305', '2019-07-30 18:55:15.305');
+INSERT INTO `act_hi_varinst` VALUES ('105006', '102514', '102514', NULL, 'fp_auditResult', 'string', 2, NULL, NULL, NULL, '同意', NULL, '2019-07-31 13:12:01.370', '2019-07-31 18:48:30.027');
 INSERT INTO `act_hi_varinst` VALUES ('90008', '90007', '90007', NULL, 'initiator', 'string', 1, NULL, NULL, NULL, 'admin', NULL, '2019-07-28 18:09:54.440', '2019-07-30 17:44:03.495');
 INSERT INTO `act_hi_varinst` VALUES ('90010', '90007', '90007', NULL, 'businessForm', 'string', 1, NULL, NULL, NULL, 'form_leave', NULL, '2019-07-28 18:09:54.441', '2019-07-30 17:44:03.495');
 INSERT INTO `act_hi_varinst` VALUES ('90017', '90007', '90007', NULL, 'fp_auditResult', 'string', 3, NULL, NULL, NULL, '同意', NULL, '2019-07-28 18:20:18.798', '2019-07-30 17:44:03.495');
 INSERT INTO `act_hi_varinst` VALUES ('90023', '90022', '90022', NULL, 'initiator', 'string', 0, NULL, NULL, NULL, 'admin', NULL, '2019-07-28 18:32:14.845', '2019-07-28 18:32:14.845');
 INSERT INTO `act_hi_varinst` VALUES ('90025', '90022', '90022', NULL, 'businessForm', 'string', 0, NULL, NULL, NULL, 'form_leave', NULL, '2019-07-28 18:32:14.845', '2019-07-28 18:32:14.845');
 INSERT INTO `act_hi_varinst` VALUES ('90048', '90007', '90007', NULL, 'fp_availableTime', 'string', 1, NULL, NULL, NULL, '2019-07-30 18:42:18', NULL, '2019-07-28 18:42:21.215', '2019-07-30 17:44:03.495');
-INSERT INTO `act_hi_varinst` VALUES ('92502', '92501', '92501', NULL, 'initiator', 'string', 0, NULL, NULL, NULL, 'admin', NULL, '2019-07-29 17:53:46.807', '2019-07-29 17:53:46.808');
-INSERT INTO `act_hi_varinst` VALUES ('92504', '92501', '92501', NULL, 'businessForm', 'string', 0, NULL, NULL, NULL, 'form_leave', NULL, '2019-07-29 17:53:46.808', '2019-07-29 17:53:46.808');
+INSERT INTO `act_hi_varinst` VALUES ('92502', '92501', '92501', NULL, 'initiator', 'string', 1, NULL, NULL, NULL, 'admin', NULL, '2019-07-29 17:53:46.807', '2019-07-31 13:11:17.999');
+INSERT INTO `act_hi_varinst` VALUES ('92504', '92501', '92501', NULL, 'businessForm', 'string', 1, NULL, NULL, NULL, 'form_leave', NULL, '2019-07-29 17:53:46.808', '2019-07-31 13:11:17.999');
 INSERT INTO `act_hi_varinst` VALUES ('95003', '90022', '90022', NULL, 'fp_auditResult', 'string', 0, NULL, NULL, NULL, '同意', NULL, '2019-07-29 18:14:44.811', '2019-07-29 18:14:44.811');
-INSERT INTO `act_hi_varinst` VALUES ('97503', '92501', '92501', NULL, 'fp_auditResult', 'string', 2, NULL, NULL, NULL, '同意', NULL, '2019-07-30 18:17:44.709', '2019-07-30 18:36:54.111');
+INSERT INTO `act_hi_varinst` VALUES ('97503', '92501', '92501', NULL, 'fp_auditResult', 'string', 3, NULL, NULL, NULL, '同意', NULL, '2019-07-30 18:17:44.709', '2019-07-31 13:11:17.999');
 
 -- ----------------------------
 -- Table structure for act_id_group
@@ -591,9 +617,8 @@ CREATE TABLE `act_ru_execution`  (
 -- ----------------------------
 -- Records of act_ru_execution
 -- ----------------------------
-INSERT INTO `act_ru_execution` VALUES ('102514', 1, '102514', '605835819239866368', NULL, 'easy-leave-request:1:90006', NULL, 'hrAudit', 1, 0, 1, 0, 1, 2, '', '简单请假流程-( 张闯 2019/07/30 18:55 )', NULL);
+INSERT INTO `act_ru_execution` VALUES ('102514', 5, '102514', '605835819239866368', NULL, 'easy-leave-request:1:90006', NULL, 'getResult', 1, 0, 1, 0, 1, 2, '', '简单请假流程-( 张闯 2019/07/30 18:55 )', NULL);
 INSERT INTO `act_ru_execution` VALUES ('90022', 2, '90022', '605105253888557056', NULL, 'easy-leave-request:1:90006', NULL, 'financeAudit', 1, 0, 1, 0, 1, 2, '', '简单请假流程-( 张闯 2019/07/28 18:32 )', NULL);
-INSERT INTO `act_ru_execution` VALUES ('92501', 6, '92501', '605457960642019328', NULL, 'easy-leave-request:1:90006', NULL, 'hrLook', 1, 0, 1, 0, 1, 2, '', '简单请假流程-( 张闯 2019/07/29 17:53 )', NULL);
 
 -- ----------------------------
 -- Table structure for act_ru_identitylink
@@ -622,14 +647,12 @@ CREATE TABLE `act_ru_identitylink`  (
 -- ----------------------------
 -- Records of act_ru_identitylink
 -- ----------------------------
-INSERT INTO `act_ru_identitylink` VALUES ('102501', 1, NULL, 'participant', 'limengcai', NULL, '92501', NULL);
-INSERT INTO `act_ru_identitylink` VALUES ('102512', 1, 'role_hrStaff', 'candidate', NULL, '102511', NULL, NULL);
 INSERT INTO `act_ru_identitylink` VALUES ('102513', 1, NULL, 'participant', 'limengcai', NULL, '90022', NULL);
-INSERT INTO `act_ru_identitylink` VALUES ('102520', 1, 'role_hrStaff', 'candidate', NULL, '102519', NULL, NULL);
+INSERT INTO `act_ru_identitylink` VALUES ('105001', 1, NULL, 'participant', 'zhangdali', NULL, '102514', NULL);
+INSERT INTO `act_ru_identitylink` VALUES ('105010', 1, NULL, 'participant', 'admin', NULL, '102514', NULL);
+INSERT INTO `act_ru_identitylink` VALUES ('105021', 1, NULL, 'participant', 'limengcai', NULL, '102514', NULL);
 INSERT INTO `act_ru_identitylink` VALUES ('90039', 1, NULL, 'participant', 'zhangdali', NULL, '90022', NULL);
 INSERT INTO `act_ru_identitylink` VALUES ('95007', 1, 'role_finance', 'candidate', NULL, '95006', NULL, NULL);
-INSERT INTO `act_ru_identitylink` VALUES ('95008', 1, NULL, 'participant', 'zhangdali', NULL, '92501', NULL);
-INSERT INTO `act_ru_identitylink` VALUES ('97507', 1, NULL, 'participant', 'admin', NULL, '92501', NULL);
 
 -- ----------------------------
 -- Table structure for act_ru_job
@@ -695,8 +718,7 @@ CREATE TABLE `act_ru_task`  (
 -- ----------------------------
 -- Records of act_ru_task
 -- ----------------------------
-INSERT INTO `act_ru_task` VALUES ('102511', 1, '92501', '92501', 'easy-leave-request:1:90006', '销假确认', NULL, '员工到岗需要 亲自确认，不可随机审批', 'hrLook', NULL, NULL, NULL, 50, '2019-07-30 18:37:25.215', NULL, NULL, 1, '', NULL);
-INSERT INTO `act_ru_task` VALUES ('102519', 1, '102514', '102514', 'easy-leave-request:1:90006', '人力审批', NULL, NULL, 'hrAudit', NULL, NULL, NULL, 50, '2019-07-30 18:55:15.309', NULL, NULL, 1, '', 'audit.form');
+INSERT INTO `act_ru_task` VALUES ('107505', 1, '102514', '102514', 'easy-leave-request:1:90006', '申请人消假', NULL, '请 休假后 到岗后 批复，根据实际到岗时间填写，非正确数据 不予批复。', 'getResult', NULL, 'admin', NULL, 50, '2019-07-31 18:48:30.061', NULL, NULL, 1, '', 'available.form');
 INSERT INTO `act_ru_task` VALUES ('95006', 2, '90022', '90022', 'easy-leave-request:1:90006', '财务审批', NULL, '根据请假内容做好 工资计算', 'financeAudit', NULL, 'limengcai', NULL, 50, '2019-07-29 18:14:44.851', NULL, NULL, 1, '', 'audit.form');
 
 -- ----------------------------
@@ -729,15 +751,12 @@ CREATE TABLE `act_ru_variable`  (
 -- ----------------------------
 -- Records of act_ru_variable
 -- ----------------------------
-INSERT INTO `act_ru_variable` VALUES ('102509', 1, 'string', 'fp_availableTime', '92501', '92501', NULL, NULL, NULL, NULL, '2019-07-30 18:37:22', NULL);
 INSERT INTO `act_ru_variable` VALUES ('102515', 1, 'string', 'initiator', '102514', '102514', NULL, NULL, NULL, NULL, 'admin', NULL);
 INSERT INTO `act_ru_variable` VALUES ('102517', 1, 'string', 'businessForm', '102514', '102514', NULL, NULL, NULL, NULL, 'form_leave', NULL);
+INSERT INTO `act_ru_variable` VALUES ('105006', 2, 'string', 'fp_auditResult', '102514', '102514', NULL, NULL, NULL, NULL, '同意', NULL);
 INSERT INTO `act_ru_variable` VALUES ('90023', 1, 'string', 'initiator', '90022', '90022', NULL, NULL, NULL, NULL, 'admin', NULL);
 INSERT INTO `act_ru_variable` VALUES ('90025', 1, 'string', 'businessForm', '90022', '90022', NULL, NULL, NULL, NULL, 'form_leave', NULL);
-INSERT INTO `act_ru_variable` VALUES ('92502', 1, 'string', 'initiator', '92501', '92501', NULL, NULL, NULL, NULL, 'admin', NULL);
-INSERT INTO `act_ru_variable` VALUES ('92504', 1, 'string', 'businessForm', '92501', '92501', NULL, NULL, NULL, NULL, 'form_leave', NULL);
 INSERT INTO `act_ru_variable` VALUES ('95003', 1, 'string', 'fp_auditResult', '90022', '90022', NULL, NULL, NULL, NULL, '同意', NULL);
-INSERT INTO `act_ru_variable` VALUES ('97503', 2, 'string', 'fp_auditResult', '92501', '92501', NULL, NULL, NULL, NULL, '同意', NULL);
 
 -- ----------------------------
 -- Table structure for form_leave
@@ -761,6 +780,6 @@ CREATE TABLE `form_leave`  (
 -- ----------------------------
 INSERT INTO `form_leave` VALUES ('605105253888557056', '病假', '2019-07-28 18:32:07', '2019-07-30 18:32:09', '奖励奖励基金', 'admin', '2019-07-28 18:32:15', NULL, NULL);
 INSERT INTO `form_leave` VALUES ('605457960642019328', '事假', '2019-07-29 17:53:38', '2019-07-30 17:53:41', 'fdsdfsdfsdfsdf', 'admin', '2019-07-29 17:53:47', NULL, NULL);
-INSERT INTO `form_leave` VALUES ('605835819239866368', '事假', '2019-07-30 18:55:08', '2019-07-31 18:55:10', 'h\'h\'h\'n\'h\'n', 'admin', '2019-07-30 18:55:15', NULL, NULL);
+INSERT INTO `form_leave` VALUES ('605835819239866368', '事假', '2019-07-30 18:55:08', '2019-07-31 18:55:10', '已经调整申请，请领导重新审批', 'admin', '2019-07-30 18:55:15', 'admin', '2019-07-31 13:21:55');
 
 SET FOREIGN_KEY_CHECKS = 1;

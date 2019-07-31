@@ -125,6 +125,7 @@ public class MyToDoTaskController extends BaseController {
         String businessForm = (String) processInstance.getProcessVariables().get("businessForm");
         String initiator = (String) processInstance.getProcessVariables().get("initiator");
         String renderedTaskForm = (String) ActivitiUtils.getFormService().getRenderedTaskForm(taskId);
+
         setAttr("initiator",initiator);  // 发起人
         setAttr("processInstanceName",processInstance.getName()); // 流程实例名
         setAttr("businessKey",processInstance.getBusinessKey()); // 业务表 id
