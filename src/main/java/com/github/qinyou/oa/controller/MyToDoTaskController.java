@@ -15,6 +15,7 @@ import com.jfinal.plugin.activerecord.Record;
 import com.jfinal.plugin.activerecord.tx.Tx;
 import com.jfinal.plugin.activerecord.tx.TxConfig;
 import lombok.extern.slf4j.Slf4j;
+import org.activiti.engine.TaskService;
 import org.activiti.engine.runtime.ProcessInstance;
 import org.activiti.engine.task.Task;
 import org.activiti.engine.task.TaskQuery;
@@ -24,6 +25,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+@SuppressWarnings("Duplicates")
 @Slf4j
 @RequireMenuCode("myToDoTask")
 public class MyToDoTaskController extends BaseController {
@@ -136,8 +138,7 @@ public class MyToDoTaskController extends BaseController {
     }
 
     /**
-     * 任务办理
-     * 审批表单 只有 固定的两个字段， 不合适
+     * 完成任务
      */
     @TxConfig(ActivitiConfig.DATASOURCE_NAME)
     @Before({IdRequired.class, Tx.class})
@@ -181,4 +182,35 @@ public class MyToDoTaskController extends BaseController {
 
         renderSuccess("办理成功");
     }
+
+
+    // 转办
+    @TxConfig(ActivitiConfig.DATASOURCE_NAME)
+    @Before(Tx.class)
+    public void changeAssigneeAction(){
+        String taskId = getPara("taskId"); // taskId;
+        String username = getPara("username");
+        if (StringUtils.isEmpty(taskId) || StringUtils.isEmpty(username)){
+            renderFail("参数缺失");
+            return;
+        }
+        TaskService taskService = ActivitiUtils.getTaskService();
+        Task task = taskService.createTaskQuery().taskId(taskId).singleResult();
+        if(task==null){
+            renderFail("任务不存在");
+            return;
+        }
+        if(username.equals(task.getAssignee())){
+            renderFail("原任务处理人 和 转办人 不可相同");
+            return;
+        }
+
+        // 设置上个任务处理人
+        ActivitiUtils.getTaskService().setVariableLocal(taskId,"lastAssignee",task.getAssignee());
+        ActivitiUtils.getTaskService().setAssignee(taskId,username);
+        renderSuccess("转办 操作成功 ");
+    }
+
+
+
 }

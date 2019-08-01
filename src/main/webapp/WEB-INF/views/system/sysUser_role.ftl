@@ -18,7 +18,7 @@
           </thead>
       </table>
     <div id="tb">
-        <a onclick="openUtilsRole()" href="#" class="easyui-linkbutton" iconCls="iconfont icon-add" plain="true">添加</a>
+        <a onclick="openUtilsRole(false,'添加角色')" href="#" class="easyui-linkbutton" iconCls="iconfont icon-add" plain="true">添加</a>
         <a onclick="deleteRolesAction()" href="#" class="easyui-linkbutton" iconCls="iconfont icon-delete" plain="true">删除</a>
         <span id="searchSpan" class="searchInputArea">
              <input name="search_LIKE_b.roleName" prompt="名称" class="easyui-textbox" style="width:120px; ">
@@ -31,16 +31,6 @@
     </div>
 <script src="${ctx!}/static/js/dg-curd.js"></script>
 <script>
-    function usernameFmt(val,row) {
-        return '<a title="点击查看人员信息" href="javascript:userInfo(\'${ctx!}\',\''+val+'\')" >'+val+'</a>';
-    }
-
-    var winIndex;
-    /*添加角色弹窗*/
-    function openUtilsRole() {
-        winIndex = popup.openIframe('添加角色','${ctx!}/utils/role', '500px', '400px')
-    }
-
     /**
      * 保存选中的角色，被其它窗口调用
      * @param roles
@@ -51,12 +41,12 @@
             ids.push(aryItem.id);
         });
         $.post('${ctx!}/sysUser/addUserRoleAction?roleIds=' + ids.join(',')+"&userId=${(userId)!}", function (data) {
-            if(data.state=='ok'){
+            if(data.state==='ok'){
                 popup.msg(data.msg, function () {
                     $('#dg').datagrid('reload');
                     popup.closeByIndex(winIndex);
                 });
-            }else if(data.state=='error'){
+            }else if(data.state==='error'){
                 popup.errMsg('系统异常',data.msg);
             }else{
                 popup.msg(data.msg);

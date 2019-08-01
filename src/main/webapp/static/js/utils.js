@@ -182,3 +182,24 @@ function commonSingleFileUpload(files,type,ctx,okCallback){
         }
     });
 }
+
+// datagrid cell 高亮格式化
+function highlightFmt(val){
+    return '<span class="datagrid-ell-highlight">'+val+'</span>';
+}
+
+
+
+var winIndex;
+
+// 用户选择弹窗
+function openUtilsUser(singleSelect,yesBtnTxt){
+    winIndex = popup.openIframe('用户选择', ctx+"/utils/user?singleSelect="+singleSelect+"&yesBtnTxt="+yesBtnTxt,
+        "600px","400px");
+}
+
+// 角色选择弹窗
+function openUtilsRole(singleSelect,yesBtnTxt) {
+    winIndex = popup.openIframe('角色选择',ctx+"/utils/role?singleSelect="+singleSelect+"&yesBtnTxt="+yesBtnTxt, '500px', '400px');
+}
+

@@ -72,7 +72,7 @@
             </thead>
         </table>
         <div id="tb">
-            <a onclick="openUtilsRole()" href="#" class="easyui-linkbutton" iconCls="iconfont icon-add" plain="true">添加</a>
+            <a onclick="openUtilsRole(false,'关联角色')" href="#" class="easyui-linkbutton" iconCls="iconfont icon-add" plain="true">添加</a>
             <a onclick="deleteTypeRoles()" href="#" class="easyui-linkbutton  " iconCls="iconfont icon-delete" plain="true">删除</a>
             <span id="searchSpan" class="searchInputArea">
                 <input name="search_LIKE_b.roleName" prompt="角色名" class="easyui-textbox" style="width:120px; ">

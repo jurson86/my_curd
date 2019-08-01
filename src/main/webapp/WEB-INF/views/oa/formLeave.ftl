@@ -44,8 +44,5 @@
 </div>
 <script src="${ctx!}/static/js/dg-curd.js"></script>
 <script src="${ctx!}/static/plugins/easyui1.6.10/datagrid-extend.js"></script>
-<script>
-    var ctx = "${ctx!}";
-</script>
 <script src="${ctx!}/static/js/oa.js"></script>
 </@layout>

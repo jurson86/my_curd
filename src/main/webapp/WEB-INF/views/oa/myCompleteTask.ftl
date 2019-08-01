@@ -9,6 +9,7 @@
            pageSize="40" pageList="[20,40]">
         <thead>
         <tr>
+            <th field="processInstanceId" width="100" >流程Id</th>
             <th field="processInstanceName" width="300" formatter="detailFmt">流程名</th>
             <th field="initiator" width="100" formatter="usernameFmt">申请人</th>
             <th field="startTime" width="200">开始时间</th>
@@ -28,7 +29,6 @@
     </div>
     <script src="${ctx!}/static/js/dg-curd.js"></script>
     <script>
-        var ctx = "${ctx!}";
         function statueFmt(val,row){
             var ret = '';
             if(row.endTime ==null){

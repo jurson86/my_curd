@@ -24,8 +24,11 @@ public class HistoricTaskInfo {
     private Date claimTime;
     // 审批人
     private String assignee;
-    // 原审批人（针对转办任务)
-    private String owner;
+
+
+    // 原审批人（针对任务转办）
+    private String lastAssignee;
+
     // 评论列表
     private List<String> comments;
     // 候选组

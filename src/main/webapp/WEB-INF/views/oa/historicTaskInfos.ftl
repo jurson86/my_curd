@@ -28,6 +28,9 @@
                                     <br/>
                                 </#list>
                         </#if>
+                        <#if (info.lastAssignee)?? && (info.assignee)??  >
+                            , 由：<a title="点击查看详细信息" href="javascript:userInfo('${(info.lastAssignee)!}')">${(info.lastAssignee)!}</a> 转办
+                        </#if>
                     </td>
                     <td>${(info.startTime?string("yyyy-MM-dd"))!}</td>
                     <td>

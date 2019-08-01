@@ -33,6 +33,7 @@
 
 ##### 业务表数据流程审批
 ![业务表数据流程审批](https://raw.githubusercontent.com/qinyou/my_curd/master/preview/process.png "process.png")
+![业务表数据流程审批](https://raw.githubusercontent.com/qinyou/my_curd/master/preview/process_detail.png "process_detail.png")
 
 
 
