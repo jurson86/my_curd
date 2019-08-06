@@ -45,7 +45,10 @@
 </form>
 <div  class="formBtnsDiv">
     <button  class=" pure-button button-small" onclick="popup.close(window.name);" >  <i class="iconfont icon-cancel"></i> 取消</button>
-    <button  class=" button-small   pure-button pure-button-primary" onclick="saveAction('modelForm','refresh','dg')" ><i class="iconfont icon-save"></i> 确定</button>
+    <button  class=" button-small   pure-button pure-button-primary"
+             onclick="saveAction('modelForm','<#if formLeave?? >refresh<#else>reload</#if>','dg')" >
+        <i class="iconfont icon-save"></i> 确定
+    </button>
 </div>
 <script src="${ctx!}/static/js/dg-curd.js"></script>
 </@layout>
