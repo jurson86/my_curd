@@ -45,16 +45,3 @@ function instanceDetailFmt(val,row){
     }
     return ret;
 }
-
-function openAdjustFormModel(dgId,url,width,height,title){
-    var rows= $("#"+dgId).datagrid("getSelections");
-    if (rows.length===1) {
-        if(rows[0].currentActivityId !== 'adjustForm'){
-            popup.msg('当前流程阶段不允许编辑申请信息');
-            return;
-        }
-        popup.openIframe(title || '编辑', url+'?id=' + rows[0].id, width,height);
-    } else {
-        popup.msg('请选择一行数据进行操作');
-    }
-}

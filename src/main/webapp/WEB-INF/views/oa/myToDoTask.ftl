@@ -8,10 +8,11 @@
         <thead>
         <tr>
         <#--    <th field="id" width="100">任务Id</th>-->
-            <th field="taskName" width="150" formatter="highlightFmt">任务名</th>
-            <th field="createTime" width="250">任务创建时间</th>
-            <th field="processInstanceId" width="100">流程Id</th>
             <th field="processInstanceName" width="350" formatter="processInstanceDetailFmt">流程</th>
+            <th field="taskName" width="150" formatter="highlightFmt">任务名</th>
+            <th field="createTime" width="200">任务创建时间</th>
+            <#--<th field="processInstanceId" width="100">流程Id</th>-->
+
             <th field="type" width="250" formatter="opeFmt">操作</th>
         </tr>
         </thead>
@@ -47,8 +48,11 @@
         /*操作按钮格式化*/
         function opeFmt(val, row) {
             if (row.type == 1) {
-                return   '<a  href="javascript:openCompleteForm(\'' + row.id + '\')"> [办理] </a>' +
-                    '<a  href="javascript:openUtilsUser(true,\'转办\')"> [转办] </a>'
+                var txt =  '<a  href="javascript:openCompleteForm(\'' + row.id + '\')"> [办理] </a>';
+                if(row.taskDefinitionKey !== 'adjustForm'){
+                    txt = txt +   '<a  href="javascript:openUtilsUser(true,\'转办\')"> [转办] </a>';
+                }
+                return txt;
             } else if (row.type == 2) {
                 return '<a  href="javascript:claimAction(\'' + row.id + '\')"> [认领] </a>'
             } else {

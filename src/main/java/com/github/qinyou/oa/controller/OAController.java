@@ -132,8 +132,7 @@ public class OAController extends BaseController {
                     .setStartTime(historicTaskInstance.getStartTime())
                     .setEndTime(historicTaskInstance.getEndTime())
                     .setCreateTime(historicTaskInstance.getCreateTime())
-                    .setClaimTime(historicTaskInstance.getClaimTime())
-                    .setOwner(historicTaskInstance.getOwner());
+                    .setClaimTime(historicTaskInstance.getClaimTime());
 
             // 如果有 转办任务
             String lastAssignee = (String) historicTaskInstance.getTaskLocalVariables().get("lastAssignee");

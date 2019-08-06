@@ -5,8 +5,16 @@
     <div class="mainHeader" data-options="region:'north'" border="false">
         <ul class="headerMenu">
             <li><a href="javascript:fullScreenToggleNew()" title="点击全屏"  class="header-title">${(setting.sysTitle)!'综合管理系统'}</a></li>
-            <li><a href="#" class="header-active">首页</a></li>
-            <#--<li><a href="#">OA协同</a></li>-->
+
+            <#--<li><a href="#" class="header-active">xxx/a></li>-->
+            <#list rootMenus as menu>
+                <li>
+                    <a href="${ctx!}/dashboard/${(menu.id)!}" <#if rootMenuId?? && rootMenuId == menu.id >class="header-active"</#if> >
+                        <i class="iconfont ${menu.icon}" style="margin-right: 5px;padding-top: 3px;"></i>${menu.menuName}
+                    </a>
+                </li>
+            </#list>
+
             <span class="right">
                 <li>
                     <a href="javascript:openUserNotice()"   title="点击查看通知"  >
@@ -57,9 +65,9 @@
 
     <div cls="sidebar" data-options="region:'west',split:false"   border="false">
         <div style="text-align: center;padding: 10px ;">
-            <input id="filterInput" type="text" placeholder="输入关键字、Enter过滤">
+            <input id="filterInput" type="text" placeholder="关键字检索">
         </div>
-        <div style="height: 10px;" class="bg"></div>
+        <div style="height: 10px;margin-bottom: 10px;" class="bg"></div>
         <ul id="permissionTree" style="margin-left:18px">
         </ul>
     </div>
@@ -88,7 +96,7 @@
 <script>
     function menuTreeInit(){
         var easyTree = new EasyTree();
-        $.getJSON('${ctx!}/dashboard/menuTree',function(data){
+        $.getJSON('${ctx!}/dashboard/menuTree?rootMenuId=${rootMenuId!}',function(data){
             var treeData = easyTree.treeDataBuild(data, "id", "pid", "text,iconCls,url");
             $('#permissionTree').tree({
                 data: treeData,

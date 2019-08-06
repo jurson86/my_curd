@@ -25,12 +25,27 @@ import java.util.*;
  *
  * @author zhangchuang
  */
+@SuppressWarnings("Duplicates")
 @Clear(PermissionInterceptor.class)
 public class MainController extends BaseController {
 
     public void index() {
         SysUser sysUser = WebUtils.getSysUser(this);
         setAttr("aesUserId", UserIdEncryptUtils.encrypt(sysUser.getId(), UserIdEncryptUtils.CURRENT_USER_ID_AESKEY));
+
+        // 顶层菜单
+        List<SysMenu> sysMenus = getSessionAttr("sysUserMenu");
+        List<SysMenu> rootMenus = new ArrayList<>();
+        sysMenus.forEach(sysMenu -> {
+            if("0".equals(sysMenu.getPid())){
+                rootMenus.add(sysMenu);
+            }
+        });
+        setAttr("rootMenus",rootMenus);
+
+        // 根菜单id （默认取第一个根菜单）
+        setAttr("rootMenuId",get(0,rootMenus.get(0).getId()));
+
         render("main.ftl");
     }
 
@@ -39,10 +54,34 @@ public class MainController extends BaseController {
      * 树形菜单
      */
     public void menuTree() {
+        String rootMenuId = getPara("rootMenuId");
+        if(StringUtils.isEmpty(rootMenuId)){
+            renderFail("rootMenuId 参数缺失");
+            return;
+        }
+
+        // 正反两次 遍历 拿出顶层目录下 所有菜单
+        Set<String> idSet = new HashSet<>();
+        List<SysMenu> currentMenus = new ArrayList<>();
         List<SysMenu> sysMenus = getSessionAttr("sysUserMenu");
+        idSet.add(rootMenuId);
+        for (SysMenu sysMenu : sysMenus) {
+            if (idSet.contains(sysMenu.getPid())) {
+                currentMenus.add(sysMenu);
+                idSet.add(sysMenu.getId());
+            }
+        }
+        SysMenu sysMenuTemp;
+        for(int i=sysMenus.size()-1;i==0;i--){
+            sysMenuTemp = sysMenus.get(i);
+            if(idSet.contains(sysMenus.get(i).getPid())){
+                currentMenus.add(sysMenuTemp);
+                idSet.add(sysMenuTemp.getId());
+            }
+        }
 
         List<Map<String, Object>> maps = new ArrayList<>();
-        for (SysMenu sysMenu : sysMenus) {
+        for (SysMenu sysMenu : currentMenus) {
             Map<String, Object> map = new HashMap<>();
             map.put("id", sysMenu.getId());
             map.put("pid", sysMenu.getPid());

@@ -3,7 +3,7 @@
 <@layout>
     <link rel="stylesheet" href="${ctx!}/static/css/oa.css">
     <div class="easyui-tabs" fit="true" plain="true">
-        <div title="详情" style="padding:10px">
+        <div title="流程办理" style="padding:10px">
             <div class="instance-detail-title">
                 ${processInstanceName!}
             </div>
@@ -11,10 +11,16 @@
                 申请人:
                 <a title="点击查看详细信息" href="javascript:userInfo('${initiator!}')">${initiator!}</a>
             </div>
-            <div class="easyui-panel" title="申请内容" style="width:100%;margin-bottom: 20px;"
+
+            <div class="easyui-panel" title="申请内容" style="width:100%;margin-bottom: 10px;"
                  data-options="href:'${ctx!}/oa/processInstanceFormDetail?businessForm=${businessForm!}&businessKey=${businessKey}',
                    collapsible:true,closable:true">
             </div>
+            <#if taskDefinitionKey?? && taskDefinitionKey=='adjustForm'>
+                <div style="margin-bottom: 20px;text-align: right;">
+                    <button onclick="openAdjustForm('${ctx!}/${adjustFormUrl!}')" class=" button-small pure-button pure-button-primary ">调整申请</button>
+                </div>
+            </#if>
 
             <div class="easyui-panel" title="审批流转" style="width:100%;margin-bottom: 20px"
                  data-options="href:'${ctx!}/oa/historicTaskInstances?id=${processInstanceId!}',
@@ -58,6 +64,9 @@
         </div>
     </div>
     <script>
+        function openAdjustForm(url){
+            popup.openIframe('申请调整', url, '500px', '500px');
+        }
         function completeAction(dgId) {
             $('#processForm').form('submit', {
                 onSubmit: function (param) {

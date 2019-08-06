@@ -32,8 +32,6 @@
 <div id="tb">
     <a onclick="newModel('${ctx!}/formLeave/newModel', '500px', '500px')" href="#" class="easyui-linkbutton"
        iconCls="iconfont icon-add" plain="true">新建申请</a>
-    <a onclick="openAdjustFormModel('dg','${ctx!}/formLeave/newModel', '500px', '500px')" href="#"
-       class="easyui-linkbutton" iconCls="iconfont icon-edit" plain="true">调整申请</a>
     <a onclick="deleteModel('dg','${ctx!}/formLeave/deleteAction')" href="#" class="easyui-linkbutton  "
        iconCls="iconfont icon-delete" plain="true">删除作废</a>
     <span id="searchSpan" class="searchInputArea">

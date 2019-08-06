@@ -14,6 +14,10 @@ public class TaskInfo {
     // 任务名称
     private String taskName;
 
+    // 任务名编码
+    private String taskDefinitionKey;
+
+
     // 创建时间
     private Date createTime;
 

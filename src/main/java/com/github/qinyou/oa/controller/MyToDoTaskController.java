@@ -10,6 +10,7 @@ import com.github.qinyou.oa.activiti.ActivitiUtils;
 import com.github.qinyou.oa.vo.TaskInfo;
 import com.google.common.base.Joiner;
 import com.jfinal.aop.Before;
+import com.jfinal.kit.StrKit;
 import com.jfinal.plugin.activerecord.Db;
 import com.jfinal.plugin.activerecord.Record;
 import com.jfinal.plugin.activerecord.tx.Tx;
@@ -52,6 +53,7 @@ public class MyToDoTaskController extends BaseController {
                     .singleResult()
                     .getName();
             list.add(new TaskInfo().setId(task.getId()).setType(1).setCreateTime(task.getCreateTime()).setTaskName(task.getName())
+                    .setTaskDefinitionKey( task.getTaskDefinitionKey())
                     .setProcessInstanceName(processInstanceName).setProcessInstanceId(task.getProcessInstanceId()));
         }
 
@@ -85,6 +87,7 @@ public class MyToDoTaskController extends BaseController {
                     .getName();
             list.add(new TaskInfo().setId(record.getStr("ID_")).setType(2)
                     .setCreateTime(record.getDate("CREATE_TIME_")).setTaskName(record.getStr("NAME_"))
+                    .setTaskDefinitionKey(record.getStr("TASK_DEF_KEY_"))
                     .setProcessInstanceName(processInstanceName).setProcessInstanceId(record.getStr("PROC_INST_ID_")));
         }
 
@@ -133,6 +136,14 @@ public class MyToDoTaskController extends BaseController {
         setAttr("businessKey",processInstance.getBusinessKey()); // 业务表 id
         setAttr("businessForm",businessForm);  // 业务表名
         setAttr("renderedTaskForm",renderedTaskForm); // 任务表单
+
+        // 如果是调整表单, 显示调整操作
+        String taskDefinitionKey = task.getTaskDefinitionKey();
+        setAttr("taskDefinitionKey",taskDefinitionKey);
+        if("adjustForm".equals(taskDefinitionKey)){
+            String adjustFormUrl =  StrKit.toCamelCase(businessForm)+"/newModel?id="+getAttr("businessKey");
+            setAttr("adjustFormUrl",adjustFormUrl);
+        }
 
         render("oa/myToDoTask_complete.ftl");
     }

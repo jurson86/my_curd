@@ -134,7 +134,7 @@ div[class*='datagrid-']>input[type=checkbox]:checked::before {
     display: inline-block;
     padding: 4px;
     border-radius: 5px;
-    color: #ffffff;
+    color: #e91e63;
     font-weight: 500;
-    background-color: #8D8D8D;
+    background-color: #FFEB3B;
 }
