@@ -44,7 +44,7 @@ public class MainController extends BaseController {
         setAttr("rootMenus",rootMenus);
 
         // 根菜单id （默认取第一个根菜单）
-        setAttr("rootMenuId",get(0,rootMenus.get(0).getId()));
+        setAttr("rootMenuId",get(0,rootMenus.size()>0?rootMenus.get(0).getId():""));
 
         render("main.ftl");
     }
