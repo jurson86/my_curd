@@ -34,6 +34,7 @@
        iconCls="iconfont icon-add" plain="true">新建申请</a>
     <a onclick="deleteModel('dg','${ctx!}/formLeave/deleteAction')" href="#" class="easyui-linkbutton  "
        iconCls="iconfont icon-delete" plain="true">删除作废</a>
+    <span style="color: red; font-weight: bold;font-size: 20px;"> 有调整申请单的流程  测试</span>
     <span id="searchSpan" class="searchInputArea">
             <input name="search_LIKE_test" prompt="测试" class="easyui-textbox" style="width:120px; ">
             <a href="#" class="easyui-linkbutton searchBtn"  data-options="iconCls:'iconfont icon-search',plain:true"

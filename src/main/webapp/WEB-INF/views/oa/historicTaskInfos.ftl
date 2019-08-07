@@ -32,10 +32,10 @@
                             , 由：<a title="点击查看详细信息" href="javascript:userInfo('${(info.lastAssignee)!}')">${(info.lastAssignee)!}</a> 转办
                         </#if>
                     </td>
-                    <td>${(info.startTime?string("yyyy-MM-dd"))!}</td>
+                    <td>${(info.startTime?string("yy/MM/dd HH:mm"))!}</td>
                     <td>
                         <#if (info.endTime)?? >
-                            ${(info.endTime?string("yyyy-MM-dd"))!}
+                            ${(info.endTime?string("yy/MM/dd HH:mm"))!}
                             <#else >
                             <span style="padding:7px 5px;color: #ffffff;background-color: #fc5832;font-weight: bold;">当前节点</span>
                         </#if>
