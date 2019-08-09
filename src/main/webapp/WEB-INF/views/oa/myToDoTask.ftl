@@ -2,21 +2,30 @@
 <@layout>
     <table id="dg" class="easyui-datagrid"
            url="${ctx!}/myToDoTask/query"
+           data-options="onHeaderContextMenu: function(e, field){
+                e.preventDefault();
+                $(this).datagrid('columnMenu').menu('show', {
+                    left:e.pageX,
+                    top:e.pageY
+                });
+           }"
            rownumbers="true" border="false" singleSelect="true"
            fit="true" fitColumns="false"
            striped="true" pagination="false">
         <thead>
         <tr>
-        <#--    <th field="id" width="100">任务Id</th>-->
+            <!--流程实例-->
+            <th hidden="true" field="processInstanceId" width="100">流程ID</th>
+            <th field="initiator" width="100" formatter="usernameFmt">申请人</th>
             <th field="processInstanceName" width="350" formatter="processInstanceDetailFmt">流程</th>
-            <th field="taskName" width="150" formatter="highlightFmt">任务名</th>
-            <th field="createTime" width="200">任务创建时间</th>
-            <#--<th field="processInstanceId" width="100">流程Id</th>-->
-
+            <th field="taskName" width="150" formatter="highlightFmt">任务节点</th>
+            <!--任务创建时间-->
+            <th  hidden="true" field="createTime" width="200">任务时间</th>
             <th field="type" width="250" formatter="opeFmt">操作</th>
         </tr>
         </thead>
     </table>
+    <script src="${ctx!}/static/plugins/easyui1.6.10/datagrid-extend.js"></script>
     <script src="${ctx!}/static/js/oa.js"></script>
     <script>
         function processInstanceDetailFmt(val,row) {

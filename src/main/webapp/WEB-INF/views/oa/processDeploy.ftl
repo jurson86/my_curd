@@ -10,9 +10,9 @@
     <tr>
         <th data-options="field:'',checkbox:true"></th>
         <th field="id" width="150">部署Id</th>
-        <th field="category" width="200">分类</th>
-        <th field="name" width="250">名称</th>
         <th field="deploymentTime" width="250">部署时间</th>
+        <th field="category" width="200">分类</th>
+        <th field="name" width="350">备注</th>
     </tr>
     </thead>
 </table>

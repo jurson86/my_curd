@@ -11,7 +11,7 @@
  Target Server Version : 50719
  File Encoding         : 65001
 
- Date: 06/08/2019 21:37:57
+ Date: 09/08/2019 21:55:35
 */
 
 SET NAMES utf8mb4;
@@ -1041,12 +1041,12 @@ INSERT INTO `sys_menu` VALUES ('533964972439371776', '普通单表', 'exSingleTa
 INSERT INTO `sys_menu` VALUES ('537980279722082304', '一对多表', 'exStaff', '/exStaff', 'iconfont icon-gencode', 3, '533964782852636672', 'admin', '2019-01-24 13:01:33', 'admin', '2019-05-11 17:10:27');
 INSERT INTO `sys_menu` VALUES ('560430837321957376', '代码生成', 'genOnline', '/genOnline', 'iconfont icon-gencode', 10, '520749715428474880', 'admin', '2019-03-27 11:52:04', 'admin', '2019-08-06 20:24:10');
 INSERT INTO `sys_menu` VALUES ('589554668238012416', '系统参数', 'sysSetting', '/sysSetting', 'iconfont icon-setting', 11, '520749715428474880', 'admin', '2019-06-15 20:39:46', 'admin', '2019-08-06 20:24:20');
-INSERT INTO `sys_menu` VALUES ('601158856554315776', '流程部署', 'processDeploy', '/processDeploy', 'iconfont icon-gencode', 12, '520749715428474880', 'admin', '2019-07-17 21:10:40', 'admin', '2019-08-06 20:36:14');
-INSERT INTO `sys_menu` VALUES ('601159063673241600', '流程定义', 'processDefine', '/processDefine', 'iconfont icon-gencode', 13, '520749715428474880', 'admin', '2019-07-17 21:11:30', 'admin', '2019-08-06 20:36:21');
+INSERT INTO `sys_menu` VALUES ('601158856554315776', '流程部署', 'processDeploy', '/processDeploy', 'iconfont icon-gencode', 12, '601517151597101056', 'admin', '2019-07-17 21:10:40', 'admin', '2019-08-09 21:15:11');
+INSERT INTO `sys_menu` VALUES ('601159063673241600', '流程定义', 'processDefine', '/processDefine', 'iconfont icon-gencode', 13, '601517151597101056', 'admin', '2019-07-17 21:11:30', 'admin', '2019-08-09 21:15:20');
 INSERT INTO `sys_menu` VALUES ('601517151597101056', 'OA协同', NULL, '/', 'iconfont icon-gencode', 0, '0', 'admin', '2019-07-18 20:54:25', 'admin', '2019-08-06 20:38:28');
-INSERT INTO `sys_menu` VALUES ('601521906507579392', '代办任务', 'myToDoTask', '/myToDoTask', 'iconfont icon-gencode', 1, '601517151597101056', 'admin', '2019-07-18 21:13:18', 'admin', '2019-07-28 13:27:42');
-INSERT INTO `sys_menu` VALUES ('603262768065282048', '员工请假', 'formLeave', '/formLeave', 'iconfont icon-gencode', 5, '601517151597101056', 'admin', '2019-07-23 16:30:52', 'admin', '2019-08-01 18:08:47');
-INSERT INTO `sys_menu` VALUES ('604801852810199040', '已批流程', 'myCompleteTask', '/myCompleteTask', 'iconfont icon-gencode', 2, '601517151597101056', 'admin', '2019-07-27 22:26:38', 'admin', '2019-07-30 18:37:42');
+INSERT INTO `sys_menu` VALUES ('601521906507579392', '代办流程', 'myToDoTask', '/myToDoTask', 'iconfont icon-gencode', 1, '601517151597101056', 'admin', '2019-07-18 21:13:18', 'admin', '2019-08-09 20:10:09');
+INSERT INTO `sys_menu` VALUES ('603262768065282048', '请假申请', 'formLeave', '/formLeave', 'iconfont icon-gencode', 5, '601517151597101056', 'admin', '2019-07-23 16:30:52', 'admin', '2019-08-09 20:09:59');
+INSERT INTO `sys_menu` VALUES ('604801852810199040', '已办流程', 'myCompleteTask', '/myCompleteTask', 'iconfont icon-gencode', 2, '601517151597101056', 'admin', '2019-07-27 22:26:38', 'admin', '2019-08-09 20:14:19');
 
 -- ----------------------------
 -- Table structure for sys_notice
@@ -1251,22 +1251,24 @@ CREATE TABLE `sys_role_menu`  (
 -- ----------------------------
 -- Records of sys_role_menu
 -- ----------------------------
-INSERT INTO `sys_role_menu` VALUES ('520339201795817472', '520751411466600448', 'admin', '2019-07-18 21:17:58');
-INSERT INTO `sys_role_menu` VALUES ('520339201795817472', '520751483449245697', 'admin', '2019-07-18 21:17:58');
-INSERT INTO `sys_role_menu` VALUES ('520339201795817472', '520751566345469952', 'admin', '2019-07-18 21:17:58');
-INSERT INTO `sys_role_menu` VALUES ('520339201795817472', '520751881509666817', 'admin', '2019-07-18 21:17:58');
-INSERT INTO `sys_role_menu` VALUES ('520339201795817472', '520752428128141312', 'admin', '2019-07-18 21:17:58');
-INSERT INTO `sys_role_menu` VALUES ('520339201795817472', '520752809180659712', 'admin', '2019-07-18 21:17:58');
-INSERT INTO `sys_role_menu` VALUES ('520339201795817472', '520753306482507776', 'admin', '2019-07-18 21:17:58');
-INSERT INTO `sys_role_menu` VALUES ('520339201795817472', '520753742492991488', 'admin', '2019-07-18 21:17:58');
-INSERT INTO `sys_role_menu` VALUES ('520339201795817472', '529975794877857792', 'admin', '2019-07-18 21:17:58');
-INSERT INTO `sys_role_menu` VALUES ('520339201795817472', '533964972439371776', 'admin', '2019-07-18 21:17:58');
-INSERT INTO `sys_role_menu` VALUES ('520339201795817472', '537980279722082304', 'admin', '2019-07-18 21:17:58');
-INSERT INTO `sys_role_menu` VALUES ('520339201795817472', '560430837321957376', 'admin', '2019-07-18 21:17:58');
-INSERT INTO `sys_role_menu` VALUES ('520339201795817472', '589554668238012416', 'admin', '2019-07-18 21:17:58');
-INSERT INTO `sys_role_menu` VALUES ('520339201795817472', '601158856554315776', 'admin', '2019-07-18 21:17:58');
-INSERT INTO `sys_role_menu` VALUES ('520339201795817472', '601159063673241600', 'admin', '2019-07-18 21:17:58');
-INSERT INTO `sys_role_menu` VALUES ('520339201795817472', '601521906507579392', 'admin', '2019-07-18 21:17:58');
+INSERT INTO `sys_role_menu` VALUES ('520339201795817472', '520751411466600448', 'admin', '2019-08-07 20:27:24');
+INSERT INTO `sys_role_menu` VALUES ('520339201795817472', '520751483449245697', 'admin', '2019-08-07 20:27:24');
+INSERT INTO `sys_role_menu` VALUES ('520339201795817472', '520751566345469952', 'admin', '2019-08-07 20:27:24');
+INSERT INTO `sys_role_menu` VALUES ('520339201795817472', '520751881509666817', 'admin', '2019-08-07 20:27:24');
+INSERT INTO `sys_role_menu` VALUES ('520339201795817472', '520752428128141312', 'admin', '2019-08-07 20:27:24');
+INSERT INTO `sys_role_menu` VALUES ('520339201795817472', '520752809180659712', 'admin', '2019-08-07 20:27:24');
+INSERT INTO `sys_role_menu` VALUES ('520339201795817472', '520753306482507776', 'admin', '2019-08-07 20:27:24');
+INSERT INTO `sys_role_menu` VALUES ('520339201795817472', '520753742492991488', 'admin', '2019-08-07 20:27:24');
+INSERT INTO `sys_role_menu` VALUES ('520339201795817472', '529975794877857792', 'admin', '2019-08-07 20:27:24');
+INSERT INTO `sys_role_menu` VALUES ('520339201795817472', '533964972439371776', 'admin', '2019-08-07 20:27:24');
+INSERT INTO `sys_role_menu` VALUES ('520339201795817472', '537980279722082304', 'admin', '2019-08-07 20:27:24');
+INSERT INTO `sys_role_menu` VALUES ('520339201795817472', '560430837321957376', 'admin', '2019-08-07 20:27:24');
+INSERT INTO `sys_role_menu` VALUES ('520339201795817472', '589554668238012416', 'admin', '2019-08-07 20:27:24');
+INSERT INTO `sys_role_menu` VALUES ('520339201795817472', '601158856554315776', 'admin', '2019-08-07 20:27:24');
+INSERT INTO `sys_role_menu` VALUES ('520339201795817472', '601159063673241600', 'admin', '2019-08-07 20:27:24');
+INSERT INTO `sys_role_menu` VALUES ('520339201795817472', '601521906507579392', 'admin', '2019-08-07 20:27:24');
+INSERT INTO `sys_role_menu` VALUES ('520339201795817472', '603262768065282048', 'admin', '2019-08-07 20:27:24');
+INSERT INTO `sys_role_menu` VALUES ('520339201795817472', '604801852810199040', 'admin', '2019-08-07 20:27:24');
 INSERT INTO `sys_role_menu` VALUES ('520340379124367361', '520752428128141312', 'admin', '2019-07-23 15:15:36');
 INSERT INTO `sys_role_menu` VALUES ('520340379124367361', '520752809180659712', 'admin', '2019-07-23 15:15:36');
 INSERT INTO `sys_role_menu` VALUES ('520340379124367361', '520753306482507776', 'admin', '2019-07-23 15:15:36');
@@ -1296,8 +1298,8 @@ CREATE TABLE `sys_setting`  (
 -- Records of sys_setting
 -- ----------------------------
 INSERT INTO `sys_setting` VALUES ('589566528542736384', '登录背景图', 'loginBackgroundImg', 'http://img.netbian.com/file/20130623/4788369295bc8017139e42f9425d6c1f.jpg', 'admin', '2019-06-18 17:11:37');
-INSERT INTO `sys_setting` VALUES ('589588733792092160', '系统主题 default、wechat、yahoo、gplus 任选其一', 'sysTheme', 'default', 'admin', '2019-08-06 20:40:17');
-INSERT INTO `sys_setting` VALUES ('589885672161017856', '系统标题', 'sysTitle', 'mycurd 开发脚手架', 'admin', '2019-06-18 16:20:35');
+INSERT INTO `sys_setting` VALUES ('589588733792092160', '系统主题 default、wechat、yahoo、gplus 任选其一', 'sysTheme', 'wechat', 'admin', '2019-08-09 21:14:40');
+INSERT INTO `sys_setting` VALUES ('589885672161017856', '系统标题', 'sysTitle', 'mycurd 脚手架', 'admin', '2019-08-06 21:57:02');
 
 -- ----------------------------
 -- Table structure for sys_task_log
@@ -1484,11 +1486,12 @@ CREATE TABLE `sys_user`  (
 -- Records of sys_user
 -- ----------------------------
 INSERT INTO `sys_user` VALUES ('522044507147993088', 'debug', '7c4a8d09ca3762af61e59520943dc26494f8941b', '开发调试', 'static/image/male.jpg', 'M', 'qinyou1994@outlook.com', '15238002477', NULL, '开发工程师', 'staff', NULL, NULL, NULL, 'debug', '2018-12-11 13:38:29', 'debug', '2018-12-12 11:21:13', '0', 'X');
-INSERT INTO `sys_user` VALUES ('522465144505106432', 'admin', '3d4f2bf07dc1be38b20cd6e46949a1071f9d0e3d', '张闯', 'upload/image/2019_07_09/598088017822875648.jpg', 'M', '15238002477@163.com', '15238002477', '603236244448608256', '开发工程师', 'staff', NULL, NULL, '2019-08-06 21:34:53', 'debug', '2018-12-12 17:29:57', 'admin', '2019-07-23 15:02:52', '0', NULL);
+INSERT INTO `sys_user` VALUES ('522465144505106432', 'admin', '3d4f2bf07dc1be38b20cd6e46949a1071f9d0e3d', '张闯', 'upload/image/2019_07_09/598088017822875648.jpg', 'M', '15238002477@163.com', '15238002477', '603236244448608256', '开发工程师', 'staff', NULL, NULL, '2019-08-09 21:15:31', 'debug', '2018-12-12 17:29:57', 'admin', '2019-07-23 15:02:52', '0', NULL);
 INSERT INTO `sys_user` VALUES ('522465900809420800', 'zhaoli', '7c4a8d09ca3762af61e59520943dc26494f8941b', '赵丽', NULL, 'F', 'zhaoli@istek.net.cn', 'kaka', '603238825841393664', 'xxx', 'director', NULL, NULL, '2019-08-01 21:52:40', 'debug', '2018-12-12 17:32:57', 'admin', '2019-07-23 15:03:03', '0', NULL);
 INSERT INTO `sys_user` VALUES ('549336387174793216', 'abc', '7c4a8d09ca3762af61e59520943dc26494f8941b', 'abc2', NULL, 'F', 'qinyou@outlook.com2', '13238002456', NULL, 'developer2', 'monitor', NULL, NULL, NULL, 'admin', '2019-02-24 21:06:40', 'admin', '2019-02-24 21:08:53', '0', 'X');
-INSERT INTO `sys_user` VALUES ('603240093859184640', 'zhangdali', '7c4a8d09ca3762af61e59520943dc26494f8941b', '张大力', NULL, 'M', 'zhangdali@snake.com', '110120119', '603239216616308736', '人资HR', 'staff', NULL, NULL, '2019-08-06 21:32:17', 'admin', '2019-07-23 15:00:46', NULL, NULL, '0', NULL);
+INSERT INTO `sys_user` VALUES ('603240093859184640', 'zhangdali', '7c4a8d09ca3762af61e59520943dc26494f8941b', '张大力', NULL, 'M', 'zhangdali@snake.com', '110120119', '603239216616308736', '人资HR', 'staff', NULL, NULL, '2019-08-09 20:48:06', 'admin', '2019-07-23 15:00:46', NULL, NULL, '0', NULL);
 INSERT INTO `sys_user` VALUES ('603240540820996096', 'limengcai', '7c4a8d09ca3762af61e59520943dc26494f8941b', '李梦财', NULL, 'F', 'limengcai@snake.com', '110112119', '603240270057701376', '财务会计', 'staff', NULL, NULL, '2019-08-01 21:53:16', 'admin', '2019-07-23 15:02:33', NULL, NULL, '0', NULL);
+INSERT INTO `sys_user` VALUES ('608764421770051584', 'zhangdaxia', '7c4a8d09ca3762af61e59520943dc26494f8941b', '张大虾', NULL, 'M', 'zhangdaxia@snake.com', '110', '603237767660437504', '开发工程师', 'staff', NULL, NULL, '2019-08-07 21:11:57', 'admin', '2019-08-07 20:52:28', NULL, NULL, '0', NULL);
 
 -- ----------------------------
 -- Table structure for sys_user_role

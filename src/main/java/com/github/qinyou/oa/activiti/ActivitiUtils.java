@@ -13,6 +13,7 @@ import org.activiti.engine.impl.persistence.entity.ProcessDefinitionEntity;
 import org.activiti.engine.impl.pvm.PvmTransition;
 import org.activiti.engine.impl.pvm.process.ActivityImpl;
 import org.activiti.engine.runtime.ProcessInstance;
+import org.activiti.engine.runtime.ProcessInstanceQuery;
 import org.activiti.image.ProcessDiagramGenerator;
 
 import java.io.InputStream;
@@ -180,5 +181,22 @@ public class ActivitiUtils {
             }
         }
         return highFlows;
+    }
+
+
+    /**
+     * 查询运行时 流程实例
+     * @param processInstanceId 流程实例id
+     * @param includeProcessVariables 是否包含流程变量
+     * @return 流程实例
+     */
+    public static  ProcessInstance getRuntimeProcessInstance(String processInstanceId,boolean includeProcessVariables){
+       ProcessInstanceQuery query = getRuntimeService()
+                .createProcessInstanceQuery()
+                .processInstanceId(processInstanceId);
+       if(includeProcessVariables){
+          query.includeProcessVariables();
+       }
+       return query.singleResult();
     }
 }

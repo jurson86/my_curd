@@ -9,8 +9,8 @@
     <thead>
     <tr>
         <th data-options="field:'',checkbox:true"></th>
-        <th field="dg" width="250" formatter="dgFmt">定义Id</th>
-        <th field="key" width="150">定义key</th>
+        <th field="dg" width="250" formatter="dgFmt">Id</th>
+        <th field="key" width="150">key</th>
         <th field="version" width="100">版本号</th>
         <th field="name" width="150">名称</th>
         <th field="statue" width="100">状态</th>
@@ -28,11 +28,8 @@
     <a onclick="deleteModel('dg','${ctx!}/processDefine/suspendProcessDefine','挂起')" href="#" class="easyui-linkbutton  "
     iconCls="iconfont icon-delete" plain="true">挂起</a>
 
-    <a onclick="deleteModel('dg','${ctx!}/processDefine/x')" href="#" class="easyui-linkbutton  "
-       iconCls="iconfont icon-delete" plain="true">流程实例 【未作】</a>
-
     <span id="searchSpan" class="searchInputArea">
-          <input name="extra_key" prompt="名称" class="easyui-textbox" style="width:120px; ">
+          <input name="extra_key" prompt="key" class="easyui-textbox" style="width:120px; ">
 
           <a href="#" class="easyui-linkbutton searchBtn"  data-options="iconCls:'iconfont icon-search',plain:true"
                onclick="queryModel('dg','searchSpan')">搜索</a>

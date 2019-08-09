@@ -29,4 +29,7 @@ public class TaskInfo {
 
     // 1 用户任务，2 候选任务
     private int type;
+
+    // 申请人
+    private String initiator;
 }

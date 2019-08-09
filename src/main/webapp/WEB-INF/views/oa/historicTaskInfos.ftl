@@ -1,5 +1,6 @@
 <#-- zhangchuang  2019-07-23 15:50:30 -->
 <#include "../common/common.ftl"/>
+<#include "../common/relativeTime.ftl"/>
 <@layout>
     <#if historicTaskInfos?size gt 0>
         <table id="detailTable" class=" pure-table pure-table-horizontal  fullWidthTable"  style="border: none;" >
@@ -32,16 +33,20 @@
                             , 由：<a title="点击查看详细信息" href="javascript:userInfo('${(info.lastAssignee)!}')">${(info.lastAssignee)!}</a> 转办
                         </#if>
                     </td>
-                    <td>${(info.startTime?string("yy/MM/dd HH:mm"))!}</td>
+                    <td>
+                        <@RelativeTime info.startTime> </@RelativeTime>
+                     <#--   ${(info.startTime?string("yy/MM/dd HH:mm"))!}-->
+                    </td>
                     <td>
                         <#if (info.endTime)?? >
-                            ${(info.endTime?string("yy/MM/dd HH:mm"))!}
+                            <@RelativeTime info.endTime> </@RelativeTime>
+                            <#--${(info.endTime?string("yy/MM/dd HH:mm"))!}-->
                             <#else >
                             <span style="padding:7px 5px;color: #ffffff;background-color: #fc5832;font-weight: bold;">当前节点</span>
                         </#if>
 
                     </td>
-                    <td>
+                    <td style="width: 40%">
                         <#list (info.comments)?reverse as comment>
                             ${comment!} <br/>
                         </#list>

@@ -1,19 +1,29 @@
-<#--  zhangchuang 2019-07-23 15:50:30 -->
 <#include "../common/common.ftl"/>
 <@layout>
     <table id="dg" class="easyui-datagrid"
            url="${ctx!}/myCompleteTask/query"
+           data-options="onHeaderContextMenu: function(e, field){
+                e.preventDefault();
+                $(this).datagrid('columnMenu').menu('show', {
+                    left:e.pageX,
+                    top:e.pageY
+                });
+           }"
            toolbar="#tb" rownumbers="true" border="false"
            fit="true"    fitColumns="false" nowrap="false"
            striped="false"  pagination="true" singleSelect="true"
            pageSize="40" pageList="[20,40]">
         <thead>
         <tr>
-            <th field="processInstanceId" width="100" >流程Id</th>
-            <th field="processInstanceName" width="300" formatter="detailFmt">流程名</th>
+            <!--流程实例-->
+            <th hidden="true" field="processInstanceId" width="100" >流程Id</th>
             <th field="initiator" width="100" formatter="usernameFmt">申请人</th>
-            <th field="startTime" width="200">开始时间</th>
-            <th field="endTime" width="150">结束时间</th>
+            <th field="processInstanceName" width="300" formatter="detailFmt">流程</th>
+
+            <!--流程实例 开始 结束时间-->
+            <th  field="startTime" width="200">开始时间</th>
+            <th  field="endTime" width="150">结束时间</th>
+
             <th field="statue" width="200" formatter="statueFmt">流程状态</th>
         </tr>
         </thead>
@@ -27,6 +37,7 @@
                onclick="queryModel('dg','searchSpan')">搜索</a>
         </div>
     </div>
+    <script src="${ctx!}/static/plugins/easyui1.6.10/datagrid-extend.js"></script>
     <script src="${ctx!}/static/js/dg-curd.js"></script>
     <script>
         function statueFmt(val,row){
