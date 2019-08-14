@@ -68,21 +68,28 @@ public class Test {
 
     public static void main(String[] args) throws Exception {
         init();
-        String processInstanceId = "7501";
-
-        System.out.println("--start------");
-        ActivitiUtils.getHistoryService().createHistoricActivityInstanceQuery()
-                .processInstanceId(processInstanceId)
-                .list().forEach(historicActivityInstance -> {
-            System.out.println("开始时间:"+historicActivityInstance.getStartTime());
-            System.out.println("结束时间:"+historicActivityInstance.getEndTime());
-
-            System.out.println("getActivityName:"+historicActivityInstance.getActivityName());
-            System.out.println("getAssignee:"+historicActivityInstance.getAssignee());
-
-            System.out.println("getActivityType:"+historicActivityInstance.getActivityType());
-            System.out.println("getExecutionId:"+historicActivityInstance.getExecutionId());
-        });
-        System.out.println("--end------");
+//        String processInstanceId = "7501";
+//
+//        System.out.println("--start------");
+//        ActivitiUtils.getHistoryService().createHistoricActivityInstanceQuery()
+//                .processInstanceId(processInstanceId)
+//                .list().forEach(historicActivityInstance -> {
+//            System.out.println("开始时间:"+historicActivityInstance.getStartTime());
+//            System.out.println("结束时间:"+historicActivityInstance.getEndTime());
+//
+//            System.out.println("getActivityName:"+historicActivityInstance.getActivityName());
+//            System.out.println("getAssignee:"+historicActivityInstance.getAssignee());
+//
+//            System.out.println("getActivityType:"+historicActivityInstance.getActivityType());
+//            System.out.println("getExecutionId:"+historicActivityInstance.getExecutionId());
+//        });
+//        System.out.println("--end------");
+         ActivitiUtils.getHistoryService().createHistoricProcessInstanceQuery().startedBy("admin").list().forEach(historicProcessInstance -> {
+             System.out.println("--------------------------------------------------");
+             System.out.println(historicProcessInstance.getName());
+             System.out.println(historicProcessInstance.getStartTime());
+             System.out.println(historicProcessInstance.getEndTime());
+             System.out.println();
+         });
     }
 }

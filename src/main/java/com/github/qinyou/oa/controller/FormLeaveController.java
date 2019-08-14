@@ -20,6 +20,7 @@ import com.jfinal.plugin.activerecord.Page;
 import com.jfinal.plugin.activerecord.tx.Tx;
 import com.jfinal.plugin.activerecord.tx.TxConfig;
 import org.activiti.engine.history.HistoricProcessInstance;
+import org.activiti.engine.impl.identity.Authentication;
 import org.activiti.engine.runtime.ProcessInstance;
 import org.activiti.engine.runtime.ProcessInstanceBuilder;
 import org.joda.time.DateTime;
@@ -96,13 +97,17 @@ public class FormLeaveController extends BaseController {
         SysUser sysUser = WebUtils.getSysUser(this);
         String processInstanceName = PROCESS_NAME + "-( " + sysUser.getRealName()
                 + new DateTime(formLeave.getCreateTime()).toString(" yyyy/MM/dd HH:mm )");
+
+        Authentication.setAuthenticatedUserId(WebUtils.getSessionUsername(this));
+
         ProcessInstanceBuilder builder = ActivitiUtils.getRuntimeService().createProcessInstanceBuilder()
                 .processDefinitionKey(PROCESS_KEY)
                 .businessKey(formLeave.getId())
                 .processInstanceName(processInstanceName)
-                .addVariable("businessForm", BUSINESS_FORM) // 流程中增加 业务表 名称
-                .addVariable("initiator", sysUser.getUsername()); // 流程发起人
+                .addVariable("businessForm", BUSINESS_FORM); // 流程中增加 业务表 名称
+                //.addVariable("initiator", sysUser.getUsername()); // 流程发起人
         builder.start();
+
         renderSuccess(ADD_SUCCESS);
     }
 
