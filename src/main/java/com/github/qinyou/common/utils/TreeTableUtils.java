@@ -9,12 +9,11 @@ import com.jfinal.plugin.activerecord.Record;
 public class TreeTableUtils {
 
     /**
-     * 查询某节点子树节点
-     *
-     * @param rootId
-     * @param tableName
-     * @param idFieldName
-     * @param pidFieldName
+     * 查询某节点子孙树节点
+     * @param rootId 根id
+     * @param tableName 数据表名
+     * @param idFieldName id 字段
+     * @param pidFieldName pid 字段名
      * @return
      */
     public static String getSonTreeIds(String rootId, String tableName, String idFieldName, String pidFieldName) {

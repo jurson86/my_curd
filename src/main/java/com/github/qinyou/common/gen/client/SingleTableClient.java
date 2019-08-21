@@ -23,6 +23,7 @@ import java.util.Map;
  *
  * @author zhangchuang
  */
+@SuppressWarnings("Duplicates")
 @Slf4j
 public class SingleTableClient {
     // 生成 controller

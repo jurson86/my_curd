@@ -105,14 +105,4 @@ public abstract class BaseSysVisitLog<M extends BaseSysVisitLog<M>> extends Mode
         set("param", param);
         return (M) this;
     }
-
-    // 设备
-    public String getDevice() {
-        return getStr("device");
-    }
-
-    public M setDevice(String device) {
-        set("device", device);
-        return (M) this;
-    }
 }

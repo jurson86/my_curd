@@ -7,7 +7,7 @@ import com.jfinal.plugin.druid.DruidPlugin;
 import javax.sql.DataSource;
 
 /**
- * mysql 获得数据源
+ * mysql 获得数据源, client main 方法使用 下 适用
  *
  * @author zhangchuang
  */
@@ -18,6 +18,7 @@ public class MysqlDataSourceUtils {
      * @return 数据源
      */
     public static DataSource getDataSource() {
+        // 根据实际情况配置
         Prop configProp = PropKit.use("jdbc.properties");
         DruidPlugin dp = new DruidPlugin(configProp.get("jdbc.url"), configProp.get("jdbc.user"),
                 configProp.get("jdbc.password"), configProp.get("jdbc.driver"));

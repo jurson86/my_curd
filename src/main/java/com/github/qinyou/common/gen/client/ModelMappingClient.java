@@ -21,6 +21,7 @@ import java.util.Map;
 /**
  * mappingkit 代码生成器.md
  */
+@SuppressWarnings("Duplicates")
 @Slf4j
 public class ModelMappingClient {
 

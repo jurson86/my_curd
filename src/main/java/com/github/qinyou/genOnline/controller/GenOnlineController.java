@@ -142,7 +142,7 @@ public class GenOnlineController extends BaseController {
             fileNames.add(k);
             fileContents.add(v);
         });
-        render(ZipRender.me().fileName(moduleName + "_model.zip").filenames(fileNames).datas(fileContents));
+        render(ZipRender.me().fileName(moduleName + "_model.zip").filenames(fileNames).data(fileContents));
     }
 
     /**
@@ -172,7 +172,7 @@ public class GenOnlineController extends BaseController {
             fileNames.add(k);
             fileContents.add(v);
         });
-        render(ZipRender.me().fileName(moduleName + "_mapping.zip").filenames(fileNames).datas(fileContents));
+        render(ZipRender.me().fileName(moduleName + "_mapping.zip").filenames(fileNames).data(fileContents));
     }
 
     /**
@@ -206,7 +206,7 @@ public class GenOnlineController extends BaseController {
             fileContents.add(v);
         });
 
-        render(ZipRender.me().fileName(moduleName + "_modeldict.zip").filenames(fileNames).datas(fileContents));
+        render(ZipRender.me().fileName(moduleName + "_modeldict.zip").filenames(fileNames).data(fileContents));
     }
 
     /**
@@ -261,7 +261,7 @@ public class GenOnlineController extends BaseController {
             fileContents.add(v);
         });
 
-        render(ZipRender.me().fileName(moduleName + "_single.zip").filenames(fileNames).datas(fileContents));
+        render(ZipRender.me().fileName(moduleName + "_single.zip").filenames(fileNames).data(fileContents));
     }
 
 
@@ -361,6 +361,6 @@ public class GenOnlineController extends BaseController {
             fileNames.add(k);
             fileContents.add(v);
         });
-        render(ZipRender.me().fileName(moduleName + "_oneToMany.zip").filenames(fileNames).datas(fileContents));
+        render(ZipRender.me().fileName(moduleName + "_oneToMany.zip").filenames(fileNames).data(fileContents));
     }
 }

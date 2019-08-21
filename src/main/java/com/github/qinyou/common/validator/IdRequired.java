@@ -5,9 +5,8 @@ import com.jfinal.kit.Ret;
 import com.jfinal.validate.Validator;
 
 /**
- * id 参数不为空
- *
- * @author zhangchuang
+ * 通用参数校验, id 参数不为空
+ * @author chuang
  */
 public class IdRequired extends Validator {
     @Override

@@ -14,7 +14,6 @@ import org.apache.commons.lang3.exception.ExceptionUtils;
  *
  * @author zhangchuang
  */
-@SuppressWarnings("Duplicates")
 @Slf4j
 public class ComActionInterceptor implements Interceptor {
 

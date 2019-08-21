@@ -7,7 +7,6 @@ import freemarker.template.Template;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.*;
-import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -47,6 +46,7 @@ public class FreemarkerUtils {
      * @param paramMap          数据
      * @param saveFilePath      生成存放路径
      */
+    @SuppressWarnings("Duplicates")
     public static void renderToFile(String templateDirectory, String templateName, Map<String, Object> paramMap, String saveFilePath) {
         FileOutputStream fileOutputStream = null;
         OutputStreamWriter outputStreamWriter = null;
@@ -82,37 +82,5 @@ public class FreemarkerUtils {
                 }
             }
         }
-    }
-
-    public static void main(String[] args) {
-        String tpl = "<tr>  \n" +
-                "    <td>请假类型：</td>  \n" +
-                "    <td>  \n" +
-                "        <select id=\"leaveType\" name=\"form_string_请假类型\" class=\"easyui-combobox\" required=\"true\" style=\"width:200px\" value=\"${(请假类型)!}\">  \n" +
-                "            <option>公休</option>  \n" +
-                "            <option>病假</option>  \n" +
-                "            <option>调休</option>  \n" +
-                "            <option>事假</option>  \n" +
-                "            <option>婚假</option>  \n" +
-                "        </select>  \n" +
-                "    </td>  \n" +
-                "</tr>  \n" +
-                "<tr>  \n" +
-                "    <td>开始时间：</td>   \n" +
-                "    <td><input id=\"startTime\" name=\"form_date_开始时间\" class=\"easyui-datebox\" required=\"true\"  style=\"width:200px\" value=\"${(开始时间)!}\" /></td>  \n" +
-                "</tr>  \n" +
-                "<tr>  \n" +
-                "    <td>结束时间：</td>  \n" +
-                "    <td><input id=\"endTime\" name=\"form_date_结束时间\" class=\"easyui-datebox\" required=\"true\"   style=\"width:200px\"/></td>  \n" +
-                "</tr>  \n" +
-                "<tr>  \n" +
-                "    <td>请假原因：</td>  \n" +
-                "    <td>  \n" +
-                "        <input id=\"reason\" name=\"form_string_请假原因\"   class=\"easyui-textbox\" multiline=\"true\" style=\"height:50px;width:200px\" />\n" +
-                "    </td>  \n" +
-                "</tr>  \n";
-        Map<String,Object> params = new HashMap<>();
-        params.put("请假类型","公休");
-        System.out.println(renderAsText(tpl,params));
     }
 }

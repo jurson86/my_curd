@@ -130,11 +130,12 @@ div[class*='datagrid-']>input[type=checkbox]:checked::before {
     content: '✔';
 }
 
-.datagrid-ell-highlight{
+
+/*datagrid 部分字体高亮显示 样式*/
+.datagrid-cell-highlight{
     display: inline-block;
     padding: 4px;
-    border-radius: 5px;
-    color: #e91e63;
-    font-weight: 500;
-    background-color: #FFEB3B;
+    font-weight: bold;
+    border: 2px solid  #FFEB3B;
+    border-radius: 15px;
 }

@@ -17,10 +17,11 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * 数据字典生成器
+ * 数据字典（数据库表字典）生成器
  *
  * @author zhangchuang
  */
+@SuppressWarnings("Duplicates")
 @Slf4j
 public class ModelDictClient {
     private final static String dictTplPath = GeneratorConfig.tplBasePath + "model/dict.ftl";    // 模板路径

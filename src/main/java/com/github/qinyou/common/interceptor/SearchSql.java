@@ -11,13 +11,13 @@ import java.util.*;
 
 /**
  * 查询过滤器，将前端传递  固定格式字符串参数 解析为查询条件
- * 仅 mysql 下测试
+ * 仅 mysql 下适用，其它数据库自行扩展
+ * @author chuang
  */
 public class SearchSql implements Interceptor {
 
     public void intercept(Invocation ai) {
         Controller c = ai.getController();
-
 
         // 查询字段前缀
         String prefix = "search_";
@@ -31,22 +31,26 @@ public class SearchSql implements Interceptor {
         String whereSql = buildFilter(filters.values());
         c.setAttr(Constant.SEARCH_SQL, whereSql);
 
-        //分页参数  bootstrap 分页 和 easyui grid 分页
-        int pageNumber;
-        int pageSize;
-        if (StrKit.notBlank(c.getPara("offset"))) {
-            // bootstraptable 分页
-            pageNumber = c.getParaToInt("offset", 0);
-            pageSize = c.getParaToInt("limit", 10);
-            if (pageNumber != 0) {// 获取页数
-                pageNumber = pageNumber / pageSize;
-            }
-            pageNumber += 1;
-        } else {
-            // easyui grid 分页
-            pageNumber = c.getParaToInt("page", 1);
-            pageSize = c.getParaToInt("rows", 1);
-        }
+        int pageNumber = c.getParaToInt("page", 1);
+        int pageSize = c.getParaToInt("rows", 1);
+
+        //分页参数, 兼容 bootstrap 分页 和 easyui grid 分页
+//        int pageNumber;
+//        int pageSize;
+//        if (StrKit.notBlank(c.getPara("offset"))) {
+//            // bootstraptable 分页
+//            pageNumber = c.getParaToInt("offset", 0);
+//            pageSize = c.getParaToInt("limit", 10);
+//            if (pageNumber != 0) {// 获取页数
+//                pageNumber = pageNumber / pageSize;
+//            }
+//            pageNumber += 1;
+//        } else {
+//            // easyui grid 分页
+//            pageNumber = c.getParaToInt("page", 1);
+//            pageSize = c.getParaToInt("rows", 1);
+//        }
+
         c.setAttr("pageNumber", pageNumber);
         c.setAttr("pageSize", pageSize);
         ai.invoke();

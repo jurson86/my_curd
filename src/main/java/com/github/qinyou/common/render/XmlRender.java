@@ -1,4 +1,4 @@
-package com.github.qinyou.common.utils.freemarker;
+package com.github.qinyou.common.render;
 
 import com.jfinal.render.FreeMarkerRender;
 import com.jfinal.render.RenderException;
@@ -11,12 +11,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * 通过freemarker渲染xml
+ * 渲染 xml，通过 freemarker 模板
  */
-public class FreemarkerXmlRender extends FreeMarkerRender {
+public class XmlRender extends FreeMarkerRender {
     private static final String CONTENT_TYPE = "text/xml; charset=" + getEncoding();
 
-    public FreemarkerXmlRender(String view) {
+    public XmlRender(String view) {
         super(view);
     }
 

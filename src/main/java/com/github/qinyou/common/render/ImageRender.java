@@ -9,7 +9,7 @@ import java.io.IOException;
 import java.io.InputStream;
 
 /**
- * ImageRender 通过输入流
+ * ImageRender
  * @author  chuang
  */
 @Slf4j

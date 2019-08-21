@@ -21,6 +21,7 @@ import java.util.*;
  *
  * @author zhangchuang
  */
+@SuppressWarnings("Duplicates")
 @Slf4j
 public class OneToManyClient {
     private final static String controllerTplPath = GeneratorConfig.tplBasePath + "oneToMany/controller.ftl"; // controller 模板文件路径

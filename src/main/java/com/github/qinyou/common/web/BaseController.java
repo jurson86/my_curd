@@ -19,8 +19,7 @@ import java.util.*;
  */
 public abstract class BaseController extends Controller {
 
-
-    // 操作提示信息
+    // 通用操作提示信息
     public final static String ADD_SUCCESS = "添加成功";
     public final static String ADD_FAIL = "添加失败";
     public final static String DELETE_SUCCESS = "删除成功";

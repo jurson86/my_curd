@@ -18,10 +18,11 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * model 代码生成器.md
+ * model 代码生成器
  *
  * @author zhangchuang
  */
+@SuppressWarnings("Duplicates")
 @Slf4j
 public class ModelClient {
 
@@ -78,7 +79,6 @@ public class ModelClient {
         MysqlMetaUtils utils = new MysqlMetaUtils(MysqlDataSourceUtils.getDataSource());
         List<TableMeta> tableMetas = utils.tableMetas(GeneratorConfig.schemaPattern, GeneratorConfig.tableNames, true);
         for (Map.Entry<String, String> entry : generate(tableMetas).entrySet()) {
-
             FileUtils.writeStringToFile(new File(entry.getKey()), entry.getValue(), Constant.DEFAULT_ENCODEING);
         }
     }

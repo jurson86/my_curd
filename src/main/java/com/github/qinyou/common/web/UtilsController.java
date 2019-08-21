@@ -4,14 +4,11 @@ import com.github.qinyou.common.constant.Constant;
 import com.github.qinyou.common.interceptor.PermissionInterceptor;
 import com.github.qinyou.common.interceptor.SearchSql;
 import com.github.qinyou.common.utils.StringUtils;
-import com.github.qinyou.common.web.BaseController;
 import com.github.qinyou.system.model.SysOrg;
 import com.github.qinyou.system.model.SysRole;
 import com.github.qinyou.system.model.SysUser;
 import com.jfinal.aop.Before;
 import com.jfinal.aop.Clear;
-import com.jfinal.kit.Prop;
-import com.jfinal.kit.PropKit;
 import com.jfinal.plugin.activerecord.Page;
 
 /**
@@ -80,7 +77,6 @@ public class UtilsController extends BaseController {
     /**
      * 角色选择 数据
      */
-    @SuppressWarnings("Duplicates")
     @Before(SearchSql.class)
     public void queryRole() {
         int pageNumber = getAttr("pageNumber");

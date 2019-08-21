@@ -185,7 +185,7 @@ function commonSingleFileUpload(files,type,ctx,okCallback){
 
 // datagrid cell 高亮格式化
 function highlightFmt(val){
-    return '<span class="datagrid-ell-highlight">'+val+'</span>';
+    return '<span class="datagrid-cell-highlight">'+val+'</span>';
 }
 
 

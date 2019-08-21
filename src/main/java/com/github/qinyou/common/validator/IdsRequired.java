@@ -5,7 +5,8 @@ import com.jfinal.kit.Ret;
 import com.jfinal.validate.Validator;
 
 /**
- * ids 参数不可为空
+ * 通用参数校验, ids 参数不可为空, 用于多选操作
+ * @author chuang
  */
 public class IdsRequired extends Validator {
     @Override

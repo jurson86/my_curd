@@ -4,7 +4,8 @@ package com.github.qinyou.common.annotation;
 import java.lang.annotation.*;
 
 /**
- * 注解在controller class 上，控制访问权限
+ * 当前用户必须具有某菜单权限，注解在controller class 上
+ * @author chuang
  */
 @Documented
 @Target(ElementType.TYPE)

@@ -10,11 +10,9 @@ import java.io.IOException;
 import java.io.OutputStream;
 
 /**
- * excel 导出, 通过 POI 工具
- *
- * @author zhangchuang
+ * excel 导出, 结合 easypoi 使用
+ * @author chuang
  */
-@SuppressWarnings("unused")
 @Slf4j
 public class ExcelRender extends Render {
 

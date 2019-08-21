@@ -9,7 +9,8 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
 /**
- * 序列化操作
+ * 对象序列化工具
+ * @author chuang
  */
 @Slf4j
 public abstract class SerializeUtils {

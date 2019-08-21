@@ -6,6 +6,7 @@ import com.github.qinyou.system.model.SysMenu;
 
 import java.util.*;
 
+@SuppressWarnings("Duplicates")
 public class LoginService {
     /**
      * 获取 所有 父祖 菜单
@@ -29,7 +30,7 @@ public class LoginService {
      * @param roleIds 多个role id，以逗号分隔
      * @return
      */
-    List<SysMenu> findUserMenus(String roleIds) {
+    public static List<SysMenu> findUserMenus(String roleIds) {
         if (StringUtils.isEmpty(roleIds)) {
             return new ArrayList<>();
         }
@@ -63,7 +64,7 @@ public class LoginService {
      *
      * @return
      */
-    List<String> findUserButtons(String roleIds) {
+   public static List<String> findUserButtons(String roleIds) {
         if (StringUtils.isEmpty(roleIds)) {
             return new ArrayList<>();
         }
@@ -76,9 +77,7 @@ public class LoginService {
         List<SysButton> sysButtons = SysButton.dao.find(sql);
 
         List<String> buttonCodes = new ArrayList<>();
-        sysButtons.forEach(sysButton -> {
-            buttonCodes.add(sysButton.getButtonCode());
-        });
+        sysButtons.forEach(sysButton -> buttonCodes.add(sysButton.getButtonCode()));
         return buttonCodes;
     }
 

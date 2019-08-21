@@ -20,7 +20,7 @@ function openProcessInstanceDetail(runFlag,id,title){
  */
 function instanceStatueFmt(val,row) {
     if(row.processInstanceId){
-        return '<span class="datagrid-ell-highlight">待审: '+row.currentActivityName+'</span>';
+        return '<span class="datagrid-cell-highlight">待审: '+row.currentActivityName+'</span>';
     }else  if(row.hisProcessInstanceId){
         return '已结束';
     }else{

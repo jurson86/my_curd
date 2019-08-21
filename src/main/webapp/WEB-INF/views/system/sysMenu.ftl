@@ -63,7 +63,7 @@
                 {field: 'btnCount', title: '按钮数量', width: 100,
                     formatter:
                         function(val){
-                          if(val=='0'){return ''}else{return '<span class="datagrid-ell-highlight">'+val+'<span>'}
+                          if(val=='0'){return ''}else{return '<span class="datagrid-cell-highlight">'+val+'<span>'}
                       }
                 }
             ]]

@@ -3,7 +3,8 @@ package com.github.qinyou.common.annotation;
 import java.lang.annotation.*;
 
 /**
- * 注解在controller method 上，控制访问权限
+ * 当前用户必须拥有某按钮权限，注解在controller method 上
+ * @author chuang
  */
 @Documented
 @Target(ElementType.METHOD)

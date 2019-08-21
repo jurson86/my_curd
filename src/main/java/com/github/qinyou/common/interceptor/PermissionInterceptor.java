@@ -17,7 +17,6 @@ import java.util.List;
  *
  * @author zhangchuang
  */
-@SuppressWarnings("Duplicates")
 @Slf4j
 public class PermissionInterceptor implements Interceptor {
 
@@ -25,7 +24,7 @@ public class PermissionInterceptor implements Interceptor {
     public void intercept(Invocation inv) {
         boolean flag = true;
 
-        // 验证菜单编码
+        // 验证菜单权限
         RequireMenuCode requireMenuCode = inv.getController().getClass().getAnnotation(RequireMenuCode.class);
         if (requireMenuCode != null) {
             List<String> menuCodes = inv.getController().getSessionAttr("menuCodes");
@@ -35,26 +34,29 @@ public class PermissionInterceptor implements Interceptor {
             }
         }
 
-        // 验证按钮编码
-        RequireButtonCode requireButtonCode = inv.getMethod().getAnnotation(RequireButtonCode.class);
-        if (requireButtonCode != null) {
-            List<String> buttonCodes = inv.getController().getSessionAttr("buttonCodes");
-            log.debug("buttonCodes: {}", JsonKit.toJson(buttonCodes));
-            if (!buttonCodes.contains(requireButtonCode.value())) {
-                flag = false;
+        if(flag){
+            // 验证按钮 权限
+            RequireButtonCode requireButtonCode = inv.getMethod().getAnnotation(RequireButtonCode.class);
+            if (requireButtonCode != null) {
+                List<String> buttonCodes = inv.getController().getSessionAttr("buttonCodes");
+                log.debug("buttonCodes: {}", JsonKit.toJson(buttonCodes));
+                if (!buttonCodes.contains(requireButtonCode.value())) {
+                    flag = false;
+                }
             }
         }
 
         if (flag) {
+            // 菜单权限、按钮权限 都具备 放行
             inv.invoke();
             return;
         }
 
-        // 无 权限响应
+        // 无权限响应
         BaseController baseController = (BaseController) inv.getController();
         String requestType = inv.getController().getHeader("X-Requested-With");
         if ("XMLHttpRequest".equals(requestType) || StringUtils.notEmpty(inv.getController().getPara("xmlHttpRequest"))) {
-            Ret ret = Ret.create().setFail().set("msg", "无权限操作！您的行为已被记录到日志。"); // 其实并没有
+            Ret ret = Ret.create().setFail().set("msg", "无权限操作！您的行为已被记录到日志。"); // 其实并没有，可以自行扩展
             inv.getController().renderJson(ret);
         } else {
             inv.getController().render("/WEB-INF/views/common/no_permission.ftl");

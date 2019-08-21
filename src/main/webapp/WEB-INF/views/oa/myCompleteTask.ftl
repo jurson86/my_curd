@@ -43,7 +43,7 @@
         function statueFmt(val,row){
             var ret = '';
             if(row.endTime ==null){
-                ret = '<span class="datagrid-ell-highlight">正运行</span>';
+                ret = '<span class="datagrid-cell-highlight">正运行</span>';
             } else {
                 ret = '已结束';
             }

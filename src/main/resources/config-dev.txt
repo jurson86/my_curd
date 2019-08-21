@@ -1,6 +1,6 @@
 # 开发环境配置
 
-# -----------------------undertow server -----------------------
+# undertow server
 # undertow 服务配置
 undertow.devMode=true
 undertow.session.hotSwap=true
@@ -13,9 +13,10 @@ undertow.gzip.level=9
 undertow.gzip.minLength=1024
 undertow.session.timeout=1800
 
-# -----------------------小工具配置 -----------------------
+
+# 小工具配置
 # 记录访问日志到数据库
-sys.visitLog=false
+sys.visitLog=true
 # id 生成算法使用 (集群部署应该修改此处，均 0~31)
 id.workerId=0
 id.datacenterId=0
@@ -23,7 +24,7 @@ id.datacenterId=0
 security.aesKey=tFWpij4I9ZP_YIfoEwyrO8kgGhTNKJSi
 
 
-# -----------------------文件上传下载配置-----------------------
+# 文件上传下载配置
 # 上传路径
 file.upload=upload
 file.maxPostSize=102400000
@@ -39,7 +40,7 @@ file.officePath=upload/office
 file.filePath=upload/file
 
 
-# -----------------------数据源配置-----------------------
+# 数据源配置
 # 账号权限、主数据业务、日志 等数据源
 jdbc.dbType=mysql
 jdbc.driver=com.mysql.jdbc.Driver
@@ -60,7 +61,7 @@ oa.jdbc.maxActive=40
 oa.jdbc.minIdle=5
 
 
-# -----------------------定时任务 配置-----------------------
+# 定时任务 配置
 cron4j=testTask,delSysNotice
 # 测试定时任务， 每天0点执行
 testTask.cron=* 0 * * *
@@ -74,7 +75,7 @@ delSysNotice.daemon=true
 delSysNotice.enable=true
 
 
-# -----------------------redis 配置-----------------------
+# redis 配置
 redis.host=localhost
 redis.port=6379
 redis.password=123456

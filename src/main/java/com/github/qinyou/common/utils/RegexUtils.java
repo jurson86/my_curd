@@ -4,8 +4,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
+ * 正则表达式工具
  * @author chuang
- * @date 2018/8/17
  */
 public abstract class RegexUtils {
 

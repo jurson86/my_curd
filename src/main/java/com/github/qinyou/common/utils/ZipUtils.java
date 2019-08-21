@@ -16,7 +16,6 @@ import java.util.zip.ZipOutputStream;
  *
  * @author chuang
  */
-@SuppressWarnings("unused")
 @Slf4j
 public class ZipUtils {
 

@@ -15,7 +15,6 @@ import com.jfinal.plugin.activerecord.Db;
 import com.jfinal.plugin.activerecord.Page;
 import com.jfinal.plugin.activerecord.Record;
 import com.jfinal.plugin.activerecord.SqlPara;
-import com.jfinal.plugin.activerecord.tx.Tx;
 
 import java.util.*;
 
@@ -60,7 +59,7 @@ public class MainController extends BaseController {
             return;
         }
 
-        // 正反两次 遍历 拿出顶层目录下 所有菜单
+        // 正反两次遍历 保证拿出顶层目录下所有菜单
         Set<String> idSet = new HashSet<>();
         List<SysMenu> currentMenus = new ArrayList<>();
         List<SysMenu> sysMenus = getSessionAttr("sysUserMenu");
@@ -101,8 +100,6 @@ public class MainController extends BaseController {
         setAttr("sysUser", sysUser);
         render("userPass.ftl");
     }
-
-    @Before(Tx.class)
     public void changePwd() {
         String oldPwd = getPara("oldPwd");
         String newPwd = getPara("newPwd");
@@ -157,7 +154,6 @@ public class MainController extends BaseController {
         }
         render("userInfo.ftl");
     }
-
     public void changeUserInfo() {
         String id = getPara("userId");
         if (StringUtils.isEmpty(id)) {
@@ -244,7 +240,6 @@ public class MainController extends BaseController {
     /**
      * 当前用户 单条系统通知 设置为已读
      */
-    @Before(Tx.class)
     public void noticeSetRead() {
         String detailId = getPara("detailId");
         if (StringUtils.isEmpty(detailId)) {
@@ -272,7 +267,6 @@ public class MainController extends BaseController {
     /**
      * 当前用户通知全部设置为已读
      */
-    @Before(Tx.class)
     public void noticeSetAllRead() {
         SysUser sysUser = WebUtils.getSysUser(this);
         SqlPara sqlPara = new SqlPara();

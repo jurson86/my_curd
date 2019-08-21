@@ -2,13 +2,13 @@ package com.github.qinyou.common.interceptor;
 
 import com.alibaba.fastjson.JSON;
 import com.github.qinyou.common.utils.Id.IdUtils;
+import com.github.qinyou.common.utils.StringUtils;
 import com.github.qinyou.common.utils.WebUtils;
 import com.github.qinyou.system.model.SysVisitLog;
 import com.jfinal.aop.Interceptor;
 import com.jfinal.aop.Invocation;
 import com.jfinal.core.Controller;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang3.exception.ExceptionUtils;
 
 import java.util.Date;
 import java.util.Map;
@@ -16,7 +16,6 @@ import java.util.Map;
 /**
  * 访问日志拦截器
  */
-@SuppressWarnings("Duplicates")
 @Slf4j
 public class VisitLogInterceptor implements Interceptor {
     @Override

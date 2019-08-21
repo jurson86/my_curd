@@ -7,9 +7,8 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * 常量
- *
- * @author zhangchuang
+ * 项目公共常量
+ * @author chuang
  */
 public class Constant {
     // 项目默认编码
