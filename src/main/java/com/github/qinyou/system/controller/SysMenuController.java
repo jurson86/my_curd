@@ -65,6 +65,7 @@ public class SysMenuController extends BaseController {
     /**
      * 添加 action
      */
+    @SuppressWarnings("Duplicates")
     public void addAction() {
         SysMenu sysMenu = getBean(SysMenu.class, "");
         sysMenu.setId(IdUtils.id())

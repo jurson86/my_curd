@@ -203,3 +203,8 @@ function openUtilsRole(singleSelect,yesBtnTxt) {
     winIndex = popup.openIframe('角色选择',ctx+"/utils/role?singleSelect="+singleSelect+"&yesBtnTxt="+yesBtnTxt, '500px', '400px');
 }
 
+
+// 字体图标 显示
+function dgCellIconFmt(val){
+    return '<i class="'+val+'"></i>'
+}

@@ -37,7 +37,6 @@ public class SystemRoute extends Routes {
         // 定时任务
         add("/sysTask", SysTaskController.class, Constant.VIEW_PATH);
 
-
         // 系统设置
         add("/sysSetting", SysSettingController.class, Constant.VIEW_PATH);
     }

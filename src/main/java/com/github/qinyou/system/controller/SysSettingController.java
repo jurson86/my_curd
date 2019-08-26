@@ -136,6 +136,7 @@ public class SysSettingController extends BaseController {
     /**
      * 导入excel
      */
+    @SuppressWarnings("Duplicates")
     @Before(Tx.class)
     public void importExcel() {
         UploadFile uploadFile = getFile();

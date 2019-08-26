@@ -13,8 +13,6 @@ import com.jfinal.plugin.activerecord.ActiveRecordPlugin;
 public class SystemModelMapping {
 
     public static void mapping(ActiveRecordPlugin arp) {
-
-
         // 系统用户表
         arp.addMapping("sys_user", "id", SysUser.class);
         // 角色

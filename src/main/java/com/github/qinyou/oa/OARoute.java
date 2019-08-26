@@ -30,6 +30,7 @@ public class OARoute extends Routes {
 
 
         //----------------- 业务表单开发 --------------------------
+        add("/businessFormInfo", BusinessFormInfoController.class, Constant.VIEW_PATH);
         // 简单请假流程
         add("/formLeave", FormLeaveController.class, Constant.VIEW_PATH);
     }

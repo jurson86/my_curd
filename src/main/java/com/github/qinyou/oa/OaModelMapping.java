@@ -12,6 +12,8 @@ import com.github.qinyou.oa.model.*;
 public class OaModelMapping {
 
 	public static void mapping(ActiveRecordPlugin arp) {
+		// 业务表定义信息
+		arp.addMapping("business_form_info", "id", BusinessFormInfo.class);
         // 请假流程表单
 		arp.addMapping("form_leave", "id", FormLeave.class);
 	}

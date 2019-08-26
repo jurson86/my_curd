@@ -42,6 +42,7 @@ public class SysNoticeTypeController extends BaseController {
         render("system/sysNoticeType_form.ftl");
     }
 
+    @SuppressWarnings("Duplicates")
     public void addAction() {
         SysNoticeType sysNoticeType = getBean(SysNoticeType.class, "");
         sysNoticeType.setId(IdUtils.id());

@@ -14,6 +14,7 @@ import com.google.common.base.Objects;
 import com.jfinal.aop.Before;
 import com.jfinal.plugin.activerecord.Db;
 import com.jfinal.plugin.activerecord.Page;
+import com.jfinal.plugin.activerecord.Record;
 import com.jfinal.plugin.activerecord.tx.Tx;
 
 import java.util.*;
@@ -152,15 +153,15 @@ public class SysRoleController extends BaseController {
 
 
     /**
-     * 角色配置菜单
+     * 角色配置权限
      */
-    public void newRoleMenu() {
+    public void openRolePermission() {
         setAttr("roleId", getPara("id"));
-        render("system/sysRole_menu.ftl");
+        render("system/sysRole_permission.ftl");
     }
 
     /**
-     * 角色配置菜单 数据
+     * 角色配置权限  菜单数据
      */
     public void menuTreeChecked() {
         String id = getPara("roleId");
@@ -199,7 +200,7 @@ public class SysRoleController extends BaseController {
     }
 
     /**
-     * 角色配置菜单 更新
+     * 角色配置权限 菜单更新
      */
     @Before(Tx.class)
     public void menuTreeUpdate() {
@@ -223,80 +224,39 @@ public class SysRoleController extends BaseController {
                         .save();
             }
         }
-        renderSuccess("配置菜单成功");
+        renderSuccess("菜单权限操作成功");
     }
 
     /**
-     * 角色配置按钮
+     * 通过 menuId 和  roleId 查询按钮列表
      */
-    public void newRoleButton() {
-        setAttr("roleId", getPara("id"));
-        render("system/sysRole_button.ftl");
+    public void buttonList(){
+      String menuId = getPara("menuId");
+      String roleId = getPara("roleId");
+      if(StringUtils.isEmpty(menuId) || StringUtils.isEmpty(roleId) ){
+          renderJson(new ArrayList<>());
+          return;
+      }
+      String sql = "SELECT a.id,a.buttonTxt,a.buttonCode,b.sysRoleId as checkFlag " +
+              " FROM  sys_button a " +
+              "	left join sys_role_button b on a.id = b.sysButtonId and b.sysRoleId = ? " +
+              "WHERE " +
+              "	sysMenuId = ? ";
+      List<Record> btnList = Db.find(sql,roleId,menuId);
+      renderJson(btnList);
     }
 
-    /**
-     * 角色配置按钮数据
-     */
-    public void buttonTreeChecked() {
-        String id = getPara("roleId");
-        // 角色相关按钮
-        List<SysRoleButton> sysRoleButtons = SysRoleButton.dao.findByRoleId(id);
 
-        // 有按钮控制的菜单
-        List<SysMenu> sysMenus = SysMenu.dao.findHasBtnList();
-        List<SysMenu> allSysMenus = SysMenu.dao.findAll();
-        Set<SysMenu> chainSet = new LinkedHashSet<>();
-        List<SysButton> allButtons = new ArrayList<>();
-        for (SysMenu menu : sysMenus) {
-            List<SysButton> sysButtons = SysButton.dao.findByProperty("sysMenuId", menu.getId());
-            allButtons.addAll(sysButtons);
+    // 关联 角色按钮
+    public void buttonUpdate(){
+        String roleId = getPara("roleId");
+        String[] btnItems = getParaValues("btnItem");
 
-            menu.put("state", "closed");
-            chainSet.add(menu);
-            LoginService.getPChain(allSysMenus, menu, chainSet);
-        }
-
-        List<Map<String, Object>> maps = new ArrayList<>();
-        chainSet.forEach(sysMenu -> {
-            Map<String, Object> map = new HashMap<>();
-            map.put("id", sysMenu.getId());
-            map.put("pid", sysMenu.getPid());
-            map.put("text", sysMenu.getMenuName());
-            map.put("iconCls", sysMenu.getIcon());
-            map.put("state", sysMenu.getStr("state") == null ? "open" : "closed");
-            maps.add(map);
-        });
-
-        allButtons.forEach(sysButton -> {
-            Map<String, Object> map = new HashMap<>();
-            map.put("id", sysButton.getId());
-            map.put("pid", sysButton.getSysMenuId());
-            map.put("text", sysButton.getButtonTxt());
-            map.put("iconCls", "iconfont icon-file");
-            for (SysRoleButton sysRoleButton : sysRoleButtons) {
-                // 中间表 有记录
-                if (Objects.equal(sysRoleButton.getSysButtonId(), sysButton.getId())) {
-                    map.put("checked", true);
-                    break;
-                }
-            }
-            maps.add(map);
-        });
-        renderJson(maps);
-    }
-
-    public void buttonTreeUpdate() {
-        String roleId = get("roleId");
-        String buttonIds = get("buttonIds");
-        if (StringUtils.isEmpty(roleId)) {
-            renderFail("roleId 参数不可为空.");
-            return;
-        }
         String deleteSql = "delete from  sys_role_button where sysRoleId = ?";
         Db.update(deleteSql, roleId);
-        if (StringUtils.notEmpty(buttonIds)) {
-            String[] buttonIdAry = buttonIds.split(",");
-            for (String buttonId : buttonIdAry) {
+
+        if(btnItems!=null){
+            for (String buttonId : btnItems) {
                 new SysRoleButton().setSysRoleId(roleId)
                         .setSysButtonId(buttonId)
                         .setCreater(WebUtils.getSessionUsername(this))
@@ -304,6 +264,8 @@ public class SysRoleController extends BaseController {
                         .save();
             }
         }
-        renderSuccess("配置按钮成功");
+
+        renderSuccess("按钮权限操作成功");
     }
+
 }

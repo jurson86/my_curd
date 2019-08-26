@@ -31,7 +31,7 @@ import java.util.List;
 public class SysDictController extends BaseController {
 
     /**
-     * 页面
+     * 菜单页
      */
     public void index() {
         render("system/sysDict.ftl");
@@ -67,6 +67,7 @@ public class SysDictController extends BaseController {
     /**
      * 增加 sysDictGroup
      */
+    @SuppressWarnings("Duplicates")
     public void addGroupAction() {
         SysDictGroup sysDictGroup = getBean(SysDictGroup.class, "");
         sysDictGroup.setId(IdUtils.id());

@@ -137,6 +137,7 @@ public class SysUserController extends BaseController {
     /**
      * 用户改角色保存
      */
+    @SuppressWarnings("Duplicates")
     @Before(Tx.class)
     public void addUserRoleAction() {
         String userId = getPara("userId");

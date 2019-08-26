@@ -20,7 +20,7 @@ import java.util.*;
 /**
  * 消息通知工具
  *
- * @author zhangchuang
+ * @author chuang
  */
 @Slf4j
 public class SysNoticeService {

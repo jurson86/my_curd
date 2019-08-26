@@ -69,6 +69,7 @@ public class SysOrgController extends BaseController {
     /**
      * 添加 action
      */
+    @SuppressWarnings("Duplicates")
     public void addAction() {
         SysOrg sysOrg = getBean(SysOrg.class, "");
         sysOrg.setId(IdUtils.id())

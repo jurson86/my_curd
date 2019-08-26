@@ -2,14 +2,15 @@ package com.github.qinyou.system.vo;
 
 /**
  * 定时任务 信息 vo
+ * @author chuang
  */
 public class Cron4jTaskIntro {
 
-    private String name;
-    private String cron;
-    private String className;
-    private String daemon;
-    private String enable;
+    private String name;        // 任务名
+    private String cron;        // cron表达式
+    private String className;   // task class 名
+    private String daemon;      // 是否守护进程
+    private String enable;      // 是否启用
 
     public String getName() {
         return name;

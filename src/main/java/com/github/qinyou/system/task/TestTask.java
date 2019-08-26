@@ -15,6 +15,7 @@ import java.util.Date;
  *
  * @author zhangchuang
  */
+@SuppressWarnings("Duplicates")
 public class TestTask implements ITask {
 
     private final static Logger LOG = LoggerFactory.getLogger(TestTask.class);

@@ -26,9 +26,8 @@
        class="easyui-linkbutton" iconCls="iconfont icon-edit" plain="true">编辑</a>
     <a onclick="deleteModel('dg','${ctx!}/sysRole/deleteAction')" href="#" class="easyui-linkbutton  "
        iconCls="iconfont icon-delete" plain="true">删除</a>
-    <a onclick="openRoleUser()" href="#" class="easyui-linkbutton " iconCls="iconfont icon-look" plain="true"> 查看用户</a>
-    <a onclick="openRoleMenu()" href="#" class="easyui-linkbutton  " iconCls="iconfont icon-config" plain="true">关联菜单</a>
-    <a onclick="openRoleButton()" href="#" class="easyui-linkbutton  " iconCls="iconfont icon-config" plain="true">关联按钮</a>
+    <a onclick="openRoleUser()" href="#" class="easyui-linkbutton " iconCls="iconfont icon-look" plain="true">查看用户</a>
+    <a onclick="openRoleMenu()" href="#" class="easyui-linkbutton  " iconCls="iconfont icon-config" plain="true">配置权限</a>
     <span id="searchSpan" class="searchInputArea">
             <input name="search_LIKE_roleName" prompt="名称" class="easyui-textbox" style="width:120px; ">
             <input name="search_LIKE_roleCode" prompt="编码" class="easyui-textbox" style="width:120px; ">
@@ -57,19 +56,7 @@
     function openRoleMenu(){
         var row = $("#dg").datagrid("getSelected");
         if (row!=null) {
-            popup.openIframe('配置菜单', '${ctx!}/sysRole/newRoleMenu?id=' +row.id,  '350px', '600px')
-        } else {
-            popup.msg('请选择一行数据进行操作');
-        }
-    }
-
-    /**
-     * 角色 配置 按钮
-     */
-    function openRoleButton() {
-        var row = $("#dg").datagrid("getSelected");
-        if (row!=null) {
-            popup.openIframe('配置按钮', '${ctx!}/sysRole/newRoleButton?id=' +row.id,  '350px', '600px')
+            popup.openIframe('配置权限', '${ctx!}/sysRole/openRolePermission?id=' +row.id,  '600px', '700px')
         } else {
             popup.msg('请选择一行数据进行操作');
         }
