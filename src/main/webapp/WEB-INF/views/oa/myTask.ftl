@@ -1,7 +1,7 @@
 <#include "../common/common.ftl"/>
 <@layout>
     <table id="dg" class="easyui-datagrid"
-           url="${ctx!}/myToDoTask/query"
+           url="${ctx!}/myTask/query"
            data-options="onHeaderContextMenu: function(e, field){
                 e.preventDefault();
                 $(this).datagrid('columnMenu').menu('show', {
@@ -9,13 +9,13 @@
                     top:e.pageY
                 });
            }"
-           rownumbers="true" border="false" singleSelect="true"
+           toolbar="#tb"  rownumbers="true" border="false" singleSelect="true"
            fit="true" fitColumns="false"
-           striped="true" pagination="false">
+           striped="true" pagination="true"
+           pageSize="40" pageList="[30,40,50]" >
         <thead>
         <tr>
-            <!--流程实例-->
-            <th hidden="true" field="processInstanceId" width="100">流程ID</th>
+            <th field="processInstanceId" width="100">流程ID</th>
             <th field="initiator" width="100" formatter="usernameFmt">申请人</th>
             <th field="processInstanceName" width="350" formatter="processInstanceDetailFmt">流程</th>
             <th field="taskName" width="150" formatter="highlightFmt">任务节点</th>
@@ -25,7 +25,16 @@
         </tr>
         </thead>
     </table>
+    <div id="tb">
+        <div id="searchSpan" class="searchInputAreaDiv"  >
+             <input name="extra_instanceId" prompt="流程ID" class="easyui-textbox" style="width:180px;">
+            <input name="extra_taskName" prompt="任务名" class="easyui-textbox" style="width:180px;">
+            <a href="#" class="easyui-linkbutton searchBtn"  data-options="iconCls:'iconfont icon-search',plain:true"
+               onclick="queryModel('dg','searchSpan')">搜索</a>
+        </div>
+    </div>
     <script src="${ctx!}/static/plugins/easyui1.6.10/datagrid-extend.js"></script>
+    <script src="${ctx!}/static/js/dg-curd.js"></script>
     <script src="${ctx!}/static/js/oa.js"></script>
     <script>
         function processInstanceDetailFmt(val,row) {
@@ -34,43 +43,21 @@
 
         /*打开办理表单*/
         function openCompleteForm(id, title) {
-            popup.openIframe(title || '任务办理', '${ctx!}/myToDoTask/goCompleteForm?id=' + id, "1000px", "96%");
+            popup.openIframe(title || '任务办理', '${ctx!}/myTask/goCompleteForm?id=' + id, "1000px", "96%");
         }
 
-        /*认领任务*/
-        function claimAction(id) {
-            $.get('${ctx!}/myToDoTask/claimAction?id=' + id, function (data) {
-                if (data.state === 'ok') {
-                    popup.msg(data.msg, function () {
-                        $('#dg').datagrid('reload');
-                    });
-                } else if (data.state === 'error') {
-                    popup.errMsg('系统异常', data.msg);
-                } else {
-                    popup.msg(data.msg);
-                }
-            }, "json").error(function () {
-                popup.errMsg();
-            });
-        }
 
         /*操作按钮格式化*/
         function opeFmt(val, row) {
-            if (row.type == 1) {
-                var txt =  '<a  href="javascript:openCompleteForm(\'' + row.id + '\')"> [办理] </a>';
-                if(row.taskDefinitionKey !== 'adjustForm'){
-                    txt = txt +   '<a  href="javascript:openUtilsUser(true,\'转办\')"> [转办] </a>';
-                }
-                return txt;
-            } else if (row.type == 2) {
-                return '<a  href="javascript:claimAction(\'' + row.id + '\')"> [认领] </a>'
-            } else {
-                return '';
+            var txt =  '<a  href="javascript:openCompleteForm(\'' + row.id + '\')"> [办理] </a>';
+            if(row.taskDefinitionKey !== 'adjustForm'){
+                txt = txt +   '<a  href="javascript:openUtilsUser(true,\'转办\')"> [转办] </a>';
             }
+            return txt;
         }
 
 
-        /*任务委派，只所以叫 addUsersAction, 是选择用户 弹窗是个通用方法*/
+        /*任务转办，只所以叫 addUsersAction, 是选择用户 弹窗是个通用方法*/
         function addUsersAction(userInfoAry){
             if(userInfoAry.length===0 || userInfoAry.length>1){
                 popup.msg('必须且仅可以选择一个用户');
@@ -83,7 +70,7 @@
                 return;
             }
             var taskId = row.id;
-            $.post('${ctx!}/myToDoTask/changeAssigneeAction?taskId=' + taskId+"&username="+username, function (data) {
+            $.post('${ctx!}/myTask/changeAssigneeAction?taskId=' + taskId+"&username="+username, function (data) {
                 if(data.state==='ok'){
                     popup.msg(data.msg, function () {
                         $('#dg').datagrid('reload');

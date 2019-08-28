@@ -84,12 +84,13 @@ public class Test {
 //            System.out.println("getExecutionId:"+historicActivityInstance.getExecutionId());
 //        });
 //        System.out.println("--end------");
-         ActivitiUtils.getHistoryService().createHistoricProcessInstanceQuery().startedBy("admin").list().forEach(historicProcessInstance -> {
-             System.out.println("--------------------------------------------------");
-             System.out.println(historicProcessInstance.getName());
-             System.out.println(historicProcessInstance.getStartTime());
-             System.out.println(historicProcessInstance.getEndTime());
-             System.out.println();
-         });
+//         ActivitiUtils.getHistoryService().createHistoricProcessInstanceQuery().startedBy("admin").list()
+//                 .forEach(historicProcessInstance -> {
+//             System.out.println("--------------------------------------------------");
+//             System.out.println(historicProcessInstance.getName());
+//             System.out.println(historicProcessInstance.getStartTime());
+//             System.out.println(historicProcessInstance.getEndTime());
+//             System.out.println();
+//         });
     }
 }

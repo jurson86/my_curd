@@ -8,11 +8,8 @@ import com.github.qinyou.common.web.BaseController;
 import com.github.qinyou.oa.activiti.ActivitiConfig;
 import com.github.qinyou.oa.activiti.ActivitiUtils;
 import com.github.qinyou.oa.vo.TaskInfo;
-import com.google.common.base.Joiner;
 import com.jfinal.aop.Before;
 import com.jfinal.kit.StrKit;
-import com.jfinal.plugin.activerecord.Db;
-import com.jfinal.plugin.activerecord.Record;
 import com.jfinal.plugin.activerecord.tx.Tx;
 import com.jfinal.plugin.activerecord.tx.TxConfig;
 import lombok.extern.slf4j.Slf4j;
@@ -26,96 +23,58 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * 用户代办任务
+ */
 @SuppressWarnings("Duplicates")
 @Slf4j
-@RequireMenuCode("myToDoTask")
-public class MyToDoTaskController extends BaseController {
+@RequireMenuCode("myTask")
+public class MyTaskController extends BaseController {
 
     public void index() {
-        render("oa/myToDoTask.ftl");
+        render("oa/myTask.ftl");
     }
 
     /**
      * 查询用户任务
      */
     public void query() {
-        List<TaskInfo> list = new ArrayList<>();
-
-        ProcessInstance processInstance;
-
-        // 用户任务
-        TaskQuery query = ActivitiUtils.getTaskService().createTaskQuery();
-        List<Task> tasks = query.taskAssignee(WebUtils.getSessionUsername(this))
-                .active()
-                .orderByTaskCreateTime()
-                .desc()
-                .list();
-
-        for (Task task : tasks) {
-            processInstance = ActivitiUtils.getRuntimeProcessInstance(task.getProcessInstanceId(),true);
-            list.add(
-                    new TaskInfo()
-                            .setId(task.getId())
-                            .setType(1)
-                            .setCreateTime(task.getCreateTime())
-                            .setTaskName(task.getName())
-                            .setTaskDefinitionKey(task.getTaskDefinitionKey())
-                            .setProcessInstanceName(processInstance.getName())
-                            .setProcessInstanceId(task.getProcessInstanceId())
-                            .setInitiator((String) processInstance.getProcessVariables().get("initiator"))
-            );
-        }
-
-        // 候选任务
-        String roleCodes = getSessionAttr("roleCodes");
-        List<String> roleCodeList = new ArrayList<>();
-        for (String roleCode : roleCodes.split(",")) {
-            roleCodeList.add("role_" + roleCode);
-        }
-        roleCodes = Joiner.on("','").join(roleCodeList);
+        int pageNumber = getParaToInt("page", 1);
+        int pageSize = getParaToInt("rows", 30);
         String username = WebUtils.getSessionUsername(this);
-        String sql = " SELECT DISTINCT RES.* " +
-                "  FROM " +
-                "	ACT_RU_TASK RES " +
-                "	INNER JOIN ACT_RU_IDENTITYLINK I ON I.TASK_ID_ = RES.ID_ " +
-                "	INNER JOIN ACT_RU_IDENTITYLINK I_OR0 ON I_OR0.TASK_ID_ = RES.ID_  " +
-                "WHERE " +
-                "	RES.SUSPENSION_STATE_ = 1  " +
-                "	AND ( " +
-                "		( RES.ASSIGNEE_ IS NULL AND I.TYPE_ = 'candidate' AND ( I.GROUP_ID_ IN ( '" + roleCodes + "' ) ) ) " +
-                "	    OR  " +
-                "       ( RES.ASSIGNEE_ IS NULL AND I_OR0.TYPE_ = 'candidate' AND ( I_OR0.USER_ID_ = '" + username + "' ) ) " +
-                "	) " +
-                " ORDER BY RES.CREATE_TIME_ desc";
-        List<Record> records = Db.use(ActivitiConfig.DATASOURCE_NAME).find(sql);
-        for (Record record : records) {
-            processInstance = ActivitiUtils.getRuntimeProcessInstance(record.getStr("PROC_INST_ID_"),true);
-            list.add(
-                    new TaskInfo()
-                            .setId(record.getStr("ID_"))
-                            .setType(2)
-                            .setCreateTime(record.getDate("CREATE_TIME_"))
-                            .setTaskName(record.getStr("NAME_"))
-                            .setTaskDefinitionKey(record.getStr("TASK_DEF_KEY_"))
-                            .setProcessInstanceName(processInstance.getName())
-                            .setProcessInstanceId(record.getStr("PROC_INST_ID_"))
-                            .setInitiator((String) processInstance.getProcessVariables().get("initiator"))
-            );
+        TaskQuery query = ActivitiUtils.getTaskService().createTaskQuery();
+        query.taskAssignee(username).active();
+
+        String instanceId = getPara("extra_instanceId");
+        if(StringUtils.notEmpty(instanceId)){
+            query.processInstanceId(instanceId);
+        }
+        String taskName = getPara("extra_taskName");
+        if(StringUtils.notEmpty(taskName)){
+            query.taskNameLike("%"+taskName+"%");
         }
 
-        renderDatagrid(list, list.size());
-    }
+        Long total = query.count();
+        List<Task> tasks = query.orderByTaskCreateTime().desc().listPage((pageNumber - 1) * pageSize, pageSize);
 
-    /**
-     * 认领任务
-     */
-    @Before(IdRequired.class)
-    public void claimAction() {
-        String taskId = getPara("id");
-        ActivitiUtils.getTaskService().claim(taskId, WebUtils.getSessionUsername(this));
-        renderSuccess("认领成功");
-    }
+        List<TaskInfo> list = new ArrayList<>();
+        ProcessInstance processInstance;
+        for (Task task : tasks) {
+            processInstance = ActivitiUtils.getRuntimeProcessInstance(task.getProcessInstanceId(), true);
+            TaskInfo taskInfo = new TaskInfo()
+                    .setId(task.getId())
+                    .setCreateTime(task.getCreateTime())
+                    .setTaskName(task.getName())
+                    .setTaskDefinitionKey(task.getTaskDefinitionKey())
+                    .setProcessInstanceName(processInstance.getName())
+                    .setProcessInstanceId(task.getProcessInstanceId())
+                    .setInitiator((String) processInstance.getProcessVariables().get("initiator"));
 
+            list.add(taskInfo);
+        }
+
+        renderDatagrid(list, total.intValue());
+    }
 
     /**
      * 跳转到任务办理界面
@@ -157,7 +116,7 @@ public class MyToDoTaskController extends BaseController {
             setAttr("adjustFormUrl", adjustFormUrl);
         }
 
-        render("oa/myToDoTask_complete.ftl");
+        render("oa/myTask_complete.ftl");
     }
 
     /**

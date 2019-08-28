@@ -7,9 +7,12 @@ import com.github.qinyou.common.utils.StringUtils;
 import com.github.qinyou.system.model.SysOrg;
 import com.github.qinyou.system.model.SysRole;
 import com.github.qinyou.system.model.SysUser;
+import com.google.common.base.Objects;
 import com.jfinal.aop.Before;
 import com.jfinal.aop.Clear;
 import com.jfinal.plugin.activerecord.Page;
+
+import java.util.*;
 
 /**
  * 工具controller
@@ -63,6 +66,59 @@ public class UtilsController extends BaseController {
         setAttr("orgId", orgId);
         render("common/utils/orgInfo.ftl");
     }
+
+    /**
+     * 组织机构 选择框 comboTree
+     */
+    public void orgComboTree() {
+        Boolean withRoot = getParaToBoolean("withRoot", true);
+        List<SysOrg> sysOrgs = SysOrg.dao.findAll();
+        // 非叶子id
+        Set<String> pids = new HashSet<>();
+        sysOrgs.forEach(item -> pids.add(item.getPid()));
+        List<Map<String, Object>> maps = new ArrayList<>();
+        // 编辑机构时需要
+        if (withRoot) {
+            Map<String, Object> root = new HashMap<>();
+            root.put("id", "0");
+            root.put("pid", "-1");
+            root.put("text", "根机构");
+            root.put("state", sysOrgs.size() > 0 ? "closed" : "open");
+            root.put("iconCls", "iconfont icon-orgtree");
+            maps.add(root);
+        }
+        for (SysOrg sysOrg : sysOrgs) {
+            Map<String, Object> map = new HashMap<>();
+            map.put("id", sysOrg.getId());
+            map.put("pid", sysOrg.getPid());
+            map.put("text", sysOrg.getOrgName());
+            map.put("iconCls", "iconfont icon-orgtree");
+            if (pids.contains(sysOrg.getId())) {
+                map.put("state", "closed");
+            }
+            maps.add(map);
+        }
+        renderJson(maps);
+    }
+
+    /**
+     * 组织机构 tree 数据
+     */
+    @SuppressWarnings("Duplicates")
+    public void orgTreeData() {
+        List<SysOrg> sysOrgs = SysOrg.dao.findAllSort();
+        Set<String> pids = new HashSet<>();
+        sysOrgs.forEach(item -> pids.add(item.getPid()));
+
+        for (SysOrg sysOrg : sysOrgs) {
+            sysOrg.put("iconCls", "iconfont icon-orgtree");
+            if (!Objects.equal(sysOrg.getPid(), "0") && pids.contains(sysOrg.getId())) {
+                sysOrg.put("state", "closed");
+            }
+        }
+        renderJson(sysOrgs);
+    }
+
 
     /**
      * 角色选择

@@ -65,6 +65,6 @@
 <script src="${ctx!}/static/js/easyui-tree-tools.js"></script>
 <script src="${ctx!}/static/js/input2combotree.js"></script>
 <script>
-    initFormCombotree('#categoryId','${(categoryId)!}','','${ctx!}/sysOrg/orgComboTree?withRoot=false',true);
+    initFormCombotree('#categoryId','${(categoryId)!}','','${ctx!}/utils/orgComboTree?withRoot=false',true);
 </script>
 </@layout>

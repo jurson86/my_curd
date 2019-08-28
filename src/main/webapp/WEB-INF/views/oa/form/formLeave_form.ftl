@@ -1,8 +1,14 @@
 <#-- zhangchuang  2019-07-23 15:50:30 -->
-<#include "../common/common.ftl"/>
+<#include "../../common/common.ftl"/>
 <@layout>
 <form id="modelForm" method="POST" action="<#if formLeave?? >${ctx!}/formLeave/updateAction<#else>${ctx!}/formLeave/addAction</#if>">
     <table class=" pure-table pure-table-horizontal  labelInputTable fullWidthTable" >
+
+        <#--新建请求时需要-->
+        <#if !formLeave??>
+            <input  name="businessFormInfoId"  type="hidden" value="${businessFormInfoId}">
+        </#if>
+
         <input id="id" name="id"  type="hidden" value="${(formLeave.id)!}">
         <tbody>
         <tr>

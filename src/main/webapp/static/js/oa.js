@@ -45,3 +45,36 @@ function instanceDetailFmt(val,row){
     }
     return ret;
 }
+
+
+/**
+ * 流程状态 Fmt, 根据 endTime 是否为空 判断 “正运行” 或者 “已结束”
+ * @param val
+ * @param row
+ * @returns {string}
+ */
+function statueFmt(val,row){
+    var ret = '';
+    if(row.endTime ==null){
+        ret = '<span class="datagrid-cell-highlight">待审:'+row.activityName+'</span>';
+    } else {
+        ret = '已结束';
+    }
+    return ret;
+}
+
+/**
+ * 流程名 fmt 未链接
+ * @param val
+ * @param row
+ * @returns {string}
+ */
+function processNameFmt(val,row){
+    var ret;
+    if(row.endTime ==null){
+        ret =  '<a  href="javascript:openProcessInstanceDetail(true,\''+row.processInstanceId+'\')">'+val+'</a>';
+    } else {
+        ret =  '<a  href="javascript:openProcessInstanceDetail(false,\''+row.processInstanceId+'\')">'+val+'</a>';
+    }
+    return ret;
+}

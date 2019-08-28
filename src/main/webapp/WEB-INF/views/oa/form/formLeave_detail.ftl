@@ -1,5 +1,5 @@
 <#-- zhangchuang  2019-07-23 15:50:30 -->
-<#include "../common/common.ftl"/>
+<#include "../../common/common.ftl"/>
 <@layout>
     <table class=" pure-table pure-table-horizontal  labelInputTable fullWidthTable"  style="border: none;" >
         <input id="id" name="id"  type="hidden" value="${(formLeave.id)!}">

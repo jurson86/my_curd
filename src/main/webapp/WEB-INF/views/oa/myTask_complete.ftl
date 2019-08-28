@@ -29,7 +29,7 @@
 
             <div class="easyui-panel" title="${taskName!}" style="width:100%;margin-bottom: 20px;"
                  data-options="collapsible:true,closable:true">
-                <form id="processForm" method="POST" action="${ctx!}/myToDoTask/completeAction">
+                <form id="processForm" method="POST" action="${ctx!}/myTask/completeAction">
                     <input type="hidden" name="id" value="${taskId!}">
                     <input type="hidden" name="processInstanceId" value="${processInstanceId!}">
                     <table class=" pure-table pure-table-horizontal  labelInputTable fullWidthTable"

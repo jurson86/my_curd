@@ -79,6 +79,26 @@ public class ActivitiUtils {
 
 
     /**
+     * 查询 运行时 流程任务节点名
+     * @param businessKey
+     * @return
+     */
+    public static String getActivityName(String businessKey){
+        String activityName = "未知";
+        ProcessInstance instance = ActivitiUtils.getRuntimeService().createProcessInstanceQuery()
+                .processInstanceBusinessKey(businessKey)
+                .singleResult();
+        if(instance!=null){
+            ActivityImpl activity =  ActivitiUtils.getActivity(instance.getProcessDefinitionId(), instance.getActivityId());
+            if (activity!=null){
+                activityName =(String) activity.getProperty("name");
+            }
+        }
+        return activityName;
+    }
+
+
+    /**
      * 根据 业务表单记录id 查询流程信息
      * @param businessKey 业务表主键
      * @return

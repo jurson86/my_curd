@@ -23,6 +23,7 @@ import java.util.List;
 /**
  * oa 模块 公共 controller
  */
+@SuppressWarnings("Duplicates")
 @Before(PermissionInterceptor.class)
 public class OAController extends BaseController {
 
@@ -119,9 +120,9 @@ public class OAController extends BaseController {
         String processInstanceId = get("id"); // 流程实例id (运行时或历史均可)
         List<HistoricTaskInstance> historicTaskInstances = ActivitiUtils.getHistoryService().createHistoricTaskInstanceQuery()
                 .processInstanceId(processInstanceId)
-                .includeTaskLocalVariables()
                 .orderByTaskCreateTime()
                 .asc()
+                .includeTaskLocalVariables()
                 .list();
 
         List<HistoricTaskInfo> historicTaskInfos = new ArrayList<>();

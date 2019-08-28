@@ -1,7 +1,9 @@
 package com.github.qinyou.oa.controller;
 
+import com.github.qinyou.common.interceptor.PermissionInterceptor;
 import com.github.qinyou.common.utils.TreeTableUtils;
 import com.jfinal.aop.Before;
+import com.jfinal.aop.Clear;
 import com.jfinal.plugin.activerecord.Db;
 import com.jfinal.plugin.activerecord.Page;
 import com.github.qinyou.common.web.BaseController;
@@ -17,6 +19,7 @@ import com.github.qinyou.oa.model.BusinessFormInfo;
 import java.util.Date;
 
 /**
+ * 自定义流程定义信息，包含 form_name (业务表名）、process_key (流程定义key)
  * business_form_info 控制器
  * @author chuang
  * @since 2019-08-22 20:49:00
@@ -35,6 +38,7 @@ public class BusinessFormInfoController extends BaseController{
     /**
      * 列表数据
      */
+    @Clear(PermissionInterceptor.class)
     @Before(SearchSql.class)
     public void query(){
         int pageNumber=getAttr("pageNumber");

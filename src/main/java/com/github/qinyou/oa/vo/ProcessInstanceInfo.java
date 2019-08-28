@@ -11,9 +11,10 @@ import java.util.Date;
 @Data
 @Accessors(chain = true)
 public class ProcessInstanceInfo {
-    private String id;
+    private String initiator;
+    private String processInstanceId;
     private String name;
     private Date startTime;
-    private boolean end;
+    private Date endTime;
     private String activityName;
 }

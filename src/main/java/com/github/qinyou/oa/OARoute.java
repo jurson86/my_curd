@@ -3,6 +3,7 @@ package com.github.qinyou.oa;
 
 import com.github.qinyou.common.constant.Constant;
 import com.github.qinyou.oa.controller.*;
+import com.github.qinyou.oa.controller.form.FormLeaveController;
 import com.jfinal.config.Routes;
 
 /**
@@ -17,8 +18,15 @@ public class OARoute extends Routes {
         // 通用
         add("/oa", OAController.class, Constant.VIEW_PATH);
 
+        // 我的流程
+        add("/myProcess",MyProcessController.class,Constant.VIEW_PATH);
+
         // 代办任务
-        add("/myToDoTask", MyToDoTaskController.class, Constant.VIEW_PATH);
+        add("/myTask", MyTaskController.class, Constant.VIEW_PATH);
+
+        // 候选任务
+        add("/myCandidateTask", MyCandidateTaskController.class, Constant.VIEW_PATH);
+
         // 已办任务（流程)
         add("/myCompleteTask", MyCompleteTaskController.class, Constant.VIEW_PATH);
 
@@ -27,7 +35,6 @@ public class OARoute extends Routes {
 
         // 流程定义
         add("/processDefine", ProcessDefineController.class, Constant.VIEW_PATH);
-
 
         //----------------- 业务表单开发 --------------------------
         add("/businessFormInfo", BusinessFormInfoController.class, Constant.VIEW_PATH);

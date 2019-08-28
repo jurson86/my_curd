@@ -2,7 +2,6 @@ package com.github.qinyou.system.controller;
 
 import com.github.qinyou.common.annotation.RequireMenuCode;
 import com.github.qinyou.common.constant.Constant;
-import com.github.qinyou.common.interceptor.PermissionInterceptor;
 import com.github.qinyou.common.interceptor.SearchSql;
 import com.github.qinyou.common.utils.Id.IdUtils;
 import com.github.qinyou.common.utils.StringUtils;
@@ -14,7 +13,6 @@ import com.github.qinyou.system.model.SysOrg;
 import com.github.qinyou.system.model.SysUser;
 import com.google.common.base.Objects;
 import com.jfinal.aop.Before;
-import com.jfinal.aop.Clear;
 import com.jfinal.plugin.activerecord.Db;
 import com.jfinal.plugin.activerecord.Page;
 
@@ -35,6 +33,7 @@ public class SysOrgController extends BaseController {
     /**
      * treegrid 查询数据
      */
+    @SuppressWarnings("Duplicates")
     public void query() {
         List<SysOrg> sysOrgs = SysOrg.dao.findAllSort();
         Set<String> pids = new HashSet<>();
@@ -121,41 +120,6 @@ public class SysOrgController extends BaseController {
         renderSuccess(DELETE_SUCCESS);
     }
 
-
-    /**
-     * org comobTree 数据, 完整的数据
-     */
-    @Clear(PermissionInterceptor.class)
-    public void orgComboTree() {
-        Boolean withRoot = getParaToBoolean("withRoot", true);
-        List<SysOrg> sysOrgs = SysOrg.dao.findAll();
-        // 非叶子id
-        Set<String> pids = new HashSet<>();
-        sysOrgs.forEach(item -> pids.add(item.getPid()));
-        List<Map<String, Object>> maps = new ArrayList<>();
-        // 编辑机构时需要
-        if (withRoot) {
-            Map<String, Object> root = new HashMap<>();
-            root.put("id", "0");
-            root.put("pid", "-1");
-            root.put("text", "根机构");
-            root.put("state", sysOrgs.size() > 0 ? "closed" : "open");
-            root.put("iconCls", "iconfont icon-orgtree");
-            maps.add(root);
-        }
-        for (SysOrg sysOrg : sysOrgs) {
-            Map<String, Object> map = new HashMap<>();
-            map.put("id", sysOrg.getId());
-            map.put("pid", sysOrg.getPid());
-            map.put("text", sysOrg.getOrgName());
-            map.put("iconCls", "iconfont icon-orgtree");
-            if (pids.contains(sysOrg.getId())) {
-                map.put("state", "closed");
-            }
-            maps.add(map);
-        }
-        renderJson(maps);
-    }
 
 
     /**

@@ -12,7 +12,7 @@
   <thead>
   <tr>
       <th data-options="field:'id',checkbox:true"></th>
-      <th field="roleName" width="150">名称</th>
+      <th field="roleName" width="250">名称</th>
       <th field="roleCode" width="150">编码</th>
       <th field="roleDesc" width="300">说明</th>
       <th field="sortNum" width="50">排序号</th>
