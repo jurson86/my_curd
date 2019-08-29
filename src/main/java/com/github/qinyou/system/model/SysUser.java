@@ -76,4 +76,26 @@ public class SysUser extends BaseSysUser<SysUser> {
         return this.findFirst(sqlSelect + sqlExceptSelect, username);
     }
 
+
+    /**
+     * 根据角色查询 用户信息
+     * @param pageNumber
+     * @param pageSize
+     * @param where
+     * @return
+     */
+    public Page<SysUser> pageUserByRole(int pageNumber, int pageSize, String where) {
+        String sqlSelect = " select a.*, b.orgName  ,d.dictLabel as jobLevelText, e.dictLabel as userStateText ";
+        String sqlExceptSelect = " from sys_user a " +
+                " left join sys_org b on a.orgId = b.id  " +
+                " left join sys_dict d on d.groupCode='jobLevel' and a.jobLevel = d.dictValue " +
+                " left join sys_dict e on e.groupCode='userState' and a.userState = e.dictValue " +
+                " INNER JOIN sys_user_role f ON f.sysUserId = a.id\n" +
+                " INNER JOIN sys_role h ON h.id = f.sysRoleId ";
+        sqlExceptSelect += " where a.delFlag is  null ";
+        if (StringUtils.notEmpty(where)) {
+            sqlExceptSelect += " and " + where;
+        }
+        return this.paginate(pageNumber, pageSize, sqlSelect, sqlExceptSelect);
+    }
 }

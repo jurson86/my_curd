@@ -21,8 +21,9 @@
                ctrlSelect="false" pageSize="40" pageList="[20,40]">
             <thead>
             <tr>
-                <th field="icon" align="center" width="20" formatter="dgCellIconFmt">图标</th>
-                <th field="name" width="200" formatter="linkFmt">名称</th>
+                <th field="icon" align="center" width="25" formatter="dgCellIconFmt">图标</th>
+                <th field="name" width="200" formatter="linkFmt" >名称</th>
+                <th field="ope" width="100" formatter="opeFmt">操作</th>
             </tr>
             </thead>
         </table>
@@ -63,8 +64,12 @@
     }
 
     function linkFmt(val,row){
-        var ret = '<a href = "${ctx!}/myProcess/newProcessStep2?businessFormInfoId='+row.id+'&formKey='+row.formName+'">';
-        ret += (row.name)+'</a>';
+        var ret = '<a target="_blank" title="点击查看流程图" href = "${ctx!}/oa/definitionDiagramByKey?key='+row.processKey+'">'+val+'</a>';
+        return ret;
+    }
+
+    function opeFmt(val, row) {
+        var ret = '<a title="点击启动流程" href = "${ctx!}/myProcess/newProcessStep2?businessFormInfoId='+row.id+'&formKey='+row.formName+'">[启动]</a>';
         return ret;
     }
 

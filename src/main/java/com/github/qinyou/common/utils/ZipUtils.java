@@ -2,10 +2,7 @@ package com.github.qinyou.common.utils;
 
 import lombok.extern.slf4j.Slf4j;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.OutputStream;
+import java.io.*;
 import java.nio.charset.Charset;
 import java.util.List;
 import java.util.zip.ZipEntry;
@@ -58,6 +55,43 @@ public class ZipUtils {
                 zos.putNextEntry(new ZipEntry(srcFile.getName()));
                 int len;
                 FileInputStream in = new FileInputStream(srcFile);
+                while ((len = in.read(buf)) != -1) {
+                    zos.write(buf, 0, len);
+                }
+                zos.closeEntry();
+                in.close();
+            }
+        } catch (Exception e) {
+            log.error(e.getMessage(), e);
+        } finally {
+            close(zos);
+        }
+    }
+
+    /**
+     * 多个输入流转 下载包
+     * @param fileNames  文件名
+     * @param inputStreams 输入流集合
+     * @param out 输出流
+     */
+    public static void toZipByInputStream(List<String> fileNames, List<InputStream> inputStreams,OutputStream out){
+        ZipOutputStream zos = null;
+        try {
+            zos = new ZipOutputStream(out);
+            if(fileNames.size()!=inputStreams.size()){
+                for(InputStream in : inputStreams){
+                    if(in!=null){
+                        in.close();
+                    }
+                }
+                throw new RuntimeException("fileNames 参数 和 inputStreams 参数 size 不一致");
+            }
+            InputStream in;
+            for(int i=0;i<fileNames.size();i++){
+                in = inputStreams.get(i);
+                byte[] buf = new byte[BUFFER_SIZE];
+                zos.putNextEntry(new ZipEntry(fileNames.get(i)));
+                int len;
                 while ((len = in.read(buf)) != -1) {
                     zos.write(buf, 0, len);
                 }

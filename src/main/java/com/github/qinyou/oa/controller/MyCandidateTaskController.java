@@ -15,6 +15,7 @@ import com.jfinal.plugin.activerecord.Page;
 import com.jfinal.plugin.activerecord.Record;
 import lombok.extern.slf4j.Slf4j;
 import org.activiti.engine.runtime.ProcessInstance;
+import org.activiti.engine.task.Task;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -91,6 +92,21 @@ public class MyCandidateTaskController extends BaseController {
     @Before(IdRequired.class)
     public void claimAction() {
         String taskId = getPara("id");
+
+        Task task = ActivitiUtils.getTaskService().createTaskQuery().taskId(taskId).singleResult();
+        if(task==null){
+            renderFail("任务不存在");
+            return;
+        }
+        if(task.isSuspended()){
+            renderFail("任务已被暂停");
+            return;
+        }
+        if(task.getAssignee()!=null){
+            renderFail("任务已被认领");
+            return;
+        }
+
         ActivitiUtils.getTaskService().claim(taskId, WebUtils.getSessionUsername(this));
         renderSuccess("认领成功");
     }

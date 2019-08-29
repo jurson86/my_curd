@@ -60,7 +60,7 @@
                 {field: 'url', title: '地址', width: 250},
       /*          {field: 'icon', title: '图标', width: 250},*/
                 {field: 'sortNum', title: '排序号', width: 100},
-                {field: 'btnCount', title: '按钮数量', width: 100,
+                {field: 'btnCount', align:'center', title: '权限按钮数量', width: 100,
                     formatter:
                         function(val){
                           if(val=='0'){return ''}else{return '<span class="datagrid-cell-highlight">'+val+'<span>'}

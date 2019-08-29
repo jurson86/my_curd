@@ -15,6 +15,7 @@ import org.activiti.engine.repository.ProcessDefinition;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.zip.ZipInputStream;
 
@@ -67,7 +68,11 @@ public class Test {
     }
 
     public static void main(String[] args) throws Exception {
-        init();
+        //init();
+        List<String> list = new ArrayList<>();
+        list.add(null);
+        System.out.println(list.size());
+        System.out.println(list.get(0));
 //        String processInstanceId = "7501";
 //
 //        System.out.println("--start------");

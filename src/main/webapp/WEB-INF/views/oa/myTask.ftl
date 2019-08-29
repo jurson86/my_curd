@@ -1,4 +1,5 @@
 <#include "../common/common.ftl"/>
+<#include "../common/btnControl.ftl"/>
 <@layout>
     <table id="dg" class="easyui-datagrid"
            url="${ctx!}/myTask/query"
@@ -11,7 +12,7 @@
            }"
            toolbar="#tb"  rownumbers="true" border="false" singleSelect="true"
            fit="true" fitColumns="false"
-           striped="true" pagination="true"
+           striped="false" pagination="true"
            pageSize="40" pageList="[30,40,50]" >
         <thead>
         <tr>
@@ -21,7 +22,10 @@
             <th field="taskName" width="150" formatter="highlightFmt">任务节点</th>
             <!--任务创建时间-->
             <th  hidden="true" field="createTime" width="200">任务时间</th>
-            <th field="type" width="250" formatter="opeFmt">操作</th>
+            <th field="type" width="80" formatter="opeFmt">操作1</th>
+            <@hasBtnCode "myTask:changeAssignee">
+            <th field="type2" width="80" formatter="ope2Fmt">操作2</th>
+            </@hasBtnCode>
         </tr>
         </thead>
     </table>
@@ -47,15 +51,23 @@
         }
 
 
-        /*操作按钮格式化*/
+        /*办理按钮*/
         function opeFmt(val, row) {
             var txt =  '<a  href="javascript:openCompleteForm(\'' + row.id + '\')"> [办理] </a>';
-            if(row.taskDefinitionKey !== 'adjustForm'){
-                txt = txt +   '<a  href="javascript:openUtilsUser(true,\'转办\')"> [转办] </a>';
-            }
             return txt;
         }
 
+        <@hasBtnCode "myTask:changeAssignee">
+        /*转办按钮*/
+        function ope2Fmt(val, row) {
+            if(row.taskDefinitionKey !== 'adjustForm'){
+                txt =  '<a  href="javascript:openUtilsUser(true,\'转办\')"> [转办] </a>';
+            }else{
+                txt='无';
+            }
+            return txt;
+        }
+        </@hasBtnCode>
 
         /*任务转办，只所以叫 addUsersAction, 是选择用户 弹窗是个通用方法*/
         function addUsersAction(userInfoAry){

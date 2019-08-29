@@ -15,7 +15,7 @@
            pageSize="40" pageList="[30,40,50]">
         <thead>
         <tr>
-            <th hidden="true" field="processInstanceId" width="100" >ID</th>
+            <th  field="processInstanceId" width="100" >ID</th>
             <th field="initiator" width="100" formatter="usernameFmt">申请人</th>
             <th field="name" width="300" formatter="processNameFmt">流程</th>
             <th field="statue" width="200" formatter="statueFmt">流程状态</th>
@@ -26,6 +26,8 @@
     </table>
     <div id="tb">
         <div id="searchSpan" class="searchInputAreaDiv"  style="text-align: left; padding: 10px 0 10px 50px">
+            <input name="extra_instanceId" prompt="流程Id" class="easyui-textbox" style="width:150px; ">
+            <span style="display: inline-block;width: 20px;"></span>
             <input name="extra_applyUser" prompt="发起人" class="easyui-textbox" style="width:150px; ">
             <span style="display: inline-block;width: 20px;"></span>
             <input name="extra_processName" prompt="流程名" class="easyui-textbox" style="width:180px;">

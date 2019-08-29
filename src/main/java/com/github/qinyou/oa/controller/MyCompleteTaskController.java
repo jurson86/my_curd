@@ -30,6 +30,7 @@ public class MyCompleteTaskController extends BaseController {
         int pageSize = getParaToInt("rows", 30);
         String processName = get("extra_processName");
         String applyUser = get("extra_applyUser");
+        String instanceId = getPara("extra_instanceId");
 
         String username = WebUtils.getSessionUsername(this);
         String sqlSelect = "SELECT " +
@@ -51,6 +52,9 @@ public class MyCompleteTaskController extends BaseController {
         }
         if (StringUtils.notEmpty(applyUser)) {
             sqlExceptSelect = sqlExceptSelect + " and c.TEXT_ like '%" + applyUser + "%'";
+        }
+        if(StringUtils.notEmpty(instanceId)){
+            sqlExceptSelect = sqlExceptSelect + " and a.PROC_INST_ID_ =  '" + instanceId + "'";
         }
         sqlExceptSelect = sqlExceptSelect + " order by b.START_TIME_ desc ";
 

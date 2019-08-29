@@ -79,6 +79,26 @@ function usernameFmt(val,row) {
     return '<a title="点击查看人员信息" href="javascript:userInfo(\''+val+'\')" >'+val+'</a>';
 }
 
+function userListByRole(roleCode){
+    if(isEmpty(popup)){
+        popup = parent.popup;
+        if(isEmpty(popup)){
+            console.log("找不到 popup 对象，请先引入相关工具库。");
+            return;
+        }
+    }
+    if(isEmpty(roleCode)){
+        console.log("roleCode 参数不可为空。");
+        return;
+    }
+    popup.openIframeNoResize("用户列表", ctx+"/utils/userListByRole?roleCode="+roleCode, "600px","430px",true);
+}
+
+function roleCodeFmt(val,row) {
+    return '<a title="点击查看角色用户列表" href="javascript:userInfo(\''+val+'\')" >'+val+'</a>';
+}
+
+
 /**
  * 查看机构信息 （弹窗卡片)
  * @param ctx

@@ -7,6 +7,7 @@ import com.github.qinyou.common.utils.StringUtils;
 import com.github.qinyou.system.model.SysOrg;
 import com.github.qinyou.system.model.SysRole;
 import com.github.qinyou.system.model.SysUser;
+import com.github.qinyou.system.model.SysUserRole;
 import com.google.common.base.Objects;
 import com.jfinal.aop.Before;
 import com.jfinal.aop.Clear;
@@ -163,6 +164,39 @@ public class UtilsController extends BaseController {
         Page<SysUser> sysUserPage = SysUser.dao.page(pageNumber, pageSize, where);
         renderDatagrid(sysUserPage);
     }
+
+
+    /**
+     * 通过角色 查询用户列表
+     */
+    public void userListByRole(){
+        String roleCode = getPara("roleCode");
+        if(StringUtils.isEmpty(roleCode)){
+            renderFail("roleCode 参数 为空");
+            return;
+        }
+        if(roleCode.startsWith("role_")){
+            roleCode = roleCode.substring(5);
+        }
+        SysRole sysRole = SysRole.dao.findFirst("select * from sys_role where roleCode = ?",roleCode);
+        setAttr("roleCode",roleCode);
+        setAttr("roleName",sysRole.getRoleName());
+        render("common/utils/userListByRole.ftl");
+    }
+
+    /**
+     * 通过角色查询 用户列表
+     */
+    @Before(SearchSql.class)
+    public void queryUserByRole(){
+        int pageNumber = getAttr("pageNumber");
+        int pageSize = getAttr("pageSize");
+        String where = getAttr(Constant.SEARCH_SQL);
+        Page<SysUser> page = SysUser.dao.pageUserByRole(pageNumber,pageSize,where);
+        renderDatagrid(page);
+    }
+
+
 
     /**
      * 跳转到上传文件页面, 文件excel导入等 使用

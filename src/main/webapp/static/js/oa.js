@@ -56,7 +56,7 @@ function instanceDetailFmt(val,row){
 function statueFmt(val,row){
     var ret = '';
     if(row.endTime ==null){
-        ret = '<span class="datagrid-cell-highlight">待审:'+row.activityName+'</span>';
+        ret = '<span class="datagrid-cell-highlight">待审: '+row.activityName+'</span>';
     } else {
         ret = '已结束';
     }

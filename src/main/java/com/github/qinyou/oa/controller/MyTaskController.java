@@ -1,5 +1,6 @@
 package com.github.qinyou.oa.controller;
 
+import com.github.qinyou.common.annotation.RequireButtonCode;
 import com.github.qinyou.common.annotation.RequireMenuCode;
 import com.github.qinyou.common.utils.StringUtils;
 import com.github.qinyou.common.utils.WebUtils;
@@ -167,6 +168,7 @@ public class MyTaskController extends BaseController {
 
 
     // 转办
+    @RequireButtonCode("myTask:changeAssignee")
     @TxConfig(ActivitiConfig.DATASOURCE_NAME)
     @Before(Tx.class)
     public void changeAssigneeAction() {

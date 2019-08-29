@@ -11,7 +11,7 @@
            }"
            toolbar="#tb"  rownumbers="true" border="false" singleSelect="true"
            fit="true" fitColumns="false"
-           striped="true" pagination="true"
+           striped="false" pagination="true"
            pageSize="40" pageList="[30,40,50]" >
         <thead>
         <tr>

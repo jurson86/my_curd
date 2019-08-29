@@ -23,6 +23,9 @@
     <a onclick="deleteModel('dg','${ctx!}/processDeploy/unDeployAction')" href="#" class="easyui-linkbutton  "
        iconCls="iconfont icon-delete" plain="true">卸载</a>
 
+    <a onclick="downZip()" href="#" class="easyui-linkbutton  "
+       iconCls="iconfont icon-gencode" plain="true">下载</a>
+
     <span id="searchSpan" class="searchInputArea">
           <input name="extra_category" prompt="分类" class="easyui-combobox"  style="width:120px; "
                data-options="panelHeight:'auto',valueField:'value',textField:'label',
@@ -34,4 +37,14 @@
     </span>
 </div>
 <script src="${ctx!}/static/js/dg-curd.js"></script>
+<script>
+    function downZip(){
+        var rows= $("#dg").datagrid("getSelections");
+        if (rows.length===1) {
+            window.open("${ctx!}/processDeploy/downloadZip?id="+rows[0].id);
+        } else {
+            popup.msg('请选择一行数据下载部署包');
+        }
+    }
+</script>
 </@layout>

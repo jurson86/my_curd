@@ -13,6 +13,7 @@ import com.jfinal.kit.StrKit;
 import org.activiti.engine.history.HistoricIdentityLink;
 import org.activiti.engine.history.HistoricProcessInstance;
 import org.activiti.engine.history.HistoricTaskInstance;
+import org.activiti.engine.repository.ProcessDefinition;
 import org.activiti.engine.runtime.ProcessInstance;
 import org.activiti.engine.task.Comment;
 
@@ -30,11 +31,31 @@ public class OAController extends BaseController {
     /**
      * 流程定义图
      */
-    @Clear(PermissionInterceptor.class)
     @Before(IdRequired.class)
     public void definitionDiagram() {
         String id = get("id"); // 流程定义id
         InputStream in = ActivitiUtils.getRepositoryService().getProcessDiagram(id);
+        render(new ImageRender().inputStream(in));
+    }
+
+    /**
+     * 根据流程定义 key 查询流程定义图
+     */
+    public void definitionDiagramByKey(){
+        String processKey = getPara("key");
+        if(StringUtils.isEmpty(processKey)){
+            renderFail("Key 参数为空");
+            return;
+        }
+        List<ProcessDefinition> definitions = ActivitiUtils.getRepositoryService().createProcessDefinitionQuery()
+                .processDefinitionKey(processKey)
+                .orderByProcessDefinitionVersion().desc()
+                .list();
+        if(definitions.size()==0){
+            renderFail("Key 参数错误");
+            return;
+        }
+        InputStream in = ActivitiUtils.getRepositoryService().getProcessDiagram(definitions.get(0).getId());
         render(new ImageRender().inputStream(in));
     }
 

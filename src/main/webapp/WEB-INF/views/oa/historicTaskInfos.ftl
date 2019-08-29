@@ -7,7 +7,7 @@
             <thead>
             <tr>
                 <th>名称</th>
-                <th>审批人</th>
+                <th>审批人 / 候选组</th>
                 <th>开始时间</th>
                 <th>结束时间</th>
                 <th>意见</th>
@@ -21,12 +21,18 @@
                         <#if (info.assignee)??>
                             <a title="点击查看详细信息" href="javascript:userInfo('${(info.assignee)!}')">${(info.assignee)!}</a>
                             <#else>
+                                候选: <br/>
                                 <#list (info.candidateGroup) as group>
-                                    ${group!}<br/>
+                                    <a title="点击查看候选组相关用户" href="javascript:userListByRole('${group!}')">${group!}</a>
+                                    <#if group_has_next>
+                                        <br/>或<br/>
+                                    </#if>
                                 </#list>
                                 <#list (info.candidateUser) as user>
                                     <a title="点击查看详细信息" href="javascript:userInfo('${user!}')">${user!}</a>
-                                    <br/>
+                                    <#if user_has_next>
+                                        <br/>或<br/>
+                                    </#if>
                                 </#list>
                         </#if>
                         <#if (info.lastAssignee)?? && (info.assignee)??  >
