@@ -43,8 +43,9 @@
                 <input id="cascadeOrg" type="hidden" name="extra_cascadeOrg">
                 <input id="orgId" type="hidden" name="extra_orgId">
                 <#-- 拦截器 拼装sql-->
-                <input name="search_LIKE_name" prompt="名称" class="easyui-textbox" style="width:120px; ">
-                <input name="search_LIKE_info" prompt="描述" class="easyui-textbox" style="width:120px; ">
+                <input name="search_LIKE_name" prompt="名称" class="easyui-textbox" style="width:180px; ">
+                <input name="search_LIKE_info" prompt="描述" class="easyui-textbox" style="width:180px; ">
+                 <input name="search_EQ_processKey" prompt="流程Key" class="easyui-textbox" style="width:180px; ">
                 <a href="#" class="easyui-linkbutton searchBtn" data-options="iconCls:'iconfont icon-search',plain:true"
                    onclick="queryModel('dg2','searchSpan2')">搜索</a>
             </span>

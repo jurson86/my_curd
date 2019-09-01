@@ -1,21 +1,16 @@
 package com.github.qinyou.oa.controller;
 
 import com.github.qinyou.common.annotation.RequireMenuCode;
-import com.github.qinyou.common.interceptor.PermissionInterceptor;
-import com.github.qinyou.common.render.ImageRender;
 import com.github.qinyou.common.utils.StringUtils;
-import com.github.qinyou.common.validator.IdRequired;
 import com.github.qinyou.common.validator.IdsRequired;
 import com.github.qinyou.common.web.BaseController;
 import com.github.qinyou.oa.activiti.ActivitiUtils;
 import com.github.qinyou.oa.vo.ProcessDefinitionInfo;
 import com.jfinal.aop.Before;
-import com.jfinal.aop.Clear;
 import lombok.extern.slf4j.Slf4j;
 import org.activiti.engine.RepositoryService;
 import org.activiti.engine.repository.ProcessDefinitionQuery;
 
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,7 +32,7 @@ public class ProcessDefineController extends BaseController {
         RepositoryService service = ActivitiUtils.getRepositoryService();
         ProcessDefinitionQuery query = service.createProcessDefinitionQuery();
         if (StringUtils.notEmpty(processKey)) {
-            query.processDefinitionKeyLike("%"+processKey+"%");
+            query.processDefinitionKeyLike("%" + processKey + "%");
         }
 
         List<ProcessDefinitionInfo> list = new ArrayList<>();

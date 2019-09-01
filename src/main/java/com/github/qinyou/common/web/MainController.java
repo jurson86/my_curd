@@ -59,25 +59,17 @@ public class MainController extends BaseController {
             return;
         }
 
-        // 正反两次遍历 保证拿出顶层目录下所有菜单
-        Set<String> idSet = new HashSet<>();
-        List<SysMenu> currentMenus = new ArrayList<>();
+        // 拿出所有子菜单 并 排序
         List<SysMenu> sysMenus = getSessionAttr("sysUserMenu");
-        idSet.add(rootMenuId);
-        for (SysMenu sysMenu : sysMenus) {
-            if (idSet.contains(sysMenu.getPid())) {
-                currentMenus.add(sysMenu);
-                idSet.add(sysMenu.getId());
+        Set<SysMenu> chainSet = new HashSet<>();
+        MainService.getCChain(sysMenus, rootMenuId, chainSet);
+        List<SysMenu> currentMenus  = new ArrayList<>(chainSet);
+        currentMenus.sort((o1, o2) -> {
+            if (o1.getSortNum() == null || o2.getSortNum() == null || o1.getSortNum() < o2.getSortNum()) {
+                return -1;
             }
-        }
-        SysMenu sysMenuTemp;
-        for(int i=sysMenus.size()-1;i==0;i--){
-            sysMenuTemp = sysMenus.get(i);
-            if(idSet.contains(sysMenus.get(i).getPid())){
-                currentMenus.add(sysMenuTemp);
-                idSet.add(sysMenuTemp.getId());
-            }
-        }
+            return 0;
+        });
 
         List<Map<String, Object>> maps = new ArrayList<>();
         for (SysMenu sysMenu : currentMenus) {

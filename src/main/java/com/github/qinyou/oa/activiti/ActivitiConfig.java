@@ -2,6 +2,7 @@ package com.github.qinyou.oa.activiti;
 
 /**
  * activiti 使用配置
+ *
  * @author chuang
  */
 public class ActivitiConfig {
@@ -10,5 +11,5 @@ public class ActivitiConfig {
     public final static String DATASOURCE_NAME = "my_curd_oa";
 
     // 流程删除原因
-    public final static String DEL_INSTANCE_BY_USER = "用户自主删除流程实例";
+    public final static String DEL_INSTANCE_BY_USER = "用户自主逻辑删除未结束流程实例";
 }

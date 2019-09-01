@@ -17,4 +17,7 @@ public class ProcessInstanceInfo {
     private Date startTime;
     private Date endTime;
     private String activityName;
+
+    private String businessForm; // 业务表
+    private String businessKey; // 业务表主键
 }

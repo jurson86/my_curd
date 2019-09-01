@@ -17,6 +17,7 @@ public class ActivitiPlugin implements IPlugin {
     public static ProcessEngine processEngine = null;
 
     private boolean isStarted = false;
+
     @Override
     public boolean start() {
         try {

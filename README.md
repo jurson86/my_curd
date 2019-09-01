@@ -5,12 +5,14 @@
 2. 代码生成器 （ 单表、主从表，增删改查导入导出功能一键生成, 样板代码程序做 ）
 3. 多配色风格（ easyui方便易用的前提下，美化风格，数据型应用非常合适 ）
 4. 系统推送通知 ( websocket主动，分角色推送通知，通知存库，未读已读 ）
-5. 整合activiti 实现 通用的 业务表数据 流程审批 (结合代码生成器编写少量代码)
+5. 整合activiti 实现 业务表数据 流程审批 (业务表 结合代码生成器编写少量代码)   
+5.1. 注意：已测支持 （用户任务 + 排他网关 + 监听器 + 申请表单调整）简单流转功能，
+其它 BPMN组件 (例如 并行网关、包括网关、service task等）可能不支持，慎用。    
 
 #### 系统环境
 -  JDK8 及以上
 -  mysql5.7
--  jfinal4.3 、activiti5.22 、freemarker、 easypoi3.2.0 、logback.....
+-  jfinal4.4 、activiti5.22 、freemarker、 easypoi3.2.0 、logback.....
 -  easyui1.6.10 、 pure.css 、layer .....
 
 #### 快速开始
@@ -32,8 +34,11 @@
 ![代码生成器](https://raw.githubusercontent.com/qinyou/my_curd/master/preview/1tn.png "1tn.png")
 
 ##### 业务表数据流程审批
-![业务表数据流程审批](https://raw.githubusercontent.com/qinyou/my_curd/master/preview/process.png "process.png")
-![业务表数据流程审批](https://raw.githubusercontent.com/qinyou/my_curd/master/preview/process_detail.png "process_detail.png")
+![新建流程](https://raw.githubusercontent.com/qinyou/my_curd/master/preview/process1.png "process1.png")
+![流程列表](https://raw.githubusercontent.com/qinyou/my_curd/master/preview/process.png "process.png")
+![任务办理](https://raw.githubusercontent.com/qinyou/my_curd/master/preview/task1.png "task1.png")
+![候选任务认领](https://raw.githubusercontent.com/qinyou/my_curd/master/preview/task2.png "task2.png")
+![任务转办](https://raw.githubusercontent.com/qinyou/my_curd/master/preview/task3.png "task3.png")
 
 
 

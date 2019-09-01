@@ -38,6 +38,17 @@ public abstract class BaseFormLeave<M extends BaseFormLeave<M>> extends Model<M>
     }
 
 
+    // 删除标志字段
+    public String getDelFlag() {
+        return getStr("delFlag");
+    }
+
+    public M setDelFlag(String delFlag) {
+        set("delFlag", delFlag);
+        return (M) this;
+    }
+
+
     // 开始时间
     public Date getStartTime() {
         return get("startTime");

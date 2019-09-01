@@ -13,7 +13,6 @@ import com.github.qinyou.system.model.SysUser;
 import com.jfinal.aop.Before;
 import com.jfinal.plugin.activerecord.tx.Tx;
 import com.jfinal.plugin.activerecord.tx.TxConfig;
-import org.activiti.engine.history.HistoricProcessInstance;
 import org.activiti.engine.impl.identity.Authentication;
 import org.activiti.engine.runtime.ProcessInstance;
 import org.activiti.engine.runtime.ProcessInstanceBuilder;
@@ -23,6 +22,7 @@ import java.util.Date;
 
 /**
  * form_leave 业务表控制器
+ *
  * @author zhangchuang
  */
 public class FormLeaveController extends OAFormBaseController {
@@ -102,7 +102,7 @@ public class FormLeaveController extends OAFormBaseController {
     }
 
     /**
-     * 删除 action
+     * 逻辑 删除 action
      */
     @TxConfig(ActivitiConfig.DATASOURCE_NAME)
     @Before({IdRequired.class, Tx.class})
@@ -113,24 +113,17 @@ public class FormLeaveController extends OAFormBaseController {
         if (!WebUtils.getSessionUsername(this).equals(formLeave.getCreater())) {
             throw new RuntimeException("非法删除流程操作");
         }
-        formLeave.delete();
-
         ProcessInstance instance = ActivitiUtils.getRuntimeService().createProcessInstanceQuery()
                 .processInstanceBusinessKey(id)
                 .singleResult();
         if (instance != null) {
             // 未结束流程 添加删除标志字段
             ActivitiUtils.getRuntimeService().deleteProcessInstance(instance.getId(), ActivitiConfig.DEL_INSTANCE_BY_USER);
+            formLeave.setDelFlag("Y").update();
+            renderSuccess(DELETE_FORM_SUCCESS);
         } else {
-            // 已结束流程 删数据表
-            HistoricProcessInstance historicProcessInstance = ActivitiUtils.getHistoryService().createHistoricProcessInstanceQuery()
-                    .processInstanceBusinessKey(id)
-                    .singleResult();
-            if (historicProcessInstance != null) {
-                ActivitiUtils.getHistoryService().deleteHistoricProcessInstance(historicProcessInstance.getId());
-            }
+            renderFail(DELETE_FORM_FAIL);
         }
-        renderSuccess(DELETE_FORM_SUCCESS);
     }
 
 

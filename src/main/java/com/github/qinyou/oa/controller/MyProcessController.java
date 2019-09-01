@@ -60,9 +60,11 @@ public class MyProcessController extends BaseController {
             info.setStartTime(instance.getStartTime());
             info.setEndTime(instance.getEndTime());
             info.setName(instance.getName());
-            if(info.getEndTime()==null){
+            if (info.getEndTime() == null) {
                 info.setActivityName(ActivitiUtils.getActivityName(instance.getBusinessKey()));
             }
+            info.setBusinessForm((String) instance.getProcessVariables().get("businessForm"));
+            info.setBusinessKey(instance.getBusinessKey());
             retList.add(info);
         }
         renderDatagrid(retList, total.intValue());

@@ -1,38 +1,39 @@
 package com.github.qinyou.oa.controller;
 
+import com.github.qinyou.common.annotation.RequireMenuCode;
+import com.github.qinyou.common.constant.Constant;
 import com.github.qinyou.common.interceptor.PermissionInterceptor;
+import com.github.qinyou.common.interceptor.SearchSql;
+import com.github.qinyou.common.utils.Id.IdUtils;
+import com.github.qinyou.common.utils.StringUtils;
 import com.github.qinyou.common.utils.TreeTableUtils;
+import com.github.qinyou.common.utils.WebUtils;
+import com.github.qinyou.common.validator.IdsRequired;
+import com.github.qinyou.common.web.BaseController;
+import com.github.qinyou.oa.model.BusinessFormInfo;
 import com.jfinal.aop.Before;
 import com.jfinal.aop.Clear;
 import com.jfinal.plugin.activerecord.Db;
 import com.jfinal.plugin.activerecord.Page;
-import com.github.qinyou.common.web.BaseController;
-import com.github.qinyou.common.constant.Constant;
-import com.github.qinyou.common.interceptor.SearchSql;
-import com.github.qinyou.common.utils.Id.IdUtils;
-import com.github.qinyou.common.utils.StringUtils;
-import com.github.qinyou.common.utils.WebUtils;
-import com.github.qinyou.common.validator.IdsRequired;
-import com.github.qinyou.common.annotation.RequireMenuCode;
-import com.github.qinyou.oa.model.BusinessFormInfo;
 
 import java.util.Date;
 
 /**
  * 自定义流程定义信息，包含 form_name (业务表名）、process_key (流程定义key)
  * business_form_info 控制器
+ *
  * @author chuang
  * @since 2019-08-22 20:49:00
  */
 @SuppressWarnings("Duplicates")
 @RequireMenuCode("businessFormInfo")
-public class BusinessFormInfoController extends BaseController{
+public class BusinessFormInfoController extends BaseController {
 
     /**
      * 列表页
      */
-    public void index(){
-      render("oa/businessFormInfo.ftl");
+    public void index() {
+        render("oa/businessFormInfo.ftl");
     }
 
     /**
@@ -40,10 +41,10 @@ public class BusinessFormInfoController extends BaseController{
      */
     @Clear(PermissionInterceptor.class)
     @Before(SearchSql.class)
-    public void query(){
-        int pageNumber=getAttr("pageNumber");
-        int pageSize=getAttr("pageSize");
-        String where=getAttr(Constant.SEARCH_SQL);
+    public void query() {
+        int pageNumber = getAttr("pageNumber");
+        int pageSize = getAttr("pageSize");
+        String where = getAttr(Constant.SEARCH_SQL);
 
         // 组织机构查询条件
         String orgId = getPara("extra_orgId");
@@ -69,7 +70,7 @@ public class BusinessFormInfoController extends BaseController{
             }
         }
 
-        Page<BusinessFormInfo> businessFormInfoPage=BusinessFormInfo.dao.page(pageNumber,pageSize,where);
+        Page<BusinessFormInfo> businessFormInfoPage = BusinessFormInfo.dao.page(pageNumber, pageSize, where);
         renderDatagrid(businessFormInfoPage);
     }
 
@@ -77,13 +78,13 @@ public class BusinessFormInfoController extends BaseController{
     /**
      * 打开新增或者修改弹出框
      */
-    public void newModel(){
-        String id=getPara("id");
-        if(StringUtils.notEmpty(id)){
-            BusinessFormInfo businessFormInfo=BusinessFormInfo.dao.findById(id);
-            setAttr("businessFormInfo",businessFormInfo);
-            setAttr("categoryId",businessFormInfo.getCategoryId());
-        }else{
+    public void newModel() {
+        String id = getPara("id");
+        if (StringUtils.notEmpty(id)) {
+            BusinessFormInfo businessFormInfo = BusinessFormInfo.dao.findById(id);
+            setAttr("businessFormInfo", businessFormInfo);
+            setAttr("categoryId", businessFormInfo.getCategoryId());
+        } else {
             setAttr("categoryId", getPara("categoryId", "0"));
         }
         render("oa/businessFormInfo_form.ftl");
@@ -93,14 +94,14 @@ public class BusinessFormInfoController extends BaseController{
     /**
      * 新增 action
      */
-    public void addAction(){
-        BusinessFormInfo businessFormInfo=getBean(BusinessFormInfo.class,"");
+    public void addAction() {
+        BusinessFormInfo businessFormInfo = getBean(BusinessFormInfo.class, "");
         businessFormInfo.setId(IdUtils.id())
-            .setCreater(WebUtils.getSessionUsername(this))
-            .setCreateTime(new Date());
-        if(businessFormInfo.save()){
+                .setCreater(WebUtils.getSessionUsername(this))
+                .setCreateTime(new Date());
+        if (businessFormInfo.save()) {
             renderSuccess(ADD_SUCCESS);
-        }else{
+        } else {
             renderFail(ADD_FAIL);
         }
     }
@@ -108,13 +109,13 @@ public class BusinessFormInfoController extends BaseController{
     /**
      * 修改 action
      */
-    public void updateAction(){
-        BusinessFormInfo businessFormInfo=getBean(BusinessFormInfo.class,"");
+    public void updateAction() {
+        BusinessFormInfo businessFormInfo = getBean(BusinessFormInfo.class, "");
         businessFormInfo.setUpdater(WebUtils.getSessionUsername(this))
-            .setUpdateTime(new Date());
-        if( businessFormInfo.update()){
+                .setUpdateTime(new Date());
+        if (businessFormInfo.update()) {
             renderSuccess(UPDATE_SUCCESS);
-        }else{
+        } else {
             renderFail(UPDATE_FAIL);
         }
     }
@@ -123,8 +124,8 @@ public class BusinessFormInfoController extends BaseController{
      * 删除 action
      */
     @Before(IdsRequired.class)
-    public void deleteAction(){
-        String ids = getPara("ids").replaceAll(",","','");
+    public void deleteAction() {
+        String ids = getPara("ids").replaceAll(",", "','");
         String deleteSql = "delete from business_form_info where id in ( '" + ids + "' ) ";
         Db.update(deleteSql);
         renderSuccess(DELETE_SUCCESS);

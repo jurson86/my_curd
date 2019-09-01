@@ -10,7 +10,7 @@
             <#list rootMenus as menu>
                 <li>
                     <a href="${ctx!}/dashboard/${(menu.id)!}" <#if rootMenuId?? && rootMenuId == menu.id >class="header-active"</#if> >
-                        <i class="iconfont ${menu.icon}" style="margin-right: 5px;padding-top: 3px;"></i>${menu.menuName}
+                        <span class="${menu.icon}" style="margin-right: 5px;line-height: 18px;"></span> ${menu.menuName}
                     </a>
                 </li>
             </#list>
@@ -65,7 +65,7 @@
 
     <div cls="sidebar" data-options="region:'west',split:false"   border="false">
         <div style="text-align: center;padding: 10px ;">
-            <input id="filterInput" type="text" placeholder="关键字检索">
+            <input id="filterInput" type="text" placeholder="关键字, enter 检索">
         </div>
         <div style="height: 10px;margin-bottom: 10px;" class="bg"></div>
         <ul id="permissionTree" style="margin-left:18px">

@@ -32,12 +32,13 @@ function editModel(dgId,url,width,height,title){
  * 批量删除 Model
  * @param dgid
  * @param url
+ * @param title 弹窗标题
  */
 function deleteModel(dgid,url,title) {
     var realTitle = title||'删除';
     var rows = $("#"+dgid).datagrid("getSelections");
     if (rows.length!==0) {
-        popup.openConfirm(null,3, title, '您确定'+realTitle+'选中的'+rows.length+'条记录吗?', function () {
+        popup.openConfirm(null,3, realTitle, '您确定'+realTitle+'选中的'+rows.length+'条记录吗?', function () {
             var ids = [];
             rows.forEach(function(row){
                 ids.push(row.id);

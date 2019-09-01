@@ -1,7 +1,6 @@
 package com.github.qinyou.oa.controller;
 
 import com.github.qinyou.common.annotation.RequireMenuCode;
-import com.github.qinyou.common.constant.Constant;
 import com.github.qinyou.common.render.ZipRender;
 import com.github.qinyou.common.utils.FileUtils;
 import com.github.qinyou.common.utils.StringUtils;
@@ -16,14 +15,11 @@ import com.jfinal.plugin.activerecord.tx.Tx;
 import com.jfinal.upload.UploadFile;
 import lombok.extern.slf4j.Slf4j;
 import org.activiti.engine.RepositoryService;
-import org.activiti.engine.impl.util.IoUtil;
 import org.activiti.engine.repository.Deployment;
 import org.activiti.engine.repository.DeploymentQuery;
 import org.apache.commons.io.FilenameUtils;
-import org.apache.commons.io.IOUtils;
 
 import java.io.FileInputStream;
-import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
@@ -132,22 +128,22 @@ public class ProcessDeployController extends BaseController {
      */
     @Before(IdRequired.class)
     public void downloadZip() {
-           String deploymentId = getPara("id");
-           Deployment deployment = ActivitiUtils.getRepositoryService().createDeploymentQuery()
-                   .deploymentId(deploymentId)
-                   .singleResult();
-           if(deployment==null){
-               renderFail("部署包不存在");
-               return;
-           }
+        String deploymentId = getPara("id");
+        Deployment deployment = ActivitiUtils.getRepositoryService().createDeploymentQuery()
+                .deploymentId(deploymentId)
+                .singleResult();
+        if (deployment == null) {
+            renderFail("部署包不存在");
+            return;
+        }
 
-           List<String> resourceNames = ActivitiUtils.getRepositoryService().getDeploymentResourceNames(deploymentId);
-           List<InputStream> resourceDatas = new ArrayList<>();
+        List<String> resourceNames = ActivitiUtils.getRepositoryService().getDeploymentResourceNames(deploymentId);
+        List<InputStream> resourceDatas = new ArrayList<>();
 
-           for(String resourceName:resourceNames){
-               resourceDatas.add(ActivitiUtils.getRepositoryService().getResourceAsStream(deploymentId,resourceName));
-           }
-           render(ZipRender.me().filenames(resourceNames).dataIn(resourceDatas).fileName("部署包["+deployment.getId()+"].zip"));
+        for (String resourceName : resourceNames) {
+            resourceDatas.add(ActivitiUtils.getRepositoryService().getResourceAsStream(deploymentId, resourceName));
+        }
+        render(ZipRender.me().filenames(resourceNames).dataIn(resourceDatas).fileName("部署包[" + deployment.getId() + "].zip"));
     }
 
 }

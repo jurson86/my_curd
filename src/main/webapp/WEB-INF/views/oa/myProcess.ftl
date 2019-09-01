@@ -45,7 +45,7 @@
             if (row!=null) {
                 popup.openConfirm(null,3, '作废确认', '您确定删除作废选中的流程吗?', function () {
                     var businessKey = row.businessKey;
-                    var businessForm = row.processVariables.businessForm;
+                    var businessForm = row.businessForm;
                     if(isEmpty(businessForm) || isEmpty(businessForm)){
                         popup.msg('businessKey 或 businessForm 参数缺失，操作失败 ');
                         return;

@@ -24,7 +24,7 @@
        iconCls="iconfont icon-delete" plain="true">卸载</a>
 
     <a onclick="downZip()" href="#" class="easyui-linkbutton  "
-       iconCls="iconfont icon-gencode" plain="true">下载</a>
+       iconCls="iconfont icon-download" plain="true">下载</a>
 
     <span id="searchSpan" class="searchInputArea">
           <input name="extra_category" prompt="分类" class="easyui-combobox"  style="width:120px; "

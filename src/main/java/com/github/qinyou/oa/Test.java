@@ -30,7 +30,7 @@ public class Test {
         DruidPlugin dp = new DruidPlugin(jdbcProp.get("oa.jdbc.url"),
                 jdbcProp.get("oa.jdbc.user"), jdbcProp.get("oa.jdbc.password"), jdbcProp.get("oa.jdbc.driver"));
         dp.start();
-        ActiveRecordPlugin arp = new ActiveRecordPlugin(ActivitiConfig.DATASOURCE_NAME,dp);
+        ActiveRecordPlugin arp = new ActiveRecordPlugin(ActivitiConfig.DATASOURCE_NAME, dp);
         arp.setDialect(new MysqlDialect());
         arp.setShowSql(true);
         arp.start();

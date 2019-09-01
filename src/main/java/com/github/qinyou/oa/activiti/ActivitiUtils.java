@@ -21,6 +21,7 @@ import java.util.*;
 
 /**
  * activiti 工具
+ *
  * @author chuang
  */
 @Slf4j
@@ -30,21 +31,27 @@ public class ActivitiUtils {
     public static ProcessEngine getProcessEngine() {
         return ActivitiPlugin.processEngine;
     }
+
     public static RepositoryService getRepositoryService() {
         return ActivitiPlugin.processEngine.getRepositoryService();
     }
+
     public static FormService getFormService() {
         return ActivitiPlugin.processEngine.getFormService();
     }
+
     public static IdentityService getIdentityService() {
         return ActivitiPlugin.processEngine.getIdentityService();
     }
+
     public static RuntimeService getRuntimeService() {
         return ActivitiPlugin.processEngine.getRuntimeService();
     }
+
     public static TaskService getTaskService() {
         return ActivitiPlugin.processEngine.getTaskService();
     }
+
     public static HistoryService getHistoryService() {
         return ActivitiPlugin.processEngine.getHistoryService();
     }
@@ -54,6 +61,7 @@ public class ActivitiUtils {
      * 接收流程审批表单参数
      * 表单的 name 字段必须 是 "fp_" 开头
      * 例如 "fp_auditResult-审批结果"
+     *
      * @param controller
      * @return
      */
@@ -68,7 +76,7 @@ public class ActivitiUtils {
                 continue;
             }
             if (value.length == 1) {
-                ret.put(name,value[0]);
+                ret.put(name, value[0]);
             } else {
                 ret.put(name, Joiner.on(",").join(value));
             }
@@ -80,18 +88,19 @@ public class ActivitiUtils {
 
     /**
      * 查询 运行时 流程任务节点名
+     *
      * @param businessKey
      * @return
      */
-    public static String getActivityName(String businessKey){
+    public static String getActivityName(String businessKey) {
         String activityName = "未知";
         ProcessInstance instance = ActivitiUtils.getRuntimeService().createProcessInstanceQuery()
                 .processInstanceBusinessKey(businessKey)
                 .singleResult();
-        if(instance!=null){
-            ActivityImpl activity =  ActivitiUtils.getActivity(instance.getProcessDefinitionId(), instance.getActivityId());
-            if (activity!=null){
-                activityName =(String) activity.getProperty("name");
+        if (instance != null) {
+            ActivityImpl activity = ActivitiUtils.getActivity(instance.getProcessDefinitionId(), instance.getActivityId());
+            if (activity != null) {
+                activityName = (String) activity.getProperty("name");
             }
         }
         return activityName;
@@ -100,38 +109,39 @@ public class ActivitiUtils {
 
     /**
      * 根据 业务表单记录id 查询流程信息
+     *
      * @param businessKey 业务表主键
      * @return
      */
-    public static Map<String,Object>  getInstanceInfoByBusinessKey(String businessKey){
-        Map<String,Object> ret = new HashMap<>();
+    public static Map<String, Object> getInstanceInfoByBusinessKey(String businessKey) {
+        Map<String, Object> ret = new HashMap<>();
 
         // 查询正在运行流程
         ProcessInstance instance = ActivitiUtils.getRuntimeService().createProcessInstanceQuery()
                 .processInstanceBusinessKey(businessKey)
                 .singleResult();
-        if(instance!=null){
+        if (instance != null) {
             // 正运行流程 存在
-            ret.put("processInstanceId",instance.getId()); // 流程实例id
+            ret.put("processInstanceId", instance.getId()); // 流程实例id
             String definitionId = instance.getProcessDefinitionId();
             String activityId = instance.getActivityId();
-            ret.put("processDefinitionId",definitionId); // 流程定义id
-            ret.put("currentActivityId",activityId); // 当前任务节点 id
-            ActivityImpl activity =  ActivitiUtils.getActivity(definitionId,activityId);
-            if (activity!=null){
-                ret.put("currentActivityName",activity.getProperty("name")); //当前任务节点名
+            ret.put("processDefinitionId", definitionId); // 流程定义id
+            ret.put("currentActivityId", activityId); // 当前任务节点 id
+            ActivityImpl activity = ActivitiUtils.getActivity(definitionId, activityId);
+            if (activity != null) {
+                ret.put("currentActivityName", activity.getProperty("name")); //当前任务节点名
             }
-        }else{
+        } else {
             // 正运行流程 不存在  查询历史流程
-            HistoricProcessInstance historicProcessInstance =  ActivitiUtils.getHistoryService().createHistoricProcessInstanceQuery()
+            HistoricProcessInstance historicProcessInstance = ActivitiUtils.getHistoryService().createHistoricProcessInstanceQuery()
                     .processInstanceBusinessKey(businessKey)
                     .singleResult();
-            if(historicProcessInstance!=null){
-                ret.put("hisProcessInstanceId",historicProcessInstance.getId());// 流程实例id
-                ret.put("processDefinitionId",historicProcessInstance.getProcessDefinitionId());// 流程定义id
-                ret.put("startTime",historicProcessInstance.getStartTime()); // 开始时间
-                ret.put("endTime",historicProcessInstance.getEndTime()); // 结束时间
-                ret.put("durationInMillis",historicProcessInstance.getDurationInMillis());// 持续时间
+            if (historicProcessInstance != null) {
+                ret.put("hisProcessInstanceId", historicProcessInstance.getId());// 流程实例id
+                ret.put("processDefinitionId", historicProcessInstance.getProcessDefinitionId());// 流程定义id
+                ret.put("startTime", historicProcessInstance.getStartTime()); // 开始时间
+                ret.put("endTime", historicProcessInstance.getEndTime()); // 结束时间
+                ret.put("durationInMillis", historicProcessInstance.getDurationInMillis());// 持续时间
             }
         }
         // hisProcessInstanceId  和 processInstanceId 是 一致的
@@ -142,7 +152,7 @@ public class ActivitiUtils {
      * 获得流程定义某节点
      *
      * @param processDefinitionId 流程定义id
-     * @param activityId 任务节点id
+     * @param activityId          任务节点id
      * @return
      */
     public static ActivityImpl getActivity(String processDefinitionId, String activityId) {
@@ -153,29 +163,30 @@ public class ActivitiUtils {
 
     /**
      * 流程高亮跟踪图
+     *
      * @param processInstanceId 流程实例Id
      * @return 图片输入流
      */
-    public static InputStream getInstanceDiagram(String processInstanceId){
-        HistoricProcessInstance processInstance =  ActivitiUtils.getHistoryService().createHistoricProcessInstanceQuery().processInstanceId(processInstanceId).singleResult();
+    public static InputStream getInstanceDiagram(String processInstanceId) {
+        HistoricProcessInstance processInstance = ActivitiUtils.getHistoryService().createHistoricProcessInstanceQuery().processInstanceId(processInstanceId).singleResult();
         BpmnModel bpmnModel = ActivitiUtils.getRepositoryService().getBpmnModel(processInstance.getProcessDefinitionId());
         ProcessEngineConfiguration processEngineConfiguration = ActivitiUtils.getProcessEngine().getProcessEngineConfiguration();
         Context.setProcessEngineConfiguration((ProcessEngineConfigurationImpl) processEngineConfiguration);
         ProcessDiagramGenerator diagramGenerator = processEngineConfiguration.getProcessDiagramGenerator();
-        ProcessDefinitionEntity definitionEntity = (ProcessDefinitionEntity)ActivitiUtils.getRepositoryService().getProcessDefinition(processInstance.getProcessDefinitionId());
-        List<HistoricActivityInstance> highLightedActivitList =   ActivitiUtils.getHistoryService().createHistoricActivityInstanceQuery().processInstanceId(processInstanceId).list();
+        ProcessDefinitionEntity definitionEntity = (ProcessDefinitionEntity) ActivitiUtils.getRepositoryService().getProcessDefinition(processInstance.getProcessDefinitionId());
+        List<HistoricActivityInstance> highLightedActivitList = ActivitiUtils.getHistoryService().createHistoricActivityInstanceQuery().processInstanceId(processInstanceId).list();
         List<String> highLightedActivitis = new ArrayList<>();
-        List<String> highLightedFlows = getHighLightedFlows(definitionEntity,highLightedActivitList);
-        for(HistoricActivityInstance tempActivity : highLightedActivitList){
+        List<String> highLightedFlows = getHighLightedFlows(definitionEntity, highLightedActivitList);
+        for (HistoricActivityInstance tempActivity : highLightedActivitList) {
             String activityId = tempActivity.getActivityId();
             highLightedActivitis.add(activityId);
         }
         // 中文乱码 解决
-        return diagramGenerator.generateDiagram(bpmnModel, "png", highLightedActivitis,highLightedFlows,"黑体","黑体","黑体",null,1.0);
+        return diagramGenerator.generateDiagram(bpmnModel, "png", highLightedActivitis, highLightedFlows, "黑体", "黑体", "黑体", null, 1.0);
     }
 
 
-    private static  List<String> getHighLightedFlows(ProcessDefinitionEntity processDefinitionEntity, List<HistoricActivityInstance> historicActivityInstances) {
+    private static List<String> getHighLightedFlows(ProcessDefinitionEntity processDefinitionEntity, List<HistoricActivityInstance> historicActivityInstances) {
         List<String> highFlows = new ArrayList<String>();
         for (int i = 0; i < historicActivityInstances.size() - 1; i++) {
             ActivityImpl activityImpl = processDefinitionEntity.findActivity(historicActivityInstances.get(i).getActivityId());
@@ -206,17 +217,18 @@ public class ActivitiUtils {
 
     /**
      * 查询运行时 流程实例
-     * @param processInstanceId 流程实例id
+     *
+     * @param processInstanceId       流程实例id
      * @param includeProcessVariables 是否包含流程变量
      * @return 流程实例
      */
-    public static  ProcessInstance getRuntimeProcessInstance(String processInstanceId,boolean includeProcessVariables){
-       ProcessInstanceQuery query = getRuntimeService()
+    public static ProcessInstance getRuntimeProcessInstance(String processInstanceId, boolean includeProcessVariables) {
+        ProcessInstanceQuery query = getRuntimeService()
                 .createProcessInstanceQuery()
                 .processInstanceId(processInstanceId);
-       if(includeProcessVariables){
-          query.includeProcessVariables();
-       }
-       return query.singleResult();
+        if (includeProcessVariables) {
+            query.includeProcessVariables();
+        }
+        return query.singleResult();
     }
 }

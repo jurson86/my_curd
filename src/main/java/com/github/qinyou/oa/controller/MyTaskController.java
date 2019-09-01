@@ -47,12 +47,12 @@ public class MyTaskController extends BaseController {
         query.taskAssignee(username).active();
 
         String instanceId = getPara("extra_instanceId");
-        if(StringUtils.notEmpty(instanceId)){
+        if (StringUtils.notEmpty(instanceId)) {
             query.processInstanceId(instanceId);
         }
         String taskName = getPara("extra_taskName");
-        if(StringUtils.notEmpty(taskName)){
-            query.taskNameLike("%"+taskName+"%");
+        if (StringUtils.notEmpty(taskName)) {
+            query.taskNameLike("%" + taskName + "%");
         }
 
         Long total = query.count();

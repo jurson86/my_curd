@@ -10,7 +10,6 @@ import com.github.qinyou.oa.vo.ProcessInstanceInfo;
 import com.jfinal.plugin.activerecord.Db;
 import com.jfinal.plugin.activerecord.Page;
 import com.jfinal.plugin.activerecord.Record;
-import org.activiti.engine.history.HistoricProcessInstance;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,7 +43,7 @@ public class MyCompleteTaskController extends BaseController {
                 "	( SELECT PROC_INST_ID_ FROM act_hi_taskinst WHERE ASSIGNEE_ = '" + username + "' AND END_TIME_ IS NOT NULL GROUP BY PROC_INST_ID_ ) a " +
                 "	LEFT JOIN act_hi_procinst b ON a.PROC_INST_ID_ = b.ID_ " +
                 "	LEFT JOIN act_hi_varinst c ON a.PROC_INST_ID_ = c.PROC_INST_ID_  AND c.NAME_ = 'initiator'  " +
-                "   where b.DELETE_REASON_ is null   and b.START_USER_ID_ != '"+username+"' ";  // 已办任务 不查询自己申请的流程
+                "   where b.DELETE_REASON_ is null   and b.START_USER_ID_ != '" + username + "' ";  // 已办任务 不查询自己申请的流程
         // and c.TEXT_ != '"+username+"'  加上此句，已办任务 不查询 自己申请的
 
         if (StringUtils.notEmpty(processName)) {
@@ -53,7 +52,7 @@ public class MyCompleteTaskController extends BaseController {
         if (StringUtils.notEmpty(applyUser)) {
             sqlExceptSelect = sqlExceptSelect + " and c.TEXT_ like '%" + applyUser + "%'";
         }
-        if(StringUtils.notEmpty(instanceId)){
+        if (StringUtils.notEmpty(instanceId)) {
             sqlExceptSelect = sqlExceptSelect + " and a.PROC_INST_ID_ =  '" + instanceId + "'";
         }
         sqlExceptSelect = sqlExceptSelect + " order by b.START_TIME_ desc ";
@@ -69,7 +68,7 @@ public class MyCompleteTaskController extends BaseController {
             info.setEndTime(record.getDate("endTime"));
             info.setName(record.getStr("name"));
             info.setInitiator(record.getStr("initiator"));
-            if(info.getEndTime()==null){
+            if (info.getEndTime() == null) {
                 info.setActivityName(ActivitiUtils.getActivityName(record.getStr("businessKey")));
             }
             retList.add(info);
