@@ -50,6 +50,7 @@
         </@hasBtnCode>
 
         <span id="searchSpan" class="searchInputArea">
+             <input name="search_LIKE_url" prompt="请求地址" class="easyui-textbox" style="width:150px; ">
             <input name="search_LIKE_sysUser" prompt="用户名" class="easyui-textbox" style="width:120px; ">
             <input name="search_LIKE_sysUserIp" prompt="IP地址" class="easyui-textbox" style="width:120px; ">
             <input name="search_LIKE_requestType" prompt="请求类型" class="easyui-combobox"  style="width:120px; "
@@ -64,7 +65,7 @@
         </span>
     </div>
     <script src="${ctx!}/static/js/dg-curd.js"></script>
-    <script src="${ctx!}/static/plugins/easyui1.6.10/datagrid-extend.js"></script>
+    <script src="${ctx!}/static/plugins/easyui1.8.5/datagrid-extend.js"></script>
     <script>
         function urlFmt(val,row){
             return '<a title="点击查看请求信息" href="javascript:viewModelsByLink(\'查看\',\'${ctx!}/sysVisitLog/view?id='

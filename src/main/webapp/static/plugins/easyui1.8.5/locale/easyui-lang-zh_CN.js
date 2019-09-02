@@ -18,13 +18,13 @@ $.map(['validatebox','textbox','passwordbox','filebox','searchbox',
 		'datebox','datetimebox','numberbox',
 		'spinner','numberspinner','timespinner','datetimespinner'], function(plugin){
 	if ($.fn[plugin]){
-		$.fn[plugin].defaults.missingMessage = '必填项';
+		$.fn[plugin].defaults.missingMessage = '不可为空';
 	}
 });
 if ($.fn.validatebox){
-	$.fn.validatebox.defaults.rules.email.message = '请输入有效的电子邮件地址';
-	$.fn.validatebox.defaults.rules.url.message = '请输入有效的URL地址';
-	$.fn.validatebox.defaults.rules.length.message = '输入内容长度必须介于{0}和{1}之间';
+	$.fn.validatebox.defaults.rules.email.message = '必须为邮件地址';
+	$.fn.validatebox.defaults.rules.url.message = '必须为URL地址';
+	$.fn.validatebox.defaults.rules.length.message = '长度必须介于{0}和{1}之间';
 	$.fn.validatebox.defaults.rules.remote.message = '请修正该字段';
 }
 if ($.fn.calendar){

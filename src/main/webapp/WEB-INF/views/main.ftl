@@ -5,8 +5,6 @@
     <div class="mainHeader" data-options="region:'north'" border="false">
         <ul class="headerMenu">
             <li><a href="javascript:fullScreenToggleNew()" title="点击全屏"  class="header-title">${(setting.sysTitle)!'综合管理系统'}</a></li>
-
-            <#--<li><a href="#" class="header-active">xxx/a></li>-->
             <#list rootMenus as menu>
                 <li>
                     <a href="${ctx!}/dashboard/${(menu.id)!}" <#if rootMenuId?? && rootMenuId == menu.id >class="header-active"</#if> >

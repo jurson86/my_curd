@@ -2,7 +2,7 @@
 <#include "../common/btnControl.ftl"/>
 <@layout>
 
-<div class="easyui-tabs" fit="true" border="false"  pill="true" plain="true" >
+<div class="easyui-tabs" fit="true" border="false" tabPosition="left"  pill="true" narrow="false" plain="true" >
     <div title="运行时" fit="true"  >
         <table id="dg" class="easyui-datagrid"
                url="${ctx!}/processInstance/query?finished=false"
@@ -94,7 +94,7 @@
     </div>
 </div>
 
-    <script src="${ctx!}/static/plugins/easyui1.6.10/datagrid-extend.js"></script>
+    <script src="${ctx!}/static/plugins/easyui1.8.5/datagrid-extend.js"></script>
     <script src="${ctx!}/static/js/dg-curd.js"></script>
     <script src="${ctx!}/static/js/oa.js"></script>
     <script>

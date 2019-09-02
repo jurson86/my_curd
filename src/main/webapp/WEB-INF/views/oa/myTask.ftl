@@ -37,7 +37,7 @@
                onclick="queryModel('dg','searchSpan')">搜索</a>
         </div>
     </div>
-    <script src="${ctx!}/static/plugins/easyui1.6.10/datagrid-extend.js"></script>
+    <script src="${ctx!}/static/plugins/easyui1.8.5/datagrid-extend.js"></script>
     <script src="${ctx!}/static/js/dg-curd.js"></script>
     <script src="${ctx!}/static/js/oa.js"></script>
     <script>
