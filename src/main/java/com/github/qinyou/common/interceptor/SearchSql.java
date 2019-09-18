@@ -103,7 +103,12 @@ public class SearchSql implements Interceptor {
                         sb.append(" ='").append(filter.value).append("'");
                         break;
                     case LIKE:
+                        // 默认首尾加 %
                         sb.append(" like ").append("'%").append(filter.value).append("%'");
+                        break;
+                    case LIKECUST:
+                        // * 替换为 %
+                        sb.append(" like ").append("'").append(filter.value.toString().replaceAll("\\*","%")).append("'");
                         break;
                     case GT:
                         sb.append(" >'").append(filter.value).append("'");
@@ -209,6 +214,6 @@ class SearchFilter {
     }
 
     public enum Operator {
-        EQ, LIKE, GT, LT, GTE, NEQ, LTE, GTES, LTES, INS, INN, IS, ISNOT
+        EQ, LIKE,LIKECUST, GT, LT, GTE, NEQ, LTE, GTES, LTES, INS, INN, IS, ISNOT
     }
 }

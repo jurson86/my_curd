@@ -28,12 +28,13 @@ public class VisitLogInterceptor implements Interceptor {
         sysVisitLog.setUrl(inv.getActionKey());
         sysVisitLog.setRequestType(controller.getRequest().getMethod());
         sysVisitLog.setCreateTime(new Date());
+
         Map<String, String[]> params = controller.getRequest().getParameterMap();
         if (params.keySet().size() > 0) {
             sysVisitLog.setParam(JSON.toJSONString(params));
-            if (sysVisitLog.getParam().length() > 100) {
-                sysVisitLog.setParam("超长文本参数");
-            }
+//            if (sysVisitLog.getParam().length() > 100) {
+//                sysVisitLog.setParam("超长文本参数");
+//            }
         }
         sysVisitLog.save();
         inv.invoke();

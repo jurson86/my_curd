@@ -1,14 +1,5 @@
 <#include "../common/common.ftl"/> <@layout>
 <style>
-    .toolbar{
-        text-align: right;
-        padding:5px 20px;
-    }
-    .content{
-        padding: 10px;
-        height: 90%;
-        overflow: auto;
-    }
     .btnWrapper{
         padding: 10px 0;
     }
@@ -75,21 +66,19 @@
     }
 </script>
 <div class="easyui-layout" fit="true" border="false"  >
-    <div data-options="region:'center'">
-        <div class="toolbar">
-            <a href="#" class="easyui-linkbutton" plain="true" data-options="iconCls:'iconfont icon-save'" onclick="menuTreeUpdate()">菜单授权</a>
-        </div>
-        <hr style="border: 2px dashed lightgray;">
-        <div class="content">
-            <ul id="allMenuTree" class="easyui-tree"></ul>
-        </div>
+    <div data-options="region:'north',split:true"   style="height: 60px;padding: 10px;">
+        <button  class=" button-small pure-button " onclick="menuTreeUpdate()">
+            <i class="iconfont icon-save"></i> 菜单授权
+        </button>
+        <button  class=" button-small  pure-button" onclick="buttonUpdate()"  style="float: right;"  >
+            <i class="iconfont icon-save"></i> 按钮授权
+        </button>
     </div>
-    <div data-options="region:'east',split:true"   style="width:30%;" collapsible="false"  >
-        <div class="toolbar">
-            <a href="#" class="easyui-linkbutton" plain="true" data-options="iconCls:'iconfont icon-save'" onclick="buttonUpdate()">按钮授权</a>
-        </div>
-        <hr style="border: 2px dashed lightgray;">
-        <form id="btnForm" class="content">
+    <div data-options="region:'center',split:true" style="padding: 10px;"  >
+        <ul id="allMenuTree" class="easyui-tree"></ul>
+    </div>
+    <div data-options="region:'east',split:true"     style="width:30%;padding: 10px;"  >
+        <form id="btnForm" >
             <input type="hidden" name="roleId" value="${roleId!}">
             <div  id="btn-list">
             </div>

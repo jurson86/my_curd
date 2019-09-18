@@ -51,7 +51,7 @@
 <script src="${ctx!}/static/js/input2combotree.js"></script>
 <script>
     /*机构查询条件*/
-    initFormCombotree('#org','','','${ctx!}/sysOrg/orgComboTree?withRoot=false',false);
+    initFormCombotree('#org','','','${ctx!}/utils/orgComboTree?withRoot=false',false);
 
     function resetPwd(){
         var rows = $("#dg").datagrid("getSelections");

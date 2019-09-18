@@ -64,12 +64,12 @@ oa.jdbc.minIdle=5
 # 定时任务 配置
 cron4j=testTask,delSysNotice
 # 测试定时任务， 每天0点执行
-testTask.cron=* 0 * * *
+testTask.cron=0 0 * * *
 testTask.class=com.github.qinyou.system.task.TestTask
 testTask.daemon=true
 testTask.enable=true
 # 删减系统通知数据表 定时任务，每天1点执行
-delSysNotice.cron=* 1 * * *
+delSysNotice.cron=0 1 * * *
 delSysNotice.class=com.github.qinyou.system.task.DelSysNoticeTask
 delSysNotice.daemon=true
 delSysNotice.enable=true
