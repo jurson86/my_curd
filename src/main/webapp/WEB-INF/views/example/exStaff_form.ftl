@@ -86,7 +86,7 @@
         </tbody>
     </table>
 
-    <div class="easyui-tabs" style="width:100%; height: auto;margin-top: 2px;">
+    <div class="easyui-tabs" style="width:100%; height: auto;margin-top: 2px;" >
         <div title="教育经历" class="sonTablePanel">
             <a onclick="addRow(this)" class="easyui-linkbutton addRowBtn" title="增行" iconCls="iconfont icon-add"
                plain="true">增行</a>
@@ -128,7 +128,7 @@
                 </tr>
                 </thead>
                 <tbody>
-             <#if  exStaffEducations  ??> 
+             <#if  exStaffEducations  ??>
                  <#list  exStaffEducations as item>
                              <tr>
                                  <input name="exStaffEducation[${item_index}].id" type="hidden" value="${(item.id)!}">
@@ -206,7 +206,7 @@
                 </tr>
                 </thead>
                 <tbody>
-             <#if  exStaffExperiences  ??> 
+             <#if  exStaffExperiences  ??>
                  <#list  exStaffExperiences as item>
                              <tr>
                                  <input name="exStaffExperience[${item_index}].id" type="hidden" value="${(item.id)!}">
@@ -281,7 +281,7 @@
                 </tr>
                 </thead>
                 <tbody>
-             <#if  exStaffFamilys  ??> 
+             <#if  exStaffFamilys  ??>
                  <#list  exStaffFamilys as item>
                              <tr>
                                  <input name="exStaffFamily[${item_index}].id" type="hidden" value="${(item.id)!}">
