@@ -11,7 +11,7 @@ import com.jfinal.config.Routes;
  *
  * @author zhangchuang
  */
-public class ExampleRoute extends Routes {
+public class ExampleRoutes extends Routes {
 
     @Override
     public void config() {

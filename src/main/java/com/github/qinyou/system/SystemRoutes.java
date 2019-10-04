@@ -10,7 +10,7 @@ import com.jfinal.config.Routes;
  *
  * @author zhangchuang
  */
-public class SystemRoute extends Routes {
+public class SystemRoutes extends Routes {
 
     @Override
     public void config() {

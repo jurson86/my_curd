@@ -10,7 +10,7 @@ import com.jfinal.config.Routes;
  *
  * @author zhangchuang
  */
-public class GenOnlineRoute extends Routes {
+public class GenOnlineRoutes extends Routes {
 
     @Override
     public void config() {

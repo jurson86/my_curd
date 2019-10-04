@@ -18,6 +18,7 @@ import lombok.extern.slf4j.Slf4j;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Enumeration;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -170,10 +171,12 @@ public class LoginController extends BaseController {
     @ActionKey("/logout")
     public void logout() {
         // 当前session 失效
-        while (getSession().getAttributeNames().hasMoreElements()) {
-            removeSessionAttr(getSession().getAttributeNames().nextElement());
+        Enumeration<String> sessionAttrNames =  getSession().getAttributeNames();
+        while (sessionAttrNames.hasMoreElements()) {
+            removeSessionAttr(sessionAttrNames.nextElement());
         }
-        getSession().invalidate();
+        // 无任何属性的 session 感觉 没必要 invalidate
+        // getSession().invalidate();
 
         // 清理 记住密码 cookie
         setCookie(USERNAME_KEY, null, 0);

@@ -10,14 +10,14 @@ import com.github.qinyou.common.web.UtilsController;
 import com.github.qinyou.common.utils.log.LogBackLogFactory;
 import com.github.qinyou.common.web.FileController;
 import com.github.qinyou.example.ExampleModelMapping;
-import com.github.qinyou.example.ExampleRoute;
-import com.github.qinyou.genOnline.GenOnlineRoute;
-import com.github.qinyou.oa.OARoute;
+import com.github.qinyou.example.ExampleRoutes;
+import com.github.qinyou.genOnline.GenOnlineRoutes;
+import com.github.qinyou.oa.OARoutes;
 import com.github.qinyou.oa.OaModelMapping;
 import com.github.qinyou.oa.activiti.ActivitiConfig;
 import com.github.qinyou.oa.activiti.ActivitiPlugin;
 import com.github.qinyou.system.SystemModelMapping;
-import com.github.qinyou.system.SystemRoute;
+import com.github.qinyou.system.SystemRoutes;
 import com.github.qinyou.system.model.SysUser;
 import com.jfinal.config.*;
 import com.jfinal.ext.handler.ContextPathHandler;
@@ -122,10 +122,10 @@ public class AppConfig extends JFinalConfig {
         me.add("/file", FileController.class, Constant.VIEW_PATH);     // 公共文件上传
 
         // 模块路由
-        me.add(new SystemRoute());    // system 模块路由，菜单、角色、用户、组织机构 等等系统表信息管理
-        me.add(new OARoute());        // 整合 activiti 实现的流程审批功能
-        me.add(new GenOnlineRoute()); // 在线代码生成器
-        me.add(new ExampleRoute());   // 测试用例路由：代码生成的例子、实验性的东西
+        me.add(new SystemRoutes());    // system 模块路由，菜单、角色、用户、组织机构 等等系统表信息管理
+        me.add(new OARoutes());        // 整合 activiti 实现的流程审批功能
+        me.add(new GenOnlineRoutes()); // 在线代码生成器
+        me.add(new ExampleRoutes());   // 测试用例路由：代码生成的例子、实验性的东西
     }
 
 

@@ -11,7 +11,7 @@ import com.jfinal.config.Routes;
  *
  * @author zhangchuang
  */
-public class OARoute extends Routes {
+public class OARoutes extends Routes {
 
     @Override
     public void config() {
