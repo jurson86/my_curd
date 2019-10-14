@@ -1,7 +1,6 @@
 package com.github.qinyou.oa.controller;
 
-import com.github.qinyou.common.annotation.RequireButtonCode;
-import com.github.qinyou.common.annotation.RequireMenuCode;
+import com.github.qinyou.common.annotation.RequirePermission;
 import com.github.qinyou.common.utils.StringUtils;
 import com.github.qinyou.common.utils.WebUtils;
 import com.github.qinyou.common.validator.IdRequired;
@@ -29,7 +28,7 @@ import java.util.Map;
  */
 @SuppressWarnings("Duplicates")
 @Slf4j
-@RequireMenuCode("myTask")
+@RequirePermission("myTask")
 public class MyTaskController extends BaseController {
 
     public void index() {
@@ -168,7 +167,7 @@ public class MyTaskController extends BaseController {
 
 
     // 转办
-    @RequireButtonCode("myTask:changeAssignee")
+    @RequirePermission("myTask:changeAssignee")
     @TxConfig(ActivitiConfig.DATASOURCE_NAME)
     @Before(Tx.class)
     public void changeAssigneeAction() {

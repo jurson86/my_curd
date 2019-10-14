@@ -1,6 +1,6 @@
 package com.github.qinyou.oa.controller;
 
-import com.github.qinyou.common.annotation.RequireMenuCode;
+import com.github.qinyou.common.annotation.RequirePermission;
 import com.github.qinyou.common.utils.StringUtils;
 import com.github.qinyou.common.utils.WebUtils;
 import com.github.qinyou.common.web.BaseController;
@@ -17,7 +17,7 @@ import java.util.List;
 /**
  * 已办任务
  */
-@RequireMenuCode("myCompleteTask")
+@RequirePermission("myCompleteTask")
 public class MyCompleteTaskController extends BaseController {
     public void index() {
         render("oa/myCompleteTask.ftl");

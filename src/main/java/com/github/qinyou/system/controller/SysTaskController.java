@@ -1,7 +1,7 @@
 package com.github.qinyou.system.controller;
 
 import com.github.qinyou.AppConfig;
-import com.github.qinyou.common.annotation.RequireMenuCode;
+import com.github.qinyou.common.annotation.RequirePermission;
 import com.github.qinyou.common.constant.Constant;
 import com.github.qinyou.common.interceptor.SearchSql;
 import com.github.qinyou.common.utils.ReflectionUtils;
@@ -27,7 +27,7 @@ import java.util.List;
 /**
  * 定时任务
  */
-@RequireMenuCode("sysTask")
+@RequirePermission("sysTask")
 @Slf4j
 public class SysTaskController extends BaseController {
 

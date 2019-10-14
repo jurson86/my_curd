@@ -1,6 +1,6 @@
 package com.github.qinyou.system.controller;
 
-import com.github.qinyou.common.annotation.RequireMenuCode;
+import com.github.qinyou.common.annotation.RequirePermission;
 import com.github.qinyou.common.constant.Constant;
 import com.github.qinyou.common.interceptor.ComActionInterceptor;
 import com.github.qinyou.common.interceptor.PermissionInterceptor;
@@ -27,7 +27,7 @@ import java.util.List;
  *
  * @author zhangchuang
  */
-@RequireMenuCode("sysDict")
+@RequirePermission("sysDict")
 public class SysDictController extends BaseController {
 
     /**

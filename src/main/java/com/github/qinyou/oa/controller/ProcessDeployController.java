@@ -1,6 +1,6 @@
 package com.github.qinyou.oa.controller;
 
-import com.github.qinyou.common.annotation.RequireMenuCode;
+import com.github.qinyou.common.annotation.RequirePermission;
 import com.github.qinyou.common.render.ZipRender;
 import com.github.qinyou.common.utils.FileUtils;
 import com.github.qinyou.common.utils.StringUtils;
@@ -31,7 +31,7 @@ import java.util.zip.ZipInputStream;
  * @author chuang
  */
 @Slf4j
-@RequireMenuCode("processDeploy")
+@RequirePermission("processDeploy")
 public class ProcessDeployController extends BaseController {
 
     public void index() {

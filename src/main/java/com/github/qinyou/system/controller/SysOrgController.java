@@ -1,6 +1,6 @@
 package com.github.qinyou.system.controller;
 
-import com.github.qinyou.common.annotation.RequireMenuCode;
+import com.github.qinyou.common.annotation.RequirePermission;
 import com.github.qinyou.common.constant.Constant;
 import com.github.qinyou.common.interceptor.SearchSql;
 import com.github.qinyou.common.utils.Id.IdUtils;
@@ -23,7 +23,7 @@ import java.util.*;
  *
  * @author zhangchuang
  */
-@RequireMenuCode("sysOrg")
+@RequirePermission("sysOrg")
 public class SysOrgController extends BaseController {
 
     public void index() {

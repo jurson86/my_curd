@@ -12,7 +12,7 @@ import com.github.qinyou.common.utils.StringUtils;
 import com.github.qinyou.common.utils.WebUtils;
 import com.github.qinyou.common.validator.IdsRequired;
 import com.github.qinyou.common.validator.IdRequired;
-import com.github.qinyou.common.annotation.RequireMenuCode;
+import com.github.qinyou.common.annotation.RequirePermission;
 import ${(basePackageName)!}.${(moduleName)!}.model.${(mainTableMeta.nameCamelFirstUp)!};
 <#if sonTableMetas??>
     <#list sonTableMetas as sonTableMeta>
@@ -28,7 +28,7 @@ import java.util.List;
  * @author ${author!}
  * @since ${since!}
  */
-@RequireMenuCode("${(mainTableMeta.nameCamel)!}")
+@RequirePermission("${(mainTableMeta.nameCamel)!}")
 public class ${(mainTableMeta.nameCamelFirstUp)!}Controller extends BaseController{
 
     /**

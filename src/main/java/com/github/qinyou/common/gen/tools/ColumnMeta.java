@@ -7,7 +7,7 @@ import com.github.qinyou.common.gen.Config;
 import java.io.Serializable;
 
 /**
- * ColumnMeta，, 用于代码生成器
+ * ColumnMeta, 用于代码生成器
  */
 @SuppressWarnings("unused")
 public class ColumnMeta implements Serializable {

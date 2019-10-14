@@ -1,6 +1,6 @@
 package com.github.qinyou.example.controller;
 
-import com.github.qinyou.common.annotation.RequireMenuCode;
+import com.github.qinyou.common.annotation.RequirePermission;
 import com.github.qinyou.common.constant.Constant;
 import com.github.qinyou.common.interceptor.SearchSql;
 import com.github.qinyou.common.utils.Id.IdUtils;
@@ -29,7 +29,7 @@ import java.util.List;
  * @since 2019-02-22 22:15:05
  */
 @Slf4j
-@RequireMenuCode("exStaff")
+@RequirePermission("exStaff")
 public class ExStaffController extends BaseController {
 
     /**

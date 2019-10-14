@@ -1,6 +1,6 @@
 package com.github.qinyou.genOnline.controller;
 
-import com.github.qinyou.common.annotation.RequireMenuCode;
+import com.github.qinyou.common.annotation.RequirePermission;
 import com.github.qinyou.common.gen.GeneratorConfig;
 import com.github.qinyou.common.gen.client.*;
 import com.github.qinyou.common.gen.tools.ColumnMeta;
@@ -25,7 +25,7 @@ import java.util.*;
  * @author chuang
  */
 @SuppressWarnings("Duplicates")
-@RequireMenuCode("genOnline")
+@RequirePermission("genOnline")
 @Slf4j
 public class GenOnlineController extends BaseController {
 
@@ -47,10 +47,10 @@ public class GenOnlineController extends BaseController {
     public void query() throws SQLException {
         DataSource dataSource = null;
         try {
-            if (StringUtils.isEmpty(GeneratorConfig.dbConfigName)) {
+            if (StringUtils.isEmpty(GeneratorConfig.dsName)) {
                 dataSource = DbKit.getConfig().getDataSource();
             } else {
-                dataSource = DbKit.getConfig(GeneratorConfig.dbConfigName).getDataSource();
+                dataSource = DbKit.getConfig(GeneratorConfig.dsName).getDataSource();
             }
         } catch (Exception e) {
             log.error(e.getMessage(), e);

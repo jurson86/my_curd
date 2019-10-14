@@ -1,6 +1,6 @@
 package com.github.qinyou.oa.controller;
 
-import com.github.qinyou.common.annotation.RequireMenuCode;
+import com.github.qinyou.common.annotation.RequirePermission;
 import com.github.qinyou.common.constant.Constant;
 import com.github.qinyou.common.interceptor.PermissionInterceptor;
 import com.github.qinyou.common.interceptor.SearchSql;
@@ -26,7 +26,7 @@ import java.util.Date;
  * @since 2019-08-22 20:49:00
  */
 @SuppressWarnings("Duplicates")
-@RequireMenuCode("businessFormInfo")
+@RequirePermission("businessFormInfo")
 public class BusinessFormInfoController extends BaseController {
 
     /**

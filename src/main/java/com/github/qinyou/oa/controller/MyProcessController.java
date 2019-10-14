@@ -1,6 +1,6 @@
 package com.github.qinyou.oa.controller;
 
-import com.github.qinyou.common.annotation.RequireMenuCode;
+import com.github.qinyou.common.annotation.RequirePermission;
 import com.github.qinyou.common.utils.StringUtils;
 import com.github.qinyou.common.utils.WebUtils;
 import com.github.qinyou.common.web.BaseController;
@@ -19,7 +19,7 @@ import java.util.List;
  *
  * @author chuang
  */
-@RequireMenuCode("myProcess")
+@RequirePermission("myProcess")
 public class MyProcessController extends BaseController {
 
     /**

@@ -1,8 +1,7 @@
 /*一些控件布局, 轻易不要修改原有代码，除非明确了解*/
 
-/* 排除字体图标 使用的字体样式 */
+/* 全局字体样式 */
 :not(.iconfont){
-    /*ant design*/
     font-family: "Helvetica Neue",Helvetica,"Hiragino Sans GB","STHeitiSC-Light","Microsoft YaHei","微软雅黑",Arial,sans-serif ;
 }
 
@@ -21,40 +20,36 @@
 }
 
 
-/* datagrid toolbar 中 输入框 位置*/
+/* datagrid toolbar 中 搜索框*/
 .searchInputArea {
     /*有按钮 有搜索框*/
     position: absolute;
     right: 20px;
 }
 .searchInputAreaDiv{
-    /*无按钮 搜索框*/
+    /*无按钮 只有搜索框*/
     text-align: right;
 }
 
 
-/* 表单提交页 按钮*/
+/* 表单页 按钮*/
 .formBtnsDiv{
     position: absolute;
     bottom: 20px;
     right: 20px;
-    /*text-align:center;*/
-    /*margin-top: 20px;*/
 }
-
-
 /* 表单页表格样式 */
 table.centerTable{
     margin: 10px auto;
+    border: none!important;
+    box-shadow:  0px 0px 5px lightgray;
 }
 table.fullWidthTable{
     width: 100%;
 }
 table.labelInputTable  tr>td:nth-child(odd){
     background-color:#fafafa;
-/*    background-color: #eee;*/
 }
-
 
 /* 仅 chrome webkit 内核 滚动条 样式*/
 ::-webkit-scrollbar {

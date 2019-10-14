@@ -1,6 +1,6 @@
 package com.github.qinyou.system.controller;
 
-import com.github.qinyou.common.annotation.RequireMenuCode;
+import com.github.qinyou.common.annotation.RequirePermission;
 import com.github.qinyou.common.constant.Constant;
 import com.github.qinyou.common.interceptor.PermissionInterceptor;
 import com.github.qinyou.common.interceptor.SearchSql;
@@ -26,7 +26,7 @@ import java.util.*;
 /**
  * 菜单管理
  */
-@RequireMenuCode("sysMenu")
+@RequirePermission("sysMenu")
 public class SysMenuController extends BaseController {
 
     public void index() {

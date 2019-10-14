@@ -4,7 +4,7 @@ import cn.afterturn.easypoi.excel.ExcelExportUtil;
 import cn.afterturn.easypoi.excel.ExcelImportUtil;
 import cn.afterturn.easypoi.excel.entity.ExportParams;
 import cn.afterturn.easypoi.excel.entity.ImportParams;
-import com.github.qinyou.common.annotation.RequireMenuCode;
+import com.github.qinyou.common.annotation.RequirePermission;
 import com.github.qinyou.common.constant.Constant;
 import com.github.qinyou.common.interceptor.SearchSql;
 import com.github.qinyou.common.render.ExcelRender;
@@ -34,7 +34,7 @@ import java.util.List;
  * @since 2019-06-15 20:24:55
  */
 @Slf4j
-@RequireMenuCode("sysSetting")
+@RequirePermission("sysSetting")
 public class SysSettingController extends BaseController {
 
     /**

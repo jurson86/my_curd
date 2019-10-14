@@ -1,6 +1,6 @@
 package com.github.qinyou.system.controller;
 
-import com.github.qinyou.common.annotation.RequireMenuCode;
+import com.github.qinyou.common.annotation.RequirePermission;
 import com.github.qinyou.common.utils.StringUtils;
 import com.github.qinyou.common.utils.guava.BaseCache;
 import com.github.qinyou.common.utils.guava.CacheContainer;
@@ -21,7 +21,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 /**
  * 缓存中账号解锁
  */
-@RequireMenuCode("sysUserUnlock")
+@RequirePermission("sysUserUnlock")
 public class SysUserUnlockController extends BaseController {
 
     // 密码错误尝试次数

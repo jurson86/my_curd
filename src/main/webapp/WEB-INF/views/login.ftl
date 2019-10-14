@@ -96,7 +96,7 @@
         </div>
     </div>
 </div>
-<script src="${ctx!}/static/plugins/easyui1.6.10/jquery.min.js"></script>
+<script src="${ctx!}/static/plugins/easyui1.8.5/jquery.min.js"></script>
 <script>
     /*不被 iframe 嵌套, 如果被嵌套，父页面跳转到登录页面*/
     if (top.location !== self.location) {

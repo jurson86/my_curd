@@ -2,8 +2,7 @@ package com.github.qinyou.system.controller;
 
 import cn.afterturn.easypoi.excel.ExcelExportUtil;
 import cn.afterturn.easypoi.excel.entity.ExportParams;
-import com.github.qinyou.common.annotation.RequireButtonCode;
-import com.github.qinyou.common.annotation.RequireMenuCode;
+import com.github.qinyou.common.annotation.RequirePermission;
 import com.github.qinyou.common.constant.Constant;
 import com.github.qinyou.common.interceptor.SearchSql;
 import com.github.qinyou.common.interceptor.VisitLogInterceptor;
@@ -30,7 +29,7 @@ import java.util.Map;
  * 访问日志
  */
 @Clear(VisitLogInterceptor.class)
-@RequireMenuCode("sysVisitLog")
+@RequirePermission("sysVisitLog")
 public class SysVisitLogController extends BaseController {
 
     public void index() {
@@ -54,7 +53,7 @@ public class SysVisitLogController extends BaseController {
     /**
      * 批量删除
      */
-    @RequireButtonCode("sysVisitLog:delete")
+    @RequirePermission("sysVisitLog:delete")
     @Before(IdsRequired.class)
     public void deleteAction() {
         String ids = getPara("ids").replaceAll(",", "','");
@@ -89,7 +88,7 @@ public class SysVisitLogController extends BaseController {
     /**
      * 导出excel
      */
-    @RequireButtonCode("sysVisitLog:export")
+    @RequirePermission("sysVisitLog:export")
     @Before(SearchSql.class)
     public void exportExcel() {
         String where = getAttr(Constant.SEARCH_SQL);

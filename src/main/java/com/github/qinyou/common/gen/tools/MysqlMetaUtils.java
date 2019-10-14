@@ -10,7 +10,7 @@ import java.sql.*;
 import java.util.*;
 
 /**
- * mysql 元数据 工具
+ * mysql 表元数据 工具
  *
  * @author zhangchuang
  */
@@ -19,7 +19,6 @@ public class MysqlMetaUtils {
 
     // 数据源
     private DataSource dataSource;
-
     public MysqlMetaUtils(DataSource dataSource) {
         this.dataSource = dataSource;
     }

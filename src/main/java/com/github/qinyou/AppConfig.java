@@ -2,6 +2,7 @@ package com.github.qinyou;
 
 import com.alibaba.druid.filter.stat.StatFilter;
 import com.alibaba.druid.wall.WallFilter;
+import com.github.qinyou.api.ApiRoutes;
 import com.github.qinyou.common.constant.Constant;
 import com.github.qinyou.common.web.LoginController;
 import com.github.qinyou.common.web.MainController;
@@ -126,13 +127,14 @@ public class AppConfig extends JFinalConfig {
         me.add(new OARoutes());        // 整合 activiti 实现的流程审批功能
         me.add(new GenOnlineRoutes()); // 在线代码生成器
         me.add(new ExampleRoutes());   // 测试用例路由：代码生成的例子、实验性的东西
+        me.add(new ApiRoutes()); // api 接口
     }
 
 
     @SuppressWarnings("Duplicates")
     @Override
     public void configPlugin(Plugins me) {
-        // 数据源 1 (用户权限、组织机构、主数据 等)
+        // 数据源 1 (用户权限、组织机构、主数据 等) main
         DruidPlugin sysDruid = new DruidPlugin(configProp.get("jdbc.url"), configProp.get("jdbc.user"), configProp.get("jdbc.password"), configProp.get("jdbc.driver"));
         sysDruid.setInitialSize(configProp.getInt("jdbc.initialSize"));
         sysDruid.setMaxActive(configProp.getInt("jdbc.maxActive"));
@@ -151,7 +153,8 @@ public class AppConfig extends JFinalConfig {
         me.add(sysActiveRecord);
         log.info("设置 数据源 sysDruid sysActiveRecord 成功");
 
-        // 数据源2 （activiti表、流程表单）
+
+        // 数据源2 （activiti表、流程表单） my_curd_oa
         DruidPlugin oaDruid = new DruidPlugin(configProp.get("oa.jdbc.url"), configProp.get("oa.jdbc.user"), configProp.get("oa.jdbc.password"), configProp.get("oa.jdbc.driver"));
         oaDruid.setInitialSize(configProp.getInt("oa.jdbc.initialSize"));
         oaDruid.setMaxActive(configProp.getInt("oa.jdbc.maxActive"));

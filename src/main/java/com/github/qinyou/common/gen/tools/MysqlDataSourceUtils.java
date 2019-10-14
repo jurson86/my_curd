@@ -7,7 +7,7 @@ import com.jfinal.plugin.druid.DruidPlugin;
 import javax.sql.DataSource;
 
 /**
- * mysql 获得数据源, client main 方法使用 下 适用
+ * mysql 获得数据源, client main 方法使用 下 使用
  *
  * @author zhangchuang
  */

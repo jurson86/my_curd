@@ -1,6 +1,6 @@
 package com.github.qinyou.system.controller;
 
-import com.github.qinyou.common.annotation.RequireMenuCode;
+import com.github.qinyou.common.annotation.RequirePermission;
 import com.github.qinyou.common.constant.Constant;
 import com.github.qinyou.common.interceptor.SearchSql;
 import com.github.qinyou.common.utils.Id.IdUtils;
@@ -18,7 +18,7 @@ import com.jfinal.plugin.activerecord.tx.Tx;
 
 import java.util.Date;
 
-@RequireMenuCode("sysUser")
+@RequirePermission("sysUser")
 public class SysUserController extends BaseController {
     private final String DEFAULT_PWD = "123456"; // 默认密码
 

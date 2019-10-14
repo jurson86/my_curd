@@ -1,7 +1,7 @@
 package com.github.qinyou.system.controller;
 
 import com.github.qinyou.common.web.LoginService;
-import com.github.qinyou.common.annotation.RequireMenuCode;
+import com.github.qinyou.common.annotation.RequirePermission;
 import com.github.qinyou.common.constant.Constant;
 import com.github.qinyou.common.interceptor.SearchSql;
 import com.github.qinyou.common.utils.Id.IdUtils;
@@ -25,7 +25,7 @@ import java.util.*;
  * @author zhangchuang
  */
 @SuppressWarnings("Duplicates")
-@RequireMenuCode("sysRole")
+@RequirePermission("sysRole")
 public class SysRoleController extends BaseController {
 
     /**
@@ -213,6 +213,7 @@ public class SysRoleController extends BaseController {
         // 删除 角色原有菜单
         String deleteSql = "delete from  sys_role_menu where sysRoleId = ?";
         Db.update(deleteSql, roleId);
+
         // 添加 角色新菜单
         if (StringUtils.notEmpty(menuIds)) {
             String[] menuIdAry = menuIds.split(",");

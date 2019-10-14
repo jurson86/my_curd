@@ -1,6 +1,6 @@
 package com.github.qinyou.system.controller;
 
-import com.github.qinyou.common.annotation.RequireMenuCode;
+import com.github.qinyou.common.annotation.RequirePermission;
 import com.github.qinyou.common.constant.Constant;
 import com.github.qinyou.common.interceptor.SearchSql;
 import com.github.qinyou.common.utils.Id.IdUtils;
@@ -17,7 +17,7 @@ import com.jfinal.plugin.activerecord.tx.Tx;
 
 import java.util.Date;
 
-@RequireMenuCode("sysNoticeType")
+@RequirePermission("sysNoticeType")
 public class SysNoticeTypeController extends BaseController {
     public void index() {
         render("system/sysNoticeType.ftl");

@@ -1,6 +1,6 @@
 package com.github.qinyou.oa.controller;
 
-import com.github.qinyou.common.annotation.RequireMenuCode;
+import com.github.qinyou.common.annotation.RequirePermission;
 import com.github.qinyou.common.utils.StringUtils;
 import com.github.qinyou.common.web.BaseController;
 import com.github.qinyou.oa.activiti.ActivitiUtils;
@@ -14,7 +14,7 @@ import java.util.List;
  *
  * @author chuang
  */
-@RequireMenuCode("processInstance")
+@RequirePermission("processInstance")
 public class ProcessInstanceController extends BaseController {
 
     public void index() {

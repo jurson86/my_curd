@@ -1,6 +1,6 @@
 package com.github.qinyou.oa.controller;
 
-import com.github.qinyou.common.annotation.RequireMenuCode;
+import com.github.qinyou.common.annotation.RequirePermission;
 import com.github.qinyou.common.utils.StringUtils;
 import com.github.qinyou.common.validator.IdsRequired;
 import com.github.qinyou.common.web.BaseController;
@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Slf4j
-@RequireMenuCode("processDefine")
+@RequirePermission("processDefine")
 public class ProcessDefineController extends BaseController {
 
     public void index() {

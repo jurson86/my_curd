@@ -1,6 +1,6 @@
 package com.github.qinyou.oa.controller;
 
-import com.github.qinyou.common.annotation.RequireMenuCode;
+import com.github.qinyou.common.annotation.RequirePermission;
 import com.github.qinyou.common.utils.StringUtils;
 import com.github.qinyou.common.utils.WebUtils;
 import com.github.qinyou.common.validator.IdRequired;
@@ -27,7 +27,7 @@ import java.util.List;
  */
 @SuppressWarnings("Duplicates")
 @Slf4j
-@RequireMenuCode("myCandidateTask")
+@RequirePermission("myCandidateTask")
 public class MyCandidateTaskController extends BaseController {
 
     public void index() {

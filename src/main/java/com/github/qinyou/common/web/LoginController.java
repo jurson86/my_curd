@@ -16,10 +16,7 @@ import com.jfinal.kit.HashKit;
 import com.jfinal.kit.StrKit;
 import lombok.extern.slf4j.Slf4j;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.Enumeration;
-import java.util.List;
+import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
@@ -156,7 +153,7 @@ public class LoginController extends BaseController {
         setSessionAttr("buttonCodes", buttonCodes);
         // 角色编码
         String rolecodes = SysUserRole.dao.findRoleCodesByUserId(sysUser.getId());
-        setSessionAttr("roleCodes", rolecodes);
+        setSessionAttr("roleCodes", Arrays.asList(rolecodes.split(",")));
 
         log.info("{} 拥有角色 ids {}", sysUser.getUsername(), roleIds);
         log.info("{} 拥有菜单 {}", sysUser.getUsername(), JSON.toJSONString(sysMenus));
