@@ -23,6 +23,14 @@ id.datacenterId=0
 # aes 加密使用
 security.aesKey=tFWpij4I9ZP_YIfoEwyrO8kgGhTNKJSi
 
+# Jwt token 使用
+# jwt token 签发人
+jwt.iss = my_curd
+# jwt 密钥
+jwt.secret = AAAABBBCCC
+# jwt 过期天数
+jwt.exp = 30
+
 
 # 文件上传下载配置
 # 上传路径

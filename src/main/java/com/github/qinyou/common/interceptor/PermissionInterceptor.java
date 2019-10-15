@@ -25,7 +25,7 @@ public class PermissionInterceptor implements Interceptor {
         Controller controller = inv.getController();
 
         // 验证菜单权限
-        RequirePermission requirePermission = controller.getClass().getAnnotation(RequirePermission.class);
+        RequirePermission requirePermission = inv.getClass().getAnnotation(RequirePermission.class);
         List<String> codes;
         if (requirePermission != null ) {
             codes = requirePermission.isPermission() ?

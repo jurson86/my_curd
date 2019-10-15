@@ -2,6 +2,7 @@ package com.github.qinyou.common.utils.jwt;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import com.github.qinyou.AppConfig;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtBuilder;
 import io.jsonwebtoken.Jwts;
@@ -20,9 +21,14 @@ import java.util.List;
  */
 public class JwtUtils {
 
-    private static final String ISS = "my_curd";         // 签名 签发者
-    private static final String SECRET = "AAAABBBCCC";   // 签名 密钥
-    private static final Long EXPIRATION_TIME_VALUE = 60L * 60 * 24 * 30; // 30 天有效期 (单位为秒)
+    private static final String ISS ;                 // 签名 签发者
+    private static final String SECRET ;              // 签名 密钥
+    private static final Long EXPIRATION_TIME_VALUE ; // 过期时间 (单位为秒)
+    static{
+        ISS = AppConfig.configProp.get("jwt.iss");
+        SECRET = AppConfig.configProp.get("jwt.secret");
+        EXPIRATION_TIME_VALUE = 60L * 60 * 24 * AppConfig.configProp.getInt("jwt.exp");
+    }
 
     /**
      * 生成签名
