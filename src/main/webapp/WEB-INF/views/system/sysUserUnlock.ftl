@@ -19,7 +19,7 @@
        </thead>
     </table>
     <div id="tb">
-        <a onclick="unlock()" href="#" class="easyui-linkbutton" iconCls="iconfont icon-delete" plain="true">解锁</a>
+        <a onclick="unlock()" href="#" class="easyui-linkbutton" iconCls="iconfont icon-unlock" plain="true">解锁</a>
     </div>
     <script src="${ctx!}/static/js/dg-curd.js"></script>
     <script>

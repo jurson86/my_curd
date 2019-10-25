@@ -25,33 +25,27 @@ import java.util.*;
  * @author chuang
  */
 @Slf4j
-public class ActivitiUtils {
+public class ActivitiKit {
 
     // activiti 引擎 以及 各个 service
     public static ProcessEngine getProcessEngine() {
         return ActivitiPlugin.processEngine;
     }
-
     public static RepositoryService getRepositoryService() {
         return ActivitiPlugin.processEngine.getRepositoryService();
     }
-
     public static FormService getFormService() {
         return ActivitiPlugin.processEngine.getFormService();
     }
-
     public static IdentityService getIdentityService() {
         return ActivitiPlugin.processEngine.getIdentityService();
     }
-
     public static RuntimeService getRuntimeService() {
         return ActivitiPlugin.processEngine.getRuntimeService();
     }
-
     public static TaskService getTaskService() {
         return ActivitiPlugin.processEngine.getTaskService();
     }
-
     public static HistoryService getHistoryService() {
         return ActivitiPlugin.processEngine.getHistoryService();
     }
@@ -94,11 +88,11 @@ public class ActivitiUtils {
      */
     public static String getActivityName(String businessKey) {
         String activityName = "未知";
-        ProcessInstance instance = ActivitiUtils.getRuntimeService().createProcessInstanceQuery()
+        ProcessInstance instance = ActivitiKit.getRuntimeService().createProcessInstanceQuery()
                 .processInstanceBusinessKey(businessKey)
                 .singleResult();
         if (instance != null) {
-            ActivityImpl activity = ActivitiUtils.getActivity(instance.getProcessDefinitionId(), instance.getActivityId());
+            ActivityImpl activity = ActivitiKit.getActivity(instance.getProcessDefinitionId(), instance.getActivityId());
             if (activity != null) {
                 activityName = (String) activity.getProperty("name");
             }
@@ -117,7 +111,7 @@ public class ActivitiUtils {
         Map<String, Object> ret = new HashMap<>();
 
         // 查询正在运行流程
-        ProcessInstance instance = ActivitiUtils.getRuntimeService().createProcessInstanceQuery()
+        ProcessInstance instance = ActivitiKit.getRuntimeService().createProcessInstanceQuery()
                 .processInstanceBusinessKey(businessKey)
                 .singleResult();
         if (instance != null) {
@@ -127,13 +121,13 @@ public class ActivitiUtils {
             String activityId = instance.getActivityId();
             ret.put("processDefinitionId", definitionId); // 流程定义id
             ret.put("currentActivityId", activityId); // 当前任务节点 id
-            ActivityImpl activity = ActivitiUtils.getActivity(definitionId, activityId);
+            ActivityImpl activity = ActivitiKit.getActivity(definitionId, activityId);
             if (activity != null) {
                 ret.put("currentActivityName", activity.getProperty("name")); //当前任务节点名
             }
         } else {
             // 正运行流程 不存在  查询历史流程
-            HistoricProcessInstance historicProcessInstance = ActivitiUtils.getHistoryService().createHistoricProcessInstanceQuery()
+            HistoricProcessInstance historicProcessInstance = ActivitiKit.getHistoryService().createHistoricProcessInstanceQuery()
                     .processInstanceBusinessKey(businessKey)
                     .singleResult();
             if (historicProcessInstance != null) {
@@ -156,7 +150,7 @@ public class ActivitiUtils {
      * @return
      */
     public static ActivityImpl getActivity(String processDefinitionId, String activityId) {
-        ProcessDefinitionEntity pde = (ProcessDefinitionEntity) ActivitiUtils.getRepositoryService().getProcessDefinition(processDefinitionId);
+        ProcessDefinitionEntity pde = (ProcessDefinitionEntity) ActivitiKit.getRepositoryService().getProcessDefinition(processDefinitionId);
         return pde.findActivity(activityId);
     }
 
@@ -168,13 +162,13 @@ public class ActivitiUtils {
      * @return 图片输入流
      */
     public static InputStream getInstanceDiagram(String processInstanceId) {
-        HistoricProcessInstance processInstance = ActivitiUtils.getHistoryService().createHistoricProcessInstanceQuery().processInstanceId(processInstanceId).singleResult();
-        BpmnModel bpmnModel = ActivitiUtils.getRepositoryService().getBpmnModel(processInstance.getProcessDefinitionId());
-        ProcessEngineConfiguration processEngineConfiguration = ActivitiUtils.getProcessEngine().getProcessEngineConfiguration();
+        HistoricProcessInstance processInstance = ActivitiKit.getHistoryService().createHistoricProcessInstanceQuery().processInstanceId(processInstanceId).singleResult();
+        BpmnModel bpmnModel = ActivitiKit.getRepositoryService().getBpmnModel(processInstance.getProcessDefinitionId());
+        ProcessEngineConfiguration processEngineConfiguration = ActivitiKit.getProcessEngine().getProcessEngineConfiguration();
         Context.setProcessEngineConfiguration((ProcessEngineConfigurationImpl) processEngineConfiguration);
         ProcessDiagramGenerator diagramGenerator = processEngineConfiguration.getProcessDiagramGenerator();
-        ProcessDefinitionEntity definitionEntity = (ProcessDefinitionEntity) ActivitiUtils.getRepositoryService().getProcessDefinition(processInstance.getProcessDefinitionId());
-        List<HistoricActivityInstance> highLightedActivitList = ActivitiUtils.getHistoryService().createHistoricActivityInstanceQuery().processInstanceId(processInstanceId).list();
+        ProcessDefinitionEntity definitionEntity = (ProcessDefinitionEntity) ActivitiKit.getRepositoryService().getProcessDefinition(processInstance.getProcessDefinitionId());
+        List<HistoricActivityInstance> highLightedActivitList = ActivitiKit.getHistoryService().createHistoricActivityInstanceQuery().processInstanceId(processInstanceId).list();
         List<String> highLightedActivitis = new ArrayList<>();
         List<String> highLightedFlows = getHighLightedFlows(definitionEntity, highLightedActivitList);
         for (HistoricActivityInstance tempActivity : highLightedActivitList) {

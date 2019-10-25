@@ -1,10 +1,18 @@
 <#include "common/common.ftl"/>
 <@layout>
 <link rel="stylesheet" href="${ctx!}/static/css/main.css">
+<script>
+     /*  如果被 iframe 嵌套，跳转到登录页，防止 session 过期 后被嵌套 */
+    if(top.location!==self.location){
+        top.location = "${ctx!}/login";
+    }
+</script>
 <div id="mainLayout" class="easyui-layout" fit="true" border="false">
+    <#-- 顶部导航栏 -->
     <div class="mainHeader" data-options="region:'north'" border="false">
         <ul class="headerMenu">
             <li><a href="javascript:fullScreenToggleNew()" title="点击全屏"  class="header-title">${(setting.sysTitle)!'综合管理系统'}</a></li>
+            <#--顶层菜单显示在 顶部导航栏中-->
             <#list rootMenus as menu>
                 <li>
                     <a href="${ctx!}/dashboard/${(menu.id)!}" <#if rootMenuId?? && rootMenuId == menu.id >class="header-active"</#if> >
@@ -12,7 +20,6 @@
                     </a>
                 </li>
             </#list>
-
             <span class="right">
                 <li>
                     <a href="javascript:openUserNotice()"   title="点击查看通知"  >
@@ -29,38 +36,37 @@
                 </li>
             </span>
         </ul>
-        <script>
-            function openUserNotice(){
-                popup.openIframeNoResize('用户通知', '${ctx!}/dashboard/userNotice', '900px', '600px');
-            }
-
-            (function(){
-                function openUserInfoEdit() {
-                    popup.openIframeNoResize('修改用户信息', '${ctx!}/dashboard/userInfo', '360px', '550px');
-                }
-                function openUserPwdChange(){
-                    popup.openIframeNoResize('修改密码', '${ctx!}/dashboard/userPass', '360px', '350px');
-                }
-                function logout(){
-                    popup.openConfirm(null,3, '退出确认', '您确定要退出当前系统吗?', function () {
-                        window.location.href='${ctx!}/logout';
-                    });
-                }
-
-                var opeMenu = $('#opeMenu').menubutton({ menu: '#opeMenuItem' });
-                $(opeMenu.menubutton('options').menu).menu({
-                    onClick: function (item) {
-                        switch (item.name){
-                            case 'editInfo':  openUserInfoEdit() ;break;
-                            case 'changePwd': openUserPwdChange() ;break;
-                            case 'logout': logout() ;break;
-                        }
-                    }
-                })
-            })();
-        </script>
     </div>
+    <script>
+        function openUserNotice(){
+            popup.openIframeNoResize('用户通知', '${ctx!}/dashboard/userNotice', '900px', '600px');
+        }
+        (function(){
+            function openUserInfoEdit() {
+                popup.openIframeNoResize('修改用户信息', '${ctx!}/dashboard/userInfo', '360px', '550px');
+            }
+            function openUserPwdChange(){
+                popup.openIframeNoResize('修改密码', '${ctx!}/dashboard/userPass', '360px', '350px');
+            }
+            function logout(){
+                popup.openConfirm(null,3, '退出确认', '您确定要退出当前系统吗?', function () {
+                    window.location.href='${ctx!}/logout';
+                });
+            }
+            var opeMenu = $('#opeMenu').menubutton({ menu: '#opeMenuItem' });
+            $(opeMenu.menubutton('options').menu).menu({
+                onClick: function (item) {
+                    switch (item.name){
+                        case 'editInfo':  openUserInfoEdit() ;break;
+                        case 'changePwd': openUserPwdChange() ;break;
+                        case 'logout': logout() ;break;
+                    }
+                }
+            })
+        })();
+    </script>
 
+    <#--左侧菜单树-->
     <div cls="sidebar" data-options="region:'west',split:false"   border="false">
         <div style="text-align: center;padding: 10px ;">
             <input id="filterInput" type="text" placeholder="关键字, enter 检索">
@@ -70,6 +76,7 @@
         </ul>
     </div>
 
+    <#--中部主体内容-->
     <div data-options="region:'center'" border="false" class="content bg">
         <!-- pill="true" narrow="true" plain="true" tab 可选样式-->
         <div id="tabGroup"   pill="false"  narrow="false" plain="false" ></div>
@@ -85,12 +92,6 @@
 </div>
 <script src="${ctx!}/static/js/easyui-tree-tools.js"></script>
 <script src="${ctx!}/static/js/tab-tools.js"></script>
-<#--<script src="${ctx!}/static/js/d-toast.min.js"></script>-->
-<script>
-    if(top.location!=self.location){
-        top.location = "${ctx!}/login";
-    }
-</script>
 <script>
     function menuTreeInit(){
         var easyTree = new EasyTree();
@@ -188,8 +189,6 @@
         }
     }
 
-
-
     $(function(){
         /*菜单树*/
         menuTreeInit();
@@ -203,7 +202,6 @@
 
         /* websocket 通知 */
         websocketInit();
-
     });
 </script>
 </@layout>

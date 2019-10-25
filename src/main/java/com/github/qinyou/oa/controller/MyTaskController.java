@@ -6,7 +6,7 @@ import com.github.qinyou.common.utils.WebUtils;
 import com.github.qinyou.common.validator.IdRequired;
 import com.github.qinyou.common.web.BaseController;
 import com.github.qinyou.oa.activiti.ActivitiConfig;
-import com.github.qinyou.oa.activiti.ActivitiUtils;
+import com.github.qinyou.oa.activiti.ActivitiKit;
 import com.github.qinyou.oa.vo.TaskInfo;
 import com.jfinal.aop.Before;
 import com.jfinal.kit.StrKit;
@@ -42,7 +42,7 @@ public class MyTaskController extends BaseController {
         int pageNumber = getParaToInt("page", 1);
         int pageSize = getParaToInt("rows", 30);
         String username = WebUtils.getSessionUsername(this);
-        TaskQuery query = ActivitiUtils.getTaskService().createTaskQuery();
+        TaskQuery query = ActivitiKit.getTaskService().createTaskQuery();
         query.taskAssignee(username).active();
 
         String instanceId = getPara("extra_instanceId");
@@ -60,7 +60,7 @@ public class MyTaskController extends BaseController {
         List<TaskInfo> list = new ArrayList<>();
         ProcessInstance processInstance;
         for (Task task : tasks) {
-            processInstance = ActivitiUtils.getRuntimeProcessInstance(task.getProcessInstanceId(), true);
+            processInstance = ActivitiKit.getRuntimeProcessInstance(task.getProcessInstanceId(), true);
             TaskInfo taskInfo = new TaskInfo()
                     .setId(task.getId())
                     .setCreateTime(task.getCreateTime())
@@ -82,7 +82,7 @@ public class MyTaskController extends BaseController {
     @Before(IdRequired.class)
     public void goCompleteForm() {
         String taskId = getPara("id");
-        Task task = ActivitiUtils.getTaskService().createTaskQuery()
+        Task task = ActivitiKit.getTaskService().createTaskQuery()
                 .taskId(taskId).singleResult();
 
         set("taskName", task.getName());
@@ -93,14 +93,14 @@ public class MyTaskController extends BaseController {
         String processInstanceId = task.getProcessInstanceId();
         set("processInstanceId", processInstanceId);
 
-        ProcessInstance processInstance = ActivitiUtils.getRuntimeService().createProcessInstanceQuery()
+        ProcessInstance processInstance = ActivitiKit.getRuntimeService().createProcessInstanceQuery()
                 .processInstanceId(processInstanceId)
                 .includeProcessVariables()
                 .singleResult();
 
         String businessForm = (String) processInstance.getProcessVariables().get("businessForm");
         String initiator = (String) processInstance.getProcessVariables().get("initiator");
-        String renderedTaskForm = (String) ActivitiUtils.getFormService().getRenderedTaskForm(taskId);
+        String renderedTaskForm = (String) ActivitiKit.getFormService().getRenderedTaskForm(taskId);
 
         setAttr("initiator", initiator);  // 发起人
         setAttr("processInstanceName", processInstance.getName()); // 流程实例名
@@ -131,10 +131,10 @@ public class MyTaskController extends BaseController {
             renderFail("processInstanceId 参数为空");
             return;
         }
-        Task task = ActivitiUtils.getTaskService().createTaskQuery()
+        Task task = ActivitiKit.getTaskService().createTaskQuery()
                 .taskId(taskId)
                 .singleResult();
-        Map<String, Object> formParams = ActivitiUtils.getFormParams(this);
+        Map<String, Object> formParams = ActivitiKit.getFormParams(this);
 
         String comment = getPara("comment", "");
         if (task.getFormKey() != null) {
@@ -148,18 +148,18 @@ public class MyTaskController extends BaseController {
                     kTemp = nameAry[0];
                     vTemp = nameAry[1] + ": " + v;
                     variables.put(kTemp, v);
-                    ActivitiUtils.getTaskService().addComment(taskId, processInstanceId, vTemp);
+                    ActivitiKit.getTaskService().addComment(taskId, processInstanceId, vTemp);
                 } else {
                     variables.put(k, v);
-                    ActivitiUtils.getTaskService().addComment(taskId, processInstanceId, v.toString());
+                    ActivitiKit.getTaskService().addComment(taskId, processInstanceId, v.toString());
                 }
             });
-            ActivitiUtils.getTaskService().addComment(taskId, processInstanceId, comment);
-            ActivitiUtils.getTaskService().complete(taskId, variables);
+            ActivitiKit.getTaskService().addComment(taskId, processInstanceId, comment);
+            ActivitiKit.getTaskService().complete(taskId, variables);
         } else {
             // 无表单
-            ActivitiUtils.getTaskService().addComment(taskId, processInstanceId, comment);
-            ActivitiUtils.getTaskService().complete(taskId);
+            ActivitiKit.getTaskService().addComment(taskId, processInstanceId, comment);
+            ActivitiKit.getTaskService().complete(taskId);
         }
 
         renderSuccess("办理成功");
@@ -177,7 +177,7 @@ public class MyTaskController extends BaseController {
             renderFail("参数缺失");
             return;
         }
-        TaskService taskService = ActivitiUtils.getTaskService();
+        TaskService taskService = ActivitiKit.getTaskService();
         Task task = taskService.createTaskQuery().taskId(taskId).singleResult();
         if (task == null) {
             renderFail("任务不存在");
@@ -189,8 +189,8 @@ public class MyTaskController extends BaseController {
         }
 
         // 设置上个任务处理人
-        ActivitiUtils.getTaskService().setVariableLocal(taskId, "lastAssignee", task.getAssignee());
-        ActivitiUtils.getTaskService().setAssignee(taskId, username);
+        ActivitiKit.getTaskService().setVariableLocal(taskId, "lastAssignee", task.getAssignee());
+        ActivitiKit.getTaskService().setAssignee(taskId, username);
         renderSuccess("转办 操作成功 ");
     }
 

@@ -8,7 +8,7 @@ import com.github.qinyou.common.utils.WebUtils;
 import com.github.qinyou.common.validator.IdRequired;
 import com.github.qinyou.common.validator.IdsRequired;
 import com.github.qinyou.common.web.BaseController;
-import com.github.qinyou.oa.activiti.ActivitiUtils;
+import com.github.qinyou.oa.activiti.ActivitiKit;
 import com.github.qinyou.oa.vo.ProcessDeploymentInfo;
 import com.jfinal.aop.Before;
 import com.jfinal.plugin.activerecord.tx.Tx;
@@ -45,7 +45,7 @@ public class ProcessDeployController extends BaseController {
         String category = get("extra_category");
         String deploymentName = get("extra_name");
 
-        DeploymentQuery query = ActivitiUtils.getRepositoryService().createDeploymentQuery();
+        DeploymentQuery query = ActivitiKit.getRepositoryService().createDeploymentQuery();
         if (StringUtils.notEmpty(category)) {
             query.deploymentCategory(category);
         }
@@ -91,7 +91,7 @@ public class ProcessDeployController extends BaseController {
 
         try (InputStream in = new FileInputStream(file.getFile())) {
             ZipInputStream zipInputStream = new ZipInputStream(in);
-            Deployment deployment = ActivitiUtils.getRepositoryService()
+            Deployment deployment = ActivitiKit.getRepositoryService()
                     .createDeployment().addZipInputStream(zipInputStream)
                     .category(category)
                     .name(name)
@@ -113,7 +113,7 @@ public class ProcessDeployController extends BaseController {
     @Before({IdsRequired.class, Tx.class})
     public void unDeployAction() {
         boolean cascade = getParaToBoolean("cascade", true);
-        RepositoryService service = ActivitiUtils.getRepositoryService();
+        RepositoryService service = ActivitiKit.getRepositoryService();
         for (String id : getPara("ids").split(",")) {
             // cascade 如为 false, 如果 流程已经启动，抛出 runtime exception 触发事务
             log.info("{} 部署流程, deploymentId:{}, cascade:{}", WebUtils.getSessionUsername(this), id, cascade);
@@ -129,7 +129,7 @@ public class ProcessDeployController extends BaseController {
     @Before(IdRequired.class)
     public void downloadZip() {
         String deploymentId = getPara("id");
-        Deployment deployment = ActivitiUtils.getRepositoryService().createDeploymentQuery()
+        Deployment deployment = ActivitiKit.getRepositoryService().createDeploymentQuery()
                 .deploymentId(deploymentId)
                 .singleResult();
         if (deployment == null) {
@@ -137,11 +137,11 @@ public class ProcessDeployController extends BaseController {
             return;
         }
 
-        List<String> resourceNames = ActivitiUtils.getRepositoryService().getDeploymentResourceNames(deploymentId);
+        List<String> resourceNames = ActivitiKit.getRepositoryService().getDeploymentResourceNames(deploymentId);
         List<InputStream> resourceDatas = new ArrayList<>();
 
         for (String resourceName : resourceNames) {
-            resourceDatas.add(ActivitiUtils.getRepositoryService().getResourceAsStream(deploymentId, resourceName));
+            resourceDatas.add(ActivitiKit.getRepositoryService().getResourceAsStream(deploymentId, resourceName));
         }
         render(ZipRender.me().filenames(resourceNames).dataIn(resourceDatas).fileName("部署包[" + deployment.getId() + "].zip"));
     }

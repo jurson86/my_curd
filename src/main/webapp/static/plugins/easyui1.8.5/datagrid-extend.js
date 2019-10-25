@@ -10,7 +10,7 @@
                         $(target).datagrid('hideColumn', item.name);
                         $(this).menu('setIcon', {
                             target: item.target,
-                            iconCls: 'iconfont icon-nocheck'
+                            iconCls: 'iconfont icon-no-check'
                         });
                     } else {
                         $(target).datagrid('showColumn', item.name);
@@ -32,7 +32,7 @@
                 state.columnMenu.menu('appendItem', {
                     text: col.title,
                     name: field,
-                    iconCls: col.hidden?'iconfont icon-nocheck':'iconfont icon-check'
+                    iconCls: col.hidden?'iconfont icon-no-check':'iconfont icon-check'
                 });
             }
         }

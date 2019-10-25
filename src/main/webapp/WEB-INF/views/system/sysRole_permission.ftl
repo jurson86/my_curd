@@ -3,6 +3,25 @@
     .btnWrapper{
         padding: 10px 0;
     }
+    .tree-checkbox1,.tree-checkbox2,.tree-checkbox0{
+        background:none
+    }
+    .tree-checkbox {
+        font-family: "iconfont" !important;
+        font-size: 16px;
+        font-style: normal;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+    .tree-checkbox0:before {
+        content: "\e63c"
+    }
+    .tree-checkbox1:before {
+        content: "\e6aa"
+    }
+    .tree-checkbox2:before {
+        content: "\e650"
+    }
 </style>
 <script type="text/javascript">
     /*数组去重*/

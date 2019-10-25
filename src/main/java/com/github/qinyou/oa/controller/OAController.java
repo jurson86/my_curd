@@ -5,7 +5,7 @@ import com.github.qinyou.common.render.ImageRender;
 import com.github.qinyou.common.utils.StringUtils;
 import com.github.qinyou.common.validator.IdRequired;
 import com.github.qinyou.common.web.BaseController;
-import com.github.qinyou.oa.activiti.ActivitiUtils;
+import com.github.qinyou.oa.activiti.ActivitiKit;
 import com.github.qinyou.oa.vo.HistoricTaskInfo;
 import com.jfinal.aop.Before;
 import com.jfinal.kit.StrKit;
@@ -33,7 +33,7 @@ public class OAController extends BaseController {
     @Before(IdRequired.class)
     public void definitionDiagram() {
         String id = get("id"); // 流程定义id
-        InputStream in = ActivitiUtils.getRepositoryService().getProcessDiagram(id);
+        InputStream in = ActivitiKit.getRepositoryService().getProcessDiagram(id);
         render(new ImageRender().inputStream(in));
     }
 
@@ -46,7 +46,7 @@ public class OAController extends BaseController {
             renderFail("Key 参数为空");
             return;
         }
-        List<ProcessDefinition> definitions = ActivitiUtils.getRepositoryService().createProcessDefinitionQuery()
+        List<ProcessDefinition> definitions = ActivitiKit.getRepositoryService().createProcessDefinitionQuery()
                 .processDefinitionKey(processKey)
                 .orderByProcessDefinitionVersion().desc()
                 .list();
@@ -54,7 +54,7 @@ public class OAController extends BaseController {
             renderFail("Key 参数错误");
             return;
         }
-        InputStream in = ActivitiUtils.getRepositoryService().getProcessDiagram(definitions.get(0).getId());
+        InputStream in = ActivitiKit.getRepositoryService().getProcessDiagram(definitions.get(0).getId());
         render(new ImageRender().inputStream(in));
     }
 
@@ -64,7 +64,7 @@ public class OAController extends BaseController {
     @Before(IdRequired.class)
     public void instanceDiagram() {
         String id = get("id");// 流程实例 id
-        InputStream in = ActivitiUtils.getInstanceDiagram(id);
+        InputStream in = ActivitiKit.getInstanceDiagram(id);
         render(new ImageRender().inputStream(in));
     }
 
@@ -75,7 +75,7 @@ public class OAController extends BaseController {
     @Before(IdRequired.class)
     public void processInstanceDetail() {
         String processInstanceId = getPara("id"); // 运行时流程实例id
-        ProcessInstance instance = ActivitiUtils.getRuntimeService().createProcessInstanceQuery()
+        ProcessInstance instance = ActivitiKit.getRuntimeService().createProcessInstanceQuery()
                 .processInstanceId(processInstanceId)
                 .includeProcessVariables()
                 .singleResult();
@@ -98,7 +98,7 @@ public class OAController extends BaseController {
     @Before(IdRequired.class)
     public void historicProcessInstanceDetail() {
         String processInstanceId = getPara("id"); // 历史流程实例 id
-        HistoricProcessInstance instance = ActivitiUtils.getHistoryService().createHistoricProcessInstanceQuery()
+        HistoricProcessInstance instance = ActivitiKit.getHistoryService().createHistoricProcessInstanceQuery()
                 .processInstanceId(processInstanceId)
                 .includeProcessVariables()
                 .singleResult();
@@ -138,7 +138,7 @@ public class OAController extends BaseController {
     @Before(IdRequired.class)
     public void historicTaskInstances() {
         String processInstanceId = get("id"); // 流程实例id (运行时或历史均可)
-        List<HistoricTaskInstance> historicTaskInstances = ActivitiUtils.getHistoryService().createHistoricTaskInstanceQuery()
+        List<HistoricTaskInstance> historicTaskInstances = ActivitiKit.getHistoryService().createHistoricTaskInstanceQuery()
                 .processInstanceId(processInstanceId)
                 .orderByTaskCreateTime()
                 .asc()
@@ -164,7 +164,7 @@ public class OAController extends BaseController {
             if (StringUtils.notEmpty(historicTaskInstance.getAssignee())) {
                 historicTaskInfo.setAssignee(historicTaskInstance.getAssignee());
             } else {
-                List<HistoricIdentityLink> historicIdentityLinks = ActivitiUtils.getHistoryService()
+                List<HistoricIdentityLink> historicIdentityLinks = ActivitiKit.getHistoryService()
                         .getHistoricIdentityLinksForTask(historicTaskInstance.getId());
                 List<String> candidateGroup = new ArrayList<>();
                 List<String> candidateUser = new ArrayList<>();
@@ -183,7 +183,7 @@ public class OAController extends BaseController {
                 historicTaskInfo.setCandidateUser(candidateUser);
             }
 
-            List<Comment> comments = ActivitiUtils.getTaskService().getTaskComments(historicTaskInstance.getId());
+            List<Comment> comments = ActivitiKit.getTaskService().getTaskComments(historicTaskInstance.getId());
             List<String> commentsStr = new ArrayList<>();
             comments.forEach(comment -> {
                 commentsStr.add(comment.getFullMessage());

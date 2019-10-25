@@ -5,7 +5,7 @@ import com.github.qinyou.common.utils.StringUtils;
 import com.github.qinyou.common.utils.WebUtils;
 import com.github.qinyou.common.validator.IdRequired;
 import com.github.qinyou.oa.activiti.ActivitiConfig;
-import com.github.qinyou.oa.activiti.ActivitiUtils;
+import com.github.qinyou.oa.activiti.ActivitiKit;
 import com.github.qinyou.oa.controller.OAFormBaseController;
 import com.github.qinyou.oa.model.BusinessFormInfo;
 import com.github.qinyou.oa.model.FormLeave;
@@ -77,7 +77,7 @@ public class FormLeaveController extends OAFormBaseController {
         String processInstanceName = info.getName() + "-( " + sysUser.getRealName()
                 + new DateTime(formLeave.getCreateTime()).toString(" yyyy/MM/dd HH:mm )");
         Authentication.setAuthenticatedUserId(WebUtils.getSessionUsername(this));
-        ProcessInstanceBuilder builder = ActivitiUtils.getRuntimeService().createProcessInstanceBuilder()
+        ProcessInstanceBuilder builder = ActivitiKit.getRuntimeService().createProcessInstanceBuilder()
                 .processDefinitionKey(info.getProcessKey())
                 .businessKey(formLeave.getId())
                 .processInstanceName(processInstanceName)
@@ -113,12 +113,12 @@ public class FormLeaveController extends OAFormBaseController {
         if (!WebUtils.getSessionUsername(this).equals(formLeave.getCreater())) {
             throw new RuntimeException("非法删除流程操作");
         }
-        ProcessInstance instance = ActivitiUtils.getRuntimeService().createProcessInstanceQuery()
+        ProcessInstance instance = ActivitiKit.getRuntimeService().createProcessInstanceQuery()
                 .processInstanceBusinessKey(id)
                 .singleResult();
         if (instance != null) {
             // 未结束流程 添加删除标志字段
-            ActivitiUtils.getRuntimeService().deleteProcessInstance(instance.getId(), ActivitiConfig.DEL_INSTANCE_BY_USER);
+            ActivitiKit.getRuntimeService().deleteProcessInstance(instance.getId(), ActivitiConfig.DEL_INSTANCE_BY_USER);
             formLeave.setDelFlag("Y").update();
             renderSuccess(DELETE_FORM_SUCCESS);
         } else {

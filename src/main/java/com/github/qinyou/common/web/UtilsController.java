@@ -85,7 +85,7 @@ public class UtilsController extends BaseController {
             root.put("pid", "-1");
             root.put("text", "根机构");
             root.put("state", sysOrgs.size() > 0 ? "closed" : "open");
-            root.put("iconCls", "iconfont icon-orgtree");
+            root.put("iconCls", "iconfont icon-org-tree");
             maps.add(root);
         }
         for (SysOrg sysOrg : sysOrgs) {
@@ -93,7 +93,7 @@ public class UtilsController extends BaseController {
             map.put("id", sysOrg.getId());
             map.put("pid", sysOrg.getPid());
             map.put("text", sysOrg.getOrgName());
-            map.put("iconCls", "iconfont icon-orgtree");
+            map.put("iconCls", "iconfont icon-org-tree");
             if (pids.contains(sysOrg.getId())) {
                 map.put("state", "closed");
             }
@@ -112,7 +112,7 @@ public class UtilsController extends BaseController {
         sysOrgs.forEach(item -> pids.add(item.getPid()));
 
         for (SysOrg sysOrg : sysOrgs) {
-            sysOrg.put("iconCls", "iconfont icon-orgtree");
+            sysOrg.put("iconCls", "iconfont icon-org-tree");
             if (!Objects.equal(sysOrg.getPid(), "0") && pids.contains(sysOrg.getId())) {
                 sysOrg.put("state", "closed");
             }

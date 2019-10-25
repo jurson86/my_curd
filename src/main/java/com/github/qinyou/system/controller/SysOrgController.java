@@ -40,7 +40,7 @@ public class SysOrgController extends BaseController {
         sysOrgs.forEach(item -> pids.add(item.getPid()));
 
         for (SysOrg sysOrg : sysOrgs) {
-            sysOrg.put("iconCls", "iconfont icon-orgtree");
+            sysOrg.put("iconCls", "iconfont icon-org-tree");
             if (!Objects.equal(sysOrg.getPid(), "0") && pids.contains(sysOrg.getId())) {
                 sysOrg.put("state", "closed");
             }

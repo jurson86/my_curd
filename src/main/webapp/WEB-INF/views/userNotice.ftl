@@ -66,7 +66,7 @@
             </thead>
         </table>
         <div id="tb">
-            <a onclick="setAllRead()" href="#" class="easyui-linkbutton" iconCls="iconfont icon-setRead" plain="true">全部已读</a>
+            <a onclick="setAllRead()" href="#" class="easyui-linkbutton" iconCls="iconfont icon-all-read" plain="true">全部已读</a>
             <span id="searchSpan" class="searchInputArea">
                   <select name="search_EQ_c.hasRead" class="easyui-combobox"   style="width:100px; " data-options="panelHeight:'auto'">
                       <option value=""  selected>全部</option>

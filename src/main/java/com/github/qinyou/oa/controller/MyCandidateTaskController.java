@@ -6,7 +6,7 @@ import com.github.qinyou.common.utils.WebUtils;
 import com.github.qinyou.common.validator.IdRequired;
 import com.github.qinyou.common.web.BaseController;
 import com.github.qinyou.oa.activiti.ActivitiConfig;
-import com.github.qinyou.oa.activiti.ActivitiUtils;
+import com.github.qinyou.oa.activiti.ActivitiKit;
 import com.github.qinyou.oa.vo.TaskInfo;
 import com.google.common.base.Joiner;
 import com.jfinal.aop.Before;
@@ -73,7 +73,7 @@ public class MyCandidateTaskController extends BaseController {
         List<TaskInfo> list = new ArrayList<>();
         ProcessInstance processInstance;
         for (Record record : page.getList()) {
-            processInstance = ActivitiUtils.getRuntimeProcessInstance(record.getStr("PROC_INST_ID_"), true);
+            processInstance = ActivitiKit.getRuntimeProcessInstance(record.getStr("PROC_INST_ID_"), true);
             TaskInfo taskInfo = new TaskInfo()
                     .setId(record.getStr("ID_"))
                     .setCreateTime(record.getDate("CREATE_TIME_"))
@@ -94,7 +94,7 @@ public class MyCandidateTaskController extends BaseController {
     public void claimAction() {
         String taskId = getPara("id");
 
-        Task task = ActivitiUtils.getTaskService().createTaskQuery().taskId(taskId).singleResult();
+        Task task = ActivitiKit.getTaskService().createTaskQuery().taskId(taskId).singleResult();
         if (task == null) {
             renderFail("任务不存在");
             return;
@@ -108,7 +108,7 @@ public class MyCandidateTaskController extends BaseController {
             return;
         }
 
-        ActivitiUtils.getTaskService().claim(taskId, WebUtils.getSessionUsername(this));
+        ActivitiKit.getTaskService().claim(taskId, WebUtils.getSessionUsername(this));
         renderSuccess("认领成功");
     }
 

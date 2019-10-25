@@ -1,8 +1,8 @@
 package com.github.qinyou.oa;
 
 import com.github.qinyou.oa.activiti.ActivitiConfig;
+import com.github.qinyou.oa.activiti.ActivitiKit;
 import com.github.qinyou.oa.activiti.ActivitiPlugin;
-import com.github.qinyou.oa.activiti.ActivitiUtils;
 import com.jfinal.kit.Prop;
 import com.jfinal.kit.PropKit;
 import com.jfinal.plugin.activerecord.ActiveRecordPlugin;
@@ -43,7 +43,7 @@ public class Test {
         InputStream in = new FileInputStream("E:/leaveProcess.zip");
         String processName = "简单请假流程";
         ZipInputStream zipInputStream = new ZipInputStream(in);
-        Deployment deployment = ActivitiUtils.getProcessEngine().getRepositoryService()
+        Deployment deployment = ActivitiKit.getProcessEngine().getRepositoryService()
                 .createDeployment().addZipInputStream(zipInputStream)
                 .name(processName)
                 .deploy();
@@ -52,7 +52,7 @@ public class Test {
     }
 
     static void listProcessDefine() {
-        List<ProcessDefinition> list = ActivitiUtils.getRepositoryService().createProcessDefinitionQuery()
+        List<ProcessDefinition> list = ActivitiKit.getRepositoryService().createProcessDefinitionQuery()
                 .latestVersion().list();
         list.forEach(processDefinition -> {
             log.info(processDefinition.getKey());
@@ -76,7 +76,7 @@ public class Test {
 //        String processInstanceId = "7501";
 //
 //        System.out.println("--start------");
-//        ActivitiUtils.getHistoryService().createHistoricActivityInstanceQuery()
+//        ActivitiKit.getHistoryService().createHistoricActivityInstanceQuery()
 //                .processInstanceId(processInstanceId)
 //                .list().forEach(historicActivityInstance -> {
 //            System.out.println("开始时间:"+historicActivityInstance.getStartTime());
@@ -89,7 +89,7 @@ public class Test {
 //            System.out.println("getExecutionId:"+historicActivityInstance.getExecutionId());
 //        });
 //        System.out.println("--end------");
-//         ActivitiUtils.getHistoryService().createHistoricProcessInstanceQuery().startedBy("admin").list()
+//         ActivitiKit.getHistoryService().createHistoricProcessInstanceQuery().startedBy("admin").list()
 //                 .forEach(historicProcessInstance -> {
 //             System.out.println("--------------------------------------------------");
 //             System.out.println(historicProcessInstance.getName());

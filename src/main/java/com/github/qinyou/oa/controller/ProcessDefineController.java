@@ -4,7 +4,7 @@ import com.github.qinyou.common.annotation.RequirePermission;
 import com.github.qinyou.common.utils.StringUtils;
 import com.github.qinyou.common.validator.IdsRequired;
 import com.github.qinyou.common.web.BaseController;
-import com.github.qinyou.oa.activiti.ActivitiUtils;
+import com.github.qinyou.oa.activiti.ActivitiKit;
 import com.github.qinyou.oa.vo.ProcessDefinitionInfo;
 import com.jfinal.aop.Before;
 import lombok.extern.slf4j.Slf4j;
@@ -29,7 +29,7 @@ public class ProcessDefineController extends BaseController {
 
         String processKey = getPara("extra_key");
 
-        RepositoryService service = ActivitiUtils.getRepositoryService();
+        RepositoryService service = ActivitiKit.getRepositoryService();
         ProcessDefinitionQuery query = service.createProcessDefinitionQuery();
         if (StringUtils.notEmpty(processKey)) {
             query.processDefinitionKeyLike("%" + processKey + "%");
@@ -59,7 +59,7 @@ public class ProcessDefineController extends BaseController {
     @Before(IdsRequired.class)
     public void activateProcessDefine() {
         boolean activateProcessInstances = getParaToBoolean("activateProcessInstances", true);
-        RepositoryService service = ActivitiUtils.getRepositoryService();
+        RepositoryService service = ActivitiKit.getRepositoryService();
         for (String id : getPara("ids").split(",")) {
             if (service.isProcessDefinitionSuspended(id)) {
                 service.activateProcessDefinitionById(id, activateProcessInstances, null);
@@ -72,7 +72,7 @@ public class ProcessDefineController extends BaseController {
     @Before(IdsRequired.class)
     public void suspendProcessDefine() {
         boolean activateProcessInstances = getParaToBoolean("activateProcessInstances", true);
-        RepositoryService service = ActivitiUtils.getRepositoryService();
+        RepositoryService service = ActivitiKit.getRepositoryService();
         for (String id : getPara("ids").split(",")) {
             if (!service.isProcessDefinitionSuspended(id)) {
                 service.suspendProcessDefinitionById(id);

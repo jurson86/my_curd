@@ -9,21 +9,25 @@ import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.SQLException;
 
+/**
+ * ibatis 事务 使用 jfinal 数据源
+ * @author chuang
+ */
 @Slf4j
 public class ActivitiTransaction implements Transaction {
 
-    protected Connection connection;
-    protected DataSource dataSource;
-    protected TransactionIsolationLevel level;
-    protected boolean autoCommit;
+    private Connection connection;
+    private DataSource dataSource;
+    private TransactionIsolationLevel level;
+    private boolean autoCommit;
 
-    public ActivitiTransaction(DataSource ds, TransactionIsolationLevel desiredLevel, boolean desiredAutoCommit) {
+    ActivitiTransaction(DataSource ds, TransactionIsolationLevel desiredLevel, boolean desiredAutoCommit) {
         dataSource = ds;
         level = desiredLevel;
         autoCommit = desiredAutoCommit;
     }
 
-    public ActivitiTransaction(Connection connection) {
+    ActivitiTransaction(Connection connection) {
         this.connection = connection;
     }
 
@@ -52,7 +56,7 @@ public class ActivitiTransaction implements Transaction {
         }
     }
 
-    protected void openConnection() throws SQLException {
+     void openConnection() throws SQLException {
         connection = DbKit.getConfig(ActivitiConfig.DATASOURCE_NAME).getConnection();
         if (level != null) {
             connection.setTransactionIsolation(level.getLevel());

@@ -5,7 +5,7 @@ import com.github.qinyou.common.utils.StringUtils;
 import com.github.qinyou.common.utils.WebUtils;
 import com.github.qinyou.common.web.BaseController;
 import com.github.qinyou.oa.activiti.ActivitiConfig;
-import com.github.qinyou.oa.activiti.ActivitiUtils;
+import com.github.qinyou.oa.activiti.ActivitiKit;
 import com.github.qinyou.oa.vo.ProcessInstanceInfo;
 import com.jfinal.plugin.activerecord.Db;
 import com.jfinal.plugin.activerecord.Page;
@@ -69,7 +69,7 @@ public class MyCompleteTaskController extends BaseController {
             info.setName(record.getStr("name"));
             info.setInitiator(record.getStr("initiator"));
             if (info.getEndTime() == null) {
-                info.setActivityName(ActivitiUtils.getActivityName(record.getStr("businessKey")));
+                info.setActivityName(ActivitiKit.getActivityName(record.getStr("businessKey")));
             }
             retList.add(info);
         }

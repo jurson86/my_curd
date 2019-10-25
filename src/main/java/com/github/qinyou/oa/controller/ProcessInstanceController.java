@@ -3,7 +3,7 @@ package com.github.qinyou.oa.controller;
 import com.github.qinyou.common.annotation.RequirePermission;
 import com.github.qinyou.common.utils.StringUtils;
 import com.github.qinyou.common.web.BaseController;
-import com.github.qinyou.oa.activiti.ActivitiUtils;
+import com.github.qinyou.oa.activiti.ActivitiKit;
 import org.activiti.engine.history.HistoricProcessInstance;
 import org.activiti.engine.history.HistoricProcessInstanceQuery;
 
@@ -29,7 +29,7 @@ public class ProcessInstanceController extends BaseController {
         int pageSize = getParaToInt("rows", 30);
         boolean finished = getParaToBoolean("finished", false);  // 是否结束
 
-        HistoricProcessInstanceQuery query = ActivitiUtils.getHistoryService().createHistoricProcessInstanceQuery();
+        HistoricProcessInstanceQuery query = ActivitiKit.getHistoryService().createHistoricProcessInstanceQuery();
 
         // 申请人
         String applyUser = getPara("extra_applyUser");
@@ -79,8 +79,8 @@ public class ProcessInstanceController extends BaseController {
 
         if (!finished) {
             for (HistoricProcessInstance instance : list) {
-                instance.setLocalizedDescription(ActivitiUtils.getActivityName(instance.getBusinessKey()));
-                //instance.getProcessVariables().put("activityName",ActivitiUtils.getActivityName(instance.getBusinessKey()));
+                instance.setLocalizedDescription(ActivitiKit.getActivityName(instance.getBusinessKey()));
+                //instance.getProcessVariables().put("activityName",ActivitiKit.getActivityName(instance.getBusinessKey()));
             }
         }
         renderDatagrid(list, total.intValue());

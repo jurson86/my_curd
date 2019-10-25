@@ -4,7 +4,7 @@ import com.github.qinyou.common.annotation.RequirePermission;
 import com.github.qinyou.common.utils.StringUtils;
 import com.github.qinyou.common.utils.WebUtils;
 import com.github.qinyou.common.web.BaseController;
-import com.github.qinyou.oa.activiti.ActivitiUtils;
+import com.github.qinyou.oa.activiti.ActivitiKit;
 import com.github.qinyou.oa.vo.ProcessInstanceInfo;
 import com.jfinal.kit.StrKit;
 import org.activiti.engine.history.HistoricProcessInstance;
@@ -36,7 +36,7 @@ public class MyProcessController extends BaseController {
         int pageNumber = getParaToInt("page", 1);
         int pageSize = getParaToInt("rows", 30);
         String username = WebUtils.getSessionUsername(this);
-        HistoricProcessInstanceQuery query = ActivitiUtils.getHistoryService().createHistoricProcessInstanceQuery()
+        HistoricProcessInstanceQuery query = ActivitiKit.getHistoryService().createHistoricProcessInstanceQuery()
                 .notDeleted();
         query.startedBy(username); // 流程发起人
 
@@ -61,7 +61,7 @@ public class MyProcessController extends BaseController {
             info.setEndTime(instance.getEndTime());
             info.setName(instance.getName());
             if (info.getEndTime() == null) {
-                info.setActivityName(ActivitiUtils.getActivityName(instance.getBusinessKey()));
+                info.setActivityName(ActivitiKit.getActivityName(instance.getBusinessKey()));
             }
             info.setBusinessForm((String) instance.getProcessVariables().get("businessForm"));
             info.setBusinessKey(instance.getBusinessKey());

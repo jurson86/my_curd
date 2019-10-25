@@ -16,13 +16,12 @@ import org.activiti.engine.impl.cfg.StandaloneProcessEngineConfiguration;
 public class ActivitiPlugin implements IPlugin {
     public static ProcessEngine processEngine = null;
 
-    private boolean isStarted = false;
-
     @Override
     public boolean start() {
         try {
             createProcessEngine();
         } catch (Exception e) {
+            log.error(e.getMessage(),e);
             e.printStackTrace();
         }
         return true;
@@ -31,23 +30,29 @@ public class ActivitiPlugin implements IPlugin {
     @Override
     public boolean stop() {
         ProcessEngines.destroy();
-        isStarted = false;
+        ActivitiPlugin.processEngine = null;
         return true;
     }
 
-    private Boolean createProcessEngine() throws Exception {
-        if (isStarted) {
+    /**
+     * 创建工作流引擎
+     * @return
+     */
+    private Boolean createProcessEngine(){
+        if (processEngine != null) {
             return true;
         }
         StandaloneProcessEngineConfiguration conf =
                 (StandaloneProcessEngineConfiguration) ProcessEngineConfiguration.createStandaloneProcessEngineConfiguration();
         conf.setDataSource(DbKit.getConfig().getDataSource())
-                .setDatabaseSchemaUpdate(ProcessEngineConfiguration.DB_SCHEMA_UPDATE_TRUE)
-                .setDbHistoryUsed(true);
-        //conf.setTransactionsExternallyManaged(true); // 使用托管事务工厂(不需要 事务 也可生效)
+            .setDatabaseSchemaUpdate(ProcessEngineConfiguration.DB_SCHEMA_UPDATE_TRUE) // 自动更新数据库表
+            .setDbHistoryUsed(true);                                                   // 历史表生效功能
+        // conf.setTransactionsExternallyManaged(true); // 使用托管事务工厂(不配置，事务也可生效)
+
+
         conf.setTransactionFactory(new ActivitiTransactionFactory());
+
         ActivitiPlugin.processEngine = conf.buildProcessEngine();
-        isStarted = true;
         return true;
     }
 }
