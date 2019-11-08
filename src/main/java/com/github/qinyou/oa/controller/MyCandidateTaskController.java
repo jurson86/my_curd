@@ -38,12 +38,12 @@ public class MyCandidateTaskController extends BaseController {
         int pageNumber = getParaToInt("page", 1);
         int pageSize = getParaToInt("rows", 30);
 
-        String roleCodes = getSessionAttr("roleCodes");
-        List<String> roleCodeList = new ArrayList<>();
-        for (String roleCode : roleCodes.split(",")) {
-            roleCodeList.add("role_" + roleCode);
+        List<String> roleCodeList = getSessionAttr("roleCodes");
+        List<String> roleCodeListNew = new ArrayList<>();
+        for (String roleCode : roleCodeList) {
+            roleCodeListNew.add("role_" + roleCode);
         }
-        roleCodes = Joiner.on("','").join(roleCodeList);
+        String roleCodes = Joiner.on("','").join(roleCodeListNew);
         String username = WebUtils.getSessionUsername(this);
         String sqlSelect = " SELECT DISTINCT RES.* ";
         String sqlExceptSelect = "  FROM " +
